@@ -10,6 +10,7 @@ Layout:
 - `mods/<mod-name>/src/main/resources` - non-class files extracted from the jar.
 - `mods/<mod-name>/README.md` - original jar name, metadata, checksum, and file counts.
 - `manifest.json` - machine-readable index for all processed mods.
+- `RESEARCH_GUIDE.md` - recommended entrypoint for bug research using this reverse-engineered repository.
 - `DECOMPILATION_QUALITY.md` - decompiler warning summary and bytecode fallback guidance.
 - `MCP_REMAPPING.md` - Minecraft 1.12 MCP remapping summary.
 - `decompilation-quality/` - class inventories and parsed CFR issue data.
