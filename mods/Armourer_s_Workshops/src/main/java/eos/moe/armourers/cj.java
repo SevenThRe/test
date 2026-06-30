@@ -56,38 +56,38 @@ implements t {
     public static Entity m;
     private je j;
 
-    public void func_146976_a(float a2, int a3, int a4) {
+    public void drawGuiContainerBackgroundLayer(float a2, int a3, int a4) {
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         cj a3;
-        ScaledResolution scaledResolution = new ScaledResolution(a3.field_146297_k);
-        a3.field_146999_f = scaledResolution.func_78326_a();
-        a3.field_147000_g = scaledResolution.func_78328_b();
-        super.func_73866_w_();
-        a3.field_147002_h.field_75151_b.forEach(a2 -> {
-            a2.field_75221_f = 999;
+        ScaledResolution scaledResolution = new ScaledResolution(a3.mc);
+        a3.xSize = scaledResolution.getScaledWidth();
+        a3.ySize = scaledResolution.getScaledHeight();
+        super.initGui();
+        a3.inventorySlots.inventorySlots.forEach(a2 -> {
+            a2.yPos = 999;
         });
         cj cj2 = a3;
-        int n2 = cj2.field_146294_l - 162 - 25;
-        int n3 = cj2.field_146295_m - 25;
-        n2 = MathHelper.func_76125_a((int)n2, (int)0, (int)200);
+        int n2 = cj2.width - 162 - 25;
+        int n3 = cj2.height - 25;
+        n2 = MathHelper.clamp((int)n2, (int)0, (int)200);
         cj cj3 = a3;
         cj cj4 = a3;
-        cj3.j = new je(142, 12, n2, Math.max(0, n3), 14, cj4.field_146294_l, cj4.field_146295_m, a3);
+        cj3.j = new je(142, 12, n2, Math.max(0, n3), 14, cj4.width, cj4.height, a3);
         cj cj5 = a3;
-        cj2.r = new am(a3, 6, 12, 125, n3 -= 130, 14, cj5.field_146294_l, cj5.field_146295_m);
+        cj2.r = new am(a3, 6, 12, 125, n3 -= 130, 14, cj5.width, cj5.height);
         cj cj6 = a3;
-        cj2.s = new jd(a3, 6, 12 + n3 + 4, 125, 103, 14, cj6.field_146294_l, cj6.field_146295_m);
-        cj2.field_146292_n.clear();
-        cj2.field_146292_n.add(new ee(0, 70, n3 + 123, 62, 20, "\u4e34\u65f6\u8bbe\u7f6e", a2 -> {
+        cj2.s = new jd(a3, 6, 12 + n3 + 4, 125, 103, 14, cj6.width, cj6.height);
+        cj2.buttonList.clear();
+        cj2.buttonList.add(new ee(0, 70, n3 + 123, 62, 20, "\u4e34\u65f6\u8bbe\u7f6e", a2 -> {
             if (m != null) {
-                nf.r(m.func_110124_au(), false, c);
+                nf.r(m.getUniqueID(), false, c);
             }
         }));
-        a3.field_146292_n.add(new ee(0, 5, n3 + 123, 62, 20, "\u6c38\u4e45\u4fdd\u5b58", a2 -> {
+        a3.buttonList.add(new ee(0, 5, n3 + 123, 62, 20, "\u6c38\u4e45\u4fdd\u5b58", a2 -> {
             if (m != null) {
-                nf.r(m.func_110124_au(), true, c);
+                nf.r(m.getUniqueID(), true, c);
             }
         }));
         m = null;
@@ -95,21 +95,21 @@ implements t {
         af.z();
     }
 
-    public void func_73863_a(int a2, int a3, float a4) {
+    public void drawScreen(int a2, int a3, float a4) {
         cj a5;
-        GlStateManager.func_179140_f();
+        GlStateManager.disableLighting();
         cj cj2 = a5;
-        cj.func_73734_a((int)0, (int)0, (int)cj2.field_146294_l, (int)cj2.field_146295_m, (int)-1946157056);
+        cj.drawRect((int)0, (int)0, (int)cj2.width, (int)cj2.height, (int)-1946157056);
         cj cj3 = a5;
         cj3.j.r(a2, a3, a4);
         cj3.r.r(a2, a3, a4);
         cj3.s.r(a2, a3, a4);
-        GlStateManager.func_179145_e();
+        GlStateManager.enableLighting();
         if (m != null) {
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-            th.r(390, a5.field_146295_m - 15, 50, (EntityLivingBase)m);
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            th.r(390, a5.height - 15, 50, (EntityLivingBase)m);
         }
-        super.func_73863_a(a2, a3, a4);
+        super.drawScreen(a2, a3, a4);
     }
 
     public static /* synthetic */ List r(cj a2) {
@@ -130,19 +130,19 @@ implements t {
         af.y();
         a5.l = new ArrayList<Tuple<String, UUID>>();
         a3 = new ArrayList();
-        FMLClientHandler.instance().getWorldClient().func_72910_y().forEach(arg_0 -> cj.r((List)a3, arg_0));
-        a3.sort(Comparator.comparingDouble(a2 -> Minecraft.func_71410_x().field_71439_g.func_70032_d(a2)));
+        FMLClientHandler.instance().getWorldClient().getLoadedEntityList().forEach(arg_0 -> cj.r((List)a3, arg_0));
+        a3.sort(Comparator.comparingDouble(a2 -> Minecraft.getMinecraft().player.getDistance(a2)));
         Object object = a3 = a3.iterator();
         while (object.hasNext()) {
             a4 = (Entity)a3.next();
             object = a3;
-            a5.l.add((Tuple<String, UUID>)new Tuple((Object)new StringBuilder().insert(0, a4.func_145748_c_().func_150260_c()).append("\u00a7f(").append(v.format(a5.r((Entity)a4))).append("\u7c73)").toString(), (Object)a4.func_110124_au()));
+            a5.l.add((Tuple<String, UUID>)new Tuple((Object)new StringBuilder().insert(0, a4.getDisplayName().getUnformattedText()).append("\u00a7f(").append(v.format(a5.r((Entity)a4))).append("\u7c73)").toString(), (Object)a4.getUniqueID()));
         }
     }
 
-    public void func_146281_b() {
+    public void onGuiClosed() {
         cj a2;
-        super.func_146281_b();
+        super.onGuiClosed();
         m = null;
         c.clear();
     }

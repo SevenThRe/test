@@ -41,12 +41,12 @@ public class eka {
     public boolean ALLATORIxDEMO() {
         eka a2;
         Entity a3 = a2.c.ALLATORIxDEMO();
-        if (!a3.func_70089_S()) {
+        if (!a3.isEntityAlive()) {
             return true;
         }
         if (a2.ALLATORIxDEMO(a3)) {
-            a3.field_70170_p.func_180500_c(EnumSkyBlock.BLOCK, new BlockPos(a2.y, a2.k, a2.ALLATORIxDEMO));
-            a3.field_70170_p.func_180500_c(EnumSkyBlock.BLOCK, new BlockPos(a2.q, a2.b, a2.o));
+            a3.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos(a2.y, a2.k, a2.ALLATORIxDEMO));
+            a3.world.checkLightFor(EnumSkyBlock.BLOCK, new BlockPos(a2.q, a2.b, a2.o));
         }
         return false;
     }
@@ -73,9 +73,9 @@ public class eka {
 
     private /* synthetic */ boolean ALLATORIxDEMO(Entity a2) {
         eka a3;
-        int a4 = MathHelper.func_76128_c((double)a2.field_70165_t);
-        int a5 = MathHelper.func_76128_c((double)a2.field_70163_u);
-        int a6 = MathHelper.func_76128_c((double)a2.field_70161_v);
+        int a4 = MathHelper.floor((double)a2.posX);
+        int a5 = MathHelper.floor((double)a2.posY);
+        int a6 = MathHelper.floor((double)a2.posZ);
         if (a4 != a3.y || a5 != a3.k || a6 != a3.ALLATORIxDEMO) {
             a3.q = a3.y;
             a3.b = a3.k;
@@ -101,7 +101,7 @@ public class eka {
 
     public int hashCode() {
         eka a2;
-        return a2.c.ALLATORIxDEMO().func_145782_y();
+        return a2.c.ALLATORIxDEMO().getEntityId();
     }
 }
 

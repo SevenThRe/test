@@ -89,24 +89,24 @@ implements IModBlockHandler {
         this.mapPlants = coreProperties.mapPlants.get();
         this.mapCrops = coreProperties.mapCrops.get();
         this.mapPlantShadows = coreProperties.mapPlantShadows.get();
-        this.setFlags(Material.field_175972_I, BlockFlag.Ignore);
-        this.setFlags(Material.field_151579_a, BlockFlag.Ignore);
-        this.setFlags(Material.field_151592_s, Float.valueOf(0.4f), BlockFlag.Transparency);
-        this.setFlags(Material.field_151577_b, BlockFlag.Grass);
+        this.setFlags(Material.BARRIER, BlockFlag.Ignore);
+        this.setFlags(Material.AIR, BlockFlag.Ignore);
+        this.setFlags(Material.GLASS, Float.valueOf(0.4f), BlockFlag.Transparency);
+        this.setFlags(Material.GRASS, BlockFlag.Grass);
         if (coreProperties.caveIgnoreGlass.get().booleanValue()) {
-            this.setFlags(Material.field_151592_s, BlockFlag.OpenToSky);
+            this.setFlags(Material.GLASS, BlockFlag.OpenToSky);
         }
-        this.setFlags(Material.field_151587_i, Float.valueOf(1.0f), BlockFlag.NoShadow);
-        this.setFlags(Material.field_151586_h, Float.valueOf(0.25f), BlockFlag.Water, BlockFlag.NoShadow);
-        this.materialAlphas.put(Material.field_151588_w, Float.valueOf(0.8f));
-        this.materialAlphas.put(Material.field_151598_x, Float.valueOf(0.8f));
-        this.setFlags(Blocks.field_150411_aY, Float.valueOf(0.4f), BlockFlag.Transparency);
-        this.setFlags((Block)Blocks.field_150480_ab, BlockFlag.NoShadow);
-        this.setFlags(Blocks.field_150468_ap, BlockFlag.OpenToSky);
-        this.setFlags(Blocks.field_150431_aC, BlockFlag.NoTopo, BlockFlag.NoShadow);
-        this.setFlags(Blocks.field_150473_bD, BlockFlag.Ignore);
-        this.setFlags((Block)Blocks.field_150479_bC, BlockFlag.Ignore);
-        this.setFlags(Blocks.field_150321_G, BlockFlag.OpenToSky, BlockFlag.NoShadow);
+        this.setFlags(Material.LAVA, Float.valueOf(1.0f), BlockFlag.NoShadow);
+        this.setFlags(Material.WATER, Float.valueOf(0.25f), BlockFlag.Water, BlockFlag.NoShadow);
+        this.materialAlphas.put(Material.ICE, Float.valueOf(0.8f));
+        this.materialAlphas.put(Material.PACKED_ICE, Float.valueOf(0.8f));
+        this.setFlags(Blocks.IRON_BARS, Float.valueOf(0.4f), BlockFlag.Transparency);
+        this.setFlags((Block)Blocks.FIRE, BlockFlag.NoShadow);
+        this.setFlags(Blocks.LADDER, BlockFlag.OpenToSky);
+        this.setFlags(Blocks.SNOW_LAYER, BlockFlag.NoTopo, BlockFlag.NoShadow);
+        this.setFlags(Blocks.TRIPWIRE, BlockFlag.Ignore);
+        this.setFlags((Block)Blocks.TRIPWIRE_HOOK, BlockFlag.Ignore);
+        this.setFlags(Blocks.WEB, BlockFlag.OpenToSky, BlockFlag.NoShadow);
         this.setFlags(BlockBush.class, BlockFlag.Plant);
         this.setFlags(BlockFence.class, Float.valueOf(0.4f), BlockFlag.Transparency);
         this.setFlags(BlockFenceGate.class, Float.valueOf(0.4f), BlockFlag.Transparency);
@@ -122,10 +122,10 @@ implements IModBlockHandler {
 
     @Override
     public void initialize(BlockMD blockMD) {
-        Block block = blockMD.getBlockState().func_177230_c();
-        Material material = blockMD.getBlockState().func_185904_a();
+        Block block = blockMD.getBlockState().getBlock();
+        Material material = blockMD.getBlockState().getMaterial();
         IBlockState blockState = blockMD.getBlockState();
-        if (blockState.func_185901_i() == EnumBlockRenderType.INVISIBLE) {
+        if (blockState.getRenderType() == EnumBlockRenderType.INVISIBLE) {
             blockMD.addFlags(BlockFlag.Ignore);
             return;
         }
@@ -152,11 +152,11 @@ implements IModBlockHandler {
             blockMD.addFlags(BlockFlag.Fluid, BlockFlag.NoShadow);
             blockMD.setAlpha(0.7f);
         }
-        if (material == Material.field_151592_s && (block instanceof BlockGlowstone || block instanceof BlockSeaLantern || block instanceof BlockBeacon)) {
+        if (material == Material.GLASS && (block instanceof BlockGlowstone || block instanceof BlockSeaLantern || block instanceof BlockBeacon)) {
             blockMD.removeFlags(BlockFlag.OpenToSky, BlockFlag.Transparency);
             blockMD.setAlpha(1.0f);
         }
-        if (block instanceof BlockBush && blockMD.getBlockState().func_177228_b().get((Object)BlockDoublePlant.field_176492_b) == BlockDoublePlant.EnumBlockHalf.UPPER) {
+        if (block instanceof BlockBush && blockMD.getBlockState().getProperties().get((Object)BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.UPPER) {
             blockMD.addFlags(BlockFlag.Ignore);
         }
         if (block instanceof BlockCrops) {

@@ -29,8 +29,8 @@ public class wba {
         ArrayList<BufferedImage> a4 = new ArrayList<BufferedImage>();
         ConfigurationSection a5 = a2.getConfigurationSection("texture");
         for (String a6 : a5.getKeys(false)) {
-            IResource a7 = Minecraft.func_71410_x().func_110442_L().func_110536_a(new ResourceLocation("dragoncore", a6));
-            BufferedImage a8 = ImageIO.read(a7.func_110527_b());
+            IResource a7 = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation("dragoncore", a6));
+            BufferedImage a8 = ImageIO.read(a7.getInputStream());
             a4.add(a8);
             a3.y.put(a6, a3.k);
             a3.ALLATORIxDEMO = a8.getHeight();

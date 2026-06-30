@@ -53,7 +53,7 @@ public class gi {
             return pf.y;
         }
         ui a6 = null;
-        GuiScreen a7 = Minecraft.func_71410_x().field_71462_r;
+        GuiScreen a7 = Minecraft.getMinecraft().currentScreen;
         if (a3.equalsIgnoreCase("override") || a3.equalsIgnoreCase("subgui")) {
             a6 = wi.b.ALLATORIxDEMO();
         } else if (a3.equalsIgnoreCase("tooltip") || a3.equalsIgnoreCase("itemtip")) {
@@ -124,14 +124,14 @@ public class gi {
         }
         nh a5 = a2.a.get(a3);
         if (a5 != null) {
-            if (Minecraft.func_71410_x().func_152345_ab()) {
+            if (Minecraft.getMinecraft().isCallingFromMinecraftThread()) {
                 return gi.c(a2, a3, a4);
             }
             qg a6 = new qg(Arrays.asList(a4));
             Object a7 = a5.ALLATORIxDEMO().ALLATORIxDEMO().ALLATORIxDEMO();
             ((xn)a7).ALLATORIxDEMO("\u5c40\u90e8\u53d8\u91cf.\u53c2\u6570", a6);
             ((xn)a7).ALLATORIxDEMO("\u5c40\u90e8\u53d8\u91cf.args", a6);
-            ListenableFuture a8 = Minecraft.func_71410_x().func_152343_a(() -> gi.c(a5, (xn)a7));
+            ListenableFuture a8 = Minecraft.getMinecraft().addScheduledTask(() -> gi.c(a5, (xn)a7));
             a8.addListener(() -> a2.i.remove(a8), (Executor)om.q);
             a2.i.add((Future<v>)a8);
         }

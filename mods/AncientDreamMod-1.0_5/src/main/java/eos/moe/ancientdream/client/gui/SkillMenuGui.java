@@ -63,19 +63,19 @@ extends GuiScreen {
         this.b2 = b2;
     }
 
-    public void func_73866_w_() {
-        super.func_73866_w_();
+    public void initGui() {
+        super.initGui();
         this.xSize = 399.0f;
         this.ySize = 318.0f;
-        this.offsetX = ((float)this.field_146294_l - this.xSize) / 2.0f;
-        this.offsetY = ((float)this.field_146295_m - this.ySize) / 2.0f;
+        this.offsetX = ((float)this.width - this.xSize) / 2.0f;
+        this.offsetY = ((float)this.height - this.ySize) / 2.0f;
     }
 
-    public void func_73863_a(int mouseX, int mouseY, float partialTicks) {
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         ArrayList<PlayerSkillData> bindSkills;
-        super.func_73863_a(mouseX, mouseY, partialTicks);
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)this.offsetX, (float)this.offsetY, (float)0.0f);
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)this.offsetX, (float)this.offsetY, (float)0.0f);
         RenderUtils.bindTexture(BACKGROUND);
         RenderUtils.drawTexture(0.0, 0.0, 0.0, 0.0, (double)this.xSize, (double)this.ySize, (double)this.xSize, (double)this.ySize, new ResourceLocation[0]);
         GL11.glEnable((int)3089);
@@ -87,18 +87,18 @@ extends GuiScreen {
         GL11.glDisable((int)3089);
         String[] array = new String[]{"Q", "R", "F", "G", "V"};
         for (int i = 0; i < 5; ++i) {
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)(228.0f + (float)i * 31.5f), (float)258.0f, (float)0.0f);
-            GlStateManager.func_179152_a((float)2.0f, (float)2.0f, (float)2.0f);
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)(228.0f + (float)i * 31.5f), (float)258.0f, (float)0.0f);
+            GlStateManager.scale((float)2.0f, (float)2.0f, (float)2.0f);
             RenderUtils.drawText(array[i], 0.0, 0.0, false, true);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
         for (SkillMenuData.TextData text : this.texts) {
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)(text.getX() - (text.isCenter() ? (float)this.field_146289_q.func_78256_a(text.getText()) / 2.0f : 0.0f)), (float)text.getY(), (float)0.0f);
-            GlStateManager.func_179152_a((float)text.getScale(), (float)text.getScale(), (float)text.getScale());
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)(text.getX() - (text.isCenter() ? (float)this.fontRenderer.getStringWidth(text.getText()) / 2.0f : 0.0f)), (float)text.getY(), (float)0.0f);
+            GlStateManager.scale((float)text.getScale(), (float)text.getScale(), (float)text.getScale());
             RenderUtils.drawText("\u00a7f" + text.getText(), 0.0, 0.0, false, true);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
         RenderUtils.bindTexture(SCROLL_BAR);
         RenderUtils.drawTexture((double)181.8f, (double)(36.0f + this.scrollDistance * 224.0f), 0.0, 0.0, 7.0, 18.0, 7.0, 18.0, new ResourceLocation[0]);
@@ -125,7 +125,7 @@ extends GuiScreen {
             this.bindSkillTexture(this.currentDragSkill);
             RenderUtils.drawTexture((double)((float)mouseX - this.offsetX - 10.0f), (double)((float)mouseY - this.offsetY - 10.0f), 0.0, 0.0, 26.0, 26.0, 26.0, 26.0, new ResourceLocation[0]);
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
         if (this.dragScrollBarPotion != null) {
             int y = mouseY - this.dragScrollBarPotion.y;
             this.scrollDistance = (float)y / 224.0f;
@@ -143,8 +143,8 @@ extends GuiScreen {
         }
     }
 
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         if (new Rectangle((int)this.offsetX + 180, (int)(this.offsetY + 36.0f + this.scrollDistance * 224.0f), 9, 17).contains(mouseX, mouseY)) {
             this.dragScrollBarPotion = new Point(mouseX, (int)((float)mouseY - this.scrollDistance * 224.0f));
         } else {
@@ -163,7 +163,7 @@ extends GuiScreen {
             if ((bindSkills = new ArrayList<PlayerSkillData>(DataManager.playerData.bindSkills)).size() == 5) {
                 for (int i = 0; i < 5; ++i) {
                     if (!new Rectangle((int)this.offsetX + 216 + i * 32, (int)this.offsetY + 253, 32, 32).contains(mouseX, mouseY)) continue;
-                    this.field_146297_k.field_71439_g.func_184185_a(SoundEvents.field_187909_gi, 1.0f, 1.0f);
+                    this.mc.player.playSound(SoundEvents.UI_BUTTON_CLICK, 1.0f, 1.0f);
                     int finalI = i;
                     if (mouseButton == 0) {
                         this.selectSkill = this.skills.stream().filter(skill -> skill.getKey().equals(((PlayerSkillData)bindSkills.get(finalI)).getKey())).findFirst().orElse(null);
@@ -187,8 +187,8 @@ extends GuiScreen {
         }
     }
 
-    protected void func_146286_b(int mouseX, int mouseY, int state) {
-        super.func_146286_b(mouseX, mouseY, state);
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+        super.mouseReleased(mouseX, mouseY, state);
         this.dragScrollBarPotion = null;
         if (this.currentDragSkill != null) {
             for (int i = 0; i < 5; ++i) {
@@ -201,8 +201,8 @@ extends GuiScreen {
         this.currentDragSkill = null;
     }
 
-    public void func_146274_d() throws IOException {
-        super.func_146274_d();
+    public void handleMouseInput() throws IOException {
+        super.handleMouseInput();
         int i = Mouse.getEventDWheel();
         if (i != 0) {
             if (i > 1) {

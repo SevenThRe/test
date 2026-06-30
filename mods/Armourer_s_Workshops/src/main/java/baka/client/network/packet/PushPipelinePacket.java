@@ -37,11 +37,11 @@ IMessageHandler<PushPipelinePacket, IMessage> {
 
     public void fromBytes(ByteBuf byteBuf) {
         PacketBuffer packetBuffer = new PacketBuffer(byteBuf);
-        this.uuid = UUID.fromString(packetBuffer.func_150789_c(256));
+        this.uuid = UUID.fromString(packetBuffer.readString(256));
         boolean b2 = packetBuffer.readBoolean();
         if (b2) {
             try {
-                this.itemStack = packetBuffer.func_150791_c();
+                this.itemStack = packetBuffer.readItemStack();
             }
             catch (IOException e2) {
                 e2.printStackTrace();
@@ -61,8 +61,8 @@ IMessageHandler<PushPipelinePacket, IMessage> {
             return null;
         }
         if (packet.itemStack != null) {
-            if (packet.itemStack.func_77973_b() == Items.field_190931_a) {
-                packet.itemStack = ItemStack.field_190927_a;
+            if (packet.itemStack.getItem() == Items.AIR) {
+                packet.itemStack = ItemStack.EMPTY;
             }
             controller.setActiveItem(packet.itemStack);
         } else if (packet.shouldInterrupt) {

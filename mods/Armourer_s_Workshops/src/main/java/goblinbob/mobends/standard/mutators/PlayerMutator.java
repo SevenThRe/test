@@ -82,21 +82,21 @@ extends BipedMutator<PlayerData, AbstractClientPlayer, ModelPlayer> {
         ModelPlayer vanillaModel = new ModelPlayer(0.0f, this.smallArms);
         this.vanillaModel = vanillaModel;
         super.storeVanillaModel(model);
-        vanillaModel.field_178730_v = model.field_178730_v;
-        vanillaModel.field_178734_a = model.field_178734_a;
-        vanillaModel.field_178733_c = model.field_178733_c;
-        vanillaModel.field_178732_b = model.field_178732_b;
-        vanillaModel.field_178731_d = model.field_178731_d;
+        vanillaModel.bipedBodyWear = model.bipedBodyWear;
+        vanillaModel.bipedLeftArmwear = model.bipedLeftArmwear;
+        vanillaModel.bipedLeftLegwear = model.bipedLeftLegwear;
+        vanillaModel.bipedRightArmwear = model.bipedRightArmwear;
+        vanillaModel.bipedRightLegwear = model.bipedRightLegwear;
     }
 
     @Override
     public void applyVanillaModel(ModelPlayer model) {
         super.applyVanillaModel(model);
-        model.field_178730_v = ((ModelPlayer)this.vanillaModel).field_178730_v;
-        model.field_178734_a = ((ModelPlayer)this.vanillaModel).field_178734_a;
-        model.field_178733_c = ((ModelPlayer)this.vanillaModel).field_178733_c;
-        model.field_178732_b = ((ModelPlayer)this.vanillaModel).field_178732_b;
-        model.field_178731_d = ((ModelPlayer)this.vanillaModel).field_178731_d;
+        model.bipedBodyWear = ((ModelPlayer)this.vanillaModel).bipedBodyWear;
+        model.bipedLeftArmwear = ((ModelPlayer)this.vanillaModel).bipedLeftArmwear;
+        model.bipedLeftLegwear = ((ModelPlayer)this.vanillaModel).bipedLeftLegwear;
+        model.bipedRightArmwear = ((ModelPlayer)this.vanillaModel).bipedRightArmwear;
+        model.bipedRightLegwear = ((ModelPlayer)this.vanillaModel).bipedRightLegwear;
     }
 
     @Override
@@ -137,10 +137,10 @@ extends BipedMutator<PlayerData, AbstractClientPlayer, ModelPlayer> {
         int armWidth = this.smallArms ? 3 : 4;
         float armY = this.smallArms ? -9.5f : -10.0f;
         this.leftArm = new ModelPartExtended((ModelBase)original, 32, 48);
-        original.field_178724_i = this.leftArm;
+        original.bipedLeftArm = this.leftArm;
         this.leftArm.setParent(this.body).setPosition(5.0f, armY, 0.0f).developBox(-2.0f + (float)(this.smallArms ? 1 : 0), -2.0f, -2.0f, armWidth, 6, 4, scaleFactor).inflate(0.01f, 0.0f, 0.01f).hideFace(BoxSide.BOTTOM).create();
         this.rightArm = new ModelPartExtended((ModelBase)original, 40, 16);
-        original.field_178723_h = this.rightArm;
+        original.bipedRightArm = this.rightArm;
         this.rightArm.setParent(this.body).setPosition(-5.0f, armY, 0.0f).developBox(-armWidth + 2 + (this.smallArms ? -1 : 0), -2.0f, -2.0f, armWidth, 6, 4, scaleFactor).inflate(0.01f, 0.0f, 0.01f).hideFace(BoxSide.BOTTOM).create();
         this.leftForeArm = new ModelPartPostOffset((ModelBase)original, 32, 54).setPostOffset(0.0f, -4.0f, -2.0f);
         this.leftForeArm.setPosition(0.0f, 4.0f, 2.0f).setParent(this.leftArm).developBox(-2.0f + (float)(this.smallArms ? 1 : 0), 0.0f, -4.0f, armWidth, 6, 4, scaleFactor).hideFace(BoxSide.TOP).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
@@ -149,53 +149,53 @@ extends BipedMutator<PlayerData, AbstractClientPlayer, ModelPlayer> {
         this.rightForeArm.setPosition(0.0f, 4.0f, 2.0f).setParent(this.rightArm).developBox(-armWidth + 2 + (this.smallArms ? -1 : 0), 0.0f, -4.0f, armWidth, 6, 4, scaleFactor).hideFace(BoxSide.TOP).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
         this.rightArm.setExtension(this.rightForeArm);
         this.leftLeg = (ModelPartExtended)new ModelPartExtended((ModelBase)original, 16, 48).setPosition(0.0f, 12.0f, 0.0f);
-        original.field_178722_k = this.leftLeg;
-        this.leftLeg.func_78790_a(-2.1f, 0.0f, -2.0f, 4, 6, 4, scaleFactor);
+        original.bipedLeftLeg = this.leftLeg;
+        this.leftLeg.addBox(-2.1f, 0.0f, -2.0f, 4, 6, 4, scaleFactor);
         this.leftLeg.setExtension(this.leftForeLeg);
         this.bodywear = new ModelPart((ModelBase)original, 16, 32);
-        original.field_178730_v = this.bodywear;
+        original.bipedBodyWear = this.bodywear;
         this.bodywear.setParent(this.body);
-        this.bodywear.func_78790_a(-4.0f, -12.0f, -2.0f, 8, 12, 4, scaleFactor + 0.25f);
+        this.bodywear.addBox(-4.0f, -12.0f, -2.0f, 8, 12, 4, scaleFactor + 0.25f);
         float limbWearHeight = 6.0f + 2.0f * scaleFactor + 0.5f - 0.25f;
         if (this.smallArms) {
             this.leftArmwear = new ModelPart((ModelBase)original, 48, 48);
-            original.field_178734_a = this.leftArmwear;
+            original.bipedLeftArmwear = this.leftArmwear;
             this.leftArmwear.setParent(this.leftArm).developBox(-1.0f, -2.0f, -2.0f, 3, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).inflate(0.0025f, 0.0f, 0.0025f).hideFace(BoxSide.BOTTOM).create();
             this.rightArmwear = new ModelPart((ModelBase)original, 40, 32);
-            original.field_178732_b = this.rightArmwear;
+            original.bipedRightArmwear = this.rightArmwear;
             this.rightArmwear.setParent(this.rightArm).developBox(-armWidth + 1, -2.0f, -2.0f, 3, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).inflate(0.0025f, 0.0f, 0.0025f).hideFace(BoxSide.BOTTOM).create();
             this.leftForeArmwear = new ModelPart((ModelBase)original, 48, 54);
             this.leftForeArmwear.developBox(-1.0f, 0.0f, -4.0f, 3, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).inflate(0.005f, 0.0f, 0.005f).offset(0.0f, 0.25f, 0.0f).hideFace(BoxSide.TOP).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
-            this.leftForeArm.func_78792_a(this.leftForeArmwear);
+            this.leftForeArm.addChild(this.leftForeArmwear);
             this.rightForeArmwear = new ModelPart((ModelBase)original, 40, 38);
             this.rightForeArmwear.developBox(-armWidth + 1, 0.0f, -4.0f, 3, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).inflate(0.005f, 0.0f, 0.005f).offset(0.0f, 0.25f, 0.0f).hideFace(BoxSide.TOP).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
-            this.rightForeArm.func_78792_a(this.rightForeArmwear);
+            this.rightForeArm.addChild(this.rightForeArmwear);
         } else {
             this.leftArmwear = new ModelPart((ModelBase)original, 48, 48);
-            original.field_178734_a = this.leftArmwear;
+            original.bipedLeftArmwear = this.leftArmwear;
             this.leftArmwear.setParent(this.leftArm).developBox(-2.0f, -2.0f, -2.0f, 4, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).inflate(0.0025f, 0.0f, 0.0025f).hideFace(BoxSide.BOTTOM).create();
             this.rightArmwear = new ModelPart((ModelBase)original, 40, 32);
-            original.field_178732_b = this.rightArmwear;
+            original.bipedRightArmwear = this.rightArmwear;
             this.rightArmwear.setParent(this.rightArm).developBox(-2.0f, -2.0f, -2.0f, 4, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).inflate(0.0025f, 0.0f, 0.0025f).hideFace(BoxSide.BOTTOM).create();
             this.leftForeArmwear = new ModelPart((ModelBase)original, 48, 54);
             this.leftForeArmwear.developBox(-2.0f, 0.0f, -4.0f, 4, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).inflate(0.005f, 0.0f, 0.005f).offset(0.0f, 0.25f, 0.0f).hideFace(BoxSide.TOP).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
-            this.leftForeArm.func_78792_a(this.leftForeArmwear);
+            this.leftForeArm.addChild(this.leftForeArmwear);
             this.rightForeArmwear = new ModelPart((ModelBase)original, 40, 38);
             this.rightForeArmwear.developBox(-2.0f, 0.0f, -4.0f, 4, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).inflate(0.005f, 0.0f, 0.005f).offset(0.0f, 0.25f, 0.0f).hideFace(BoxSide.TOP).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
-            this.rightForeArm.func_78792_a(this.rightForeArmwear);
+            this.rightForeArm.addChild(this.rightForeArmwear);
         }
         this.leftLegwear = new ModelPart((ModelBase)original, 0, 48);
-        original.field_178733_c = this.leftLegwear;
+        original.bipedLeftLegwear = this.leftLegwear;
         this.leftLegwear.setParent(this.leftLeg).developBox(-2.1f, 0.0f, -2.0f, 4, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).hideFace(BoxSide.BOTTOM).create();
         this.rightLegwear = new ModelPart((ModelBase)original, 0, 32);
-        original.field_178731_d = this.rightLegwear;
+        original.bipedRightLegwear = this.rightLegwear;
         this.rightLegwear.setParent(this.rightLeg).developBox(-1.9f, 0.0f, -2.0f, 4, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).hideFace(BoxSide.BOTTOM).create();
         this.leftForeLegwear = new ModelPart((ModelBase)original, 0, 54);
         this.leftForeLegwear.developBox(-2.1f, 0.0f, 0.0f, 4, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).inflate(0.005f, 0.0f, 0.005f).offset(0.0f, 0.25f, 0.0f).hideFace(BoxSide.TOP).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
-        this.leftForeLeg.func_78792_a(this.leftForeLegwear);
+        this.leftForeLeg.addChild(this.leftForeLegwear);
         this.rightForeLegwear = new ModelPart((ModelBase)original, 0, 38);
         this.rightForeLegwear.developBox(-1.9f, 0.0f, 0.0f, 4, 6, 4, scaleFactor + 0.25f).setHeight(limbWearHeight).inflate(0.005f, 0.0f, 0.005f).offset(0.0f, 0.25f, 0.0f).hideFace(BoxSide.TOP).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
-        this.rightForeLeg.func_78792_a(this.rightForeLegwear);
+        this.rightForeLeg.addChild(this.rightForeLegwear);
         return true;
     }
 
@@ -216,7 +216,7 @@ extends BipedMutator<PlayerData, AbstractClientPlayer, ModelPlayer> {
     @Override
     public void postRefresh() {
         if (this.layerArmor != null) {
-            this.layerArmor.func_177177_a();
+            this.layerArmor.initArmor();
         }
     }
 
@@ -232,7 +232,7 @@ extends BipedMutator<PlayerData, AbstractClientPlayer, ModelPlayer> {
 
     @Override
     public boolean isModelVanilla(ModelPlayer model) {
-        return !(model.field_78115_e instanceof IModelPart);
+        return !(model.bipedBody instanceof IModelPart);
     }
 
     @Override

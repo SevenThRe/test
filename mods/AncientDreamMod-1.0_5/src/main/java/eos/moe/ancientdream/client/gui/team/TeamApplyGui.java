@@ -79,19 +79,19 @@ extends GuiScreen {
         this.teamDataList = teamDataList;
     }
 
-    public void func_73866_w_() {
-        super.func_73866_w_();
+    public void initGui() {
+        super.initGui();
         this.xSize = 252.0f;
         this.ySize = 382.0f;
-        this.offsetX = ((float)this.field_146294_l - this.xSize) / 2.0f;
-        this.offsetY = ((float)this.field_146295_m - this.ySize) / 2.0f;
+        this.offsetX = ((float)this.width - this.xSize) / 2.0f;
+        this.offsetY = ((float)this.height - this.ySize) / 2.0f;
     }
 
-    public void func_73863_a(int mouseX, int mouseY, float partialTicks) {
-        super.func_73863_a(mouseX, mouseY, partialTicks);
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        super.drawScreen(mouseX, mouseY, partialTicks);
         this.hoverTeamData = null;
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)this.offsetX, (float)this.offsetY, (float)0.0f);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)this.offsetX, (float)this.offsetY, (float)0.0f);
         RenderUtils.drawTexture(0.0, 0.0, this.xSize, this.ySize, BACKGROUND);
         if (this.isLeader) {
             RenderUtils.drawTexture(26.0, 335.0, 88.0, 30.0, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY, BTN, BTN1);
@@ -109,34 +109,34 @@ extends GuiScreen {
         RenderUtils.scissorBox((int)this.offsetX + 8, (int)this.offsetY + 40, 240.0f, 264.0f);
         for (int i = 0; i < this.teamDataList.size(); ++i) {
             TeamData data = this.teamDataList.get(i);
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)2.0f, (float)((float)(i * 54) - this.scrollDistance * this.maxDistance), (float)0.0f);
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)2.0f, (float)((float)(i * 54) - this.scrollDistance * this.maxDistance), (float)0.0f);
             RenderUtils.drawTexture(17.0, 46.0, 38.0, 38.0, data.texture);
             RenderUtils.drawTexture(12.0, 40.0, 220.0, 48.0, GUI);
             RenderUtils.drawText(data.desc, 62.0, 50.0, false, true);
             RenderUtils.drawText(data.desc1, 62.0, 60.0, false, true);
             RenderUtils.drawText(data.leaderName, 62.0, 70.0, false, true);
-            RenderUtils.drawText(data.teamSize, 224 - this.field_146289_q.func_78256_a(data.teamSize), 70.0, false, true);
-            GlStateManager.func_179121_F();
+            RenderUtils.drawText(data.teamSize, 224 - this.fontRenderer.getStringWidth(data.teamSize), 70.0, false, true);
+            GlStateManager.popMatrix();
             if (!Utils.onArea(12.0f, 40.0f, 243.0f, 264.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY) || !Utils.onArea(8.0f, (float)(40 + i * 54) - this.scrollDistance * this.maxDistance, 226.0f, 48.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) continue;
             this.hoverTeamData = data;
         }
         GL11.glDisable((int)3089);
         RenderUtils.drawTexture(245.0, 30.0f + this.scrollDistance * 240.0f, 16.0, 64.0, SCROLLBAR);
         RenderUtils.drawText("\u53cc\u51fb\u961f\u4f0d\u5373\u53ef\u7533\u8bf7\u52a0\u5165,\u518d\u6b21\u53cc\u51fb\u53d6\u6d88\u7533\u8bf7", 125.0, 317.0, true, true);
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
         if (this.dragScrollBarPotion != null) {
             int y = mouseY - this.dragScrollBarPotion.y;
             this.scrollDistance = (float)y / 240.0f;
             this.scrollDistance = Math.min(1.0f, Math.max(0.0f, this.scrollDistance));
         }
         if (this.hoverTeamData != null) {
-            GuiUtils.drawHoveringText((List)this.hoverTeamData.members, (int)mouseX, (int)mouseY, (int)this.field_146294_l, (int)this.field_146295_m, (int)-1, (FontRenderer)this.field_146289_q);
+            GuiUtils.drawHoveringText((List)this.hoverTeamData.members, (int)mouseX, (int)mouseY, (int)this.width, (int)this.height, (int)-1, (FontRenderer)this.fontRenderer);
         }
     }
 
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         if (this.hoverTeamData != null && this.clickedTeam == this.hoverTeamData && System.currentTimeMillis() - this.clickTime < 400L) {
             MessageSender.sendApplyTeam(this.clickedTeam.leaderUUID);
             this.clickedTeam = null;
@@ -151,30 +151,30 @@ extends GuiScreen {
             return;
         }
         if (Utils.onArea(233.5f, 3.0f, 20.0f, 20.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
-            this.field_146297_k.func_147108_a(null);
+            this.mc.displayGuiScreen(null);
         }
         if (this.isLeader) {
             if (new Rectangle(17, 335, 100, 30).contains((float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
-                this.field_146297_k.func_147108_a((GuiScreen)new TeamCreateGui(false));
+                this.mc.displayGuiScreen((GuiScreen)new TeamCreateGui(false));
             } else if (new Rectangle(135, 335, 100, 30).contains((float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
-                this.field_146297_k.func_147108_a((GuiScreen)new TeamManagerGui());
+                this.mc.displayGuiScreen((GuiScreen)new TeamManagerGui());
             }
         } else if (!this.hasTeam) {
             if (new Rectangle(77, 335, 100, 30).contains((float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
-                this.field_146297_k.func_147108_a((GuiScreen)new TeamCreateGui(true));
+                this.mc.displayGuiScreen((GuiScreen)new TeamCreateGui(true));
             }
         } else if (new Rectangle(77, 335, 100, 30).contains((float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
-            this.field_146297_k.func_147108_a((GuiScreen)new TeamManagerGui());
+            this.mc.displayGuiScreen((GuiScreen)new TeamManagerGui());
         }
     }
 
-    protected void func_146286_b(int mouseX, int mouseY, int state) {
-        super.func_146286_b(mouseX, mouseY, state);
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+        super.mouseReleased(mouseX, mouseY, state);
         this.dragScrollBarPotion = null;
     }
 
-    public void func_146281_b() {
-        super.func_146281_b();
+    public void onGuiClosed() {
+        super.onGuiClosed();
         this.timer.shutdown();
     }
 

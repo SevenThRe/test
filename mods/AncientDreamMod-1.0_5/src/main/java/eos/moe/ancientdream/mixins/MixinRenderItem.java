@@ -37,40 +37,40 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value={RenderItem.class})
 public abstract class MixinRenderItem {
     @Shadow
-    public float field_77023_b;
+    public float zLevel;
     @Shadow
     @Final
-    private TextureManager field_175057_n;
+    private TextureManager textureManager;
 
     @Inject(method={"renderItemModelIntoGUI"}, at={@At(value="HEAD")})
     private void Mixin_renderItemModelIntoGUI(ItemStack stack, int x, int y, IBakedModel bakedmodel, CallbackInfo callbackInfo) {
         NBTTagCompound tagCompound;
         String quality;
-        if (!stack.func_190926_b() && stack.func_77978_p() != null && !(quality = (tagCompound = stack.func_77978_p()).func_74779_i("qualityt")).isEmpty()) {
-            float z = this.field_77023_b;
-            this.field_77023_b = 0.0f;
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        if (!stack.isEmpty() && stack.getTagCompound() != null && !(quality = (tagCompound = stack.getTagCompound()).getString("qualityt")).isEmpty()) {
+            float z = this.zLevel;
+            this.zLevel = 0.0f;
+            GlStateManager.pushMatrix();
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
             if (this.bindTexture(quality)) {
-                GuiScreen.func_146110_a((int)x, (int)y, (float)0.0f, (float)0.0f, (int)16, (int)16, (float)16.0f, (float)16.0f);
+                GuiScreen.drawModalRectWithCustomSizedTexture((int)x, (int)y, (float)0.0f, (float)0.0f, (int)16, (int)16, (float)16.0f, (float)16.0f);
             }
-            GlStateManager.func_179121_F();
-            this.field_77023_b = z;
+            GlStateManager.popMatrix();
+            this.zLevel = z;
         }
     }
 
     private boolean bindTexture(String quality) {
         ResourceLocation res = new ResourceLocation("ancientdream", "quality/" + quality);
-        ITextureObject texture = this.field_175057_n.func_110581_b(res);
+        ITextureObject texture = this.textureManager.getTexture(res);
         if (texture == null) {
             texture = new SimpleTexture(res);
-            this.field_175057_n.func_110579_a(res, texture);
-            texture = this.field_175057_n.func_110581_b(res);
+            this.textureManager.loadTexture(res, texture);
+            texture = this.textureManager.getTexture(res);
         }
-        if (texture == TextureUtil.field_111001_a) {
+        if (texture == TextureUtil.MISSING_TEXTURE) {
             return false;
         }
-        GlStateManager.func_179144_i((int)texture.func_110552_b());
+        GlStateManager.bindTexture((int)texture.getGlTextureId());
         return true;
     }
 }

@@ -42,8 +42,8 @@ extends pj {
             enumFacing = mk2.r().r(0);
         }
         fj fj2 = a4;
-        GL11.glRotatef((float)((float)Math.toDegrees(fj2.field_78115_e.field_78808_h)), (float)0.0f, (float)0.0f, (float)1.0f);
-        GL11.glRotatef((float)((float)Math.toDegrees(fj2.field_78115_e.field_78796_g)), (float)0.0f, (float)1.0f, (float)0.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(fj2.bipedBody.rotateAngleZ)), (float)0.0f, (float)0.0f, (float)1.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(fj2.bipedBody.rotateAngleY)), (float)0.0f, (float)1.0f, (float)0.0f);
         GL11.glTranslated((double)(v * 0.5f), (double)(v * 0.5f), (double)(v * 0.5f));
         GL11.glTranslated((double)(v * (float)if_.z()), (double)(v * (float)if_.r()), (double)(v * (float)if_.y()));
         switch (enumFacing) {
@@ -89,19 +89,19 @@ extends pj {
         if (a2 instanceof EntityPlayer) {
             EntityPlayer entityPlayer = (EntityPlayer)a2;
             fj fj2 = a5;
-            fj2.field_78117_n = entityPlayer.func_70093_af();
-            fj2.field_78093_q = entityPlayer.func_184218_aH();
+            fj2.isSneak = entityPlayer.isSneaking();
+            fj2.isRiding = entityPlayer.isRiding();
         }
         int n3 = n2 = 0;
         while (n3 < arrayList.size()) {
             kf kf2 = arrayList.get(n2);
             GL11.glPushMatrix();
-            if (a5.field_78117_n) {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.2f, (float)0.0f);
-                GlStateManager.func_179114_b((float)((float)Math.toDegrees(a5.field_78115_e.field_78795_f)), (float)1.0f, (float)0.0f, (float)0.0f);
+            if (a5.isSneak) {
+                GlStateManager.translate((float)0.0f, (float)0.2f, (float)0.0f);
+                GlStateManager.rotate((float)((float)Math.toDegrees(a5.bipedBody.rotateAngleX)), (float)1.0f, (float)0.0f, (float)0.0f);
             }
             GL11.glTranslated((double)0.0, (double)0.0, (double)(v * 2.0f));
-            if (a5.field_78091_s) {
+            if (a5.isChild) {
                 float f2 = 2.0f;
                 GL11.glScalef((float)(1.0f / f2), (float)(1.0f / f2), (float)(1.0f / f2));
                 GL11.glTranslatef((float)0.0f, (float)(24.0f * v), (float)0.0f);
@@ -144,8 +144,8 @@ extends pj {
             enumFacing = mk2.r().r(0);
         }
         fj fj2 = a4;
-        GL11.glRotatef((float)((float)Math.toDegrees(fj2.field_78115_e.field_78808_h)), (float)0.0f, (float)0.0f, (float)1.0f);
-        GL11.glRotatef((float)((float)Math.toDegrees(fj2.field_78115_e.field_78796_g)), (float)0.0f, (float)1.0f, (float)0.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(fj2.bipedBody.rotateAngleZ)), (float)0.0f, (float)0.0f, (float)1.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(fj2.bipedBody.rotateAngleY)), (float)0.0f, (float)1.0f, (float)0.0f);
         GL11.glTranslated((double)(v * 0.5f), (double)(v * 0.5f), (double)(v * 0.5f));
         GL11.glTranslated((double)(v * (float)if_.z()), (double)(v * (float)if_.r()), (double)(v * (float)if_.y()));
         switch (enumFacing) {

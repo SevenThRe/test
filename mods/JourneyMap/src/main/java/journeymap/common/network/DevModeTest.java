@@ -18,7 +18,7 @@ public class DevModeTest
 extends MessageProcessor {
     @Override
     protected JsonObject onServer(Response response) {
-        if (Constants.isDev((Entity)response.getContext().getServerHandler().field_147369_b)) {
+        if (Constants.isDev((Entity)response.getContext().getServerHandler().player)) {
             JourneymapServer.DEV_MODE = response.getAsJson().get("value").getAsBoolean();
         }
         return null;

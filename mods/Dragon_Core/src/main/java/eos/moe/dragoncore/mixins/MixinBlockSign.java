@@ -38,16 +38,16 @@ public class MixinBlockSign {
 
     @Inject(method={"getBoundingBox"}, at={@At(value="HEAD")}, cancellable=true)
     public void getBoundingBox(IBlockState a2, IBlockAccess a3, BlockPos a4, CallbackInfoReturnable<AxisAlignedBB> a5) {
-        TileEntity a6 = a3.func_175625_s(a4);
+        TileEntity a6 = a3.getTileEntity(a4);
         if (a6 instanceof TileEntitySign) {
             TileEntitySign a7 = (TileEntitySign)a6;
-            if (a7.field_145915_a.length <= 1) {
+            if (a7.signText.length <= 1) {
                 return;
             }
-            if (a7.field_145915_a[1] == null) {
+            if (a7.signText[1] == null) {
                 return;
             }
-            String a8 = a7.field_145915_a[1].func_150254_d();
+            String a8 = a7.signText[1].getFormattedText();
             SignData a9 = SignRenderer.getSignData(a8);
             if (a9 == null) {
                 return;

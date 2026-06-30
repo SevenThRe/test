@@ -26,7 +26,7 @@ extends CacheLoader<Class, Map<String, Object>> {
     public Map<String, Object> load(Class aClass) throws Exception {
         HashMap<String, Object> props = new HashMap<String, Object>();
         props.put("locale", Constants.getLocale());
-        props.put("lang", FMLClientHandler.instance().getClient().field_71474_y.field_74363_ab);
+        props.put("lang", FMLClientHandler.instance().getClient().gameSettings.language);
         Properties properties = FileHandler.getLangFile("en_US.lang");
         if (properties != null) {
             Enumeration<Object> allKeys = properties.keys();

@@ -140,26 +140,26 @@ public class BendsCapeRenderer {
                 if (!this.compiled) {
                     this.compileDisplayList(scale);
                 }
-                GlStateManager.func_179094_E();
-                GlStateManager.func_179109_b((float)((float)this.rotationPointX * scale), (float)((float)this.rotationPointY * scale), (float)((float)(this.rotationPointZ + this.hingeOffset) * scale));
-                GlStateManager.func_179114_b((float)this.rotateAngle, (float)1.0f, (float)0.0f, (float)0.0f);
-                GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)((float)(-this.hingeOffset) * scale));
-                GlStateManager.func_179148_o((int)this.displayList);
+                GlStateManager.pushMatrix();
+                GlStateManager.translate((float)((float)this.rotationPointX * scale), (float)((float)this.rotationPointY * scale), (float)((float)(this.rotationPointZ + this.hingeOffset) * scale));
+                GlStateManager.rotate((float)this.rotateAngle, (float)1.0f, (float)0.0f, (float)0.0f);
+                GlStateManager.translate((float)0.0f, (float)0.0f, (float)((float)(-this.hingeOffset) * scale));
+                GlStateManager.callList((int)this.displayList);
                 if (this.childSlab != null) {
                     this.childSlab.render(scale);
                 }
-                GlStateManager.func_179121_F();
+                GlStateManager.popMatrix();
             }
         }
 
         private void compileDisplayList(float scale) {
-            this.displayList = GLAllocation.func_74526_a((int)1);
-            GlStateManager.func_187423_f((int)this.displayList, (int)4864);
-            BufferBuilder bufferbuilder = Tessellator.func_178181_a().func_178180_c();
+            this.displayList = GLAllocation.generateDisplayLists((int)1);
+            GlStateManager.glNewList((int)this.displayList, (int)4864);
+            BufferBuilder bufferbuilder = Tessellator.getInstance().getBuffer();
             for (TexturedQuad texturedquad : this.quadList) {
-                texturedquad.func_178765_a(bufferbuilder, scale);
+                texturedquad.draw(bufferbuilder, scale);
             }
-            GlStateManager.func_187415_K();
+            GlStateManager.glEndList();
             this.compiled = true;
         }
     }

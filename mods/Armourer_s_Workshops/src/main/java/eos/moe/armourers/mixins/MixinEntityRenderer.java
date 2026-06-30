@@ -46,37 +46,37 @@ extends Render<T> {
     private /* synthetic */ void mixin_doRender_RETURN(T a2, double a32, double a42, double a5, float a6, float a7, CallbackInfo a8) {
         int n2;
         MixinEntityRenderer a9;
-        if (!(a9.func_177087_b() instanceof ModelBiped)) {
+        if (!(a9.getMainModel() instanceof ModelBiped)) {
             return;
         }
-        ItemStack[] a32 = on.r((UUID)a2.func_110124_au()).m;
+        ItemStack[] a32 = on.r((UUID)a2.getUniqueID()).m;
         int n3 = n2 = 0;
         while (n3 < a32.length) {
             EntityEquipmentSlot a42 = EntityEquipmentSlot.values()[n2 + 2];
             a9.setItemStackToSlot(a2, a42, a32[n2++]);
             n3 = n2;
         }
-        ModelBiped modelBiped = (ModelBiped)a9.func_177087_b();
+        ModelBiped modelBiped = (ModelBiped)a9.getMainModel();
         ModelPlayer a42 = modelBiped instanceof ModelPlayer ? (ModelPlayer)modelBiped : null;
         ModelBiped modelBiped2 = modelBiped;
-        modelBiped2.field_78116_c.field_78807_k = false;
-        modelBiped2.field_178720_f.field_78807_k = false;
-        modelBiped2.field_178722_k.field_78807_k = false;
-        modelBiped2.field_178721_j.field_78807_k = false;
-        modelBiped2.field_78115_e.field_78807_k = false;
-        modelBiped2.field_178724_i.field_78807_k = false;
-        modelBiped2.field_178723_h.field_78807_k = false;
+        modelBiped2.bipedHead.isHidden = false;
+        modelBiped2.bipedHeadwear.isHidden = false;
+        modelBiped2.bipedLeftLeg.isHidden = false;
+        modelBiped2.bipedRightLeg.isHidden = false;
+        modelBiped2.bipedBody.isHidden = false;
+        modelBiped2.bipedLeftArm.isHidden = false;
+        modelBiped2.bipedRightArm.isHidden = false;
         if (a42 != null) {
             ModelPlayer modelPlayer = a42;
-            modelPlayer.field_178733_c.field_78807_k = false;
-            modelPlayer.field_178731_d.field_78807_k = false;
-            modelPlayer.field_178734_a.field_78807_k = false;
-            modelPlayer.field_178732_b.field_78807_k = false;
+            modelPlayer.bipedLeftLegwear.isHidden = false;
+            modelPlayer.bipedRightLegwear.isHidden = false;
+            modelPlayer.bipedLeftArmwear.isHidden = false;
+            modelPlayer.bipedRightArmwear.isHidden = false;
         }
     }
 
     @Shadow
-    public abstract ModelBase func_177087_b();
+    public abstract ModelBase getMainModel();
 
     /*
      * Unable to fully structure code
@@ -86,12 +86,12 @@ extends Render<T> {
         block20: {
             block19: {
                 block18: {
-                    if (!(a.func_177087_b() instanceof ModelBiped)) {
+                    if (!(a.getMainModel() instanceof ModelBiped)) {
                         return;
                     }
-                    a = zh.g != false || a == Minecraft.func_71410_x().field_71439_g;
+                    a = zh.g != false || a == Minecraft.getMinecraft().player;
                     v0 = a;
-                    var3_18 = on.r(v0.func_110124_au());
+                    var3_18 = on.r(v0.getUniqueID());
                     a = zg.r(v0);
                     v1 = var3_18;
                     v1.r();
@@ -100,7 +100,7 @@ extends Render<T> {
                     v2 = var7_20 = 0;
                     while (v2 < var5_19.length) {
                         a = EntityEquipmentSlot.values()[var7_20 + 2];
-                        var5_19[var7_20++] = a.func_184582_a(a);
+                        var5_19[var7_20++] = a.getItemStackFromSlot(a);
                         v2 = var7_20;
                     }
                     v3 = var7_20 = 0;
@@ -113,11 +113,11 @@ extends Render<T> {
                                     v4 = a = true;
                                     break block18;
                                 }
-                                a.setItemStackToSlot(a, a, ItemStack.field_190927_a);
-                            } else if (zg.r(a, a.func_188450_d()).size() > 0) {
-                                a.setItemStackToSlot(a, a, ItemStack.field_190927_a);
+                                a.setItemStackToSlot(a, a, ItemStack.EMPTY);
+                            } else if (zg.r(a, a.getName()).size() > 0) {
+                                a.setItemStackToSlot(a, a, ItemStack.EMPTY);
                             } else if (zg.r(a, vn.u).size() > 0) {
-                                a.setItemStackToSlot(a, a, ItemStack.field_190927_a);
+                                a.setItemStackToSlot(a, a, ItemStack.EMPTY);
                             }
                         }
                         v3 = ++var7_20;
@@ -128,7 +128,7 @@ extends Render<T> {
                     v5 = var7_20 = 0;
                     while (v5 < var5_19.length) {
                         a = EntityEquipmentSlot.values()[var7_20 + 2];
-                        a.setItemStackToSlot(a, a, ItemStack.field_190927_a);
+                        a.setItemStackToSlot(a, a, ItemStack.EMPTY);
                         v5 = ++var7_20;
                     }
                 }
@@ -142,11 +142,11 @@ extends Render<T> {
                     v6.r(a.r());
                 }
                 var3_18.r(a);
-                var7_21 = (ModelBiped)a.func_177087_b();
+                var7_21 = (ModelBiped)a.getMainModel();
                 v7 = a = var7_21 instanceof ModelPlayer != false ? (ModelPlayer)var7_21 : null;
-                if (!zh.g && a != Minecraft.func_71410_x().field_71439_g) break block19;
-                v8 = var7_21.field_78116_c.field_78807_k = var7_21.field_78116_c.field_78807_k != false || var3_18.s != false || a != false;
-                if (var7_21.field_178720_f.field_78807_k) ** GOTO lbl-1000
+                if (!zh.g && a != Minecraft.getMinecraft().player) break block19;
+                v8 = var7_21.bipedHead.isHidden = var7_21.bipedHead.isHidden != false || var3_18.s != false || a != false;
+                if (var7_21.bipedHeadwear.isHidden) ** GOTO lbl-1000
                 v9 = var3_18;
                 if (v9.s | v9.h || a) lbl-1000:
                 // 2 sources
@@ -156,37 +156,37 @@ extends Render<T> {
                 } else {
                     v10 = false;
                 }
-                var7_21.field_178720_f.field_78807_k = v10;
-                var7_21.field_178722_k.field_78807_k = var7_21.field_178722_k.field_78807_k != false || var3_18.w != false || a != false;
-                var7_21.field_178721_j.field_78807_k = var7_21.field_178721_j.field_78807_k != false || var3_18.v != false || a != false;
-                var7_21.field_78115_e.field_78807_k = var7_21.field_78115_e.field_78807_k != false || var3_18.b != false || a != false;
-                var7_21.field_178724_i.field_78807_k = var7_21.field_178724_i.field_78807_k != false || var3_18.g != false || a != false;
-                v11 = var7_21.field_178723_h.field_78807_k = var7_21.field_178723_h.field_78807_k != false || var3_18.e != false || a != false;
+                var7_21.bipedHeadwear.isHidden = v10;
+                var7_21.bipedLeftLeg.isHidden = var7_21.bipedLeftLeg.isHidden != false || var3_18.w != false || a != false;
+                var7_21.bipedRightLeg.isHidden = var7_21.bipedRightLeg.isHidden != false || var3_18.v != false || a != false;
+                var7_21.bipedBody.isHidden = var7_21.bipedBody.isHidden != false || var3_18.b != false || a != false;
+                var7_21.bipedLeftArm.isHidden = var7_21.bipedLeftArm.isHidden != false || var3_18.g != false || a != false;
+                v11 = var7_21.bipedRightArm.isHidden = var7_21.bipedRightArm.isHidden != false || var3_18.e != false || a != false;
                 if (a != null) {
-                    a.field_178730_v.field_78807_k = var7_21.field_78115_e.field_78807_k != false || var3_18.b != false || a != false;
-                    a.field_178733_c.field_78807_k = a.field_178733_c.field_78807_k != false || var3_18.w != false || var3_18.j != false || a != false;
-                    a.field_178731_d.field_78807_k = a.field_178731_d.field_78807_k != false || var3_18.v != false || var3_18.t != false || a != false;
-                    a.field_178734_a.field_78807_k = a.field_178734_a.field_78807_k != false || var3_18.g != false || var3_18.l != false || a != false;
-                    a.field_178732_b.field_78807_k = a.field_178732_b.field_78807_k != false || var3_18.e != false || var3_18.r != false || a != false;
+                    a.bipedBodyWear.isHidden = var7_21.bipedBody.isHidden != false || var3_18.b != false || a != false;
+                    a.bipedLeftLegwear.isHidden = a.bipedLeftLegwear.isHidden != false || var3_18.w != false || var3_18.j != false || a != false;
+                    a.bipedRightLegwear.isHidden = a.bipedRightLegwear.isHidden != false || var3_18.v != false || var3_18.t != false || a != false;
+                    a.bipedLeftArmwear.isHidden = a.bipedLeftArmwear.isHidden != false || var3_18.g != false || var3_18.l != false || a != false;
+                    a.bipedRightArmwear.isHidden = a.bipedRightArmwear.isHidden != false || var3_18.e != false || var3_18.r != false || a != false;
                     return;
                 }
                 break block20;
             }
             v12 = var7_21;
-            v12.field_78116_c.field_78807_k = false;
-            v12.field_178720_f.field_78807_k = false;
-            v12.field_178722_k.field_78807_k = false;
-            v12.field_178721_j.field_78807_k = false;
-            v12.field_78115_e.field_78807_k = false;
-            v12.field_178724_i.field_78807_k = false;
-            v12.field_178723_h.field_78807_k = false;
+            v12.bipedHead.isHidden = false;
+            v12.bipedHeadwear.isHidden = false;
+            v12.bipedLeftLeg.isHidden = false;
+            v12.bipedRightLeg.isHidden = false;
+            v12.bipedBody.isHidden = false;
+            v12.bipedLeftArm.isHidden = false;
+            v12.bipedRightArm.isHidden = false;
             if (a != null) {
                 v13 = a;
-                v13.field_178730_v.field_78807_k = false;
-                v13.field_178733_c.field_78807_k = false;
-                v13.field_178731_d.field_78807_k = false;
-                v13.field_178734_a.field_78807_k = false;
-                v13.field_178732_b.field_78807_k = false;
+                v13.bipedBodyWear.isHidden = false;
+                v13.bipedLeftLegwear.isHidden = false;
+                v13.bipedRightLegwear.isHidden = false;
+                v13.bipedLeftArmwear.isHidden = false;
+                v13.bipedRightArmwear.isHidden = false;
             }
         }
     }
@@ -200,12 +200,12 @@ extends Render<T> {
         if (a2 instanceof EntityPlayer) {
             EntityPlayer entityPlayer = (EntityPlayer)a2;
             if (a4 == null) {
-                a4 = ItemStack.field_190927_a;
+                a4 = ItemStack.EMPTY;
             }
-            entityPlayer.field_71071_by.field_70460_b.set(a3.func_188454_b(), (Object)a4);
+            entityPlayer.inventory.armorInventory.set(a3.getIndex(), (Object)a4);
             return;
         }
-        a2.func_184201_a(a3, a4);
+        a2.setItemStackToSlot(a3, a4);
     }
 }
 

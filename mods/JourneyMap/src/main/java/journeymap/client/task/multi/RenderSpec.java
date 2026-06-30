@@ -53,9 +53,9 @@ public class RenderSpec {
 
     private RenderSpec(Minecraft minecraft, MapType mapType) {
         int mapRenderDistanceMax;
-        this.player = minecraft.field_71439_g;
+        this.player = minecraft.player;
         CoreProperties props = Journeymap.getClient().getCoreProperties();
-        int gameRenderDistance = Math.max(1, minecraft.field_71474_y.field_151451_c - 1);
+        int gameRenderDistance = Math.max(1, minecraft.gameSettings.renderDistanceChunks - 1);
         int mapRenderDistanceMin = mapRenderDistanceMax = (mapType.isUnderground() ? props.renderDistanceCaveMax.get() : props.renderDistanceSurfaceMax.get()).intValue();
         this.mapType = mapType;
         int rdMin = Math.min(gameRenderDistance, mapRenderDistanceMin);
@@ -66,19 +66,19 @@ public class RenderSpec {
         this.primaryRenderDistance = rdMin;
         this.maxSecondaryRenderDistance = rdMax;
         this.revealShape = (RevealShape)Journeymap.getClient().getCoreProperties().revealShape.get();
-        this.lastPlayerCoord = new ChunkPos(minecraft.field_71439_g.field_70176_ah, minecraft.field_71439_g.field_70164_aj);
+        this.lastPlayerCoord = new ChunkPos(minecraft.player.chunkCoordX, minecraft.player.chunkCoordZ);
         this.lastSecondaryRenderDistance = this.primaryRenderDistance;
     }
 
     private static Double blockDistance(ChunkPos playerCoord, ChunkPos coord) {
-        int x = (playerCoord.field_77276_a << 4) + 8 - ((coord.field_77276_a << 4) + 8);
-        int z = (playerCoord.field_77275_b << 4) + 8 - ((coord.field_77275_b << 4) + 8);
+        int x = (playerCoord.x << 4) + 8 - ((coord.x << 4) + 8);
+        int z = (playerCoord.z << 4) + 8 - ((coord.z << 4) + 8);
         return Math.sqrt(x * x + z * z);
     }
 
     private static Double chunkDistance(ChunkPos playerCoord, ChunkPos coord) {
-        int x = playerCoord.field_77276_a - coord.field_77276_a;
-        int z = playerCoord.field_77275_b - coord.field_77275_b;
+        int x = playerCoord.x - coord.x;
+        int z = playerCoord.z - coord.z;
         return Math.sqrt(x * x + z * z);
     }
 
@@ -88,8 +88,8 @@ public class RenderSpec {
             double diff = distance - (double)(renderDistance * 16);
             return diff <= 8.0;
         }
-        float x = Math.abs(playerCoord.field_77276_a - coord.field_77276_a);
-        float z = Math.abs(playerCoord.field_77275_b - coord.field_77275_b);
+        float x = Math.abs(playerCoord.x - coord.x);
+        float z = Math.abs(playerCoord.z - coord.z);
         return x <= (float)renderDistance && z <= (float)renderDistance;
     }
 
@@ -103,7 +103,7 @@ public class RenderSpec {
                 for (int z = 0 - offset; z <= 0 + offset; ++z) {
                     ChunkPos coord = new ChunkPos(x, z);
                     if (revealShape != RevealShape.Square && !RenderSpec.inRange(baseCoord, coord, offset, revealShape)) continue;
-                    multimap.put((Object)offset, (Object)new Offset(coord.field_77276_a, coord.field_77275_b));
+                    multimap.put((Object)offset, (Object)new Offset(coord.x, coord.z));
                 }
             }
             if (offset >= maxOffset) continue;
@@ -117,7 +117,7 @@ public class RenderSpec {
     }
 
     public static RenderSpec getSurfaceSpec() {
-        if (lastSurfaceRenderSpec == null || RenderSpec.lastSurfaceRenderSpec.lastPlayerCoord.field_77276_a != RenderSpec.minecraft.field_71439_g.field_70176_ah || RenderSpec.lastSurfaceRenderSpec.lastPlayerCoord.field_77275_b != RenderSpec.minecraft.field_71439_g.field_70164_aj) {
+        if (lastSurfaceRenderSpec == null || RenderSpec.lastSurfaceRenderSpec.lastPlayerCoord.x != RenderSpec.minecraft.player.chunkCoordX || RenderSpec.lastSurfaceRenderSpec.lastPlayerCoord.z != RenderSpec.minecraft.player.chunkCoordZ) {
             RenderSpec newSpec = new RenderSpec(minecraft, MapType.day(DataCache.getPlayer()));
             newSpec.copyLastStatsFrom(lastSurfaceRenderSpec);
             lastSurfaceRenderSpec = newSpec;
@@ -126,7 +126,7 @@ public class RenderSpec {
     }
 
     public static RenderSpec getTopoSpec() {
-        if (lastTopoRenderSpec == null || RenderSpec.lastTopoRenderSpec.lastPlayerCoord.field_77276_a != RenderSpec.minecraft.field_71439_g.field_70176_ah || RenderSpec.lastTopoRenderSpec.lastPlayerCoord.field_77275_b != RenderSpec.minecraft.field_71439_g.field_70164_aj) {
+        if (lastTopoRenderSpec == null || RenderSpec.lastTopoRenderSpec.lastPlayerCoord.x != RenderSpec.minecraft.player.chunkCoordX || RenderSpec.lastTopoRenderSpec.lastPlayerCoord.z != RenderSpec.minecraft.player.chunkCoordZ) {
             RenderSpec newSpec = new RenderSpec(minecraft, MapType.topo(DataCache.getPlayer()));
             newSpec.copyLastStatsFrom(lastTopoRenderSpec);
             lastTopoRenderSpec = newSpec;
@@ -135,7 +135,7 @@ public class RenderSpec {
     }
 
     public static RenderSpec getUndergroundSpec() {
-        if (lastUndergroundRenderSpec == null || RenderSpec.lastUndergroundRenderSpec.lastPlayerCoord.field_77276_a != RenderSpec.minecraft.field_71439_g.field_70176_ah || RenderSpec.lastUndergroundRenderSpec.lastPlayerCoord.field_77275_b != RenderSpec.minecraft.field_71439_g.field_70164_aj) {
+        if (lastUndergroundRenderSpec == null || RenderSpec.lastUndergroundRenderSpec.lastPlayerCoord.x != RenderSpec.minecraft.player.chunkCoordX || RenderSpec.lastUndergroundRenderSpec.lastPlayerCoord.z != RenderSpec.minecraft.player.chunkCoordZ) {
             RenderSpec newSpec = new RenderSpec(minecraft, MapType.underground(DataCache.getPlayer()));
             newSpec.copyLastStatsFrom(lastUndergroundRenderSpec);
             lastUndergroundRenderSpec = newSpec;
@@ -154,11 +154,11 @@ public class RenderSpec {
             this.offsets = RenderSpec.calculateOffsets(this.primaryRenderDistance, this.maxSecondaryRenderDistance, this.revealShape);
         }
         DataCache dataCache = DataCache.INSTANCE;
-        if (this.lastPlayerCoord == null || this.lastPlayerCoord.field_77276_a != this.player.field_70176_ah || this.lastPlayerCoord.field_77275_b != this.player.field_70164_aj) {
+        if (this.lastPlayerCoord == null || this.lastPlayerCoord.x != this.player.chunkCoordX || this.lastPlayerCoord.z != this.player.chunkCoordZ) {
             this.primaryRenderCoords = null;
             this.lastSecondaryRenderDistance = this.primaryRenderDistance;
         }
-        this.lastPlayerCoord = new ChunkPos(RenderSpec.minecraft.field_71439_g.field_70176_ah, RenderSpec.minecraft.field_71439_g.field_70164_aj);
+        this.lastPlayerCoord = new ChunkPos(RenderSpec.minecraft.player.chunkCoordX, RenderSpec.minecraft.player.chunkCoordZ);
         if (this.primaryRenderCoords == null || this.primaryRenderCoords.isEmpty()) {
             List primaryOffsets = this.offsets.get((Object)this.primaryRenderDistance);
             this.primaryRenderCoords = new ArrayList(primaryOffsets.size());
@@ -278,7 +278,7 @@ public class RenderSpec {
     }
 
     static {
-        minecraft = Minecraft.func_71410_x();
+        minecraft = Minecraft.getMinecraft();
     }
 
     private static class Offset {
@@ -291,7 +291,7 @@ public class RenderSpec {
         }
 
         ChunkPos from(ChunkPos coord) {
-            return new ChunkPos(coord.field_77276_a + this.x, coord.field_77275_b + this.z);
+            return new ChunkPos(coord.x + this.x, coord.z + this.z);
         }
 
         public boolean equals(Object o) {

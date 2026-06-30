@@ -27,9 +27,9 @@ public class fe {
     }
 
     public static byte[] y(ItemStack a2) {
-        NBTTagCompound nBTTagCompound = a2.func_77978_p();
-        if (nBTTagCompound != null && nBTTagCompound.func_150297_b(j, 7)) {
-            return nBTTagCompound.func_74770_j(j);
+        NBTTagCompound nBTTagCompound = a2.getTagCompound();
+        if (nBTTagCompound != null && nBTTagCompound.hasKey(j, 7)) {
+            return nBTTagCompound.getByteArray(j);
         }
         return fe.r();
     }
@@ -95,7 +95,7 @@ public class fe {
     }
 
     public static void r(NBTTagCompound a2, byte[] a3) {
-        a2.func_74773_a(j, a3);
+        a2.setByteArray(j, a3);
     }
 
     private static /* synthetic */ Color y(byte[] a2) {
@@ -105,7 +105,7 @@ public class fe {
         if (f2 > 255.0f) {
             f3 = 255.0f - (f3 - 255.0f);
         }
-        f3 = MathHelper.func_76131_a((float)f3, (float)0.0f, (float)255.0f);
+        f3 = MathHelper.clamp((float)f3, (float)0.0f, (float)255.0f);
         float[] fArray = Color.RGBtoHSB(a2[0] & 0xFF, a2[1] & 0xFF, a2[2] & 0xFF, null);
         return new Color(Color.HSBtoRGB(fArray[0], fArray[1], f3 / 255.0f));
     }
@@ -115,8 +115,8 @@ public class fe {
     }
 
     public static boolean r(ItemStack a2) {
-        NBTTagCompound nBTTagCompound = a2.func_77978_p();
-        return nBTTagCompound != null && nBTTagCompound.func_74764_b(j);
+        NBTTagCompound nBTTagCompound = a2.getTagCompound();
+        return nBTTagCompound != null && nBTTagCompound.hasKey(j);
     }
 
     public static double r() {
@@ -124,12 +124,12 @@ public class fe {
     }
 
     public static void y(ItemStack a2, byte[] a3) {
-        NBTTagCompound nBTTagCompound = a2.func_77978_p();
+        NBTTagCompound nBTTagCompound = a2.getTagCompound();
         if (nBTTagCompound == null) {
             nBTTagCompound = new NBTTagCompound();
         }
-        nBTTagCompound.func_74773_a(j, a3);
-        a2.func_77982_d(nBTTagCompound);
+        nBTTagCompound.setByteArray(j, a3);
+        a2.setTagCompound(nBTTagCompound);
     }
 
     private static /* synthetic */ Color r(byte[] a2) {
@@ -139,7 +139,7 @@ public class fe {
         if (f2 > 255.0f) {
             f3 = 255.0f - (f3 - 255.0f);
         }
-        f3 = MathHelper.func_76131_a((float)f3, (float)0.0f, (float)255.0f);
+        f3 = MathHelper.clamp((float)f3, (float)0.0f, (float)255.0f);
         float[] fArray = Color.RGBtoHSB(a2[0] & 0xFF, a2[1] & 0xFF, a2[2] & 0xFF, null);
         return new Color(Color.HSBtoRGB(fArray[0], fArray[1], f3 / 255.0f));
     }

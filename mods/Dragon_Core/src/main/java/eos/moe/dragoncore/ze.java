@@ -121,7 +121,7 @@ public class ze {
             ze a7;
             a7.t[a6] = ByteBuffer.allocateDirect(a5);
             a7.g[a6] = GL11.glGenTextures();
-            GlStateManager.func_179144_i((int)a7.g[a6]);
+            GlStateManager.bindTexture((int)a7.g[a6]);
             GL11.glTexParameteri((int)3553, (int)10240, (int)9729);
             GL11.glTexParameteri((int)3553, (int)10241, (int)9729);
             GL11.glTexParameteri((int)3553, (int)10242, (int)33071);
@@ -129,7 +129,7 @@ public class ze {
             GL11.glEnable((int)3042);
             GL11.glBlendFunc((int)1, (int)771);
             GL11.glTexImage2D((int)3553, (int)0, (int)6407, (int)a2, (int)a3, (int)0, (int)32992, (int)5121, (ByteBuffer)null);
-            GlStateManager.func_179144_i((int)0);
+            GlStateManager.bindTexture((int)0);
         }
     }
 
@@ -138,10 +138,10 @@ public class ze {
         a3.v = 0;
         a3.m = (a3.m + 1) % 2;
         a3.c = (a3.m + 1) % 2;
-        GlStateManager.func_179144_i((int)a3.g[a3.v]);
+        GlStateManager.bindTexture((int)a3.g[a3.v]);
         GL15.glBindBuffer((int)35052, (int)a3.s[a3.m]);
         GL11.glTexSubImage2D((int)3553, (int)0, (int)0, (int)0, (int)a3.x.getImageWidth(), (int)a3.x.getImageHeight(), (int)32992, (int)5121, (long)0L);
-        GlStateManager.func_179144_i((int)0);
+        GlStateManager.bindTexture((int)0);
         GL15.glBindBuffer((int)35052, (int)a3.s[a3.c]);
         a3.t[a3.c] = GL15.glMapBuffer((int)35052, (int)35001, (long)a2.limit(), (ByteBuffer)a3.t[a3.c]);
         a2.rewind();
@@ -153,12 +153,12 @@ public class ze {
 
     private /* synthetic */ void ALLATORIxDEMO(double a2, double a3, double a4, double a5, double a6, double a7, double a8, double a9) {
         ze a10;
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179144_i((int)a10.g[a10.v]);
+        GlStateManager.pushMatrix();
+        GlStateManager.bindTexture((int)a10.g[a10.v]);
         sd.ALLATORIxDEMO(a2, a3, a4, a5, a6, a7, a8, a9);
-        GlStateManager.func_179118_c();
-        GlStateManager.func_179144_i((int)0);
-        GlStateManager.func_179121_F();
+        GlStateManager.disableAlpha();
+        GlStateManager.bindTexture((int)0);
+        GlStateManager.popMatrix();
     }
 
     public void ALLATORIxDEMO() {
@@ -167,7 +167,7 @@ public class ze {
             a2.b = true;
             if (a2.y) {
                 for (int a3 = 0; a3 < 2; ++a3) {
-                    GlStateManager.func_179150_h((int)a2.g[a3]);
+                    GlStateManager.deleteTexture((int)a2.g[a3]);
                     GL15.glDeleteBuffers((int)a2.s[a3]);
                 }
             }

@@ -32,19 +32,19 @@ extends InvTweaksGuiTooltipButton {
     }
 
     @Override
-    public void func_191745_a(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
-        super.func_191745_a(mc, mouseX, mouseY, partialTicks);
-        int k = this.func_146114_a(this.isMouseOverButton(mouseX, mouseY));
+    public void drawButton(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
+        super.drawButton(mc, mouseX, mouseY, partialTicks);
+        int k = this.getHoverState(this.isMouseOverButton(mouseX, mouseY));
         GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         if (this.useCustomTexture) {
-            mc.func_110434_K().func_110577_a(resourceButtonCustom);
-            this.func_73729_b(this.field_146128_h, this.field_146129_i, (k - 1) * 10, 0, this.field_146120_f, this.field_146121_g);
+            mc.getTextureManager().bindTexture(resourceButtonCustom);
+            this.drawTexturedModalRect(this.x, this.y, (k - 1) * 10, 0, this.width, this.height);
         } else {
-            mc.func_110434_K().func_110577_a(resourceButtonDefault);
-            this.func_73729_b(this.field_146128_h, this.field_146129_i, 1, 46 + k * 20 + 1, this.field_146120_f / 2, this.field_146121_g / 2);
-            this.func_73729_b(this.field_146128_h, this.field_146129_i + this.field_146121_g / 2, 1, 46 + k * 20 + 20 - this.field_146121_g / 2 - 1, this.field_146120_f / 2, this.field_146121_g / 2);
-            this.func_73729_b(this.field_146128_h + this.field_146120_f / 2, this.field_146129_i, 200 - this.field_146120_f / 2 - 1, 46 + k * 20 + 1, this.field_146120_f / 2, this.field_146121_g / 2);
-            this.func_73729_b(this.field_146128_h + this.field_146120_f / 2, this.field_146129_i + this.field_146121_g / 2, 200 - this.field_146120_f / 2 - 1, 46 + k * 20 + 19 - this.field_146121_g / 2, this.field_146120_f / 2, this.field_146121_g / 2);
+            mc.getTextureManager().bindTexture(resourceButtonDefault);
+            this.drawTexturedModalRect(this.x, this.y, 1, 46 + k * 20 + 1, this.width / 2, this.height / 2);
+            this.drawTexturedModalRect(this.x, this.y + this.height / 2, 1, 46 + k * 20 + 20 - this.height / 2 - 1, this.width / 2, this.height / 2);
+            this.drawTexturedModalRect(this.x + this.width / 2, this.y, 200 - this.width / 2 - 1, 46 + k * 20 + 1, this.width / 2, this.height / 2);
+            this.drawTexturedModalRect(this.x + this.width / 2, this.y + this.height / 2, 200 - this.width / 2 - 1, 46 + k * 20 + 19 - this.height / 2, this.width / 2, this.height / 2);
         }
     }
 }

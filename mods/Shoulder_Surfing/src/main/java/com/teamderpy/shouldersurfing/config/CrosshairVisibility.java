@@ -31,7 +31,7 @@ public enum CrosshairVisibility {
             return isAiming;
         }
         if (this == WHEN_IN_RANGE) {
-            return Minecraft.func_71410_x().field_71476_x != null && !RayTraceResult.Type.MISS.equals((Object)Minecraft.func_71410_x().field_71476_x.field_72313_a);
+            return Minecraft.getMinecraft().objectMouseOver != null && !RayTraceResult.Type.MISS.equals((Object)Minecraft.getMinecraft().objectMouseOver.typeOfHit);
         }
         return this != WHEN_AIMING_OR_IN_RANGE || WHEN_IN_RANGE.doRender(isAiming) || WHEN_AIMING.doRender(isAiming);
     }

@@ -74,9 +74,9 @@ public class gx {
     public List<jv> ALLATORIxDEMO(ResourceLocation a2) throws to {
         try {
             Throwable throwable = null;
-            try (IResource a3 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a2);){
+            try (IResource a3 = Minecraft.getMinecraft().getResourceManager().getResource(a2);){
                 gx a4;
-                InputStream a5 = a3.func_110527_b();
+                InputStream a5 = a3.getInputStream();
                 byte[] a6 = gx.ALLATORIxDEMO(a5);
                 List<ce> a7 = null;
                 if (ca.m != null && wq.k != null) {
@@ -152,7 +152,7 @@ public class gx {
     public List<ce> ALLATORIxDEMO(InputStream a2) throws to {
         gx a3;
         BufferedReader a4 = new BufferedReader(new InputStreamReader(a2));
-        JsonObject a5 = (JsonObject)JsonUtils.func_188173_a((Gson)k, (Reader)a4, JsonObject.class, (boolean)true);
+        JsonObject a5 = (JsonObject)JsonUtils.gsonDeserialize((Gson)k, (Reader)a4, JsonObject.class, (boolean)true);
         return a3.ALLATORIxDEMO(a5);
     }
 

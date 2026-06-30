@@ -74,9 +74,9 @@ extends WaypointBase<Waypoint> {
     private BlockPos getInternalPosition(int targetDimension) {
         if (this.dim != targetDimension) {
             if (this.dim == -1) {
-                this.pos = new BlockPos(this.pos.func_177958_n() * 8, this.pos.func_177956_o(), this.pos.func_177952_p() * 8);
+                this.pos = new BlockPos(this.pos.getX() * 8, this.pos.getY(), this.pos.getZ() * 8);
             } else if (targetDimension == -1) {
-                this.pos = new BlockPos((double)this.pos.func_177958_n() / 8.0, (double)this.pos.func_177956_o(), (double)this.pos.func_177952_p() / 8.0);
+                this.pos = new BlockPos((double)this.pos.getX() / 8.0, (double)this.pos.getY(), (double)this.pos.getZ() / 8.0);
             }
         }
         return this.pos;
@@ -123,7 +123,7 @@ extends WaypointBase<Waypoint> {
 
     public final boolean isTeleportReady(int targetDimension) {
         BlockPos pos = this.getPosition(targetDimension);
-        return pos != null && pos.func_177956_o() >= 0;
+        return pos != null && pos.getY() >= 0;
     }
 
     @Override
@@ -195,8 +195,8 @@ extends WaypointBase<Waypoint> {
             if (this.cachedDim != dimension) {
                 this.cachedDim = dimension;
                 this.cachedPos = Waypoint.this.getInternalPosition(dimension);
-                this.cachedVec = new Vec3d((double)this.cachedPos.func_177958_n(), (double)this.cachedPos.func_177956_o(), (double)this.cachedPos.func_177952_p());
-                this.cachedCenteredVec = this.cachedVec.func_72441_c(0.5, 0.5, 0.5);
+                this.cachedVec = new Vec3d((double)this.cachedPos.getX(), (double)this.cachedPos.getY(), (double)this.cachedPos.getZ());
+                this.cachedCenteredVec = this.cachedVec.add(0.5, 0.5, 0.5);
             }
             return this;
         }

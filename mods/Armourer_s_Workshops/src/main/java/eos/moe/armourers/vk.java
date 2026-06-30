@@ -108,8 +108,8 @@ public class vk {
         r.setCategoryComment(ra, "Change (visual quality/performance) ratio by category setting in this category.");
         n = r.getInt("renderDistanceSkin", ra, 128, 16, 512, "The max distance in blocks that skins will render.");
         l = r.getInt("renderDistanceMannequinEquipment", ra, 64, 16, 512, "The max distance in blocks that equipment will be rendered on mannequins.");
-        int n2 = MathHelper.func_76123_f((float)((float)Runtime.getRuntime().availableProcessors() / 2.0f));
-        n2 = MathHelper.func_76125_a((int)n2, (int)1, (int)16);
+        int n2 = MathHelper.ceil((float)((float)Runtime.getRuntime().availableProcessors() / 2.0f));
+        n2 = MathHelper.clamp((int)n2, (int)1, (int)16);
         q = r.getInt("modelBakingThreadCount", ra, n2, 1, 16, "");
         r.getCategory(ra).get("modelBakingThreadCount").setComment("The maximum number of threads that will be used to bake models. [range: 1 ~ 16, default: core count / 2]");
         r.getCategory(ra).get("modelBakingThreadCount").setRequiresMcRestart(true);

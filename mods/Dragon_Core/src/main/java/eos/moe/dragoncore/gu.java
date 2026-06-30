@@ -59,7 +59,7 @@ public abstract class gu {
     public boolean ALLATORIxDEMO = true;
 
     public gu(int a2, int a3, int a4, int a5, int a6, int a7, int a8) {
-        a9(Minecraft.func_71410_x(), a4, a5, a3, a3 + a5, a2, a6, a7, a8);
+        a9(Minecraft.getMinecraft(), a4, a5, a3, a3 + a5, a2, a6, a7, a8);
         gu a9;
     }
 
@@ -114,8 +114,8 @@ public abstract class gu {
 
     public void c() {
         gu a2;
-        Gui.func_73734_a((int)(a2.z - 1), (int)(a2.j - 1), (int)(a2.l + 1), (int)(a2.i + 1), (int)-13158601);
-        Gui.func_73734_a((int)a2.z, (int)a2.j, (int)a2.l, (int)a2.i, (int)-16777216);
+        Gui.drawRect((int)(a2.z - 1), (int)(a2.j - 1), (int)(a2.l + 1), (int)(a2.i + 1), (int)-13158601);
+        Gui.drawRect((int)a2.z, (int)a2.j, (int)a2.l, (int)a2.i, (int)-16777216);
     }
 
     public abstract void ALLATORIxDEMO(int var1, int var2, int var3, int var4, boolean var5, Tessellator var6);
@@ -177,13 +177,13 @@ public abstract class gu {
     }
 
     public void ALLATORIxDEMO(GuiButton a2) {
-        if (a2.field_146124_l) {
+        if (a2.enabled) {
             gu a3;
-            if (a2.field_146127_k == a3.g) {
+            if (a2.id == a3.g) {
                 a3.c -= (float)(a3.s * 2 / 3);
                 a3.v = -2.0f;
                 a3.ALLATORIxDEMO();
-            } else if (a2.field_146127_k == a3.t) {
+            } else if (a2.id == a3.t) {
                 a3.c += (float)(a3.s * 2 / 3);
                 a3.v = -2.0f;
                 a3.ALLATORIxDEMO();
@@ -262,25 +262,25 @@ public abstract class gu {
             a8.v = -1.0f;
         }
         a8.ALLATORIxDEMO();
-        Tessellator a22 = Tessellator.func_178181_a();
-        BufferBuilder a23 = a22.func_178180_c();
+        Tessellator a22 = Tessellator.getInstance();
+        BufferBuilder a23 = a22.getBuffer();
         ScaledResolution a24 = new ScaledResolution(a8.u);
-        double a25 = (double)a8.u.field_71443_c / a24.func_78327_c();
-        double a26 = (double)a8.u.field_71440_d / a24.func_78324_d();
+        double a25 = (double)a8.u.displayWidth / a24.getScaledWidth_double();
+        double a26 = (double)a8.u.displayHeight / a24.getScaledHeight_double();
         GL11.glEnable((int)3089);
-        GL11.glScissor((int)((int)((double)a8.z * a25)), (int)((int)((double)a8.u.field_71440_d - (double)a8.i * a26)), (int)((int)((double)a8.w * a25)), (int)((int)((double)a16 * a26)));
-        if (a8.u.field_71441_e == null) {
-            GlStateManager.func_179140_f();
-            GlStateManager.func_179106_n();
-            a8.u.field_71446_o.func_110577_a(Gui.field_110325_k);
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GL11.glScissor((int)((int)((double)a8.z * a25)), (int)((int)((double)a8.u.displayHeight - (double)a8.i * a26)), (int)((int)((double)a8.w * a25)), (int)((int)((double)a16 * a26)));
+        if (a8.u.world == null) {
+            GlStateManager.disableLighting();
+            GlStateManager.disableFog();
+            a8.u.renderEngine.bindTexture(Gui.OPTIONS_BACKGROUND);
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
             float a27 = 32.0f;
-            a23.func_181668_a(7, DefaultVertexFormats.field_181709_i);
-            a23.func_181662_b((double)a8.z, (double)a8.i, 0.0).func_187315_a((double)((float)a8.z / 32.0f), (double)((float)(a8.i + (int)a8.c) / 32.0f)).func_181669_b(32, 32, 32, 255).func_181675_d();
-            a23.func_181662_b((double)a8.l, (double)a8.i, 0.0).func_187315_a((double)((float)a8.l / 32.0f), (double)((float)(a8.i + (int)a8.c) / 32.0f)).func_181669_b(32, 32, 32, 255).func_181675_d();
-            a23.func_181662_b((double)a8.l, (double)a8.j, 0.0).func_187315_a((double)((float)a8.l / 32.0f), (double)((float)(a8.j + (int)a8.c) / 32.0f)).func_181669_b(32, 32, 32, 255).func_181675_d();
-            a23.func_181662_b((double)a8.z, (double)a8.j, 0.0).func_187315_a((double)((float)a8.z / 32.0f), (double)((float)(a8.j + (int)a8.c) / 32.0f)).func_181669_b(32, 32, 32, 255).func_181675_d();
-            a22.func_78381_a();
+            a23.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+            a23.pos((double)a8.z, (double)a8.i, 0.0).tex((double)((float)a8.z / 32.0f), (double)((float)(a8.i + (int)a8.c) / 32.0f)).color(32, 32, 32, 255).endVertex();
+            a23.pos((double)a8.l, (double)a8.i, 0.0).tex((double)((float)a8.l / 32.0f), (double)((float)(a8.i + (int)a8.c) / 32.0f)).color(32, 32, 32, 255).endVertex();
+            a23.pos((double)a8.l, (double)a8.j, 0.0).tex((double)((float)a8.l / 32.0f), (double)((float)(a8.j + (int)a8.c) / 32.0f)).color(32, 32, 32, 255).endVertex();
+            a23.pos((double)a8.z, (double)a8.j, 0.0).tex((double)((float)a8.z / 32.0f), (double)((float)(a8.j + (int)a8.c) / 32.0f)).color(32, 32, 32, 255).endVertex();
+            a22.draw();
         }
         int a28 = a8.j + a17 - (int)a8.c;
         if (a8.y) {
@@ -293,7 +293,7 @@ public abstract class gu {
             boolean a29 = a2 >= a8.z + 1 && a2 <= a8.z + a8.w - 12 && a3 >= a6 - 1 && a3 <= a6 + a8.s - 3;
             a8.ALLATORIxDEMO(a7, a15, a6, a5, a29, a22);
         }
-        GlStateManager.func_179097_i();
+        GlStateManager.disableDepth();
         a7 = a8.ALLATORIxDEMO() + a17 - a16;
         if (a7 > 0) {
             a6 = a16 * a16 / a8.ALLATORIxDEMO();
@@ -309,23 +309,23 @@ public abstract class gu {
             a8.ALLATORIxDEMO(a13, a5, a6);
         }
         a8.c(a2, a3);
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179103_j((int)7424);
-        GlStateManager.func_179141_d();
-        GlStateManager.func_179084_k();
+        GlStateManager.enableTexture2D();
+        GlStateManager.shadeModel((int)7424);
+        GlStateManager.enableAlpha();
+        GlStateManager.disableBlend();
         GL11.glDisable((int)3089);
     }
 
     public void ALLATORIxDEMO(int a2, int a3, int a4) {
         gu a5;
-        Gui.func_73734_a((int)a2, (int)a5.j, (int)(a2 + 10), (int)a5.i, (int)-1);
-        Gui.func_73734_a((int)(a2 + 1), (int)(a5.j + 1), (int)(a2 + 9), (int)(a5.i - 1), (int)-13158601);
-        Gui.func_73734_a((int)(a2 + 2), (int)(a5.j + 2), (int)(a2 + 9), (int)(a5.i - 2), (int)-7631989);
-        Gui.func_73734_a((int)(a2 + 1), (int)a3, (int)(a2 + 10), (int)(a3 + a4), (int)-1);
-        Gui.func_73734_a((int)(a2 + 2), (int)(a3 + 1), (int)(a2 + 10), (int)(a3 + a4), (int)-13158601);
-        Gui.func_73734_a((int)(a2 + 2), (int)(a3 + 1), (int)(a2 + 9), (int)(a3 + a4 - 1), (int)-7631989);
-        Gui.func_73734_a((int)(a2 + 10), (int)a3, (int)(a2 + 10), (int)(a3 + 1), (int)-7631989);
-        Gui.func_73734_a((int)(a2 + 1), (int)(a3 + a4 - 1), (int)(a2 + 1), (int)(a3 + a4), (int)-7631989);
+        Gui.drawRect((int)a2, (int)a5.j, (int)(a2 + 10), (int)a5.i, (int)-1);
+        Gui.drawRect((int)(a2 + 1), (int)(a5.j + 1), (int)(a2 + 9), (int)(a5.i - 1), (int)-13158601);
+        Gui.drawRect((int)(a2 + 2), (int)(a5.j + 2), (int)(a2 + 9), (int)(a5.i - 2), (int)-7631989);
+        Gui.drawRect((int)(a2 + 1), (int)a3, (int)(a2 + 10), (int)(a3 + a4), (int)-1);
+        Gui.drawRect((int)(a2 + 2), (int)(a3 + 1), (int)(a2 + 10), (int)(a3 + a4), (int)-13158601);
+        Gui.drawRect((int)(a2 + 2), (int)(a3 + 1), (int)(a2 + 9), (int)(a3 + a4 - 1), (int)-7631989);
+        Gui.drawRect((int)(a2 + 10), (int)a3, (int)(a2 + 10), (int)(a3 + 1), (int)-7631989);
+        Gui.drawRect((int)(a2 + 1), (int)(a3 + a4 - 1), (int)(a2 + 1), (int)(a3 + a4), (int)-7631989);
     }
 
     public void ALLATORIxDEMO(int a2, int a3, int a4, int a5, int a6, int a7) {

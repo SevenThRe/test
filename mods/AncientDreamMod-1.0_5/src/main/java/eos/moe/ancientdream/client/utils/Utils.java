@@ -55,11 +55,11 @@ public class Utils {
     }
 
     public static void playSound() {
-        Minecraft.func_71410_x().field_71439_g.func_184185_a(SoundEvents.field_187909_gi, 1.0f, 1.0f);
+        Minecraft.getMinecraft().player.playSound(SoundEvents.UI_BUTTON_CLICK, 1.0f, 1.0f);
     }
 
     public static <T> T getScreen(Class<T> class_) {
-        GuiScreen currentScreen = Minecraft.func_71410_x().field_71462_r;
+        GuiScreen currentScreen = Minecraft.getMinecraft().currentScreen;
         if (currentScreen != null && class_ == currentScreen.getClass()) {
             return (T)currentScreen;
         }
@@ -67,23 +67,23 @@ public class Utils {
     }
 
     public static void runSync(Runnable runnable) {
-        Minecraft.func_71410_x().func_152344_a(runnable);
+        Minecraft.getMinecraft().addScheduledTask(runnable);
     }
 
     public static void message(String message) {
-        Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString(message));
+        Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString(message));
     }
 
     public static void chat(String message) {
-        Minecraft.func_71410_x().field_71439_g.func_71165_d(message);
+        Minecraft.getMinecraft().player.sendChatMessage(message);
     }
 
     public static void openGui(GuiScreen guiScreen) {
-        Minecraft.func_71410_x().func_147108_a(guiScreen);
+        Minecraft.getMinecraft().displayGuiScreen(guiScreen);
     }
 
     public static void openGuiSync(GuiScreen guiScreen) {
-        Minecraft.func_71410_x().func_152344_a(() -> Utils.openGui(guiScreen));
+        Minecraft.getMinecraft().addScheduledTask(() -> Utils.openGui(guiScreen));
     }
 
     public static String secondToTime(long second) {

@@ -29,8 +29,8 @@ public class oda {
     }
 
     public static Vector2f ALLATORIxDEMO(Vec3d a2) {
-        Matrix4f a3 = new Matrix4f(ClippingHelperImpl.func_78558_a().field_78554_d);
-        Vector4f a4 = new Vector4f((float)a2.field_72450_a, (float)a2.field_72448_b, (float)a2.field_72449_c, 1.0f);
+        Matrix4f a3 = new Matrix4f(ClippingHelperImpl.getInstance().clippingMatrix);
+        Vector4f a4 = new Vector4f((float)a2.x, (float)a2.y, (float)a2.z, 1.0f);
         Vector4f a5 = Matrix4f.transform((org.lwjgl.util.vector.Matrix4f)a3, (Vector4f)a4, null);
         if (a5.w == 0.0f) {
             return null;
@@ -40,9 +40,9 @@ public class oda {
         a6.y = a5.y / a5.w;
         a6.z = a5.z / a5.w;
         Vector2f a7 = new Vector2f();
-        ScaledResolution a8 = new ScaledResolution(Minecraft.func_71410_x());
-        a7.x = (float)oda.c(a6.x, a8.func_78327_c());
-        a7.y = (float)oda.ALLATORIxDEMO(a6.y, a8.func_78324_d());
+        ScaledResolution a8 = new ScaledResolution(Minecraft.getMinecraft());
+        a7.x = (float)oda.c(a6.x, a8.getScaledWidth_double());
+        a7.y = (float)oda.ALLATORIxDEMO(a6.y, a8.getScaledHeight_double());
         return a7;
     }
 

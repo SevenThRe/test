@@ -155,16 +155,16 @@ extends rd {
                     a5.runHover(true);
                 }
             }
-            GlStateManager.func_179140_f();
+            GlStateManager.disableLighting();
             if (a5 instanceof dn) {
-                GlStateManager.func_179126_j();
+                GlStateManager.enableDepth();
             } else {
-                GlStateManager.func_179097_i();
+                GlStateManager.disableDepth();
             }
-            GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            GlStateManager.func_179147_l();
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-            GlStateManager.func_179118_c();
+            GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+            GlStateManager.enableBlend();
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            GlStateManager.disableAlpha();
             a5.preRender(a2, a3);
             a5.render(a2, a3);
             if (a4) {
@@ -209,7 +209,7 @@ extends rd {
             a7 = a4;
             a6.runAction("drag");
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         double a13 = a6.e.ALLATORIxDEMO();
         double a14 = a6.n.ALLATORIxDEMO();
         boolean bl2 = a6.y = a13 != 0.0 && a14 != 0.0;
@@ -217,10 +217,10 @@ extends rd {
             GL11.glEnable((int)3089);
             sd.ALLATORIxDEMO((int)a6.getLimitXPos(), (int)a6.getLimitYPos(), (int)a13, (int)a14);
         }
-        GlStateManager.func_179137_b((double)(Math.floor((a6.getXPos() + a6.m.ALLATORIxDEMO() + a8) * 10.0) / 10.0), (double)(Math.floor((a6.getYPos() + a6.c.ALLATORIxDEMO() + a7) * 10.0) / 10.0), (double)0.0);
+        GlStateManager.translate((double)(Math.floor((a6.getXPos() + a6.m.ALLATORIxDEMO() + a8) * 10.0) / 10.0), (double)(Math.floor((a6.getYPos() + a6.c.ALLATORIxDEMO() + a7) * 10.0) / 10.0), (double)0.0);
         double a15 = a6.ba.ALLATORIxDEMO();
         if (a15 != 1.0) {
-            GlStateManager.func_179139_a((double)a15, (double)a15, (double)1.0);
+            GlStateManager.scale((double)a15, (double)a15, (double)1.0);
         }
         a15 = a6.t.ALLATORIxDEMO();
         float a16 = (float)a6.r.ALLATORIxDEMO();
@@ -229,14 +229,14 @@ extends rd {
         if (a15 != 1.0 || a16 != 0.0f || a17 != 0.0f || a18 != 0.0f) {
             double a19 = a6.p.ALLATORIxDEMO();
             double a20 = a6.u.ALLATORIxDEMO();
-            GlStateManager.func_179137_b((double)(a19 / 2.0), (double)(a20 / 2.0), (double)0.0);
-            GlStateManager.func_179139_a((double)a15, (double)a15, (double)1.0);
+            GlStateManager.translate((double)(a19 / 2.0), (double)(a20 / 2.0), (double)0.0);
+            GlStateManager.scale((double)a15, (double)a15, (double)1.0);
             if (a16 != 0.0f || a17 != 0.0f || a18 != 0.0f) {
-                GlStateManager.func_179114_b((float)a16, (float)1.0f, (float)0.0f, (float)0.0f);
-                GlStateManager.func_179114_b((float)a17, (float)0.0f, (float)1.0f, (float)0.0f);
-                GlStateManager.func_179114_b((float)a18, (float)0.0f, (float)0.0f, (float)1.0f);
+                GlStateManager.rotate((float)a16, (float)1.0f, (float)0.0f, (float)0.0f);
+                GlStateManager.rotate((float)a17, (float)0.0f, (float)1.0f, (float)0.0f);
+                GlStateManager.rotate((float)a18, (float)0.0f, (float)0.0f, (float)1.0f);
             }
-            GlStateManager.func_179137_b((double)(-a19 / 2.0), (double)(-a20 / 2.0), (double)0.0);
+            GlStateManager.translate((double)(-a19 / 2.0), (double)(-a20 / 2.0), (double)0.0);
         }
     }
 
@@ -245,7 +245,7 @@ extends rd {
         if (a4.y) {
             GL11.glDisable((int)3089);
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
         sd.ALLATORIxDEMO(1.0f);
     }
 
@@ -338,10 +338,10 @@ extends rd {
         if (!a3.isEmpty()) {
             jj a4;
             if (a3.equals("3") || a3.equals("6") || a3.equals("9")) {
-                return a2.h.ALLATORIxDEMO() + (double)a2.y.field_146294_l;
+                return a2.h.ALLATORIxDEMO() + (double)a2.y.width;
             }
             if (a3.equals("2") || a3.equals("5") || a3.equals("8")) {
-                return (double)((float)a2.y.field_146294_l / 2.0f) + a2.h.ALLATORIxDEMO();
+                return (double)((float)a2.y.width / 2.0f) + a2.h.ALLATORIxDEMO();
             }
             if (a3.startsWith("1_") || a3.startsWith("4_") || a3.startsWith("7_")) {
                 jj a5 = a2.y.findComponent(a3.substring(2));
@@ -366,10 +366,10 @@ extends rd {
         if (!a3.isEmpty()) {
             jj a4;
             if (a3.equals("7") || a3.equals("8") || a3.equals("9")) {
-                return a2.f.ALLATORIxDEMO() + (double)a2.y.field_146295_m;
+                return a2.f.ALLATORIxDEMO() + (double)a2.y.height;
             }
             if (a3.equals("4") || a3.equals("5") || a3.equals("6")) {
-                return (double)((float)a2.y.field_146295_m / 2.0f) + a2.f.ALLATORIxDEMO();
+                return (double)((float)a2.y.height / 2.0f) + a2.f.ALLATORIxDEMO();
             }
             if (a3.startsWith("1_") || a3.startsWith("2_") || a3.startsWith("3_")) {
                 jj a5 = a2.y.findComponent(a3.substring(2));
@@ -394,10 +394,10 @@ extends rd {
         if (!a3.isEmpty()) {
             jj a4;
             if (a3.equals("3") || a3.equals("6") || a3.equals("9")) {
-                return a2.w.ALLATORIxDEMO() + (double)a2.y.field_146294_l;
+                return a2.w.ALLATORIxDEMO() + (double)a2.y.width;
             }
             if (a3.equals("2") || a3.equals("5") || a3.equals("8")) {
-                return (double)((float)a2.y.field_146294_l / 2.0f) + a2.w.ALLATORIxDEMO();
+                return (double)((float)a2.y.width / 2.0f) + a2.w.ALLATORIxDEMO();
             }
             if (a3.startsWith("1_") || a3.startsWith("4_") || a3.startsWith("7_")) {
                 jj a5 = a2.y.findComponent(a3.substring(2));
@@ -422,10 +422,10 @@ extends rd {
         if (!a3.isEmpty()) {
             jj a4;
             if (a3.equals("7") || a3.equals("8") || a3.equals("9")) {
-                return a2.a.ALLATORIxDEMO() + (double)a2.y.field_146295_m;
+                return a2.a.ALLATORIxDEMO() + (double)a2.y.height;
             }
             if (a3.equals("4") || a3.equals("5") || a3.equals("6")) {
-                return (double)((float)a2.y.field_146295_m / 2.0f) + a2.a.ALLATORIxDEMO();
+                return (double)((float)a2.y.height / 2.0f) + a2.a.ALLATORIxDEMO();
             }
             if (a3.startsWith("1_") || a3.startsWith("2_") || a3.startsWith("3_")) {
                 jj a5 = a2.y.findComponent(a3.substring(2));

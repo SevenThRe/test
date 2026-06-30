@@ -27,8 +27,8 @@ import net.minecraft.client.Minecraft;
 public class qv {
     private final xn q;
     public static final hl b = new hl();
-    public static final iv o = new iv(new File(Minecraft.func_71410_x().field_71412_D, "config" + File.separator + "DragonCore" + File.separator + "PlayerData" + File.separator + Minecraft.func_71410_x().func_110432_I().func_111285_a() + ".yml"));
-    public static final iv y = new iv(new File(Minecraft.func_71410_x().field_71412_D, "config" + File.separator + "DragonCore" + File.separator + "ClientData.yml"));
+    public static final iv o = new iv(new File(Minecraft.getMinecraft().gameDir, "config" + File.separator + "DragonCore" + File.separator + "PlayerData" + File.separator + Minecraft.getMinecraft().getSession().getUsername() + ".yml"));
+    public static final iv y = new iv(new File(Minecraft.getMinecraft().gameDir, "config" + File.separator + "DragonCore" + File.separator + "ClientData.yml"));
     public static final iv k = new iv(new File(System.getProperty("user.home"), "DragonCore" + File.separator + "ClientData.yml"));
     public hl ALLATORIxDEMO;
 

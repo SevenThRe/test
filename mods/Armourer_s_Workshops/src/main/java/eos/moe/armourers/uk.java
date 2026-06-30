@@ -30,12 +30,12 @@ extends AbstractResourcePack {
         uk a2;
     }
 
-    public InputStream func_110591_a(String a2) throws IOException {
+    public InputStream getInputStreamByName(String a2) throws IOException {
         a2 = a2.replace("assets/dragonarmourers/", "");
         return new ByteArrayInputStream(j.get(a2));
     }
 
-    public boolean func_110593_b(String a2) {
+    public boolean hasResourceName(String a2) {
         a2 = a2.replace("assets/dragonarmourers/", "");
         return j.containsKey(a2);
     }
@@ -45,17 +45,17 @@ extends AbstractResourcePack {
         m = LogManager.getLogger();
     }
 
-    public String func_130077_b() {
+    public String getPackName() {
         return "dragonarmourers";
     }
 
-    public Set<String> func_110587_b() {
+    public Set<String> getResourceDomains() {
         Object[] objectArray = new String[1];
         objectArray[0] = "dragonarmourers";
         return Sets.newHashSet((Object[])objectArray);
     }
 
-    public void func_110594_c(String a2) {
+    public void logNameNotLowercase(String a2) {
         m.warn("ResourcePack: ignored non-lowercase namespace: {} in {}", (Object)a2, (Object)"dragonarmourers");
     }
 }

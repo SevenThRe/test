@@ -24,17 +24,17 @@ extends Button {
     public DimensionsButton() {
         super(0, 0, "");
         if (needInit || currentWorldProvider != null) {
-            currentWorldProvider = new WorldData.WrappedProvider(FMLClientHandler.instance().getClient().field_71439_g.field_70170_p.field_73011_w);
+            currentWorldProvider = new WorldData.WrappedProvider(FMLClientHandler.instance().getClient().player.world.provider);
             needInit = false;
         }
         this.updateLabel();
-        this.fitWidth(FMLClientHandler.instance().getClient().field_71466_p);
+        this.fitWidth(FMLClientHandler.instance().getClient().fontRenderer);
     }
 
     @Override
     protected void updateLabel() {
         String dimName = currentWorldProvider != null ? WorldData.getSafeDimensionName(currentWorldProvider) : Constants.getString("jm.waypoint.dimension_all");
-        this.field_146126_j = Constants.getString("jm.waypoint.dimension", dimName);
+        this.displayString = Constants.getString("jm.waypoint.dimension", dimName);
     }
 
     @Override
@@ -42,7 +42,7 @@ extends Button {
         int maxWidth = 0;
         for (WorldData.DimensionProvider dimensionProvider : this.dimensionProviders) {
             String name = Constants.getString("jm.waypoint.dimension", WorldData.getSafeDimensionName(dimensionProvider));
-            maxWidth = Math.max(maxWidth, FMLClientHandler.instance().getClient().field_71466_p.func_78256_a(name));
+            maxWidth = Math.max(maxWidth, FMLClientHandler.instance().getClient().fontRenderer.getStringWidth(name));
         }
         return maxWidth + 12;
     }

@@ -33,7 +33,7 @@ public class GifHandler {
     public static void registerGif(ResourceLocation rl2, GifTexture texture) {
         GifTexture old = gifs.remove(rl2);
         if (old != null) {
-            old.func_147631_c();
+            old.deleteGlTexture();
         }
         gifs.put(rl2, texture);
     }
@@ -43,21 +43,21 @@ public class GifHandler {
     }
 
     public static void bindTexture(ResourceLocation location, int ticks, float partialTicks) {
-        Minecraft mc2 = Minecraft.func_71410_x();
-        Map<ResourceLocation, ITextureObject> map = ReflectionUtils.getTextures(mc2.field_71446_o);
-        if (!map.containsKey(location) && location.func_110623_a().endsWith(".gif")) {
+        Minecraft mc2 = Minecraft.getMinecraft();
+        Map<ResourceLocation, ITextureObject> map = ReflectionUtils.getTextures(mc2.renderEngine);
+        if (!map.containsKey(location) && location.getPath().endsWith(".gif")) {
             try {
-                InputStream stream = Minecraft.func_71410_x().func_110442_L().func_110536_a(location).func_110527_b();
+                InputStream stream = Minecraft.getMinecraft().getResourceManager().getResource(location).getInputStream();
                 List<Tuple<Integer, BufferedImage>> gifImages = GifHandler.getGIFImages(stream);
                 GifTexture texture = new GifTexture(location);
-                texture.width = ((BufferedImage)gifImages.get(0).func_76340_b()).getWidth();
-                texture.height = ((BufferedImage)gifImages.get(0).func_76340_b()).getHeight();
+                texture.width = ((BufferedImage)gifImages.get(0).getSecond()).getWidth();
+                texture.height = ((BufferedImage)gifImages.get(0).getSecond()).getHeight();
                 int frames = gifImages.size();
                 map.put(location, (ITextureObject)texture);
                 GifHandler.registerGif(location, texture);
                 for (int i2 = 0; i2 < frames; ++i2) {
-                    BufferedImage buffer = (BufferedImage)gifImages.get(i2).func_76340_b();
-                    int delay = (Integer)gifImages.get(i2).func_76341_a();
+                    BufferedImage buffer = (BufferedImage)gifImages.get(i2).getSecond();
+                    int delay = (Integer)gifImages.get(i2).getFirst();
                     texture.add(delay, MipmapTexture.bytesFromBuffer(buffer));
                 }
                 texture.calculateDuration();

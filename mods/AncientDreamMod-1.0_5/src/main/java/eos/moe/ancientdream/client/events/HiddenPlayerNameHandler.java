@@ -20,7 +20,7 @@ public class HiddenPlayerNameHandler {
     public static void onRenderLivingEventSpecialsPre(RenderLivingEvent.Specials.Pre<?> e) {
         if (e.getEntity() instanceof EntityOtherPlayerMP) {
             EntityOtherPlayerMP entity = (EntityOtherPlayerMP)e.getEntity();
-            if (entity.func_70005_c_().contains("\u00a7")) {
+            if (entity.getName().contains("\u00a7")) {
                 return;
             }
             e.setCanceled(true);

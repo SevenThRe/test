@@ -99,7 +99,7 @@ implements IMainThreadTask {
         if (texture.isBound()) {
             try {
                 if (Display.isCurrent()) {
-                    GlStateManager.func_179150_h((int)texture.func_110552_b());
+                    GlStateManager.deleteTexture((int)texture.getGlTextureId());
                     texture.clear();
                     success = true;
                 }
@@ -118,7 +118,7 @@ implements IMainThreadTask {
     private boolean deleteTexture(int textureId) {
         try {
             if (Display.isCurrent()) {
-                GlStateManager.func_179150_h((int)textureId);
+                GlStateManager.deleteTexture((int)textureId);
                 return true;
             }
         }

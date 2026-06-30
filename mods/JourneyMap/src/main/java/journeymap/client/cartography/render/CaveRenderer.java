@@ -58,12 +58,12 @@ implements IChunkRenderer {
 
     @Override
     public int getBlockHeight(ChunkMD chunkMd, BlockPos blockPos) {
-        Integer vSlice = blockPos.func_177956_o() >> 4;
+        Integer vSlice = blockPos.getY() >> 4;
         int[] sliceBounds = this.getVSliceBounds(chunkMd, vSlice);
         int sliceMinY = sliceBounds[0];
         int sliceMaxY = sliceBounds[1];
-        Integer y = this.getBlockHeight(chunkMd, blockPos.func_177958_n() & 0xF, vSlice, blockPos.func_177952_p() & 0xF, sliceMinY, sliceMaxY);
-        return y == null ? blockPos.func_177956_o() : y.intValue();
+        Integer y = this.getBlockHeight(chunkMd, blockPos.getX() & 0xF, vSlice, blockPos.getZ() & 0xF, sliceMinY, sliceMaxY);
+        return y == null ? blockPos.getY() : y.intValue();
     }
 
     /*
@@ -99,7 +99,7 @@ implements IChunkRenderer {
         if (chunkSurfaceImage == null || !this.mapSurfaceAboveCaves) {
             this.paintBlackBlock(chunkImage, x, z);
         } else {
-            int surfaceY = Math.max(0, chunkMd.getChunk().func_76611_b(x, z));
+            int surfaceY = Math.max(0, chunkMd.getChunk().getHeightValue(x, z));
             int distance = Math.max(0, surfaceY - y);
             if (distance > 16) {
                 int minY = this.getBlockHeight(chunkMd, new BlockPos(x, y - 1, z));
@@ -178,7 +178,7 @@ implements IChunkRenderer {
             }
         }
         finally {
-            if (strata.isEmpty() && lavaBlockMD != null && chunkMd.getWorld().field_73011_w instanceof WorldProviderHell) {
+            if (strata.isEmpty() && lavaBlockMD != null && chunkMd.getWorld().provider instanceof WorldProviderHell) {
                 strata.push(chunkMd, lavaBlockMD, x, topY, z, 14);
             }
         }

@@ -32,21 +32,21 @@ public class mj {
 
     @i(f={"\u590d\u6d3b", "Packet_Respawn"})
     public static void c() {
-        Minecraft a2 = Minecraft.func_71410_x();
-        if (a2.field_71439_g != null) {
-            a2.field_71439_g.func_71004_bE();
+        Minecraft a2 = Minecraft.getMinecraft();
+        if (a2.player != null) {
+            a2.player.respawnPlayer();
         }
-        a2.func_147108_a(null);
+        a2.displayGuiScreen(null);
     }
 
     @i(f={"\u65ad\u5f00\u8fde\u63a5", "Packet_Disconnecting"})
     public static void ALLATORIxDEMO() {
-        Minecraft a2 = Minecraft.func_71410_x();
-        if (a2.field_71441_e != null) {
-            a2.field_71441_e.func_72882_A();
+        Minecraft a2 = Minecraft.getMinecraft();
+        if (a2.world != null) {
+            a2.world.sendQuittingDisconnectingPacket();
         }
-        a2.func_71403_a(null);
-        a2.func_147108_a((GuiScreen)new GuiMainMenu());
+        a2.loadWorld(null);
+        a2.displayGuiScreen((GuiScreen)new GuiMainMenu());
     }
 }
 

@@ -31,7 +31,7 @@ public class yx {
     public static boolean f(xz a2) {
         EntityLivingBase a3 = a2.ALLATORIxDEMO();
         if (a3 instanceof EntityPlayer) {
-            return ((EntityPlayer)a3).field_71075_bZ.field_75100_b;
+            return ((EntityPlayer)a3).capabilities.isFlying;
         }
         return false;
     }
@@ -44,12 +44,12 @@ public class yx {
 
     @i(f={"\u662f\u5426\u6301\u6709\u7269\u54c1"})
     public static boolean c(xz a2) {
-        return a2.ALLATORIxDEMO().func_184586_b(EnumHand.MAIN_HAND).func_77973_b() != Items.field_190931_a;
+        return a2.ALLATORIxDEMO().getHeldItem(EnumHand.MAIN_HAND).getItem() != Items.AIR;
     }
 
     @i(f={"\u662f\u5426\u662f\u81ea\u5df1"})
     public static boolean ALLATORIxDEMO(xz a2) {
-        return a2.ALLATORIxDEMO() == Minecraft.func_71410_x().field_71439_g;
+        return a2.ALLATORIxDEMO() == Minecraft.getMinecraft().player;
     }
 }
 

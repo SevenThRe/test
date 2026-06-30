@@ -102,30 +102,30 @@ public class su {
     }
 
     public static String ALLATORIxDEMO(NBTBase a2) {
-        switch (a2.func_74732_a()) {
+        switch (a2.getId()) {
             case 1: {
-                return "" + ((NBTTagByte)a2).func_150290_f();
+                return "" + ((NBTTagByte)a2).getByte();
             }
             case 2: {
-                return "" + ((NBTTagShort)a2).func_150289_e();
+                return "" + ((NBTTagShort)a2).getShort();
             }
             case 3: {
-                return "" + ((NBTTagInt)a2).func_150287_d();
+                return "" + ((NBTTagInt)a2).getInt();
             }
             case 4: {
-                return "" + ((NBTTagLong)a2).func_150291_c();
+                return "" + ((NBTTagLong)a2).getLong();
             }
             case 5: {
-                return "" + ((NBTTagFloat)a2).func_150288_h();
+                return "" + ((NBTTagFloat)a2).getFloat();
             }
             case 6: {
-                return "" + ((NBTTagDouble)a2).func_150286_g();
+                return "" + ((NBTTagDouble)a2).getDouble();
             }
             case 7: {
                 return a2.toString();
             }
             case 8: {
-                return ((NBTTagString)a2).func_150285_a_();
+                return ((NBTTagString)a2).getString();
             }
             case 9: {
                 return "(TagList)";

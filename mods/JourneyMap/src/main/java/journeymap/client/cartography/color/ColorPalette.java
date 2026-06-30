@@ -95,7 +95,7 @@ public class ColorPalette {
     private transient boolean dirty;
 
     ColorPalette() {
-        this.table = HashBasedTable.create((int)GameData.getBlockStateIDMap().func_186804_a(), (int)16);
+        this.table = HashBasedTable.create((int)GameData.getBlockStateIDMap().size(), (int)16);
     }
 
     private ColorPalette(String resourcePacks, String modNames) {
@@ -111,7 +111,7 @@ public class ColorPalette {
         lines.add(Constants.getString("jm.colorpalette.file_header_4", JSON_FILENAME, SAMPLE_STANDARD_PATH));
         lines.add(Constants.getString("jm.config.file_header_5", HELP_PAGE));
         this.description = lines.toArray(new String[4]);
-        this.table = HashBasedTable.create((int)GameData.getBlockStateIDMap().func_186804_a(), (int)16);
+        this.table = HashBasedTable.create((int)GameData.getBlockStateIDMap().size(), (int)16);
     }
 
     public static ColorPalette getActiveColorPalette() {
@@ -339,7 +339,7 @@ public class ColorPalette {
         }
 
         public HashBasedTable<String, String, BlockStateColor> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            HashBasedTable result = HashBasedTable.create((int)GameData.getBlockStateIDMap().func_186804_a(), (int)16);
+            HashBasedTable result = HashBasedTable.create((int)GameData.getBlockStateIDMap().size(), (int)16);
             JsonObject jsonTable = json.getAsJsonObject();
             for (Map.Entry jsonMod : jsonTable.entrySet()) {
                 String modId = (String)jsonMod.getKey();

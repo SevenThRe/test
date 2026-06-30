@@ -72,17 +72,17 @@ public class RFP2 {
     }
 
     public static void logToChat(String message) {
-        EntityPlayerSP player = Minecraft.func_71410_x().field_71439_g;
+        EntityPlayerSP player = Minecraft.getMinecraft().player;
         if (player != null) {
             TextComponentString textToSend = new TextComponentString(message);
-            player.func_145747_a((ITextComponent)textToSend);
+            player.sendMessage((ITextComponent)textToSend);
         }
     }
 
     public static void logToChatByPlayer(String message, EntityPlayer player) {
         if (player != null) {
             TextComponentString textToSend = new TextComponentString(message);
-            player.func_145747_a((ITextComponent)textToSend);
+            player.sendMessage((ITextComponent)textToSend);
         }
     }
 

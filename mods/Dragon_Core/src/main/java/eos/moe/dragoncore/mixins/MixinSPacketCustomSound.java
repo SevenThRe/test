@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value={SPacketCustomSound.class})
 public class MixinSPacketCustomSound {
     @Shadow
-    private String field_149219_a;
+    private String soundName;
 
     public MixinSPacketCustomSound() {
         MixinSPacketCustomSound a2;
@@ -27,8 +27,8 @@ public class MixinSPacketCustomSound {
     @Inject(method={"readPacketData"}, at={@At(value="RETURN")})
     private /* synthetic */ void mixin_readPacketData(PacketBuffer a2, CallbackInfo a3) {
         MixinSPacketCustomSound a4;
-        if (a4.field_149219_a.startsWith("https:") || a4.field_149219_a.startsWith("http:")) {
-            a4.field_149219_a = "minecraft:" + a4.field_149219_a;
+        if (a4.soundName.startsWith("https:") || a4.soundName.startsWith("http:")) {
+            a4.soundName = "minecraft:" + a4.soundName;
         }
     }
 }

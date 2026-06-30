@@ -34,7 +34,7 @@ public class bia {
     public static void ALLATORIxDEMO(AttackEntityEvent a2) {
         Entity a3 = a2.getTarget();
         if (a3 instanceof EntityLivingBase && raa.r.c((EntityLivingBase)a3) != null) {
-            nw.ALLATORIxDEMO(a3.func_145782_y(), -1, null);
+            nw.ALLATORIxDEMO(a3.getEntityId(), -1, null);
         }
     }
 
@@ -42,15 +42,15 @@ public class bia {
     public static void ALLATORIxDEMO(PlayerInteractEvent.EntityInteractSpecific a2) {
         Entity a3 = a2.getTarget();
         if (a3 instanceof EntityLivingBase && raa.r.c((EntityLivingBase)a3) != null) {
-            nw.ALLATORIxDEMO(a3.func_145782_y(), a2.getHand() == EnumHand.MAIN_HAND ? 0 : 1, a2.getLocalPos());
+            nw.ALLATORIxDEMO(a3.getEntityId(), a2.getHand() == EnumHand.MAIN_HAND ? 0 : 1, a2.getLocalPos());
         }
     }
 
     @SubscribeEvent
     public static void ALLATORIxDEMO(ProjectileImpactEvent a2) {
         Entity a3;
-        if (a2.getRayTraceResult().field_72308_g != null && (a3 = a2.getRayTraceResult().field_72308_g) instanceof EntityLivingBase && raa.r.c((EntityLivingBase)a3) != null) {
-            nw.ALLATORIxDEMO(a2.getEntity().func_145782_y(), a3.func_145782_y());
+        if (a2.getRayTraceResult().entityHit != null && (a3 = a2.getRayTraceResult().entityHit) instanceof EntityLivingBase && raa.r.c((EntityLivingBase)a3) != null) {
+            nw.ALLATORIxDEMO(a2.getEntity().getEntityId(), a3.getEntityId());
         }
     }
 }

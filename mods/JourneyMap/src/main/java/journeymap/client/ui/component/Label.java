@@ -23,12 +23,12 @@ extends Button {
         this.setDrawFrame(false);
         this.setEnabled(false);
         this.setLabelColors(0xC0C0C0, 0xC0C0C0, 0xC0C0C0);
-        this.func_175211_a(width);
+        this.setWidth(width);
     }
 
     @Override
     public int getFitWidth(FontRenderer fr) {
-        return this.fontRenderer.func_78256_a(this.field_146126_j);
+        return this.fontRenderer.getStringWidth(this.displayString);
     }
 
     @Override
@@ -40,7 +40,7 @@ extends Button {
     }
 
     @Override
-    public void func_191745_a(Minecraft minecraft, int mouseX, int mouseY, float ticks) {
+    public void drawButton(Minecraft minecraft, int mouseX, int mouseY, float ticks) {
         int labelX;
         switch (this.hAlign) {
             case Left: {
@@ -55,7 +55,7 @@ extends Button {
                 labelX = this.getCenterX();
             }
         }
-        DrawUtil.drawLabel(this.field_146126_j, labelX, this.getMiddleY(), this.hAlign, DrawUtil.VAlign.Middle, null, 0.0f, this.labelColor, 1.0f, 1.0, this.drawLabelShadow);
+        DrawUtil.drawLabel(this.displayString, labelX, this.getMiddleY(), this.hAlign, DrawUtil.VAlign.Middle, null, 0.0f, this.labelColor, 1.0f, 1.0, this.drawLabelShadow);
     }
 }
 

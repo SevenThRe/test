@@ -31,7 +31,7 @@ implements MessageHandler {
             case 0: {
                 int page = buffer.readInt();
                 YamlConfiguration yaml = new YamlConfiguration();
-                yaml.loadFromString(buffer.func_150789_c(32768));
+                yaml.loadFromString(buffer.readString(32768));
                 boolean hasGuild = yaml.getBoolean("hasGuild");
                 ArrayList<GuildListGui.GuildData> list = new ArrayList<GuildListGui.GuildData>();
                 for (String key : yaml.getKeys(false)) {
@@ -48,7 +48,7 @@ implements MessageHandler {
             }
             case 1: {
                 YamlConfiguration yaml = new YamlConfiguration();
-                yaml.loadFromString(buffer.func_150789_c(32768));
+                yaml.loadFromString(buffer.readString(32768));
                 GuildManagerGui.GuildData guildData = YamlHelper.loadFrom(yaml, GuildManagerGui.GuildData.class, new YamlDeserializer(){
 
                     @Override
@@ -76,7 +76,7 @@ implements MessageHandler {
             }
             case 4: {
                 YamlConfiguration yaml = new YamlConfiguration();
-                yaml.loadFromString(buffer.func_150789_c(32768));
+                yaml.loadFromString(buffer.readString(32768));
                 final YamlDeserializer deserializer1 = new YamlDeserializer(){
 
                     @Override
@@ -106,13 +106,13 @@ implements MessageHandler {
                 break;
             }
             case 5: {
-                GuildSetting guildSetting = new GuildSetting(buffer.func_150789_c(32768), buffer.func_150789_c(32768));
+                GuildSetting guildSetting = new GuildSetting(buffer.readString(32768), buffer.readString(32768));
                 Utils.openGuiSync(guildSetting);
                 break;
             }
             case 6: {
                 YamlConfiguration yaml = new YamlConfiguration();
-                yaml.loadFromString(buffer.func_150789_c(32768));
+                yaml.loadFromString(buffer.readString(32768));
                 GuildApplyGui.GuildData guildData1 = YamlHelper.loadFrom(yaml, GuildApplyGui.GuildData.class, new YamlDeserializer(){
 
                     @Override

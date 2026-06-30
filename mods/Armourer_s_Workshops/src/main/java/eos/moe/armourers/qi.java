@@ -20,8 +20,8 @@ extends Container {
         int n2;
         qi a4;
         int n3 = n2 = 0;
-        while (n3 < a3.func_70302_i_()) {
-            a4.func_75146_a(new Slot(a3, n2++, 999, 999));
+        while (n3 < a3.getSizeInventory()) {
+            a4.addSlotToContainer(new Slot(a3, n2++, 999, 999));
             n3 = n2;
         }
         int n4 = n2 = 0;
@@ -30,7 +30,7 @@ extends Container {
             while (n5 < 9) {
                 int n6 = a3 + n2 * 9 + 9;
                 int n7 = 6 + a3 * 18;
-                a4.func_75146_a(new Slot(a2, n6, n7, 51 + n2 * 18));
+                a4.addSlotToContainer(new Slot(a2, n6, n7, 51 + n2 * 18));
                 n5 = ++a3;
             }
             n4 = ++n2;
@@ -38,12 +38,12 @@ extends Container {
         int n8 = n2 = 0;
         while (n8 < 9) {
             int n9 = n2++;
-            a4.func_75146_a(new Slot(a2, n9, 6 + n9 * 18, 109));
+            a4.addSlotToContainer(new Slot(a2, n9, 6 + n9 * 18, 109));
             n8 = n2;
         }
     }
 
-    public boolean func_75145_c(EntityPlayer a2) {
+    public boolean canInteractWith(EntityPlayer a2) {
         return true;
     }
 }

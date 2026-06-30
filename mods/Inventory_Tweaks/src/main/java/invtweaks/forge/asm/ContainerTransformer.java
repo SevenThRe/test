@@ -162,7 +162,7 @@ implements IClassTransformer {
 
     private static void transformTextField(@NotNull ClassNode clazz) {
         for (MethodNode method : clazz.methods) {
-            if (!"func_146195_b".equals(method.name) && !"setFocused".equals(method.name) || !"(Z)V".equals(method.desc)) continue;
+            if (!"setFocused".equals(method.name) && !"setFocused".equals(method.name) || !"(Z)V".equals(method.desc)) continue;
             InsnList code = method.instructions;
             AbstractInsnNode returnNode = null;
             for (AbstractInsnNode insn : code) {
@@ -173,10 +173,10 @@ implements IClassTransformer {
             if (returnNode != null) {
                 code.insertBefore(returnNode, (AbstractInsnNode)new VarInsnNode(21, 1));
                 code.insertBefore(returnNode, (AbstractInsnNode)new MethodInsnNode(184, "invtweaks/forge/InvTweaksMod", "setTextboxModeStatic", "(Z)V", false));
-                logger.info("InvTweaks: successfully transformed setFocused/func_146195_b");
+                logger.info("InvTweaks: successfully transformed setFocused/setFocused");
                 continue;
             }
-            logger.fatal("InvTweaks: unable to find return in setFocused/func_146195_b");
+            logger.fatal("InvTweaks: unable to find return in setFocused/setFocused");
         }
     }
 

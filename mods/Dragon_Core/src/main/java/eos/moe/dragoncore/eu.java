@@ -44,7 +44,7 @@ public class eu {
         eu a5;
         a5.v = a2;
         a5.y = a3;
-        if (a4.func_110623_a().endsWith(".bmd")) {
+        if (a4.getPath().endsWith(".bmd")) {
             a5.ALLATORIxDEMO(a4);
         } else {
             a5.c(a4);
@@ -170,7 +170,7 @@ public class eu {
         int a6 = 0;
         ++a5;
         String a7 = null;
-        boolean a8 = a4.func_110623_a().contains("walk");
+        boolean a8 = a4.getPath().contains("walk");
         try {
             while ((a7 = a2.readLine()) != null) {
                 eu a9;

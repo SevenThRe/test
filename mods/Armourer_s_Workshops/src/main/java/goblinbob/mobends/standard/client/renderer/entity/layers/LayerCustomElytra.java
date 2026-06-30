@@ -58,32 +58,32 @@ implements LayerRenderer<AbstractClientPlayer> {
     public void doRenderLayer(AbstractClientPlayer player, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         PlayerData data = (PlayerData)BenderHelper.getData(player, (RenderLivingBase<? extends EntityLivingBase>)this.renderPlayer);
         assert (data != null);
-        ItemStack itemstack = player.func_184582_a(EntityEquipmentSlot.CHEST);
-        if (itemstack.func_77973_b() == Items.field_185160_cR) {
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-            GlStateManager.func_179147_l();
-            GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
-            if (player.func_184833_s() && player.func_184834_t() != null) {
-                this.renderPlayer.func_110776_a(player.func_184834_t());
-            } else if (player.func_152122_n() && player.func_110303_q() != null && player.func_175148_a(EnumPlayerModelParts.CAPE)) {
-                this.renderPlayer.func_110776_a(player.func_110303_q());
+        ItemStack itemstack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+        if (itemstack.getItem() == Items.ELYTRA) {
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            GlStateManager.enableBlend();
+            GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
+            if (player.isPlayerInfoSet() && player.getLocationElytra() != null) {
+                this.renderPlayer.bindTexture(player.getLocationElytra());
+            } else if (player.hasPlayerInfo() && player.getLocationCape() != null && player.isWearing(EnumPlayerModelParts.CAPE)) {
+                this.renderPlayer.bindTexture(player.getLocationCape());
             } else {
-                this.renderPlayer.func_110776_a(TEXTURE_ELYTRA);
+                this.renderPlayer.bindTexture(TEXTURE_ELYTRA);
             }
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             data.body.applyCharacterTransform(0.0625f);
-            GlStateManager.func_179109_b((float)0.0f, (float)(-12.0f * scale), (float)0.0f);
-            this.modelElytra.func_78087_a(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, (Entity)player);
-            this.modelElytra.func_78088_a((Entity)player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-            if (itemstack.func_77948_v()) {
-                LayerArmorBase.func_188364_a((RenderLivingBase)this.renderPlayer, (EntityLivingBase)player, (ModelBase)this.modelElytra, (float)limbSwing, (float)limbSwingAmount, (float)partialTicks, (float)ageInTicks, (float)netHeadYaw, (float)headPitch, (float)scale);
+            GlStateManager.translate((float)0.0f, (float)(-12.0f * scale), (float)0.0f);
+            this.modelElytra.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, (Entity)player);
+            this.modelElytra.render((Entity)player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+            if (itemstack.isItemEnchanted()) {
+                LayerArmorBase.renderEnchantedGlint((RenderLivingBase)this.renderPlayer, (EntityLivingBase)player, (ModelBase)this.modelElytra, (float)limbSwing, (float)limbSwingAmount, (float)partialTicks, (float)ageInTicks, (float)netHeadYaw, (float)headPitch, (float)scale);
             }
-            GlStateManager.func_179084_k();
-            GlStateManager.func_179121_F();
+            GlStateManager.disableBlend();
+            GlStateManager.popMatrix();
         }
     }
 
-    public boolean func_177142_b() {
+    public boolean shouldCombineTextures() {
         return false;
     }
 }

@@ -24,7 +24,7 @@ implements LayerRenderer<AbstractClientPlayer> {
     public void doRenderLayer(AbstractClientPlayer a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9) {
     }
 
-    public boolean func_177142_b() {
+    public boolean shouldCombineTextures() {
         return false;
     }
 }

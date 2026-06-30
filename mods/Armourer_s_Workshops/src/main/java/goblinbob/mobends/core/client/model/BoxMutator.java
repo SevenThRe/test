@@ -32,19 +32,19 @@ public class BoxMutator {
     }
 
     public static BoxMutator createFrom(ModelBase modelBase, ModelRenderer modelRenderer, ModelBox original) {
-        TexturedQuad[] quadList = original.field_78254_i;
+        TexturedQuad[] quadList = original.quadList;
         if (quadList == null) {
             return null;
         }
-        float textureWidth = modelRenderer.field_78801_a;
-        float textureHeight = modelRenderer.field_78799_b;
-        int texU = (int)(quadList[1].field_78239_a[1].field_78241_b * textureWidth);
-        int texV = (int)(quadList[2].field_78239_a[1].field_78242_c * textureHeight);
-        if (modelRenderer.field_78809_i) {
-            texV = (int)(quadList[3].field_78239_a[1].field_78242_c * textureHeight);
+        float textureWidth = modelRenderer.textureWidth;
+        float textureHeight = modelRenderer.textureHeight;
+        int texU = (int)(quadList[1].vertexPositions[1].texturePositionX * textureWidth);
+        int texV = (int)(quadList[2].vertexPositions[1].texturePositionY * textureHeight);
+        if (modelRenderer.mirror) {
+            texV = (int)(quadList[3].vertexPositions[1].texturePositionY * textureHeight);
         }
-        float inflation1 = Math.abs((float)((double)original.field_78252_a - quadList[1].field_78239_a[0].field_78243_a.field_72450_a));
-        float inflation2 = Math.abs((float)((double)original.field_78248_d - quadList[1].field_78239_a[0].field_78243_a.field_72450_a));
+        float inflation1 = Math.abs((float)((double)original.posX1 - quadList[1].vertexPositions[0].vector3D.x));
+        float inflation2 = Math.abs((float)((double)original.posX2 - quadList[1].vertexPositions[0].vector3D.x));
         float inflation = Math.min(inflation1, inflation2);
         BoxFactory target = new BoxFactory(modelRenderer, original);
         target.inflate(inflation, inflation, inflation);

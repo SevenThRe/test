@@ -46,7 +46,7 @@ public class qs {
             hka.ALLATORIxDEMO(new ResourceLocation("dragoncore", "models/entities/" + a3.c()));
         }
         if (a2.ALLATORIxDEMO() >= 5) {
-            GlStateManager.func_179131_c((float)((float)a2.ALLATORIxDEMO(1) / 255.0f), (float)((float)a2.ALLATORIxDEMO(2) / 255.0f), (float)((float)a2.ALLATORIxDEMO(3) / 255.0f), (float)((float)a2.ALLATORIxDEMO(4) / 255.0f));
+            GlStateManager.color((float)((float)a2.ALLATORIxDEMO(1) / 255.0f), (float)((float)a2.ALLATORIxDEMO(2) / 255.0f), (float)((float)a2.ALLATORIxDEMO(3) / 255.0f), (float)((float)a2.ALLATORIxDEMO(4) / 255.0f));
         }
     }
 
@@ -95,7 +95,7 @@ public class qs {
 
     @i(f={"\u79fb\u9664\u6b7b\u4ea1\u8ba1\u6570"})
     public static void f(xz a2) {
-        a2.ALLATORIxDEMO().field_70725_aQ = 0;
+        a2.ALLATORIxDEMO().deathTime = 0;
     }
 
     @i(f={"\u505c\u6b62\u52a8\u753b\u5c42"})
@@ -132,12 +132,12 @@ public class qs {
 
     @i(f={"\u79fb\u9664\u5b9e\u4f53"})
     public static void c(xz a2) {
-        Minecraft.func_71410_x().field_71441_e.func_72900_e((Entity)a2.ALLATORIxDEMO());
+        Minecraft.getMinecraft().world.removeEntity((Entity)a2.ALLATORIxDEMO());
     }
 
     @i(f={"\u53d6\u5b9e\u4f53UUID"})
     public static String c(xz a2) {
-        return a2.ALLATORIxDEMO().func_110124_au().toString();
+        return a2.ALLATORIxDEMO().getUniqueID().toString();
     }
 
     @i(f={"\u53d6\u5b9e\u4f53\u540d"})
@@ -147,44 +147,44 @@ public class qs {
 
     @i(f={"\u53d6yaw"})
     public static double s(xz a2) {
-        return a2.ALLATORIxDEMO().field_70759_as;
+        return a2.ALLATORIxDEMO().rotationYawHead;
     }
 
     @i(f={"\u53d6pitch"})
     public static double w(xz a2) {
-        return a2.ALLATORIxDEMO().field_70125_A;
+        return a2.ALLATORIxDEMO().rotationPitch;
     }
 
     @i(f={"\u53d6\u8840\u91cf"})
     public static double z(xz a2) {
-        return a2.ALLATORIxDEMO().func_110143_aJ();
+        return a2.ALLATORIxDEMO().getHealth();
     }
 
     @i(f={"\u53d6\u6700\u5927\u8840\u91cf"})
     public static double k(xz a2) {
-        return a2.ALLATORIxDEMO().func_110138_aP();
+        return a2.ALLATORIxDEMO().getMaxHealth();
     }
 
     @i(f={"\u53d6\u8840\u91cf\u6bd4\u4f8b"})
     public static double d(xz a2) {
         EntityLivingBase a3 = a2.ALLATORIxDEMO();
-        return a3.func_110143_aJ() / a3.func_110138_aP();
+        return a3.getHealth() / a3.getMaxHealth();
     }
 
     @i(f={"\u53d6\u9ad8\u5ea6"})
     public static double x(xz a2) {
-        return a2.ALLATORIxDEMO().field_70131_O;
+        return a2.ALLATORIxDEMO().height;
     }
 
     @i(f={"\u662f\u5426\u9a91\u4e58"})
     public static boolean i(xz a2) {
-        return a2.ALLATORIxDEMO().func_184218_aH();
+        return a2.ALLATORIxDEMO().isRiding();
     }
 
     @i(f={"\u9a91\u4e58\u751f\u7269\u662f\u5426\u4e3a\u751f\u547d\u4f53"})
     public static boolean n(xz a2) {
         EntityLivingBase a3 = a2.ALLATORIxDEMO();
-        return a3.func_184187_bx() instanceof EntityLivingBase;
+        return a3.getRidingEntity() instanceof EntityLivingBase;
     }
 
     @i(f={"\u8bbe\u7f6e\u98de\u884c\u72b6\u6001"})
@@ -205,7 +205,7 @@ public class qs {
 
     @i(f={"\u662f\u5426\u9798\u7fc5\u98de\u884c\u4e2d"})
     public static boolean y(xz a2) {
-        return a2.ALLATORIxDEMO().func_184599_cB() > 4;
+        return a2.ALLATORIxDEMO().getTicksElytraFlying() > 4;
     }
 
     @i(f={"\u662f\u5426\u6500\u722c\u4e2d"})
@@ -220,7 +220,7 @@ public class qs {
 
     @i(f={"\u662f\u5426\u5728\u6c34\u4e2d"})
     public static boolean w(xz a2) {
-        return a2.ALLATORIxDEMO().func_70090_H();
+        return a2.ALLATORIxDEMO().isInWater();
     }
 
     @i(f={"\u662f\u5426\u5728\u6c34\u4e0b"})
@@ -254,12 +254,12 @@ public class qs {
     @i(f={"\u662f\u5426\u5954\u8dd1\u4e2d"})
     public static boolean c(xz a2) {
         yu a3 = a2.o;
-        return a3.ALLATORIxDEMO().func_70051_ag();
+        return a3.ALLATORIxDEMO().isSprinting();
     }
 
     @i(f={"\u662f\u5426\u8e72\u4e0b"})
     public static boolean ALLATORIxDEMO(xz a2) {
-        return a2.ALLATORIxDEMO().func_70093_af();
+        return a2.ALLATORIxDEMO().isSneaking();
     }
 
     @i(f={"\u53d6\u6b63\u5411\u52a8\u91cf"})
@@ -279,12 +279,12 @@ public class qs {
 
     @i(f={"\u53d6\u4e3b\u624b\u7269\u54c1"})
     public static v c(xz a2) {
-        return new xk(a2.ALLATORIxDEMO().func_184614_ca());
+        return new xk(a2.ALLATORIxDEMO().getHeldItemMainhand());
     }
 
     @i(f={"\u53d6\u526f\u624b\u7269\u54c1"})
     public static v ALLATORIxDEMO(xz a2) {
-        return new xk(a2.ALLATORIxDEMO().func_184592_cb());
+        return new xk(a2.ALLATORIxDEMO().getHeldItemOffhand());
     }
 
     @i(f={"\u53d6\u9ed8\u8ba4\u8fc7\u6e21\u65f6\u95f4"})

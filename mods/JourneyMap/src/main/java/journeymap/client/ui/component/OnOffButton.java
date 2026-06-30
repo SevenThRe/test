@@ -41,7 +41,7 @@ extends Button {
     @Override
     protected void updateLabel() {
         if (this.labelOn != null && this.labelOff != null) {
-            this.field_146126_j = this.getToggled() != false ? this.labelOn : this.labelOff;
+            this.displayString = this.getToggled() != false ? this.labelOn : this.labelOff;
         }
     }
 
@@ -51,12 +51,12 @@ extends Button {
 
     @Override
     public int getFitWidth(FontRenderer fr) {
-        int max = fr.func_78256_a(this.field_146126_j);
+        int max = fr.getStringWidth(this.displayString);
         if (this.labelOn != null) {
-            max = Math.max(max, fr.func_78256_a(this.labelOn));
+            max = Math.max(max, fr.getStringWidth(this.labelOn));
         }
         if (this.labelOff != null) {
-            max = Math.max(max, fr.func_78256_a(this.labelOff));
+            max = Math.max(max, fr.getStringWidth(this.labelOff));
         }
         return max + this.WIDTH_PAD;
     }
@@ -75,7 +75,7 @@ extends Button {
     }
 
     public void setToggled(Boolean toggled, boolean notifyToggleListener) {
-        if (this.toggled == toggled || !this.isEnabled() || !this.field_146125_m) {
+        if (this.toggled == toggled || !this.isEnabled() || !this.visible) {
             return;
         }
         boolean allowChange = true;
@@ -88,7 +88,7 @@ extends Button {
             }
         }
         catch (Throwable t) {
-            Journeymap.getLogger().error("Error trying to toggle button '" + this.field_146126_j + "': " + LogFormatter.toString(t));
+            Journeymap.getLogger().error("Error trying to toggle button '" + this.displayString + "': " + LogFormatter.toString(t));
             allowChange = false;
         }
         if (allowChange) {

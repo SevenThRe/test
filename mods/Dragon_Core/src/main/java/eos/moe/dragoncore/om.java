@@ -145,17 +145,17 @@ public class om {
     @i(f={"\u53d6\u56fe\u7247\u5bbd\u9ad8"})
     public static v ALLATORIxDEMO(String a2) {
         ResourceLocation a3;
-        TextureManager a4 = Minecraft.func_71410_x().func_110434_K();
-        ITextureObject a5 = a4.func_110581_b(a3 = new ResourceLocation("dragoncore", a2));
+        TextureManager a4 = Minecraft.getMinecraft().getTextureManager();
+        ITextureObject a5 = a4.getTexture(a3 = new ResourceLocation("dragoncore", a2));
         if (a5 != null && a5 instanceof ww) {
             ww a6 = (ww)a5;
             return new qg((Collection<?>)ImmutableList.of((Object)a6.q, (Object)a6.b), true);
         }
-        IResourceManager a7 = Minecraft.func_71410_x().func_110442_L();
+        IResourceManager a7 = Minecraft.getMinecraft().getResourceManager();
         try {
-            IResource a8 = a7.func_110536_a(a3);
-            PngSizeInfo a9 = PngSizeInfo.func_188532_a((IResource)a8);
-            return new qg((Collection<?>)ImmutableList.of((Object)a9.field_188533_a, (Object)a9.field_188534_b), true);
+            IResource a8 = a7.getResource(a3);
+            PngSizeInfo a9 = PngSizeInfo.makeFromResource((IResource)a8);
+            return new qg((Collection<?>)ImmutableList.of((Object)a9.pngWidth, (Object)a9.pngHeight), true);
         }
         catch (Exception a10) {
             return new qg((Collection<?>)ImmutableList.of((Object)0, (Object)0), true);
@@ -213,9 +213,9 @@ public class om {
             if (qha.g == null) {
                 qha.g = ala.ALLATORIxDEMO();
             }
-            Entity a9 = Minecraft.func_71410_x().func_175606_aa();
-            float a10 = Minecraft.func_71410_x().func_184121_ak();
-            qha.x = a9.field_70127_C + (a9.field_70125_A - a9.field_70127_C) * a10;
+            Entity a9 = Minecraft.getMinecraft().getRenderViewEntity();
+            float a10 = Minecraft.getMinecraft().getRenderPartialTicks();
+            qha.x = a9.prevRotationPitch + (a9.rotationPitch - a9.prevRotationPitch) * a10;
             qha.v = a4;
             qha.m = (float)a5;
             qha.q = a7;
@@ -248,7 +248,7 @@ public class om {
 
     @i(f={"\u64ad\u653e\u58f0\u97f3", "\u58f0\u97f3", "\u64ad\u653e\u97f3\u4e50", "Sound_Play"})
     public static String ALLATORIxDEMO(ui a2, String a3, float a4, float a5, float a6, float a7, float a8, boolean a9) {
-        return om.ALLATORIxDEMO(a2, MathHelper.func_180182_a((Random)ThreadLocalRandom.current()).toString(), a3, SoundCategory.MASTER, a4, a5, a6, a7, a8, a9);
+        return om.ALLATORIxDEMO(a2, MathHelper.getRandomUUID((Random)ThreadLocalRandom.current()).toString(), a3, SoundCategory.MASTER, a4, a5, a6, a7, a8, a9);
     }
 
     @i(f={"\u64ad\u653e\u58f0\u97f31", "\u58f0\u97f31", "\u64ad\u653e\u97f3\u4e501", "Sound_Play1"})
@@ -258,7 +258,7 @@ public class om {
 
     @i(f={"\u64ad\u653e\u58f0\u97f32", "\u58f0\u97f32", "\u64ad\u653e\u97f3\u4e502", "Sound_Play2"})
     public static String ALLATORIxDEMO(ui a2, String a3, String a4, String a5, float a6, float a7, float a8, float a9, float a10, boolean a11) {
-        SoundCategory a12 = SoundCategory.func_187950_a((String)a5);
+        SoundCategory a12 = SoundCategory.getByName((String)a5);
         return om.ALLATORIxDEMO(a2, a3, a4, a12, a6, a7, a8, a9, a10, a11);
     }
 
@@ -280,11 +280,11 @@ public class om {
             }
             return a3;
         }
-        SoundEvent a16 = (SoundEvent)SoundEvent.field_187505_a.func_82594_a((Object)new ResourceLocation(a4));
-        if (a16 != null && Minecraft.func_71410_x().field_71439_g != null) {
+        SoundEvent a16 = (SoundEvent)SoundEvent.REGISTRY.getObject((Object)new ResourceLocation(a4));
+        if (a16 != null && Minecraft.getMinecraft().player != null) {
             float a17 = a6;
             float a18 = a7;
-            sj.ALLATORIxDEMO(() -> Minecraft.func_71410_x().field_71439_g.func_184185_a(a16, a17, a18));
+            sj.ALLATORIxDEMO(() -> Minecraft.getMinecraft().player.playSound(a16, a17, a18));
         }
         return a3;
     }
@@ -311,9 +311,9 @@ public class om {
 
     public static void c(String a2) {
         try {
-            SoundHandler a3 = Minecraft.func_71410_x().func_147118_V();
-            SoundManager a4 = (SoundManager)ReflectionHelper.getPrivateValue(SoundHandler.class, (Object)a3, (String[])new String[]{"sndManager", "field_147694_f"});
-            SoundSystem a5 = (SoundSystem)ReflectionHelper.getPrivateValue(SoundManager.class, (Object)a4, (String[])new String[]{"sndSystem", "field_148620_e"});
+            SoundHandler a3 = Minecraft.getMinecraft().getSoundHandler();
+            SoundManager a4 = (SoundManager)ReflectionHelper.getPrivateValue(SoundHandler.class, (Object)a3, (String[])new String[]{"sndManager", "sndManager"});
+            SoundSystem a5 = (SoundSystem)ReflectionHelper.getPrivateValue(SoundManager.class, (Object)a4, (String[])new String[]{"sndSystem", "sndSystem"});
             a5.stop(a2);
         }
         catch (Exception exception) {
@@ -325,10 +325,10 @@ public class om {
         if (!wka.k) {
             return;
         }
-        SoundHandler a13 = Minecraft.func_71410_x().func_147118_V();
+        SoundHandler a13 = Minecraft.getMinecraft().getSoundHandler();
         ResourceLocation a14 = new ResourceLocation("dragoncore", a3);
         try {
-            Minecraft.func_71410_x().func_110442_L().func_110536_a(a14);
+            Minecraft.getMinecraft().getResourceManager().getResource(a14);
         }
         catch (Exception a15) {
             if (a3.startsWith("http:") || a3.startsWith("https:")) {
@@ -351,7 +351,7 @@ public class om {
             }
             a14 = new ResourceLocation("dragoncore", "sounds/" + a3);
             try {
-                Minecraft.func_71410_x().func_110442_L().func_110536_a(a14);
+                Minecraft.getMinecraft().getResourceManager().getResource(a14);
             }
             catch (Exception a16) {
                 ca.l.w("\u7f3a\u5c11\u97f3\u4e50\u6587\u4ef6,\u65e0\u6cd5\u64ad\u653e->" + a3);
@@ -361,15 +361,15 @@ public class om {
         ISound.AttenuationType a17 = a7 == 0.0f && a8 == 0.0f && a9 == 0.0f ? ISound.AttenuationType.NONE : ISound.AttenuationType.LINEAR;
         am a18 = new am(null, a14, a4, a5, a6, a10, 0, a17, a7, a8, a9);
         SoundEventAccessor a19 = new SoundEventAccessor(a14, null);
-        a19.func_188715_a((ISoundEventAccessor)new vn(a14, 1.0f, 1.0f, 1, Sound.Type.FILE, a4 == SoundCategory.MUSIC));
-        a13.field_147697_e.func_186803_a(a19);
+        a19.addSound((ISoundEventAccessor)new vn(a14, 1.0f, 1.0f, 1, Sound.Type.FILE, a4 == SoundCategory.MUSIC));
+        a13.soundRegistry.add(a19);
         a18.setKey(a2);
-        Minecraft.func_71410_x().func_147118_V().func_147682_a((ISound)a18);
+        Minecraft.getMinecraft().getSoundHandler().playSound((ISound)a18);
     }
 
     @i(f={"\u5ef6\u65f6", "Delay"})
     public static void ALLATORIxDEMO(int a2) {
-        if (Minecraft.func_71410_x().func_152345_ab()) {
+        if (Minecraft.getMinecraft().isCallingFromMinecraftThread()) {
             return;
         }
         if (a2 <= 0) {
@@ -430,7 +430,7 @@ public class om {
     }
 
     static {
-        k = a2 -> Minecraft.func_71410_x().func_152344_a(a2);
+        k = a2 -> Minecraft.getMinecraft().addScheduledTask(a2);
         ALLATORIxDEMO = Sets.newHashSet((Object[])new String[]{"http", "https"});
     }
 }

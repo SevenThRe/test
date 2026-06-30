@@ -57,15 +57,15 @@ public class ModConfig {
     private static List<Map<?, ?>> caches;
 
     private static boolean checkForPatterns(ResourceLocation resourceLocation, String[] patterns) {
-        String resourceDomain = resourceLocation.func_110624_b();
-        String resourcePath = resourceLocation.func_110623_a();
+        String resourceDomain = resourceLocation.getNamespace();
+        String resourcePath = resourceLocation.getPath();
         for (String pattern : patterns) {
             ResourceLocation patternLocation = new ResourceLocation(pattern);
             if (resourceLocation.equals((Object)patternLocation)) {
                 return true;
             }
-            WildcardPattern domainPattern = new WildcardPattern(patternLocation.func_110624_b());
-            WildcardPattern pathPattern = new WildcardPattern(patternLocation.func_110623_a());
+            WildcardPattern domainPattern = new WildcardPattern(patternLocation.getNamespace());
+            WildcardPattern pathPattern = new WildcardPattern(patternLocation.getPath());
             if (!domainPattern.matches(resourceDomain) || !pathPattern.matches(resourcePath)) continue;
             return true;
         }
@@ -91,7 +91,7 @@ public class ModConfig {
 
     public static boolean shouldKeepEntityAsVanilla(Entity entity) {
         return keepEntityAsVanillaCache.computeIfAbsent(entity, e2 -> {
-            ResourceLocation location = EntityList.func_191301_a((Entity)entity);
+            ResourceLocation location = EntityList.getKey((Entity)entity);
             return location != null && ModConfig.checkForPatterns(location, keepEntityAsVanilla);
         });
     }

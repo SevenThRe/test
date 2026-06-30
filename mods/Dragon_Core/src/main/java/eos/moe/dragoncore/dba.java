@@ -46,13 +46,13 @@ public class dba {
 
     @SubscribeEvent
     public void ALLATORIxDEMO(InputEvent.KeyInputEvent a2) {
-        if (y != null && y.func_151468_f()) {
+        if (y != null && y.isPressed()) {
             hka.c = !hka.c;
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u00a7a\u5df2" + (hka.c ? "\u5173\u95ed" : "\u5f00\u542f") + "\u663e\u793a\u5b9e\u4f53\u6a21\u578b"));
+            Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u00a7a\u5df2" + (hka.c ? "\u5173\u95ed" : "\u5f00\u542f") + "\u663e\u793a\u5b9e\u4f53\u6a21\u578b"));
         }
-        if (k != null && k.func_151468_f()) {
+        if (k != null && k.isPressed()) {
             ALLATORIxDEMO = !ALLATORIxDEMO;
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u00a7a\u5df2" + (ALLATORIxDEMO ? "\u5173\u95ed" : "\u5f00\u542f") + "\u663e\u793a\u5176\u4ed6\u73a9\u5bb6(\u4ee5\u53ca\u90e8\u5206NPC)"));
+            Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u00a7a\u5df2" + (ALLATORIxDEMO ? "\u5173\u95ed" : "\u5f00\u542f") + "\u663e\u793a\u5176\u4ed6\u73a9\u5bb6(\u4ee5\u53ca\u90e8\u5206NPC)"));
         }
     }
 
@@ -61,10 +61,10 @@ public class dba {
         if (!ALLATORIxDEMO) {
             return;
         }
-        if (a2.getEntity() == Minecraft.func_71410_x().field_71439_g) {
+        if (a2.getEntity() == Minecraft.getMinecraft().player) {
             return;
         }
-        if (a2.getEntity().func_145748_c_().func_150260_c().contains("\u00a7")) {
+        if (a2.getEntity().getDisplayName().getUnformattedText().contains("\u00a7")) {
             return;
         }
         a2.setCanceled(true);

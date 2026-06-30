@@ -75,15 +75,15 @@ implements pa {
             String a4;
             switch (a4 = stringArray[i2]) {
                 case "x": {
-                    GlStateManager.func_179114_b((float)a2, (float)1.0f, (float)0.0f, (float)0.0f);
+                    GlStateManager.rotate((float)a2, (float)1.0f, (float)0.0f, (float)0.0f);
                     continue block10;
                 }
                 case "y": {
-                    GlStateManager.func_179114_b((float)a2, (float)0.0f, (float)1.0f, (float)0.0f);
+                    GlStateManager.rotate((float)a2, (float)0.0f, (float)1.0f, (float)0.0f);
                     continue block10;
                 }
                 case "z": {
-                    GlStateManager.func_179114_b((float)a2, (float)0.0f, (float)0.0f, (float)1.0f);
+                    GlStateManager.rotate((float)a2, (float)0.0f, (float)0.0f, (float)1.0f);
                 }
             }
         }

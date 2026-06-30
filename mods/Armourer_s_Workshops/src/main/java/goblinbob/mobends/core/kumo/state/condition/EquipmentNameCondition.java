@@ -30,8 +30,8 @@ implements ITriggerCondition {
         Object entity = context.getEntityData().getEntity();
         if (entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)entity;
-            ItemStack itemStack = player.func_184582_a(this.slot);
-            return itemStack.func_82833_r().matches(this.namePattern);
+            ItemStack itemStack = player.getItemStackFromSlot(this.slot);
+            return itemStack.getDisplayName().matches(this.namePattern);
         }
         return false;
     }

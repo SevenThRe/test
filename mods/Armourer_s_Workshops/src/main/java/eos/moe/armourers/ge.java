@@ -111,7 +111,7 @@ public abstract class ge {
         ge a9;
         int n2 = a3;
         int n3 = a5;
-        a9(Minecraft.func_71410_x(), a4, n3, n2, n2 + n3, a2, a6, a7, a8);
+        a9(Minecraft.getMinecraft(), a4, n3, n2, n2 + n3, a2, a6, a7, a8);
     }
 
     /*
@@ -207,37 +207,37 @@ public abstract class ge {
             v12 = a;
         }
         v12.y();
-        var11_15 = Tessellator.func_178181_a();
-        var12_17 = var11_15.func_178180_c();
+        var11_15 = Tessellator.getInstance();
+        var12_17 = var11_15.getBuffer();
         var13_21 = new ScaledResolution(a.j);
         v14 = a;
-        var14_24 = (double)v14.j.field_71443_c / var13_21.func_78327_c();
-        var16_25 = (double)v14.j.field_71440_d / var13_21.func_78324_d();
+        var14_24 = (double)v14.j.displayWidth / var13_21.getScaledWidth_double();
+        var16_25 = (double)v14.j.displayHeight / var13_21.getScaledHeight_double();
         GL11.glEnable((int)3089);
-        GL11.glScissor((int)((int)((double)v14.f * var14_24)), (int)((int)((double)a.j.field_71440_d - (double)a.g * var16_25)), (int)((int)((double)a.m * var14_24)), (int)((int)((double)var9_12 * var16_25)));
-        if (v14.j.field_71441_e != null) {
+        GL11.glScissor((int)((int)((double)v14.f * var14_24)), (int)((int)((double)a.j.displayHeight - (double)a.g * var16_25)), (int)((int)((double)a.m * var14_24)), (int)((int)((double)var9_12 * var16_25)));
+        if (v14.j.world != null) {
             v15 = a;
         } else {
-            GlStateManager.func_179140_f();
-            GlStateManager.func_179106_n();
-            a.j.field_71446_o.func_110577_a(Gui.field_110325_k);
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            GlStateManager.disableLighting();
+            GlStateManager.disableFog();
+            a.j.renderEngine.bindTexture(Gui.OPTIONS_BACKGROUND);
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
             a = 32.0f;
             v16 = a;
             v15 = v16;
             v17 = var12_17;
             v18 = var12_17;
-            v18.func_181668_a(7, DefaultVertexFormats.field_181709_i);
+            v18.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
             v19 = a;
             v20 = a;
-            v18.func_181662_b((double)a.f, (double)a.g, 0.0).func_187315_a((double)((float)v19.f / 32.0f), (double)((float)(v20.g + (int)v20.k) / 32.0f)).func_181669_b(32, 32, 32, 255).func_181675_d();
+            v18.pos((double)a.f, (double)a.g, 0.0).tex((double)((float)v19.f / 32.0f), (double)((float)(v20.g + (int)v20.k) / 32.0f)).color(32, 32, 32, 255).endVertex();
             v21 = a;
-            v17.func_181662_b((double)v19.s, (double)a.g, 0.0).func_187315_a((double)((float)a.s / 32.0f), (double)((float)(v21.g + (int)v21.k) / 32.0f)).func_181669_b(32, 32, 32, 255).func_181675_d();
+            v17.pos((double)v19.s, (double)a.g, 0.0).tex((double)((float)a.s / 32.0f), (double)((float)(v21.g + (int)v21.k) / 32.0f)).color(32, 32, 32, 255).endVertex();
             v22 = a;
-            v17.func_181662_b((double)a.s, (double)a.u, 0.0).func_187315_a((double)((float)a.s / 32.0f), (double)((float)(v22.u + (int)v22.k) / 32.0f)).func_181669_b(32, 32, 32, 255).func_181675_d();
+            v17.pos((double)a.s, (double)a.u, 0.0).tex((double)((float)a.s / 32.0f), (double)((float)(v22.u + (int)v22.k) / 32.0f)).color(32, 32, 32, 255).endVertex();
             v23 = a;
-            var12_17.func_181662_b((double)v16.f, (double)a.u, 0.0).func_187315_a((double)((float)a.f / 32.0f), (double)((float)(v23.u + (int)v23.k) / 32.0f)).func_181669_b(32, 32, 32, 255).func_181675_d();
-            var11_15.func_78381_a();
+            var12_17.pos((double)v16.f, (double)a.u, 0.0).tex((double)((float)a.f / 32.0f), (double)((float)(v23.u + (int)v23.k) / 32.0f)).color(32, 32, 32, 255).endVertex();
+            var11_15.draw();
         }
         a = v15.u + var10_13 - (int)a.k;
         if (a.q) {
@@ -264,7 +264,7 @@ public abstract class ge {
             }
             v24 = ++var6_9;
         }
-        GlStateManager.func_179097_i();
+        GlStateManager.disableDepth();
         var6_9 = a.r() + var10_13 - var9_12;
         if (var6_9 > 0) {
             v27 = var9_12;
@@ -281,10 +281,10 @@ public abstract class ge {
             a.r(var5_8, var12_19, var7_10);
         }
         a.r(a, a);
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179103_j((int)7424);
-        GlStateManager.func_179141_d();
-        GlStateManager.func_179084_k();
+        GlStateManager.enableTexture2D();
+        GlStateManager.shadeModel((int)7424);
+        GlStateManager.enableAlpha();
+        GlStateManager.disableBlend();
         GL11.glDisable((int)3089);
     }
 
@@ -310,9 +310,9 @@ public abstract class ge {
     public void r() {
         ge a2;
         ge ge2 = a2;
-        Gui.func_73734_a((int)(a2.f - 1), (int)(a2.u - 1), (int)(ge2.s + 1), (int)(a2.g + 1), (int)-13158601);
+        Gui.drawRect((int)(a2.f - 1), (int)(a2.u - 1), (int)(ge2.s + 1), (int)(a2.g + 1), (int)-13158601);
         ge ge3 = a2;
-        Gui.func_73734_a((int)ge2.f, (int)ge3.u, (int)ge3.s, (int)a2.g, (int)-16777216);
+        Gui.drawRect((int)ge2.f, (int)ge3.u, (int)ge3.s, (int)a2.g, (int)-16777216);
     }
 
     @Deprecated
@@ -329,29 +329,29 @@ public abstract class ge {
     public void r(int a2, int a3, int a4) {
         ge a5;
         int n2 = a2;
-        Gui.func_73734_a((int)n2, (int)a5.u, (int)(n2 + 10), (int)a5.g, (int)-1);
-        Gui.func_73734_a((int)(a2 + 1), (int)(a5.u + 1), (int)(a2 + 9), (int)(a5.g - 1), (int)-13158601);
-        Gui.func_73734_a((int)(a2 + 2), (int)(a5.u + 2), (int)(a2 + 9), (int)(a5.g - 2), (int)-7631989);
+        Gui.drawRect((int)n2, (int)a5.u, (int)(n2 + 10), (int)a5.g, (int)-1);
+        Gui.drawRect((int)(a2 + 1), (int)(a5.u + 1), (int)(a2 + 9), (int)(a5.g - 1), (int)-13158601);
+        Gui.drawRect((int)(a2 + 2), (int)(a5.u + 2), (int)(a2 + 9), (int)(a5.g - 2), (int)-7631989);
         int n3 = a3;
-        Gui.func_73734_a((int)(a2 + 1), (int)n3, (int)(a2 + 10), (int)(n3 + a4), (int)-1);
-        Gui.func_73734_a((int)(a2 + 2), (int)(a3 + 1), (int)(a2 + 10), (int)(a3 + a4), (int)-13158601);
-        Gui.func_73734_a((int)(a2 + 2), (int)(a3 + 1), (int)(a2 + 9), (int)(a3 + a4 - 1), (int)-7631989);
+        Gui.drawRect((int)(a2 + 1), (int)n3, (int)(a2 + 10), (int)(n3 + a4), (int)-1);
+        Gui.drawRect((int)(a2 + 2), (int)(a3 + 1), (int)(a2 + 10), (int)(a3 + a4), (int)-13158601);
+        Gui.drawRect((int)(a2 + 2), (int)(a3 + 1), (int)(a2 + 9), (int)(a3 + a4 - 1), (int)-7631989);
         int n4 = a3;
-        Gui.func_73734_a((int)(a2 + 10), (int)n4, (int)(a2 + 10), (int)(n4 + 1), (int)-7631989);
-        Gui.func_73734_a((int)(a2 + 1), (int)(a3 + a4 - 1), (int)(a2 + 1), (int)(a3 + a4), (int)-7631989);
+        Gui.drawRect((int)(a2 + 10), (int)n4, (int)(a2 + 10), (int)(n4 + 1), (int)-7631989);
+        Gui.drawRect((int)(a2 + 1), (int)(a3 + a4 - 1), (int)(a2 + 1), (int)(a3 + a4), (int)-7631989);
     }
 
     public void r(GuiButton a2) {
-        if (a2.field_146124_l) {
+        if (a2.enabled) {
             ge a3;
-            if (a2.field_146127_k == a3.h) {
+            if (a2.id == a3.h) {
                 ge ge2 = a3;
                 ge2.k -= (float)(a3.c * 2 / 3);
                 ge2.d = -2.0f;
                 ge2.y();
                 return;
             }
-            if (a2.field_146127_k == a3.b) {
+            if (a2.id == a3.b) {
                 ge ge3 = a3;
                 ge3.k += (float)(a3.c * 2 / 3);
                 ge3.d = -2.0f;

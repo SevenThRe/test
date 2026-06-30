@@ -80,7 +80,7 @@ public class dn {
     }
 
     public static int r(double a2) {
-        return MathHelper.func_76125_a((int)MathHelper.func_76128_c((double)(a2 / vk.na)), (int)0, (int)vk.c);
+        return MathHelper.clamp((int)MathHelper.floor((double)(a2 / vk.na)), (int)0, (int)vk.c);
     }
 
     public ResourceLocation r() {

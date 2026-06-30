@@ -34,17 +34,17 @@ public class tg {
 
     @i(f={"\u83b7\u53d6\u6309\u952e\u540d", "\u83b7\u53d6\u63a7\u5236\u6309\u952e\u540d", "ControlKey_Get_Name"})
     public static String c(String a2) {
-        Map a3 = KeyBinding.field_74516_a;
+        Map a3 = KeyBinding.KEYBIND_ARRAY;
         KeyBinding a4 = (KeyBinding)a3.get(a2);
         if (a4 != null) {
-            return Keyboard.getKeyName((int)a4.func_151463_i());
+            return Keyboard.getKeyName((int)a4.getKeyCode());
         }
         return "";
     }
 
     @i(f={"\u83b7\u53d6\u6309\u952e\u989d\u5916", "\u83b7\u53d6\u63a7\u5236\u6309\u952e\u989d\u5916", "ControlKey_Get_Modifier"})
     public static String ALLATORIxDEMO(String a2) {
-        Map a3 = KeyBinding.field_74516_a;
+        Map a3 = KeyBinding.KEYBIND_ARRAY;
         KeyBinding a4 = (KeyBinding)a3.get(a2);
         if (a4 != null) {
             return a4.getKeyModifier().name().toUpperCase(Locale.ROOT);
@@ -54,8 +54,8 @@ public class tg {
 
     @i(f={"\u8bbe\u7f6e\u6309\u952e", "\u8bbe\u7f6e\u63a7\u5236\u6309\u952e", "ControlKey_Set_Key"})
     public static boolean ALLATORIxDEMO(String a2, String a3, String a4) {
-        GameSettings a5 = Minecraft.func_71410_x().field_71474_y;
-        Map a6 = KeyBinding.field_74516_a;
+        GameSettings a5 = Minecraft.getMinecraft().gameSettings;
+        Map a6 = KeyBinding.KEYBIND_ARRAY;
         KeyBinding a7 = (KeyBinding)a6.get(a2);
         if (a7 != null) {
             int a8 = Keyboard.getKeyIndex((String)a4);
@@ -72,8 +72,8 @@ public class tg {
                 try {
                     KeyModifier a9 = KeyModifier.valueOf((String)a3.toUpperCase(Locale.ROOT));
                     a7.setKeyModifierAndCode(a9, a8);
-                    a5.func_151440_a(a7, a8);
-                    KeyBinding.func_74508_b();
+                    a5.setOptionKeyBinding(a7, a8);
+                    KeyBinding.resetKeyBindingArrayAndHash();
                     return true;
                 }
                 catch (Exception a9) {
@@ -86,13 +86,13 @@ public class tg {
 
     @i(f={"\u63a7\u5236\u6309\u952e\u662f\u5426\u6309\u4e0b", "ControlKey_Is_Press"})
     public static boolean ALLATORIxDEMO(String a2) {
-        Map a3 = KeyBinding.field_74516_a;
-        return a3.containsKey(a2) && ((KeyBinding)a3.get(a2)).func_151470_d();
+        Map a3 = KeyBinding.KEYBIND_ARRAY;
+        return a3.containsKey(a2) && ((KeyBinding)a3.get(a2)).isKeyDown();
     }
 
     @i(f={"\u521b\u5efa\u63a7\u5236\u6309\u952e", "ControlKey_Create"}, c=true)
     public static void ALLATORIxDEMO(String a2, String a3, String a4) {
-        Map a5 = KeyBinding.field_74516_a;
+        Map a5 = KeyBinding.KEYBIND_ARRAY;
         if (a5.containsKey(a3)) {
             return;
         }
@@ -115,12 +115,12 @@ public class tg {
 
     @i(f={"\u6a21\u62df\u63a7\u5236\u6309\u952e", "ControlKey_Test"})
     public static boolean ALLATORIxDEMO(String a2, boolean a3) {
-        Map a4 = KeyBinding.field_74516_a;
+        Map a4 = KeyBinding.KEYBIND_ARRAY;
         KeyBinding a5 = (KeyBinding)a4.get(a2);
         if (a5 != null) {
-            KeyBinding.func_74510_a((int)a5.func_151463_i(), (boolean)a3);
+            KeyBinding.setKeyBindState((int)a5.getKeyCode(), (boolean)a3);
             if (a3) {
-                KeyBinding.func_74507_a((int)a5.func_151463_i());
+                KeyBinding.onTick((int)a5.getKeyCode());
             }
             return true;
         }
@@ -128,38 +128,38 @@ public class tg {
     }
 
     public static void ALLATORIxDEMO(MovementInput a2) {
-        GameSettings a3 = Minecraft.func_71410_x().field_71474_y;
-        a2.field_78902_a = 0.0f;
-        a2.field_192832_b = 0.0f;
-        if (Keyboard.isKeyDown((int)a3.field_74351_w.func_151463_i())) {
-            a2.field_192832_b += 1.0f;
-            a2.field_187255_c = true;
+        GameSettings a3 = Minecraft.getMinecraft().gameSettings;
+        a2.moveStrafe = 0.0f;
+        a2.moveForward = 0.0f;
+        if (Keyboard.isKeyDown((int)a3.keyBindForward.getKeyCode())) {
+            a2.moveForward += 1.0f;
+            a2.forwardKeyDown = true;
         } else {
-            a2.field_187255_c = false;
+            a2.forwardKeyDown = false;
         }
-        if (Keyboard.isKeyDown((int)a3.field_74368_y.func_151463_i())) {
-            a2.field_192832_b -= 1.0f;
-            a2.field_187256_d = true;
+        if (Keyboard.isKeyDown((int)a3.keyBindBack.getKeyCode())) {
+            a2.moveForward -= 1.0f;
+            a2.backKeyDown = true;
         } else {
-            a2.field_187256_d = false;
+            a2.backKeyDown = false;
         }
-        if (Keyboard.isKeyDown((int)a3.field_74370_x.func_151463_i())) {
-            a2.field_78902_a += 1.0f;
-            a2.field_187257_e = true;
+        if (Keyboard.isKeyDown((int)a3.keyBindLeft.getKeyCode())) {
+            a2.moveStrafe += 1.0f;
+            a2.leftKeyDown = true;
         } else {
-            a2.field_187257_e = false;
+            a2.leftKeyDown = false;
         }
-        if (Keyboard.isKeyDown((int)a3.field_74366_z.func_151463_i())) {
-            a2.field_78902_a -= 1.0f;
-            a2.field_187258_f = true;
+        if (Keyboard.isKeyDown((int)a3.keyBindRight.getKeyCode())) {
+            a2.moveStrafe -= 1.0f;
+            a2.rightKeyDown = true;
         } else {
-            a2.field_187258_f = false;
+            a2.rightKeyDown = false;
         }
-        a2.field_78901_c = Keyboard.isKeyDown((int)a3.field_74314_A.func_151463_i());
-        a2.field_78899_d = Keyboard.isKeyDown((int)a3.field_74311_E.func_151463_i());
-        if (a2.field_78899_d) {
-            a2.field_78902_a = (float)((double)a2.field_78902_a * 0.3);
-            a2.field_192832_b = (float)((double)a2.field_192832_b * 0.3);
+        a2.jump = Keyboard.isKeyDown((int)a3.keyBindJump.getKeyCode());
+        a2.sneak = Keyboard.isKeyDown((int)a3.keyBindSneak.getKeyCode());
+        if (a2.sneak) {
+            a2.moveStrafe = (float)((double)a2.moveStrafe * 0.3);
+            a2.moveForward = (float)((double)a2.moveForward * 0.3);
         }
     }
 }

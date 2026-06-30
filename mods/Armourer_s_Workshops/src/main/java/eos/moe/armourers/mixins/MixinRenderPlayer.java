@@ -17,7 +17,7 @@ public class MixinRenderPlayer
 implements IRenderPlayer {
     @Shadow
     @Final
-    private boolean field_177140_a;
+    private boolean smallArms;
 
     public MixinRenderPlayer() {
         MixinRenderPlayer a2;
@@ -26,7 +26,7 @@ implements IRenderPlayer {
     @Override
     public boolean isSmallArms() {
         MixinRenderPlayer a2;
-        return a2.field_177140_a;
+        return a2.smallArms;
     }
 }
 

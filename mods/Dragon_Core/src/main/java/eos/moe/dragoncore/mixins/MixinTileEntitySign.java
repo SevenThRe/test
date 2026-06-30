@@ -23,19 +23,19 @@ public class MixinTileEntitySign
 extends TileEntity {
     @Shadow
     @Final
-    public ITextComponent[] field_145915_a;
+    public ITextComponent[] signText;
 
     public MixinTileEntitySign() {
         MixinTileEntitySign a2;
     }
 
-    public double func_145833_n() {
+    public double getMaxRenderDistanceSquared() {
         String a2;
         MixinTileEntitySign a3;
-        if (a3.field_145915_a.length > 1 && a3.field_145915_a[1] != null && a3.field_145915_a[1] instanceof TextComponentBase && (a2 = FormatCacheTextComponentBase.of(a3.field_145915_a[1]).toStringCache()).contains("{") && a2.contains("\u00a7")) {
+        if (a3.signText.length > 1 && a3.signText[1] != null && a3.signText[1] instanceof TextComponentBase && (a2 = FormatCacheTextComponentBase.of(a3.signText[1]).toStringCache()).contains("{") && a2.contains("\u00a7")) {
             return 900.0;
         }
-        return super.func_145833_n();
+        return super.getMaxRenderDistanceSquared();
     }
 }
 

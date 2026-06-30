@@ -25,11 +25,11 @@ extends RenderArrow<T> {
         super(renderManagerIn);
     }
 
-    public void func_76986_a(T entity, double x2, double y2, double z2, float entityYaw, float partialTicks) {
+    public void doRender(T entity, double x2, double y2, double z2, float entityYaw, float partialTicks) {
         if (ModConfig.showArrowTrails) {
             ArrowTrailManager.renderTrail(entity, x2, y2, z2, partialTicks);
         }
-        super.func_76986_a(entity, x2, y2, z2, entityYaw, partialTicks);
+        super.doRender(entity, x2, y2, z2, entityYaw, partialTicks);
     }
 }
 

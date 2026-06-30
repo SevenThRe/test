@@ -56,12 +56,12 @@ public class IconSetFileHandler {
             modUpdatedSetNames.add(setName);
         }
         try {
-            ResourcePackRepository rpr = FMLClientHandler.instance().getClient().func_110438_M();
-            for (ResourcePackRepository.Entry entry : rpr.func_110613_c()) {
-                IResourcePack pack = entry.func_110514_c();
-                for (String domain : pack.func_110587_b()) {
+            ResourcePackRepository rpr = FMLClientHandler.instance().getClient().getResourcePackRepository();
+            for (ResourcePackRepository.Entry entry : rpr.getRepositoryEntries()) {
+                IResourcePack pack = entry.getResourcePack();
+                for (String domain : pack.getResourceDomains()) {
                     ResourceLocation domainEntityIcons = new ResourceLocation(domain, "textures/entity_icons");
-                    if (!pack.func_110589_b(domainEntityIcons)) continue;
+                    if (!pack.resourceExists(domainEntityIcons)) continue;
                     IconSetFileHandler.addEntityIcons(domainEntityIcons, setName, true);
                 }
             }

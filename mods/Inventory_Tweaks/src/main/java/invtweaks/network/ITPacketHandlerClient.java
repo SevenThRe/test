@@ -25,7 +25,7 @@ public class ITPacketHandlerClient
 extends SimpleChannelInboundHandler<ITPacket> {
     protected void channelRead0(@NotNull ChannelHandlerContext ctx, @NotNull ITPacket msg) throws Exception {
         NetHandlerPlayClient handler = (NetHandlerPlayClient)ctx.channel().attr(NetworkRegistry.NET_HANDLER).get();
-        Minecraft.func_71410_x().func_152344_a(() -> msg.handle((INetHandler)handler));
+        Minecraft.getMinecraft().addScheduledTask(() -> msg.handle((INetHandler)handler));
     }
 }
 

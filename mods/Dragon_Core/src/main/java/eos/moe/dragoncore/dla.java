@@ -65,19 +65,19 @@ public class dla {
 
     public dla() {
         dla a2;
-        a2.c = Minecraft.func_71410_x().func_110442_L();
+        a2.c = Minecraft.getMinecraft().getResourceManager();
     }
 
     public vja ALLATORIxDEMO(ItemStack a2) {
         dla a3;
-        if (a2.func_190926_b()) {
+        if (a2.isEmpty()) {
             return null;
         }
-        if (a2.func_77973_b().getRegistryName() != null && a2.func_77973_b().getRegistryName().func_110623_a().contains("shulker_box")) {
+        if (a2.getItem().getRegistryName() != null && a2.getItem().getRegistryName().getPath().contains("shulker_box")) {
             return null;
         }
         String a4 = dj.ALLATORIxDEMO(a2, false, false);
-        int a5 = Item.func_150891_b((Item)a2.func_77973_b());
+        int a5 = Item.getIdFromItem((Item)a2.getItem());
         for (vja a6 : a3.y) {
             if (!vja.c(a6) || a6.ALLATORIxDEMO() != 0 && a5 != a6.ALLATORIxDEMO() || !al.ALLATORIxDEMO(vja.ALLATORIxDEMO(a6), a4)) continue;
             return a6;
@@ -88,17 +88,17 @@ public class dla {
     public qd<IBakedModel, String> ALLATORIxDEMO(ItemStack a2) {
         Object a3;
         dla a4;
-        if (a2.func_190926_b()) {
+        if (a2.isEmpty()) {
             return null;
         }
-        if (a2.func_77973_b().getRegistryName() != null && a2.func_77973_b().getRegistryName().func_110623_a().contains("shulker_box")) {
+        if (a2.getItem().getRegistryName() != null && a2.getItem().getRegistryName().getPath().contains("shulker_box")) {
             return null;
         }
         IItemStack a5 = (IItemStack)a2;
         long a6 = (Long)a5.getMeta("applyModelTime", 0L);
         if (a4.ALLATORIxDEMO > a6) {
             String a7 = dj.ALLATORIxDEMO(a2, false, false);
-            int a72 = Item.func_150891_b((Item)a2.func_77973_b());
+            int a72 = Item.getIdFromItem((Item)a2.getItem());
             for (jga jga2 : a4.k) {
                 if (jga2.ALLATORIxDEMO() != 0 && a72 != jga2.ALLATORIxDEMO() || !al.ALLATORIxDEMO(jga.ALLATORIxDEMO(jga2), a7)) continue;
                 a5.setMeta("modelKey", jga2);
@@ -142,7 +142,7 @@ public class dla {
             if (vja.ALLATORIxDEMO(a3) == null) {
                 try {
                     IModel a6 = ModelLoaderRegistry.getModel((ResourceLocation)new ResourceLocation("dragoncore", "items/" + a3.x() + "/transform"));
-                    IBakedModel a7 = a6.bake(a6.getDefaultState(), DefaultVertexFormats.field_176599_b, a2 -> null);
+                    IBakedModel a7 = a6.bake(a6.getDefaultState(), DefaultVertexFormats.ITEM, a2 -> null);
                     vja.ALLATORIxDEMO(a3, new cv(a7));
                 }
                 catch (ModelLoaderRegistry.LoaderException a8) {
@@ -163,20 +163,20 @@ public class dla {
         a10.put(a3.x(), a11);
         for (ResourceLocation a12 : a11.getDependencies()) {
             IModel iModel = ModelLoaderRegistry.getModelOrLogError((ResourceLocation)a12, (String)("\u65e0\u6cd5\u52a0\u8f7d\u7269\u54c1\u6a21\u578b: " + a3.x()));
-            a10.put(a12.func_110623_a(), iModel);
+            a10.put(a12.getPath(), iModel);
         }
         vw a14 = new vw("");
-        a14.func_174943_a(a5.c, a4 -> {
+        a14.loadSprites(a5.c, a4 -> {
             for (Map.Entry a5 : a10.entrySet()) {
                 for (ResourceLocation a6 : ((IModel)a5.getValue()).getTextures()) {
-                    a4.func_174942_a(new ResourceLocation("dragoncore", "models/items/" + a3.x() + "/" + a6.func_110623_a()));
+                    a4.registerSprite(new ResourceLocation("dragoncore", "models/items/" + a3.x() + "/" + a6.getPath()));
                 }
             }
         });
-        Minecraft.func_71410_x().func_110434_K().func_110580_a(new ResourceLocation("dragoncore", a3.x()), (ITickableTextureObject)a14);
+        Minecraft.getMinecraft().getTextureManager().loadTickableTexture(new ResourceLocation("dragoncore", a3.x()), (ITickableTextureObject)a14);
         for (Map.Entry entry : a10.entrySet()) {
             IModel a15 = (IModel)entry.getValue();
-            IBakedModel a16 = a15.bake(a15.getDefaultState(), DefaultVertexFormats.field_176599_b, a4 -> a14.func_110572_b("dragoncore:models/items/" + a3.x() + "/" + a4.func_110623_a()));
+            IBakedModel a16 = a15.bake(a15.getDefaultState(), DefaultVertexFormats.ITEM, a4 -> a14.getAtlasSprite("dragoncore:models/items/" + a3.x() + "/" + a4.getPath()));
             a16 = new jr(a14, a16, a3);
             a5.q.put((String)entry.getKey(), a16);
         }
@@ -194,12 +194,12 @@ public class dla {
         if (a5 == null || !a5.isLoaded()) {
             return null;
         }
-        int a6 = a5.func_110552_b();
+        int a6 = a5.getGlTextureId();
         if (a4.b.containsKey(a2.x() + "-" + a6)) {
             return a4.b.get(a2.x() + "-" + a6);
         }
-        ItemLayerModel a7 = new ItemLayerModel(ImmutableList.of((Object)new ResourceLocation("dragoncore", a2.x())), ItemOverrideList.field_188022_a);
-        IBakedModel a8 = a7.bake(a7.getDefaultState(), DefaultVertexFormats.field_176599_b, a3 -> a5.toATextureCIItem());
+        ItemLayerModel a7 = new ItemLayerModel(ImmutableList.of((Object)new ResourceLocation("dragoncore", a2.x())), ItemOverrideList.NONE);
+        IBakedModel a8 = a7.bake(a7.getDefaultState(), DefaultVertexFormats.ITEM, a3 -> a5.toATextureCIItem());
         a8 = new ku(a8, a2);
         a4.b.put(a2.x() + "-" + a6, a8);
         return a8;

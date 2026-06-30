@@ -28,8 +28,8 @@ extends BooleanPropertyButton {
 
     public CheckBox(String displayString, BooleanField field) {
         super(displayString, displayString, field);
-        this.setHeight(this.fontRenderer.field_78288_b + 2);
-        this.func_175211_a(this.getFitWidth(this.fontRenderer));
+        this.setHeight(this.fontRenderer.FONT_HEIGHT + 2);
+        this.setWidth(this.getFitWidth(this.fontRenderer));
     }
 
     @Override
@@ -38,12 +38,12 @@ extends BooleanPropertyButton {
     }
 
     @Override
-    public void func_191745_a(Minecraft mc, int mouseX, int mouseY, float ticks) {
-        if (this.field_146125_m) {
-            this.setHovered(this.isEnabled() && mouseX >= this.field_146128_h && mouseY >= this.field_146129_i && mouseX < this.field_146128_h + this.field_146120_f && mouseY < this.field_146129_i + this.field_146121_g);
-            int yoffset = (this.field_146121_g - this.boxWidth) / 2;
-            GuiUtils.drawContinuousTexturedBox((ResourceLocation)field_146122_a, (int)this.field_146128_h, (int)(this.field_146129_i + yoffset), (int)0, (int)46, (int)this.boxWidth, (int)this.boxWidth, (int)200, (int)20, (int)2, (int)3, (int)2, (int)2, (float)this.field_73735_i);
-            this.func_146119_b(mc, mouseX, mouseY);
+    public void drawButton(Minecraft mc, int mouseX, int mouseY, float ticks) {
+        if (this.visible) {
+            this.setHovered(this.isEnabled() && mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height);
+            int yoffset = (this.height - this.boxWidth) / 2;
+            GuiUtils.drawContinuousTexturedBox((ResourceLocation)BUTTON_TEXTURES, (int)this.x, (int)(this.y + yoffset), (int)0, (int)46, (int)this.boxWidth, (int)this.boxWidth, (int)200, (int)20, (int)2, (int)3, (int)2, (int)2, (float)this.zLevel);
+            this.mouseDragged(mc, mouseX, mouseY);
             int color = 0xE0E0E0;
             if (this.isHovered()) {
                 color = 0xFFFFA0;
@@ -56,15 +56,15 @@ extends BooleanPropertyButton {
             }
             int labelPad = 4;
             if (this.toggled.booleanValue()) {
-                this.func_73732_a(this.fontRenderer, this.glyph, this.field_146128_h + this.boxWidth / 2 + 1, this.field_146129_i + 1 + yoffset, color);
+                this.drawCenteredString(this.fontRenderer, this.glyph, this.x + this.boxWidth / 2 + 1, this.y + 1 + yoffset, color);
             }
-            this.func_73731_b(this.fontRenderer, this.field_146126_j, this.field_146128_h + this.boxWidth + labelPad, this.field_146129_i + 2 + yoffset, color);
+            this.drawString(this.fontRenderer, this.displayString, this.x + this.boxWidth + labelPad, this.y + 2 + yoffset, color);
         }
     }
 
     @Override
-    public boolean func_146116_c(Minecraft p_146116_1_, int mouseX, int mouseY) {
-        if (this.isEnabled() && this.field_146125_m && mouseX >= this.field_146128_h && mouseY >= this.field_146129_i && mouseX < this.field_146128_h + this.field_146120_f && mouseY < this.field_146129_i + this.field_146121_g) {
+    public boolean mousePressed(Minecraft p_146116_1_, int mouseX, int mouseY) {
+        if (this.isEnabled() && this.visible && mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height) {
             this.toggle();
             return this.checkClickListeners();
         }

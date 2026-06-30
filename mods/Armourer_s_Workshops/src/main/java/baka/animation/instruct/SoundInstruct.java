@@ -48,21 +48,21 @@ extends InstructBase {
     @Override
     public void perform(PlayerData data) {
         super.perform(data);
-        Minecraft minecraft = Minecraft.func_71410_x();
+        Minecraft minecraft = Minecraft.getMinecraft();
         AbstractClientPlayer entity = (AbstractClientPlayer)data.getEntity();
-        if (Minecraft.func_71410_x().func_152345_ab()) {
-            minecraft.func_147118_V().func_147682_a((ISound)new PositionedSoundRecord(new ResourceLocation(this.sound), SoundCategory.MASTER, 1.0f, 1.0f, false, 0, ISound.AttenuationType.LINEAR, (float)entity.field_70165_t, (float)entity.field_70163_u, (float)entity.field_70161_v));
+        if (Minecraft.getMinecraft().isCallingFromMinecraftThread()) {
+            minecraft.getSoundHandler().playSound((ISound)new PositionedSoundRecord(new ResourceLocation(this.sound), SoundCategory.MASTER, 1.0f, 1.0f, false, 0, ISound.AttenuationType.LINEAR, (float)entity.posX, (float)entity.posY, (float)entity.posZ));
         } else {
-            Minecraft.func_71410_x().func_152344_a(() -> minecraft.func_147118_V().func_147682_a((ISound)new PositionedSoundRecord(new ResourceLocation(this.sound), SoundCategory.MASTER, 1.0f, 1.0f, false, 0, ISound.AttenuationType.LINEAR, (float)entity.field_70165_t, (float)entity.field_70163_u, (float)entity.field_70161_v)));
+            Minecraft.getMinecraft().addScheduledTask(() -> minecraft.getSoundHandler().playSound((ISound)new PositionedSoundRecord(new ResourceLocation(this.sound), SoundCategory.MASTER, 1.0f, 1.0f, false, 0, ISound.AttenuationType.LINEAR, (float)entity.posX, (float)entity.posY, (float)entity.posZ)));
         }
     }
 
     public static void PlayFileSound(String s2, String path, float volume, float pitch, float x2, float y2, float z2, boolean loop) {
         try {
-            SoundHandler soundHandler = Minecraft.func_71410_x().func_147118_V();
-            SoundManager sndManager = (SoundManager)ReflectionHelper.getPrivateValue(SoundHandler.class, (Object)soundHandler, (String[])new String[]{"sndManager", "field_147694_f"});
-            SoundSystem sndSystem = (SoundSystem)ReflectionHelper.getPrivateValue(SoundManager.class, (Object)sndManager, (String[])new String[]{"sndSystem", "field_148620_e"});
-            int type = x2 == 0.0f && y2 == 0.0f && z2 == 0.0f ? ISound.AttenuationType.NONE.func_148586_a() : ISound.AttenuationType.LINEAR.func_148586_a();
+            SoundHandler soundHandler = Minecraft.getMinecraft().getSoundHandler();
+            SoundManager sndManager = (SoundManager)ReflectionHelper.getPrivateValue(SoundHandler.class, (Object)soundHandler, (String[])new String[]{"sndManager", "sndManager"});
+            SoundSystem sndSystem = (SoundSystem)ReflectionHelper.getPrivateValue(SoundManager.class, (Object)sndManager, (String[])new String[]{"sndSystem", "sndSystem"});
+            int type = x2 == 0.0f && y2 == 0.0f && z2 == 0.0f ? ISound.AttenuationType.NONE.getTypeInt() : ISound.AttenuationType.LINEAR.getTypeInt();
             sndSystem.newStreamingSource(true, s2, SoundInstruct.getURLForSoundResource(new ResourceLocation("dragoncore", path)), path, loop, x2, y2, z2, type, 16.0f);
             sndSystem.setPitch(s2, pitch);
             sndSystem.setVolume(s2, volume);
@@ -74,7 +74,7 @@ extends InstructBase {
     }
 
     private static URL getURLForSoundResource(final ResourceLocation p_148612_0_) {
-        String s2 = String.format("%s:%s:%s", "mcsounddomain", p_148612_0_.func_110624_b(), p_148612_0_.func_110623_a());
+        String s2 = String.format("%s:%s:%s", "mcsounddomain", p_148612_0_.getNamespace(), p_148612_0_.getPath());
         URLStreamHandler urlstreamhandler = new URLStreamHandler(){
 
             @Override
@@ -87,7 +87,7 @@ extends InstructBase {
 
                     @Override
                     public InputStream getInputStream() throws IOException {
-                        return Minecraft.func_71410_x().func_110442_L().func_110536_a(p_148612_0_).func_110527_b();
+                        return Minecraft.getMinecraft().getResourceManager().getResource(p_148612_0_).getInputStream();
                     }
                 };
             }

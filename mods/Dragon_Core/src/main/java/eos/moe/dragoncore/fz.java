@@ -55,31 +55,31 @@ extends cz {
         float a11 = OpenGlHelper.lastBrightnessY;
         boolean a12 = a5.ALLATORIxDEMO.c();
         if (a12) {
-            OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)a11);
+            OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)a11);
         }
         a5.ALLATORIxDEMO(a6, a8, a9, a4);
         if (a12) {
-            OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)a10, (float)a11);
+            OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)a10, (float)a11);
         }
     }
 
     private /* synthetic */ void ALLATORIxDEMO(String a2, String a3, Color a4, boolean a5) {
         if (a5 && a4 != null) {
-            GlStateManager.func_179090_x();
+            GlStateManager.disableTexture2D();
             int a6 = ol.ALLATORIxDEMO(a2, a3, true);
             float a7 = (float)a4.getRed() / 255.0f;
             float a8 = (float)a4.getGreen() / 255.0f;
             float a9 = (float)a4.getBlue() / 255.0f;
             float a10 = (float)a4.getAlpha() / 255.0f;
-            Tessellator a11 = Tessellator.func_178181_a();
-            BufferBuilder a12 = a11.func_178180_c();
-            a12.func_181668_a(7, DefaultVertexFormats.field_181706_f);
-            a12.func_181662_b(-1.0, -1.0, 0.0).func_181666_a(a7, a8, a9, a10).func_181675_d();
-            a12.func_181662_b(-1.0, 8.0, 0.0).func_181666_a(a7, a8, a9, a10).func_181675_d();
-            a12.func_181662_b((double)(a6 + 1), 8.0, 0.0).func_181666_a(a7, a8, a9, a10).func_181675_d();
-            a12.func_181662_b((double)(a6 + 1), -1.0, 0.0).func_181666_a(a7, a8, a9, a10).func_181675_d();
-            a11.func_78381_a();
-            GlStateManager.func_179098_w();
+            Tessellator a11 = Tessellator.getInstance();
+            BufferBuilder a12 = a11.getBuffer();
+            a12.begin(7, DefaultVertexFormats.POSITION_COLOR);
+            a12.pos(-1.0, -1.0, 0.0).color(a7, a8, a9, a10).endVertex();
+            a12.pos(-1.0, 8.0, 0.0).color(a7, a8, a9, a10).endVertex();
+            a12.pos((double)(a6 + 1), 8.0, 0.0).color(a7, a8, a9, a10).endVertex();
+            a12.pos((double)(a6 + 1), -1.0, 0.0).color(a7, a8, a9, a10).endVertex();
+            a11.draw();
+            GlStateManager.enableTexture2D();
         }
         ol.ALLATORIxDEMO(a2, a3, 0.0, 0.0, false, false, true, -1);
     }

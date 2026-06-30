@@ -22,12 +22,12 @@ extends WorldSavedData {
         this.tagName = tagName;
     }
 
-    public void func_76184_a(NBTTagCompound compound) {
-        this.data = compound.func_74775_l(this.tagName);
+    public void readFromNBT(NBTTagCompound compound) {
+        this.data = compound.getCompoundTag(this.tagName);
     }
 
-    public NBTTagCompound func_189551_b(NBTTagCompound compound) {
-        compound.func_74782_a(this.tagName, (NBTBase)this.data);
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setTag(this.tagName, (NBTBase)this.data);
         return compound;
     }
 

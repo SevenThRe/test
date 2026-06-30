@@ -32,8 +32,8 @@ extends EntityLivingBase {
     private /* synthetic */ void notify(DataParameter<?> a2, CallbackInfo a3) {
         MixinArmorStand a4;
         Object a5;
-        if (field_184621_as.equals(a2) && (a5 = a4.field_70180_af.func_187225_a(a2)) instanceof ItemStack) {
-            a4.func_184602_cy();
+        if (HAND_STATES.equals(a2) && (a5 = a4.dataManager.get(a2)) instanceof ItemStack) {
+            a4.resetActiveHand();
         }
     }
 }

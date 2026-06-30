@@ -44,7 +44,7 @@ public class wi {
     public static final wi b = new wi();
     private final ConcurrentHashMap<String, ItemStack> o = new ConcurrentHashMap();
     private final ConcurrentHashMap<String, YamlConfiguration> y = new ConcurrentHashMap();
-    private Minecraft k = Minecraft.func_71410_x();
+    private Minecraft k = Minecraft.getMinecraft();
     private ui ALLATORIxDEMO;
 
     public wi() {
@@ -68,10 +68,10 @@ public class wi {
         if (!a3.ALLATORIxDEMO(a2)) {
             return null;
         }
-        GuiScreen a4 = Minecraft.func_71410_x().field_71462_r;
+        GuiScreen a4 = Minecraft.getMinecraft().currentScreen;
         if (a4 instanceof ui) {
             ui a5 = (ui)a4;
-            ui a6 = new ui(a5.getMoLangRuntime().ALLATORIxDEMO, a2, a3.ALLATORIxDEMO(a2), a3.y, a3.k.field_71439_g.field_71069_bz, od.y);
+            ui a6 = new ui(a5.getMoLangRuntime().ALLATORIxDEMO, a2, a3.ALLATORIxDEMO(a2), a3.y, a3.k.player.inventoryContainer, od.y);
             a6.initGui_();
             a6.open();
             a3.ALLATORIxDEMO = a6;
@@ -83,9 +83,9 @@ public class wi {
     public void f() {
         wi a2;
         if (a2.ALLATORIxDEMO != null) {
-            a2.ALLATORIxDEMO.func_146281_b();
+            a2.ALLATORIxDEMO.onGuiClosed();
             a2.ALLATORIxDEMO = null;
-            GuiScreen a3 = Minecraft.func_71410_x().field_71462_r;
+            GuiScreen a3 = Minecraft.getMinecraft().currentScreen;
             if (a3 instanceof ui) {
                 ui a4 = (ui)a3;
                 a4.runGuiAction("sub_close");
@@ -102,9 +102,9 @@ public class wi {
         if (!a3.ALLATORIxDEMO(a2)) {
             return null;
         }
-        ui a4 = new ui(a2, a3.ALLATORIxDEMO(a2), a3.y, a3.k.field_71439_g.field_71069_bz, od.q);
+        ui a4 = new ui(a2, a3.ALLATORIxDEMO(a2), a3.y, a3.k.player.inventoryContainer, od.q);
         a4.open();
-        Minecraft.func_71410_x().func_147108_a((GuiScreen)a4);
+        Minecraft.getMinecraft().displayGuiScreen((GuiScreen)a4);
         return a4;
     }
 
@@ -123,7 +123,7 @@ public class wi {
     public List<ui> ALLATORIxDEMO() {
         wi a2;
         ArrayList<ui> a3 = new ArrayList<ui>();
-        GuiScreen a4 = Minecraft.func_71410_x().field_71462_r;
+        GuiScreen a4 = Minecraft.getMinecraft().currentScreen;
         if (a2.ALLATORIxDEMO != null) {
             a3.add(a2.ALLATORIxDEMO);
             a3.addAll(a2.ALLATORIxDEMO.getGuiManagerComponents());
@@ -170,14 +170,14 @@ public class wi {
             return qd.ALLATORIxDEMO(a4.ALLATORIxDEMO(a2.substring(7)), null);
         }
         if (a2.startsWith("container_")) {
-            Slot a5 = a4.ALLATORIxDEMO(a2.substring(10), a3 ? a4.k.field_71439_g.field_71069_bz : a4.k.field_71439_g.field_71070_bA);
+            Slot a5 = a4.ALLATORIxDEMO(a2.substring(10), a3 ? a4.k.player.inventoryContainer : a4.k.player.openContainer);
             if (a5 == null) {
-                return qd.ALLATORIxDEMO(ItemStack.field_190927_a, null);
+                return qd.ALLATORIxDEMO(ItemStack.EMPTY, null);
             }
-            if (a4.k.field_71462_r instanceof af && !a3) {
-                return ((af)a4.k.field_71462_r).getSlotItemStack(a5);
+            if (a4.k.currentScreen instanceof af && !a3) {
+                return ((af)a4.k.currentScreen).getSlotItemStack(a5);
             }
-            return qd.ALLATORIxDEMO(a5.func_75211_c(), null);
+            return qd.ALLATORIxDEMO(a5.getStack(), null);
         }
         if (a2.startsWith("{") && a2.endsWith("}")) {
             ItemStack a6 = a4.o.get(a2);
@@ -189,14 +189,14 @@ public class wi {
         }
         if (!a4.o.containsKey(a2)) {
             nw.ALLATORIxDEMO("DragonCore_RetrieveSlot", new String[]{a2});
-            a4.o.put(a2, ItemStack.field_190927_a);
+            a4.o.put(a2, ItemStack.EMPTY);
         }
         return qd.ALLATORIxDEMO(a4.o.get(a2), null);
     }
 
     public Slot ALLATORIxDEMO(String a2, Container a3) {
         wi a4;
-        EntityPlayerSP a5 = a4.k.field_71439_g;
+        EntityPlayerSP a5 = a4.k.player;
         if (a2.startsWith("container_")) {
             a2 = a2.substring(10);
         }
@@ -238,7 +238,7 @@ public class wi {
                 break;
             }
             case "mainhand": {
-                a2 = String.valueOf(a5.field_71071_by.field_70461_c + 36);
+                a2 = String.valueOf(a5.inventory.currentItem + 36);
                 break;
             }
             case "offhand": {
@@ -266,62 +266,62 @@ public class wi {
         if (a3 == null) {
             return null;
         }
-        if (a3.field_75151_b.size() < a6 + 1) {
+        if (a3.inventorySlots.size() < a6 + 1) {
             return null;
         }
-        return a3.func_75139_a(a6);
+        return a3.getSlot(a6);
     }
 
     public ItemStack ALLATORIxDEMO(String a2) {
         wi a3;
-        EntityPlayerSP a4 = a3.k.field_71439_g;
-        Container a5 = a4.field_71069_bz;
+        EntityPlayerSP a4 = a3.k.player;
+        Container a5 = a4.inventoryContainer;
         switch (a2.toLowerCase()) {
             case "craft": {
-                return (ItemStack)a5.func_75138_a().get(0);
+                return (ItemStack)a5.getInventory().get(0);
             }
             case "craft1": {
-                return (ItemStack)a5.func_75138_a().get(1);
+                return (ItemStack)a5.getInventory().get(1);
             }
             case "craft2": {
-                return (ItemStack)a5.func_75138_a().get(2);
+                return (ItemStack)a5.getInventory().get(2);
             }
             case "craft3": {
-                return (ItemStack)a5.func_75138_a().get(3);
+                return (ItemStack)a5.getInventory().get(3);
             }
             case "craft4": {
-                return (ItemStack)a5.func_75138_a().get(4);
+                return (ItemStack)a5.getInventory().get(4);
             }
             case "head": {
-                return (ItemStack)a5.func_75138_a().get(5);
+                return (ItemStack)a5.getInventory().get(5);
             }
             case "chest": {
-                return (ItemStack)a5.func_75138_a().get(6);
+                return (ItemStack)a5.getInventory().get(6);
             }
             case "leg": {
-                return (ItemStack)a5.func_75138_a().get(7);
+                return (ItemStack)a5.getInventory().get(7);
             }
             case "feet": {
-                return (ItemStack)a5.func_75138_a().get(8);
+                return (ItemStack)a5.getInventory().get(8);
             }
             case "mainhand": {
-                return a4.func_184614_ca();
+                return a4.getHeldItemMainhand();
             }
             case "offhand": {
-                return a4.func_184592_cb();
+                return a4.getHeldItemOffhand();
             }
             case "current": {
-                return a4.field_71071_by.func_70448_g();
+                return a4.inventory.getCurrentItem();
             }
             case "shield": {
-                return (ItemStack)a5.func_75138_a().get(45);
+                return (ItemStack)a5.getInventory().get(45);
             }
         }
         try {
-            return (ItemStack)a5.func_75138_a().get((int)Double.parseDouble(a2));
+            return (ItemStack)a5.getInventory().get((int)Double.parseDouble(a2));
         }
         catch (Exception a6) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
     }
 

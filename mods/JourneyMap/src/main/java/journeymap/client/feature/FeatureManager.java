@@ -85,7 +85,7 @@ public enum FeatureManager {
             Journeymap.getLogger().info("Feature enabled: " + (Object)((Object)Feature.MapSurface));
             this.policyMap.put(Feature.MapSurface, new Policy(Feature.MapSurface, true, true));
             if (MapType.none().equals(Fullscreen.state().getMapType())) {
-                long time = ((EntityLivingBase)DataCache.getPlayer().entityLivingRef.get()).field_70170_p.func_72912_H().func_76073_f() % 24000L;
+                long time = ((EntityLivingBase)DataCache.getPlayer().entityLivingRef.get()).world.getWorldInfo().getWorldTime() % 24000L;
                 MapType mapType = time < 13800L ? MapType.day(DataCache.getPlayer()) : MapType.night(DataCache.getPlayer());
                 this.setMapType(mapType);
             }

@@ -46,7 +46,7 @@ implements LayerDelegate.Layer {
     private final Minecraft mc;
 
     public KeybindingInfoLayer(Fullscreen fullscreen) {
-        this.fontRenderer = FMLClientHandler.instance().getClient().field_71466_p;
+        this.fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
         this.fullMapProperties = Journeymap.getClient().getFullMapProperties();
         this.mc = FMLClientHandler.instance().getClient();
         this.fullscreen = fullscreen;
@@ -115,15 +115,15 @@ implements LayerDelegate.Layer {
                 int firstColor = this.theme.fullscreen.statusLabel.highlight.getColor();
                 int secondColor = this.theme.fullscreen.statusLabel.foreground.getColor();
                 try {
-                    GlStateManager.func_179147_l();
+                    GlStateManager.enableBlend();
                     for (Tuple<String, String> line : this.lines) {
-                        DrawUtil.drawLabel((String)line.func_76341_a(), x, y, DrawUtil.HAlign.Left, DrawUtil.VAlign.Middle, null, 0.0f, firstColor, this.fgAlpha, fontScale, false);
-                        DrawUtil.drawLabel((String)line.func_76340_b(), x + this.pad, y, DrawUtil.HAlign.Right, DrawUtil.VAlign.Middle, null, 0.0f, secondColor, this.fgAlpha, fontScale, false);
+                        DrawUtil.drawLabel((String)line.getFirst(), x, y, DrawUtil.HAlign.Left, DrawUtil.VAlign.Middle, null, 0.0f, firstColor, this.fgAlpha, fontScale, false);
+                        DrawUtil.drawLabel((String)line.getSecond(), x + this.pad, y, DrawUtil.HAlign.Right, DrawUtil.VAlign.Middle, null, 0.0f, secondColor, this.fgAlpha, fontScale, false);
                         y += this.lineHeight;
                     }
                 }
                 finally {
-                    GlStateManager.func_179084_k();
+                    GlStateManager.disableBlend();
                 }
             }
         }
@@ -157,7 +157,7 @@ implements LayerDelegate.Layer {
                 this.screenHeight = gridRenderer.getHeight();
                 this.fontScale = fontScale;
                 this.pad = (int)(10.0 * fontScale);
-                this.lineHeight = (int)(3.0 + fontScale * (double)((KeybindingInfoLayer)KeybindingInfoLayer.this).fontRenderer.field_78288_b);
+                this.lineHeight = (int)(3.0 + fontScale * (double)((KeybindingInfoLayer)KeybindingInfoLayer.this).fontRenderer.FONT_HEIGHT);
                 this.initLines(fontScale);
                 int panelWidth = this.keyNameWidth + this.keyDescWidth + 4 * this.pad;
                 int panelHeight = this.lines.size() * this.lineHeight + this.pad;
@@ -182,16 +182,16 @@ implements LayerDelegate.Layer {
             for (KeyBinding keyBinding : KeyEventHandler.INSTANCE.getInGuiKeybindings()) {
                 this.initLine(keyBinding, fontScale);
             }
-            this.initLine(((KeybindingInfoLayer)KeybindingInfoLayer.this).mc.field_71474_y.field_74310_D, fontScale);
+            this.initLine(((KeybindingInfoLayer)KeybindingInfoLayer.this).mc.gameSettings.keyBindChat, fontScale);
         }
 
         private void initLine(KeyBinding keyBinding, double fontScale) {
             String keyName = keyBinding.getDisplayName();
-            String keyDesc = Constants.getString(keyBinding.func_151464_g());
+            String keyDesc = Constants.getString(keyBinding.getKeyDescription());
             Tuple line = new Tuple((Object)keyName, (Object)keyDesc);
             this.lines.add((Tuple<String, String>)line);
-            this.keyNameWidth = (int)Math.max((double)this.keyNameWidth, fontScale * (double)KeybindingInfoLayer.this.fontRenderer.func_78256_a(keyName));
-            this.keyDescWidth = (int)Math.max((double)this.keyDescWidth, fontScale * (double)KeybindingInfoLayer.this.fontRenderer.func_78256_a(keyDesc));
+            this.keyNameWidth = (int)Math.max((double)this.keyNameWidth, fontScale * (double)KeybindingInfoLayer.this.fontRenderer.getStringWidth(keyName));
+            this.keyDescWidth = (int)Math.max((double)this.keyDescWidth, fontScale * (double)KeybindingInfoLayer.this.fontRenderer.getStringWidth(keyDesc));
         }
     }
 }

@@ -34,7 +34,7 @@ extends BaseGui {
 
     public BetonQuestGui(Data data) {
         this.data = data;
-        this.entity = (EntityLivingBase)Minecraft.func_71410_x().field_71476_x.field_72308_g;
+        this.entity = (EntityLivingBase)Minecraft.getMinecraft().objectMouseOver.entityHit;
     }
 
     public void setData(Data data) {
@@ -45,22 +45,22 @@ extends BaseGui {
 
     @Override
     public void draw(int mouseX, int mouseY) {
-        double x = (double)this.field_146294_l * 0.15;
-        double y = (double)this.field_146295_m * 0.6;
-        double scale = (double)this.field_146295_m * 0.0035;
-        RenderUtils.drawColor(0.0, y, (double)this.field_146294_l, (double)this.field_146295_m * 0.27, new Color(0, 0, 0, 200));
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179137_b((double)x, (double)(y + (double)this.field_146295_m * 0.02), (double)0.0);
-        GlStateManager.func_179139_a((double)scale, (double)scale, (double)scale);
+        double x = (double)this.width * 0.15;
+        double y = (double)this.height * 0.6;
+        double scale = (double)this.height * 0.0035;
+        RenderUtils.drawColor(0.0, y, (double)this.width, (double)this.height * 0.27, new Color(0, 0, 0, 200));
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((double)x, (double)(y + (double)this.height * 0.02), (double)0.0);
+        GlStateManager.scale((double)scale, (double)scale, (double)scale);
         for (int i = 0; i < this.data.message.size(); ++i) {
             RenderUtils.drawText((String)this.data.message.get(i), 0.0, i * 10, false, true);
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
         boolean hov = false;
         for (int i = 0; i < this.data.replys.size(); ++i) {
             String reply = (String)this.data.replys.get(i);
-            x = (double)this.field_146294_l * 0.7;
-            y = (double)this.field_146295_m * 0.6 - (double)((this.data.replys.size() - i) * 22);
+            x = (double)this.width * 0.7;
+            y = (double)this.height * 0.6 - (double)((this.data.replys.size() - i) * 22);
             RenderUtils.drawTexture(x - 100.0, y, 200.0, 18.0, mouseX, mouseY, this.BTN1, this.BTN);
             RenderUtils.drawText(reply, x, y + 5.0, true, true);
             if (!Utils.onArea(x - 100.0, y, 200.0, 18.0, (double)mouseX, (double)mouseY)) continue;
@@ -72,17 +72,17 @@ extends BaseGui {
         if (!hov) {
             this.lastHovered = -1;
         }
-        int entityX = (int)((double)this.field_146294_l * 0.075);
-        int entityY = (int)((double)this.field_146295_m * 0.82);
-        int entityScale = (int)((double)this.field_146294_l * 0.07);
+        int entityX = (int)((double)this.width * 0.075);
+        int entityY = (int)((double)this.height * 0.82);
+        int entityScale = (int)((double)this.width * 0.07);
         if (this.entity != null) {
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-            GuiInventory.func_147046_a((int)entityX, (int)entityY, (int)entityScale, (float)(entityX - mouseX), (float)((float)entityY - (float)entityScale * 1.7f - (float)mouseY), (EntityLivingBase)this.entity);
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            GuiInventory.drawEntityOnScreen((int)entityX, (int)entityY, (int)entityScale, (float)(entityX - mouseX), (float)((float)entityY - (float)entityScale * 1.7f - (float)mouseY), (EntityLivingBase)this.entity);
         }
     }
 
     @Override
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
         if (this.lastHovered != -1 && !this.finished) {
             Utils.playSound();
             this.finished = true;
@@ -90,8 +90,8 @@ extends BaseGui {
         }
     }
 
-    public void func_146281_b() {
-        super.func_146281_b();
+    public void onGuiClosed() {
+        super.onGuiClosed();
         MessageSender.sendBetonQuest(-1);
     }
 

@@ -48,52 +48,52 @@ implements IBakedModel {
         a5.k = a4;
     }
 
-    public List<BakedQuad> func_188616_a(IBlockState a2, EnumFacing a3, long a4) {
+    public List<BakedQuad> getQuads(IBlockState a2, EnumFacing a3, long a4) {
         jr a5;
-        return a5.y.func_188616_a(a2, a3, a4);
+        return a5.y.getQuads(a2, a3, a4);
     }
 
-    public boolean func_177555_b() {
+    public boolean isAmbientOcclusion() {
         jr a2;
-        return a2.y.func_177555_b();
+        return a2.y.isAmbientOcclusion();
     }
 
-    public boolean func_177556_c() {
+    public boolean isGui3d() {
         jr a2;
-        return a2.y.func_177556_c();
+        return a2.y.isGui3d();
     }
 
-    public boolean func_188618_c() {
+    public boolean isBuiltInRenderer() {
         jr a2;
-        return a2.y.func_188618_c();
+        return a2.y.isBuiltInRenderer();
     }
 
-    public TextureAtlasSprite func_177554_e() {
+    public TextureAtlasSprite getParticleTexture() {
         jr a2;
-        return a2.y.func_177554_e();
+        return a2.y.getParticleTexture();
     }
 
-    public ItemOverrideList func_188617_f() {
+    public ItemOverrideList getOverrides() {
         jr a2;
-        return a2.y.func_188617_f();
+        return a2.y.getOverrides();
     }
 
     public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType a2) {
         jr a3;
-        GlStateManager.func_179144_i((int)a3.ALLATORIxDEMO.func_110552_b());
+        GlStateManager.bindTexture((int)a3.ALLATORIxDEMO.getGlTextureId());
         if (a3.k.ALLATORIxDEMO() > 0.0f) {
-            GlStateManager.func_179152_a((float)a3.k.ALLATORIxDEMO(), (float)a3.k.ALLATORIxDEMO(), (float)a3.k.ALLATORIxDEMO());
+            GlStateManager.scale((float)a3.k.ALLATORIxDEMO(), (float)a3.k.ALLATORIxDEMO(), (float)a3.k.ALLATORIxDEMO());
         }
         if (a3.k.ALLATORIxDEMO().size() == 3) {
-            GlStateManager.func_179109_b((float)a3.k.ALLATORIxDEMO().get(0).floatValue(), (float)a3.k.ALLATORIxDEMO().get(1).floatValue(), (float)a3.k.ALLATORIxDEMO().get(2).floatValue());
+            GlStateManager.translate((float)a3.k.ALLATORIxDEMO().get(0).floatValue(), (float)a3.k.ALLATORIxDEMO().get(1).floatValue(), (float)a3.k.ALLATORIxDEMO().get(2).floatValue());
         }
         Pair a4 = a3.y.handlePerspective(a2);
         return Pair.of((Object)new jr(a3.ALLATORIxDEMO, (IBakedModel)a4.getKey(), a3.k), (Object)a4.getRight());
     }
 
-    public ItemCameraTransforms func_177552_f() {
+    public ItemCameraTransforms getItemCameraTransforms() {
         jr a2;
-        return a2.y.func_177552_f();
+        return a2.y.getItemCameraTransforms();
     }
 
     public boolean isAmbientOcclusion(IBlockState a2) {

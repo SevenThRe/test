@@ -29,8 +29,8 @@ implements ITPacket {
     public void handle(INetHandler handler) {
         if (handler instanceof NetHandlerPlayServer) {
             NetHandlerPlayServer serverHandler = (NetHandlerPlayServer)handler;
-            EntityPlayerMP player = serverHandler.field_147369_b;
-            player.func_71120_a(player.field_71070_bA);
+            EntityPlayerMP player = serverHandler.player;
+            player.sendContainerToPlayer(player.openContainer);
         }
     }
 }

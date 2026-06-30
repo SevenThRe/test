@@ -310,7 +310,7 @@ implements CommonProxy {
         synchronized (journeymapClient) {
             boolean created;
             Minecraft mc = FMLClientHandler.instance().getClient();
-            if (mc == null || mc.field_71441_e == null || !this.initialized.booleanValue() || !this.coreProperties.mappingEnabled.get().booleanValue()) {
+            if (mc == null || mc.world == null || !this.initialized.booleanValue() || !this.coreProperties.mappingEnabled.get().booleanValue()) {
                 return;
             }
             File worldDir = FileHandler.getJMWorldDir(mc, this.currentWorldId);
@@ -322,7 +322,7 @@ implements CommonProxy {
                 return;
             }
             this.reset();
-            if (!this.modInfoReported && mc.field_71474_y.field_74355_t) {
+            if (!this.modInfoReported && mc.gameSettings.snooperEnabled) {
                 new ModInfo("UA-28839029-5", "en_US", "journeymap", MOD_NAME, FULL_VERSION, true);
                 this.modInfoReported = true;
             }
@@ -331,9 +331,9 @@ implements CommonProxy {
             long totalMB = Runtime.getRuntime().totalMemory() / 1024L / 1024L;
             long freeMB = Runtime.getRuntime().freeMemory() / 1024L / 1024L;
             String memory = String.format("Memory: %sMB total, %sMB free", totalMB, freeMB);
-            int dimension = mc.field_71441_e.field_73011_w.getDimension();
+            int dimension = mc.world.provider.getDimension();
             this.logger.info(String.format("Mapping started in %s%sDIM%s. %s ", FileHandler.getJMWorldDir(mc, this.currentWorldId), File.separator, dimension, memory));
-            if (this.isJourneyMapServerConnection() || FMLClientHandler.instance().getClient().func_71356_B()) {
+            if (this.isJourneyMapServerConnection() || FMLClientHandler.instance().getClient().isSingleplayer()) {
                 new GetClientConfig().send();
             }
             ClientAPI.INSTANCE.getClientEventManager().fireMappingEvent(true, dimension);
@@ -350,7 +350,7 @@ implements CommonProxy {
             ChunkMonitor.INSTANCE.reset();
             Minecraft mc = FMLClientHandler.instance().getClient();
             if (this.isMapping().booleanValue() && mc != null) {
-                this.logger.info(String.format("Mapping halted in %s%sDIM%s", FileHandler.getJMWorldDir(mc, this.currentWorldId), File.separator, mc.field_71441_e.field_73011_w.getDimension()));
+                this.logger.info(String.format("Mapping halted in %s%sDIM%s", FileHandler.getJMWorldDir(mc, this.currentWorldId), File.separator, mc.world.provider.getDimension()));
                 RegionImageCache.INSTANCE.flushToDiskAsync(true);
                 ColorPalette colorPalette = ColorPalette.getActiveColorPalette();
                 if (colorPalette != null) {
@@ -363,14 +363,14 @@ implements CommonProxy {
                 this.multithreadTaskController = null;
             }
             if (mc != null) {
-                int dimension = mc.field_71441_e != null ? mc.field_71441_e.field_73011_w.getDimension() : 0;
+                int dimension = mc.world != null ? mc.world.provider.getDimension() : 0;
                 ClientAPI.INSTANCE.getClientEventManager().fireMappingEvent(false, dimension);
             }
         }
     }
 
     private void reset() {
-        if (!FMLClientHandler.instance().getClient().func_71356_B() && this.currentWorldId == null) {
+        if (!FMLClientHandler.instance().getClient().isSingleplayer() && this.currentWorldId == null) {
             new GetClientConfig().send(null, response -> {
                 JsonObject settings = response.getAsJson().get("settings").getAsJsonObject();
                 if (settings.get("world_id") != null) {
@@ -471,7 +471,7 @@ implements CommonProxy {
         JourneymapClient journeymapClient = this;
         synchronized (journeymapClient) {
             Minecraft mc = FMLClientHandler.instance().getClient();
-            if (!mc.func_71356_B()) {
+            if (!mc.isSingleplayer()) {
                 boolean directoryUnchanged;
                 File currentWorldDirectory = FileHandler.getJMWorldDirForWorldId(mc, this.currentWorldId);
                 File newWorldDirectory = FileHandler.getJMWorldDir(mc, worldId);
@@ -513,7 +513,7 @@ implements CommonProxy {
     }
 
     public void setPlayerTrackingEnabled(boolean playerTrackingEnabled) {
-        if (FMLClientHandler.instance().getClient().func_71356_B()) {
+        if (FMLClientHandler.instance().getClient().isSingleplayer()) {
             this.playerTrackingEnabled = false;
             return;
         }
@@ -531,7 +531,7 @@ implements CommonProxy {
     }
 
     public boolean isServerAdmin() {
-        return this.serverAdmin || FMLClientHandler.instance().getClient().func_71356_B();
+        return this.serverAdmin || FMLClientHandler.instance().getClient().isSingleplayer();
     }
 
     public void setServerAdmin(boolean serverAdmin) {

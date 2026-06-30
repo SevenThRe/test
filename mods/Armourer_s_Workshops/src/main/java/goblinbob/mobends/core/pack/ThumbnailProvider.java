@@ -25,10 +25,10 @@ public class ThumbnailProvider {
 
     public ResourceLocation getThumbnailLocation(String packName, String thumbnailUrl) {
         ResourceLocation resourceLocation = new ResourceLocation("mobends", "bendsPackThumbnails/" + packName);
-        ITextureObject itextureobject = Minecraft.func_71410_x().func_110434_K().func_110581_b(resourceLocation);
+        ITextureObject itextureobject = Minecraft.getMinecraft().getTextureManager().getTexture(resourceLocation);
         if (itextureobject == null) {
             ThreadDownloadImageData threaddownloadimagedata = new ThreadDownloadImageData(this.packCache.getThumbnailFile(packName), thumbnailUrl, DEFAULT_THUMBNAIL_LOCATION, null);
-            if (Minecraft.func_71410_x().func_110434_K().func_110579_a(resourceLocation, (ITextureObject)threaddownloadimagedata)) {
+            if (Minecraft.getMinecraft().getTextureManager().loadTexture(resourceLocation, (ITextureObject)threaddownloadimagedata)) {
                 return resourceLocation;
             }
         }

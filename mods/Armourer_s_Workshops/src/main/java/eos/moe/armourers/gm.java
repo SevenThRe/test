@@ -30,20 +30,20 @@ public class gm {
     }
 
     public static void y() {
-        if (Minecraft.func_71410_x().field_71441_e != null) {
-            EntityRenderer entityRenderer = Minecraft.func_71410_x().field_71460_t;
-            entityRenderer.func_175069_a(new ResourceLocation("armourers_workshops", "shaders/fade_in_blur.json"));
-            Object object = Minecraft.func_71410_x().field_71460_t.func_147706_e();
+        if (Minecraft.getMinecraft().world != null) {
+            EntityRenderer entityRenderer = Minecraft.getMinecraft().entityRenderer;
+            entityRenderer.loadShader(new ResourceLocation("armourers_workshops", "shaders/fade_in_blur.json"));
+            Object object = Minecraft.getMinecraft().entityRenderer.getShaderGroup();
             try {
                 String[] stringArray = new String[2];
-                stringArray[0] = "field_148031_d";
+                stringArray[0] = "listShaders";
                 stringArray[1] = "listShaders";
                 Field field = ReflectionHelper.findField(ShaderGroup.class, (String[])stringArray);
                 object = ((List)field.get(object)).iterator();
                 while (object.hasNext()) {
-                    ShaderUniform shaderUniform = ((Shader)object.next()).func_148043_c().func_147991_a("Progress");
+                    ShaderUniform shaderUniform = ((Shader)object.next()).getShaderManager().getShaderUniform("Progress");
                     if (shaderUniform == null) continue;
-                    shaderUniform.func_148090_a(1.0f);
+                    shaderUniform.set(1.0f);
                 }
             }
             catch (IllegalAccessException | IllegalArgumentException exception) {
@@ -53,8 +53,8 @@ public class gm {
     }
 
     public static void r() {
-        if (Minecraft.func_71410_x().field_71441_e != null) {
-            Minecraft.func_71410_x().field_71460_t.func_181022_b();
+        if (Minecraft.getMinecraft().world != null) {
+            Minecraft.getMinecraft().entityRenderer.stopUseShader();
         }
     }
 }

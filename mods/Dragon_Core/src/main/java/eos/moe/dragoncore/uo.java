@@ -126,8 +126,8 @@ public class uo {
         uo a2;
         int a3 = 0;
         po a4 = new po();
-        try (IResource a5 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a2.k);
-             BufferedReader a6 = new BufferedReader(new InputStreamReader(a5.func_110527_b()));){
+        try (IResource a5 = Minecraft.getMinecraft().getResourceManager().getResource(a2.k);
+             BufferedReader a6 = new BufferedReader(new InputStreamReader(a5.getInputStream()));){
             String a7;
             while ((a7 = a6.readLine()) != null) {
                 Object a8;

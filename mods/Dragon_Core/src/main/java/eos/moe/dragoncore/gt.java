@@ -49,10 +49,10 @@ public abstract class gt<E extends Entity> {
         gt a3;
         a3.s = a2;
         if (a3.s != null) {
-            a3.z = a2.func_145782_y();
-            a3.g = ((Entity)a3.s).field_70165_t;
-            a3.t = ((Entity)a3.s).field_70163_u;
-            a3.r = ((Entity)a3.s).field_70161_v;
+            a3.z = a2.getEntityId();
+            a3.g = ((Entity)a3.s).posX;
+            a3.t = ((Entity)a3.s).posY;
+            a3.r = ((Entity)a3.s).posZ;
         }
         a3.x = 0.0;
         a3.c = 0.0;
@@ -83,13 +83,13 @@ public abstract class gt<E extends Entity> {
         if (a2.y != null) {
             return a2.y;
         }
-        List a3 = ((Entity)a2.s).field_70170_p.func_184144_a(a2.s, a2.s.func_174813_aQ().func_72317_d(0.0, (double)-0.025f, 0.0));
+        List a3 = ((Entity)a2.s).world.getCollisionBoxes(a2.s, a2.s.getEntityBoundingBox().offset(0.0, (double)-0.025f, 0.0));
         return a3.size() > 0;
     }
 
     public boolean d() {
         gt a2;
-        List a3 = ((Entity)a2.s).field_70170_p.func_184144_a(a2.s, a2.s.func_174813_aQ().func_72317_d(a2.c, 0.0, a2.b));
+        List a3 = ((Entity)a2.s).world.getCollisionBoxes(a2.s, a2.s.getEntityBoundingBox().offset(a2.c, 0.0, a2.b));
         return a3.size() > 0;
     }
 
@@ -157,8 +157,8 @@ public abstract class gt<E extends Entity> {
 
     public float f() {
         gt a2;
-        Vec3d a3 = a2.s.func_70040_Z();
-        return (float)gt.ALLATORIxDEMO(a3.field_72450_a, a3.field_72449_c);
+        Vec3d a3 = a2.s.getLookVec();
+        return (float)gt.ALLATORIxDEMO(a3.x, a3.z);
     }
 
     public static double ALLATORIxDEMO(double a2, double a3) {
@@ -183,9 +183,9 @@ public abstract class gt<E extends Entity> {
         if (a2.f()) {
             return 0.0;
         }
-        Vec3d a3 = a2.s.func_70040_Z();
-        Vec3d a4 = new Vec3d(a3.field_72450_a, 0.0, a3.field_72449_c).func_72432_b();
-        return a4.field_72450_a * a2.c + a4.field_72449_c * a2.b;
+        Vec3d a3 = a2.s.getLookVec();
+        Vec3d a4 = new Vec3d(a3.x, 0.0, a3.z).normalize();
+        return a4.x * a2.c + a4.z * a2.b;
     }
 
     public double d() {
@@ -193,9 +193,9 @@ public abstract class gt<E extends Entity> {
         if (a2.f()) {
             return 0.0;
         }
-        Vec3d a3 = a2.s.func_70040_Z().func_178785_b(-1.5707964f);
-        Vec3d a4 = new Vec3d(a3.field_72450_a, 0.0, a3.field_72449_c).func_72432_b();
-        return a4.field_72450_a * a2.c + a4.field_72449_c * a2.b;
+        Vec3d a3 = a2.s.getLookVec().rotateYaw(-1.5707964f);
+        Vec3d a4 = new Vec3d(a3.x, 0.0, a3.z).normalize();
+        return a4.x * a2.c + a4.z * a2.b;
     }
 
     public boolean c() {
@@ -206,14 +206,14 @@ public abstract class gt<E extends Entity> {
 
     public boolean ALLATORIxDEMO() {
         gt a2;
-        if (!a2.s.func_70090_H()) {
+        if (!a2.s.isInWater()) {
             return false;
         }
-        int a3 = MathHelper.func_76128_c((double)((Entity)a2.s).field_70165_t);
-        int a4 = MathHelper.func_76128_c((double)(((Entity)a2.s).field_70163_u + 2.0));
-        int a5 = MathHelper.func_76128_c((double)((Entity)a2.s).field_70161_v);
-        IBlockState a6 = Minecraft.func_71410_x().field_71441_e.func_180495_p(new BlockPos(a3, a4, a5));
-        return a6.func_177230_c() instanceof BlockStaticLiquid;
+        int a3 = MathHelper.floor((double)((Entity)a2.s).posX);
+        int a4 = MathHelper.floor((double)(((Entity)a2.s).posY + 2.0));
+        int a5 = MathHelper.floor((double)((Entity)a2.s).posZ);
+        IBlockState a6 = Minecraft.getMinecraft().world.getBlockState(new BlockPos(a3, a4, a5));
+        return a6.getBlock() instanceof BlockStaticLiquid;
     }
 
     public double x() {
@@ -241,12 +241,12 @@ public abstract class gt<E extends Entity> {
         a2.x = a2.c;
         a2.v = a2.q;
         a2.m = a2.b;
-        a2.c = ((Entity)a2.s).field_70165_t - a2.g;
-        a2.q = ((Entity)a2.s).field_70163_u - a2.t;
-        a2.b = ((Entity)a2.s).field_70161_v - a2.r;
-        a2.g = ((Entity)a2.s).field_70165_t;
-        a2.t = ((Entity)a2.s).field_70163_u;
-        a2.r = ((Entity)a2.s).field_70161_v;
+        a2.c = ((Entity)a2.s).posX - a2.g;
+        a2.q = ((Entity)a2.s).posY - a2.t;
+        a2.b = ((Entity)a2.s).posZ - a2.r;
+        a2.g = ((Entity)a2.s).posX;
+        a2.t = ((Entity)a2.s).posY;
+        a2.r = ((Entity)a2.s).posZ;
     }
 }
 

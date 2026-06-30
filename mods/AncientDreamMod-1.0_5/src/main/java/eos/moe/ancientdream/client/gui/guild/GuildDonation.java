@@ -27,7 +27,7 @@ extends BaseGui {
     public GuildDonation() {
         Keyboard.enableRepeatEvents((boolean)true);
         this.addComponent(new TButton(119.0f, 182.0f, 0.0f, 254.0f, 0.0f, 230.5f, 68.5f, 21.0f, 389.0f, 275.0f, btn -> {
-            Utils.chat("/guild donation " + this.type + " " + this.textField.func_146179_b());
+            Utils.chat("/guild donation " + this.type + " " + this.textField.getText());
             MessageSender.sendOpenManager();
             Utils.playSound();
         }).setTexture(this.BG));
@@ -37,11 +37,11 @@ extends BaseGui {
         }).setTexture(this.BG));
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         this.setSize(389, 219);
-        this.textField = new GuiTextField(0, this.field_146289_q, 37, 142, 323, 20);
-        this.textField.func_146195_b(true);
-        this.textField.func_146203_f(999);
+        this.textField = new GuiTextField(0, this.fontRenderer, 37, 142, 323, 20);
+        this.textField.setFocused(true);
+        this.textField.setMaxStringLength(999);
     }
 
     @Override
@@ -53,12 +53,12 @@ extends BaseGui {
             RenderUtils.drawColor(226.0, 67.5, 52.0, 52.0, -2130706433);
         }
         this.drawComponents((float)mouseX - this.offsetX, (float)mouseY - this.offsetY);
-        this.textField.func_146194_f();
+        this.textField.drawTextBox();
     }
 
     @Override
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         if (Utils.onArea(108.0f, 67.5f, 53.0f, 53.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
             this.type = "money";
             Utils.playSound();
@@ -68,9 +68,9 @@ extends BaseGui {
         }
     }
 
-    protected void func_73869_a(char typedChar, int keyCode) throws IOException {
-        super.func_73869_a(typedChar, keyCode);
-        this.textField.func_146201_a(typedChar, keyCode);
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+        super.keyTyped(typedChar, keyCode);
+        this.textField.textboxKeyTyped(typedChar, keyCode);
         if (keyCode == 1) {
             MessageSender.sendOpenManager();
             Keyboard.enableRepeatEvents((boolean)false);

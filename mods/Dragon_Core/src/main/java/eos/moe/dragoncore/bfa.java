@@ -38,9 +38,9 @@ public class bfa {
         if (a3) {
             a2.setResultSound(null);
             ISound a4 = a2.getSound();
-            a4.func_184366_a(Minecraft.func_71410_x().func_147118_V());
-            String a5 = MathHelper.func_180182_a((Random)ThreadLocalRandom.current()).toString();
-            om.ALLATORIxDEMO(null, a5, a2.getName(), a4.func_184365_d(), a4.func_147653_e(), a4.func_147655_f(), a4.func_147649_g(), a4.func_147654_h(), a4.func_147651_i(), a4.func_147657_c());
+            a4.createAccessor(Minecraft.getMinecraft().getSoundHandler());
+            String a5 = MathHelper.getRandomUUID((Random)ThreadLocalRandom.current()).toString();
+            om.ALLATORIxDEMO(null, a5, a2.getName(), a4.getCategory(), a4.getVolume(), a4.getPitch(), a4.getXPosF(), a4.getYPosF(), a4.getZPosF(), a4.canRepeat());
         }
     }
 }

@@ -44,31 +44,31 @@ public enum JmBlockAccess implements IBlockAccess
     INSTANCE;
 
 
-    public TileEntity func_175625_s(BlockPos pos) {
-        return this.getWorld().func_175625_s(pos);
+    public TileEntity getTileEntity(BlockPos pos) {
+        return this.getWorld().getTileEntity(pos);
     }
 
-    public int func_175626_b(BlockPos pos, int min) {
-        return this.getWorld().func_175626_b(pos, min);
+    public int getCombinedLight(BlockPos pos, int min) {
+        return this.getWorld().getCombinedLight(pos, min);
     }
 
-    public IBlockState func_180495_p(BlockPos pos) {
+    public IBlockState getBlockState(BlockPos pos) {
         if (!this.isValid(pos)) {
-            return Blocks.field_150350_a.func_176223_P();
+            return Blocks.AIR.getDefaultState();
         }
         ChunkMD chunkMD = this.getChunkMDFromBlockCoords(pos);
         if (chunkMD != null && chunkMD.hasChunk()) {
-            return chunkMD.getChunk().func_186032_a(pos.func_177958_n() & 0xF, pos.func_177956_o(), pos.func_177952_p() & 0xF);
+            return chunkMD.getChunk().getBlockState(pos.getX() & 0xF, pos.getY(), pos.getZ() & 0xF);
         }
-        return Blocks.field_150350_a.func_176223_P();
+        return Blocks.AIR.getDefaultState();
     }
 
-    public boolean func_175623_d(BlockPos pos) {
-        return this.getWorld().func_175623_d(pos);
+    public boolean isAirBlock(BlockPos pos) {
+        return this.getWorld().isAirBlock(pos);
     }
 
-    public Biome func_180494_b(BlockPos pos) {
-        return this.getBiome(pos, Biomes.field_76772_c);
+    public Biome getBiome(BlockPos pos) {
+        return this.getBiome(pos, Biomes.PLAINS);
     }
 
     @Nullable
@@ -82,22 +82,22 @@ public enum JmBlockAccess implements IBlockAccess
             }
             biome = defaultBiome;
         }
-        if (FMLClientHandler.instance().getClient().func_71356_B() && (server = FMLClientHandler.instance().getClient().func_71401_C()) != null) {
-            return server.func_130014_f_().func_72959_q().func_180631_a(pos);
+        if (FMLClientHandler.instance().getClient().isSingleplayer() && (server = FMLClientHandler.instance().getClient().getIntegratedServer()) != null) {
+            return server.getEntityWorld().getBiomeProvider().getBiome(pos);
         }
         return defaultBiome;
     }
 
-    public int func_175627_a(BlockPos pos, EnumFacing direction) {
-        return this.getWorld().func_175627_a(pos, direction);
+    public int getStrongPower(BlockPos pos, EnumFacing direction) {
+        return this.getWorld().getStrongPower(pos, direction);
     }
 
     public World getWorld() {
-        return FMLClientHandler.instance().getClient().field_71441_e;
+        return FMLClientHandler.instance().getClient().world;
     }
 
-    public WorldType func_175624_G() {
-        return this.getWorld().func_175624_G();
+    public WorldType getWorldType() {
+        return this.getWorld().getWorldType();
     }
 
     public boolean isSideSolid(BlockPos pos, EnumFacing side, boolean _default) {
@@ -105,7 +105,7 @@ public enum JmBlockAccess implements IBlockAccess
     }
 
     private boolean isValid(BlockPos pos) {
-        return pos.func_177958_n() >= -30000000 && pos.func_177952_p() >= -30000000 && pos.func_177958_n() < 30000000 && pos.func_177952_p() < 30000000 && pos.func_177956_o() >= 0 && pos.func_177956_o() < 256;
+        return pos.getX() >= -30000000 && pos.getZ() >= -30000000 && pos.getX() < 30000000 && pos.getZ() < 30000000 && pos.getY() >= 0 && pos.getY() < 256;
     }
 
     @Nullable

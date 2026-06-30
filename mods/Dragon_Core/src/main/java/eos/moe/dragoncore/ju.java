@@ -82,11 +82,11 @@ implements AnimationModelRenderer {
             if (!a3.k) {
                 a3.ALLATORIxDEMO(a2);
             }
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             a3.x(a2);
-            GlStateManager.func_179148_o((int)a3.ALLATORIxDEMO);
+            GlStateManager.callList((int)a3.ALLATORIxDEMO);
             a3.f(a2);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
         a3.ALLATORIxDEMO();
     }
@@ -94,31 +94,31 @@ implements AnimationModelRenderer {
     private /* synthetic */ void x(float a2) {
         ju a3;
         if (a3.i != 0.0f || a3.l != 0.0f || a3.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(a3.i * a2), (float)(a3.l * a2), (float)(a3.z * a2));
+            GlStateManager.translate((float)(a3.i * a2), (float)(a3.l * a2), (float)(a3.z * a2));
         }
         if (a3.t != 0.0f) {
-            GlStateManager.func_179114_b((float)a3.t, (float)0.0f, (float)0.0f, (float)1.0f);
+            GlStateManager.rotate((float)a3.t, (float)0.0f, (float)0.0f, (float)1.0f);
         }
         if (a3.g != 0.0f) {
-            GlStateManager.func_179114_b((float)(-a3.g), (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)(-a3.g), (float)0.0f, (float)1.0f, (float)0.0f);
         }
         if (a3.s != 0.0f) {
-            GlStateManager.func_179114_b((float)a3.s, (float)1.0f, (float)0.0f, (float)0.0f);
+            GlStateManager.rotate((float)a3.s, (float)1.0f, (float)0.0f, (float)0.0f);
         }
         if (a3.i != 0.0f || a3.l != 0.0f || a3.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(-a3.i * a2), (float)(-a3.l * a2), (float)(-a3.z * a2));
+            GlStateManager.translate((float)(-a3.i * a2), (float)(-a3.l * a2), (float)(-a3.z * a2));
         }
     }
 
     private /* synthetic */ void f(float a2) {
         ju a3;
-        GlStateManager.func_179152_a((float)a3.c.getX(), (float)a3.c.getY(), (float)a3.c.getZ());
+        GlStateManager.scale((float)a3.c.getX(), (float)a3.c.getY(), (float)a3.c.getZ());
         if (a3.b != null) {
             for (ju a4 : a3.b) {
                 a4.d(a2);
             }
         }
-        GlStateManager.func_179152_a((float)(1.0f / a3.c.getX()), (float)(1.0f / a3.c.getY()), (float)(1.0f / a3.c.getZ()));
+        GlStateManager.scale((float)(1.0f / a3.c.getX()), (float)(1.0f / a3.c.getY()), (float)(1.0f / a3.c.getZ()));
     }
 
     @SideOnly(value=Side.CLIENT)
@@ -135,11 +135,11 @@ implements AnimationModelRenderer {
     @SideOnly(value=Side.CLIENT)
     private /* synthetic */ void ALLATORIxDEMO(float a2) {
         ju a3;
-        a3.ALLATORIxDEMO = GLAllocation.func_74526_a((int)1);
-        GlStateManager.func_187423_f((int)a3.ALLATORIxDEMO, (int)4864);
-        BufferBuilder a4 = Tessellator.func_178181_a().func_178180_c();
+        a3.ALLATORIxDEMO = GLAllocation.generateDisplayLists((int)1);
+        GlStateManager.glNewList((int)a3.ALLATORIxDEMO, (int)4864);
+        BufferBuilder a4 = Tessellator.getInstance().getBuffer();
         a3.o.ALLATORIxDEMO(a4, a2);
-        GlStateManager.func_187415_K();
+        GlStateManager.glEndList();
         a3.k = true;
     }
 

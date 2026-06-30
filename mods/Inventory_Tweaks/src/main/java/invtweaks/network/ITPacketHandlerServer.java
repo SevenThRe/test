@@ -23,7 +23,7 @@ public class ITPacketHandlerServer
 extends SimpleChannelInboundHandler<ITPacket> {
     protected void channelRead0(@NotNull ChannelHandlerContext ctx, @NotNull ITPacket msg) throws Exception {
         NetHandlerPlayServer handler = (NetHandlerPlayServer)ctx.channel().attr(NetworkRegistry.NET_HANDLER).get();
-        handler.field_147369_b.field_71133_b.func_152344_a(() -> msg.handle((INetHandler)handler));
+        handler.player.server.addScheduledTask(() -> msg.handle((INetHandler)handler));
     }
 }
 

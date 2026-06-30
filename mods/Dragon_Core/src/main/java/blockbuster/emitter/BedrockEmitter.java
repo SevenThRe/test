@@ -153,7 +153,7 @@ public class BedrockEmitter {
 
     public void setTarget(EntityLivingBase target) {
         this.target = target;
-        this.world = target == null ? null : target.field_70170_p;
+        this.world = target == null ? null : target.world;
     }
 
     public void setScheme(BedrockScheme scheme) {
@@ -358,7 +358,7 @@ public class BedrockEmitter {
         if (!this.running) {
             return;
         }
-        if (this.target != null && this.target.field_70128_L) {
+        if (this.target != null && this.target.isDead) {
             return;
         }
         this.particles.add(this.createParticle(false));
@@ -395,7 +395,7 @@ public class BedrockEmitter {
         List<IComponentParticleRender> renders = this.scheme.particleRender;
         List<IComponentParticleMorphRender> morphRenders = this.scheme.particleMorphRender;
         boolean particleRendering = true;
-        int thirdPersonView = Minecraft.func_71410_x().field_71474_y.field_74320_O;
+        int thirdPersonView = Minecraft.getMinecraft().gameSettings.thirdPersonView;
         if (this.renderType == 1 && thirdPersonView != 0) {
             return;
         }
@@ -423,7 +423,7 @@ public class BedrockEmitter {
     }
 
     private void renderParticles(List<? extends IComponentParticleMorphRender> renderComponents, boolean collided, float partialTicks) {
-        BufferBuilder builder = Tessellator.func_178181_a().func_178180_c();
+        BufferBuilder builder = Tessellator.getInstance().getBuffer();
         for (BedrockParticle particle : this.particles) {
             this.setEmitterVariables(partialTicks);
             this.setParticleVariables(particle, partialTicks);
@@ -434,9 +434,9 @@ public class BedrockEmitter {
     }
 
     private void renderParticles(ResourceLocation texture, List<? extends IComponentParticleRender> renderComponents, boolean collided, float partialTicks) {
-        BufferBuilder builder = Tessellator.func_178181_a().func_178180_c();
+        BufferBuilder builder = Tessellator.getInstance().getBuffer();
         GifHandler.bindTexture(texture, this.age, partialTicks);
-        builder.func_181668_a(7, DefaultVertexFormats.field_181711_k);
+        builder.begin(7, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
         for (BedrockParticle particle : this.particles) {
             boolean collisionStuff;
             boolean bl2 = collisionStuff = particle.isCollisionTexture(this) || particle.isCollisionTinting(this);
@@ -448,29 +448,29 @@ public class BedrockEmitter {
                 iComponentRenderBase.render(this, particle, builder, partialTicks);
             }
         }
-        Tessellator.func_178181_a().func_78381_a();
+        Tessellator.getInstance().draw();
     }
 
     private void setupOpenGL(float partialTicks) {
-        Entity camera = Minecraft.func_71410_x().func_175606_aa();
-        double playerX = camera.field_70169_q + (camera.field_70165_t - camera.field_70169_q) * (double)partialTicks;
-        double playerY = camera.field_70167_r + (camera.field_70163_u - camera.field_70167_r) * (double)partialTicks;
-        double playerZ = camera.field_70166_s + (camera.field_70161_v - camera.field_70166_s) * (double)partialTicks;
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179141_d();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179092_a((int)516, (float)0.0f);
-        BufferBuilder builder = Tessellator.func_178181_a().func_178180_c();
-        GlStateManager.func_179090_x();
-        builder.func_178969_c(-playerX, -playerY, -playerZ);
-        GlStateManager.func_179129_p();
-        GlStateManager.func_179098_w();
+        Entity camera = Minecraft.getMinecraft().getRenderViewEntity();
+        double playerX = camera.prevPosX + (camera.posX - camera.prevPosX) * (double)partialTicks;
+        double playerY = camera.prevPosY + (camera.posY - camera.prevPosY) * (double)partialTicks;
+        double playerZ = camera.prevPosZ + (camera.posZ - camera.prevPosZ) * (double)partialTicks;
+        GlStateManager.enableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.alphaFunc((int)516, (float)0.0f);
+        BufferBuilder builder = Tessellator.getInstance().getBuffer();
+        GlStateManager.disableTexture2D();
+        builder.setTranslation(-playerX, -playerY, -playerZ);
+        GlStateManager.disableCull();
+        GlStateManager.enableTexture2D();
     }
 
     private void endOpenGL() {
-        Tessellator.func_178181_a().func_178180_c().func_178969_c(0.0, 0.0, 0.0);
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179092_a((int)516, (float)0.1f);
+        Tessellator.getInstance().getBuffer().setTranslation(0.0, 0.0, 0.0);
+        GlStateManager.disableBlend();
+        GlStateManager.alphaFunc((int)516, (float)0.1f);
     }
 
     private void depthSorting() {
@@ -478,13 +478,13 @@ public class BedrockEmitter {
 
     public void setupCameraProperties(float partialTicks) {
         if (this.world != null) {
-            Entity camera = Minecraft.func_71410_x().func_175606_aa();
-            this.perspective = Minecraft.func_71410_x().field_71474_y.field_74320_O;
-            this.cYaw = 180.0f - Interpolations.lerp(camera.field_70126_B, camera.field_70177_z, partialTicks);
-            this.cPitch = 180.0f - Interpolations.lerp(camera.field_70127_C, camera.field_70125_A, partialTicks);
-            this.cX = Interpolations.lerp(camera.field_70169_q, camera.field_70165_t, (double)partialTicks);
-            this.cY = Interpolations.lerp(camera.field_70167_r, camera.field_70163_u, (double)partialTicks) + (double)camera.func_70047_e();
-            this.cZ = Interpolations.lerp(camera.field_70166_s, camera.field_70161_v, (double)partialTicks);
+            Entity camera = Minecraft.getMinecraft().getRenderViewEntity();
+            this.perspective = Minecraft.getMinecraft().gameSettings.thirdPersonView;
+            this.cYaw = 180.0f - Interpolations.lerp(camera.prevRotationYaw, camera.rotationYaw, partialTicks);
+            this.cPitch = 180.0f - Interpolations.lerp(camera.prevRotationPitch, camera.rotationPitch, partialTicks);
+            this.cX = Interpolations.lerp(camera.prevPosX, camera.posX, (double)partialTicks);
+            this.cY = Interpolations.lerp(camera.prevPosY, camera.posY, (double)partialTicks) + (double)camera.getEyeHeight();
+            this.cZ = Interpolations.lerp(camera.prevPosZ, camera.posZ, (double)partialTicks);
         }
     }
 
@@ -492,8 +492,8 @@ public class BedrockEmitter {
         if (this.lit || this.world == null) {
             return 0xF000F0;
         }
-        this.blockPos.func_189532_c(x2, y2, z2);
-        return this.world.func_175667_e((BlockPos)this.blockPos) ? this.world.func_175626_b((BlockPos)this.blockPos, 0) : 0;
+        this.blockPos.setPos(x2, y2, z2);
+        return this.world.isBlockLoaded((BlockPos)this.blockPos) ? this.world.getCombinedLight((BlockPos)this.blockPos, 0) : 0;
     }
 }
 

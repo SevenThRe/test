@@ -68,7 +68,7 @@ public class yh {
 
     private /* synthetic */ void c() {
         yh a2;
-        a2.ALLATORIxDEMO = new ph<fi>(new fi("ROOT", (NBTBase)a2.k.func_74737_b()));
+        a2.ALLATORIxDEMO = new ph<fi>(new fi("ROOT", (NBTBase)a2.k.copy()));
         a2.ALLATORIxDEMO.ALLATORIxDEMO(true);
         a2.ALLATORIxDEMO(a2.ALLATORIxDEMO);
         a2.c(a2.ALLATORIxDEMO);
@@ -102,7 +102,7 @@ public class yh {
             }
             if (!(a4 instanceof NBTTagList)) break block3;
             NBTTagList a9 = (NBTTagList)a4;
-            for (int a10 = 0; a10 < a9.func_74745_c(); ++a10) {
+            for (int a10 = 0; a10 < a9.tagCount(); ++a10) {
                 NBTBase a11 = bp.ALLATORIxDEMO(a9, a10);
                 ph<fi> a12 = new ph<fi>(a2, new fi(a11));
                 a2.ALLATORIxDEMO(a12);
@@ -129,16 +129,16 @@ public class yh {
             if (a7 instanceof NBTTagCompound) {
                 a5 = new NBTTagCompound();
                 a4.ALLATORIxDEMO((ph<fi>)a6, a5);
-                a3.func_74782_a(a8, (NBTBase)a5);
+                a3.setTag(a8, (NBTBase)a5);
                 continue;
             }
             if (a7 instanceof NBTTagList) {
                 a5 = new NBTTagList();
                 a4.ALLATORIxDEMO((ph<fi>)a6, (NBTTagList)a5);
-                a3.func_74782_a(a8, (NBTBase)a5);
+                a3.setTag(a8, (NBTBase)a5);
                 continue;
             }
-            a3.func_74782_a(a8, a7.func_74737_b());
+            a3.setTag(a8, a7.copy());
         }
     }
 
@@ -152,16 +152,16 @@ public class yh {
             if (a7 instanceof NBTTagCompound) {
                 a5 = new NBTTagCompound();
                 a4.ALLATORIxDEMO((ph<fi>)a6, a5);
-                a3.func_74742_a((NBTBase)a5);
+                a3.appendTag((NBTBase)a5);
                 continue;
             }
             if (a7 instanceof NBTTagList) {
                 a5 = new NBTTagList();
                 a4.ALLATORIxDEMO((ph<fi>)a6, (NBTTagList)a5);
-                a3.func_74742_a((NBTBase)a5);
+                a3.appendTag((NBTBase)a5);
                 continue;
             }
-            a3.func_74742_a(a7.func_74737_b());
+            a3.appendTag(a7.copy());
         }
     }
 

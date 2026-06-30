@@ -50,7 +50,7 @@ public final class ActionKt {
         Minecraft minecraft = fMLClientHandler.getClient();
         Intrinsics.checkExpressionValueIsNotNull(minecraft, "FMLClientHandler.instance().client");
         Minecraft minecraft2 = minecraft;
-        World world = (World)minecraft2.field_71441_e;
+        World world = (World)minecraft2.world;
         if (world == null) {
             logger.warn("Action requested before world loaded");
             handler.status(400);
@@ -115,9 +115,9 @@ public final class ActionKt {
         if (mapTypeName != MapType.Name.underground) {
             vSlice = null;
         }
-        WorldInfo worldInfo = world.func_72912_H();
+        WorldInfo worldInfo = world.getWorldInfo();
         Intrinsics.checkExpressionValueIsNotNull(worldInfo, "world.worldInfo");
-        boolean hardcore = worldInfo.func_76093_s();
+        boolean hardcore = worldInfo.isHardcoreModeEnabled();
         MapType mapType = MapType.from(mapTypeName, vSlice, dimension);
         Intrinsics.checkExpressionValueIsNotNull(mapType, "MapType.from(mapTypeName, vSlice, dimension)");
         MapType mapType2 = mapType;

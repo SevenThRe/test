@@ -23,7 +23,7 @@ public class MixinBakedQuad
 implements IBakedQuad {
     @Shadow
     @Final
-    protected TextureAtlasSprite field_187509_d;
+    protected TextureAtlasSprite sprite;
     private boolean quadEmissiveChecked;
     private BakedQuad quadEmissive;
 
@@ -37,12 +37,12 @@ implements IBakedQuad {
         if (a2.quadEmissiveChecked) {
             return a2.quadEmissive;
         }
-        if (a2.quadEmissive == null && a2.field_187509_d != null) {
-            if (a2.field_187509_d instanceof jt && ((jt)a2.field_187509_d).ALLATORIxDEMO != null) {
-                a2.quadEmissive = new BakedQuadRetextured((BakedQuad)a2, (TextureAtlasSprite)((jt)a2.field_187509_d).ALLATORIxDEMO);
+        if (a2.quadEmissive == null && a2.sprite != null) {
+            if (a2.sprite instanceof jt && ((jt)a2.sprite).ALLATORIxDEMO != null) {
+                a2.quadEmissive = new BakedQuadRetextured((BakedQuad)a2, (TextureAtlasSprite)((jt)a2.sprite).ALLATORIxDEMO);
             } else if (ca.v != null) {
                 try {
-                    TextureAtlasSprite a3 = (TextureAtlasSprite)ca.v.get(a2.field_187509_d);
+                    TextureAtlasSprite a3 = (TextureAtlasSprite)ca.v.get(a2.sprite);
                     a2.quadEmissive = new BakedQuadRetextured((BakedQuad)a2, a3);
                 }
                 catch (Exception exception) {

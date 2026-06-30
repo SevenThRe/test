@@ -46,16 +46,16 @@ public class ChatLog {
 
     public static void announceURL(String message, String url) {
         TextComponentString chat = new TextComponentString(message);
-        chat.func_150256_b().func_150241_a(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
-        chat.func_150256_b().func_150209_a(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (ITextComponent)new TextComponentString(url)));
+        chat.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
+        chat.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (ITextComponent)new TextComponentString(url)));
         ChatLog.queueAnnouncement((ITextComponent)chat);
     }
 
     public static void announceFile(String message, File file) {
         TextComponentString chat = new TextComponentString(message);
         try {
-            chat.func_150256_b().func_150241_a(new ClickEvent(ClickEvent.Action.OPEN_FILE, file.getCanonicalPath()));
-            chat.func_150256_b().func_150209_a(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (ITextComponent)new TextComponentString(file.getCanonicalPath())));
+            chat.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, file.getCanonicalPath()));
+            chat.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (ITextComponent)new TextComponentString(file.getCanonicalPath())));
         }
         catch (Exception e) {
             Journeymap.getLogger().warn("Couldn't build ClickEvent for file: " + LogFormatter.toString(e));
@@ -86,23 +86,23 @@ public class ChatLog {
             TextComponentTranslation message = announcements.remove(0);
             if (message == null) continue;
             try {
-                mc.field_71456_v.func_146158_b().func_146227_a((ITextComponent)message);
+                mc.ingameGUI.getChatGUI().printChatMessage((ITextComponent)message);
             }
             catch (Exception e) {
                 try {
                     Journeymap.getLogger().error("Could not display announcement in chat: " + LogFormatter.toString(e));
                 }
                 catch (Throwable throwable) {
-                    Level logLevel2 = message.func_150271_j()[0] instanceof ErrorChat ? Level.ERROR : Level.INFO;
-                    Journeymap.getLogger().log(logLevel2, StringUtils.func_76338_a((String)message.func_150261_e()));
+                    Level logLevel2 = message.getFormatArgs()[0] instanceof ErrorChat ? Level.ERROR : Level.INFO;
+                    Journeymap.getLogger().log(logLevel2, StringUtils.stripControlCodes((String)message.getUnformattedComponentText()));
                     throw throwable;
                 }
-                logLevel = message.func_150271_j()[0] instanceof ErrorChat ? Level.ERROR : Level.INFO;
-                Journeymap.getLogger().log(logLevel, StringUtils.func_76338_a((String)message.func_150261_e()));
+                logLevel = message.getFormatArgs()[0] instanceof ErrorChat ? Level.ERROR : Level.INFO;
+                Journeymap.getLogger().log(logLevel, StringUtils.stripControlCodes((String)message.getUnformattedComponentText()));
                 continue;
             }
-            logLevel = message.func_150271_j()[0] instanceof ErrorChat ? Level.ERROR : Level.INFO;
-            Journeymap.getLogger().log(logLevel, StringUtils.func_76338_a((String)message.func_150261_e()));
+            logLevel = message.getFormatArgs()[0] instanceof ErrorChat ? Level.ERROR : Level.INFO;
+            Journeymap.getLogger().log(logLevel, StringUtils.stripControlCodes((String)message.getUnformattedComponentText()));
         }
     }
 

@@ -40,9 +40,9 @@ implements Draw {
 
     private ButtonList createRadarButtons() {
         ButtonList list = new ButtonList();
-        this.label = new Label(this.fontRenderer.func_78256_a(Constants.getString("jm.server.edit.radar.label")) + 10, "jm.server.edit.radar.label", new Object[0]);
+        this.label = new Label(this.fontRenderer.getStringWidth(Constants.getString("jm.server.edit.radar.label")) + 10, "jm.server.edit.radar.label", new Object[0]);
         this.label.setHAlign(DrawUtil.HAlign.Center);
-        this.label.func_175211_a(this.label.getFitWidth(this.fontRenderer));
+        this.label.setWidth(this.label.getFitWidth(this.fontRenderer));
         CheckBox playerChkBx = this.checkBox("jm.server.edit.radar.chkbox.player", "playerRadar", this.properties);
         CheckBox villagerChkBx = this.checkBox("jm.server.edit.radar.chkbox.villager", "villagerRadar", this.properties);
         CheckBox animalChkBx = this.checkBox("jm.server.edit.radar.chkbox.animal", "animalRadar", this.properties);
@@ -56,7 +56,7 @@ implements Draw {
             this.updateCheckBoxes(this.radarPropertyButton.getField().get());
             return true;
         });
-        this.radarPropertyButton.func_175211_a(this.fontRenderer.func_78256_a(this.label.field_146126_j) + 40);
+        this.radarPropertyButton.setWidth(this.fontRenderer.getStringWidth(this.label.displayString) + 40);
         this.radarPropertyButton.setTooltip(300, ServerOptionsManager.formattedToolTipHeader("jm.server.edit.radar.toggle.label") + this.getToggleTooltipBase(), Constants.getString("jm.server.edit.radar.toggle.tooltip1"), Constants.getString("jm.server.edit.radar.toggle.tooltip2"));
         this.updateCheckBoxes(this.radarPropertyButton.getField().get());
         list.add(this.label);

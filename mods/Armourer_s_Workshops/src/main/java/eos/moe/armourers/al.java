@@ -64,8 +64,8 @@ public class al {
     @SubscribeEvent
     public void r(EntityJoinWorldEvent a2) {
         if (a2.getEntity() != null && (a2.getEntity() instanceof EntityPlayer || nn.j.contains(a2.getEntity().getClass()))) {
-            zg.m.remove(a2.getEntity().func_110124_au());
-            nf.r(a2.getEntity().func_110124_au());
+            zg.m.remove(a2.getEntity().getUniqueID());
+            nf.r(a2.getEntity().getUniqueID());
         }
     }
 
@@ -90,8 +90,8 @@ public class al {
         if (!j) {
             return;
         }
-        Minecraft.func_71410_x().func_152344_a(() -> {
-            if (Minecraft.func_71410_x().field_71439_g != null) {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
+            if (Minecraft.getMinecraft().player != null) {
                 PlayerModelLoader.clear();
                 zg.v.clear();
                 kd.j.clear();
@@ -108,25 +108,25 @@ public class al {
                 String[] stringArray4 = new String[1];
                 stringArray4[0] = "aliases";
                 Map map2 = (Map)ReflectionHelper.getPrivateValue(ModelLoaderRegistry.class, null, (String[])stringArray4);
-                map.entrySet().removeIf(a2 -> ((ResourceLocation)a2.getKey()).func_110624_b().equals("dragonarmourers"));
-                deque.removeIf(a2 -> a2.func_110624_b().equals("dragonarmourers"));
-                set.removeIf(a2 -> a2.func_110624_b().equals("dragonarmourers"));
-                map2.entrySet().removeIf(a2 -> ((ResourceLocation)a2.getKey()).func_110624_b().equals("dragonarmourers"));
+                map.entrySet().removeIf(a2 -> ((ResourceLocation)a2.getKey()).getNamespace().equals("dragonarmourers"));
+                deque.removeIf(a2 -> a2.getNamespace().equals("dragonarmourers"));
+                set.removeIf(a2 -> a2.getNamespace().equals("dragonarmourers"));
+                map2.entrySet().removeIf(a2 -> ((ResourceLocation)a2.getKey()).getNamespace().equals("dragonarmourers"));
                 String[] stringArray5 = new String[2];
                 stringArray5[0] = "listTickables";
-                stringArray5[1] = "field_110583_b";
-                ((List)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.func_71410_x().func_110434_K(), (String[])stringArray5)).removeIf(a2 -> a2 instanceof zj);
+                stringArray5[1] = "listTickables";
+                ((List)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.getMinecraft().getTextureManager(), (String[])stringArray5)).removeIf(a2 -> a2 instanceof zj);
                 String[] stringArray6 = new String[2];
                 stringArray6[0] = "mapTextureObjects";
-                stringArray6[1] = "field_110585_a";
-                ((Map)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.func_71410_x().func_110434_K(), (String[])stringArray6)).entrySet().removeIf(a2 -> {
+                stringArray6[1] = "mapTextureObjects";
+                ((Map)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.getMinecraft().getTextureManager(), (String[])stringArray6)).entrySet().removeIf(a2 -> {
                     if (a2.getValue() instanceof zj) {
-                        ((zj)((Object)((Object)((Object)a2.getValue())))).func_147631_c();
+                        ((zj)((Object)((Object)((Object)a2.getValue())))).deleteGlTexture();
                         return true;
                     }
                     return false;
                 });
-                Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("[\u9f99\u4e4b\u65f6\u88c5] \u5df2\u6e05\u9664\u5ba2\u6237\u7aef\u65f6\u88c5\u7f13\u5b58\u6570\u636e"));
+                Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("[\u9f99\u4e4b\u65f6\u88c5] \u5df2\u6e05\u9664\u5ba2\u6237\u7aef\u65f6\u88c5\u7f13\u5b58\u6570\u636e"));
             }
         });
     }
@@ -142,11 +142,11 @@ public class al {
     @SideOnly(value=Side.CLIENT)
     @SubscribeEvent
     public void y(InputEvent.KeyInputEvent a2) {
-        if (sg.v.func_151468_f()) {
+        if (sg.v.isPressed()) {
             if (zh.g) {
-                Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u00a7a\u5df2\u5173\u95ed\u663e\u793a\u4ed6\u4eba\u65f6\u88c5"));
+                Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u00a7a\u5df2\u5173\u95ed\u663e\u793a\u4ed6\u4eba\u65f6\u88c5"));
             } else {
-                Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u00a7a\u5df2\u5f00\u542f\u663e\u793a\u4ed6\u4eba\u65f6\u88c5"));
+                Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u00a7a\u5df2\u5f00\u542f\u663e\u793a\u4ed6\u4eba\u65f6\u88c5"));
             }
             zh.g = !zh.g;
         }
@@ -154,14 +154,14 @@ public class al {
 
     @SubscribeEvent
     public void r(InputEvent.KeyInputEvent a2) throws IOException {
-        if (Keyboard.isKeyDown((int)38) && Keyboard.isKeyDown((int)25) && Minecraft.func_71410_x().field_71439_g != null) {
+        if (Keyboard.isKeyDown((int)38) && Keyboard.isKeyDown((int)25) && Minecraft.getMinecraft().player != null) {
             al a3;
             if (System.currentTimeMillis() - a3.m < 100L) {
                 return;
             }
             a3.m = System.currentTimeMillis();
             j = true;
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("[\u9f99\u4e4b\u65f6\u88c5] \u5df2\u542f\u7528/sz reload\u91cd\u8f7d\u65f6\u6e05\u9664\u5ba2\u6237\u7aef\u7f13\u5b58\u65f6\u88c5\u6570\u636e,\u8be5\u6548\u679c\u91cd\u542f\u6e38\u620f\u65f6\u5931\u6548"));
+            Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("[\u9f99\u4e4b\u65f6\u88c5] \u5df2\u542f\u7528/sz reload\u91cd\u8f7d\u65f6\u6e05\u9664\u5ba2\u6237\u7aef\u7f13\u5b58\u65f6\u88c5\u6570\u636e,\u8be5\u6548\u679c\u91cd\u542f\u6e38\u620f\u65f6\u5931\u6548"));
         }
     }
 }

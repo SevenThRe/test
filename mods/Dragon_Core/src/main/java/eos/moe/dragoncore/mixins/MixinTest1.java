@@ -56,23 +56,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinTest1
 implements IPlayerControllerMP {
     @Shadow
-    private int field_78781_i;
+    private int blockHitDelay;
     @Shadow
-    private GameType field_78779_k;
-    @Shadow
-    @Final
-    private Minecraft field_78776_a;
+    private GameType currentGameType;
     @Shadow
     @Final
-    private NetHandlerPlayClient field_78774_b;
+    private Minecraft mc;
     @Shadow
-    private boolean field_78778_j;
+    @Final
+    private NetHandlerPlayClient connection;
     @Shadow
-    private float field_78770_f;
+    private boolean isHittingBlock;
     @Shadow
-    private float field_78780_h;
+    private float curBlockDamageMP;
     @Shadow
-    private BlockPos field_178895_c;
+    private float stepSoundTickCounter;
+    @Shadow
+    private BlockPos currentBlock;
     private int Dragon_blockHitDelay;
 
     public MixinTest1() {
@@ -80,20 +80,20 @@ implements IPlayerControllerMP {
     }
 
     @Shadow
-    protected abstract void func_78750_j();
+    protected abstract void syncCurrentPlayItem();
 
     @Shadow
-    public static void func_178891_a(Minecraft a2, PlayerControllerMP a3, BlockPos a4, EnumFacing a5) {
+    public static void clickBlockCreative(Minecraft a2, PlayerControllerMP a3, BlockPos a4, EnumFacing a5) {
     }
 
     @Shadow
-    protected abstract boolean func_178893_a(BlockPos var1);
+    protected abstract boolean isHittingPosition(BlockPos var1);
 
     @Shadow
-    public abstract boolean func_187103_a(BlockPos var1);
+    public abstract boolean onPlayerDestroyBlock(BlockPos var1);
 
     @Shadow
-    public abstract boolean func_180511_b(BlockPos var1, EnumFacing var2);
+    public abstract boolean clickBlock(BlockPos var1, EnumFacing var2);
 
     @Inject(method={"clickBlock"}, at={@At(value="INVOKE", target="Lnet/minecraft/client/multiplayer/PlayerControllerMP;clickBlockCreative(Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/multiplayer/PlayerControllerMP;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;)V")})
     private /* synthetic */ void mixin_clickBlock(BlockPos a2, EnumFacing a3, CallbackInfoReturnable<Boolean> a4) {
@@ -103,44 +103,44 @@ implements IPlayerControllerMP {
     @Override
     public boolean onDamage(BlockPos a2, EnumFacing a3) {
         MixinTest1 a4;
-        a4.func_78750_j();
+        a4.syncCurrentPlayItem();
         if (a4.Dragon_blockHitDelay > 0) {
             --a4.Dragon_blockHitDelay;
             return true;
         }
-        if (a4.field_78779_k.func_77145_d() && a4.field_78776_a.field_71441_e.func_175723_af().func_177746_a(a2)) {
+        if (a4.currentGameType.isCreative() && a4.mc.world.getWorldBorder().contains(a2)) {
             a4.Dragon_blockHitDelay = 5;
-            a4.field_78776_a.func_193032_ao().func_193294_a(a4.field_78776_a.field_71441_e, a2, a4.field_78776_a.field_71441_e.func_180495_p(a2), 1.0f);
-            a4.field_78774_b.func_147297_a((Packet)new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, a2, a3));
-            MixinTest1.func_178891_a(a4.field_78776_a, (PlayerControllerMP)a4, a2, a3);
+            a4.mc.getTutorial().onHitBlock(a4.mc.world, a2, a4.mc.world.getBlockState(a2), 1.0f);
+            a4.connection.sendPacket((Packet)new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, a2, a3));
+            MixinTest1.clickBlockCreative(a4.mc, (PlayerControllerMP)a4, a2, a3);
             return true;
         }
-        if (a4.func_178893_a(a2)) {
-            IBlockState a5 = a4.field_78776_a.field_71441_e.func_180495_p(a2);
-            Block a6 = a5.func_177230_c();
-            if (a5.func_185904_a() == Material.field_151579_a) {
-                a4.field_78778_j = false;
+        if (a4.isHittingPosition(a2)) {
+            IBlockState a5 = a4.mc.world.getBlockState(a2);
+            Block a6 = a5.getBlock();
+            if (a5.getMaterial() == Material.AIR) {
+                a4.isHittingBlock = false;
                 return false;
             }
-            a4.field_78770_f += a5.func_185903_a((EntityPlayer)a4.field_78776_a.field_71439_g, a4.field_78776_a.field_71439_g.field_70170_p, a2);
-            if (a4.field_78780_h % 4.0f == 0.0f) {
-                SoundType a7 = a6.getSoundType(a5, (World)a4.field_78776_a.field_71441_e, a2, (Entity)a4.field_78776_a.field_71439_g);
-                a4.field_78776_a.func_147118_V().func_147682_a((ISound)new PositionedSoundRecord(a7.func_185846_f(), SoundCategory.NEUTRAL, (a7.func_185843_a() + 1.0f) / 8.0f, a7.func_185847_b() * 0.5f, a2));
+            a4.curBlockDamageMP += a5.getPlayerRelativeBlockHardness((EntityPlayer)a4.mc.player, a4.mc.player.world, a2);
+            if (a4.stepSoundTickCounter % 4.0f == 0.0f) {
+                SoundType a7 = a6.getSoundType(a5, (World)a4.mc.world, a2, (Entity)a4.mc.player);
+                a4.mc.getSoundHandler().playSound((ISound)new PositionedSoundRecord(a7.getHitSound(), SoundCategory.NEUTRAL, (a7.getVolume() + 1.0f) / 8.0f, a7.getPitch() * 0.5f, a2));
             }
-            a4.field_78780_h += 1.0f;
-            a4.field_78776_a.func_193032_ao().func_193294_a(a4.field_78776_a.field_71441_e, a2, a5, MathHelper.func_76131_a((float)a4.field_78770_f, (float)0.0f, (float)1.0f));
-            if (a4.field_78770_f >= 1.0f) {
-                a4.field_78778_j = false;
-                IPlayerControllerMP.send(a4.field_78774_b, a2, a3);
-                a4.func_187103_a(a2);
-                a4.field_78770_f = 0.0f;
-                a4.field_78780_h = 0.0f;
+            a4.stepSoundTickCounter += 1.0f;
+            a4.mc.getTutorial().onHitBlock(a4.mc.world, a2, a5, MathHelper.clamp((float)a4.curBlockDamageMP, (float)0.0f, (float)1.0f));
+            if (a4.curBlockDamageMP >= 1.0f) {
+                a4.isHittingBlock = false;
+                IPlayerControllerMP.send(a4.connection, a2, a3);
+                a4.onPlayerDestroyBlock(a2);
+                a4.curBlockDamageMP = 0.0f;
+                a4.stepSoundTickCounter = 0.0f;
                 a4.Dragon_blockHitDelay = 5;
             }
-            a4.field_78776_a.field_71441_e.func_175715_c(a4.field_78776_a.field_71439_g.func_145782_y(), a4.field_178895_c, (int)(a4.field_78770_f * 10.0f) - 1);
+            a4.mc.world.sendBlockBreakProgress(a4.mc.player.getEntityId(), a4.currentBlock, (int)(a4.curBlockDamageMP * 10.0f) - 1);
             return true;
         }
-        return a4.func_180511_b(a2, a3);
+        return a4.clickBlock(a2, a3);
     }
 }
 

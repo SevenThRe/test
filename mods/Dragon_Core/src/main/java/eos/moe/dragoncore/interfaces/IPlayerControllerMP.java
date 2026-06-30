@@ -21,7 +21,7 @@ public interface IPlayerControllerMP {
     public boolean onDamage(BlockPos var1, EnumFacing var2);
 
     public static void send(NetHandlerPlayClient a2, BlockPos a3, EnumFacing a4) {
-        a2.func_147297_a((Packet)new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, a3, a4));
+        a2.sendPacket((Packet)new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, a3, a4));
     }
 }
 

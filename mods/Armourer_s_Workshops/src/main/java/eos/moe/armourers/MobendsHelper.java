@@ -29,8 +29,8 @@ public class MobendsHelper {
     }
 
     public static void removeRenderEntity(RenderPlayer a2) {
-        if (a2.func_177087_b().field_178723_h instanceof IModelPart) {
-            ((IModelPart)a2.func_177087_b().field_178723_h).setRenderEntity(null);
+        if (a2.getMainModel().bipedRightArm instanceof IModelPart) {
+            ((IModelPart)a2.getMainModel().bipedRightArm).setRenderEntity(null);
         }
     }
 

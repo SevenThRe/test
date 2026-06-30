@@ -23,17 +23,17 @@ public class gd
 implements LayerRenderer<EntityLivingBase> {
     private RenderLivingBase j;
 
-    public void func_177141_a(EntityLivingBase a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9) {
+    public void doRenderLayer(EntityLivingBase a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9) {
         gd a10;
-        a2 = a10.j.func_177087_b();
+        a2 = a10.j.getMainModel();
         if (a2 instanceof ModelBiped) {
             ModelBiped modelBiped = (ModelBiped)a2;
-            modelBiped.field_178723_h.field_78807_k = false;
-            modelBiped.field_178724_i.field_78807_k = false;
+            modelBiped.bipedRightArm.isHidden = false;
+            modelBiped.bipedLeftArm.isHidden = false;
         }
     }
 
-    public boolean func_177142_b() {
+    public boolean shouldCombineTextures() {
         return false;
     }
 

@@ -49,26 +49,26 @@ public class av {
 
     @SubscribeEvent
     public static void ALLATORIxDEMO(TickEvent.ClientTickEvent a2) {
-        WorldClient a3 = Minecraft.func_71410_x().field_71441_e;
+        WorldClient a3 = Minecraft.getMinecraft().world;
         if (a3 != null) {
-            List a4 = a3.func_72910_y();
+            List a4 = a3.getLoadedEntityList();
             for (Entity a5 : a4) {
                 nh a6;
                 EntityLivingBase a7;
-                kp a8 = (kp)qr.b.k.getIfPresent((Object)a5.func_110124_au());
+                kp a8 = (kp)qr.b.k.getIfPresent((Object)a5.getUniqueID());
                 if (a8 == null) continue;
                 String a9 = a8.q.get("name");
                 if (!a9.equals(qr.b.getEntityName(a5))) {
-                    qr.b.k.invalidate((Object)a5.func_110124_au());
+                    qr.b.k.invalidate((Object)a5.getUniqueID());
                     continue;
                 }
                 a8.ALLATORIxDEMO(nj.h);
                 if (!(a5 instanceof EntityLivingBase)) continue;
                 a8.y = a7 = (EntityLivingBase)a5;
                 String a10 = a8.q.get("health");
-                String a11 = String.valueOf(a7.func_110143_aJ());
+                String a11 = String.valueOf(a7.getHealth());
                 String a12 = a8.q.get("health_max");
-                String a13 = String.valueOf(a7.func_110138_aP());
+                String a13 = String.valueOf(a7.getMaxHealth());
                 if ((a10 != null && !a10.equals(a11) || a12 != null && !a12.equals(a13)) && (a6 = a8.c.get(nj.f.ALLATORIxDEMO())) != null) {
                     fm.ALLATORIxDEMO(a6, new xf(a10), new xf(a11));
                 }
@@ -86,31 +86,31 @@ public class av {
         }
         EntityLivingBase a4 = a2.getEntity();
         qr a5 = qr.b;
-        kp a6 = (kp)a5.k.getIfPresent((Object)a4.func_110124_au());
+        kp a6 = (kp)a5.k.getIfPresent((Object)a4.getUniqueID());
         if (a6 == null && (a3 = a5.getMatchYaml((Entity)a4)) != null) {
             a6 = new kp(a4, a3);
             a6.q.put("name", a5.getEntityName((Entity)a4));
-            a5.k.put((Object)a4.func_110124_au(), (Object)a6);
+            a5.k.put((Object)a4.getUniqueID(), (Object)a6);
             a6.ALLATORIxDEMO(nj.n);
         }
         if (a6 == null) {
             return;
         }
-        a3 = Minecraft.func_71410_x().func_175598_ae();
+        a3 = Minecraft.getMinecraft().getRenderManager();
         switch (a6.x) {
             case "aim": {
-                if (((RenderManager)a3).field_147941_i == a4) break;
+                if (((RenderManager)a3).pointedEntity == a4) break;
                 return;
             }
             case "always": {
                 break;
             }
             case "health": {
-                if (a4.func_110143_aJ() != a4.func_110138_aP()) break;
+                if (a4.getHealth() != a4.getMaxHealth()) break;
                 return;
             }
             case "aimorhealth": {
-                if (((RenderManager)a3).field_147941_i == a4 || a4.func_110143_aJ() != a4.func_110138_aP()) break;
+                if (((RenderManager)a3).pointedEntity == a4 || a4.getHealth() != a4.getMaxHealth()) break;
                 return;
             }
         }
@@ -122,8 +122,8 @@ public class av {
             catch (Exception exception) {
                 // empty catch block
             }
-            EntityPlayerSP a8 = Minecraft.func_71410_x().field_71439_g;
-            if (a8.func_70032_d((Entity)a4) > (float)a7) {
+            EntityPlayerSP a8 = Minecraft.getMinecraft().player;
+            if (a8.getDistance((Entity)a4) > (float)a7) {
                 return;
             }
         }
@@ -131,36 +131,36 @@ public class av {
         float a9 = (float)a2.getX();
         float a10 = (float)((double)((float)a2.getY()) + a6.b.c());
         float a11 = (float)a2.getZ();
-        float a12 = ((RenderManager)a3).field_78735_i;
-        float a13 = ((RenderManager)a3).field_78732_j;
-        boolean a14 = ((RenderManager)a3).field_78733_k.field_74320_O == 2;
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)a9, (float)a10, (float)a11);
-        GlStateManager.func_187432_a((float)0.0f, (float)1.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)(-a12), (float)0.0f, (float)1.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)((float)(a14 ? -1 : 1) * a13), (float)1.0f, (float)0.0f, (float)0.0f);
-        GlStateManager.func_179152_a((float)-0.025f, (float)-0.025f, (float)0.025f);
-        GlStateManager.func_179140_f();
-        GlStateManager.func_179132_a((boolean)false);
-        GlStateManager.func_179097_i();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_187428_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
+        float a12 = ((RenderManager)a3).playerViewY;
+        float a13 = ((RenderManager)a3).playerViewX;
+        boolean a14 = ((RenderManager)a3).options.thirdPersonView == 2;
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)a9, (float)a10, (float)a11);
+        GlStateManager.glNormal3f((float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.rotate((float)(-a12), (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.rotate((float)((float)(a14 ? -1 : 1) * a13), (float)1.0f, (float)0.0f, (float)0.0f);
+        GlStateManager.scale((float)-0.025f, (float)-0.025f, (float)0.025f);
+        GlStateManager.disableLighting();
+        GlStateManager.depthMask((boolean)false);
+        GlStateManager.disableDepth();
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
         if (a6.r) {
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             sd.ALLATORIxDEMO(0.5f);
             a6.ALLATORIxDEMO(a4, a2.getPartialRenderTick(), true);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
-        GlStateManager.func_179126_j();
-        GlStateManager.func_179132_a((boolean)true);
-        GlStateManager.func_179094_E();
+        GlStateManager.enableDepth();
+        GlStateManager.depthMask((boolean)true);
+        GlStateManager.pushMatrix();
         sd.ALLATORIxDEMO(1.0f);
         a6.ALLATORIxDEMO(a4, a2.getPartialRenderTick(), false);
-        GlStateManager.func_179121_F();
-        GlStateManager.func_179145_e();
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
+        GlStateManager.enableLighting();
+        GlStateManager.disableBlend();
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.popMatrix();
     }
 }
 

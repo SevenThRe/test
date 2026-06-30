@@ -35,7 +35,7 @@ extends AnimationBit<BipedEntityData<?>> {
         SmoothOrientation mainItemRotation;
         data.localOffset.slideToZero(0.3f);
         Object living = data.getEntity();
-        EnumHandSide primaryHand = living.func_184591_cq();
+        EnumHandSide primaryHand = living.getPrimaryHand();
         boolean mainHandSwitch = primaryHand == EnumHandSide.RIGHT;
         float handDirMtp = mainHandSwitch ? 1.0f : -1.0f;
         ModelPartTransform mainArm = mainHandSwitch ? data.rightArm : data.leftArm;
@@ -46,7 +46,7 @@ extends AnimationBit<BipedEntityData<?>> {
         if (data.getTicksAfterAttack() < 0.5f) {
             data.swordTrail.reset();
         }
-        if (living.func_184586_b(EnumHand.MAIN_HAND) != null && living.func_184586_b(EnumHand.MAIN_HAND).func_77973_b() instanceof ItemSword) {
+        if (living.getHeldItem(EnumHand.MAIN_HAND) != null && living.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemSword) {
             data.swordTrail.add(data);
         }
         float attackState = data.getTicksAfterAttack() / 10.0f;
@@ -57,7 +57,7 @@ extends AnimationBit<BipedEntityData<?>> {
         bodyRot.x = 20.0f - attackState * 20.0f;
         bodyRot.y = 20.0f * attackState * handDirMtp;
         data.body.rotation.setSmoothness(0.9f).orientX(bodyRot.x).orientY(bodyRot.y);
-        data.head.rotation.orientX(MathHelper.func_76142_g((float)((Float)data.headPitch.get()).floatValue()) - bodyRot.x).rotateY(MathHelper.func_76142_g((float)((Float)data.headYaw.get()).floatValue()) - bodyRot.y - 30.0f);
+        data.head.rotation.orientX(MathHelper.wrapDegrees((float)((Float)data.headPitch.get()).floatValue()) - bodyRot.x).rotateY(MathHelper.wrapDegrees((float)((Float)data.headYaw.get()).floatValue()) - bodyRot.y - 30.0f);
         offArm.getRotation().setSmoothness(0.3f).orientZ(20.0f * handDirMtp);
         offArm.getRotation().setSmoothness(0.3f).orientZ(-80.0f * handDirMtp);
         mainArm.getRotation().setSmoothness(0.3f).orientZ(-(-10.0f - var5 * 120.0f) * handDirMtp).rotateInstantY(-20.0f + armSwing * 70.0f);
@@ -72,7 +72,7 @@ extends AnimationBit<BipedEntityData<?>> {
         data.globalOffset.slideY(-2.0f);
         mainItemRotation.setSmoothness(0.9f).orientX(90.0f * attackState);
         float renderRotationY = 30.0f + 360.0f * var5;
-        data.renderRotation.orientInstantY(MathHelper.func_76142_g((float)(-renderRotationY * handDirMtp)));
+        data.renderRotation.orientInstantY(MathHelper.wrapDegrees((float)(-renderRotationY * handDirMtp)));
     }
 }
 

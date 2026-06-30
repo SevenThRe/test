@@ -68,12 +68,12 @@ implements ITask {
         this.initTask(mc, jm, jmWorldDir, threadLogging);
         int count = 0;
         try {
-            if (mc.field_71441_e == null) {
+            if (mc.world == null) {
                 this.complete(count, true, false);
                 return;
             }
             Iterator<ChunkPos> chunkIter = this.chunkCoords.iterator();
-            int currentDimension = FMLClientHandler.instance().getClient().field_71439_g.field_70170_p.field_73011_w.getDimension();
+            int currentDimension = FMLClientHandler.instance().getClient().player.world.provider.getDimension();
             if (currentDimension != this.mapType.dimension) {
                 if (threadLogging) {
                     logger.debug("Dimension changed, map task obsolete.");
@@ -82,7 +82,7 @@ implements ITask {
                 this.complete(count, true, false);
                 return;
             }
-            ChunkPos playerChunk = new ChunkPos(FMLClientHandler.instance().getClient().field_71439_g.func_180425_c());
+            ChunkPos playerChunk = new ChunkPos(FMLClientHandler.instance().getClient().player.getPosition());
             while (chunkIter.hasNext()) {
                 if (!jm.isMapping().booleanValue()) {
                     if (threadLogging) {
@@ -99,7 +99,7 @@ implements ITask {
                 ChunkMD chunkMd = DataCache.INSTANCE.getChunkMD(coord);
                 if (chunkMd == null || !chunkMd.hasChunk()) continue;
                 try {
-                    RegionCoord rCoord = RegionCoord.fromChunkPos(jmWorldDir, this.mapType, chunkMd.getCoord().field_77276_a, chunkMd.getCoord().field_77275_b);
+                    RegionCoord rCoord = RegionCoord.fromChunkPos(jmWorldDir, this.mapType, chunkMd.getCoord().x, chunkMd.getCoord().z);
                     boolean rendered = this.renderController.renderChunk(rCoord, this.mapType, chunkMd);
                     if (!rendered) continue;
                     ++count;

@@ -47,17 +47,17 @@ public class fg {
      */
     public static BufferedImage ALLATORIxDEMO(AbstractClientPlayer a2) {
         BufferedImage a3 = null;
-        ResourceLocation a4 = DefaultPlayerSkin.func_177335_a();
+        ResourceLocation a4 = DefaultPlayerSkin.getDefaultSkinLegacy();
         InputStream a5 = null;
-        Minecraft a6 = Minecraft.func_71410_x();
-        a4 = a2.func_110306_p();
+        Minecraft a6 = Minecraft.getMinecraft();
+        a4 = a2.getLocationSkin();
         try {
-            ITextureObject a7 = a6.func_110434_K().func_110581_b(a4);
+            ITextureObject a7 = a6.getTextureManager().getTexture(a4);
             if (a7 instanceof ThreadDownloadImageData) {
                 ThreadDownloadImageData a8 = (ThreadDownloadImageData)a7;
-                a3 = (BufferedImage)ObfuscationReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, (Object)a8, (String[])new String[]{"bufferedImage", "field_110560_d", "bpr.h"});
+                a3 = (BufferedImage)ObfuscationReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, (Object)a8, (String[])new String[]{"bufferedImage", "bufferedImage", "bpr.h"});
             } else {
-                a5 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a4).func_110527_b();
+                a5 = Minecraft.getMinecraft().getResourceManager().getResource(a4).getInputStream();
                 a3 = ImageIO.read(a5);
             }
             IOUtils.closeQuietly((InputStream)a5);
@@ -75,16 +75,16 @@ public class fg {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public static BufferedImage c(ResourceLocation a2) {
-        Minecraft a3 = Minecraft.func_71410_x();
+        Minecraft a3 = Minecraft.getMinecraft();
         BufferedImage a4 = null;
         InputStream a5 = null;
         try {
-            ITextureObject a6 = a3.func_110434_K().func_110581_b(a2);
+            ITextureObject a6 = a3.getTextureManager().getTexture(a2);
             if (a6 instanceof ThreadDownloadImageData) {
                 ThreadDownloadImageData a7 = (ThreadDownloadImageData)a6;
-                a4 = (BufferedImage)ObfuscationReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, (Object)a7, (String[])new String[]{"bufferedImage", "field_110560_d", "bpr.h"});
+                a4 = (BufferedImage)ObfuscationReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, (Object)a7, (String[])new String[]{"bufferedImage", "bufferedImage", "bpr.h"});
             } else {
-                a5 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a2).func_110527_b();
+                a5 = Minecraft.getMinecraft().getResourceManager().getResource(a2).getInputStream();
                 a4 = ImageIO.read(a5);
             }
             IOUtils.closeQuietly((InputStream)a5);
@@ -103,23 +103,23 @@ public class fg {
      */
     public static BufferedImage c(GameProfile a2) {
         BufferedImage a3 = null;
-        ResourceLocation a4 = DefaultPlayerSkin.func_177335_a();
+        ResourceLocation a4 = DefaultPlayerSkin.getDefaultSkinLegacy();
         InputStream a5 = null;
-        Minecraft a6 = Minecraft.func_71410_x();
-        Map a7 = a6.func_152342_ad().func_152788_a(a2);
+        Minecraft a6 = Minecraft.getMinecraft();
+        Map a7 = a6.getSkinManager().loadSkinFromCache(a2);
         try {
             if (a7.containsKey(MinecraftProfileTexture.Type.SKIN)) {
-                a4 = a6.func_152342_ad().func_152792_a((MinecraftProfileTexture)a7.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
-                ITextureObject a8 = a6.func_110434_K().func_110581_b(a4);
+                a4 = a6.getSkinManager().loadSkin((MinecraftProfileTexture)a7.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
+                ITextureObject a8 = a6.getTextureManager().getTexture(a4);
                 if (a8 instanceof ThreadDownloadImageData) {
                     ThreadDownloadImageData a9 = (ThreadDownloadImageData)a8;
-                    a3 = (BufferedImage)ObfuscationReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, (Object)a9, (String[])new String[]{"bufferedImage", "field_110560_d", "bpr.h"});
+                    a3 = (BufferedImage)ObfuscationReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, (Object)a9, (String[])new String[]{"bufferedImage", "bufferedImage", "bpr.h"});
                 } else {
-                    a5 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a4).func_110527_b();
+                    a5 = Minecraft.getMinecraft().getResourceManager().getResource(a4).getInputStream();
                     a3 = ImageIO.read(a5);
                 }
             } else {
-                a5 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a4).func_110527_b();
+                a5 = Minecraft.getMinecraft().getResourceManager().getResource(a4).getInputStream();
                 a3 = ImageIO.read(a5);
             }
             IOUtils.closeQuietly((InputStream)a5);
@@ -135,13 +135,13 @@ public class fg {
 
     public static BufferedImage ALLATORIxDEMO(GameProfile a2) {
         BufferedImage a3 = null;
-        ResourceLocation a4 = DefaultPlayerSkin.func_177335_a();
+        ResourceLocation a4 = DefaultPlayerSkin.getDefaultSkinLegacy();
         if (a2 != null) {
-            a4 = AbstractClientPlayer.func_110311_f((String)a2.getName());
-            AbstractClientPlayer.func_110304_a((ResourceLocation)a4, (String)a2.getName());
+            a4 = AbstractClientPlayer.getLocationSkin((String)a2.getName());
+            AbstractClientPlayer.getDownloadImageSkin((ResourceLocation)a4, (String)a2.getName());
         }
         if ((a3 = fg.ALLATORIxDEMO(a4)) == null) {
-            a3 = fg.ALLATORIxDEMO(DefaultPlayerSkin.func_177335_a());
+            a3 = fg.ALLATORIxDEMO(DefaultPlayerSkin.getDefaultSkinLegacy());
         }
         return a3;
     }
@@ -153,12 +153,12 @@ public class fg {
         BufferedImage a3 = null;
         InputStream a4 = null;
         try {
-            ITextureObject a5 = Minecraft.func_71410_x().func_110434_K().func_110581_b(a2);
+            ITextureObject a5 = Minecraft.getMinecraft().getTextureManager().getTexture(a2);
             if (a5 instanceof ThreadDownloadImageData) {
                 ThreadDownloadImageData a6 = (ThreadDownloadImageData)a5;
-                a3 = (BufferedImage)ObfuscationReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, (Object)a6, (String[])new String[]{"bufferedImage", "field_110560_d", "bpr.h"});
+                a3 = (BufferedImage)ObfuscationReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, (Object)a6, (String[])new String[]{"bufferedImage", "bufferedImage", "bpr.h"});
             } else {
-                a4 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a2).func_110527_b();
+                a4 = Minecraft.getMinecraft().getResourceManager().getResource(a2).getInputStream();
                 a3 = ImageIO.read(a4);
             }
             IOUtils.closeQuietly((InputStream)a4);
@@ -173,19 +173,19 @@ public class fg {
     }
 
     public static void ALLATORIxDEMO(GameProfile a2) {
-        ResourceLocation a3 = DefaultPlayerSkin.func_177335_a();
+        ResourceLocation a3 = DefaultPlayerSkin.getDefaultSkinLegacy();
         if (a2 != null) {
             a3 = fg.ALLATORIxDEMO(a2, MinecraftProfileTexture.Type.SKIN);
         }
-        Minecraft.func_71410_x().field_71446_o.func_110577_a(a3);
+        Minecraft.getMinecraft().renderEngine.bindTexture(a3);
     }
 
     public static ResourceLocation ALLATORIxDEMO(GameProfile a2, MinecraftProfileTexture.Type a3) {
         Minecraft a4;
         Map a5;
-        ResourceLocation a6 = DefaultPlayerSkin.func_177335_a();
-        if (a2 != null && (a5 = (a4 = Minecraft.func_71410_x()).func_152342_ad().func_152788_a(a2)).containsKey(a3)) {
-            a6 = a4.func_152342_ad().func_152792_a((MinecraftProfileTexture)a5.get(a3), a3);
+        ResourceLocation a6 = DefaultPlayerSkin.getDefaultSkinLegacy();
+        if (a2 != null && (a5 = (a4 = Minecraft.getMinecraft()).getSkinManager().loadSkinFromCache(a2)).containsKey(a3)) {
+            a6 = a4.getSkinManager().loadSkin((MinecraftProfileTexture)a5.get(a3), a3);
         }
         return a6;
     }

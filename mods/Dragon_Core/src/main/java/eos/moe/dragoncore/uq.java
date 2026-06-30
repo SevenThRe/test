@@ -61,24 +61,24 @@ extends ss {
     }
 
     @Override
-    public void func_78088_a(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
+    public void render(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
         uq a9;
-        a9.func_78087_a(a3, a4, a5, a6, a7, a8, a2);
-        if (a9.field_78091_s) {
+        a9.setRotationAngles(a3, a4, a5, a6, a7, a8, a2);
+        if (a9.isChild) {
             float a10 = 2.0f;
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)0.0f, (float)(a9.k * a8), (float)(a9.ALLATORIxDEMO * a8));
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)0.0f, (float)(a9.k * a8), (float)(a9.ALLATORIxDEMO * a8));
             a9.m.d(a8);
-            GlStateManager.func_179121_F();
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179152_a((float)0.5f, (float)0.5f, (float)0.5f);
-            GlStateManager.func_179109_b((float)0.0f, (float)(24.0f * a8), (float)0.0f);
+            GlStateManager.popMatrix();
+            GlStateManager.pushMatrix();
+            GlStateManager.scale((float)0.5f, (float)0.5f, (float)0.5f);
+            GlStateManager.translate((float)0.0f, (float)(24.0f * a8), (float)0.0f);
             a9.c.d(a8);
             a9.q.d(a8);
             a9.b.d(a8);
             a9.o.d(a8);
             a9.y.d(a8);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         } else {
             a9.m.d(a8);
             a9.c.d(a8);
@@ -89,14 +89,14 @@ extends ss {
         }
     }
 
-    public void func_78087_a(float a2, float a3, float a4, float a5, float a6, float a7, Entity a8) {
+    public void setRotationAngles(float a2, float a3, float a4, float a5, float a6, float a7, Entity a8) {
         a.m.s = a6 * ((float)Math.PI / 180);
         a.m.g = a5 * ((float)Math.PI / 180);
         a.c.s = 1.5707964f;
-        a.q.s = MathHelper.func_76134_b((float)(a2 * 0.6662f)) * 1.4f * a3;
-        a.b.s = MathHelper.func_76134_b((float)(a2 * 0.6662f + (float)Math.PI)) * 1.4f * a3;
-        a.o.s = MathHelper.func_76134_b((float)(a2 * 0.6662f + (float)Math.PI)) * 1.4f * a3;
-        a.y.s = MathHelper.func_76134_b((float)(a2 * 0.6662f)) * 1.4f * a3;
+        a.q.s = MathHelper.cos((float)(a2 * 0.6662f)) * 1.4f * a3;
+        a.b.s = MathHelper.cos((float)(a2 * 0.6662f + (float)Math.PI)) * 1.4f * a3;
+        a.o.s = MathHelper.cos((float)(a2 * 0.6662f + (float)Math.PI)) * 1.4f * a3;
+        a.y.s = MathHelper.cos((float)(a2 * 0.6662f)) * 1.4f * a3;
     }
 }
 

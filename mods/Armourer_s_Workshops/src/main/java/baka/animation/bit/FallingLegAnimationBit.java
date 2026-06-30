@@ -29,10 +29,10 @@ extends AnimationBit<PlayerData> {
         float rightArmDelay = 1.0f;
         float legSpan = 10.0f;
         float transition = (data.getTicksFalling() - 10.0f) / 80.0f;
-        transition = MathHelper.func_76131_a((float)transition, (float)0.0f, (float)1.0f);
+        transition = MathHelper.clamp((float)transition, (float)0.0f, (float)1.0f);
         float s2 = 0.0f + transition * 0.9f;
-        data.leftLeg.rotation.setSmoothness(s2).orientX(MathHelper.func_76126_a((float)ticks) * legSpan).rotateZ(-20.0f + MathHelper.func_76134_b((float)ticks) * legSpan);
-        data.rightLeg.rotation.setSmoothness(s2).orientX(MathHelper.func_76126_a((float)(ticks + rightArmDelay)) * legSpan).rotateZ(20.0f + MathHelper.func_76134_b((float)(ticks + rightArmDelay)) * legSpan);
+        data.leftLeg.rotation.setSmoothness(s2).orientX(MathHelper.sin((float)ticks) * legSpan).rotateZ(-20.0f + MathHelper.cos((float)ticks) * legSpan);
+        data.rightLeg.rotation.setSmoothness(s2).orientX(MathHelper.sin((float)(ticks + rightArmDelay)) * legSpan).rotateZ(20.0f + MathHelper.cos((float)(ticks + rightArmDelay)) * legSpan);
         data.leftForeLeg.rotation.setSmoothness(s2).orientX(20.0f);
         data.rightForeLeg.rotation.setSmoothness(s2).orientX(20.0f);
         data.renderRotation.setSmoothness(s2).orientX(20.0f);

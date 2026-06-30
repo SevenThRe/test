@@ -25,7 +25,7 @@ public class InvTweaksConst {
     public static final int POLLING_DELAY = 3;
     public static final int CHEST_ALGORITHM_SWAP_MAX_INTERVAL = 2000;
     public static final int TOOLTIP_DELAY = 800;
-    public static final File MINECRAFT_DIR = Minecraft.func_71410_x().field_71412_D;
+    public static final File MINECRAFT_DIR = Minecraft.getMinecraft().gameDir;
     public static final File MINECRAFT_CONFIG_DIR = new File(MINECRAFT_DIR, "config/");
     public static final File CONFIG_PROPS_FILE = new File(MINECRAFT_CONFIG_DIR, "InvTweaks.cfg");
     public static final File CONFIG_RULES_FILE = new File(MINECRAFT_CONFIG_DIR, "InvTweaksRules.txt");

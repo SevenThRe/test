@@ -52,10 +52,10 @@ implements q {
     private /* synthetic */ void r(int a22, int a3, int a4, int a5, int a6, int a7) {
         kf a8;
         BlockPos a22 = new BlockPos(a22 + 1, -a3, a4);
-        if (a8.l[a22.func_177958_n()][a22.func_177956_o()][a22.func_177952_p()] == null) {
-            a8.l[a22.func_177958_n()][a22.func_177956_o()][a22.func_177952_p()] = new xf(127, 127, 127, -127, -127, -127);
+        if (a8.l[a22.getX()][a22.getY()][a22.getZ()] == null) {
+            a8.l[a22.getX()][a22.getY()][a22.getZ()] = new xf(127, 127, 127, -127, -127, -127);
         }
-        xf xf2 = a8.l[a22.func_177958_n()][a22.func_177956_o()][a22.func_177952_p()];
+        xf xf2 = a8.l[a22.getX()][a22.getY()][a22.getZ()];
         xf2.s(Math.min(xf2.x(), a5));
         xf2.r(Math.min(xf2.s(), a6));
         xf2.y(Math.min(xf2.r(), a7));
@@ -159,7 +159,7 @@ implements q {
             n2 = a2;
         }
         if (bl & n2 < a3.j.size()) {
-            return EnumFacing.func_82600_a((int)(a3.j.get((int)a2).s - 1));
+            return EnumFacing.byIndex((int)(a3.j.get((int)a2).s - 1));
         }
         return null;
     }
@@ -200,9 +200,9 @@ implements q {
         while (n4 < a2.v.r()) {
             kf kf2 = a2;
             byte[] byArray = kf2.v.h(n3);
-            n2 = MathHelper.func_76141_d((float)((float)(byArray[0] + 8) / 16.0f));
-            int n5 = MathHelper.func_76141_d((float)((float)(byArray[1] + 8) / 16.0f));
-            int n6 = MathHelper.func_76141_d((float)((float)(byArray[2] + 8) / 16.0f));
+            n2 = MathHelper.floor((float)((float)(byArray[0] + 8) / 16.0f));
+            int n5 = MathHelper.floor((float)((float)(byArray[1] + 8) / 16.0f));
+            int n6 = MathHelper.floor((float)((float)(byArray[2] + 8) / 16.0f));
             kf2.r(n2, n5, n6, byArray[0] - n2 * 16, byArray[1] - n5 * 16, byArray[2] - n6 * 16);
             n4 = ++n3;
         }

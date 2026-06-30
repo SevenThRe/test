@@ -21,11 +21,11 @@ public final class ResourcesKt {
     @NotNull
     public static final InputStream getResourceAsStream(@NotNull ResourceLocation $this$getResourceAsStream) {
         Intrinsics.checkParameterIsNotNull($this$getResourceAsStream, "$this$getResourceAsStream");
-        Minecraft minecraft = Minecraft.func_71410_x();
+        Minecraft minecraft = Minecraft.getMinecraft();
         Intrinsics.checkExpressionValueIsNotNull(minecraft, "Minecraft.getMinecraft()");
-        IResource iResource = minecraft.func_110442_L().func_110536_a($this$getResourceAsStream);
+        IResource iResource = minecraft.getResourceManager().getResource($this$getResourceAsStream);
         Intrinsics.checkExpressionValueIsNotNull(iResource, "Minecraft.getMinecraft()\u2026Manager.getResource(this)");
-        InputStream inputStream = iResource.func_110527_b();
+        InputStream inputStream = iResource.getInputStream();
         Intrinsics.checkExpressionValueIsNotNull(inputStream, "Minecraft.getMinecraft()\u2026esource(this).inputStream");
         return inputStream;
     }

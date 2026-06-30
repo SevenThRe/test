@@ -92,13 +92,13 @@ extends jj {
     public void render(int a2, int a3) {
         dn a4;
         Entity a5 = a4.getEntity(a4.ua.ALLATORIxDEMO());
-        if (a5 != null && Minecraft.func_71410_x().func_175598_ae().field_78734_h != null && a5 instanceof EntityLivingBase) {
+        if (a5 != null && Minecraft.getMinecraft().getRenderManager().renderViewEntity != null && a5 instanceof EntityLivingBase) {
             xz a6;
-            if (((af)((Object)a4.y)).isHud() && !(Minecraft.func_71410_x().field_71462_r instanceof GuiChat)) {
+            if (((af)((Object)a4.y)).isHud() && !(Minecraft.getMinecraft().currentScreen instanceof GuiChat)) {
                 a2 = (int)(a4.getXPos() + a4.s.ALLATORIxDEMO());
                 a3 = (int)(a4.getYPos() + ((qk)((Object)a4.g)).ALLATORIxDEMO() - 50.0 * a4.ba.c());
             }
-            if (Minecraft.func_71410_x().field_71441_e.func_73045_a(a5.func_145782_y()) != a5 && (a6 = dt.k.getEntityManager(a5.func_110124_au())) != null) {
+            if (Minecraft.getMinecraft().world.getEntityByID(a5.getEntityId()) != a5 && (a6 = dt.k.getEntityManager(a5.getUniqueID())) != null) {
                 dt.k.startAnimation(a6, "idle", 0, 1.0f);
             }
             a4.drawEntityOnScreen(0, 0, 30, a4.getXPos() + a4.s.ALLATORIxDEMO() - (double)a2, a4.getYPos() + ((qk)((Object)a4.g)).ALLATORIxDEMO() - 50.0 * a4.ba.c() - (double)a3, (EntityLivingBase)a5);
@@ -122,23 +122,23 @@ extends jj {
         dn a3;
         switch (a2) {
             case "owner": {
-                return Minecraft.func_71410_x().field_71439_g;
+                return Minecraft.getMinecraft().player;
             }
             case "aim": {
-                if (Minecraft.func_71410_x().field_71476_x != null) {
-                    return Minecraft.func_71410_x().field_71476_x.field_72308_g;
+                if (Minecraft.getMinecraft().objectMouseOver != null) {
+                    return Minecraft.getMinecraft().objectMouseOver.entityHit;
                 }
                 return null;
             }
             case "firstaim": {
-                if (a3.s == null && Minecraft.func_71410_x().field_71476_x != null) {
-                    a3.s = Minecraft.func_71410_x().field_71476_x.field_72308_g;
+                if (a3.s == null && Minecraft.getMinecraft().objectMouseOver != null) {
+                    a3.s = Minecraft.getMinecraft().objectMouseOver.entityHit;
                 }
                 return a3.s;
             }
         }
         if (NumberUtils.isDigits((String)a2)) {
-            return Minecraft.func_71410_x().field_71441_e.func_73045_a(NumberUtils.toInt((String)a2));
+            return Minecraft.getMinecraft().world.getEntityByID(NumberUtils.toInt((String)a2));
         }
         try {
             UUID a4 = UUID.fromString(a2);
@@ -155,7 +155,7 @@ extends jj {
                 if (a7.equals("player")) {
                     a3.b = new EntityOtherPlayerMP((World)FMLClientHandler.instance().getWorldClient(), new GameProfile(UUID.randomUUID(), a2));
                 } else {
-                    a6 = net.minecraft.entity.EntityList.func_192839_a((String)a7);
+                    a6 = net.minecraft.entity.EntityList.getClassFromName((String)a7);
                     if (a6 == null) {
                         a6 = EntityArmorStand.class;
                     }
@@ -166,15 +166,15 @@ extends jj {
                         a3.b = new EntityArmorStand((World)FMLClientHandler.instance().getWorldClient());
                     }
                 }
-                a3.b.func_174805_g(true);
+                a3.b.setAlwaysRenderNameTag(true);
             }
-            a6 = Minecraft.func_71410_x().func_175598_ae();
-            if (((RenderManager)a6).field_78734_h != null) {
-                a3.b.field_70165_t = ((RenderManager)a6).field_78734_h.field_70165_t;
-                a3.b.field_70163_u = ((RenderManager)a6).field_78734_h.field_70163_u;
-                a3.b.field_70161_v = ((RenderManager)a6).field_78734_h.field_70161_v;
+            a6 = Minecraft.getMinecraft().getRenderManager();
+            if (((RenderManager)a6).renderViewEntity != null) {
+                a3.b.posX = ((RenderManager)a6).renderViewEntity.posX;
+                a3.b.posY = ((RenderManager)a6).renderViewEntity.posY;
+                a3.b.posZ = ((RenderManager)a6).renderViewEntity.posZ;
             }
-            a3.b.func_96094_a(a2);
+            a3.b.setCustomNameTag(a2);
             return a3.b;
         }
     }
@@ -281,58 +281,58 @@ extends jj {
         ModelBase a9;
         dn a10;
         boolean a11 = a10.q.ALLATORIxDEMO();
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)sd.ALLATORIxDEMO());
-        GlStateManager.func_179142_g();
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)a2, (float)a3, (float)0.0f);
-        GlStateManager.func_179152_a((float)(-a4), (float)a4, (float)a4);
-        GlStateManager.func_179114_b((float)180.0f, (float)0.0f, (float)0.0f, (float)1.0f);
-        float a12 = a7.field_70761_aq;
-        float a13 = a7.field_70177_z;
-        float a14 = a7.field_70125_A;
-        float a15 = a7.field_70758_at;
-        float a16 = a7.field_70759_as;
-        GlStateManager.func_179114_b((float)135.0f, (float)0.0f, (float)1.0f, (float)0.0f);
-        RenderHelper.func_74519_b();
-        GlStateManager.func_179114_b((float)-135.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)sd.ALLATORIxDEMO());
+        GlStateManager.enableColorMaterial();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)a2, (float)a3, (float)0.0f);
+        GlStateManager.scale((float)(-a4), (float)a4, (float)a4);
+        GlStateManager.rotate((float)180.0f, (float)0.0f, (float)0.0f, (float)1.0f);
+        float a12 = a7.renderYawOffset;
+        float a13 = a7.rotationYaw;
+        float a14 = a7.rotationPitch;
+        float a15 = a7.prevRotationYawHead;
+        float a16 = a7.rotationYawHead;
+        GlStateManager.rotate((float)135.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.rotate((float)-135.0f, (float)0.0f, (float)1.0f, (float)0.0f);
         if (a11) {
-            GlStateManager.func_179114_b((float)(-((float)Math.atan(a6 / 40.0)) * 20.0f), (float)1.0f, (float)0.0f, (float)0.0f);
-            a7.field_70761_aq = (float)Math.atan(a5 / 40.0) * 20.0f;
-            a7.field_70177_z = (float)Math.atan(a5 / 40.0) * 40.0f;
-            a7.field_70125_A = -((float)Math.atan(a6 / 40.0)) * 20.0f;
+            GlStateManager.rotate((float)(-((float)Math.atan(a6 / 40.0)) * 20.0f), (float)1.0f, (float)0.0f, (float)0.0f);
+            a7.renderYawOffset = (float)Math.atan(a5 / 40.0) * 20.0f;
+            a7.rotationYaw = (float)Math.atan(a5 / 40.0) * 40.0f;
+            a7.rotationPitch = -((float)Math.atan(a6 / 40.0)) * 20.0f;
         } else {
-            a7.field_70761_aq = 0.0f;
-            a7.field_70177_z = 0.0f;
-            a7.field_70125_A = 0.0f;
+            a7.renderYawOffset = 0.0f;
+            a7.rotationYaw = 0.0f;
+            a7.rotationPitch = 0.0f;
         }
-        a7.field_70759_as = a7.field_70177_z;
-        a7.field_70758_at = a7.field_70177_z;
-        RenderManager a17 = Minecraft.func_71410_x().func_175598_ae();
-        a17.func_178631_a(180.0f);
-        a17.func_178633_a(false);
-        Render a18 = a17.func_78713_a((Entity)a7);
+        a7.rotationYawHead = a7.rotationYaw;
+        a7.prevRotationYawHead = a7.rotationYaw;
+        RenderManager a17 = Minecraft.getMinecraft().getRenderManager();
+        a17.setPlayerViewY(180.0f);
+        a17.setRenderShadow(false);
+        Render a18 = a17.getEntityRenderObject((Entity)a7);
         ModelPlayer a19 = null;
-        if (a18 instanceof RenderLivingBase && (a9 = (a8 = (RenderLivingBase)a18).func_177087_b()) instanceof ModelPlayer) {
+        if (a18 instanceof RenderLivingBase && (a9 = (a8 = (RenderLivingBase)a18).getMainModel()) instanceof ModelPlayer) {
             a19 = (ModelPlayer)a9;
         }
         if (a19 != null && a10.g.ALLATORIxDEMO()) {
-            a19.func_178719_a(true);
+            a19.setVisible(true);
         }
         ALLATORIxDEMO = a10.o.ALLATORIxDEMO();
-        a17.func_188391_a((Entity)a7, 0.0, 0.0, 0.0, 0.0f, 1.0f, false);
+        a17.renderEntity((Entity)a7, 0.0, 0.0, 0.0, 0.0f, 1.0f, false);
         ALLATORIxDEMO = false;
-        a17.func_178633_a(true);
-        a7.field_70761_aq = a12;
-        a7.field_70177_z = a13;
-        a7.field_70125_A = a14;
-        a7.field_70758_at = a15;
-        a7.field_70759_as = a16;
-        GlStateManager.func_179121_F();
-        RenderHelper.func_74518_a();
-        GlStateManager.func_179101_C();
-        GlStateManager.func_179138_g((int)OpenGlHelper.field_77476_b);
-        GlStateManager.func_179090_x();
-        GlStateManager.func_179138_g((int)OpenGlHelper.field_77478_a);
+        a17.setRenderShadow(true);
+        a7.renderYawOffset = a12;
+        a7.rotationYaw = a13;
+        a7.rotationPitch = a14;
+        a7.prevRotationYawHead = a15;
+        a7.rotationYawHead = a16;
+        GlStateManager.popMatrix();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.setActiveTexture((int)OpenGlHelper.lightmapTexUnit);
+        GlStateManager.disableTexture2D();
+        GlStateManager.setActiveTexture((int)OpenGlHelper.defaultTexUnit);
     }
 
     @SubscribeEvent(priority=EventPriority.HIGHEST)

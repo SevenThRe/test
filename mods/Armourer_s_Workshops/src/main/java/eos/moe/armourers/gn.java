@@ -63,26 +63,26 @@ implements LayerRenderer<E> {
         gn3.s[11] = vn.b;
     }
 
-    public void func_177141_a(E a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9) {
+    public void doRenderLayer(E a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9) {
         gn a10;
         int n2;
-        if (Minecraft.func_71410_x().field_71439_g.func_70011_f(((EntityLivingBase)a2).field_70165_t, ((EntityLivingBase)a2).field_70163_u, ((EntityLivingBase)a2).field_70161_v) > (double)vk.n) {
+        if (Minecraft.getMinecraft().player.getDistance(((EntityLivingBase)a2).posX, ((EntityLivingBase)a2).posY, ((EntityLivingBase)a2).posZ) > (double)vk.n) {
             return;
         }
         int n3 = n2 = 0;
         while (n3 < a10.s.length) {
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             gn gn2 = a10;
             gn2.setRotTranForPartType(a2, a10.s[n2], a3, a4, a5, a6, a7, a8, a9);
             gn2.renderSkinType((EntityLivingBase)a2, gn2.s[n2++]);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
             n3 = n2;
         }
     }
 
     public abstract void setRotTranForPartType(E var1, r var2, float var3, float var4, float var5, float var6, float var7, float var8, float var9);
 
-    public boolean func_177142_b() {
+    public boolean shouldCombineTextures() {
         return false;
     }
 

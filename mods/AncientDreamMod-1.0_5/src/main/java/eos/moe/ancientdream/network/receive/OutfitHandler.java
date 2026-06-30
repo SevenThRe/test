@@ -17,7 +17,7 @@ implements MessageHandler {
         DataManager.outfitCounts.clear();
         int i = buffer.readInt();
         for (int i1 = 0; i1 < i; ++i1) {
-            String key = buffer.func_150789_c(32768);
+            String key = buffer.readString(32768);
             int count = buffer.readInt();
             DataManager.outfitCounts.put(key, count);
         }

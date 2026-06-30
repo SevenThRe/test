@@ -150,7 +150,7 @@ public class pl {
 
     public void x() {
         pl a2;
-        a2.ALLATORIxDEMO.submit(() -> Minecraft.func_71410_x().func_152344_a(vq::ALLATORIxDEMO));
+        a2.ALLATORIxDEMO.submit(() -> Minecraft.getMinecraft().addScheduledTask(vq::ALLATORIxDEMO));
     }
 
     public void f() {

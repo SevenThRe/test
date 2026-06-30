@@ -36,16 +36,16 @@ public class bo {
         }
         double d6 = 0.0;
         if (a2 != null) {
-            if (a2.field_70160_al) {
+            if (a2.isAirBorne) {
                 if (a2 instanceof EntityPlayer) {
-                    if (((EntityPlayer)a2).field_71075_bZ.field_75100_b) {
+                    if (((EntityPlayer)a2).capabilities.isFlying) {
                         d4 = d5;
                     }
                 } else {
                     d4 = d5;
                 }
             }
-            d6 = ((double)System.currentTimeMillis() + (double)a2.func_145782_y()) % d4;
+            d6 = ((double)System.currentTimeMillis() + (double)a2.getEntityId()) % d4;
             if (xl2 == xl.m) {
                 d6 = Math.sin(d6 / d4 * Math.PI * 2.0);
             }

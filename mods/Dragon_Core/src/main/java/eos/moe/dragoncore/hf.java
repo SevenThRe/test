@@ -34,7 +34,7 @@ public class hf {
         String a3 = a2.c();
         Entity a4 = null;
         try {
-            a4 = Minecraft.func_71410_x().field_71441_e.func_73045_a(Integer.parseInt(a3));
+            a4 = Minecraft.getMinecraft().world.getEntityByID(Integer.parseInt(a3));
         }
         catch (NumberFormatException a5) {
             try {
@@ -59,7 +59,7 @@ public class hf {
     public static double k(v a2) {
         Entity a3 = hf.ALLATORIxDEMO(a2).ALLATORIxDEMO();
         if (a3 != null) {
-            return a3.field_70165_t;
+            return a3.posX;
         }
         return 0.0;
     }
@@ -68,7 +68,7 @@ public class hf {
     public static double d(v a2) {
         Entity a3 = hf.ALLATORIxDEMO(a2).ALLATORIxDEMO();
         if (a3 != null) {
-            return a3.field_70163_u;
+            return a3.posY;
         }
         return 0.0;
     }
@@ -77,7 +77,7 @@ public class hf {
     public static double x(v a2) {
         Entity a3 = hf.ALLATORIxDEMO(a2).ALLATORIxDEMO();
         if (a3 != null) {
-            return a3.field_70161_v;
+            return a3.posZ;
         }
         return 0.0;
     }
@@ -86,7 +86,7 @@ public class hf {
     public static double f(v a2) {
         Entity a3 = hf.ALLATORIxDEMO(a2).ALLATORIxDEMO();
         if (a3 != null) {
-            return a3.field_70131_O;
+            return a3.height;
         }
         return 0.0;
     }
@@ -95,7 +95,7 @@ public class hf {
     public static double c(v a2) {
         Entity a3 = hf.ALLATORIxDEMO(a2).ALLATORIxDEMO();
         if (a3 instanceof EntityLivingBase) {
-            return ((EntityLivingBase)a3).func_110143_aJ();
+            return ((EntityLivingBase)a3).getHealth();
         }
         return 0.0;
     }
@@ -104,7 +104,7 @@ public class hf {
     public static double ALLATORIxDEMO(v a2) {
         Entity a3 = hf.ALLATORIxDEMO(a2).ALLATORIxDEMO();
         if (a3 instanceof EntityLivingBase) {
-            return ((EntityLivingBase)a3).func_110138_aP();
+            return ((EntityLivingBase)a3).getMaxHealth();
         }
         return 0.0;
     }

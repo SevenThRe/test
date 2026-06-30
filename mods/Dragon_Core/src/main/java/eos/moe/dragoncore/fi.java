@@ -46,7 +46,7 @@ public class fi {
 
     public fi ALLATORIxDEMO() {
         fi a2;
-        return new fi(a2.k, a2.ALLATORIxDEMO.func_74737_b());
+        return new fi(a2.k, a2.ALLATORIxDEMO.copy());
     }
 }
 

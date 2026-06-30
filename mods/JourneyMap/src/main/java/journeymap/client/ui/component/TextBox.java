@@ -26,7 +26,7 @@ extends GuiTextField {
 
     public TextBox(Object text, FontRenderer fontRenderer, int width, int height, boolean isNumeric, boolean negative) {
         super(0, fontRenderer, 0, 0, width, height);
-        this.func_146180_a(text.toString());
+        this.setText(text.toString());
         this.numeric = isNumeric;
         this.allowNegative = negative;
         String regex = null;
@@ -45,20 +45,20 @@ extends GuiTextField {
         this.minLength = minLength;
     }
 
-    public void func_146191_b(String par1Str) {
-        super.func_146191_b(par1Str);
+    public void writeText(String par1Str) {
+        super.writeText(par1Str);
         if (this.numeric) {
-            String fixed = this.func_146179_b().replaceAll(this.numericRegex, "");
+            String fixed = this.getText().replaceAll(this.numericRegex, "");
             if (this.allowNegative) {
                 String start = fixed.startsWith("-") ? "-" : "";
                 fixed = start + fixed.replaceAll("-", "");
             }
-            super.func_146180_a(fixed);
+            super.setText(fixed);
         }
     }
 
     public void setText(Object object) {
-        super.func_146180_a(object.toString());
+        super.setText(object.toString());
     }
 
     public boolean isNumeric() {
@@ -66,31 +66,31 @@ extends GuiTextField {
     }
 
     public boolean hasMinLength() {
-        String text = this.func_146179_b();
+        String text = this.getText();
         int textLen = text == null ? 0 : text.length();
         return this.minLength <= textLen;
     }
 
-    public boolean func_146201_a(char par1, int par2) {
-        boolean res = super.func_146201_a(par1, par2);
-        if (this.numeric && this.func_146206_l()) {
+    public boolean textboxKeyTyped(char par1, int par2) {
+        boolean res = super.textboxKeyTyped(par1, par2);
+        if (this.numeric && this.isFocused()) {
             this.clamp();
         }
         return res;
     }
 
-    public void func_146194_f() {
-        super.func_146194_f();
-        if (this.func_146176_q() && !this.hasMinLength()) {
+    public void drawTextBox() {
+        super.drawTextBox();
+        if (this.getVisible() && !this.hasMinLength()) {
             int red = Color.red.getRGB();
             int x1 = this.getX() - 1;
             int y1 = this.getY() - 1;
-            int x2 = x1 + this.func_146200_o() + 1;
+            int x2 = x1 + this.getWidth() + 1;
             int y2 = y1 + this.getHeight() + 1;
-            TextBox.func_73734_a((int)x1, (int)y1, (int)x2, (int)(y1 + 1), (int)red);
-            TextBox.func_73734_a((int)x1, (int)y2, (int)x2, (int)(y2 + 1), (int)red);
-            TextBox.func_73734_a((int)x1, (int)y1, (int)(x1 + 1), (int)y2, (int)red);
-            TextBox.func_73734_a((int)x2, (int)y1, (int)(x2 + 1), (int)y2, (int)red);
+            TextBox.drawRect((int)x1, (int)y1, (int)x2, (int)(y1 + 1), (int)red);
+            TextBox.drawRect((int)x1, (int)y2, (int)x2, (int)(y2 + 1), (int)red);
+            TextBox.drawRect((int)x1, (int)y1, (int)(x1 + 1), (int)y2, (int)red);
+            TextBox.drawRect((int)x2, (int)y1, (int)(x2 + 1), (int)y2, (int)red);
         }
     }
 
@@ -98,7 +98,7 @@ extends GuiTextField {
         if (!this.numeric) {
             return null;
         }
-        String text = this.func_146179_b();
+        String text = this.getText();
         if (this.clampMin != null) {
             if (text == null || text.length() == 0 || text.equals("-")) {
                 return null;
@@ -127,39 +127,39 @@ extends GuiTextField {
     }
 
     public int getX() {
-        return this.field_146209_f;
+        return this.x;
     }
 
     public void setX(int x) {
-        this.field_146209_f = x;
+        this.x = x;
     }
 
     public int getY() {
-        return this.field_146210_g;
+        return this.y;
     }
 
     public void setY(int y) {
-        this.field_146210_g = y;
+        this.y = y;
     }
 
-    public int func_146200_o() {
-        return this.field_146218_h;
+    public int getWidth() {
+        return this.width;
     }
 
     public void setWidth(int w) {
-        this.field_146218_h = w;
+        this.width = w;
     }
 
     public int getHeight() {
-        return this.field_146219_i;
+        return this.height;
     }
 
     public void setHeight(int h) {
-        this.field_146219_i = h;
+        this.height = h;
     }
 
     public int getCenterX() {
-        return this.getX() + this.func_146200_o() / 2;
+        return this.getX() + this.getWidth() / 2;
     }
 
     public int getMiddleY() {
@@ -171,7 +171,7 @@ extends GuiTextField {
     }
 
     public int getRightX() {
-        return this.getX() + this.func_146200_o();
+        return this.getX() + this.getWidth();
     }
 }
 

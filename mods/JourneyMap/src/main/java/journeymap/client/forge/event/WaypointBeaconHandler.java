@@ -28,12 +28,12 @@ implements EventHandlerManager.EventHandler {
     @SideOnly(value=Side.CLIENT)
     @SubscribeEvent
     public void onRenderWorldLastEvent(RenderWorldLastEvent event) {
-        if (this.mc.field_71439_g != null && Journeymap.getClient().getWaypointProperties().beaconEnabled.get().booleanValue() && !this.mc.field_71474_y.field_74319_N) {
-            this.mc.field_71424_I.func_76320_a("journeymap");
-            this.mc.field_71424_I.func_76320_a("beacons");
+        if (this.mc.player != null && Journeymap.getClient().getWaypointProperties().beaconEnabled.get().booleanValue() && !this.mc.gameSettings.hideGUI) {
+            this.mc.profiler.startSection("journeymap");
+            this.mc.profiler.startSection("beacons");
             RenderWaypointBeacon.renderAll();
-            this.mc.field_71424_I.func_76319_b();
-            this.mc.field_71424_I.func_76319_b();
+            this.mc.profiler.endSection();
+            this.mc.profiler.endSection();
         }
     }
 }

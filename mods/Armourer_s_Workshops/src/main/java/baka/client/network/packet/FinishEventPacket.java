@@ -33,7 +33,7 @@ IMessageHandler<FinishEventPacket, IMessage> {
 
     public void toBytes(ByteBuf byteBuf) {
         PacketBuffer packetBuffer = new PacketBuffer(byteBuf);
-        packetBuffer.func_180714_a(this.actionName);
+        packetBuffer.writeString(this.actionName);
     }
 
     public IMessage onMessage(FinishEventPacket finishEventPacket, MessageContext messageContext) {

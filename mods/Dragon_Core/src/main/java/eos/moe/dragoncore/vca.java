@@ -83,15 +83,15 @@ implements pa {
                 String a6;
                 switch (a6 = stringArray[i2]) {
                     case "x": {
-                        GlStateManager.func_179109_b((float)a4, (float)0.0f, (float)0.0f);
+                        GlStateManager.translate((float)a4, (float)0.0f, (float)0.0f);
                         continue block20;
                     }
                     case "y": {
-                        GlStateManager.func_179109_b((float)0.0f, (float)a4, (float)0.0f);
+                        GlStateManager.translate((float)0.0f, (float)a4, (float)0.0f);
                         continue block20;
                     }
                     case "z": {
-                        GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)a4);
+                        GlStateManager.translate((float)0.0f, (float)0.0f, (float)a4);
                     }
                 }
             }
@@ -99,7 +99,7 @@ implements pa {
             float a7 = 0.0f;
             if (a2 instanceof EntityLivingBase) {
                 EntityLivingBase a8 = (EntityLivingBase)a2;
-                a7 = a5.ALLATORIxDEMO(a8.field_70760_ar, a8.field_70761_aq, a3);
+                a7 = a5.ALLATORIxDEMO(a8.prevRenderYawOffset, a8.renderYawOffset, a3);
             }
             double a9 = Math.toRadians(a7 + 90.0f);
             double a10 = Math.toRadians(90.0);
@@ -114,15 +114,15 @@ implements pa {
                 String a15;
                 switch (a15 = stringArray[i3]) {
                     case "x": {
-                        GlStateManager.func_179137_b((double)a13, (double)0.0, (double)0.0);
+                        GlStateManager.translate((double)a13, (double)0.0, (double)0.0);
                         continue block21;
                     }
                     case "y": {
-                        GlStateManager.func_179137_b((double)0.0, (double)a4, (double)0.0);
+                        GlStateManager.translate((double)0.0, (double)a4, (double)0.0);
                         continue block21;
                     }
                     case "z": {
-                        GlStateManager.func_179137_b((double)0.0, (double)0.0, (double)a14);
+                        GlStateManager.translate((double)0.0, (double)0.0, (double)a14);
                     }
                 }
             }

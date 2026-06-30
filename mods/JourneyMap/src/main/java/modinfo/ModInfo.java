@@ -39,7 +39,7 @@ import org.lwjgl.opengl.DisplayMode;
 public class ModInfo {
     public static final String VERSION = "0.2";
     public static final Logger LOGGER = LogManager.getLogger((String)"modinfo");
-    private final Minecraft minecraft = Minecraft.func_71410_x();
+    private final Minecraft minecraft = Minecraft.getMinecraft();
     private final String trackingId;
     private final String modId;
     private final String modName;
@@ -198,31 +198,31 @@ public class ModInfo {
             langs.add(languageCode);
         }
         Locale locale = new Locale();
-        locale.func_135022_a(this.minecraft.func_110442_L(), langs);
+        locale.loadLocaleDataFiles(this.minecraft.getResourceManager(), langs);
         return locale;
     }
 
     private String I18n(String translationKey, Object ... parms) {
-        return this.reportingLocale.func_135023_a(translationKey, parms);
+        return this.reportingLocale.formatMessage(translationKey, parms);
     }
 
     private Client createClient() {
         String salt = this.config.getSalt();
-        String username = this.minecraft.func_110432_I().func_111285_a();
+        String username = this.minecraft.getSession().getUsername();
         UUID clientId = ModInfo.createUUID(salt, username, this.modId);
-        return new Client(this.trackingId, clientId, this.config, Minecraft.func_71410_x().func_135016_M().func_135041_c().func_135034_a());
+        return new Client(this.trackingId, clientId, this.config, Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode());
     }
 
     private Map<Payload.Parameter, String> minecraftParams() {
         HashMap<Payload.Parameter, String> map = new HashMap<Payload.Parameter, String>();
-        Language language = this.minecraft.func_135016_M().func_135041_c();
-        map.put(Payload.Parameter.UserLanguage, language.func_135034_a());
+        Language language = this.minecraft.getLanguageManager().getCurrentLanguage();
+        map.put(Payload.Parameter.UserLanguage, language.getLanguageCode());
         DisplayMode displayMode = Display.getDesktopDisplayMode();
         map.put(Payload.Parameter.ScreenResolution, displayMode.getWidth() + "x" + displayMode.getHeight());
         StringBuilder desc = new StringBuilder("1.12.2");
-        if (this.minecraft.field_71441_e != null) {
-            IntegratedServer server = this.minecraft.func_71401_C();
-            boolean multiplayer = server == null || server.func_71344_c();
+        if (this.minecraft.world != null) {
+            IntegratedServer server = this.minecraft.getIntegratedServer();
+            boolean multiplayer = server == null || server.getPublic();
             desc.append(", ").append(multiplayer ? this.I18n("menu.multiplayer", new Object[0]) : this.I18n("menu.singleplayer", new Object[0]));
         }
         map.put(Payload.Parameter.ContentDescription, desc.toString());

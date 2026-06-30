@@ -42,21 +42,21 @@ public class ey {
 
     @SubscribeEvent
     public static void ALLATORIxDEMO(RenderWorldLastEvent a2) {
-        WorldClient a3 = Minecraft.func_71410_x().field_71441_e;
-        FontRenderer a4 = Minecraft.func_71410_x().field_71466_p;
+        WorldClient a3 = Minecraft.getMinecraft().world;
+        FontRenderer a4 = Minecraft.getMinecraft().fontRenderer;
         if (!ALLATORIxDEMO.isEmpty()) {
             ArrayList<Tuple> a6 = new ArrayList<Tuple>();
             for (TileEntitySign tileEntitySign : ALLATORIxDEMO) {
-                BlockPos a5 = tileEntitySign.func_174877_v();
-                double a8 = SignRenderer.distance((double)a5.func_177958_n() - TileEntityRendererDispatcher.field_147554_b, (double)a5.func_177956_o() - TileEntityRendererDispatcher.field_147555_c, (double)a5.func_177952_p() - TileEntityRendererDispatcher.field_147552_d);
+                BlockPos a5 = tileEntitySign.getPos();
+                double a8 = SignRenderer.distance((double)a5.getX() - TileEntityRendererDispatcher.staticPlayerX, (double)a5.getY() - TileEntityRendererDispatcher.staticPlayerY, (double)a5.getZ() - TileEntityRendererDispatcher.staticPlayerZ);
                 a6.add(new Tuple((Object)tileEntitySign, (Object)a8));
             }
-            a6.sort(Comparator.comparingDouble(Tuple::func_76340_b));
+            a6.sort(Comparator.comparingDouble(Tuple::getSecond));
             Collections.reverse(a6);
             for (Tuple tuple : a6) {
-                TileEntitySign a5 = (TileEntitySign)tuple.func_76341_a();
-                BlockPos a9 = a5.func_174877_v();
-                SignRenderer.renderText(a4, a5, (double)a9.func_177958_n() - TileEntityRendererDispatcher.field_147554_b, (double)a9.func_177956_o() - TileEntityRendererDispatcher.field_147555_c, (double)a9.func_177952_p() - TileEntityRendererDispatcher.field_147552_d);
+                TileEntitySign a5 = (TileEntitySign)tuple.getFirst();
+                BlockPos a9 = a5.getPos();
+                SignRenderer.renderText(a4, a5, (double)a9.getX() - TileEntityRendererDispatcher.staticPlayerX, (double)a9.getY() - TileEntityRendererDispatcher.staticPlayerY, (double)a9.getZ() - TileEntityRendererDispatcher.staticPlayerZ);
             }
             ALLATORIxDEMO.clear();
         }

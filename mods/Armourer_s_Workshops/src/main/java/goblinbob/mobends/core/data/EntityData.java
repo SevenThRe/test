@@ -59,10 +59,10 @@ implements IBendsModel {
     public EntityData(E entity) {
         this.entity = entity;
         if (this.entity != null) {
-            this.entityID = entity.func_145782_y();
-            this.positionX = ((Entity)this.entity).field_70165_t;
-            this.positionY = ((Entity)this.entity).field_70163_u;
-            this.positionZ = ((Entity)this.entity).field_70161_v;
+            this.entityID = entity.getEntityId();
+            this.positionX = ((Entity)this.entity).posX;
+            this.positionY = ((Entity)this.entity).posY;
+            this.positionZ = ((Entity)this.entity).posZ;
         }
         this.prevMotionX = 0.0;
         this.motionX = 0.0;
@@ -111,18 +111,18 @@ implements IBendsModel {
         if (this.onGroundOverride != null) {
             return this.onGroundOverride;
         }
-        BlockPos position = new BlockPos(Math.floor(((Entity)this.entity).field_70165_t), Math.floor(((Entity)this.entity).field_70163_u), Math.floor(((Entity)this.entity).field_70161_v));
-        IBlockState block = ((Entity)this.entity).field_70170_p.func_180495_p(position);
-        IBlockState blockBelow = ((Entity)this.entity).field_70170_p.func_180495_p(position.func_177982_a(0, -1, 0));
-        if (this.motionY <= 0.0 && (block.func_177230_c() instanceof BlockStairs || blockBelow.func_177230_c() instanceof BlockStairs)) {
+        BlockPos position = new BlockPos(Math.floor(((Entity)this.entity).posX), Math.floor(((Entity)this.entity).posY), Math.floor(((Entity)this.entity).posZ));
+        IBlockState block = ((Entity)this.entity).world.getBlockState(position);
+        IBlockState blockBelow = ((Entity)this.entity).world.getBlockState(position.add(0, -1, 0));
+        if (this.motionY <= 0.0 && (block.getBlock() instanceof BlockStairs || blockBelow.getBlock() instanceof BlockStairs)) {
             return true;
         }
-        List list = ((Entity)this.entity).field_70170_p.func_184144_a(this.entity, this.entity.func_174813_aQ().func_72317_d(0.0, -0.125, 0.0));
+        List list = ((Entity)this.entity).world.getCollisionBoxes(this.entity, this.entity.getEntityBoundingBox().offset(0.0, -0.125, 0.0));
         return list.size() > 0;
     }
 
     public boolean calcCollidedHorizontally() {
-        List list = ((Entity)this.entity).field_70170_p.func_184144_a(this.entity, this.entity.func_174813_aQ().func_72317_d(this.motionX, 0.0, this.motionZ));
+        List list = ((Entity)this.entity).world.getCollisionBoxes(this.entity, this.entity.getEntityBoundingBox().offset(this.motionX, 0.0, this.motionZ));
         return list.size() > 0;
     }
 
@@ -198,8 +198,8 @@ implements IBendsModel {
     }
 
     public float getLookAngle() {
-        net.minecraft.util.math.Vec3d lookVec = this.entity.func_70040_Z();
-        return (float)GUtil.angleFromCoordinates(lookVec.field_72450_a, lookVec.field_72449_c);
+        net.minecraft.util.math.Vec3d lookVec = this.entity.getLookVec();
+        return (float)GUtil.angleFromCoordinates(lookVec.x, lookVec.z);
     }
 
     private float getWorldMovementAngle() {
@@ -217,18 +217,18 @@ implements IBendsModel {
         if (this.isStillHorizontally()) {
             return 0.0;
         }
-        net.minecraft.util.math.Vec3d lookVec = this.entity.func_70040_Z();
-        net.minecraft.util.math.Vec3d lookVecHorizontal = new net.minecraft.util.math.Vec3d(lookVec.field_72450_a, 0.0, lookVec.field_72449_c).func_72432_b();
-        return lookVecHorizontal.field_72450_a * this.motionX + lookVecHorizontal.field_72449_c * this.motionZ;
+        net.minecraft.util.math.Vec3d lookVec = this.entity.getLookVec();
+        net.minecraft.util.math.Vec3d lookVecHorizontal = new net.minecraft.util.math.Vec3d(lookVec.x, 0.0, lookVec.z).normalize();
+        return lookVecHorizontal.x * this.motionX + lookVecHorizontal.z * this.motionZ;
     }
 
     public double getSidewaysMomentum() {
         if (this.isStillHorizontally()) {
             return 0.0;
         }
-        net.minecraft.util.math.Vec3d rightVec = this.entity.func_70040_Z().func_178785_b(-1.5707964f);
-        net.minecraft.util.math.Vec3d rightVecHorizontal = new net.minecraft.util.math.Vec3d(rightVec.field_72450_a, 0.0, rightVec.field_72449_c).func_72432_b();
-        return rightVecHorizontal.field_72450_a * this.motionX + rightVecHorizontal.field_72449_c * this.motionZ;
+        net.minecraft.util.math.Vec3d rightVec = this.entity.getLookVec().rotateYaw(-1.5707964f);
+        net.minecraft.util.math.Vec3d rightVecHorizontal = new net.minecraft.util.math.Vec3d(rightVec.x, 0.0, rightVec.z).normalize();
+        return rightVecHorizontal.x * this.motionX + rightVecHorizontal.z * this.motionZ;
     }
 
     public boolean isStrafing() {
@@ -237,14 +237,14 @@ implements IBendsModel {
     }
 
     public boolean isUnderwater() {
-        if (!this.entity.func_70090_H()) {
+        if (!this.entity.isInWater()) {
             return false;
         }
-        int blockX = MathHelper.func_76128_c((double)((Entity)this.entity).field_70165_t);
-        int blockY = MathHelper.func_76128_c((double)(((Entity)this.entity).field_70163_u + 2.0));
-        int blockZ = MathHelper.func_76128_c((double)((Entity)this.entity).field_70161_v);
-        IBlockState state = Minecraft.func_71410_x().field_71441_e.func_180495_p(new BlockPos(blockX, blockY, blockZ));
-        return state.func_177230_c() instanceof BlockStaticLiquid;
+        int blockX = MathHelper.floor((double)((Entity)this.entity).posX);
+        int blockY = MathHelper.floor((double)(((Entity)this.entity).posY + 2.0));
+        int blockZ = MathHelper.floor((double)((Entity)this.entity).posZ);
+        IBlockState state = Minecraft.getMinecraft().world.getBlockState(new BlockPos(blockX, blockY, blockZ));
+        return state.getBlock() instanceof BlockStaticLiquid;
     }
 
     public double getPrevMotionMagnitude() {
@@ -279,12 +279,12 @@ implements IBendsModel {
         this.prevMotionX = this.motionX;
         this.prevMotionY = this.motionY;
         this.prevMotionZ = this.motionZ;
-        this.motionX = ((Entity)this.entity).field_70165_t - this.positionX;
-        this.motionY = ((Entity)this.entity).field_70163_u - this.positionY;
-        this.motionZ = ((Entity)this.entity).field_70161_v - this.positionZ;
-        this.positionX = ((Entity)this.entity).field_70165_t;
-        this.positionY = ((Entity)this.entity).field_70163_u;
-        this.positionZ = ((Entity)this.entity).field_70161_v;
+        this.motionX = ((Entity)this.entity).posX - this.positionX;
+        this.motionY = ((Entity)this.entity).posY - this.positionY;
+        this.motionZ = ((Entity)this.entity).posZ - this.positionZ;
+        this.positionX = ((Entity)this.entity).posX;
+        this.positionY = ((Entity)this.entity).posY;
+        this.positionZ = ((Entity)this.entity).posZ;
     }
 
     @Override

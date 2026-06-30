@@ -48,12 +48,12 @@ public class sj {
     }
 
     public static Point ALLATORIxDEMO() {
-        Minecraft a2 = Minecraft.func_71410_x();
+        Minecraft a2 = Minecraft.getMinecraft();
         ScaledResolution a3 = new ScaledResolution(a2);
-        int a4 = a3.func_78326_a();
-        int a5 = a3.func_78328_b();
-        int a6 = Mouse.getX() * a4 / a2.field_71443_c;
-        int a7 = a5 - Mouse.getY() * a5 / a2.field_71440_d - 1;
+        int a4 = a3.getScaledWidth();
+        int a5 = a3.getScaledHeight();
+        int a6 = Mouse.getX() * a4 / a2.displayWidth;
+        int a7 = a5 - Mouse.getY() * a5 / a2.displayHeight - 1;
         return new Point(a6, a7);
     }
 
@@ -94,7 +94,7 @@ public class sj {
     }
 
     public static String ALLATORIxDEMO(String a2, boolean a3) {
-        return !a3 && !Minecraft.func_71410_x().field_71474_y.field_74344_o ? TextFormatting.func_110646_a((String)a2) : a2;
+        return !a3 && !Minecraft.getMinecraft().gameSettings.chatColours ? TextFormatting.getTextWithoutFormattingCodes((String)a2) : a2;
     }
 
     public static List<String> ALLATORIxDEMO(String a2, int a3, String a4) {
@@ -144,21 +144,21 @@ public class sj {
             String a11;
             String a12;
             ITextComponent a13 = (ITextComponent)a9.get(a10);
-            String a14 = a13.func_150261_e();
+            String a14 = a13.getUnformattedComponentText();
             boolean a15 = false;
             if (a14.contains("\n")) {
                 int a16 = a14.indexOf(10);
                 a12 = a14.substring(a16 + 1);
                 a14 = a14.substring(0, a16 + 1);
                 TextComponentString a17 = new TextComponentString(a12);
-                a17.func_150255_a(a13.func_150256_b().func_150232_l());
+                a17.setStyle(a13.getStyle().createShallowCopy());
                 a9.add(a10 + 1, a17);
                 a15 = true;
             }
-            a12 = (a11 = sj.ALLATORIxDEMO(a13.func_150256_b().func_150218_j() + a14, false)).endsWith("\n") ? a11.substring(0, a11.length() - 1) : a11;
+            a12 = (a11 = sj.ALLATORIxDEMO(a13.getStyle().getFormattingCode() + a14, false)).endsWith("\n") ? a11.substring(0, a11.length() - 1) : a11;
             int a18 = ol.ALLATORIxDEMO(a12, a4, false);
             TextComponentString a19 = new TextComponentString(a12);
-            a19.func_150255_a(a13.func_150256_b().func_150232_l());
+            a19.setStyle(a13.getStyle().createShallowCopy());
             if (a6 + a18 > a3) {
                 String a20;
                 boolean a21 = false;
@@ -169,28 +169,28 @@ public class sj {
                 }
                 String string = a20 = a22.length() < a11.length() ? a11.substring(a22.length()) : null;
                 if (a20 != null && !a20.isEmpty()) {
-                    a20 = FontRenderer.func_78282_e((String)a22) + a20;
+                    a20 = FontRenderer.getFormatFromString((String)a22) + a20;
                     TextComponentString a23 = new TextComponentString(a20);
-                    a23.func_150255_a(a13.func_150256_b().func_150232_l());
+                    a23.setStyle(a13.getStyle().createShallowCopy());
                     a9.add(a10 + 1, a23);
                 }
                 a18 = ol.ALLATORIxDEMO(a22, a4, false);
                 a19 = new TextComponentString(a22);
-                a19.func_150255_a(a13.func_150256_b().func_150232_l());
+                a19.setStyle(a13.getStyle().createShallowCopy());
                 a15 = true;
                 if (a21) {
-                    if (ol.ALLATORIxDEMO(a7.func_150254_d(), a4, false) > 0) {
+                    if (ol.ALLATORIxDEMO(a7.getFormattedText(), a4, false) > 0) {
                         a8.add(a7);
                     }
                     a7 = new TextComponentString("");
                     a6 = a18;
-                    a7.func_150257_a((ITextComponent)a19);
+                    a7.appendSibling((ITextComponent)a19);
                     continue;
                 }
             }
             if (a6 + a18 <= a3) {
                 a6 += a18;
-                a7.func_150257_a((ITextComponent)a19);
+                a7.appendSibling((ITextComponent)a19);
             } else {
                 a15 = true;
             }
@@ -205,7 +205,7 @@ public class sj {
     }
 
     public static void ALLATORIxDEMO(Runnable a2) {
-        Minecraft.func_71410_x().func_152344_a(a2);
+        Minecraft.getMinecraft().addScheduledTask(a2);
     }
 
     public static YamlConfiguration ALLATORIxDEMO(Collection<YamlConfiguration> a2) {

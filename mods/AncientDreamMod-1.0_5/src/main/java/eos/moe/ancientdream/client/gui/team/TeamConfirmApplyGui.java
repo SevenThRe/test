@@ -74,19 +74,19 @@ extends GuiScreen {
         this.playerList = teamDataList;
     }
 
-    public void func_73866_w_() {
-        super.func_73866_w_();
+    public void initGui() {
+        super.initGui();
         this.xSize = 252.0f;
         this.ySize = 382.0f;
-        this.offsetX = ((float)this.field_146294_l - this.xSize) / 2.0f;
-        this.offsetY = ((float)this.field_146295_m - this.ySize) / 2.0f;
+        this.offsetX = ((float)this.width - this.xSize) / 2.0f;
+        this.offsetY = ((float)this.height - this.ySize) / 2.0f;
     }
 
-    public void func_73863_a(int mouseX, int mouseY, float partialTicks) {
-        super.func_73863_a(mouseX, mouseY, partialTicks);
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        super.drawScreen(mouseX, mouseY, partialTicks);
         this.hoverPlayer = null;
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)this.offsetX, (float)this.offsetY, (float)0.0f);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)this.offsetX, (float)this.offsetY, (float)0.0f);
         RenderUtils.drawTexture(0.0, 0.0, this.xSize, this.ySize, BACKGROUND);
         RenderUtils.drawTexture(243.0, 35.0f + this.scrollDistance * 263.0f, 16.0, 64.0, SCROLLBAR);
         RenderUtils.drawTexture(86.0, 335.0, 80.0, 30.0, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY, BTN, BTN1);
@@ -95,9 +95,9 @@ extends GuiScreen {
         RenderUtils.scissorBox((int)this.offsetX + 8, (int)this.offsetY + 40, 240.0f, 294.0f);
         for (int i = 0; i < this.playerList.size(); ++i) {
             PlayerData data = this.playerList.get(i);
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             float scrollVal = (float)(i * 56) - this.scrollDistance * this.maxDistance;
-            GlStateManager.func_179109_b((float)4.0f, (float)scrollVal, (float)0.0f);
+            GlStateManager.translate((float)4.0f, (float)scrollVal, (float)0.0f);
             TextureProvider of = TextureProvider.of(data.headLink, DEFHEAD);
             RenderUtils.drawTexture(17.0, 46.0, 38.0, 38.0, of.getTexture(DEFHEAD));
             RenderUtils.drawTexture(12.0, 40.0, 220.0, 48.0, GUI2);
@@ -111,30 +111,30 @@ extends GuiScreen {
             }
             RenderUtils.drawText("\u00a7a\u901a\u8fc7", 155.0, 60.5, true, true);
             RenderUtils.drawText("\u00a7c\u62d2\u7edd", 200.0, 60.5, true, true);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
             if (!Utils.onArea(8.0f, 40.0f, 240.0f, 280.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY) || !Utils.onArea(8.0f, 40.0f + scrollVal, 120.0f, 48.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) continue;
             this.hoverPlayer = data;
         }
         GL11.glDisable((int)3089);
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
         if (this.dragScrollBarPotion != null) {
             int y = mouseY - this.dragScrollBarPotion.y;
             this.scrollDistance = (float)y / 263.0f;
             this.scrollDistance = Math.min(1.0f, Math.max(0.0f, this.scrollDistance));
         }
         if (this.hoverPlayer != null) {
-            GuiUtils.drawHoveringText((List)this.hoverPlayer.info, (int)mouseX, (int)mouseY, (int)this.field_146294_l, (int)this.field_146295_m, (int)-1, (FontRenderer)this.field_146289_q);
+            GuiUtils.drawHoveringText((List)this.hoverPlayer.info, (int)mouseX, (int)mouseY, (int)this.width, (int)this.height, (int)-1, (FontRenderer)this.fontRenderer);
         }
     }
 
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         if (Utils.onArea(233.5f, 3.0f, 20.0f, 20.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
-            this.field_146297_k.func_147108_a(null);
+            this.mc.displayGuiScreen(null);
         } else if (Utils.onArea(this.offsetX + 243.0f, this.offsetY + 35.0f + this.scrollDistance * 263.0f, 16.0f, 64.0f, mouseX, mouseY)) {
             this.dragScrollBarPotion = new Point(mouseX, (int)((float)mouseY - this.scrollDistance * 263.0f));
         } else if (Utils.onArea(86.0f, 335.0f, 80.0f, 30.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
-            this.field_146297_k.func_147108_a((GuiScreen)new TeamManagerGui());
+            this.mc.displayGuiScreen((GuiScreen)new TeamManagerGui());
         } else if (Utils.onArea(8.0f, 50.0f, 240.0f, 280.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
             for (int i = 0; i < this.playerList.size(); ++i) {
                 PlayerData data = this.playerList.get(i);
@@ -149,13 +149,13 @@ extends GuiScreen {
         }
     }
 
-    protected void func_146286_b(int mouseX, int mouseY, int state) {
-        super.func_146286_b(mouseX, mouseY, state);
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+        super.mouseReleased(mouseX, mouseY, state);
         this.dragScrollBarPotion = null;
     }
 
-    public void func_146281_b() {
-        super.func_146281_b();
+    public void onGuiClosed() {
+        super.onGuiClosed();
         this.timer.shutdown();
     }
 

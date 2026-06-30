@@ -139,8 +139,8 @@ implements Comparable<RegionCoord> {
         ArrayList<ChunkPos> list = new ArrayList<ChunkPos>(1024);
         ChunkPos min = this.getMinChunkCoord();
         ChunkPos max = this.getMaxChunkCoord();
-        for (int x = min.field_77276_a; x <= max.field_77276_a; ++x) {
-            for (int z = min.field_77275_b; z <= max.field_77275_b; ++z) {
+        for (int x = min.x; x <= max.x; ++x) {
+            for (int z = min.z; z <= max.z; ++z) {
                 list.add(new ChunkPos(x, z));
             }
         }

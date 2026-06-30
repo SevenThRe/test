@@ -83,7 +83,7 @@ public abstract class MessageProcessor {
         JsonResponse response = new JsonResponse(message, ctx);
         if (this.side.isServer()) {
             try {
-                this.player = ctx.getServerHandler().field_147369_b;
+                this.player = ctx.getServerHandler().player;
                 reply = this.onServer(response);
             }
             catch (Exception e) {
@@ -162,7 +162,7 @@ public abstract class MessageProcessor {
 
     public void sendToPlayer(JsonObject requestData, EntityPlayerMP player) {
         this.buildRequest(requestData);
-        Attribute marker = player.field_71135_a.func_147362_b().channel().attr(NetworkRegistry.FML_MARKER);
+        Attribute marker = player.connection.getNetworkManager().channel().attr(NetworkRegistry.FML_MARKER);
         if (marker.get() != null && ((Boolean)marker.get()).booleanValue()) {
             NetworkHandler.getInstance().sendTo(new Message(gson.toJson((JsonElement)this.data)), player);
         }
@@ -171,7 +171,7 @@ public abstract class MessageProcessor {
     public void sendToPlayer(JsonObject requestData, EntityPlayerMP player, AsyncCallback callback) {
         this.buildRequest(requestData);
         CallbackService.getInstance().saveCallback(this.id, callback);
-        if (((Boolean)player.field_71135_a.func_147362_b().channel().attr(NetworkRegistry.FML_MARKER).get()).booleanValue()) {
+        if (((Boolean)player.connection.getNetworkManager().channel().attr(NetworkRegistry.FML_MARKER).get()).booleanValue()) {
             NetworkHandler.getInstance().sendTo(new Message(gson.toJson((JsonElement)this.data)), player);
         }
     }

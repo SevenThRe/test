@@ -47,7 +47,7 @@ extends Button {
 
     public Theme.Container.Toolbar.ToolbarSpec updateTextures() {
         Theme.Container.Toolbar.ToolbarSpec toolbarSpec = this.buttonList.isHorizontal() ? this.theme.container.toolbar.horizontal : this.theme.container.toolbar.vertical;
-        this.func_175211_a(this.buttonList.getWidth());
+        this.setWidth(this.buttonList.getWidth());
         this.setHeight(this.buttonList.getHeight());
         if (this.toolbarSpec == null || toolbarSpec != this.toolbarSpec) {
             this.toolbarSpec = toolbarSpec;
@@ -108,8 +108,8 @@ extends Button {
     }
 
     @Override
-    public void func_191745_a(Minecraft minecraft, int mouseX, int mouseY, float f) {
-        if (!this.field_146125_m) {
+    public void drawButton(Minecraft minecraft, int mouseX, int mouseY, float f) {
+        if (!this.visible) {
             return;
         }
         double drawX = this.getX();
@@ -117,29 +117,29 @@ extends Button {
         if (!this.toolbarSpec.useThemeImages) {
             return;
         }
-        if (this.field_146125_m) {
+        if (this.visible) {
             DrawUtil.drawQuad(this.textureBegin, this.toolbarSpec.begin.getColor(), this.toolbarSpec.begin.alpha, drawX, drawY, this.buttonList.getWidth() + 1, this.buttonList.getHeight() + 1, false, 0.0);
         }
     }
 
     @Override
     public int getCenterX() {
-        return this.field_146128_h + this.field_146120_f / 2;
+        return this.x + this.width / 2;
     }
 
     @Override
     public int getMiddleY() {
-        return this.field_146129_i + this.field_146121_g / 2;
+        return this.y + this.height / 2;
     }
 
     @Override
     public int getBottomY() {
-        return this.field_146129_i + this.field_146121_g;
+        return this.y + this.height;
     }
 
     @Override
     public int getRightX() {
-        return this.field_146128_h + this.field_146120_f;
+        return this.x + this.width;
     }
 
     public ArrayList<String> getTooltip() {

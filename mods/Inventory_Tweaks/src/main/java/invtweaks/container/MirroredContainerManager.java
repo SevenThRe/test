@@ -44,7 +44,7 @@ implements IContainerManager {
         if (this.slotRefs == null) {
             this.slotRefs = new HashMap<ContainerSection, List<Slot>>();
         }
-        List slots = this.container.field_75151_b;
+        List slots = this.container.inventorySlots;
         int size = slots.size();
         this.itemRefs = new HashMap<ContainerSection, List<Integer>>();
         for (Map.Entry<ContainerSection, List<Slot>> section : this.slotRefs.entrySet()) {
@@ -53,7 +53,7 @@ implements IContainerManager {
         }
         this.slotItems = new ItemStack[size];
         for (int i = 0; i < size; ++i) {
-            this.slotItems[i] = ((Slot)slots.get(i)).func_75211_c().func_77946_l();
+            this.slotItems[i] = ((Slot)slots.get(i)).getStack().copy();
         }
         this.heldItem = InvTweaks.getInstance().getHeldStack();
     }
@@ -70,10 +70,10 @@ implements IContainerManager {
         Slot destSlot = this.getSlot(destSection, destIndex);
         ItemStack srcItem = this.slotItems[srcSlotIdx];
         ItemStack destItem = this.slotItems[destSlotIdx];
-        if (srcItem != null && !destSlot.func_75214_a(srcItem)) {
+        if (srcItem != null && !destSlot.isItemValid(srcItem)) {
             return false;
         }
-        if (destItem != null && !srcSlot.func_75214_a(destItem)) {
+        if (destItem != null && !srcSlot.isItemValid(destItem)) {
             return false;
         }
         this.slotItems[srcSlotIdx] = destItem;
@@ -125,7 +125,7 @@ implements IContainerManager {
     public int getFirstEmptyIndex(ContainerSection section) {
         int i = 0;
         for (int slot : this.itemRefs.get((Object)section)) {
-            if (this.slotItems[slot].func_190926_b()) {
+            if (this.slotItems[slot].isEmpty()) {
                 return i;
             }
             ++i;
@@ -135,13 +135,13 @@ implements IContainerManager {
 
     @Override
     public boolean isSlotEmpty(ContainerSection section, int slot) {
-        return this.getItemStack(section, slot).func_190926_b();
+        return this.getItemStack(section, slot).isEmpty();
     }
 
     @Override
     @NotNull
     public Slot getSlot(ContainerSection section, int index) {
-        return this.container.func_75139_a(this.slotPositionToIndex(section, index));
+        return this.container.getSlot(this.slotPositionToIndex(section, index));
     }
 
     @Override

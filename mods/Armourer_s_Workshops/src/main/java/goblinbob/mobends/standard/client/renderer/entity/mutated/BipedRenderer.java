@@ -22,20 +22,20 @@ extends MutatedRenderer<T> {
         if (data instanceof BipedEntityData) {
             BipedEntityData bipedData = (BipedEntityData)data;
             if (ModConfig.showSwordTrail) {
-                GlStateManager.func_179094_E();
-                GlStateManager.func_179152_a((float)scale, (float)scale, (float)scale);
+                GlStateManager.pushMatrix();
+                GlStateManager.scale((float)scale, (float)scale, (float)scale);
                 bipedData.swordTrail.render();
                 bipedData.leftSwordTrail.render();
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-                GlStateManager.func_179121_F();
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                GlStateManager.popMatrix();
             }
         }
     }
 
     @Override
     protected void transformLocally(T entity, EntityData<?> data, float partialTicks) {
-        if (entity.func_70093_af()) {
-            GlStateManager.func_179109_b((float)0.0f, (float)0.3125f, (float)0.0f);
+        if (entity.isSneaking()) {
+            GlStateManager.translate((float)0.0f, (float)0.3125f, (float)0.0f);
         }
     }
 }

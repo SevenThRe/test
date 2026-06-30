@@ -73,7 +73,7 @@ implements RemovalListener<UUID, xz> {
     public void beforeLivingRender(RenderLivingEvent.Pre<? extends EntityLivingBase> a2) {
         dt a3;
         EntityLivingBase a4 = a2.getEntity();
-        xz a5 = (xz)a3.ALLATORIxDEMO.getIfPresent((Object)a4.func_110124_au());
+        xz a5 = (xz)a3.ALLATORIxDEMO.getIfPresent((Object)a4.getUniqueID());
         if (a5 != null) {
             jz.ALLATORIxDEMO(a5, a2.getPartialRenderTick());
         }
@@ -95,7 +95,7 @@ implements RemovalListener<UUID, xz> {
     @SubscribeEvent
     public void onJump(LivingEvent.LivingJumpEvent a2) {
         dt a3;
-        xz a4 = (xz)a3.ALLATORIxDEMO.getIfPresent((Object)a2.getEntityLiving().func_110124_au());
+        xz a4 = (xz)a3.ALLATORIxDEMO.getIfPresent((Object)a2.getEntityLiving().getUniqueID());
         if (a4 != null) {
             a4.ALLATORIxDEMO(bs.x, new String[0]);
             a4.ALLATORIxDEMO("jump", "true");
@@ -107,11 +107,11 @@ implements RemovalListener<UUID, xz> {
         if (a2.phase != TickEvent.Phase.START) {
             return;
         }
-        WorldClient a3 = Minecraft.func_71410_x().field_71441_e;
+        WorldClient a3 = Minecraft.getMinecraft().world;
         if (a3 == null) {
             return;
         }
-        for (Entity a4 : a3.func_72910_y()) {
+        for (Entity a4 : a3.getLoadedEntityList()) {
             xz a5;
             dt a6;
             if (!(a4 instanceof EntityLivingBase)) continue;
@@ -119,15 +119,15 @@ implements RemovalListener<UUID, xz> {
             if (a6.checkNameChange(a7)) {
                 a6.init((EntityLivingBase)a4, false);
             }
-            if ((a5 = (xz)a6.ALLATORIxDEMO.getIfPresent((Object)a7.func_110124_au())) == null) continue;
+            if ((a5 = (xz)a6.ALLATORIxDEMO.getIfPresent((Object)a7.getUniqueID())) == null) continue;
             a5.o.ALLATORIxDEMO(a4);
             int a8 = Integer.parseInt(a5.ALLATORIxDEMO("hurtTime", "0"));
-            int a9 = a7.field_70737_aN;
+            int a9 = a7.hurtTime;
             if (a9 > a8) {
                 a5.ALLATORIxDEMO(bs.v, new String[0]);
             }
             a5.ALLATORIxDEMO("hurtTime", String.valueOf(a9));
-            if (a5.ALLATORIxDEMO("jump", "false").equals("true") && a4.field_70122_E) {
+            if (a5.ALLATORIxDEMO("jump", "false").equals("true") && a4.onGround) {
                 a5.ALLATORIxDEMO("jump", "false");
             }
             a5.ALLATORIxDEMO(bs.c, new String[0]);
@@ -136,13 +136,13 @@ implements RemovalListener<UUID, xz> {
 
     public boolean checkNameChange(EntityLivingBase a2) {
         dt a3;
-        xz a4 = (xz)a3.ALLATORIxDEMO.getIfPresent((Object)a2.func_110124_au());
+        xz a4 = (xz)a3.ALLATORIxDEMO.getIfPresent((Object)a2.getUniqueID());
         return a4 != null && !a4.t.equals(a3.getEntityName(a2));
     }
 
     public void init(EntityLivingBase a2, boolean a3) {
         dt a4;
-        if (a3 && a4.ALLATORIxDEMO.getIfPresent((Object)a2.func_110124_au()) != null && !a4.checkNameChange(a2)) {
+        if (a3 && a4.ALLATORIxDEMO.getIfPresent((Object)a2.getUniqueID()) != null && !a4.checkNameChange(a2)) {
             return;
         }
         rda a5 = raa.r.c(a2);
@@ -171,16 +171,16 @@ implements RemovalListener<UUID, xz> {
         }
         a9.c = a7.ALLATORIxDEMO();
         a9.t = a4.getEntityName(a2);
-        a9.r = a2.func_110124_au();
+        a9.r = a2.getUniqueID();
         a9.ALLATORIxDEMO(bs.b, new String[0]);
-        a4.ALLATORIxDEMO.put((Object)a2.func_110124_au(), (Object)a9);
+        a4.ALLATORIxDEMO.put((Object)a2.getUniqueID(), (Object)a9);
     }
 
     public String getEntityName(EntityLivingBase a2) {
         raa a3 = raa.r;
         String a4 = a3.c(a2);
-        if (a3.ALLATORIxDEMO().containsKey(a2.func_110124_au())) {
-            a4 = a3.ALLATORIxDEMO().get(a2.func_110124_au());
+        if (a3.ALLATORIxDEMO().containsKey(a2.getUniqueID())) {
+            a4 = a3.ALLATORIxDEMO().get(a2.getUniqueID());
         }
         return a4;
     }

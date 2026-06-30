@@ -24,7 +24,7 @@ public class TeamGuiHandler
 implements MessageHandler {
     @Override
     public void readBuffer(PacketBuffer buffer) {
-        String string = buffer.func_150789_c(32768);
+        String string = buffer.readString(32768);
         YamlConfiguration yaml = new YamlConfiguration();
         try {
             yaml.loadFromString(string);
@@ -35,23 +35,23 @@ implements MessageHandler {
         int type = yaml.getInt("type");
         this.run(() -> {
             if (type == 1) {
-                Minecraft.func_71410_x().func_147108_a((GuiScreen)new TeamApplyGui());
+                Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new TeamApplyGui());
             } else if (type == 0) {
-                if (Minecraft.func_71410_x().field_71462_r instanceof TeamApplyGui) {
-                    ((TeamApplyGui)Minecraft.func_71410_x().field_71462_r).loadData(yaml);
+                if (Minecraft.getMinecraft().currentScreen instanceof TeamApplyGui) {
+                    ((TeamApplyGui)Minecraft.getMinecraft().currentScreen).loadData(yaml);
                 }
             } else if (type == 2) {
-                if (Minecraft.func_71410_x().field_71462_r instanceof TeamManagerGui) {
-                    ((TeamManagerGui)Minecraft.func_71410_x().field_71462_r).loadData(yaml);
+                if (Minecraft.getMinecraft().currentScreen instanceof TeamManagerGui) {
+                    ((TeamManagerGui)Minecraft.getMinecraft().currentScreen).loadData(yaml);
                 }
             } else if (type == 3) {
-                if (Minecraft.func_71410_x().field_71462_r instanceof TeamConfirmApplyGui) {
-                    ((TeamConfirmApplyGui)Minecraft.func_71410_x().field_71462_r).loadData(yaml);
+                if (Minecraft.getMinecraft().currentScreen instanceof TeamConfirmApplyGui) {
+                    ((TeamConfirmApplyGui)Minecraft.getMinecraft().currentScreen).loadData(yaml);
                 }
             } else if (type == 4) {
                 GameOverlyRenderer.loadData(yaml);
             } else if (type == 5) {
-                Minecraft.func_71410_x().func_147108_a((GuiScreen)new TeamHeadGui((String)yaml.get("link", "")));
+                Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new TeamHeadGui((String)yaml.get("link", "")));
             }
         });
     }

@@ -25,8 +25,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class RenderingEventHandler {
     @SubscribeEvent
     public void beforeHandRender(RenderHandEvent event) {
-        Minecraft mc2 = Minecraft.func_71410_x();
-        Entity viewEntity = mc2.func_175606_aa();
+        Minecraft mc2 = Minecraft.getMinecraft();
+        Entity viewEntity = mc2.getRenderViewEntity();
         if (!(viewEntity instanceof AbstractClientPlayer)) {
             return;
         }
@@ -34,7 +34,7 @@ public class RenderingEventHandler {
         if (!BenderHelper.isEntityAnimated((EntityLivingBase)player)) {
             return;
         }
-        RenderPlayer renderPlayer = (RenderPlayer)mc2.func_175598_ae().func_78713_a((Entity)player);
+        RenderPlayer renderPlayer = (RenderPlayer)mc2.getRenderManager().getEntityRenderObject((Entity)player);
         PlayerMutator mutator = (PlayerMutator)BenderHelper.getMutatorForRenderer(AbstractClientPlayer.class, renderPlayer);
         if (mutator != null) {
             mutator.poseForFirstPersonView();

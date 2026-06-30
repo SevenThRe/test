@@ -63,7 +63,7 @@ public class oj {
         oj a2;
         long l2 = System.currentTimeMillis();
         if (l2 < a2.j + 500L) {
-            return MathHelper.func_76125_a((int)(vk.c + 1 - ((int)((float)(l2 -= a2.j) / 125.0f) + 1)), (int)0, (int)(vk.c + 1));
+            return MathHelper.clamp((int)(vk.c + 1 - ((int)((float)(l2 -= a2.j) / 125.0f) + 1)), (int)0, (int)(vk.c + 1));
         }
         return 0;
     }

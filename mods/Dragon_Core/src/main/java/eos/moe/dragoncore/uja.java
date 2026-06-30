@@ -20,7 +20,7 @@ public class uja {
     }
 
     public static zca ALLATORIxDEMO(ItemStack a2) {
-        if (a2.func_190926_b()) {
+        if (a2.isEmpty()) {
             return null;
         }
         String a3 = dj.ALLATORIxDEMO(a2, false, false);

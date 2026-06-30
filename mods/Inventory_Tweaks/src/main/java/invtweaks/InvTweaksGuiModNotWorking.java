@@ -26,20 +26,20 @@ extends InvTweaksGuiSettingsAbstract {
     }
 
     @Override
-    public void func_73863_a(int i, int j, float f) {
-        super.func_73863_a(i, j, f);
-        int x = this.field_146294_l / 2;
-        this.func_73732_a(this.obf.getFontRenderer(), I18n.func_135052_a((String)"invtweaks.help.bugsorting.pt1", (Object[])new Object[0]), x, 80, 0xBBBBBB);
-        this.func_73732_a(this.obf.getFontRenderer(), I18n.func_135052_a((String)"invtweaks.help.bugsorting.pt2", (Object[])new Object[0]), x, 95, 0xBBBBBB);
-        this.func_73732_a(this.obf.getFontRenderer(), I18n.func_135052_a((String)"invtweaks.help.bugsorting.pt3", (Object[])new Object[0]), x, 110, 0xBBBBBB);
-        this.func_73732_a(this.obf.getFontRenderer(), I18n.func_135052_a((String)"invtweaks.help.bugsorting.pt4", (Object[])new Object[0]), x, 150, 0xFFFF99);
+    public void drawScreen(int i, int j, float f) {
+        super.drawScreen(i, j, f);
+        int x = this.width / 2;
+        this.drawCenteredString(this.obf.getFontRenderer(), I18n.format((String)"invtweaks.help.bugsorting.pt1", (Object[])new Object[0]), x, 80, 0xBBBBBB);
+        this.drawCenteredString(this.obf.getFontRenderer(), I18n.format((String)"invtweaks.help.bugsorting.pt2", (Object[])new Object[0]), x, 95, 0xBBBBBB);
+        this.drawCenteredString(this.obf.getFontRenderer(), I18n.format((String)"invtweaks.help.bugsorting.pt3", (Object[])new Object[0]), x, 110, 0xBBBBBB);
+        this.drawCenteredString(this.obf.getFontRenderer(), I18n.format((String)"invtweaks.help.bugsorting.pt4", (Object[])new Object[0]), x, 150, 0xFFFF99);
     }
 
     @Override
-    protected void func_146284_a(@NotNull GuiButton guibutton) {
-        switch (guibutton.field_146127_k) {
+    protected void actionPerformed(@NotNull GuiButton guibutton) {
+        switch (guibutton.id) {
             case 200: {
-                this.obf.displayGuiScreen(new InvTweaksGuiSettings(this.field_146297_k, this.parentScreen, this.config));
+                this.obf.displayGuiScreen(new InvTweaksGuiSettings(this.mc, this.parentScreen, this.config));
             }
         }
     }

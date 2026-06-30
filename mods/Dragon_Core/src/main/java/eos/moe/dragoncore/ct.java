@@ -27,11 +27,11 @@ implements ICustomModelLoader {
         ModelLoaderRegistry.registerLoader((ICustomModelLoader)a2);
     }
 
-    public void func_110549_a(IResourceManager a2) {
+    public void onResourceManagerReload(IResourceManager a2) {
     }
 
     public boolean accepts(ResourceLocation a2) {
-        return a2.func_110623_a().endsWith(".pqc");
+        return a2.getPath().endsWith(".pqc");
     }
 
     public IModel loadModel(ResourceLocation a2, boolean a3) {

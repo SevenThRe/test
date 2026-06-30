@@ -27,29 +27,29 @@ public class ch {
 
     @h(c=1001)
     public static void ALLATORIxDEMO() {
-        RayTraceResult a2 = Minecraft.func_71410_x().field_71476_x;
+        RayTraceResult a2 = Minecraft.getMinecraft().objectMouseOver;
         if (a2 != null) {
-            if (a2.field_72308_g != null) {
-                nw.ALLATORIxDEMO(a2.field_72308_g.func_145782_y());
-            } else if (a2.field_72313_a == RayTraceResult.Type.BLOCK) {
-                nw.ALLATORIxDEMO(a2.func_178782_a());
+            if (a2.entityHit != null) {
+                nw.ALLATORIxDEMO(a2.entityHit.getEntityId());
+            } else if (a2.typeOfHit == RayTraceResult.Type.BLOCK) {
+                nw.ALLATORIxDEMO(a2.getBlockPos());
             }
         }
     }
 
     @h(c=1002)
     public static void ALLATORIxDEMO(BlockPos a2, NBTTagCompound a3) {
-        Minecraft.func_71410_x().func_147108_a((GuiScreen)new nr(a2, a3));
+        Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new nr(a2, a3));
     }
 
     @h(c=1003)
     public static void ALLATORIxDEMO(int a2, NBTTagCompound a3) {
-        Minecraft.func_71410_x().func_147108_a((GuiScreen)new nr(a2, a3));
+        Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new nr(a2, a3));
     }
 
     @h(c=1004)
     public static void ALLATORIxDEMO(NBTTagCompound a2) {
-        Minecraft.func_71410_x().func_147108_a((GuiScreen)new nr(a2));
+        Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new nr(a2));
     }
 }
 

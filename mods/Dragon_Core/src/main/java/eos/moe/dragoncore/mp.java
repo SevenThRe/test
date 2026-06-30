@@ -97,7 +97,7 @@ extends SimpleTexture {
     }
 
     public static void c(ResourceLocation a2) {
-        if (Minecraft.func_71410_x() != null && !Minecraft.func_71375_t()) {
+        if (Minecraft.getMinecraft() != null && !Minecraft.isFancyGraphicsEnabled()) {
             return;
         }
         mp a3 = k.get(a2);
@@ -114,7 +114,7 @@ extends SimpleTexture {
 
     public void newBinding() {
         mp a2;
-        int a3 = a2.func_110552_b();
+        int a3 = a2.getGlTextureId();
         GL11.glBindTexture((int)34067, (int)a3);
         for (int a4 = 0; a4 < 6; ++a4) {
             GL11.glTexImage2D((int)(34069 + a4), (int)0, (int)32856, (int)a2.q, (int)a2.q, (int)0, (int)6408, (int)5121, (ByteBuffer)a2.y[a4]);
@@ -122,7 +122,7 @@ extends SimpleTexture {
     }
 
     public void start() {
-        OpenGlHelper.func_77473_a((int)yq.k);
+        OpenGlHelper.setActiveTexture((int)yq.k);
         GL11.glEnable((int)3168);
         GL11.glEnable((int)3169);
         GL11.glEnable((int)3170);
@@ -144,13 +144,13 @@ extends SimpleTexture {
         GL11.glDisable((int)3169);
         GL11.glDisable((int)3170);
         GL11.glDisable((int)34067);
-        OpenGlHelper.func_77473_a((int)OpenGlHelper.field_77478_a);
+        OpenGlHelper.setActiveTexture((int)OpenGlHelper.defaultTexUnit);
     }
 
     public static void ALLATORIxDEMO(ResourceLocation a2) {
         Object a3;
         Field a4 = null;
-        TextureManager a5 = Minecraft.func_71410_x().field_71446_o;
+        TextureManager a5 = Minecraft.getMinecraft().renderEngine;
         IResourceManager a6 = null;
         IResource a7 = null;
         BufferedImage a8 = null;
@@ -158,8 +158,8 @@ extends SimpleTexture {
             a4 = TextureManager.class.getDeclaredField("theResourceManager");
             a4.setAccessible(true);
             a6 = (IResourceManager)a4.get(a5);
-            a7 = a6.func_110536_a(a2);
-            a3 = a7.func_110527_b();
+            a7 = a6.getResource(a2);
+            a3 = a7.getInputStream();
             a8 = ImageIO.read((InputStream)a3);
         }
         catch (Exception a9) {

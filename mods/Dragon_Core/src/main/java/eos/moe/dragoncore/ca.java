@@ -111,7 +111,7 @@ public class ca {
         new File(s, "models" + File.separator + "items").mkdirs();
         File a3 = new File(s, "config.yml");
         t = YamlConfiguration.loadConfiguration(new File(s, "config.yml"));
-        r = YamlConfiguration.loadConfiguration(new File(Minecraft.func_71410_x().field_71412_D, "key_setting.txt"));
+        r = YamlConfiguration.loadConfiguration(new File(Minecraft.getMinecraft().gameDir, "key_setting.txt"));
         if (!a3.exists()) {
             t.set("EnableFontRenderer", true);
             t.set("BasicTransitionTime", 200);
@@ -152,7 +152,7 @@ public class ca {
         }
         if (t.getBoolean("SaveOptions")) {
             try {
-                File a6 = Minecraft.func_71410_x().field_71412_D;
+                File a6 = Minecraft.getMinecraft().gameDir;
                 File a7 = new File(a6, "config_cache");
                 if (!new File(a6, "config_cache").exists()) {
                     new File(a6, "config_cache").mkdirs();
@@ -183,7 +183,7 @@ public class ca {
 
     private static /* synthetic */ void f() {
         try {
-            File a2 = Minecraft.func_71410_x().field_71412_D;
+            File a2 = Minecraft.getMinecraft().gameDir;
             File a3 = new File(a2, "config_cache");
             if (new File(a2, "config_cache").exists()) {
                 FileUtils.copyFile((File)new File(a2, "options.txt"), (File)new File(a3, "client_options.txt"));
@@ -220,7 +220,7 @@ public class ca {
         eja.f();
         if (t.getBoolean("EnableFontRenderer")) {
             bq.ALLATORIxDEMO();
-            Minecraft.func_71410_x().field_71466_p = bq.ALLATORIxDEMO();
+            Minecraft.getMinecraft().fontRenderer = bq.ALLATORIxDEMO();
         }
     }
 
@@ -228,10 +228,10 @@ public class ca {
     public void ALLATORIxDEMO(FMLLoadCompleteEvent a2) {
         Object a3;
         Object a4;
-        BaseAttribute a5 = new RangedAttribute(null, "generic.maxHealth", 20.0, (double)1.4E-45f, Double.MAX_VALUE).func_111117_a("Max Health").func_111112_a(true);
+        BaseAttribute a5 = new RangedAttribute(null, "generic.maxHealth", 20.0, (double)1.4E-45f, Double.MAX_VALUE).setDescription("Max Health").setShouldWatch(true);
         try {
             a4 = Field.class.getDeclaredField("modifiers");
-            a3 = ReflectionHelper.findField(SharedMonsterAttributes.class, (String[])new String[]{"field_111267_a", "MAX_HEALTH"});
+            a3 = ReflectionHelper.findField(SharedMonsterAttributes.class, (String[])new String[]{"MAX_HEALTH", "MAX_HEALTH"});
             ((Field)a4).setAccessible(true);
             ((Field)a4).setInt(a3, ((Field)a3).getModifiers() & 0xFFFFFFEF);
             ((Field)a3).set(null, a5);
@@ -239,7 +239,7 @@ public class ca {
         catch (IllegalAccessException | NoSuchFieldException a6) {
             a6.printStackTrace();
         }
-        a4 = new File(Minecraft.func_71410_x().field_71412_D, "config" + File.separator + "DragonCore.cfg");
+        a4 = new File(Minecraft.getMinecraft().gameDir, "config" + File.separator + "DragonCore.cfg");
         if (((File)a4).exists()) {
             try {
                 ca a7;
@@ -278,13 +278,13 @@ public class ca {
     }
 
     public static void c() {
-        for (RenderPlayer a2 : Minecraft.func_71410_x().func_175598_ae().getSkinMap().values()) {
-            List a3 = (List)ReflectionHelper.getPrivateValue(RenderLivingBase.class, (Object)a2, (String[])new String[]{"layerRenderers", "field_177097_h"});
+        for (RenderPlayer a2 : Minecraft.getMinecraft().getRenderManager().getSkinMap().values()) {
+            List a3 = (List)ReflectionHelper.getPrivateValue(RenderLivingBase.class, (Object)a2, (String[])new String[]{"layerRenderers", "layerRenderers"});
             for (LayerRenderer a4 : a3) {
                 if (!(a4 instanceof ru)) continue;
                 return;
             }
-            a2.func_177094_a((LayerRenderer)new ru(a2));
+            a2.addLayer((LayerRenderer)new ru(a2));
         }
     }
 

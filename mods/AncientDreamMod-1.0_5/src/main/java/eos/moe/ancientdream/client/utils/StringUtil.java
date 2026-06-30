@@ -44,24 +44,24 @@ public class StringUtil {
 
     public static List<String> getItemLore(ItemStack itemStack, boolean addColor) {
         ArrayList list = Lists.newArrayList();
-        if (itemStack.func_77978_p() == null) {
+        if (itemStack.getTagCompound() == null) {
             return list;
         }
-        if (!itemStack.func_77978_p().func_150297_b("display", 10)) {
+        if (!itemStack.getTagCompound().hasKey("display", 10)) {
             return list;
         }
-        NBTTagCompound nbttagcompound1 = itemStack.func_77978_p().func_74775_l("display");
-        if (nbttagcompound1.func_150299_b("Lore") != 9) {
+        NBTTagCompound nbttagcompound1 = itemStack.getTagCompound().getCompoundTag("display");
+        if (nbttagcompound1.getTagId("Lore") != 9) {
             return list;
         }
-        NBTTagList nbttaglist3 = nbttagcompound1.func_150295_c("Lore", 8);
-        if (nbttaglist3.func_74745_c() == 0) {
-            for (int l1 = 0; l1 < nbttaglist3.func_74745_c(); ++l1) {
+        NBTTagList nbttaglist3 = nbttagcompound1.getTagList("Lore", 8);
+        if (nbttaglist3.tagCount() == 0) {
+            for (int l1 = 0; l1 < nbttaglist3.tagCount(); ++l1) {
                 if (addColor) {
-                    list.add(TextFormatting.WHITE + nbttaglist3.func_150307_f(l1));
+                    list.add(TextFormatting.WHITE + nbttaglist3.getStringTagAt(l1));
                     continue;
                 }
-                list.add(nbttaglist3.func_150307_f(l1));
+                list.add(nbttaglist3.getStringTagAt(l1));
             }
         }
         return list;

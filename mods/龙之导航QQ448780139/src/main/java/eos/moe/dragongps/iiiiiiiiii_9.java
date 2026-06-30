@@ -55,27 +55,27 @@ public class iiiiiiiiii_9 {
     private static Minecraft IIiiiiiIIi;
 
     static {
-        IIiiiiiIIi = Minecraft.func_71410_x();
-        IIiIiIIIiI = IIiiiiiIIi.func_175598_ae();
+        IIiiiiiIIi = Minecraft.getMinecraft();
+        IIiIiIIIiI = IIiiiiiIIi.getRenderManager();
     }
 
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     private static /* synthetic */ void IIIiiiIiii(iiiiiiiiii_10 IIiiiiiIIi) {
-        if (iiiiiiiiii_9.IIiIiIIIiI.field_78734_h == null) {
+        if (iiiiiiiiii_9.IIiIiIIIiI.renderViewEntity == null) {
             return;
         }
-        RenderHelper.func_74519_b();
+        RenderHelper.enableStandardItemLighting();
         try {
             String[] IIiiiiiIIi3;
             double IIiiiiiIIi4;
             double IIiiiiiIIi5;
             double IIiiiiiIIi6;
             double IIiiiiiIIi7;
-            Vec3d IIiiiiiIIi8 = iiiiiiiiii_9.IIiIiIIIiI.field_78734_h.func_174791_d();
-            Vec3d IIiiiiiIIi9 = IIiiiiiIIi.IIIiiiIiii().func_72441_c(0.0, 0.118, 0.0);
-            double IIiiiiiIIi10 = IIiiiiiIIi8.func_72438_d(IIiiiiiIIi9);
+            Vec3d IIiiiiiIIi8 = iiiiiiiiii_9.IIiIiIIIiI.renderViewEntity.getPositionVector();
+            Vec3d IIiiiiiIIi9 = IIiiiiiIIi.IIIiiiIiii().add(0.0, 0.118, 0.0);
+            double IIiiiiiIIi10 = IIiiiiiIIi8.distanceTo(IIiiiiiIIi9);
             int IIiiiiiIIi11 = iiiiiiiiii_5.IIiIiIIIiI;
             if (IIiiiiiIIi.iIIiIIiIii != 0 && IIiiiiiIIi10 > (double)IIiiiiiIIi.iIIiIIiIii) {
                 return;
@@ -90,45 +90,45 @@ public class iiiiiiiiii_9 {
             if ((int)IIiiiiiIIi10 <= IIiiiiiIIi11 + 4) {
                 IIiiiiiIIi12 = (float)(IIiiiiiIIi10 - (double)IIiiiiiIIi11) / 3.0f;
             }
-            if ((IIiiiiiIIi7 = IIiiiiiIIi10) > (IIiiiiiIIi6 = (double)(iiiiiiiiii_9.IIiiiiiIIi.field_71474_y.field_151451_c * 16))) {
-                Vec3d IIiiiiiIIi13 = IIiiiiiIIi9.func_178788_d(IIiiiiiIIi8).func_72432_b();
-                IIiiiiiIIi9 = IIiiiiiIIi8.func_72441_c(IIiiiiiIIi13.field_72450_a * IIiiiiiIIi6, IIiiiiiIIi13.field_72448_b * IIiiiiiIIi6, IIiiiiiIIi13.field_72449_c * IIiiiiiIIi6);
+            if ((IIiiiiiIIi7 = IIiiiiiIIi10) > (IIiiiiiIIi6 = (double)(iiiiiiiiii_9.IIiiiiiIIi.gameSettings.renderDistanceChunks * 16))) {
+                Vec3d IIiiiiiIIi13 = IIiiiiiIIi9.subtract(IIiiiiiIIi8).normalize();
+                IIiiiiiIIi9 = IIiiiiiIIi8.add(IIiiiiiIIi13.x * IIiiiiiIIi6, IIiiiiiIIi13.y * IIiiiiiIIi6, IIiiiiiIIi13.z * IIiiiiiIIi6);
                 IIiiiiiIIi7 = IIiiiiiIIi6;
             }
-            double IIiiiiiIIi14 = IIiiiiiIIi9.field_72450_a - iiiiiiiiii_9.IIiIiIIIiI.field_78730_l;
-            double IIiiiiiIIi15 = IIiiiiiIIi9.field_72448_b - iiiiiiiiii_9.IIiIiIIIiI.field_78731_m;
-            double IIiiiiiIIi16 = IIiiiiiIIi9.field_72449_c - iiiiiiiiii_9.IIiIiIIIiI.field_78728_n;
+            double IIiiiiiIIi14 = IIiiiiiIIi9.x - iiiiiiiiii_9.IIiIiIIIiI.viewerPosX;
+            double IIiiiiiIIi15 = IIiiiiiIIi9.y - iiiiiiiiii_9.IIiIiIIIiI.viewerPosY;
+            double IIiiiiiIIi16 = IIiiiiiIIi9.z - iiiiiiiiii_9.IIiIiIIIiI.viewerPosZ;
             double IIiiiiiIIi17 = 0.00390625 * ((IIiiiiiIIi7 + 4.0) / 3.0);
             Dimension IIiiiiiIIi18 = iiiiiiiiii_11.IIIiiiIiii(IIiiiiiIIi.iIIIIiiIII);
             double d = IIiiiiiIIi5 = IIiiiiiIIi18 == null ? 0.0 : IIiiiiiIIi18.getHeight() / 2.0;
             if (IIiiiiiIIi.iIIIIiiIII != null && IIiiiiiIIi18 != null) {
-                GlStateManager.func_179094_E();
-                GlStateManager.func_179140_f();
+                GlStateManager.pushMatrix();
+                GlStateManager.disableLighting();
                 GL11.glNormal3d((double)0.0, (double)0.0, (double)(-1.0 * IIiiiiiIIi17));
-                GlStateManager.func_179097_i();
-                GlStateManager.func_179132_a((boolean)false);
-                GlStateManager.func_179137_b((double)IIiiiiiIIi14, (double)IIiiiiiIIi15, (double)IIiiiiiIIi16);
-                GlStateManager.func_179114_b((float)(-iiiiiiiiii_9.IIiIiIIIiI.field_78735_i), (float)0.0f, (float)1.0f, (float)0.0f);
-                GlStateManager.func_179114_b((float)iiiiiiiiii_9.IIiIiIIIiI.field_78732_j, (float)1.0f, (float)0.0f, (float)0.0f);
-                GlStateManager.func_179139_a((double)(-IIiiiiiIIi17 * 2.0), (double)(-IIiiiiiIIi17 * 2.0), (double)(IIiiiiiIIi17 * 2.0));
+                GlStateManager.disableDepth();
+                GlStateManager.depthMask((boolean)false);
+                GlStateManager.translate((double)IIiiiiiIIi14, (double)IIiiiiiIIi15, (double)IIiiiiiIIi16);
+                GlStateManager.rotate((float)(-iiiiiiiiii_9.IIiIiIIIiI.playerViewY), (float)0.0f, (float)1.0f, (float)0.0f);
+                GlStateManager.rotate((float)iiiiiiiiii_9.IIiIiIIIiI.playerViewX, (float)1.0f, (float)0.0f, (float)0.0f);
+                GlStateManager.scale((double)(-IIiiiiiIIi17 * 2.0), (double)(-IIiiiiiIIi17 * 2.0), (double)(IIiiiiiIIi17 * 2.0));
                 GL11.glNormal3d((double)0.0, (double)0.0, (double)(-1.0 * IIiiiiiIIi17 * 2.0));
                 iiiiiiiiii_11.IIIiiiIiii(IIiiiiiIIi.iIIIIiiIII);
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-                Gui.func_146110_a((int)((int)(0.0 - IIiiiiiIIi18.getWidth() / 2.0 + 0.5)), (int)((int)(0.0 - IIiiiiiIIi5 + 0.2 - 40.0)), (float)0.0f, (float)0.0f, (int)IIiiiiiIIi18.width, (int)IIiiiiiIIi18.height, (float)IIiiiiiIIi18.width, (float)IIiiiiiIIi18.height);
-                GlStateManager.func_179121_F();
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                Gui.drawModalRectWithCustomSizedTexture((int)((int)(0.0 - IIiiiiiIIi18.getWidth() / 2.0 + 0.5)), (int)((int)(0.0 - IIiiiiiIIi5 + 0.2 - 40.0)), (float)0.0f, (float)0.0f, (int)IIiiiiiIIi18.width, (int)IIiiiiiIIi18.height, (float)IIiiiiiIIi18.width, (float)IIiiiiiIIi18.height);
+                GlStateManager.popMatrix();
             }
             ArrayList<String> IIiiiiiIIi19 = new ArrayList<String>(IIiiiiiIIi.IIIiiiIiii());
             IIiiiiiIIi19.replaceAll(IIiiiiiIIi2 -> IIiiiiiIIi2.replace("%distance%", String.format("%.2f", IIiiiiiIIi10)));
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179140_f();
+            GlStateManager.pushMatrix();
+            GlStateManager.disableLighting();
             GL11.glNormal3d((double)0.0, (double)0.0, (double)(-1.0 * IIiiiiiIIi17));
-            GlStateManager.func_179137_b((double)IIiiiiiIIi14, (double)IIiiiiiIIi15, (double)IIiiiiiIIi16);
-            GlStateManager.func_179114_b((float)(-iiiiiiiiii_9.IIiIiIIIiI.field_78735_i), (float)0.0f, (float)1.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)iiiiiiiiii_9.IIiIiIIIiI.field_78732_j, (float)1.0f, (float)0.0f, (float)0.0f);
-            GlStateManager.func_179139_a((double)(-IIiiiiiIIi17), (double)(-IIiiiiiIIi17), (double)IIiiiiiIIi17);
-            GlStateManager.func_179132_a((boolean)true);
-            GlStateManager.func_179132_a((boolean)true);
-            GlStateManager.func_179126_j();
+            GlStateManager.translate((double)IIiiiiiIIi14, (double)IIiiiiiIIi15, (double)IIiiiiiIIi16);
+            GlStateManager.rotate((float)(-iiiiiiiiii_9.IIiIiIIIiI.playerViewY), (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)iiiiiiiiii_9.IIiIiIIIiI.playerViewX, (float)1.0f, (float)0.0f, (float)0.0f);
+            GlStateManager.scale((double)(-IIiiiiiIIi17), (double)(-IIiiiiiIIi17), (double)IIiiiiiIIi17);
+            GlStateManager.depthMask((boolean)true);
+            GlStateManager.depthMask((boolean)true);
+            GlStateManager.enableDepth();
             int IIiiiiiIIi20 = 3;
             double IIiiiiiIIi21 = IIiiiiiIIi4 = 0.0 - IIiiiiiIIi5 - 8.0;
             for (String IIiiiiiIIi22 : IIiiiiiIIi19) {
@@ -145,8 +145,8 @@ public class iiiiiiiiii_9 {
                 iIiIIiIIII.IIIiiiIiii((String)IIiiiiiIIi22, (double)1.0, (double)IIiiiiiIIi21, (iiiiiiiiii_14)iIiIiIiIII.IIiiiiiIIi, (iiiiiiiiii_16)iIiiiIIiiI.IIiIiIIIiI, (Integer)0, (float)(0.6f * IIiiiiiIIi12), (int)Color.WHITE.getRGB(), (float)IIiiiiiIIi12, (double)IIiiiiiIIi20, (boolean)false);
                 IIiiiiiIIi21 += 30.0;
             }
-            GlStateManager.func_179097_i();
-            GlStateManager.func_179132_a((boolean)false);
+            GlStateManager.disableDepth();
+            GlStateManager.depthMask((boolean)false);
             IIiiiiiIIi21 = IIiiiiiIIi4;
             for (String IIiiiiiIIi22 : IIiiiiiIIi19) {
                 IIiiiiiIIi3 = IIiiiiiIIi22.split("<->");
@@ -162,17 +162,17 @@ public class iiiiiiiiii_9 {
                 iIiIIiIIII.IIIiiiIiii((String)IIiiiiiIIi22, (double)1.0, (double)IIiiiiiIIi21, (iiiiiiiiii_14)iIiIiIiIII.IIiiiiiIIi, (iiiiiiiiii_16)iIiiiIIiiI.IIiIiIIIiI, (Integer)0, (float)(0.6f * IIiiiiiIIi12), (int)Color.WHITE.getRGB(), (float)IIiiiiiIIi12, (double)IIiiiiiIIi20, (boolean)false);
                 IIiiiiiIIi21 += 30.0;
             }
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
         finally {
-            GlStateManager.func_179132_a((boolean)true);
-            GlStateManager.func_179126_j();
-            GlStateManager.func_179145_e();
-            GlStateManager.func_179132_a((boolean)true);
-            GlStateManager.func_179089_o();
-            GlStateManager.func_179084_k();
-            GlStateManager.func_179106_n();
-            RenderHelper.func_74518_a();
+            GlStateManager.depthMask((boolean)true);
+            GlStateManager.enableDepth();
+            GlStateManager.enableLighting();
+            GlStateManager.depthMask((boolean)true);
+            GlStateManager.enableCull();
+            GlStateManager.disableBlend();
+            GlStateManager.disableFog();
+            RenderHelper.disableStandardItemLighting();
         }
     }
 
@@ -185,19 +185,19 @@ public class iiiiiiiiii_9 {
         if (iiiiiiiiii_0.IIiiIiiIII) {
             return;
         }
-        if (iiiiiiiiii_9.IIiiiiiIIi.field_71439_g == null || iiiiiiiiii_9.IIiiiiiIIi.field_71474_y.field_74319_N) {
+        if (iiiiiiiiii_9.IIiiiiiIIi.player == null || iiiiiiiiii_9.IIiiiiiIIi.gameSettings.hideGUI) {
             return;
         }
-        GlStateManager.func_179094_E();
-        iiiiiiiiii_9.IIiiiiiIIi.field_71424_I.func_76320_a("dragontracker");
+        GlStateManager.pushMatrix();
+        iiiiiiiiii_9.IIiiiiiIIi.profiler.startSection("dragontracker");
         HashSet<String> IIiiiiiIIi3 = new HashSet<String>();
         for (Map.Entry<String, iiiiiiiiii_10> IIiiiiiIIi4 : iiiiiiiiii_6.iIIiIIiIii.entrySet()) {
             if (!iiiiiiiiii_6.iIIIIiiIII.equals(IIiiiiiIIi4.getValue().iiIIIiIiII)) continue;
             iiiiiiiiii_10 IIiiiiiIIi5 = IIiiiiiIIi4.getValue();
             iiiiiiiiii_9.IIIiiiIiii(IIiiiiiIIi5);
-            Vec3d IIiiiiiIIi6 = iiiiiiiiii_9.IIiIiIIIiI.field_78734_h.func_174791_d();
-            Vec3d IIiiiiiIIi7 = IIiiiiiIIi5.IIIiiiIiii().func_72441_c(0.0, 0.118, 0.0);
-            double IIiiiiiIIi8 = IIiiiiiIIi6.func_72438_d(IIiiiiiIIi7);
+            Vec3d IIiiiiiIIi6 = iiiiiiiiii_9.IIiIiIIIiI.renderViewEntity.getPositionVector();
+            Vec3d IIiiiiiIIi7 = IIiiiiiIIi5.IIIiiiIiii().add(0.0, 0.118, 0.0);
+            double IIiiiiiIIi8 = IIiiiiiIIi6.distanceTo(IIiiiiiIIi7);
             if (IIiiiiiIIi5.IIiIiIIIiI <= 0 || (int)IIiiiiiIIi8 > IIiiiiiIIi5.IIiIiIIIiI) continue;
             IIiiiiiIIi3.add(IIiiiiiIIi4.getKey());
         }
@@ -205,9 +205,9 @@ public class iiiiiiiiii_9 {
             iiiiiiiiii_6.iIIiIIiIii.remove(IIiiiiiIIi);
             iiiiiiiiii_5.IIiiiiiIIi.sendToServer((IMessage)new iiiiiiiiii_6(2, (String)IIiiiiiIIi));
         });
-        iiiiiiiiii_9.IIiiiiiIIi.field_71424_I.func_76319_b();
-        GlStateManager.func_179121_F();
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        iiiiiiiiii_9.IIiiiiiIIi.profiler.endSection();
+        GlStateManager.popMatrix();
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
     }
 }
 

@@ -40,45 +40,45 @@ public class KeyHandler {
 
     @SubscribeEvent
     public void keyInputEvent(InputEvent.KeyInputEvent event) {
-        if (Minecraft.func_71410_x() != null && Minecraft.func_71410_x().field_71462_r == null) {
-            if (KEYBIND_TOGGLE_SHOULDER_SURFING.func_151470_d()) {
+        if (Minecraft.getMinecraft() != null && Minecraft.getMinecraft().currentScreen == null) {
+            if (KEYBIND_TOGGLE_SHOULDER_SURFING.isKeyDown()) {
                 if (ShoulderState.doShoulderSurfing()) {
                     ShoulderSurfingHelper.setPerspective(Perspective.FIRST_PERSON);
-                } else if (Minecraft.func_71410_x().field_71474_y.field_74320_O == Perspective.FIRST_PERSON.getPointOfView()) {
+                } else if (Minecraft.getMinecraft().gameSettings.thirdPersonView == Perspective.FIRST_PERSON.getPointOfView()) {
                     ShoulderSurfingHelper.setPerspective(Perspective.SHOULDER_SURFING);
                 }
             }
             if (ShoulderState.doShoulderSurfing()) {
-                if (KEYBIND_CAMERA_LEFT.func_151470_d()) {
+                if (KEYBIND_CAMERA_LEFT.isKeyDown()) {
                     Config.CLIENT.adjustCameraLeft();
                 }
-                if (KEYBIND_CAMERA_RIGHT.func_151470_d()) {
+                if (KEYBIND_CAMERA_RIGHT.isKeyDown()) {
                     Config.CLIENT.adjustCameraRight();
                 }
-                if (KEYBIND_CAMERA_OUT.func_151470_d()) {
+                if (KEYBIND_CAMERA_OUT.isKeyDown()) {
                     Config.CLIENT.adjustCameraOut();
                 }
-                if (KEYBIND_CAMERA_IN.func_151470_d()) {
+                if (KEYBIND_CAMERA_IN.isKeyDown()) {
                     Config.CLIENT.adjustCameraIn();
                 }
-                if (KEYBIND_CAMERA_UP.func_151470_d()) {
+                if (KEYBIND_CAMERA_UP.isKeyDown()) {
                     Config.CLIENT.adjustCameraUp();
                 }
-                if (KEYBIND_CAMERA_DOWN.func_151470_d()) {
+                if (KEYBIND_CAMERA_DOWN.isKeyDown()) {
                     Config.CLIENT.adjustCameraDown();
                 }
-                if (KEYBIND_SWAP_SHOULDER.func_151470_d()) {
+                if (KEYBIND_SWAP_SHOULDER.isKeyDown()) {
                     Config.CLIENT.swapShoulder();
                 }
             }
-            if (Minecraft.func_71410_x().field_71474_y.field_151457_aa.func_151468_f()) {
+            if (Minecraft.getMinecraft().gameSettings.keyBindTogglePerspective.isPressed()) {
                 Perspective perspective = Perspective.current();
                 Perspective next = perspective.next();
                 ShoulderSurfingHelper.setPerspective(next);
-                if (Minecraft.func_71410_x().field_71474_y.field_74320_O == 0) {
-                    Minecraft.func_71410_x().field_71460_t.func_175066_a(Minecraft.func_71410_x().func_175606_aa());
-                } else if (Minecraft.func_71410_x().field_71474_y.field_74320_O == 1) {
-                    Minecraft.func_71410_x().field_71460_t.func_175066_a(null);
+                if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0) {
+                    Minecraft.getMinecraft().entityRenderer.loadEntityShader(Minecraft.getMinecraft().getRenderViewEntity());
+                } else if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 1) {
+                    Minecraft.getMinecraft().entityRenderer.loadEntityShader(null);
                 }
                 if (Config.CLIENT.doRememberLastPerspective()) {
                     Config.CLIENT.setDefaultPerspective(next);

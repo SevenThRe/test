@@ -78,16 +78,16 @@ extends BaseGui {
         }).setTexture(this.BG));
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         this.setSize(394, 279);
     }
 
     @Override
     public void draw(int mouseX, int mouseY) {
         RenderUtils.drawTexture(16.0, 41.5, 24.0, 24.0, new ResourceLocation("ancientdream", "gui/guild/" + this.guildData.head));
-        GlStateManager.func_179147_l();
+        GlStateManager.enableBlend();
         RenderUtils.drawTexture(0.0, 0.0, 0.0, 0.0, (double)this.xSize, (double)this.ySize, (double)this.xSize, 350.0, this.BG);
-        GlStateManager.func_179084_k();
+        GlStateManager.disableBlend();
         RenderUtils.drawText(this.guildData.name, 116.0, 45.0, true, true);
         RenderUtils.drawText(this.guildData.level, 116.0, 56.0, true, true);
         RenderUtils.drawText(this.guildData.points, 228.0, 45.0, true, true);
@@ -95,7 +95,7 @@ extends BaseGui {
         RenderUtils.drawText(this.guildData.playerScore, 339.0, 45.0, true, true);
         RenderUtils.drawText(this.guildData.score, 339.0, 56.0, true, true);
         this.drawComponents((float)mouseX - this.offsetX, (float)mouseY - this.offsetY);
-        GlStateManager.func_179109_b((float)137.0f, (float)80.0f, (float)0.0f);
+        GlStateManager.translate((float)137.0f, (float)80.0f, (float)0.0f);
         int i = 0;
         List partition = Lists.partition(this.guildData.players, (int)12);
         List list = new ArrayList();
@@ -120,8 +120,8 @@ extends BaseGui {
     }
 
     @Override
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         int i = 0;
         List partition = Lists.partition(this.guildData.players, (int)12);
         List list = new ArrayList();
@@ -138,8 +138,8 @@ extends BaseGui {
         }
     }
 
-    protected void func_73869_a(char typedChar, int keyCode) throws IOException {
-        super.func_73869_a(typedChar, keyCode);
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+        super.keyTyped(typedChar, keyCode);
         if (keyCode == 1) {
             MessageSender.sendOpenManager();
         }

@@ -74,15 +74,15 @@ public class jla {
         String a4;
         jla a5;
         for (Object a6 : ca.ALLATORIxDEMO) {
-            if (a6.func_151470_d()) {
+            if (a6.isKeyDown()) {
                 if (a5.ALLATORIxDEMO.contains(a6)) continue;
                 a5.ALLATORIxDEMO.add((KeyBinding)a6);
-                nw.ALLATORIxDEMO(a6.func_151464_g(), Collections.emptySet());
+                nw.ALLATORIxDEMO(a6.getKeyDescription(), Collections.emptySet());
                 continue;
             }
             if (!a5.ALLATORIxDEMO.contains(a6)) continue;
             a5.ALLATORIxDEMO.remove(a6);
-            nw.ALLATORIxDEMO(a6.func_151464_g());
+            nw.ALLATORIxDEMO(a6.getKeyDescription());
         }
         if (Keyboard.getEventKeyState()) {
             Object a6;

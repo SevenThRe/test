@@ -30,16 +30,16 @@ public class af {
     public static String j;
 
     public static List<String> r(ItemStack a2) {
-        if (a2 == null || a2.func_190926_b() || !a2.func_77942_o()) {
+        if (a2 == null || a2.isEmpty() || !a2.hasTagCompound()) {
             return new ArrayList<String>();
         }
         ArrayList<String> arrayList = new ArrayList<String>();
-        NBTTagCompound nBTTagCompound = a2.func_77978_p();
-        if (nBTTagCompound.func_150297_b("display", 10) && (nBTTagCompound = nBTTagCompound.func_74775_l("display")).func_150299_b("Lore") == 9 && !(nBTTagCompound = nBTTagCompound.func_150295_c("Lore", 8)).func_82582_d()) {
+        NBTTagCompound nBTTagCompound = a2.getTagCompound();
+        if (nBTTagCompound.hasKey("display", 10) && (nBTTagCompound = nBTTagCompound.getCompoundTag("display")).getTagId("Lore") == 9 && !(nBTTagCompound = nBTTagCompound.getTagList("Lore", 8)).isEmpty()) {
             int n2;
             int n3 = n2 = 0;
-            while (n3 < nBTTagCompound.func_74745_c()) {
-                String string = nBTTagCompound.func_150307_f(n2);
+            while (n3 < nBTTagCompound.tagCount()) {
+                String string = nBTTagCompound.getStringTagAt(n2);
                 arrayList.add(string);
                 n3 = ++n2;
             }
@@ -83,10 +83,10 @@ public class af {
     }
 
     public static String r(ItemStack a2, String a3) {
-        if (a2 == null || a2.func_190926_b() || a2.func_77978_p() == null) {
+        if (a2 == null || a2.isEmpty() || a2.getTagCompound() == null) {
             return null;
         }
-        return a2.func_77978_p().func_74779_i(a3);
+        return a2.getTagCompound().getString(a3);
     }
 
     public static void r() {

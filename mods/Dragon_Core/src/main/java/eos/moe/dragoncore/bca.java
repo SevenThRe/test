@@ -63,8 +63,8 @@ public class bca {
             return;
         }
         try {
-            k = new ShaderManager(Minecraft.func_71410_x().func_110442_L(), "dragoncore:indicator/circle");
-            ALLATORIxDEMO = new ShaderManager(Minecraft.func_71410_x().func_110442_L(), "dragoncore:indicator/rectangle");
+            k = new ShaderManager(Minecraft.getMinecraft().getResourceManager(), "dragoncore:indicator/circle");
+            ALLATORIxDEMO = new ShaderManager(Minecraft.getMinecraft().getResourceManager(), "dragoncore:indicator/rectangle");
             o = true;
         }
         catch (Exception a2) {
@@ -94,7 +94,7 @@ public class bca {
         if (bca.ALLATORIxDEMO(a4[0])) {
             a7 = a4[0].split(",");
             a6 = a7.length == 2 ? Double.parseDouble(a7[1]) : 0.0;
-            a5 = new sda(a6, (a2, a3) -> a2.field_70142_S + (a2.field_70165_t - a2.field_70142_S) * (double)Minecraft.func_71410_x().func_184121_ak());
+            a5 = new sda(a6, (a2, a3) -> a2.lastTickPosX + (a2.posX - a2.lastTickPosX) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
             sda.c(a5, UUID.fromString(a7[0]));
             a9.x(a5);
         } else {
@@ -103,7 +103,7 @@ public class bca {
         if (bca.ALLATORIxDEMO(a4[1])) {
             a7 = a4[1].split(",");
             a6 = a7.length == 2 ? Double.parseDouble(a7[1]) : 0.0;
-            a5 = new sda(a6, (a2, a3) -> a2.field_70137_T + (a2.field_70163_u - a2.field_70137_T) * (double)Minecraft.func_71410_x().func_184121_ak());
+            a5 = new sda(a6, (a2, a3) -> a2.lastTickPosY + (a2.posY - a2.lastTickPosY) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
             sda.c(a5, UUID.fromString(a7[0]));
             a9.f(a5);
         } else {
@@ -112,7 +112,7 @@ public class bca {
         if (bca.ALLATORIxDEMO(a4[2])) {
             a7 = a4[2].split(",");
             a6 = a7.length == 2 ? Double.parseDouble(a7[1]) : 0.0;
-            a5 = new sda(a6, (a2, a3) -> a2.field_70136_U + (a2.field_70161_v - a2.field_70136_U) * (double)Minecraft.func_71410_x().func_184121_ak());
+            a5 = new sda(a6, (a2, a3) -> a2.lastTickPosZ + (a2.posZ - a2.lastTickPosZ) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
             sda.c(a5, UUID.fromString(a7[0]));
             a9.c(a5);
         } else {
@@ -121,7 +121,7 @@ public class bca {
         if (bca.ALLATORIxDEMO(a4[3])) {
             a7 = a4[3].split(",");
             a6 = a7.length == 2 ? Double.parseDouble(a7[1]) : 0.0;
-            a5 = new sda(a6, (a2, a3) -> (double)a2.field_70126_B + (double)(a2.field_70177_z - a2.field_70126_B) * (double)Minecraft.func_71410_x().func_184121_ak());
+            a5 = new sda(a6, (a2, a3) -> (double)a2.prevRotationYaw + (double)(a2.rotationYaw - a2.prevRotationYaw) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
             sda.c(a5, UUID.fromString(a7[0]));
             a9.ALLATORIxDEMO(a5);
         } else {
@@ -154,7 +154,7 @@ public class bca {
         if (bca.ALLATORIxDEMO(a4[0])) {
             a7 = a4[0].split(",");
             a6 = a7.length == 2 ? Double.parseDouble(a7[1]) : 0.0;
-            a5 = new sda(a6, (a2, a3) -> a2.field_70142_S + (a2.field_70165_t - a2.field_70142_S) * (double)Minecraft.func_71410_x().func_184121_ak());
+            a5 = new sda(a6, (a2, a3) -> a2.lastTickPosX + (a2.posX - a2.lastTickPosX) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
             sda.c(a5, UUID.fromString(a7[0]));
             a9.x(a5);
         } else {
@@ -163,7 +163,7 @@ public class bca {
         if (bca.ALLATORIxDEMO(a4[1])) {
             a7 = a4[1].split(",");
             a6 = a7.length == 2 ? Double.parseDouble(a7[1]) : 0.0;
-            a5 = new sda(a6, (a2, a3) -> a2.field_70137_T + (a2.field_70163_u - a2.field_70137_T) * (double)Minecraft.func_71410_x().func_184121_ak());
+            a5 = new sda(a6, (a2, a3) -> a2.lastTickPosY + (a2.posY - a2.lastTickPosY) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
             sda.c(a5, UUID.fromString(a7[0]));
             a9.f(a5);
         } else {
@@ -172,7 +172,7 @@ public class bca {
         if (bca.ALLATORIxDEMO(a4[2])) {
             a7 = a4[2].split(",");
             a6 = a7.length == 2 ? Double.parseDouble(a7[1]) : 0.0;
-            a5 = new sda(a6, (a2, a3) -> a2.field_70136_U + (a2.field_70161_v - a2.field_70136_U) * (double)Minecraft.func_71410_x().func_184121_ak());
+            a5 = new sda(a6, (a2, a3) -> a2.lastTickPosZ + (a2.posZ - a2.lastTickPosZ) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
             sda.c(a5, UUID.fromString(a7[0]));
             a9.c(a5);
         } else {
@@ -184,16 +184,16 @@ public class bca {
             a5 = null;
             if (bca.ALLATORIxDEMO(a7[1])) {
                 a5 = new sda(a6, (a2, a3) -> {
-                    Vec3d a4 = new Vec3d(a2.field_70142_S + (a2.field_70165_t - a2.field_70142_S) * (double)Minecraft.func_71410_x().func_184121_ak(), 0.0, a2.field_70136_U + (a2.field_70161_v - a2.field_70136_U) * (double)Minecraft.func_71410_x().func_184121_ak());
-                    Vec3d a5 = new Vec3d(a3.field_70142_S + (a3.field_70165_t - a3.field_70142_S) * (double)Minecraft.func_71410_x().func_184121_ak(), 0.0, a3.field_70136_U + (a3.field_70161_v - a3.field_70136_U) * (double)Minecraft.func_71410_x().func_184121_ak());
-                    Vec3d a6 = a5.func_178788_d(a4).func_72432_b();
+                    Vec3d a4 = new Vec3d(a2.lastTickPosX + (a2.posX - a2.lastTickPosX) * (double)Minecraft.getMinecraft().getRenderPartialTicks(), 0.0, a2.lastTickPosZ + (a2.posZ - a2.lastTickPosZ) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
+                    Vec3d a5 = new Vec3d(a3.lastTickPosX + (a3.posX - a3.lastTickPosX) * (double)Minecraft.getMinecraft().getRenderPartialTicks(), 0.0, a3.lastTickPosZ + (a3.posZ - a3.lastTickPosZ) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
+                    Vec3d a6 = a5.subtract(a4).normalize();
                     Vec2f a7 = bca.ALLATORIxDEMO(a6);
-                    return a7.field_189983_j;
+                    return a7.y;
                 });
                 sda.c(a5, UUID.fromString(a7[0]));
                 sda.ALLATORIxDEMO(a5, UUID.fromString(a7[1]));
             } else if (bca.ALLATORIxDEMO(a7[0])) {
-                a5 = new sda(a6, (a2, a3) -> (double)a2.field_70126_B + (double)(a2.field_70177_z - a2.field_70126_B) * (double)Minecraft.func_71410_x().func_184121_ak());
+                a5 = new sda(a6, (a2, a3) -> (double)a2.prevRotationYaw + (double)(a2.rotationYaw - a2.prevRotationYaw) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
                 sda.c(a5, UUID.fromString(a7[0]));
             }
             a9.ALLATORIxDEMO(a5);
@@ -209,9 +209,9 @@ public class bca {
             a7 = a4[9].split(",");
             a6 = NumberUtils.toDouble((String)a7[a7.length - 1]);
             a5 = new sda(a6, (a2, a3) -> {
-                Vec3d a4 = new Vec3d(a2.field_70142_S + (a2.field_70165_t - a2.field_70142_S) * (double)Minecraft.func_71410_x().func_184121_ak(), 0.0, a2.field_70136_U + (a2.field_70161_v - a2.field_70136_U) * (double)Minecraft.func_71410_x().func_184121_ak());
-                Vec3d a5 = new Vec3d(a3.field_70142_S + (a3.field_70165_t - a3.field_70142_S) * (double)Minecraft.func_71410_x().func_184121_ak(), 0.0, a3.field_70136_U + (a3.field_70161_v - a3.field_70136_U) * (double)Minecraft.func_71410_x().func_184121_ak());
-                return a4.func_72438_d(a5) + 1.0;
+                Vec3d a4 = new Vec3d(a2.lastTickPosX + (a2.posX - a2.lastTickPosX) * (double)Minecraft.getMinecraft().getRenderPartialTicks(), 0.0, a2.lastTickPosZ + (a2.posZ - a2.lastTickPosZ) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
+                Vec3d a5 = new Vec3d(a3.lastTickPosX + (a3.posX - a3.lastTickPosX) * (double)Minecraft.getMinecraft().getRenderPartialTicks(), 0.0, a3.lastTickPosZ + (a3.posZ - a3.lastTickPosZ) * (double)Minecraft.getMinecraft().getRenderPartialTicks());
+                return a4.distanceTo(a5) + 1.0;
             });
             sda.c(a5, UUID.fromString(a7[0]));
             sda.ALLATORIxDEMO(a5, UUID.fromString(a7[1]));
@@ -223,9 +223,9 @@ public class bca {
     }
 
     public static Vec2f ALLATORIxDEMO(Vec3d a2) {
-        double a3 = a2.field_72450_a;
-        double a4 = a2.field_72448_b;
-        double a5 = a2.field_72449_c;
+        double a3 = a2.x;
+        double a4 = a2.y;
+        double a5 = a2.z;
         if (a3 == 0.0 && a5 == 0.0) {
             float a6 = a4 > 0.0 ? -90 : 90;
             return new Vec2f(a6, 0.0f);
@@ -241,7 +241,7 @@ public class bca {
 
     @SubscribeEvent
     public void ALLATORIxDEMO(RenderWorldLastEvent a2) {
-        if (bca.b.field_78734_h == null) {
+        if (bca.b.renderViewEntity == null) {
             return;
         }
         bca.ALLATORIxDEMO();
@@ -255,9 +255,9 @@ public class bca {
                 a3.remove();
                 continue;
             }
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             a5.ALLATORIxDEMO(a7);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
@@ -278,11 +278,11 @@ public class bca {
             a5 = 0.0;
         }
         a4 = bca.ALLATORIxDEMO(a4);
-        Minecraft.func_71410_x().func_110434_K().func_110577_a(new ResourceLocation("textures/misc/shadow.png"));
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179129_p();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179132_a((boolean)false);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/misc/shadow.png"));
+        GlStateManager.enableBlend();
+        GlStateManager.disableCull();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.depthMask((boolean)false);
         a2.ALLATORIxDEMO();
         a2.c((float)a6);
         a2.ALLATORIxDEMO((float)a4);
@@ -290,9 +290,9 @@ public class bca {
             a2.c((float)a6);
             a2.ALLATORIxDEMO((float)a5);
         }
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179132_a((boolean)true);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.disableBlend();
+        GlStateManager.depthMask((boolean)true);
     }
 
     public static double ALLATORIxDEMO(double a2) {
@@ -300,14 +300,14 @@ public class bca {
     }
 
     public static void ALLATORIxDEMO(float a2) {
-        Tessellator a3 = Tessellator.func_178181_a();
-        BufferBuilder a4 = a3.func_178180_c();
-        a4.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        a4.func_181662_b((double)(-a2), 0.0, (double)a2).func_187315_a(0.0, 1.0).func_181675_d();
-        a4.func_181662_b((double)a2, 0.0, (double)a2).func_187315_a(1.0, 1.0).func_181675_d();
-        a4.func_181662_b((double)a2, 0.0, (double)(-a2)).func_187315_a(1.0, 0.0).func_181675_d();
-        a4.func_181662_b((double)(-a2), 0.0, (double)(-a2)).func_187315_a(0.0, 0.0).func_181675_d();
-        a3.func_78381_a();
+        Tessellator a3 = Tessellator.getInstance();
+        BufferBuilder a4 = a3.getBuffer();
+        a4.begin(7, DefaultVertexFormats.POSITION_TEX);
+        a4.pos((double)(-a2), 0.0, (double)a2).tex(0.0, 1.0).endVertex();
+        a4.pos((double)a2, 0.0, (double)a2).tex(1.0, 1.0).endVertex();
+        a4.pos((double)a2, 0.0, (double)(-a2)).tex(1.0, 0.0).endVertex();
+        a4.pos((double)(-a2), 0.0, (double)(-a2)).tex(0.0, 0.0).endVertex();
+        a3.draw();
     }
 
     public static /* synthetic */ RenderManager ALLATORIxDEMO() {
@@ -323,8 +323,8 @@ public class bca {
     }
 
     static {
-        q = Minecraft.func_71410_x();
-        b = q.func_175598_ae();
+        q = Minecraft.getMinecraft();
+        b = q.getRenderManager();
         y = new HashMap<String, hba>();
     }
 }

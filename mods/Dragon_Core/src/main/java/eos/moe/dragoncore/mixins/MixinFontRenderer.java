@@ -20,12 +20,12 @@ public abstract class MixinFontRenderer {
     }
 
     @Shadow
-    protected abstract void func_78265_b();
+    protected abstract void resetStyles();
 
     @Inject(method={"drawString(Ljava/lang/String;FFIZ)I"}, at={@At(value="INVOKE_ASSIGN", target="Lnet/minecraft/client/gui/FontRenderer;renderString(Ljava/lang/String;FFIZ)I")})
     private /* synthetic */ void mixin_drawString(String a2, float a3, float a4, int a5, boolean a6, CallbackInfoReturnable<Integer> a7) {
         MixinFontRenderer a8;
-        a8.func_78265_b();
+        a8.resetStyles();
     }
 }
 

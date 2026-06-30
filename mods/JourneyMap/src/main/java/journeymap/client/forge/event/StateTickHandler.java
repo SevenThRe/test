@@ -53,8 +53,8 @@ implements EventHandlerManager.EventHandler {
         if (event.phase == TickEvent.Phase.END) {
             return;
         }
-        this.mc.field_71424_I.func_76320_a("journeymap");
-        if (this.mc.field_71439_g != null && this.mc.field_71439_g.field_70128_L) {
+        this.mc.profiler.startSection("journeymap");
+        if (this.mc.player != null && this.mc.player.isDead) {
             if (!this.deathpointCreated) {
                 this.deathpointCreated = true;
                 this.createDeathpoint();
@@ -62,27 +62,27 @@ implements EventHandlerManager.EventHandler {
         } else {
             this.deathpointCreated = false;
         }
-        if (!javaChecked && this.mc.field_71439_g != null && !this.mc.field_71439_g.field_70128_L) {
+        if (!javaChecked && this.mc.player != null && !this.mc.player.isDead) {
             this.checkJava();
         }
         try {
             if (this.counter == 20) {
-                this.mc.field_71424_I.func_76320_a("mainTasks");
+                this.mc.profiler.startSection("mainTasks");
                 Journeymap.getClient().performMainThreadTasks();
                 this.counter = 0;
-                this.mc.field_71424_I.func_76319_b();
+                this.mc.profiler.endSection();
             } else if (this.counter == 10) {
-                this.mc.field_71424_I.func_76320_a("multithreadTasks");
-                if (Journeymap.getClient().isMapping().booleanValue() && this.mc.field_71441_e != null) {
+                this.mc.profiler.startSection("multithreadTasks");
+                if (Journeymap.getClient().isMapping().booleanValue() && this.mc.world != null) {
                     Journeymap.getClient().performMultithreadTasks();
                 }
                 ++this.counter;
-                this.mc.field_71424_I.func_76319_b();
+                this.mc.profiler.endSection();
             } else if (this.counter == 5 || this.counter == 15) {
-                this.mc.field_71424_I.func_76320_a("clientApiEvents");
+                this.mc.profiler.startSection("clientApiEvents");
                 ClientAPI.INSTANCE.getClientEventManager().fireNextClientEvents();
                 ++this.counter;
-                this.mc.field_71424_I.func_76319_b();
+                this.mc.profiler.endSection();
             } else {
                 ++this.counter;
             }
@@ -91,13 +91,13 @@ implements EventHandlerManager.EventHandler {
             Journeymap.getLogger().warn("Error during onClientTick: " + LogFormatter.toPartialString(t));
         }
         finally {
-            this.mc.field_71424_I.func_76319_b();
+            this.mc.profiler.endSection();
         }
     }
 
     private void createDeathpoint() {
         try {
-            EntityPlayerSP player = this.mc.field_71439_g;
+            EntityPlayerSP player = this.mc.player;
             if (player == null) {
                 Journeymap.getLogger().error("Lost reference to player before Deathpoint could be created");
                 return;
@@ -105,10 +105,10 @@ implements EventHandlerManager.EventHandler {
             WaypointProperties waypointProperties = Journeymap.getClient().getWaypointProperties();
             boolean enabled = waypointProperties.managerEnabled.get() != false && waypointProperties.createDeathpoints.get() != false;
             boolean cancelled = false;
-            double playerY = MathHelper.func_76128_c((double)player.field_70163_u) > 2 ? (double)MathHelper.func_76128_c((double)player.field_70163_u) : 2.0;
-            BlockPos pos = new BlockPos((double)MathHelper.func_76128_c((double)player.field_70165_t), playerY, (double)MathHelper.func_76128_c((double)player.field_70161_v));
+            double playerY = MathHelper.floor((double)player.posY) > 2 ? (double)MathHelper.floor((double)player.posY) : 2.0;
+            BlockPos pos = new BlockPos((double)MathHelper.floor((double)player.posX), playerY, (double)MathHelper.floor((double)player.posZ));
             if (enabled) {
-                int dim = FMLClientHandler.instance().getClient().field_71439_g.field_70170_p.field_73011_w.getDimension();
+                int dim = FMLClientHandler.instance().getClient().player.world.provider.getDimension();
                 DeathWaypointEvent event = new DeathWaypointEvent(pos, dim);
                 ClientAPI.INSTANCE.getClientEventManager().fireDeathpointEvent(event);
                 if (!event.isCancelled()) {
@@ -118,7 +118,7 @@ implements EventHandlerManager.EventHandler {
                     cancelled = true;
                 }
             }
-            Journeymap.getLogger().info(String.format("%s died at %s. Deathpoints enabled: %s. Deathpoint created: %s", player.func_70005_c_(), pos, enabled, cancelled ? "cancelled" : Boolean.valueOf(true)));
+            Journeymap.getLogger().info(String.format("%s died at %s. Deathpoints enabled: %s. Deathpoint created: %s", player.getName(), pos, enabled, cancelled ? "cancelled" : Boolean.valueOf(true)));
         }
         catch (Throwable t) {
             Journeymap.getLogger().error("Unexpected Error in createDeathpoint(): " + LogFormatter.toString(t));
@@ -132,8 +132,8 @@ implements EventHandlerManager.EventHandler {
         }
         catch (ClassNotFoundException e) {
             try {
-                String error = I18n.func_135052_a((String)"jm.error.java6", (Object[])new Object[0]);
-                FMLClientHandler.instance().getClient().field_71456_v.func_146158_b().func_146227_a((ITextComponent)new TextComponentString(error));
+                String error = I18n.format((String)"jm.error.java6", (Object[])new Object[0]);
+                FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage((ITextComponent)new TextComponentString(error));
                 Journeymap.getLogger().fatal("JourneyMap requires Java 7 or Java 8. Update your launcher profile to use a newer version of Java.");
             }
             catch (Exception e2) {

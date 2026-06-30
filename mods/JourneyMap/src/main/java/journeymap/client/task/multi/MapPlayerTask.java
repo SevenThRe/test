@@ -85,18 +85,18 @@ extends BaseMapTask {
             return null;
         }
         boolean underground = player.underground;
-        MapType mapType = underground ? MapType.underground(player) : ((time = playerEntity.field_70170_p.func_72912_H().func_76073_f() % 24000L) < 13800L ? MapType.day(player) : MapType.night(player));
+        MapType mapType = underground ? MapType.underground(player) : ((time = playerEntity.world.getWorldInfo().getWorldTime() % 24000L) < 13800L ? MapType.day(player) : MapType.night(player));
         ArrayList<ITask> tasks = new ArrayList<ITask>(2);
-        tasks.add(new MapPlayerTask(chunkRenderController, playerEntity.field_70170_p, mapType, new ArrayList<ChunkPos>()));
+        tasks.add(new MapPlayerTask(chunkRenderController, playerEntity.world, mapType, new ArrayList<ChunkPos>()));
         if (underground) {
             if (surfaceAllowed && Journeymap.getClient().getCoreProperties().alwaysMapSurface.get().booleanValue()) {
-                tasks.add(new MapPlayerTask(chunkRenderController, playerEntity.field_70170_p, MapType.day(player), new ArrayList<ChunkPos>()));
+                tasks.add(new MapPlayerTask(chunkRenderController, playerEntity.world, MapType.day(player), new ArrayList<ChunkPos>()));
             }
         } else if (cavesAllowed && Journeymap.getClient().getCoreProperties().alwaysMapCaves.get().booleanValue()) {
-            tasks.add(new MapPlayerTask(chunkRenderController, playerEntity.field_70170_p, MapType.underground(player), new ArrayList<ChunkPos>()));
+            tasks.add(new MapPlayerTask(chunkRenderController, playerEntity.world, MapType.underground(player), new ArrayList<ChunkPos>()));
         }
         if (Journeymap.getClient().getCoreProperties().mapTopography.get().booleanValue()) {
-            tasks.add(new MapPlayerTask(chunkRenderController, playerEntity.field_70170_p, MapType.topo(player), new ArrayList<ChunkPos>()));
+            tasks.add(new MapPlayerTask(chunkRenderController, playerEntity.world, MapType.topo(player), new ArrayList<ChunkPos>()));
         }
         return new MapPlayerTaskBatch(tasks);
     }
@@ -124,7 +124,7 @@ extends BaseMapTask {
     }
 
     public static void addTempDebugMessage(String key, String message) {
-        if (Minecraft.func_71410_x().field_71474_y.field_181657_aC) {
+        if (Minecraft.getMinecraft().gameSettings.showLagometer) {
             tempDebugLines.put((Object)key, (Object)message);
         }
     }
@@ -205,7 +205,7 @@ extends BaseMapTask {
 
         @Override
         public void performTask(Minecraft mc, JourneymapClient jm, File jmWorldDir, boolean threadLogging) throws InterruptedException {
-            if (mc.field_71439_g == null) {
+            if (mc.player == null) {
                 return;
             }
             this.startNs = System.nanoTime();
@@ -267,7 +267,7 @@ extends BaseMapTask {
 
         @Override
         public ITask getTask(Minecraft minecraft) {
-            if (this.enabled && minecraft.field_71439_g.field_70175_ag && System.currentTimeMillis() - lastTaskCompleted >= (long)this.mapTaskDelay) {
+            if (this.enabled && minecraft.player.addedToChunk && System.currentTimeMillis() - lastTaskCompleted >= (long)this.mapTaskDelay) {
                 ChunkRenderController chunkRenderController = Journeymap.getClient().getChunkRenderController();
                 return MapPlayerTask.create(chunkRenderController, DataCache.getPlayer());
             }

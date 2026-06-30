@@ -75,14 +75,14 @@ extends BaseMapTask {
     }
 
     public static BaseMapTask create(ChunkRenderController renderController, RegionCoord rCoord, MapType mapType, Minecraft minecraft) {
-        WorldClient world = minecraft.field_71441_e;
+        WorldClient world = minecraft.world;
         List<ChunkPos> renderCoords = rCoord.getChunkCoordsInRegion();
         ArrayList<ChunkPos> retainedCoords = new ArrayList<ChunkPos>(renderCoords.size());
         HashMap<RegionCoord, Boolean> existingRegions = new HashMap<RegionCoord, Boolean>();
         for (ChunkPos coord : renderCoords) {
             for (ChunkPos keepAliveOffset : keepAliveOffsets) {
-                ChunkPos keepAliveCoord = new ChunkPos(coord.field_77276_a + keepAliveOffset.field_77276_a, coord.field_77275_b + keepAliveOffset.field_77275_b);
-                RegionCoord neighborRCoord = RegionCoord.fromChunkPos(rCoord.worldDir, mapType, keepAliveCoord.field_77276_a, keepAliveCoord.field_77275_b);
+                ChunkPos keepAliveCoord = new ChunkPos(coord.x + keepAliveOffset.x, coord.z + keepAliveOffset.z);
+                RegionCoord neighborRCoord = RegionCoord.fromChunkPos(rCoord.worldDir, mapType, keepAliveCoord.x, keepAliveCoord.z);
                 if (!existingRegions.containsKey(neighborRCoord)) {
                     existingRegions.put(neighborRCoord, neighborRCoord.exists());
                 }
@@ -102,7 +102,7 @@ extends BaseMapTask {
             block5: {
                 ChunkMD chunkMD;
                 ClientAPI.INSTANCE.show(this.regionOverlay);
-                AnvilChunkLoader loader = new AnvilChunkLoader(FileHandler.getWorldSaveDir(mc), DataFixesManager.func_188279_a());
+                AnvilChunkLoader loader = new AnvilChunkLoader(FileHandler.getWorldSaveDir(mc), DataFixesManager.createFixer());
                 int missing = 0;
                 for (ChunkPos coord : this.retainedCoords) {
                     chunkMD = ChunkLoader.getChunkMD(loader, mc, coord, true);
@@ -220,7 +220,7 @@ extends BaseMapTask {
                 return false;
             }
             this.enabled = false;
-            if (minecraft.func_71387_A()) {
+            if (minecraft.isIntegratedServerRunning()) {
                 try {
                     MapType mapType = MAP_TYPE;
                     if (mapType == null) {

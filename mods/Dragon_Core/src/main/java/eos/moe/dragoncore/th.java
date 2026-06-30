@@ -97,9 +97,9 @@ extends jj {
         String string = a7 = a9 && !a10.isEmpty() ? a10 : a11;
         if (a7.startsWith("skin|")) {
             if (ca.c) {
-                GlStateManager.func_179129_p();
+                GlStateManager.disableCull();
                 SkinRenderHelper.renderSkin((String)a7.substring(5), (float)((float)(a15 / 2.0)), (float)((float)(a16 / 2.0)), (float)((float)a15), (float)((float)a16));
-                GlStateManager.func_179089_o();
+                GlStateManager.enableCull();
             }
         } else {
             if (!a12.isEmpty()) {
@@ -150,12 +150,12 @@ extends jj {
 
     private /* synthetic */ void ALLATORIxDEMO(String a2) {
         th a3;
-        TextureManager a4 = Minecraft.func_71410_x().func_110434_K();
+        TextureManager a4 = Minecraft.getMinecraft().getTextureManager();
         String[] a5 = a2.split("_");
         if (a5.length == 2 && a5[0].equalsIgnoreCase("circle")) {
             int a6 = a3.ALLATORIxDEMO(a5[1]);
             ResourceLocation a7 = new ResourceLocation("dragoncore", "circle_" + a6);
-            if (a4.func_110581_b(a7) != null) {
+            if (a4.getTexture(a7) != null) {
                 return;
             }
             a3.ALLATORIxDEMO(a7, a6);
@@ -165,7 +165,7 @@ extends jj {
             int a10 = a3.ALLATORIxDEMO(a5[3]);
             int a11 = a3.ALLATORIxDEMO(a5[4]);
             ResourceLocation a12 = new ResourceLocation("dragoncore", String.format("roundrect_%d_%d_%d_%d", a8, a9, a10, a11));
-            if (a4.func_110581_b(a12) != null) {
+            if (a4.getTexture(a12) != null) {
                 return;
             }
             a3.ALLATORIxDEMO(a12, a8, a9, a10, a11);
@@ -180,8 +180,8 @@ extends jj {
         a6.setColor(Color.WHITE);
         a6.fillArc(0, 0, a4, a4, 90, a3);
         a6.dispose();
-        TextureManager a7 = Minecraft.func_71410_x().func_110434_K();
-        a7.func_110579_a(a2, (ITextureObject)new DynamicTexture(a5));
+        TextureManager a7 = Minecraft.getMinecraft().getTextureManager();
+        a7.loadTexture(a2, (ITextureObject)new DynamicTexture(a5));
     }
 
     private /* synthetic */ void ALLATORIxDEMO(ResourceLocation a2, int a3, int a4, int a5, int a6) {
@@ -191,8 +191,8 @@ extends jj {
         a8.setColor(Color.WHITE);
         a8.fillRoundRect(0, 0, a3, a4, a5, a6);
         a8.dispose();
-        TextureManager a9 = Minecraft.func_71410_x().func_110434_K();
-        a9.func_110579_a(a2, (ITextureObject)new DynamicTexture(a7));
+        TextureManager a9 = Minecraft.getMinecraft().getTextureManager();
+        a9.loadTexture(a2, (ITextureObject)new DynamicTexture(a7));
     }
 
     private /* synthetic */ int ALLATORIxDEMO(String a2) {

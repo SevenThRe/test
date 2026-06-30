@@ -82,7 +82,7 @@ extends yu<EntityPlayer> {
     @Override
     public void x() {
         oz a2;
-        if (((EntityPlayer)a2.s).func_184586_b(EnumHand.MAIN_HAND).func_77973_b() == Items.field_190931_a) {
+        if (((EntityPlayer)a2.s).getHeldItem(EnumHand.MAIN_HAND).getItem() == Items.AIR) {
             a2.x = !a2.x;
             a2.b = 0.0f;
             return;
@@ -104,7 +104,7 @@ extends yu<EntityPlayer> {
                 break;
             }
             case 4: {
-                a2.v = ((EntityPlayer)a2.ALLATORIxDEMO()).func_184218_aH() ? 1 : 5;
+                a2.v = ((EntityPlayer)a2.ALLATORIxDEMO()).isRiding() ? 1 : 5;
                 break;
             }
             default: {
@@ -132,7 +132,7 @@ extends yu<EntityPlayer> {
 
     public boolean h() {
         oz a2;
-        return a2.ALLATORIxDEMO != null ? a2.ALLATORIxDEMO : ((EntityPlayer)a2.s).field_71075_bZ.field_75100_b;
+        return a2.ALLATORIxDEMO != null ? a2.ALLATORIxDEMO : ((EntityPlayer)a2.s).capabilities.isFlying;
     }
 }
 

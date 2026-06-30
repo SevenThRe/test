@@ -43,7 +43,7 @@ public class ItemTipHandler {
     @SubscribeEvent
     public static void renderToolTipPre(RenderTooltipEvent.Pre e) {
         ItemStack stack = e.getStack();
-        if (!stack.func_190926_b()) {
+        if (!stack.isEmpty()) {
             boolean rt = true;
             for (String line : e.getLines()) {
                 if (!line.contains("\u00a70") && !line.contains("\u88c5\u5907\u8bc4\u5206")) continue;
@@ -53,7 +53,7 @@ public class ItemTipHandler {
             if (rt) {
                 return;
             }
-            if (Minecraft.func_71410_x().field_71439_g != null && Minecraft.func_71410_x().field_71439_g.func_184812_l_()) {
+            if (Minecraft.getMinecraft().player != null && Minecraft.getMinecraft().player.isCreative()) {
                 return;
             }
             e.setCanceled(true);
@@ -91,13 +91,13 @@ public class ItemTipHandler {
 
     public static void drawHoveringText(@Nonnull ItemStack stack, List<String> textLines, int mouseX, int mouseY, int screenWidth, int screenHeight, int maxTextWidth, FontRenderer font) {
         if (!textLines.isEmpty()) {
-            GlStateManager.func_179101_C();
-            RenderHelper.func_74518_a();
-            GlStateManager.func_179140_f();
-            GlStateManager.func_179097_i();
+            GlStateManager.disableRescaleNormal();
+            RenderHelper.disableStandardItemLighting();
+            GlStateManager.disableLighting();
+            GlStateManager.disableDepth();
             int tooltipTextWidth = 0;
             for (String textLine : textLines) {
-                int textLineWidth = font.func_78256_a(textLine);
+                int textLineWidth = font.getStringWidth(textLine);
                 if (textLineWidth <= tooltipTextWidth) continue;
                 tooltipTextWidth = textLineWidth;
             }
@@ -117,12 +117,12 @@ public class ItemTipHandler {
                 ArrayList<String> wrappedTextLines = new ArrayList<String>();
                 for (int i = 0; i < textLines.size(); ++i) {
                     String textLine = textLines.get(i);
-                    List wrappedLine = font.func_78271_c(textLine, tooltipTextWidth);
+                    List wrappedLine = font.listFormattedStringToWidth(textLine, tooltipTextWidth);
                     if (i == 0) {
                         titleLinesCount = wrappedLine.size();
                     }
                     for (String line : wrappedLine) {
-                        int lineWidth = font.func_78256_a(line);
+                        int lineWidth = font.getStringWidth(line);
                         if (lineWidth > wrappedTooltipWidth) {
                             wrappedTooltipWidth = lineWidth;
                         }
@@ -168,23 +168,23 @@ public class ItemTipHandler {
             int tooltipTop = tooltipY;
             for (int lineNumber = 0; lineNumber < textLines.size(); ++lineNumber) {
                 String line = textLines.get(lineNumber);
-                font.func_175063_a(line, (float)tooltipX, (float)tooltipY, -1);
+                font.drawStringWithShadow(line, (float)tooltipX, (float)tooltipY, -1);
                 if (lineNumber + 1 == titleLinesCount) {
                     tooltipY += 2;
                 }
                 tooltipY += 10;
             }
             ItemTipHandler.drawOutfitPanel(stack, textLines, tooltipX, tooltipTop, tooltipTextWidth, font);
-            GlStateManager.func_179145_e();
-            GlStateManager.func_179126_j();
-            RenderHelper.func_74519_b();
-            GlStateManager.func_179091_B();
+            GlStateManager.enableLighting();
+            GlStateManager.enableDepth();
+            RenderHelper.enableStandardItemLighting();
+            GlStateManager.enableRescaleNormal();
         }
     }
 
     public static void drawOutfitPanel(ItemStack stack, List<String> lines, int x, int y, int width, FontRenderer font) {
         String outfit;
-        if (!stack.func_190926_b() && (outfit = StringUtil.getRight(lines, "\u5957\u88c5\u6548\u679c")) != null && DataManager.outfits.containsKey(outfit)) {
+        if (!stack.isEmpty() && (outfit = StringUtil.getRight(lines, "\u5957\u88c5\u6548\u679c")) != null && DataManager.outfits.containsKey(outfit)) {
             ArrayList strings = new ArrayList(DataManager.outfits.get(outfit));
             Integer orDefault = DataManager.outfitCounts.getOrDefault(outfit, 0);
             strings.replaceAll(l -> {
@@ -197,7 +197,7 @@ public class ItemTipHandler {
             int tooltipY = y;
             int tooltipTextWidth = 0;
             for (String string : strings) {
-                tooltipTextWidth = Math.max(font.func_78256_a(string), tooltipTextWidth);
+                tooltipTextWidth = Math.max(font.getStringWidth(string), tooltipTextWidth);
             }
             int tooltipHeight = strings.size() * 10;
             int zLevel = 300;
@@ -219,7 +219,7 @@ public class ItemTipHandler {
             GuiUtils.drawGradientRect((int)300, (int)(tooltipX - 3), (int)(tooltipY - 3), (int)(tooltipX + tooltipTextWidth + 3), (int)(tooltipY - 3 + 1), (int)borderColorStart, (int)borderColorStart);
             GuiUtils.drawGradientRect((int)300, (int)(tooltipX - 3), (int)(tooltipY + tooltipHeight + 2), (int)(tooltipX + tooltipTextWidth + 3), (int)(tooltipY + tooltipHeight + 3), (int)borderColorEnd, (int)borderColorEnd);
             for (String string : strings) {
-                font.func_175063_a(string, (float)tooltipX, (float)tooltipY, -1);
+                font.drawStringWithShadow(string, (float)tooltipX, (float)tooltipY, -1);
                 tooltipY += 10;
             }
         }

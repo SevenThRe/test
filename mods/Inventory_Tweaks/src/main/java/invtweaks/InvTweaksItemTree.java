@@ -167,7 +167,7 @@ implements IItemTree {
         items = filteredItems;
         filteredItems = new ArrayList<IItemTreeItem>(items);
         if (extra != null && !items.isEmpty()) {
-            items.stream().filter(item -> !NBTUtil.func_181123_a((NBTBase)item.getExtraData(), (NBTBase)extra, (boolean)true)).forEach(filteredItems::remove);
+            items.stream().filter(item -> !NBTUtil.areNBTEquals((NBTBase)item.getExtraData(), (NBTBase)extra, (boolean)true)).forEach(filteredItems::remove);
         }
         if (filteredItems.isEmpty()) {
             int newItemOrder = this.highestOrder + 1;
@@ -266,7 +266,7 @@ implements IItemTree {
     public void registerOre(String category, String name, String oreName, int order) {
         for (ItemStack i : OreDictionary.getOres((String)oreName)) {
             if (i != null) {
-                this.addItem(category, new InvTweaksItemTreeItem(name, i.func_77973_b().getRegistryName().toString(), i.func_77952_i(), null, order));
+                this.addItem(category, new InvTweaksItemTreeItem(name, i.getItem().getRegistryName().toString(), i.getItemDamage(), null, order));
                 continue;
             }
             log.warn(String.format("An OreDictionary entry for %s is null", oreName));
@@ -278,8 +278,8 @@ implements IItemTree {
     public void oreRegistered(@NotNull OreDictionary.OreRegisterEvent ev) {
         this.oresRegistered.stream().filter(ore -> ore.oreName.equals(ev.getName())).forEach(ore -> {
             ItemStack evOre = ev.getOre();
-            if (!evOre.func_190926_b()) {
-                this.addItem(ore.category, new InvTweaksItemTreeItem(ore.name, evOre.func_77973_b().getRegistryName().toString(), evOre.func_77952_i(), null, ore.order));
+            if (!evOre.isEmpty()) {
+                this.addItem(ore.category, new InvTweaksItemTreeItem(ore.name, evOre.getItem().getRegistryName().toString(), evOre.getItemDamage(), null, ore.order));
             } else {
                 log.warn(String.format("An OreDictionary entry for %s is null", ev.getName()));
             }

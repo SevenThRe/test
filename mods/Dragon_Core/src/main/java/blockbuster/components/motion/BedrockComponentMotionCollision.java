@@ -242,18 +242,18 @@ implements IComponentParticleUpdate {
         double y2 = now.y - prev.y;
         double z2 = now.z - prev.z;
         boolean veryBig = Math.abs(x2) > 10.0 || Math.abs(y2) > 10.0 || Math.abs(z2) > 10.0;
-        this.pos.func_189532_c(now.x, now.y, now.z);
-        if (veryBig || !emitter.world.func_175667_e((BlockPos)this.pos)) {
+        this.pos.setPos(now.x, now.y, now.z);
+        if (veryBig || !emitter.world.isBlockLoaded((BlockPos)this.pos)) {
             return;
         }
         AxisAlignedBB aabb = new AxisAlignedBB(prev.x - (double)r2, prev.y - (double)r2, prev.z - (double)r2, prev.x + (double)r2, prev.y + (double)r2, prev.z + (double)r2);
         double d0 = y2;
         double origX = x2;
         double origZ = z2;
-        List entities = emitter.world.func_72872_a(Entity.class, aabb.func_72321_a(x2, y2, z2));
+        List entities = emitter.world.getEntitiesWithinAABB(Entity.class, aabb.expand(x2, y2, z2));
         HashMap<Entity, AxisAlignedBB> entityAABBs = new HashMap<Entity, AxisAlignedBB>();
         HashMap<Entity, CollisionOffset> staticEntityAABBs = new HashMap<Entity, CollisionOffset>();
-        List list = emitter.world.func_184144_a(null, aabb.func_72321_a(x2, y2, z2));
+        List list = emitter.world.getCollisionBoxes(null, aabb.expand(x2, y2, z2));
         if ((!list.isEmpty() || !entities.isEmpty() && this.entityCollision) && !particle.intersected) {
             particle.firstIntersection = particle.age;
             particle.intersected = true;
@@ -263,16 +263,16 @@ implements IComponentParticleUpdate {
             if (this.entityCollision) {
                 for (Entity entity : entities) {
                     AxisAlignedBB aabb2 = new AxisAlignedBB(prev.x - (double)r2, prev.y - (double)r2, prev.z - (double)r2, prev.x + (double)r2, prev.y + (double)r2, prev.z + (double)r2);
-                    entityAABB = entity.func_174813_aQ();
+                    entityAABB = entity.getEntityBoundingBox();
                     double y22 = y2;
                     double x22 = x2;
                     double z22 = z2;
-                    y22 = entityAABB.func_72323_b(aabb2, y22);
-                    aabb2 = aabb2.func_72317_d(0.0, y22, 0.0);
-                    x22 = entityAABB.func_72316_a(aabb2, x22);
-                    aabb2 = aabb2.func_72317_d(x22, 0.0, 0.0);
-                    z22 = entityAABB.func_72322_c(aabb2, z22);
-                    aabb2 = aabb2.func_72317_d(0.0, 0.0, z22);
+                    y22 = entityAABB.calculateYOffset(aabb2, y22);
+                    aabb2 = aabb2.offset(0.0, y22, 0.0);
+                    x22 = entityAABB.calculateXOffset(aabb2, x22);
+                    aabb2 = aabb2.offset(x22, 0.0, 0.0);
+                    z22 = entityAABB.calculateZOffset(aabb2, z22);
+                    aabb2 = aabb2.offset(0.0, 0.0, z22);
                     if (d0 == y22 && origX == x22 && origZ == z22) {
                         entityAABBs.put(entity, entityAABB);
                         continue;
@@ -290,9 +290,9 @@ implements IComponentParticleUpdate {
             z2 = offsetData.z;
             if (d0 != y2 || origX != x2 || origZ != z2) {
                 this.collision(particle, emitter, prev);
-                now.set(aabb.field_72340_a + (double)r2, aabb.field_72338_b + (double)r2, aabb.field_72339_c + (double)r2);
+                now.set(aabb.minX + (double)r2, aabb.minY + (double)r2, aabb.minZ + (double)r2);
                 if (d0 != y2) {
-                    now.y = d0 < y2 ? aabb.field_72338_b : aabb.field_72337_e;
+                    now.y = d0 < y2 ? aabb.minY : aabb.maxY;
                     now.y = now.y + (d0 < y2 ? (double)r2 : (double)(-r2));
                     this.collisionHandler(particle, emitter, EnumFacing.Axis.Y, now, prev);
                     particle.entityCollisionTime.keySet().retainAll(staticEntityAABBs.keySet());
@@ -311,12 +311,12 @@ implements IComponentParticleUpdate {
                     }
                 }
                 if (origX != x2) {
-                    now.x = origX < x2 ? aabb.field_72340_a : aabb.field_72336_d;
+                    now.x = origX < x2 ? aabb.minX : aabb.maxX;
                     now.x = now.x + (origX < x2 ? (double)r2 : (double)(-r2));
                     this.collisionHandler(particle, emitter, EnumFacing.Axis.X, now, prev);
                 }
                 if (origZ != z2) {
-                    now.z = origZ < z2 ? aabb.field_72339_c : aabb.field_72334_f;
+                    now.z = origZ < z2 ? aabb.minZ : aabb.maxZ;
                     now.z = now.z + (origZ < z2 ? (double)r2 : (double)(-r2));
                     this.collisionHandler(particle, emitter, EnumFacing.Axis.Z, now, prev);
                 }
@@ -330,18 +330,18 @@ implements IComponentParticleUpdate {
                 Vector3d frac;
                 entityAABB = (AxisAlignedBB)entry.getValue();
                 Entity entity = (Entity)entry.getKey();
-                Vector3f speedEntity = new Vector3f((float)(entity.field_70165_t - entity.field_70169_q), (float)(entity.field_70163_u - entity.field_70167_r), (float)(entity.field_70161_v - entity.field_70166_s));
+                Vector3f speedEntity = new Vector3f((float)(entity.posX - entity.prevPosX), (float)(entity.posY - entity.prevPosY), (float)(entity.posZ - entity.prevPosZ));
                 if (speedEntity.x == 0.0f && speedEntity.y == 0.0f && speedEntity.z == 0.0f || (frac = this.intersect(ray = speedEntity, particle.getGlobalPosition(emitter), entityAABB)) == null) continue;
                 particle.position.add((Tuple3d)frac);
                 AxisAlignedBB aabb2 = new AxisAlignedBB(particle.position.x - (double)r2, particle.position.y - (double)r2, particle.position.z - (double)r2, particle.position.x + (double)r2, particle.position.y + (double)r2, particle.position.z + (double)r2);
                 this.collision(particle, emitter, prev);
-                if (aabb2.field_72340_a < entityAABB.field_72336_d && aabb2.field_72336_d > entityAABB.field_72336_d || aabb2.field_72336_d > entityAABB.field_72340_a && aabb2.field_72340_a < entityAABB.field_72340_a) {
+                if (aabb2.minX < entityAABB.maxX && aabb2.maxX > entityAABB.maxX || aabb2.maxX > entityAABB.minX && aabb2.minX < entityAABB.minX) {
                     this.entityCollision(particle, emitter, entity, EnumFacing.Axis.X, prev);
                 }
-                if (aabb2.field_72338_b < entityAABB.field_72337_e && aabb2.field_72337_e > entityAABB.field_72337_e || aabb2.field_72337_e > entityAABB.field_72338_b && aabb2.field_72338_b < entityAABB.field_72338_b) {
+                if (aabb2.minY < entityAABB.maxY && aabb2.maxY > entityAABB.maxY || aabb2.maxY > entityAABB.minY && aabb2.minY < entityAABB.minY) {
                     this.entityCollision(particle, emitter, entity, EnumFacing.Axis.Y, prev);
                 }
-                if (!(aabb2.field_72339_c < entityAABB.field_72334_f && aabb2.field_72334_f > entityAABB.field_72334_f) && (!(aabb2.field_72334_f > entityAABB.field_72339_c) || !(aabb2.field_72339_c < entityAABB.field_72339_c))) continue;
+                if (!(aabb2.minZ < entityAABB.maxZ && aabb2.maxZ > entityAABB.maxZ) && (!(aabb2.maxZ > entityAABB.minZ) || !(aabb2.minZ < entityAABB.minZ))) continue;
                 this.entityCollision(particle, emitter, entity, EnumFacing.Axis.Z, prev);
             }
             if (!entityAABBs.isEmpty()) {
@@ -368,8 +368,8 @@ implements IComponentParticleUpdate {
     }
 
     public void entityCollision(BedrockParticle particle, BedrockEmitter emitter, Entity entity, EnumFacing.Axis component, Vector3d prev) {
-        Vector3f entitySpeed = new Vector3f((float)(entity.field_70165_t - entity.field_70169_q), (float)(entity.field_70163_u - entity.field_70167_r), (float)(entity.field_70161_v - entity.field_70166_s));
-        Vector3d entityPosition = new Vector3d(entity.field_70165_t, entity.field_70163_u, entity.field_70161_v);
+        Vector3f entitySpeed = new Vector3f((float)(entity.posX - entity.prevPosX), (float)(entity.posY - entity.prevPosY), (float)(entity.posZ - entity.prevPosZ));
+        Vector3d entityPosition = new Vector3d(entity.posX, entity.posY, entity.posZ);
         if (this.momentum) {
             this.momentum(particle, entity);
         }
@@ -427,11 +427,11 @@ implements IComponentParticleUpdate {
         if (this.collisionDrag == 0.0f) {
             return;
         }
-        Vector3d entitySpeed = new Vector3d(entity.field_70165_t - entity.field_70169_q, entity.field_70163_u - entity.field_70167_r, entity.field_70161_v - entity.field_70166_s);
+        Vector3d entitySpeed = new Vector3d(entity.posX - entity.prevPosX, entity.posY - entity.prevPosY, entity.posZ - entity.prevPosZ);
         double prevPrevPosX = ((IEntity)entity).getPrevPrevPosX();
         double prevPrevPosY = ((IEntity)entity).getPrevPrevPosY();
         double prevPrevPosZ = ((IEntity)entity).getPrevPrevPosZ();
-        Vector3d prevEntitySpeed = new Vector3d(entity.field_70169_q - prevPrevPosX, entity.field_70167_r - prevPrevPosY, entity.field_70166_s - prevPrevPosZ);
+        Vector3d prevEntitySpeed = new Vector3d(entity.prevPosX - prevPrevPosX, entity.prevPosY - prevPrevPosY, entity.prevPosZ - prevPrevPosZ);
         if (!particle.entityCollisionTime.containsKey(entity)) {
             prevEntitySpeed.scale(0.0);
         } else {
@@ -451,9 +451,9 @@ implements IComponentParticleUpdate {
     }
 
     public void momentum(BedrockParticle particle, Entity entity) {
-        particle.speed.x = (float)((double)particle.speed.x + 2.0 * (entity.field_70165_t - entity.field_70169_q));
-        particle.speed.y = (float)((double)particle.speed.y + 2.0 * (entity.field_70163_u - entity.field_70167_r));
-        particle.speed.z = (float)((double)particle.speed.z + 2.0 * (entity.field_70161_v - entity.field_70166_s));
+        particle.speed.x = (float)((double)particle.speed.x + 2.0 * (entity.posX - entity.prevPosX));
+        particle.speed.y = (float)((double)particle.speed.y + 2.0 * (entity.posY - entity.prevPosY));
+        particle.speed.z = (float)((double)particle.speed.z + 2.0 * (entity.posZ - entity.prevPosZ));
     }
 
     public void drag(BedrockParticle particle) {
@@ -537,14 +537,14 @@ implements IComponentParticleUpdate {
         double tzmin;
         double tymax;
         double tymin;
-        double tmin = (aabb.field_72340_a - orig.x) / (double)ray.x;
-        double tmax = (aabb.field_72336_d - orig.x) / (double)ray.x;
+        double tmin = (aabb.minX - orig.x) / (double)ray.x;
+        double tmax = (aabb.maxX - orig.x) / (double)ray.x;
         if (tmin > tmax) {
             double tminTmp = tmin;
             tmin = tmax;
             tmax = tminTmp;
         }
-        if ((tymin = (aabb.field_72338_b - orig.y) / (double)ray.y) > (tymax = (aabb.field_72337_e - orig.y) / (double)ray.y)) {
+        if ((tymin = (aabb.minY - orig.y) / (double)ray.y) > (tymax = (aabb.maxY - orig.y) / (double)ray.y)) {
             double tyminTmp = tymin;
             tymin = tymax;
             tymax = tyminTmp;
@@ -558,7 +558,7 @@ implements IComponentParticleUpdate {
         if (tymax < tmax) {
             tmax = tymax;
         }
-        if ((tzmin = (aabb.field_72339_c - orig.z) / (double)ray.z) > (tzmax = (aabb.field_72334_f - orig.z) / (double)ray.z)) {
+        if ((tzmin = (aabb.minZ - orig.z) / (double)ray.z) > (tzmax = (aabb.maxZ - orig.z) / (double)ray.z)) {
             double tzminTmp = tzmin;
             tzmin = tzmax;
             tzmax = tzminTmp;
@@ -576,17 +576,17 @@ implements IComponentParticleUpdate {
 
     public CollisionOffset calculateOffsets(AxisAlignedBB aabb, List<AxisAlignedBB> list, double x2, double y2, double z2) {
         for (AxisAlignedBB axisalignedbb : list) {
-            y2 = axisalignedbb.func_72323_b(aabb, y2);
+            y2 = axisalignedbb.calculateYOffset(aabb, y2);
         }
-        aabb = aabb.func_72317_d(0.0, y2, 0.0);
+        aabb = aabb.offset(0.0, y2, 0.0);
         for (AxisAlignedBB axisalignedbb1 : list) {
-            x2 = axisalignedbb1.func_72316_a(aabb, x2);
+            x2 = axisalignedbb1.calculateXOffset(aabb, x2);
         }
-        aabb = aabb.func_72317_d(x2, 0.0, 0.0);
+        aabb = aabb.offset(x2, 0.0, 0.0);
         for (AxisAlignedBB axisalignedbb2 : list) {
-            z2 = axisalignedbb2.func_72322_c(aabb, z2);
+            z2 = axisalignedbb2.calculateZOffset(aabb, z2);
         }
-        aabb = aabb.func_72317_d(0.0, 0.0, z2);
+        aabb = aabb.offset(0.0, 0.0, z2);
         return new CollisionOffset(aabb, x2, y2, z2);
     }
 

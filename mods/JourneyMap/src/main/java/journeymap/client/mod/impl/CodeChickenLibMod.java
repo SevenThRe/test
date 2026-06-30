@@ -39,13 +39,13 @@ IBlockColorProxy {
     public int getBlockColor(ChunkMD chunkMD, BlockMD blockMD, BlockPos blockPos) {
         IBlockState blockState = blockMD.getBlockState();
         try {
-            blockState = blockMD.getBlock().func_176221_a(blockState, (IBlockAccess)chunkMD.getWorld(), blockPos);
+            blockState = blockMD.getBlock().getActualState(blockState, (IBlockAccess)chunkMD.getWorld(), blockPos);
             blockState = blockMD.getBlock().getExtendedState(blockState, (IBlockAccess)chunkMD.getWorld(), blockPos);
         }
         catch (Exception exception) {
             // empty catch block
         }
-        return FMLClientHandler.instance().getClient().func_184125_al().func_186724_a(blockState, (IBlockAccess)chunkMD.getWorld(), blockPos, blockMD.getBlock().func_180664_k().ordinal());
+        return FMLClientHandler.instance().getClient().getBlockColors().colorMultiplier(blockState, (IBlockAccess)chunkMD.getWorld(), blockPos, blockMD.getBlock().getRenderLayer().ordinal());
     }
 }
 

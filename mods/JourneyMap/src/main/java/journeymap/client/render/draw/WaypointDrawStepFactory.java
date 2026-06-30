@@ -28,17 +28,17 @@ public class WaypointDrawStepFactory {
 
     public List<DrawWayPointStep> prepareSteps(Collection<Waypoint> waypoints, GridRenderer grid, boolean checkDistance, boolean showLabel) {
         Minecraft mc = FMLClientHandler.instance().getClient();
-        EntityPlayerSP player = mc.field_71439_g;
-        int dimension = player.field_71093_bK;
+        EntityPlayerSP player = mc.player;
+        int dimension = player.dimension;
         int maxDistance = Journeymap.getClient().getWaypointProperties().maxDistance.get();
         checkDistance = checkDistance && maxDistance > 0;
-        Vec3d playerVec = checkDistance ? player.func_174791_d() : null;
+        Vec3d playerVec = checkDistance ? player.getPositionVector() : null;
         this.drawStepList.clear();
         try {
             for (Waypoint waypoint : waypoints) {
                 DrawWayPointStep wayPointStep;
                 double actualDistance;
-                if (!waypoint.isEnable() || !waypoint.isInPlayerDimension() || checkDistance && (actualDistance = playerVec.func_72438_d(waypoint.getPosition())) > (double)maxDistance || (wayPointStep = DataCache.INSTANCE.getDrawWayPointStep(waypoint)) == null) continue;
+                if (!waypoint.isEnable() || !waypoint.isInPlayerDimension() || checkDistance && (actualDistance = playerVec.distanceTo(waypoint.getPosition())) > (double)maxDistance || (wayPointStep = DataCache.INSTANCE.getDrawWayPointStep(waypoint)) == null) continue;
                 this.drawStepList.add(wayPointStep);
                 wayPointStep.setShowLabel(showLabel);
             }

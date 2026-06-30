@@ -27,13 +27,13 @@ implements ITileEntityChest {
         a.ignoreRender = true;
     }
 
-    public double func_145833_n() {
+    public double getMaxRenderDistanceSquared() {
         MixinTileEntityChest a2;
         if (a2.ignoreRender) {
             a2.ignoreRender = false;
             return -1.0;
         }
-        return super.func_145833_n();
+        return super.getMaxRenderDistanceSquared();
     }
 }
 

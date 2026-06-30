@@ -39,7 +39,7 @@ public class KumoVariableRegistry {
         KumoVariableRegistry.registerVariable("health", () -> {
             Object entity = KumoVariableRegistry.instance.tempData.getEntity();
             if (entity instanceof EntityLivingBase) {
-                return ((EntityLivingBase)entity).func_110143_aJ();
+                return ((EntityLivingBase)entity).getHealth();
             }
             return 0.0;
         });

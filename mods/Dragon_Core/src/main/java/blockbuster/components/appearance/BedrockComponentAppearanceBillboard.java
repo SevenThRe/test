@@ -238,10 +238,10 @@ implements IComponentParticleRender {
         float u2 = this.u2 / (float)this.textureWidth;
         float v1 = this.v1 / (float)this.textureHeight;
         float v2 = this.v2 / (float)this.textureHeight;
-        builder.func_181662_b((double)this.vertices[0].x, (double)this.vertices[0].y, (double)this.vertices[0].z).func_187315_a((double)u1, (double)v1).func_187314_a(lightX, lightY).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
-        builder.func_181662_b((double)this.vertices[1].x, (double)this.vertices[1].y, (double)this.vertices[1].z).func_187315_a((double)u2, (double)v1).func_187314_a(lightX, lightY).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
-        builder.func_181662_b((double)this.vertices[2].x, (double)this.vertices[2].y, (double)this.vertices[2].z).func_187315_a((double)u2, (double)v2).func_187314_a(lightX, lightY).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
-        builder.func_181662_b((double)this.vertices[3].x, (double)this.vertices[3].y, (double)this.vertices[3].z).func_187315_a((double)u1, (double)v2).func_187314_a(lightX, lightY).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
+        builder.pos((double)this.vertices[0].x, (double)this.vertices[0].y, (double)this.vertices[0].z).tex((double)u1, (double)v1).lightmap(lightX, lightY).color(particle.r, particle.g, particle.b, particle.a).endVertex();
+        builder.pos((double)this.vertices[1].x, (double)this.vertices[1].y, (double)this.vertices[1].z).tex((double)u2, (double)v1).lightmap(lightX, lightY).color(particle.r, particle.g, particle.b, particle.a).endVertex();
+        builder.pos((double)this.vertices[2].x, (double)this.vertices[2].y, (double)this.vertices[2].z).tex((double)u2, (double)v2).lightmap(lightX, lightY).color(particle.r, particle.g, particle.b, particle.a).endVertex();
+        builder.pos((double)this.vertices[3].x, (double)this.vertices[3].y, (double)this.vertices[3].z).tex((double)u1, (double)v2).lightmap(lightX, lightY).color(particle.r, particle.g, particle.b, particle.a).endVertex();
     }
 
     protected void calculateFacing(BedrockEmitter emitter, BedrockParticle particle, double px2, double py2, double pz2) {
@@ -263,9 +263,9 @@ implements IComponentParticleRender {
             double dX = entityX - px2;
             double dY = entityY - py2;
             double dZ = entityZ - pz2;
-            double horizontalDistance = MathHelper.func_76133_a((double)(dX * dX + dZ * dZ));
-            entityYaw = 180.0f - (float)(MathHelper.func_181159_b((double)dZ, (double)dX) * 57.29577951308232) - 90.0f;
-            entityPitch = (float)(-(MathHelper.func_181159_b((double)dY, (double)horizontalDistance) * 57.29577951308232)) + 180.0f;
+            double horizontalDistance = MathHelper.sqrt((double)(dX * dX + dZ * dZ));
+            entityYaw = 180.0f - (float)(MathHelper.atan2((double)dZ, (double)dX) * 57.29577951308232) - 90.0f;
+            entityPitch = (float)(-(MathHelper.atan2((double)dY, (double)horizontalDistance) * 57.29577951308232)) + 180.0f;
         }
         this.calculateVertices(emitter, particle);
         if (this.facing == CameraFacing.ROTATE_XYZ || this.facing == CameraFacing.LOOKAT_XYZ) {
@@ -357,13 +357,13 @@ implements IComponentParticleRender {
         float u2 = this.u2 / (float)this.textureWidth;
         float v1 = this.v1 / (float)this.textureHeight;
         float v2 = this.v2 / (float)this.textureHeight;
-        BufferBuilder builder = Tessellator.func_178181_a().func_178180_c();
-        builder.func_181668_a(7, DefaultVertexFormats.field_181709_i);
-        builder.func_181662_b((double)this.vertices[0].x, (double)this.vertices[0].y, (double)this.vertices[0].z).func_187315_a((double)u1, (double)v1).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
-        builder.func_181662_b((double)this.vertices[1].x, (double)this.vertices[1].y, (double)this.vertices[1].z).func_187315_a((double)u2, (double)v1).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
-        builder.func_181662_b((double)this.vertices[2].x, (double)this.vertices[2].y, (double)this.vertices[2].z).func_187315_a((double)u2, (double)v2).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
-        builder.func_181662_b((double)this.vertices[3].x, (double)this.vertices[3].y, (double)this.vertices[3].z).func_187315_a((double)u1, (double)v2).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
-        Tessellator.func_178181_a().func_78381_a();
+        BufferBuilder builder = Tessellator.getInstance().getBuffer();
+        builder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+        builder.pos((double)this.vertices[0].x, (double)this.vertices[0].y, (double)this.vertices[0].z).tex((double)u1, (double)v1).color(particle.r, particle.g, particle.b, particle.a).endVertex();
+        builder.pos((double)this.vertices[1].x, (double)this.vertices[1].y, (double)this.vertices[1].z).tex((double)u2, (double)v1).color(particle.r, particle.g, particle.b, particle.a).endVertex();
+        builder.pos((double)this.vertices[2].x, (double)this.vertices[2].y, (double)this.vertices[2].z).tex((double)u2, (double)v2).color(particle.r, particle.g, particle.b, particle.a).endVertex();
+        builder.pos((double)this.vertices[3].x, (double)this.vertices[3].y, (double)this.vertices[3].z).tex((double)u1, (double)v2).color(particle.r, particle.g, particle.b, particle.a).endVertex();
+        Tessellator.getInstance().draw();
     }
 
     public void calculateUVs(BedrockParticle particle, float partialTicks) {

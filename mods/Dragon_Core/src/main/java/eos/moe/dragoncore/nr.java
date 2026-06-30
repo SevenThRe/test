@@ -48,10 +48,10 @@ extends GuiScreen {
     public nr(BlockPos a2, NBTTagCompound a3) {
         nr a4;
         a4.y = ro.k;
-        a4.q = a2.func_177958_n();
-        a4.b = a2.func_177956_o();
-        a4.o = a2.func_177952_p();
-        a4.k = "NBTEdit -- TileEntity at " + a2.func_177958_n() + "," + a2.func_177956_o() + "," + a2.func_177952_p();
+        a4.q = a2.getX();
+        a4.b = a2.getY();
+        a4.o = a2.getZ();
+        a4.k = "NBTEdit -- TileEntity at " + a2.getX() + "," + a2.getY() + "," + a2.getZ();
         a4.ALLATORIxDEMO = new qm(new yh(a3));
     }
 
@@ -65,20 +65,20 @@ extends GuiScreen {
         a3.ALLATORIxDEMO = new qm(new yh(a2));
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         nr a2;
         Keyboard.enableRepeatEvents((boolean)true);
-        a2.field_146292_n.clear();
-        a2.ALLATORIxDEMO.initGUI(a2.field_146294_l, a2.field_146295_m, a2.field_146295_m - 35);
-        a2.field_146292_n.add(new GuiButton(1, a2.field_146294_l / 4 - 100, a2.field_146295_m - 27, "\u4fdd\u5b58\u6570\u636e"));
-        a2.field_146292_n.add(new GuiButton(0, a2.field_146294_l * 3 / 4 - 100, a2.field_146295_m - 27, "\u9000\u51fa"));
+        a2.buttonList.clear();
+        a2.ALLATORIxDEMO.initGUI(a2.width, a2.height, a2.height - 35);
+        a2.buttonList.add(new GuiButton(1, a2.width / 4 - 100, a2.height - 27, "\u4fdd\u5b58\u6570\u636e"));
+        a2.buttonList.add(new GuiButton(0, a2.width * 3 / 4 - 100, a2.height - 27, "\u9000\u51fa"));
     }
 
-    public void func_146281_b() {
+    public void onGuiClosed() {
         Keyboard.enableRepeatEvents((boolean)false);
     }
 
-    public void func_73869_a(char a2, int a3) {
+    public void keyTyped(char a2, int a3) {
         nr a4;
         gr a5 = a4.ALLATORIxDEMO.getWindow();
         if (a5 != null) {
@@ -102,10 +102,10 @@ extends GuiScreen {
         }
     }
 
-    public void func_73864_a(int a2, int a3, int a4) throws IOException {
+    public void mouseClicked(int a2, int a3, int a4) throws IOException {
         nr a5;
         if (a5.ALLATORIxDEMO.getWindow() == null) {
-            super.func_73864_a(a2, a3, a4);
+            super.mouseClicked(a2, a3, a4);
         }
         if (a4 == 0) {
             a5.ALLATORIxDEMO.mouseClicked(a2, a3);
@@ -115,18 +115,18 @@ extends GuiScreen {
         }
     }
 
-    public void func_146274_d() throws IOException {
+    public void handleMouseInput() throws IOException {
         nr a2;
-        super.func_146274_d();
+        super.handleMouseInput();
         int a3 = Mouse.getEventDWheel();
         if (a3 != 0) {
             a2.ALLATORIxDEMO.shift(a3 >= 1 ? 6 : -6);
         }
     }
 
-    public void func_146284_a(GuiButton a2) {
-        if (a2.field_146124_l) {
-            switch (a2.field_146127_k) {
+    public void actionPerformed(GuiButton a2) {
+        if (a2.enabled) {
+            switch (a2.id) {
                 case 1: {
                     nr a3;
                     a3.c();
@@ -140,9 +140,9 @@ extends GuiScreen {
         }
     }
 
-    public void func_73876_c() {
+    public void updateScreen() {
         nr a2;
-        if (!a2.field_146297_k.field_71439_g.func_70089_S()) {
+        if (!a2.mc.player.isEntityAlive()) {
             a2.ALLATORIxDEMO();
         } else {
             a2.ALLATORIxDEMO.updateScreen();
@@ -164,34 +164,34 @@ extends GuiScreen {
                 nw.ALLATORIxDEMO(new BlockPos(a2.q, a2.b, a2.o), a2.ALLATORIxDEMO.getNBTTree().ALLATORIxDEMO());
             }
         }
-        a2.field_146297_k.func_147108_a(null);
-        a2.field_146297_k.func_71381_h();
+        a2.mc.displayGuiScreen(null);
+        a2.mc.setIngameFocus();
     }
 
     private /* synthetic */ void ALLATORIxDEMO() {
         nr a2;
-        a2.field_146297_k.func_147108_a(null);
+        a2.mc.displayGuiScreen(null);
     }
 
-    public void func_73863_a(int a2, int a3, float a4) {
+    public void drawScreen(int a2, int a3, float a4) {
         nr a5;
-        a5.func_146276_q_();
+        a5.drawDefaultBackground();
         a5.ALLATORIxDEMO.draw(a2, a3);
-        a5.func_73732_a(a5.field_146297_k.field_71466_p, a5.k, a5.field_146294_l / 2, 5, 0xFFFFFF);
+        a5.drawCenteredString(a5.mc.fontRenderer, a5.k, a5.width / 2, 5, 0xFFFFFF);
         if (a5.ALLATORIxDEMO.getWindow() == null) {
-            super.func_73863_a(a2, a3, a4);
+            super.drawScreen(a2, a3, a4);
         } else {
-            super.func_73863_a(-1, -1, a4);
+            super.drawScreen(-1, -1, a4);
         }
     }
 
-    public boolean func_73868_f() {
+    public boolean doesGuiPauseGame() {
         return true;
     }
 
     public Entity getEntity() {
         nr a2;
-        return a2.y == ro.y ? a2.field_146297_k.field_71441_e.func_73045_a(a2.q) : null;
+        return a2.y == ro.y ? a2.mc.world.getEntityByID(a2.q) : null;
     }
 
     public boolean isTileEntity() {

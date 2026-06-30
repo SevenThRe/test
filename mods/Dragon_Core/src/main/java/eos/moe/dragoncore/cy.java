@@ -68,20 +68,20 @@ public class cy {
 
     @SubscribeEvent
     public static void ALLATORIxDEMO(TickEvent.ClientTickEvent a2) {
-        if (a2.phase == TickEvent.Phase.END && ALLATORIxDEMO++ > 10 && Minecraft.func_71410_x().field_71439_g != null) {
+        if (a2.phase == TickEvent.Phase.END && ALLATORIxDEMO++ > 10 && Minecraft.getMinecraft().player != null) {
             ALLATORIxDEMO = 0;
-            WorldClient a3 = Minecraft.func_71410_x().field_71441_e;
-            for (TileEntity a4 : new ArrayList(a3.field_147482_g)) {
+            WorldClient a3 = Minecraft.getMinecraft().world;
+            for (TileEntity a4 : new ArrayList(a3.loadedTileEntityList)) {
                 int a5;
                 if (!(a4 instanceof TileEntitySkull)) continue;
                 gq a6 = q.ALLATORIxDEMO(a4);
-                if (a6 != null && gq.ALLATORIxDEMO(a6) > 0 && a3.func_175642_b(EnumSkyBlock.BLOCK, a4.func_174877_v()) != gq.ALLATORIxDEMO(a6)) {
-                    a3.func_180500_c(EnumSkyBlock.BLOCK, a4.func_174877_v());
-                    a3.func_180500_c(EnumSkyBlock.SKY, a4.func_174877_v());
+                if (a6 != null && gq.ALLATORIxDEMO(a6) > 0 && a3.getLightFor(EnumSkyBlock.BLOCK, a4.getPos()) != gq.ALLATORIxDEMO(a6)) {
+                    a3.checkLightFor(EnumSkyBlock.BLOCK, a4.getPos());
+                    a3.checkLightFor(EnumSkyBlock.SKY, a4.getPos());
                 }
-                if ((a5 = vu.ALLATORIxDEMO(a4)) <= 0 || a3.func_175642_b(EnumSkyBlock.BLOCK, a4.func_174877_v()) == a5) continue;
-                a3.func_180500_c(EnumSkyBlock.BLOCK, a4.func_174877_v());
-                a3.func_180500_c(EnumSkyBlock.SKY, a4.func_174877_v());
+                if ((a5 = vu.ALLATORIxDEMO(a4)) <= 0 || a3.getLightFor(EnumSkyBlock.BLOCK, a4.getPos()) == a5) continue;
+                a3.checkLightFor(EnumSkyBlock.BLOCK, a4.getPos());
+                a3.checkLightFor(EnumSkyBlock.SKY, a4.getPos());
             }
         }
     }
@@ -120,7 +120,7 @@ public class cy {
                 }
                 catch (Exception a7) {
                     a7.printStackTrace();
-                    Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u00a7c\u65e0\u6cd5\u52a0\u8f7d\u65b9\u5757\u6a21\u578b:match=" + gq.f(a2)));
+                    Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u00a7c\u65e0\u6cd5\u52a0\u8f7d\u65b9\u5757\u6a21\u578b:match=" + gq.f(a2)));
                 }
             });
             a3.k.put(a2, null);
@@ -150,45 +150,45 @@ public class cy {
         }
         String a11 = "default";
         if (a3 != null) {
-            BlockPos a12 = a3.func_174877_v();
-            a11 = a12.func_177958_n() + "," + a12.func_177956_o() + "," + a12.func_177952_p();
+            BlockPos a12 = a3.getPos();
+            a11 = a12.getX() + "," + a12.getY() + "," + a12.getZ();
         }
         a10.c(a11);
         a10.ALLATORIxDEMO(a11);
         if (a8 >= 0) {
-            Minecraft.func_71410_x().func_110434_K().func_110577_a(b[a8]);
-            GlStateManager.func_179128_n((int)5890);
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179152_a((float)4.0f, (float)2.0f, (float)1.0f);
-            GlStateManager.func_179109_b((float)0.0625f, (float)0.0625f, (float)0.0625f);
-            GlStateManager.func_179128_n((int)5888);
+            Minecraft.getMinecraft().getTextureManager().bindTexture(b[a8]);
+            GlStateManager.matrixMode((int)5890);
+            GlStateManager.pushMatrix();
+            GlStateManager.scale((float)4.0f, (float)2.0f, (float)1.0f);
+            GlStateManager.translate((float)0.0625f, (float)0.0625f, (float)0.0625f);
+            GlStateManager.matrixMode((int)5888);
         } else {
             a2.ALLATORIxDEMO();
         }
-        GlStateManager.func_179147_l();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179129_p();
-        GlStateManager.func_179109_b((float)(a4 + 0.5f), (float)a5, (float)(a6 + 0.5f));
-        GlStateManager.func_179091_B();
-        GlStateManager.func_179152_a((float)-1.0f, (float)-1.0f, (float)1.0f);
-        GlStateManager.func_179141_d();
-        GlStateManager.func_179114_b((float)a7, (float)0.0f, (float)1.0f, (float)0.0f);
-        GlStateManager.func_179139_a((double)gq.ALLATORIxDEMO(a2), (double)gq.ALLATORIxDEMO(a2), (double)gq.ALLATORIxDEMO(a2));
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.pushMatrix();
+        GlStateManager.disableCull();
+        GlStateManager.translate((float)(a4 + 0.5f), (float)a5, (float)(a6 + 0.5f));
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.scale((float)-1.0f, (float)-1.0f, (float)1.0f);
+        GlStateManager.enableAlpha();
+        GlStateManager.rotate((float)a7, (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.scale((double)gq.ALLATORIxDEMO(a2), (double)gq.ALLATORIxDEMO(a2), (double)gq.ALLATORIxDEMO(a2));
         a10.c();
         if (a8 < 0 && a2.ALLATORIxDEMO()) {
             float a13 = OpenGlHelper.lastBrightnessX;
             float a14 = OpenGlHelper.lastBrightnessY;
-            OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)a14);
+            OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)a14);
             a10.c();
-            OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)a13, (float)a14);
+            OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)a13, (float)a14);
         }
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179121_F();
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
         if (a8 >= 0) {
-            GlStateManager.func_179128_n((int)5890);
-            GlStateManager.func_179121_F();
-            GlStateManager.func_179128_n((int)5888);
+            GlStateManager.matrixMode((int)5890);
+            GlStateManager.popMatrix();
+            GlStateManager.matrixMode((int)5888);
         }
     }
 
@@ -206,8 +206,8 @@ public class cy {
 
     public void ALLATORIxDEMO(int a2, int a3, int a4, String a5) {
         cy a6;
-        WorldClient a7 = Minecraft.func_71410_x().field_71441_e;
-        TileEntity a8 = a7.func_175625_s(new BlockPos(a2, a3, a4));
+        WorldClient a7 = Minecraft.getMinecraft().world;
+        TileEntity a8 = a7.getTileEntity(new BlockPos(a2, a3, a4));
         gq a9 = a6.ALLATORIxDEMO(a8);
         if (a9 == null) {
             return;

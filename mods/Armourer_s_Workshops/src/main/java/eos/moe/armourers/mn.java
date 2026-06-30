@@ -147,15 +147,15 @@ implements n {
 
     public void r(NBTTagCompound a2) {
         int n2;
-        a2 = a2.func_74775_l(j);
+        a2 = a2.getCompoundTag(j);
         int n3 = n2 = 0;
         while (n3 < z) {
             mn a3;
-            if (a2.func_150297_b(v + n2, 7)) {
+            if (a2.hasKey(v + n2, 7)) {
                 NBTTagCompound nBTTagCompound;
                 mn mn2 = a3;
                 int n4 = n2;
-                mn2.s[n4] = a2.func_74770_j(new StringBuilder().insert(0, v).append(n4).toString());
+                mn2.s[n4] = a2.getByteArray(new StringBuilder().insert(0, v).append(n4).toString());
                 if (mn2.s[n2].length == 4) {
                     nBTTagCompound = a2;
                     a3.c[n2] = true;
@@ -168,12 +168,12 @@ implements n {
                     a3.s[n2] = byArray;
                     nBTTagCompound = a2;
                 }
-                if (nBTTagCompound.func_150297_b(new StringBuilder().insert(0, w).append(n2).toString(), 8)) {
+                if (nBTTagCompound.hasKey(new StringBuilder().insert(0, w).append(n2).toString(), 8)) {
                     int n5 = n2;
-                    a3.l[n5] = a2.func_74779_i(new StringBuilder().insert(0, w).append(n5).toString());
+                    a3.l[n5] = a2.getString(new StringBuilder().insert(0, w).append(n5).toString());
                 }
             }
-            if (a2.func_150297_b(new StringBuilder().insert(0, v).append(n2).append(m).toString(), 1) && a2.func_150297_b(new StringBuilder().insert(0, v).append(n2).append(t).toString(), 1) && a2.func_150297_b(new StringBuilder().insert(0, v).append(n2).append(r).toString(), 1) && a2.func_150297_b(new StringBuilder().insert(0, v).append(n2).append(g).toString(), 1)) {
+            if (a2.hasKey(new StringBuilder().insert(0, v).append(n2).append(m).toString(), 1) && a2.hasKey(new StringBuilder().insert(0, v).append(n2).append(t).toString(), 1) && a2.hasKey(new StringBuilder().insert(0, v).append(n2).append(r).toString(), 1) && a2.hasKey(new StringBuilder().insert(0, v).append(n2).append(g).toString(), 1)) {
                 mn mn3 = a3;
                 byte[] byArray = new byte[4];
                 byArray[0] = 0;
@@ -182,14 +182,14 @@ implements n {
                 byArray[3] = 0;
                 mn3.s[n2] = byArray;
                 mn3.c[n2] = true;
-                mn3.s[n2][0] = a2.func_74771_c(new StringBuilder().insert(0, v).append(n2).append(m).toString());
-                mn3.s[n2][1] = a2.func_74771_c(new StringBuilder().insert(0, v).append(n2).append(t).toString());
-                mn3.s[n2][2] = a2.func_74771_c(new StringBuilder().insert(0, v).append(n2).append(r).toString());
+                mn3.s[n2][0] = a2.getByte(new StringBuilder().insert(0, v).append(n2).append(m).toString());
+                mn3.s[n2][1] = a2.getByte(new StringBuilder().insert(0, v).append(n2).append(t).toString());
+                mn3.s[n2][2] = a2.getByte(new StringBuilder().insert(0, v).append(n2).append(r).toString());
                 NBTTagCompound nBTTagCompound = a2;
-                mn3.s[n2][3] = nBTTagCompound.func_74771_c(new StringBuilder().insert(0, v).append(n2).append(g).toString());
-                if (nBTTagCompound.func_150297_b(new StringBuilder().insert(0, w).append(n2).toString(), 8)) {
+                mn3.s[n2][3] = nBTTagCompound.getByte(new StringBuilder().insert(0, v).append(n2).append(g).toString());
+                if (nBTTagCompound.hasKey(new StringBuilder().insert(0, w).append(n2).toString(), 8)) {
                     int n6 = n2;
-                    a3.l[n6] = a2.func_74779_i(new StringBuilder().insert(0, w).append(n6).toString());
+                    a3.l[n6] = a2.getString(new StringBuilder().insert(0, w).append(n6).toString());
                 }
             }
             n3 = ++n2;
@@ -204,19 +204,19 @@ implements n {
             mn a3;
             if (a3.c[n2]) {
                 NBTTagCompound nBTTagCompound2 = nBTTagCompound;
-                nBTTagCompound2.func_74774_a(v + n2 + m, a3.s[n2][0]);
-                nBTTagCompound.func_74774_a(new StringBuilder().insert(0, v).append(n2).append(t).toString(), a3.s[n2][1]);
-                nBTTagCompound2.func_74774_a(new StringBuilder().insert(0, v).append(n2).append(r).toString(), a3.s[n2][2]);
+                nBTTagCompound2.setByte(v + n2 + m, a3.s[n2][0]);
+                nBTTagCompound.setByte(new StringBuilder().insert(0, v).append(n2).append(t).toString(), a3.s[n2][1]);
+                nBTTagCompound2.setByte(new StringBuilder().insert(0, v).append(n2).append(r).toString(), a3.s[n2][2]);
                 mn mn2 = a3;
-                nBTTagCompound2.func_74774_a(new StringBuilder().insert(0, v).append(n2).append(g).toString(), mn2.s[n2][3]);
-                if (!StringUtils.func_151246_b((String)mn2.l[n2])) {
-                    nBTTagCompound.func_74778_a(new StringBuilder().insert(0, w).append(n2).toString(), a3.l[n2]);
+                nBTTagCompound2.setByte(new StringBuilder().insert(0, v).append(n2).append(g).toString(), mn2.s[n2][3]);
+                if (!StringUtils.isNullOrEmpty((String)mn2.l[n2])) {
+                    nBTTagCompound.setString(new StringBuilder().insert(0, w).append(n2).toString(), a3.l[n2]);
                 }
             }
             n3 = ++n2;
         }
         NBTTagCompound nBTTagCompound3 = a2;
-        nBTTagCompound3.func_74782_a(j, (NBTBase)nBTTagCompound);
+        nBTTagCompound3.setTag(j, (NBTBase)nBTTagCompound);
         return nBTTagCompound3;
     }
 
@@ -250,7 +250,7 @@ implements n {
             if (mn2.c[n2]) {
                 mn mn3 = a3;
                 a2.writeBytes(mn3.s[n2]);
-                if (!StringUtils.func_151246_b((String)mn3.l[n2])) {
+                if (!StringUtils.isNullOrEmpty((String)mn3.l[n2])) {
                     a2.writeBoolean(true);
                     ByteBufUtils.writeUTF8String((ByteBuf)a2, (String)a3.l[n2]);
                 } else {
@@ -308,7 +308,7 @@ implements n {
     @Override
     public boolean y(int a2) {
         mn a3;
-        return !StringUtils.func_151246_b((String)a3.l[a2]);
+        return !StringUtils.isNullOrEmpty((String)a3.l[a2]);
     }
 
     @Override

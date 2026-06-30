@@ -44,27 +44,27 @@ implements IBakedModel {
         a3.ALLATORIxDEMO = a2;
     }
 
-    public List<BakedQuad> func_188616_a(@Nullable IBlockState iBlockState, @Nullable EnumFacing enumFacing, long a2) {
+    public List<BakedQuad> getQuads(@Nullable IBlockState iBlockState, @Nullable EnumFacing enumFacing, long a2) {
         return null;
     }
 
-    public boolean func_177555_b() {
+    public boolean isAmbientOcclusion() {
         return false;
     }
 
-    public boolean func_177556_c() {
+    public boolean isGui3d() {
         return true;
     }
 
-    public boolean func_188618_c() {
+    public boolean isBuiltInRenderer() {
         return true;
     }
 
-    public TextureAtlasSprite func_177554_e() {
+    public TextureAtlasSprite getParticleTexture() {
         return null;
     }
 
-    public ItemOverrideList func_188617_f() {
+    public ItemOverrideList getOverrides() {
         return null;
     }
 

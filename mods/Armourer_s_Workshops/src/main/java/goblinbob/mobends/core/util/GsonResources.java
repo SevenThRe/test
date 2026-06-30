@@ -25,7 +25,7 @@ public class GsonResources {
     }
 
     public static <T> T get(ResourceLocation location, Class<T> classOfT) throws IOException {
-        InputStream stream = Minecraft.func_71410_x().func_110442_L().func_110536_a(location).func_110527_b();
+        InputStream stream = Minecraft.getMinecraft().getResourceManager().getResource(location).getInputStream();
         if (cache.containsKey(location)) {
             return (T)cache.get(location);
         }

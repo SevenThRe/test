@@ -307,7 +307,7 @@ public class MatrixUtils {
             }
             if ((angle = order.doTest(order.thirdIndex, mat)) != null) {
                 if (refFloats != null) {
-                    angle = Float.valueOf(refFloats[order.thirdIndex] + MathHelper.func_76142_g((float)(2.0f * (angle.floatValue() - refFloats[order.thirdIndex]))) / 2.0f);
+                    angle = Float.valueOf(refFloats[order.thirdIndex] + MathHelper.wrapDegrees((float)(2.0f * (angle.floatValue() - refFloats[order.thirdIndex]))) / 2.0f);
                 }
                 rotation[order.thirdIndex] = angle.floatValue();
                 mat.mul(Transformation.getRotationMatrix(order.thirdIndex, -angle.floatValue()), mat);
@@ -321,7 +321,7 @@ public class MatrixUtils {
                 return null;
             }
             if (refFloats != null) {
-                angle = Float.valueOf(refFloats[order.secondIndex] + MathHelper.func_76142_g((float)(angle.floatValue() - refFloats[order.secondIndex])));
+                angle = Float.valueOf(refFloats[order.secondIndex] + MathHelper.wrapDegrees((float)(angle.floatValue() - refFloats[order.secondIndex])));
             }
             rotation[order.secondIndex] = angle.floatValue();
             mat.mul(Transformation.getRotationMatrix(order.secondIndex, -angle.floatValue()), mat);
@@ -330,7 +330,7 @@ public class MatrixUtils {
                 return null;
             }
             if (refFloats != null) {
-                angle = Float.valueOf(refFloats[order.firstIndex] + MathHelper.func_76142_g((float)(angle.floatValue() - refFloats[order.firstIndex])));
+                angle = Float.valueOf(refFloats[order.firstIndex] + MathHelper.wrapDegrees((float)(angle.floatValue() - refFloats[order.firstIndex])));
             }
             rotation[order.firstIndex] = angle.floatValue();
             return new Vector3f(rotation);

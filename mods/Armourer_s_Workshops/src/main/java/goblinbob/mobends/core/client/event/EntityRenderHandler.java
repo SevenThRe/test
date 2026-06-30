@@ -52,15 +52,15 @@ public class EntityRenderHandler {
 
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent e2) {
-        EntityPlayerSP player = Minecraft.func_71410_x().field_71439_g;
+        EntityPlayerSP player = Minecraft.getMinecraft().player;
         if (player == null) {
             return;
         }
-        PlayerController playerController = CPCManager.get(player.func_110124_au());
+        PlayerController playerController = CPCManager.get(player.getUniqueID());
         if (playerController == null) {
             return;
         }
-        if (playerController.getActiveItem().func_190926_b()) {
+        if (playerController.getActiveItem().isEmpty()) {
             return;
         }
         if (playerController.startTime == -1L) {
@@ -69,11 +69,11 @@ public class EntityRenderHandler {
         if (playerController.startTime % 10L == 0L) {
             ItemStack activeItem = playerController.getActiveItem();
             try {
-                Random rand = (Random)ReflectionHelper.getPrivateValue(Entity.class, (Object)player, (String[])new String[]{"rand", "field_70146_Z"});
-                if (activeItem.func_77978_p() != null && activeItem.func_77978_p().func_74764_b("potion")) {
-                    player.func_184185_a(SoundEvents.field_187664_bz, 0.5f, player.field_70170_p.field_73012_v.nextFloat() * 0.1f + 0.9f);
+                Random rand = (Random)ReflectionHelper.getPrivateValue(Entity.class, (Object)player, (String[])new String[]{"rand", "rand"});
+                if (activeItem.getTagCompound() != null && activeItem.getTagCompound().hasKey("potion")) {
+                    player.playSound(SoundEvents.ENTITY_GENERIC_DRINK, 0.5f, player.world.rand.nextFloat() * 0.1f + 0.9f);
                 } else {
-                    player.func_184185_a(SoundEvents.field_187537_bA, 0.5f + 0.5f * (float)rand.nextInt(2), (rand.nextFloat() - rand.nextFloat()) * 0.2f + 1.0f);
+                    player.playSound(SoundEvents.ENTITY_GENERIC_EAT, 0.5f + 0.5f * (float)rand.nextInt(2), (rand.nextFloat() - rand.nextFloat()) * 0.2f + 1.0f);
                 }
             }
             catch (Exception ex) {
@@ -99,14 +99,14 @@ public class EntityRenderHandler {
             return;
         }
         EntityPlayer player = (EntityPlayer)living;
-        mainHand.put(player.func_110124_au(), player.func_184614_ca());
-        offHand.put(player.func_110124_au(), player.func_184592_cb());
-        PlayerController playerController = CPCManager.get(player.func_110124_au());
-        if (playerController != null && !playerController.getActiveItem().func_190926_b()) {
-            player.field_71071_by.func_70299_a(player.field_71071_by.field_70461_c, playerController.getActiveItem());
-            player.field_71071_by.field_184439_c.set(0, (Object)ItemStack.field_190927_a);
+        mainHand.put(player.getUniqueID(), player.getHeldItemMainhand());
+        offHand.put(player.getUniqueID(), player.getHeldItemOffhand());
+        PlayerController playerController = CPCManager.get(player.getUniqueID());
+        if (playerController != null && !playerController.getActiveItem().isEmpty()) {
+            player.inventory.setInventorySlotContents(player.inventory.currentItem, playerController.getActiveItem());
+            player.inventory.offHandInventory.set(0, (Object)ItemStack.EMPTY);
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         if (entityBender.isAnimated()) {
             AnimationHelper.postRender(living, renderer);
             AnimationHelper.preRender(living, renderer);
@@ -122,17 +122,17 @@ public class EntityRenderHandler {
 
     public static void postRender(EntityLivingBase living, RenderLivingBase renderer, float pt) {
         EntityPlayer player = (EntityPlayer)living;
-        ItemStack hand = mainHand.getOrDefault(player.func_110124_au(), ItemStack.field_190927_a);
-        ItemStack off = offHand.getOrDefault(player.func_110124_au(), ItemStack.field_190927_a);
-        player.field_71071_by.func_70299_a(player.field_71071_by.field_70461_c, hand);
-        player.field_71071_by.field_184439_c.set(0, (Object)off);
+        ItemStack hand = mainHand.getOrDefault(player.getUniqueID(), ItemStack.EMPTY);
+        ItemStack off = offHand.getOrDefault(player.getUniqueID(), ItemStack.EMPTY);
+        player.inventory.setInventorySlotContents(player.inventory.currentItem, hand);
+        player.inventory.offHandInventory.set(0, (Object)off);
         EntityBender<EntityLivingBase> entityBender = EntityBenderRegistry.instance.getForEntity(living);
         if (entityBender == null) {
             return;
         }
         entityBender.afterRender(living, pt);
         AnimationHelper.postRender(living, renderer);
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 }
 

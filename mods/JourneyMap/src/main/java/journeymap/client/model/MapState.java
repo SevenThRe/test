@@ -80,8 +80,8 @@ public class MapState {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public void refresh(Minecraft mc, EntityPlayer player, InGameMapProperties mapProperties) {
-        WorldClient world = mc.field_71441_e;
-        if (world == null || world.field_73011_w == null) {
+        WorldClient world = mc.world;
+        if (world == null || world.provider == null) {
             return;
         }
         this.refreshTimer.start();
@@ -89,26 +89,26 @@ public class MapState {
             CoreProperties coreProperties = Journeymap.getClient().getCoreProperties();
             this.lastMapProperties = mapProperties;
             this.worldDir = FileHandler.getJMWorldDir(mc);
-            if (world != null && world.func_72940_L() != 256 && this.lastSlice.getMaxValue() != 15) {
-                int maxSlice = world.func_72940_L() / 16 - 1;
-                int seaLevel = Math.round(world.func_181545_F() / 16);
+            if (world != null && world.getActualHeight() != 256 && this.lastSlice.getMaxValue() != 15) {
+                int maxSlice = world.getActualHeight() / 16 - 1;
+                int seaLevel = Math.round(world.getSeaLevel() / 16);
                 int currentSlice = this.lastSlice.get();
                 this.lastSlice = new IntegerField(Category.Hidden, "", 0, maxSlice, seaLevel);
                 this.lastSlice.set(currentSlice);
             }
-            boolean hasSurface = !(world.field_73011_w instanceof WorldProviderHell);
+            boolean hasSurface = !(world.provider instanceof WorldProviderHell);
             this.caveMappingAllowed = FeatureManager.isAllowed(Feature.MapCaves);
             this.caveMappingEnabled = this.caveMappingAllowed && mapProperties.showCaves.get() != false;
             this.surfaceMappingAllowed = hasSurface && FeatureManager.isAllowed(Feature.MapSurface);
             this.topoMappingAllowed = hasSurface && FeatureManager.isAllowed(Feature.MapTopo) && coreProperties.mapTopography.get() != false;
             this.highQuality = coreProperties.tileHighDisplayQuality.get();
-            this.lastPlayerChunkX = player.field_70176_ah;
-            this.lastPlayerChunkY = player.field_70162_ai;
-            this.lastPlayerChunkZ = player.field_70164_aj;
+            this.lastPlayerChunkX = player.chunkCoordX;
+            this.lastPlayerChunkY = player.chunkCoordY;
+            this.lastPlayerChunkZ = player.chunkCoordZ;
             EntityDTO playerDTO = DataCache.getPlayer();
             this.playerBiome = playerDTO.biome;
             if (this.lastMapType != null) {
-                if (player.field_71093_bK != this.lastMapType.dimension) {
+                if (player.dimension != this.lastMapType.dimension) {
                     this.lastMapType = null;
                 } else if (this.caveMappingEnabled && this.follow.get() && playerDTO.underground.booleanValue() && !this.lastMapType.isUnderground()) {
                     this.lastMapType = null;
@@ -324,7 +324,7 @@ public class MapState {
         double d0 = this.lastPlayerChunkX - player.chunkCoordX;
         double d1 = this.lastPlayerChunkY - player.chunkCoordY;
         double d2 = this.lastPlayerChunkZ - player.chunkCoordZ;
-        double diff = MathHelper.func_76133_a((double)(d0 * d0 + d1 * d1 + d2 * d2));
+        double diff = MathHelper.sqrt((double)(d0 * d0 + d1 * d1 + d2 * d2));
         if (diff > 2.0) {
             return true;
         }

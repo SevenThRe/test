@@ -41,7 +41,7 @@ extends AnimationBit<BipedEntityData<?>> {
         ModelPartTransform offArm = mainHandSwitch ? data.leftArm : data.rightArm;
         ModelPartTransform mainForeArm = mainHandSwitch ? data.rightForeArm : data.leftForeArm;
         ModelPartTransform offForeArm = mainHandSwitch ? data.leftForeArm : data.rightForeArm;
-        int aimedBowDuration = living != null ? Math.min(living.func_184612_cw(), 15) : 0;
+        int aimedBowDuration = living != null ? Math.min(living.getItemInUseMaxCount(), 15) : 0;
         float bodyTwistY = (float)(aimedBowDuration - 10) / 5.0f * -25.0f * handDirMtp;
         float var2 = (float)aimedBowDuration / 10.0f;
         float var5 = headPitch - 90.0f;
@@ -49,15 +49,15 @@ extends AnimationBit<BipedEntityData<?>> {
         float bodyRotationY = -bodyTwistY + headYaw;
         if (data.isClimbing()) {
             float climbingRotation = data.getClimbingRotation();
-            float renderRotationY = MathHelper.func_76142_g((float)(((EntityLivingBase)living).field_70177_z - headYaw - climbingRotation));
-            bodyRotationY = MathHelper.func_76142_g((float)(headYaw + renderRotationY));
+            float renderRotationY = MathHelper.wrapDegrees((float)(((EntityLivingBase)living).rotationYaw - headYaw - climbingRotation));
+            bodyRotationY = MathHelper.wrapDegrees((float)(headYaw + renderRotationY));
             data.head.rotation.setSmoothness(0.5f).orientX(headPitch);
         } else {
             data.head.rotation.setSmoothness(0.5f).orientX(headPitch).rotateY(headYaw - bodyRotationY);
         }
         data.body.rotation.setSmoothness(0.8f).orientY(bodyRotationY);
         mainArm.rotation.setSmoothness(0.8f).orientX(headPitch - 90.0f).rotateY(bodyTwistY);
-        offArm.rotation.setSmoothness(1.0f).orientY(80.0f * handDirMtp).rotateZ((-MathHelper.func_76134_b((float)(headPitch / 180.0f * (float)Math.PI)) * 40.0f + 40.0f) * handDirMtp).rotateX(var5);
+        offArm.rotation.setSmoothness(1.0f).orientY(80.0f * handDirMtp).rotateZ((-MathHelper.cos((float)(headPitch / 180.0f * (float)Math.PI)) * 40.0f + 40.0f) * handDirMtp).rotateX(var5);
         mainForeArm.rotation.setSmoothness(1.0f).orientX(0.0f);
         offForeArm.rotation.orientX(var2 * -30.0f);
     }

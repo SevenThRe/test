@@ -102,7 +102,7 @@ public enum KeyEventHandler implements EventHandlerManager.EventHandler
         this.setAction(this.minimapPreviewActions, this.kbMinimapPreset, UIManager.INSTANCE::switchMiniMapPreset);
         this.inGameActions.putAll(this.minimapPreviewActions);
         this.kbCreateWaypoint = this.register("key.journeymap.create_waypoint", (IKeyConflictContext)KeyConflictContext.IN_GAME, KeyModifier.NONE, 48);
-        this.setAction(this.inGameActions, this.kbCreateWaypoint, () -> UIManager.INSTANCE.openWaypointEditor(Waypoint.of((EntityPlayer)this.mc.field_71439_g), true, null));
+        this.setAction(this.inGameActions, this.kbCreateWaypoint, () -> UIManager.INSTANCE.openWaypointEditor(Waypoint.of((EntityPlayer)this.mc.player), true, null));
         this.kbToggleAllWaypoints = this.register("key.journeymap.toggle_waypoints", (IKeyConflictContext)KeyConflictContext.IN_GAME, KeyModifier.NONE, 44);
         this.setAction(this.inGameActions, this.kbToggleAllWaypoints, () -> WaypointManager.toggleAllWaypoints());
         this.kbFullscreenCreateWaypoint = this.register("key.journeymap.fullscreen_create_waypoint", (IKeyConflictContext)KeyConflictContext.GUI, KeyModifier.NONE, 48);
@@ -130,7 +130,7 @@ public enum KeyEventHandler implements EventHandlerManager.EventHandler
     }
 
     private void setAction(ListMultimap<Integer, KeyBindingAction> multimap, KeyBinding keyBinding, Runnable action) {
-        multimap.put((Object)keyBinding.func_151463_i(), (Object)new KeyBindingAction(keyBinding, action));
+        multimap.put((Object)keyBinding.getKeyCode(), (Object)new KeyBindingAction(keyBinding, action));
     }
 
     private KeyBinding register(String description, IKeyConflictContext keyConflictContext, KeyModifier keyModifier, int keyCode) {
@@ -160,7 +160,7 @@ public enum KeyEventHandler implements EventHandlerManager.EventHandler
             if (this.inFullscreenWithoutChat()) {
                 this.onInputEvent((Multimap<Integer, KeyBindingAction>)this.inGuiActions, key, true);
             } else if (this.inMinimapPreview() && this.onInputEvent((Multimap<Integer, KeyBindingAction>)this.minimapPreviewActions, key, false)) {
-                ((OptionsManager)this.mc.field_71462_r).refreshMinimapOptions();
+                ((OptionsManager)this.mc.currentScreen).refreshMinimapOptions();
             }
         }
     }
@@ -172,14 +172,14 @@ public enum KeyEventHandler implements EventHandlerManager.EventHandler
             if (this.inFullscreenWithoutChat()) {
                 this.onInputEvent((Multimap<Integer, KeyBindingAction>)this.inGuiActions, key, true);
             } else if (this.inMinimapPreview() && this.onInputEvent((Multimap<Integer, KeyBindingAction>)this.minimapPreviewActions, key, false)) {
-                ((OptionsManager)this.mc.field_71462_r).refreshMinimapOptions();
+                ((OptionsManager)this.mc.currentScreen).refreshMinimapOptions();
             }
         }
     }
 
     public List<KeyBinding> getInGuiKeybindings() {
         List<KeyBinding> list = this.inGuiActions.values().stream().map(KeyBindingAction::getKeyBinding).collect(Collectors.toList());
-        list.sort(Comparator.comparing(kb -> Constants.getString(kb.func_151464_g())));
+        list.sort(Comparator.comparing(kb -> Constants.getString(kb.getKeyDescription())));
         return list;
     }
 
@@ -212,7 +212,7 @@ public enum KeyEventHandler implements EventHandlerManager.EventHandler
         ArrayList copy = new ArrayList(multimap.values());
         multimap.clear();
         for (KeyBindingAction kba : copy) {
-            multimap.put((Object)kba.getKeyBinding().func_151463_i(), (Object)kba);
+            multimap.put((Object)kba.getKeyBinding().getKeyCode(), (Object)kba);
         }
         for (Integer key : multimap.keySet()) {
             multimap.get((Object)key).sort(this.kbaComparator);
@@ -225,11 +225,11 @@ public enum KeyEventHandler implements EventHandlerManager.EventHandler
     }
 
     private boolean inFullscreenWithoutChat() {
-        return this.mc.field_71462_r instanceof Fullscreen && !((Fullscreen)this.mc.field_71462_r).isChatOpen();
+        return this.mc.currentScreen instanceof Fullscreen && !((Fullscreen)this.mc.currentScreen).isChatOpen();
     }
 
     private boolean inMinimapPreview() {
-        return this.mc.field_71462_r instanceof OptionsManager && ((OptionsManager)this.mc.field_71462_r).previewMiniMap();
+        return this.mc.currentScreen instanceof OptionsManager && ((OptionsManager)this.mc.currentScreen).previewMiniMap();
     }
 
     class UpdateAwareKeyBinding
@@ -238,8 +238,8 @@ public enum KeyEventHandler implements EventHandlerManager.EventHandler
             super(description, keyConflictContext, keyModifier, keyCode, category);
         }
 
-        public void func_151462_b(int keyCode) {
-            super.func_151462_b(keyCode);
+        public void setKeyCode(int keyCode) {
+            super.setKeyCode(keyCode);
             KeyEventHandler.this.sortActionsNeeded = true;
         }
 
@@ -262,7 +262,7 @@ public enum KeyEventHandler implements EventHandlerManager.EventHandler
             if (useContext) {
                 return this.keyBinding.isActiveAndMatches(key);
             }
-            return this.keyBinding.func_151463_i() == key && this.keyBinding.getKeyModifier().isActive();
+            return this.keyBinding.getKeyCode() == key && this.keyBinding.getKeyModifier().isActive();
         }
 
         Runnable getAction() {
@@ -278,7 +278,7 @@ public enum KeyEventHandler implements EventHandlerManager.EventHandler
         }
 
         public String toString() {
-            return "KeyBindingAction{" + this.keyBinding.getDisplayName() + " = " + Constants.getString(this.keyBinding.func_151464_g()) + '}';
+            return "KeyBindingAction{" + this.keyBinding.getDisplayName() + " = " + Constants.getString(this.keyBinding.getKeyDescription()) + '}';
         }
     }
 }

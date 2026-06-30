@@ -82,48 +82,48 @@ implements Serializable {
 
     private EntityDTO(EntityLivingBase entity) {
         this.entityLivingRef = new WeakReference<EntityLivingBase>(entity);
-        this.entityId = entity.func_110124_au().toString();
+        this.entityId = entity.getUniqueID().toString();
     }
 
     public void update(EntityLivingBase entity, boolean hostile) {
         EntityLivingBase ownerEntity;
-        Minecraft mc = Minecraft.func_71410_x();
-        EntityPlayerSP currentPlayer = FMLClientHandler.instance().getClient().field_71439_g;
-        this.dimension = entity.field_71093_bK;
-        this.posX = entity.field_70165_t;
-        this.posY = entity.field_70163_u;
-        this.posZ = entity.field_70161_v;
-        this.chunkCoordX = entity.field_70176_ah;
-        this.chunkCoordY = entity.field_70162_ai;
-        this.chunkCoordZ = entity.field_70164_aj;
-        this.heading = Math.round(entity.field_70759_as % 360.0f);
-        this.invisible = currentPlayer != null ? entity.func_98034_c((EntityPlayer)currentPlayer) : false;
-        this.sneaking = entity.func_70093_af();
+        Minecraft mc = Minecraft.getMinecraft();
+        EntityPlayerSP currentPlayer = FMLClientHandler.instance().getClient().player;
+        this.dimension = entity.dimension;
+        this.posX = entity.posX;
+        this.posY = entity.posY;
+        this.posZ = entity.posZ;
+        this.chunkCoordX = entity.chunkCoordX;
+        this.chunkCoordY = entity.chunkCoordY;
+        this.chunkCoordZ = entity.chunkCoordZ;
+        this.heading = Math.round(entity.rotationYawHead % 360.0f);
+        this.invisible = currentPlayer != null ? entity.isInvisibleToPlayer((EntityPlayer)currentPlayer) : false;
+        this.sneaking = entity.isSneaking();
         CoreProperties coreProperties = Journeymap.getClient().getCoreProperties();
         ResourceLocation entityIcon = null;
         int playerColor = coreProperties.getColor(coreProperties.colorPlayer);
         ScorePlayerTeam team = null;
         try {
-            team = mc.field_71441_e.func_96441_U().func_96509_i(entity.func_189512_bd());
+            team = mc.world.getScoreboard().getPlayersTeam(entity.getCachedUniqueIdString());
         }
         catch (Throwable throwable) {
             // empty catch block
         }
         if (entity instanceof EntityPlayer) {
             String name;
-            this.username = name = StringUtils.func_76338_a((String)entity.func_70005_c_());
+            this.username = name = StringUtils.stripControlCodes((String)entity.getName());
             try {
-                playerColor = team != null ? team.func_178775_l().func_175746_b() : (currentPlayer.equals((Object)entity) ? coreProperties.getColor(coreProperties.colorSelf) : coreProperties.getColor(coreProperties.colorPlayer));
+                playerColor = team != null ? team.getColor().getColorIndex() : (currentPlayer.equals((Object)entity) ? coreProperties.getColor(coreProperties.colorSelf) : coreProperties.getColor(coreProperties.colorPlayer));
             }
             catch (Throwable throwable) {
                 // empty catch block
             }
-            entityIcon = DefaultPlayerSkin.func_177335_a();
+            entityIcon = DefaultPlayerSkin.getDefaultSkinLegacy();
             try {
-                NetHandlerPlayClient client = Minecraft.func_71410_x().func_147114_u();
-                NetworkPlayerInfo info = client.func_175102_a(entity.func_110124_au());
+                NetHandlerPlayClient client = Minecraft.getMinecraft().getConnection();
+                NetworkPlayerInfo info = client.getPlayerInfo(entity.getUniqueID());
                 if (info != null) {
-                    entityIcon = info.func_178837_g();
+                    entityIcon = info.getLocationSkin();
                 }
             }
             catch (Throwable t) {
@@ -139,22 +139,22 @@ implements Serializable {
         }
         String owner = null;
         if (entity instanceof EntityTameable) {
-            ownerEntity = ((EntityTameable)entity).func_70902_q();
+            ownerEntity = ((EntityTameable)entity).getOwner();
             if (ownerEntity != null) {
-                owner = ownerEntity.func_70005_c_();
+                owner = ownerEntity.getName();
             }
         } else if (entity instanceof IEntityOwnable) {
-            ownerEntity = ((IEntityOwnable)entity).func_70902_q();
+            ownerEntity = ((IEntityOwnable)entity).getOwner();
             if (ownerEntity != null) {
-                owner = ownerEntity.func_70005_c_();
+                owner = ownerEntity.getName();
             }
         } else if (entity instanceof EntityHorse) {
-            UUID ownerUuid = ((EntityHorse)entity).func_184780_dh();
+            UUID ownerUuid = ((EntityHorse)entity).getOwnerUniqueId();
             if (currentPlayer != null && ownerUuid != null) {
                 try {
-                    String playerUuid = currentPlayer.func_110124_au().toString();
+                    String playerUuid = currentPlayer.getUniqueID().toString();
                     if (playerUuid.equals(ownerUuid)) {
-                        owner = currentPlayer.func_70005_c_();
+                        owner = currentPlayer.getName();
                     }
                 }
                 catch (Throwable t) {
@@ -168,10 +168,10 @@ implements Serializable {
         if (entity instanceof EntityLiving) {
             EntityLivingBase attackTarget;
             EntityLiving entityLiving = (EntityLiving)entity;
-            if (entity.func_145818_k_() && entityLiving.func_174833_aM()) {
-                customName = StringUtils.func_76338_a((String)((EntityLiving)entity).func_95999_t());
+            if (entity.hasCustomName() && entityLiving.getAlwaysRenderNameTag()) {
+                customName = StringUtils.stripControlCodes((String)((EntityLiving)entity).getCustomNameTag());
             }
-            if (!hostile && currentPlayer != null && (attackTarget = ((EntityLiving)entity).func_70638_az()) != null && attackTarget.func_110124_au().equals(currentPlayer.func_110124_au())) {
+            if (!hostile && currentPlayer != null && (attackTarget = ((EntityLiving)entity).getAttackTarget()) != null && attackTarget.getUniqueID().equals(currentPlayer.getUniqueID())) {
                 hostile = true;
             }
             if (EntityHelper.isPassive((EntityLiving)entity)) {
@@ -180,7 +180,7 @@ implements Serializable {
         }
         if (entity instanceof EntityVillager) {
             EntityVillager villager = (EntityVillager)entity;
-            this.profession = villager.getProfessionForge().getCareer(villager.field_175563_bv).getName();
+            this.profession = villager.getProfessionForge().getCareer(villager.careerId).getName();
         } else if (entity instanceof INpc) {
             this.npc = true;
             this.profession = null;
@@ -191,7 +191,7 @@ implements Serializable {
         }
         this.customName = customName;
         this.hostile = hostile;
-        this.color = entity instanceof EntityPlayer ? playerColor : (team != null ? team.func_178775_l().func_175746_b() : (!Strings.isNullOrEmpty((String)owner) ? coreProperties.getColor(coreProperties.colorPet) : (this.profession != null || this.npc ? coreProperties.getColor(coreProperties.colorVillager) : (hostile ? coreProperties.getColor(coreProperties.colorHostile) : coreProperties.getColor(coreProperties.colorPassive)))));
+        this.color = entity instanceof EntityPlayer ? playerColor : (team != null ? team.getColor().getColorIndex() : (!Strings.isNullOrEmpty((String)owner) ? coreProperties.getColor(coreProperties.colorPet) : (this.profession != null || this.npc ? coreProperties.getColor(coreProperties.colorVillager) : (hostile ? coreProperties.getColor(coreProperties.colorHostile) : coreProperties.getColor(coreProperties.colorPassive)))));
     }
 
     public static class SimpleCacheLoader

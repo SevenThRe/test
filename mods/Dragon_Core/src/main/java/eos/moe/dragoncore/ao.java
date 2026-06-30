@@ -214,22 +214,22 @@ extends Gui {
                     return true;
                 }
                 case '\u0003': {
-                    GuiScreen.func_146275_d((String)a4.getSelectedtext());
+                    GuiScreen.setClipboardString((String)a4.getSelectedtext());
                     return true;
                 }
                 case '\u0016': {
-                    a4.writeText(GuiScreen.func_146277_j());
+                    a4.writeText(GuiScreen.getClipboardString());
                     return true;
                 }
                 case '\u0018': {
-                    GuiScreen.func_146275_d((String)a4.getSelectedtext());
+                    GuiScreen.setClipboardString((String)a4.getSelectedtext());
                     a4.writeText("");
                     return true;
                 }
             }
             switch (a3) {
                 case 14: {
-                    if (GuiScreen.func_146271_m()) {
+                    if (GuiScreen.isCtrlKeyDown()) {
                         a4.deleteWords(-1);
                     } else {
                         a4.deleteFromCursor(-1);
@@ -237,7 +237,7 @@ extends Gui {
                     return true;
                 }
                 case 199: {
-                    if (GuiScreen.func_146272_n()) {
+                    if (GuiScreen.isShiftKeyDown()) {
                         a4.setSelectionPos(0);
                     } else {
                         a4.setCursorPositionZero();
@@ -245,13 +245,13 @@ extends Gui {
                     return true;
                 }
                 case 203: {
-                    if (GuiScreen.func_146272_n()) {
-                        if (GuiScreen.func_146271_m()) {
+                    if (GuiScreen.isShiftKeyDown()) {
+                        if (GuiScreen.isCtrlKeyDown()) {
                             a4.setSelectionPos(a4.getNthWordFromPos(-1, a4.getSelectionEnd()));
                         } else {
                             a4.setSelectionPos(a4.getSelectionEnd() - 1);
                         }
-                    } else if (GuiScreen.func_146271_m()) {
+                    } else if (GuiScreen.isCtrlKeyDown()) {
                         a4.setCursorPosition(a4.getNthWordFromCursor(-1));
                     } else {
                         a4.moveCursorBy(-1);
@@ -259,13 +259,13 @@ extends Gui {
                     return true;
                 }
                 case 205: {
-                    if (GuiScreen.func_146272_n()) {
-                        if (GuiScreen.func_146271_m()) {
+                    if (GuiScreen.isShiftKeyDown()) {
+                        if (GuiScreen.isCtrlKeyDown()) {
                             a4.setSelectionPos(a4.getNthWordFromPos(1, a4.getSelectionEnd()));
                         } else {
                             a4.setSelectionPos(a4.getSelectionEnd() + 1);
                         }
-                    } else if (GuiScreen.func_146271_m()) {
+                    } else if (GuiScreen.isCtrlKeyDown()) {
                         a4.setCursorPosition(a4.getNthWordFromCursor(1));
                     } else {
                         a4.moveCursorBy(1);
@@ -273,7 +273,7 @@ extends Gui {
                     return true;
                 }
                 case 207: {
-                    if (GuiScreen.func_146272_n()) {
+                    if (GuiScreen.isShiftKeyDown()) {
                         a4.setSelectionPos(a4.g.length());
                     } else {
                         a4.setCursorPositionEnd();
@@ -281,7 +281,7 @@ extends Gui {
                     return true;
                 }
                 case 211: {
-                    if (GuiScreen.func_146271_m()) {
+                    if (GuiScreen.isCtrlKeyDown()) {
                         a4.deleteWords(1);
                     } else {
                         a4.deleteFromCursor(1);
@@ -289,7 +289,7 @@ extends Gui {
                     return true;
                 }
             }
-            if (ChatAllowedCharacters.func_71566_a((char)a2)) {
+            if (ChatAllowedCharacters.isAllowedCharacter((char)a2)) {
                 a4.writeText(Character.toString(a2));
                 return true;
             }
@@ -308,8 +308,8 @@ extends Gui {
             if (a5.k) {
                 a8 -= 4;
             }
-            String a9 = a5.j.func_78269_a(a6.substring(a5.m), a5.getWidth());
-            a5.setCursorPosition(a5.j.func_78269_a(a9, a8).length() + a5.m);
+            String a9 = a5.j.trimStringToWidth(a6.substring(a5.m), a5.getWidth());
+            a5.setCursorPosition(a5.j.trimStringToWidth(a9, a8).length() + a5.m);
         }
     }
 
@@ -318,13 +318,13 @@ extends Gui {
         String a3 = a2.g.replace('\u00a7', '?');
         if (a2.getVisible()) {
             if (a2.getEnableBackgroundDrawing()) {
-                ao.func_73734_a((int)(a2.i - 1), (int)(a2.l - 1), (int)(a2.i + a2.z + 1), (int)(a2.l + a2.s + 1), (int)-6250336);
-                ao.func_73734_a((int)a2.i, (int)a2.l, (int)(a2.i + a2.z), (int)(a2.l + a2.s), (int)-16777216);
+                ao.drawRect((int)(a2.i - 1), (int)(a2.l - 1), (int)(a2.i + a2.z + 1), (int)(a2.l + a2.s + 1), (int)-6250336);
+                ao.drawRect((int)a2.i, (int)a2.l, (int)(a2.i + a2.z), (int)(a2.l + a2.s), (int)-16777216);
             }
             int a4 = a2.v ? a2.b : a2.o;
             int a5 = a2.c - a2.m;
             int a6 = a2.q - a2.m;
-            String a7 = a2.j.func_78269_a(a3.substring(a2.m), a2.getWidth());
+            String a7 = a2.j.trimStringToWidth(a3.substring(a2.m), a2.getWidth());
             boolean a8 = a5 >= 0 && a5 <= a7.length();
             boolean a9 = a2.x && a2.r / 6 % 2 == 0 && a8;
             int a10 = a2.k ? a2.i + 4 : a2.i;
@@ -335,7 +335,7 @@ extends Gui {
             }
             if (a7.length() > 0) {
                 String a13 = a8 ? a7.substring(0, a5) : a7;
-                a12 = a2.j.func_175063_a(a13, (float)a10, (float)a11, a4);
+                a12 = a2.j.drawStringWithShadow(a13, (float)a10, (float)a11, a4);
             }
             boolean a14 = a2.c < a2.g.length() || a2.g.length() >= a2.getMaxStringLength();
             int a15 = a12;
@@ -346,18 +346,18 @@ extends Gui {
                 --a12;
             }
             if (a7.length() > 0 && a8 && a5 < a7.length()) {
-                a2.j.func_175063_a(a7.substring(a5), (float)a12, (float)a11, a4);
+                a2.j.drawStringWithShadow(a7.substring(a5), (float)a12, (float)a11, a4);
             }
             if (a9) {
                 if (a14) {
-                    Gui.func_73734_a((int)a15, (int)(a11 - 1), (int)(a15 + 1), (int)(a11 + 1 + a2.j.field_78288_b), (int)-3092272);
+                    Gui.drawRect((int)a15, (int)(a11 - 1), (int)(a15 + 1), (int)(a11 + 1 + a2.j.FONT_HEIGHT), (int)-3092272);
                 } else {
-                    a2.j.func_175063_a("_", (float)a15, (float)a11, a4);
+                    a2.j.drawStringWithShadow("_", (float)a15, (float)a11, a4);
                 }
             }
             if (a6 != a5) {
-                int a16 = a10 + a2.j.func_78256_a(a7.substring(0, a6));
-                a2.ALLATORIxDEMO(a15, a11 - 1, a16 - 1, a11 + 1 + a2.j.field_78288_b);
+                int a16 = a10 + a2.j.getStringWidth(a7.substring(0, a6));
+                a2.ALLATORIxDEMO(a15, a11 - 1, a16 - 1, a11 + 1 + a2.j.FONT_HEIGHT);
             }
         }
     }
@@ -374,20 +374,20 @@ extends Gui {
             a3 = a5;
             a5 = a6;
         }
-        Tessellator a7 = Tessellator.func_178181_a();
-        BufferBuilder a8 = a7.func_178180_c();
+        Tessellator a7 = Tessellator.getInstance();
+        BufferBuilder a8 = a7.getBuffer();
         GL11.glColor4f((float)0.0f, (float)0.0f, (float)255.0f, (float)255.0f);
-        GlStateManager.func_179090_x();
-        GlStateManager.func_179115_u();
-        GlStateManager.func_179116_f((int)5387);
-        a8.func_181668_a(7, DefaultVertexFormats.field_181706_f);
-        a8.func_181662_b((double)a2, (double)a5, 0.0);
-        a8.func_181662_b((double)a4, (double)a5, 0.0);
-        a8.func_181662_b((double)a4, (double)a3, 0.0);
-        a8.func_181662_b((double)a2, (double)a3, 0.0);
-        a7.func_78381_a();
-        GlStateManager.func_179134_v();
-        GlStateManager.func_179098_w();
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableColorLogic();
+        GlStateManager.colorLogicOp((int)5387);
+        a8.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        a8.pos((double)a2, (double)a5, 0.0);
+        a8.pos((double)a4, (double)a5, 0.0);
+        a8.pos((double)a4, (double)a3, 0.0);
+        a8.pos((double)a2, (double)a3, 0.0);
+        a7.draw();
+        GlStateManager.disableColorLogic();
+        GlStateManager.enableTexture2D();
     }
 
     public void setMaxStringLength(int a2) {
@@ -468,10 +468,10 @@ extends Gui {
                 a3.m = a5;
             }
             int a6 = a3.getWidth();
-            String a7 = a3.j.func_78269_a(a4.substring(a3.m), a6);
+            String a7 = a3.j.trimStringToWidth(a4.substring(a3.m), a6);
             int a8 = a7.length() + a3.m;
             if (a2 == a3.m) {
-                a3.m -= a3.j.func_78262_a(a4, a6, true).length();
+                a3.m -= a3.j.trimStringToWidth(a4, a6, true).length();
             }
             if (a2 > a8) {
                 a3.m += a2 - a8;

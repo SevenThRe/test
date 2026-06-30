@@ -313,7 +313,7 @@ public class InvTweaksConfig {
     }
 
     public int getSortKeyCode() {
-        return ClientProxy.KEYBINDING_SORT.func_151463_i();
+        return ClientProxy.KEYBINDING_SORT.getKeyCode();
     }
 }
 

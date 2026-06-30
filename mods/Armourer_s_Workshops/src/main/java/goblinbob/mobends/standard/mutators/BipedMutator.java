@@ -60,24 +60,24 @@ extends Mutator<D, E, M> {
 
     @Override
     public void storeVanillaModel(M model) {
-        ((ModelBiped)this.vanillaModel).field_78115_e = ((ModelBiped)model).field_78115_e;
-        ((ModelBiped)this.vanillaModel).field_78116_c = ((ModelBiped)model).field_78116_c;
-        ((ModelBiped)this.vanillaModel).field_178720_f = ((ModelBiped)model).field_178720_f;
-        ((ModelBiped)this.vanillaModel).field_178724_i = ((ModelBiped)model).field_178724_i;
-        ((ModelBiped)this.vanillaModel).field_178722_k = ((ModelBiped)model).field_178722_k;
-        ((ModelBiped)this.vanillaModel).field_178723_h = ((ModelBiped)model).field_178723_h;
-        ((ModelBiped)this.vanillaModel).field_178721_j = ((ModelBiped)model).field_178721_j;
+        ((ModelBiped)this.vanillaModel).bipedBody = ((ModelBiped)model).bipedBody;
+        ((ModelBiped)this.vanillaModel).bipedHead = ((ModelBiped)model).bipedHead;
+        ((ModelBiped)this.vanillaModel).bipedHeadwear = ((ModelBiped)model).bipedHeadwear;
+        ((ModelBiped)this.vanillaModel).bipedLeftArm = ((ModelBiped)model).bipedLeftArm;
+        ((ModelBiped)this.vanillaModel).bipedLeftLeg = ((ModelBiped)model).bipedLeftLeg;
+        ((ModelBiped)this.vanillaModel).bipedRightArm = ((ModelBiped)model).bipedRightArm;
+        ((ModelBiped)this.vanillaModel).bipedRightLeg = ((ModelBiped)model).bipedRightLeg;
     }
 
     @Override
     public void applyVanillaModel(M model) {
-        ((ModelBiped)model).field_78115_e = ((ModelBiped)this.vanillaModel).field_78115_e;
-        ((ModelBiped)model).field_78116_c = ((ModelBiped)this.vanillaModel).field_78116_c;
-        ((ModelBiped)model).field_178720_f = ((ModelBiped)this.vanillaModel).field_178720_f;
-        ((ModelBiped)model).field_178724_i = ((ModelBiped)this.vanillaModel).field_178724_i;
-        ((ModelBiped)model).field_178722_k = ((ModelBiped)this.vanillaModel).field_178722_k;
-        ((ModelBiped)model).field_178723_h = ((ModelBiped)this.vanillaModel).field_178723_h;
-        ((ModelBiped)model).field_178721_j = ((ModelBiped)this.vanillaModel).field_178721_j;
+        ((ModelBiped)model).bipedBody = ((ModelBiped)this.vanillaModel).bipedBody;
+        ((ModelBiped)model).bipedHead = ((ModelBiped)this.vanillaModel).bipedHead;
+        ((ModelBiped)model).bipedHeadwear = ((ModelBiped)this.vanillaModel).bipedHeadwear;
+        ((ModelBiped)model).bipedLeftArm = ((ModelBiped)this.vanillaModel).bipedLeftArm;
+        ((ModelBiped)model).bipedLeftLeg = ((ModelBiped)this.vanillaModel).bipedLeftLeg;
+        ((ModelBiped)model).bipedRightArm = ((ModelBiped)this.vanillaModel).bipedRightArm;
+        ((ModelBiped)model).bipedRightLeg = ((ModelBiped)this.vanillaModel).bipedRightLeg;
     }
 
     @Override
@@ -119,18 +119,18 @@ extends Mutator<D, E, M> {
     @Override
     public boolean createParts(M original, float scaleFactor) {
         this.body = (ModelPartPostOffset)new ModelPartPostOffset((ModelBase)original, 16, 16).setPostOffset(0.0f, -12.0f, 0.0f).setPosition(0.0f, 12.0f, 0.0f);
-        ((ModelBiped)original).field_78115_e = this.body;
-        this.body.func_78790_a(-4.0f, -12.0f, -2.0f, 8, 12, 4, scaleFactor);
+        ((ModelBiped)original).bipedBody = this.body;
+        this.body.addBox(-4.0f, -12.0f, -2.0f, 8, 12, 4, scaleFactor);
         this.head = new ModelPart((ModelBase)original, 0, 0).setParent(this.body).setPosition(0.0f, -12.0f, 0.0f);
-        ((ModelBiped)original).field_78116_c = this.head;
-        this.head.func_78790_a(-4.0f, -8.0f, -4.0f, 8, 8, 8, scaleFactor);
+        ((ModelBiped)original).bipedHead = this.head;
+        this.head.addBox(-4.0f, -8.0f, -4.0f, 8, 8, 8, scaleFactor);
         int armWidth = 4;
         float armY = -10.0f;
         this.leftArm = (ModelPartExtended)new ModelPartExtended((ModelBase)original, 40, 16).setParent(this.body).setPosition(5.0f, armY, 0.0f).setMirror(true);
-        ((ModelBiped)original).field_178724_i = this.leftArm;
+        ((ModelBiped)original).bipedLeftArm = this.leftArm;
         this.leftArm.developBox(-1.0f, -2.0f, -2.0f, armWidth, 6, 4, scaleFactor).inflate(0.01f, 0.0f, 0.01f).hideFace(BoxSide.BOTTOM).create();
         this.rightArm = (ModelPartExtended)new ModelPartExtended((ModelBase)original, 40, 16).setParent(this.body).setPosition(-5.0f, armY, 0.0f);
-        ((ModelBiped)original).field_178723_h = this.rightArm;
+        ((ModelBiped)original).bipedRightArm = this.rightArm;
         this.rightArm.developBox(-armWidth + 1, -2.0f, -2.0f, armWidth, 6, 4, scaleFactor).inflate(0.01f, 0.0f, 0.1f).hideFace(BoxSide.BOTTOM).create();
         this.leftForeArm = (ModelPartPostOffset)new ModelPartPostOffset((ModelBase)original, 40, 22).setPostOffset(0.0f, -4.0f, -2.0f).setParent(this.leftArm).setPosition(0.0f, 4.0f, 2.0f).setMirror(true);
         this.leftForeArm.developBox(-1.0f, 0.0f, -4.0f, armWidth, 6, 4, scaleFactor).hideFace(BoxSide.TOP).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
@@ -139,11 +139,11 @@ extends Mutator<D, E, M> {
         this.rightForeArm.developBox(-armWidth + 1, 0.0f, -4.0f, armWidth, 6, 4, scaleFactor).hideFace(BoxSide.TOP).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
         this.rightArm.setExtension(this.rightForeArm);
         this.rightLeg = (ModelPartExtended)new ModelPartExtended((ModelBase)original, 0, 16).setPosition(0.0f, 12.0f, 0.0f);
-        ((ModelBiped)original).field_178721_j = this.rightLeg;
-        this.rightLeg.func_78790_a(-1.9f, 0.0f, -2.0f, 4, 6, 4, scaleFactor);
+        ((ModelBiped)original).bipedRightLeg = this.rightLeg;
+        this.rightLeg.addBox(-1.9f, 0.0f, -2.0f, 4, 6, 4, scaleFactor);
         this.leftLeg = (ModelPartExtended)new ModelPartExtended((ModelBase)original, 0, 16).setPosition(0.0f, 12.0f, 0.0f).setMirror(true);
-        ((ModelBiped)original).field_178722_k = this.leftLeg;
-        this.leftLeg.func_78790_a(-0.1f, 0.0f, -2.0f, 4, 6, 4, scaleFactor);
+        ((ModelBiped)original).bipedLeftLeg = this.leftLeg;
+        this.leftLeg.addBox(-0.1f, 0.0f, -2.0f, 4, 6, 4, scaleFactor);
         this.leftForeLeg = new ModelPart((ModelBase)original, 0, 22).setParent(this.leftLeg).setPosition(0.0f, 6.0f, -2.0f).setMirror(true);
         this.leftForeLeg.developBox(-2.1f, 0.0f, 0.0f, 4, 6, 4, scaleFactor).inflate(0.01f, 0.0f, 0.01f).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
         this.leftLeg.setExtension(this.leftForeLeg);
@@ -151,8 +151,8 @@ extends Mutator<D, E, M> {
         this.rightForeLeg.developBox(-1.9f, 0.0f, 0.0f, 4, 6, 4, scaleFactor).inflate(0.01f, 0.0f, 0.01f).offsetTextureQuad(BoxSide.BOTTOM, 0.0f, -6.0f).create();
         this.rightLeg.setExtension(this.rightForeLeg);
         this.headwear = new ModelPart((ModelBase)original, 32, 0).setParent(this.head);
-        ((ModelBiped)original).field_178720_f = this.headwear;
-        this.headwear.func_78790_a(-4.0f, -8.0f, -4.0f, 8, 8, 8, scaleFactor + 0.5f);
+        ((ModelBiped)original).bipedHeadwear = this.headwear;
+        this.headwear.addBox(-4.0f, -8.0f, -4.0f, 8, 8, 8, scaleFactor + 0.5f);
         return true;
     }
 
@@ -172,7 +172,7 @@ extends Mutator<D, E, M> {
 
     @Override
     public boolean isModelVanilla(M model) {
-        return !(((ModelBiped)model).field_78115_e instanceof IModelPart);
+        return !(((ModelBiped)model).bipedBody instanceof IModelPart);
     }
 
     @Override

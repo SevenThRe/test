@@ -72,7 +72,7 @@ public class zl {
 
     public void y(Entity a2) {
         zl a3;
-        if (a2 != Minecraft.func_71410_x().field_71439_g && !zh.g) {
+        if (a2 != Minecraft.getMinecraft().player && !zh.g) {
             return;
         }
         if (jg.r() != qd.c) {
@@ -82,22 +82,22 @@ public class zl {
             return;
         }
         a2 = (AbstractClientPlayer)a2;
-        a3.v.func_76320_a("textureBuild");
-        if (m.containsKey(a2) && !a2.func_110306_p().func_110624_b().equals("armourers_workshops")) {
+        a3.v.startSection("textureBuild");
+        if (m.containsKey(a2) && !a2.getLocationSkin().getNamespace().equals("armourers_workshops")) {
             ae ae2 = m.get(a2);
-            ae2.r(a2.func_110306_p());
+            ae2.r(a2.getLocationSkin());
             ae2.r(oh.l);
             yl[] ylArray = ImmutableList.of((Object)vn.l, (Object)vn.a, (Object)vn.e, (Object)vn.w, (Object)vn.u);
             ylArray = (yl[])zg.r((Entity)a2, "any").stream().map(fk::r).filter(arg_0 -> zl.r((List)ylArray, arg_0)).toArray(yl[]::new);
             ae ae3 = ae2;
             ae3.r(ylArray);
             ae2 = ae3.z();
-            a2 = Minecraft.func_71410_x().func_147114_u().func_175102_a(a2.func_110124_au());
-            if (a2 != null && (a2 = ((NetworkPlayerInfo)a2).field_187107_a) != null) {
+            a2 = Minecraft.getMinecraft().getConnection().getPlayerInfo(a2.getUniqueID());
+            if (a2 != null && (a2 = ((NetworkPlayerInfo)a2).playerTextures) != null) {
                 a2.put(MinecraftProfileTexture.Type.SKIN, ae2);
             }
         }
-        a3.v.func_76319_b();
+        a3.v.endSection();
     }
 
     public static void r() {
@@ -117,12 +117,12 @@ public class zl {
     public zl() {
         zl a2;
         MinecraftForge.EVENT_BUS.register((Object)a2);
-        a2.v = Minecraft.func_71410_x().field_71424_I;
+        a2.v = Minecraft.getMinecraft().profiler;
     }
 
     public void r(Entity a2) {
         zl a3;
-        if (a2 != Minecraft.func_71410_x().field_71439_g && !zh.g) {
+        if (a2 != Minecraft.getMinecraft().player && !zh.g) {
             return;
         }
         if (jg.r() != qd.c) {
@@ -132,19 +132,19 @@ public class zl {
             return;
         }
         a2 = (AbstractClientPlayer)a2;
-        a3.v.func_76320_a("textureReset");
+        a3.v.startSection("textureReset");
         if (m.containsKey(a2)) {
             ae ae2 = m.get(a2);
             ResourceLocation resourceLocation = ae2.y();
             ResourceLocation resourceLocation2 = ae2.r();
-            Object object = Minecraft.func_71410_x().func_147114_u().func_175102_a(a2.func_110124_au());
-            if (object != null && (object = ((NetworkPlayerInfo)object).field_187107_a) != null && a2.func_110306_p() == resourceLocation) {
+            Object object = Minecraft.getMinecraft().getConnection().getPlayerInfo(a2.getUniqueID());
+            if (object != null && (object = ((NetworkPlayerInfo)object).playerTextures) != null && a2.getLocationSkin() == resourceLocation) {
                 object.put(MinecraftProfileTexture.Type.SKIN, resourceLocation2);
             }
         } else {
             m.put((EntityPlayer)a2, new ae());
         }
-        a3.v.func_76319_b();
+        a3.v.endSection();
     }
 
     static {
@@ -155,12 +155,12 @@ public class zl {
     public void r(TickEvent.ClientTickEvent a2) {
         if (((TickEvent.ClientTickEvent)a2).phase == TickEvent.Phase.START) {
             int n2;
-            a2 = Minecraft.func_71410_x().field_71439_g;
+            a2 = Minecraft.getMinecraft().player;
             if (a2 == null) {
                 return;
             }
             Object object = a2;
-            on on2 = on.r(object.func_110124_au());
+            on on2 = on.r(object.getUniqueID());
             boolean bl = zg.r((Entity)object);
             on on3 = on2;
             on3.r();
@@ -168,7 +168,7 @@ public class zl {
             int n3 = n2 = 0;
             while (n3 < itemStackArray.length) {
                 EntityEquipmentSlot object2 = EntityEquipmentSlot.values()[n2 + 2];
-                itemStackArray[n2++] = a2.func_184582_a(object2);
+                itemStackArray[n2++] = a2.getItemStackFromSlot(object2);
                 n3 = n2;
             }
             for (fk fk2 : zg.r((Entity)a2, "any")) {

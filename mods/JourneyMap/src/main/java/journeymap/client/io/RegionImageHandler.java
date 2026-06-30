@@ -94,40 +94,40 @@ public class RegionImageHandler {
     public static synchronized BufferedImage getMergedChunks(File worldDir, ChunkPos startCoord, ChunkPos endCoord, MapType mapType, Boolean useCache, BufferedImage image, Integer imageWidth, Integer imageHeight, boolean allowNullImage, boolean showGrid) {
         int scale = 1;
         scale = Math.max(scale, 1);
-        int initialWidth = Math.min(512, (endCoord.field_77276_a - startCoord.field_77276_a + 1) * 16 / scale);
-        int initialHeight = Math.min(512, (endCoord.field_77275_b - startCoord.field_77275_b + 1) * 16 / scale);
+        int initialWidth = Math.min(512, (endCoord.x - startCoord.x + 1) * 16 / scale);
+        int initialHeight = Math.min(512, (endCoord.z - startCoord.z + 1) * 16 / scale);
         Object blank = null;
         image = RegionImageHandler.createBlankImage(initialWidth, initialHeight);
         Graphics2D g2D = image.createGraphics();
         RegionImageCache cache = RegionImageCache.INSTANCE;
         RegionCoord rc = null;
         BufferedImage regionImage = null;
-        int rx1 = RegionCoord.getRegionPos(startCoord.field_77276_a);
-        int rx2 = RegionCoord.getRegionPos(endCoord.field_77276_a);
-        int rz1 = RegionCoord.getRegionPos(startCoord.field_77275_b);
-        int rz2 = RegionCoord.getRegionPos(endCoord.field_77275_b);
+        int rx1 = RegionCoord.getRegionPos(startCoord.x);
+        int rx2 = RegionCoord.getRegionPos(endCoord.x);
+        int rz1 = RegionCoord.getRegionPos(startCoord.z);
+        int rz2 = RegionCoord.getRegionPos(endCoord.z);
         boolean imageDrawn = false;
         for (int rx = rx1; rx <= rx2; ++rx) {
             for (int rz = rz1; rz <= rz2; ++rz) {
                 rc = new RegionCoord(worldDir, rx, rz, mapType.dimension);
                 regionImage = cache.getRegionImageSet(rc).getImage(mapType);
                 if (regionImage == null) continue;
-                int rminCx = Math.max(rc.getMinChunkX(), startCoord.field_77276_a);
-                int rminCz = Math.max(rc.getMinChunkZ(), startCoord.field_77275_b);
-                int rmaxCx = Math.min(rc.getMaxChunkX(), endCoord.field_77276_a);
-                int rmaxCz = Math.min(rc.getMaxChunkZ(), endCoord.field_77275_b);
+                int rminCx = Math.max(rc.getMinChunkX(), startCoord.x);
+                int rminCz = Math.max(rc.getMinChunkZ(), startCoord.z);
+                int rmaxCx = Math.min(rc.getMaxChunkX(), endCoord.x);
+                int rmaxCz = Math.min(rc.getMaxChunkZ(), endCoord.z);
                 int xoffset = rc.getMinChunkX() * 16;
                 int yoffset = rc.getMinChunkZ() * 16;
                 int sx1 = rminCx * 16 - xoffset;
                 int sy1 = rminCz * 16 - yoffset;
                 int sx2 = sx1 + (rmaxCx - rminCx + 1) * 16;
                 int sy2 = sy1 + (rmaxCz - rminCz + 1) * 16;
-                xoffset = startCoord.field_77276_a * 16;
-                yoffset = startCoord.field_77275_b * 16;
-                int dx1 = startCoord.field_77276_a * 16 - xoffset;
-                int dy1 = startCoord.field_77275_b * 16 - yoffset;
-                int dx2 = dx1 + (endCoord.field_77276_a - startCoord.field_77276_a + 1) * 16;
-                int dy2 = dy1 + (endCoord.field_77275_b - startCoord.field_77275_b + 1) * 16;
+                xoffset = startCoord.x * 16;
+                yoffset = startCoord.z * 16;
+                int dx1 = startCoord.x * 16 - xoffset;
+                int dy1 = startCoord.z * 16 - yoffset;
+                int dx2 = dx1 + (endCoord.x - startCoord.x + 1) * 16;
+                int dy2 = dy1 + (endCoord.z - startCoord.z + 1) * 16;
                 g2D.drawImage(regionImage, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, null);
                 imageDrawn = true;
             }
@@ -164,15 +164,15 @@ public class RegionImageHandler {
     public static synchronized BufferedImage getMergedChunks(File worldDir, ChunkPos startCoord, ChunkPos endCoord, MapType mapType, int scale, boolean showGrid) {
         GridSpec gridSpec;
         scale = Math.max(scale, 1);
-        int initialWidth = Math.min(512, (endCoord.field_77276_a - startCoord.field_77276_a + 1) * 16 / scale);
-        int initialHeight = Math.min(512, (endCoord.field_77275_b - startCoord.field_77275_b + 1) * 16 / scale);
+        int initialWidth = Math.min(512, (endCoord.x - startCoord.x + 1) * 16 / scale);
+        int initialHeight = Math.min(512, (endCoord.z - startCoord.z + 1) * 16 / scale);
         BufferedImage blank = null;
         BufferedImage image = RegionImageHandler.createBlankImage(initialWidth, initialHeight);
         Graphics2D g2D = image.createGraphics();
-        int rx1 = RegionCoord.getRegionPos(startCoord.field_77276_a);
-        int rx2 = RegionCoord.getRegionPos(endCoord.field_77276_a);
-        int rz1 = RegionCoord.getRegionPos(startCoord.field_77275_b);
-        int rz2 = RegionCoord.getRegionPos(endCoord.field_77275_b);
+        int rx1 = RegionCoord.getRegionPos(startCoord.x);
+        int rx2 = RegionCoord.getRegionPos(endCoord.x);
+        int rz1 = RegionCoord.getRegionPos(startCoord.z);
+        int rz2 = RegionCoord.getRegionPos(endCoord.z);
         for (int rx = rx1; rx <= rx2; ++rx) {
             for (int rz = rz1; rz <= rz2; ++rz) {
                 RegionCoord rc = new RegionCoord(worldDir, rx, rz, mapType.dimension);
@@ -183,16 +183,16 @@ public class RegionImageHandler {
                     }
                     regionImage = blank;
                 }
-                int rminCx = Math.max(rc.getMinChunkX(), startCoord.field_77276_a);
-                int rminCz = Math.max(rc.getMinChunkZ(), startCoord.field_77275_b);
-                int rmaxCx = Math.min(rc.getMaxChunkX(), endCoord.field_77276_a);
-                int rmaxCz = Math.min(rc.getMaxChunkZ(), endCoord.field_77275_b);
+                int rminCx = Math.max(rc.getMinChunkX(), startCoord.x);
+                int rminCz = Math.max(rc.getMinChunkZ(), startCoord.z);
+                int rmaxCx = Math.min(rc.getMaxChunkX(), endCoord.x);
+                int rmaxCz = Math.min(rc.getMaxChunkZ(), endCoord.z);
                 int sx1 = (rminCx - rc.getMinChunkX()) * 16;
                 int sy1 = (rminCz - rc.getMinChunkZ()) * 16;
                 int sx2 = sx1 + (rmaxCx - rminCx + 1) * 16;
                 int sy2 = sy1 + (rmaxCz - rminCz + 1) * 16;
-                int dx1 = (rminCx - startCoord.field_77276_a) * 16;
-                int dy1 = (rminCz - startCoord.field_77275_b) * 16;
+                int dx1 = (rminCx - startCoord.x) * 16;
+                int dy1 = (rminCz - startCoord.z) * 16;
                 int dx2 = dx1 + (sx2 - sx1);
                 int dy2 = dy1 + (sy2 - sy1);
                 g2D.drawImage(regionImage, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, null);
@@ -219,18 +219,18 @@ public class RegionImageHandler {
 
     public static synchronized List<TileDrawStep> getTileDrawSteps(File worldDir, ChunkPos startCoord, ChunkPos endCoord, MapType mapType, Integer zoom, boolean highQuality) {
         boolean isUnderground = mapType.isUnderground();
-        int rx1 = RegionCoord.getRegionPos(startCoord.field_77276_a);
-        int rx2 = RegionCoord.getRegionPos(endCoord.field_77276_a);
-        int rz1 = RegionCoord.getRegionPos(startCoord.field_77275_b);
-        int rz2 = RegionCoord.getRegionPos(endCoord.field_77275_b);
+        int rx1 = RegionCoord.getRegionPos(startCoord.x);
+        int rx2 = RegionCoord.getRegionPos(endCoord.x);
+        int rz1 = RegionCoord.getRegionPos(startCoord.z);
+        int rz2 = RegionCoord.getRegionPos(endCoord.z);
         ArrayList<TileDrawStep> drawSteps = new ArrayList<TileDrawStep>();
         for (int rx = rx1; rx <= rx2; ++rx) {
             for (int rz = rz1; rz <= rz2; ++rz) {
                 RegionCoord rc = new RegionCoord(worldDir, rx, rz, mapType.dimension);
-                int rminCx = Math.max(rc.getMinChunkX(), startCoord.field_77276_a);
-                int rminCz = Math.max(rc.getMinChunkZ(), startCoord.field_77275_b);
-                int rmaxCx = Math.min(rc.getMaxChunkX(), endCoord.field_77276_a);
-                int rmaxCz = Math.min(rc.getMaxChunkZ(), endCoord.field_77275_b);
+                int rminCx = Math.max(rc.getMinChunkX(), startCoord.x);
+                int rminCz = Math.max(rc.getMinChunkZ(), startCoord.z);
+                int rmaxCx = Math.min(rc.getMaxChunkX(), endCoord.x);
+                int rmaxCz = Math.min(rc.getMaxChunkZ(), endCoord.z);
                 int xoffset = rc.getMinChunkX() * 16;
                 int yoffset = rc.getMinChunkZ() * 16;
                 int sx1 = rminCx * 16 - xoffset;

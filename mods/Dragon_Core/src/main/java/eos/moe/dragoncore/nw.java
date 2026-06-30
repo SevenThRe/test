@@ -54,45 +54,45 @@ public class nw {
         ALLATORIxDEMO.sendToServer((IMessage)new bv(3, a3 -> {
             a3.writeInt(a2.size());
             for (Map.Entry a4 : a2.entrySet()) {
-                a3.func_180714_a((String)a4.getKey());
-                a3.func_180714_a((String)a4.getValue());
+                a3.writeString((String)a4.getKey());
+                a3.writeString((String)a4.getValue());
             }
         }));
     }
 
     public static void c(UUID a2) {
-        ALLATORIxDEMO.sendToServer((IMessage)new bv(4, a3 -> a3.func_179252_a(a2)));
+        ALLATORIxDEMO.sendToServer((IMessage)new bv(4, a3 -> a3.writeUniqueId(a2)));
     }
 
     public static void ALLATORIxDEMO(UUID a2) {
-        ALLATORIxDEMO.sendToServer((IMessage)new bv(11, a3 -> a3.func_179252_a(a2)));
+        ALLATORIxDEMO.sendToServer((IMessage)new bv(11, a3 -> a3.writeUniqueId(a2)));
     }
 
     public static void ALLATORIxDEMO(String a2, Set<String> a3) {
         ALLATORIxDEMO.sendToServer((IMessage)new bv(5, a4 -> {
-            a4.func_180714_a(a2);
+            a4.writeString(a2);
             a4.writeInt(a3.size());
             for (String a5 : a3) {
-                a4.func_180714_a(a5);
+                a4.writeString(a5);
             }
         }));
     }
 
     public static void ALLATORIxDEMO(String a2) {
-        ALLATORIxDEMO.sendToServer((IMessage)new bv(12, a3 -> a3.func_180714_a(a2)));
+        ALLATORIxDEMO.sendToServer((IMessage)new bv(12, a3 -> a3.writeString(a2)));
     }
 
     public static void ALLATORIxDEMO(String a2, String a3) {
         ALLATORIxDEMO.sendToServer((IMessage)new bv(6, a4 -> {
-            a4.func_180714_a(a2);
-            a4.func_180714_a(a3);
+            a4.writeString(a2);
+            a4.writeString(a3);
         }));
     }
 
     public static void ALLATORIxDEMO(int a2, String a3) {
         ALLATORIxDEMO.sendToServer((IMessage)new bv(7, a4 -> {
             a4.writeInt(a2);
-            a4.func_180714_a(a3);
+            a4.writeString(a3);
         }));
     }
 
@@ -101,9 +101,9 @@ public class nw {
             a5.writeInt(a2);
             a5.writeInt(a3);
             if (a4 != null) {
-                a5.writeFloat((float)a4.field_72450_a);
-                a5.writeFloat((float)a4.field_72448_b);
-                a5.writeFloat((float)a4.field_72449_c);
+                a5.writeFloat((float)a4.x);
+                a5.writeFloat((float)a4.y);
+                a5.writeFloat((float)a4.z);
             }
         }));
     }
@@ -117,16 +117,16 @@ public class nw {
 
     public static void ALLATORIxDEMO(String a2, String ... a3) {
         ALLATORIxDEMO.sendToServer((IMessage)new bv(100, a4 -> {
-            a4.func_180714_a(a2);
+            a4.writeString(a2);
             a4.writeInt(a3.length);
             for (String a5 : a3) {
-                a4.func_180714_a(a5);
+                a4.writeString(a5);
             }
         }));
     }
 
     public static void ALLATORIxDEMO(BlockPos a2) {
-        ALLATORIxDEMO.sendToServer((IMessage)new bv(1001, a3 -> a3.writeLong(a2.func_177986_g())));
+        ALLATORIxDEMO.sendToServer((IMessage)new bv(1001, a3 -> a3.writeLong(a2.toLong())));
     }
 
     public static void ALLATORIxDEMO(int a2) {
@@ -135,7 +135,7 @@ public class nw {
 
     public static void ALLATORIxDEMO(BlockPos a2, NBTTagCompound a3) {
         ALLATORIxDEMO.sendToServer((IMessage)new bv(1003, a4 -> {
-            a4.writeLong(a2.func_177986_g());
+            a4.writeLong(a2.toLong());
             bp.ALLATORIxDEMO(a3, (ByteBuf)a4);
         }));
     }

@@ -199,12 +199,12 @@ public class GridRenderer {
             if (this.debug) {
                 this.logger.debug("Centered on " + newCenterTile + " with pixel offsets of " + this.centerPixelOffset.x + "," + this.centerPixelOffset.y);
                 Minecraft mc = FMLClientHandler.instance().getClient();
-                BufferedImage tmp = new BufferedImage(mc.field_71443_c, mc.field_71440_d, 2);
+                BufferedImage tmp = new BufferedImage(mc.displayWidth, mc.displayHeight, 2);
                 Graphics2D g = tmp.createGraphics();
                 g.setStroke(new BasicStroke(1.0f));
                 g.setColor(Color.GREEN);
-                g.drawLine(mc.field_71443_c / 2, 0, mc.field_71443_c / 2, mc.field_71440_d);
-                g.drawLine(0, mc.field_71440_d / 2, mc.field_71443_c, mc.field_71440_d / 2);
+                g.drawLine(mc.displayWidth / 2, 0, mc.displayWidth / 2, mc.displayHeight);
+                g.drawLine(0, mc.displayHeight / 2, mc.displayWidth, mc.displayHeight / 2);
             }
         }
         this.updateUIState(true);
@@ -262,15 +262,15 @@ public class GridRenderer {
         double centerPixelZ = (double)this.lastHeight / 2.0;
         double deltaX = (centerPixelX - pixel.x) / this.uiState.blockSize;
         double deltaZ = (centerPixelZ - ((double)this.lastHeight - pixel.y)) / this.uiState.blockSize;
-        int x = MathHelper.func_76128_c((double)(this.centerBlockX - deltaX));
-        int z = MathHelper.func_76128_c((double)(this.centerBlockZ + deltaZ));
+        int x = MathHelper.floor((double)(this.centerBlockX - deltaX));
+        int z = MathHelper.floor((double)(this.centerBlockZ + deltaZ));
         int y = 0;
-        y = DataCache.getPlayer().underground != false ? MathHelper.func_76128_c((double)DataCache.getPlayer().posY) : FMLClientHandler.instance().getClient().field_71441_e.func_181545_F();
+        y = DataCache.getPlayer().underground != false ? MathHelper.floor((double)DataCache.getPlayer().posY) : FMLClientHandler.instance().getClient().world.getSeaLevel();
         return new BlockPos(x, y, z);
     }
 
     public Point2D.Double getBlockPixelInGrid(BlockPos pos) {
-        return this.getBlockPixelInGrid(pos.func_177958_n(), pos.func_177952_p());
+        return this.getBlockPixelInGrid(pos.getX(), pos.getZ());
     }
 
     public Point2D.Double getBlockPixelInGrid(double blockX, double blockZ) {
@@ -278,8 +278,8 @@ public class GridRenderer {
         double localBlockX = blockX - this.centerBlockX;
         double localBlockZ = blockZ - this.centerBlockZ;
         int blockSize = (int)Math.pow(2.0, this.zoom);
-        double pixelOffsetX = (double)mc.field_71443_c / 2.0 + localBlockX * (double)blockSize;
-        double pixelOffsetZ = (double)mc.field_71440_d / 2.0 + localBlockZ * (double)blockSize;
+        double pixelOffsetX = (double)mc.displayWidth / 2.0 + localBlockX * (double)blockSize;
+        double pixelOffsetZ = (double)mc.displayHeight / 2.0 + localBlockZ * (double)blockSize;
         return new Point2D.Double(pixelOffsetX, pixelOffsetZ);
     }
 
@@ -410,11 +410,11 @@ public class GridRenderer {
         }
         UIState newState = null;
         if (isActive) {
-            int worldHeight = FMLClientHandler.instance().getClient().field_71441_e.func_72940_L();
+            int worldHeight = FMLClientHandler.instance().getClient().world.getActualHeight();
             int pad = 32;
             BlockPos upperLeft = this.getBlockAtPixel(new Point2D.Double(this.screenBounds.getMinX(), this.screenBounds.getMinY()));
             BlockPos lowerRight = this.getBlockAtPixel(new Point2D.Double(this.screenBounds.getMaxX(), this.screenBounds.getMaxY()));
-            this.blockBounds = new AxisAlignedBB(upperLeft.func_177982_a(-pad, 0, -pad), lowerRight.func_177982_a(pad, worldHeight, pad));
+            this.blockBounds = new AxisAlignedBB(upperLeft.add(-pad, 0, -pad), lowerRight.add(pad, worldHeight, pad));
             try {
                 newState = new UIState(this.contextUi, true, this.mapType.dimension, this.zoom, this.mapType.apiMapType, new BlockPos(this.centerBlockX, 0.0, this.centerBlockZ), this.mapType.vSlice, this.blockBounds, this.screenBounds);
             }

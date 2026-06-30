@@ -64,10 +64,10 @@ public class bja {
         if (!ca.q) {
             return;
         }
-        if (a3.b.field_71441_e != null && System.currentTimeMillis() > a3.o) {
+        if (a3.b.world != null && System.currentTimeMillis() > a3.o) {
             a3.o = System.currentTimeMillis() + a3.y;
             if (!a3.ALLATORIxDEMO) {
-                qaa a4 = new qaa(a3, a3.b.field_71441_e.field_72996_f);
+                qaa a4 = new qaa(a3, a3.b.world.loadedEntityList);
                 a4.setPriority(1);
                 a4.start();
                 a3.ALLATORIxDEMO = true;
@@ -76,7 +76,7 @@ public class bja {
     }
 
     private static /* synthetic */ int c(Entity a2) {
-        String a3 = a2.func_70005_c_();
+        String a3 = a2.getName();
         if (a3.equals("glow-block")) {
             return 15;
         }

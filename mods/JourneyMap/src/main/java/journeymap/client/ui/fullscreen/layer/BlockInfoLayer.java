@@ -53,7 +53,7 @@ implements LayerDelegate.Layer {
         this.blockInfoStep = new BlockInfoStep();
         this.playerInfoStep = new PlayerInfoStep();
         this.mc = FMLClientHandler.instance().getClient();
-        this.isSinglePlayer = this.mc.func_71356_B();
+        this.isSinglePlayer = this.mc.isSingleplayer();
     }
 
     @Override
@@ -67,7 +67,7 @@ implements LayerDelegate.Layer {
             this.drawStepList.add(this.playerInfoStep);
             this.drawStepList.add(this.blockInfoStep);
         }
-        this.playerInfoStep.update(mc.field_71443_c / 2, optionsToolbarRect.getMaxY());
+        this.playerInfoStep.update(mc.displayWidth / 2, optionsToolbarRect.getMaxY());
         if (!blockPos.equals((Object)this.lastCoord)) {
             FullMapProperties fullMapProperties = Journeymap.getClient().getFullMapProperties();
             this.locationFormatKeys = this.locationFormat.getFormatKeys(fullMapProperties.locationFormat.get());
@@ -75,22 +75,22 @@ implements LayerDelegate.Layer {
             ChunkMD chunkMD = DataCache.INSTANCE.getChunkMD(blockPos);
             String info = "";
             if (chunkMD != null && chunkMD.hasChunk()) {
-                BlockMD blockMD = chunkMD.getBlockMD(blockPos.func_177984_a());
+                BlockMD blockMD = chunkMD.getBlockMD(blockPos.up());
                 if (blockMD == null || blockMD.isIgnore()) {
-                    blockMD = chunkMD.getBlockMD(blockPos.func_177977_b());
+                    blockMD = chunkMD.getBlockMD(blockPos.down());
                 }
-                Biome biome = JmBlockAccess.INSTANCE.func_180494_b(blockPos);
-                RegionCoord regionCoord = RegionCoord.fromChunkPos(null, MapType.none(), chunkMD.getChunk().field_76635_g, chunkMD.getChunk().field_76647_h);
+                Biome biome = JmBlockAccess.INSTANCE.getBiome(blockPos);
+                RegionCoord regionCoord = RegionCoord.fromChunkPos(null, MapType.none(), chunkMD.getChunk().x, chunkMD.getChunk().z);
                 String region = "Region: x:" + regionCoord.regionX + " z:" + regionCoord.regionZ;
-                info = this.locationFormatKeys.format(fullMapProperties.locationFormatVerbose.get(), blockPos.func_177958_n(), blockPos.func_177952_p(), blockPos.func_177956_o(), blockPos.func_177956_o() >> 4) + " " + biome.func_185359_l() + " " + region;
+                info = this.locationFormatKeys.format(fullMapProperties.locationFormatVerbose.get(), blockPos.getX(), blockPos.getZ(), blockPos.getY(), blockPos.getY() >> 4) + " " + biome.getBiomeName() + " " + region;
                 if (!blockMD.isIgnore()) {
                     info = String.format("%s \u25a0 %s", blockMD.getName(), info);
                 }
             } else {
                 Biome biome;
-                info = Constants.getString("jm.common.location_xz_verbose", blockPos.func_177958_n(), blockPos.func_177952_p());
+                info = Constants.getString("jm.common.location_xz_verbose", blockPos.getX(), blockPos.getZ());
                 if (this.isSinglePlayer && (biome = JmBlockAccess.INSTANCE.getBiome(blockPos, null)) != null) {
-                    info = info + " " + biome.func_185359_l();
+                    info = info + " " + biome.getBiomeName();
                 }
             }
             this.blockInfoStep.update(info, gridRenderer.getWidth() / 2, menuToolbarRect.getMinY());
@@ -158,7 +158,7 @@ implements LayerDelegate.Layer {
             Theme theme = ThemeLoader.getCurrentTheme();
             this.labelSpec = theme.fullscreen.statusLabel;
             if (this.prefix == null) {
-                this.prefix = ((BlockInfoLayer)BlockInfoLayer.this).mc.field_71439_g.func_70005_c_() + " \u25a0 ";
+                this.prefix = ((BlockInfoLayer)BlockInfoLayer.this).mc.player.getName() + " \u25a0 ";
             }
             this.x = x;
             this.y = y + (double)(theme.container.toolbar.horizontal.margin * BlockInfoLayer.this.fullscreen.getScreenScaleFactor());

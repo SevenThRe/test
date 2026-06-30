@@ -28,24 +28,24 @@ extends Entity {
 
     public EntityPlayerDummy(World world) {
         super(world);
-        this.field_70158_ak = true;
-        this.func_70105_a(0.0f, 2.0f);
-        this.lastTickUpdated = world.func_82737_E();
+        this.ignoreFrustumCheck = true;
+        this.setSize(0.0f, 2.0f);
+        this.lastTickUpdated = world.getTotalWorldTime();
     }
 
-    public void func_70071_h_() {
-        EntityPlayerSP player = Minecraft.func_71410_x().field_71439_g;
+    public void onUpdate() {
+        EntityPlayerSP player = Minecraft.getMinecraft().player;
         if (player == null) {
-            this.func_70106_y();
+            this.setDead();
         } else {
-            this.lastTickUpdated = this.field_70170_p.func_82737_E();
-            this.func_70080_a(player.field_70165_t, player.field_70163_u, player.field_70161_v, player.field_70177_z, player.field_70125_A);
-            BlockPos atHead = new BlockPos(player.field_70165_t, player.field_70163_u + (double)player.eyeHeight, player.field_70161_v);
-            BlockPos atFeet = new BlockPos(player.field_70165_t, player.field_70163_u, player.field_70161_v);
-            BlockPos belowFeet = atFeet.func_177977_b();
-            boolean liquidAtHead = player.field_70170_p.func_180495_p(atHead).func_177230_c() instanceof BlockLiquid;
-            boolean liquidAtFeet = player.field_70170_p.func_180495_p(atFeet).func_177230_c() instanceof BlockLiquid;
-            boolean liquidBelowFeet = player.field_70170_p.func_180495_p(belowFeet).func_177230_c() instanceof BlockLiquid;
+            this.lastTickUpdated = this.world.getTotalWorldTime();
+            this.setPositionAndRotation(player.posX, player.posY, player.posZ, player.rotationYaw, player.rotationPitch);
+            BlockPos atHead = new BlockPos(player.posX, player.posY + (double)player.eyeHeight, player.posZ);
+            BlockPos atFeet = new BlockPos(player.posX, player.posY, player.posZ);
+            BlockPos belowFeet = atFeet.down();
+            boolean liquidAtHead = player.world.getBlockState(atHead).getBlock() instanceof BlockLiquid;
+            boolean liquidAtFeet = player.world.getBlockState(atFeet).getBlock() instanceof BlockLiquid;
+            boolean liquidBelowFeet = player.world.getBlockState(belowFeet).getBlock() instanceof BlockLiquid;
             if (this.swimming) {
                 if (RFP2Config.compatibility.useAggressiveSwimmingCheck) {
                     if (!(liquidAtHead || liquidAtFeet || liquidBelowFeet)) {
@@ -68,13 +68,13 @@ extends Entity {
         return this.swimming;
     }
 
-    public void func_70088_a() {
+    public void entityInit() {
     }
 
-    public void func_70037_a(NBTTagCompound x2) {
+    public void readEntityFromNBT(NBTTagCompound x2) {
     }
 
-    public void func_70014_b(NBTTagCompound x2) {
+    public void writeEntityToNBT(NBTTagCompound x2) {
     }
 }
 

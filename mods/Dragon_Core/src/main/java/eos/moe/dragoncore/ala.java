@@ -53,7 +53,7 @@ public enum ala {
     }
 
     public static void ALLATORIxDEMO(ala a2) {
-        Minecraft.func_71410_x().field_71474_y.field_74320_O = a2.ALLATORIxDEMO();
+        Minecraft.getMinecraft().gameSettings.thirdPersonView = a2.ALLATORIxDEMO();
         if (ca.y) {
             gka.ALLATORIxDEMO(y.equals((Object)a2));
         } else if (ca.k) {
@@ -63,12 +63,12 @@ public enum ala {
 
     public static ala ALLATORIxDEMO() {
         if (ca.y) {
-            return ala.ALLATORIxDEMO(Minecraft.func_71410_x().field_71474_y.field_74320_O, gka.ALLATORIxDEMO());
+            return ala.ALLATORIxDEMO(Minecraft.getMinecraft().gameSettings.thirdPersonView, gka.ALLATORIxDEMO());
         }
         if (ca.k) {
-            return ala.ALLATORIxDEMO(Minecraft.func_71410_x().field_71474_y.field_74320_O, laa.ALLATORIxDEMO());
+            return ala.ALLATORIxDEMO(Minecraft.getMinecraft().gameSettings.thirdPersonView, laa.ALLATORIxDEMO());
         }
-        return ala.ALLATORIxDEMO(Minecraft.func_71410_x().field_71474_y.field_74320_O, false);
+        return ala.ALLATORIxDEMO(Minecraft.getMinecraft().gameSettings.thirdPersonView, false);
     }
 }
 

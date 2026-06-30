@@ -30,11 +30,11 @@ extends ThemeButton {
     }
 
     @Override
-    public boolean func_146116_c(Minecraft minecraft, int mouseX, int mouseY) {
+    public boolean mousePressed(Minecraft minecraft, int mouseX, int mouseY) {
         if (this.toggled.booleanValue() && this.staysOn) {
             return false;
         }
-        return super.func_146116_c(minecraft, mouseX, mouseY);
+        return super.mousePressed(minecraft, mouseX, mouseY);
     }
 
     @Override

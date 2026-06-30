@@ -52,7 +52,7 @@ extends AbstractResourcePack {
         }
     }
 
-    public InputStream func_110591_a(String a2) throws IOException {
+    public InputStream getInputStreamByName(String a2) throws IOException {
         wq a3;
         a2 = a2.replace(".png.png", ".png");
         for (kr a4 : a3.o) {
@@ -62,7 +62,7 @@ extends AbstractResourcePack {
         throw new FileNotFoundException(a2);
     }
 
-    public boolean func_110593_b(String a2) {
+    public boolean hasResourceName(String a2) {
         wq a3;
         if (k == null) {
             return false;
@@ -75,15 +75,15 @@ extends AbstractResourcePack {
         return false;
     }
 
-    public Set<String> func_110587_b() {
+    public Set<String> getResourceDomains() {
         return Sets.newHashSet((Object[])new String[]{"dragoncore"});
     }
 
-    public String func_130077_b() {
+    public String getPackName() {
         return "dragoncore";
     }
 
-    public void func_110594_c(String a2) {
+    public void logNameNotLowercase(String a2) {
         y.warn("ResourcePack: ignored non-lowercase namespace: {} in {}", (Object)a2, (Object)"dragoncore");
     }
 

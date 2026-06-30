@@ -38,7 +38,7 @@ extends AbstractResourcePack {
         pq a2;
     }
 
-    public InputStream func_110591_a(String a2) throws IOException {
+    public InputStream getInputStreamByName(String a2) throws IOException {
         File a3;
         a2 = a2.replace("assets/dragoncore/", "");
         if ((a2 = a2.replace(".png.png", ".png")).startsWith("/")) {
@@ -53,7 +53,7 @@ extends AbstractResourcePack {
         return new ByteArrayInputStream(ALLATORIxDEMO.get(a2));
     }
 
-    public boolean func_110593_b(String a2) {
+    public boolean hasResourceName(String a2) {
         a2 = a2.replace("assets/dragoncore/", "");
         if ((a2 = a2.replace(".png.png", ".png")).startsWith("/")) {
             a2 = a2.substring(1);
@@ -61,15 +61,15 @@ extends AbstractResourcePack {
         return new File(ca.s, a2).exists() || new File(ca.s, a2 + ".data").exists() || ALLATORIxDEMO.containsKey(a2);
     }
 
-    public Set<String> func_110587_b() {
+    public Set<String> getResourceDomains() {
         return Sets.newHashSet((Object[])new String[]{"dragoncore"});
     }
 
-    public String func_130077_b() {
+    public String getPackName() {
         return "dragoncore";
     }
 
-    public void func_110594_c(String a2) {
+    public void logNameNotLowercase(String a2) {
         k.warn("ResourcePack: ignored non-lowercase namespace: {} in {}", (Object)a2, (Object)"dragoncore");
     }
 }

@@ -28,7 +28,7 @@ implements EventHandlerManager.EventHandler {
     public void invoke(ClientChatReceivedEvent event) {
         if (event.getMessage() != null) {
             try {
-                String text = event.getMessage().func_150254_d();
+                String text = event.getMessage().getFormattedText();
                 if (!Strings.isNullOrEmpty((String)text)) {
                     WaypointParser.parseChatForWaypoints(event, text);
                 }

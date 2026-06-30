@@ -47,9 +47,9 @@ public class SplashPerson {
 
     public int getWidth(FontRenderer fr) {
         String[] nameParts;
-        this.width = fr.func_78256_a(this.title);
+        this.width = fr.getStringWidth(this.title);
         for (String part : nameParts = this.name.trim().split(" ")) {
-            this.width = Math.max(this.width, fr.func_78256_a(part));
+            this.width = Math.max(this.width, fr.getStringWidth(part));
         }
         return this.width;
     }
@@ -85,8 +85,8 @@ public class SplashPerson {
     }
 
     public void continueVector() {
-        this.button.setX((int)Math.round((double)this.button.field_146128_h + this.moveX));
-        this.button.setY((int)Math.round((double)this.button.field_146129_i + this.moveY));
+        this.button.setX((int)Math.round((double)this.button.x + this.moveX));
+        this.button.setY((int)Math.round((double)this.button.y + this.moveY));
     }
 
     public void avoid(List<SplashPerson> others) {

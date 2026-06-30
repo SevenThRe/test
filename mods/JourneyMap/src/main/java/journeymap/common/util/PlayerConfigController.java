@@ -45,7 +45,7 @@ public class PlayerConfigController {
     public JsonObject getPlayerConfig(EntityPlayerMP player) {
         JsonObject config = new JsonObject();
         JsonObject settings = new JsonObject();
-        if (PropertiesManager.getInstance().getGlobalProperties().useWorldId.get().booleanValue() && (!FMLCommonHandler.instance().getSide().isClient() || Minecraft.func_71410_x().func_71401_C() != null && Minecraft.func_71410_x().func_71401_C().func_71344_c())) {
+        if (PropertiesManager.getInstance().getGlobalProperties().useWorldId.get().booleanValue() && (!FMLCommonHandler.instance().getSide().isClient() || Minecraft.getMinecraft().getIntegratedServer() != null && Minecraft.getMinecraft().getIntegratedServer().getPublic())) {
             WorldNbtIDSaveHandler worldSaveHandler = new WorldNbtIDSaveHandler();
             String worldID = worldSaveHandler.getWorldID();
             settings.addProperty("world_id", worldID);
@@ -61,7 +61,7 @@ public class PlayerConfigController {
     public boolean canServerAdmin(EntityPlayerMP player) {
         String[] admins;
         for (String admin : admins = ForgeConfig.playerNames) {
-            if (!player.func_110124_au().toString().equals(admin) && !player.func_70005_c_().equalsIgnoreCase(admin) && !Constants.debugOverride((Entity)player)) continue;
+            if (!player.getUniqueID().toString().equals(admin) && !player.getName().equalsIgnoreCase(admin) && !Constants.debugOverride((Entity)player)) continue;
             return true;
         }
         if (JourneymapServer.isOp((EntityPlayer)player)) {
@@ -71,7 +71,7 @@ public class PlayerConfigController {
     }
 
     private String getDimProperties(EntityPlayerMP player) {
-        DimensionProperties dimensionProperties = PropertiesManager.getInstance().getDimProperties(player.field_71093_bK);
+        DimensionProperties dimensionProperties = PropertiesManager.getInstance().getDimProperties(player.dimension);
         try {
             PermissionProperties prop = dimensionProperties.enabled.get() != false ? (DimensionProperties)dimensionProperties.clone() : (GlobalProperties)PropertiesManager.getInstance().getGlobalProperties().clone();
             if (JourneymapServer.isOp((EntityPlayer)player)) {
@@ -89,8 +89,8 @@ public class PlayerConfigController {
     }
 
     private boolean canTeleport(EntityPlayerMP player) {
-        if (PropertiesManager.getInstance().getDimProperties((int)player.field_71093_bK).enabled.get().booleanValue()) {
-            return PropertiesManager.getInstance().getDimProperties((int)player.field_71093_bK).teleportEnabled.get();
+        if (PropertiesManager.getInstance().getDimProperties((int)player.dimension).enabled.get().booleanValue()) {
+            return PropertiesManager.getInstance().getDimProperties((int)player.dimension).teleportEnabled.get();
         }
         if (PropertiesManager.getInstance().getGlobalProperties().teleportEnabled.get().booleanValue()) {
             return true;

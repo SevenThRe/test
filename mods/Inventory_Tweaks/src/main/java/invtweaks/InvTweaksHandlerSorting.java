@@ -102,14 +102,14 @@ extends InvTweaksObfuscation {
         for (i = 0; i < this.size; ++i) {
             this.rulePriority[i] = -1;
             ItemStack stack = this.containerMgr.getItemStack(i);
-            this.keywordOrder[i] = !stack.func_190926_b() ? this.getItemOrder(stack) : -1;
+            this.keywordOrder[i] = !stack.isEmpty() ? this.getItemOrder(stack) : -1;
         }
         this.rules.stream().filter(rule -> rule.getContainerSize() == this.size && rule.getPreferredSlots() != null).forEach(rule -> {
             int priority = rule.getPriority();
             for (int slot : rule.getPreferredSlots()) {
                 ItemStack stack = this.containerMgr.getItemStack(slot);
-                if (stack.func_190926_b()) continue;
-                List<IItemTreeItem> items = this.tree.getItems(stack.func_77973_b().getRegistryName().toString(), stack.func_77952_i(), stack.func_77978_p());
+                if (stack.isEmpty()) continue;
+                List<IItemTreeItem> items = this.tree.getItems(stack.getItem().getRegistryName().toString(), stack.getItemDamage(), stack.getTagCompound());
                 if (this.rulePriority[slot] >= priority || !this.tree.matches(items, rule.getKeyword())) continue;
                 this.rulePriority[slot] = priority;
             }
@@ -118,10 +118,10 @@ extends InvTweaksObfuscation {
 
     private static boolean canMergeStacks(@NotNull ItemStack from, @NotNull ItemStack to) {
         if (InvTweaksHandlerSorting.areItemsStackable(from, to)) {
-            if (from.func_190916_E() > from.func_77976_d()) {
+            if (from.getCount() > from.getMaxStackSize()) {
                 return false;
             }
-            if (to.func_190916_E() < to.func_77976_d()) {
+            if (to.getCount() < to.getMaxStackSize()) {
                 return true;
             }
         }
@@ -132,7 +132,7 @@ extends InvTweaksObfuscation {
         int emptySlot;
         long timer = System.nanoTime();
         IContainerManager globalContainer = InvTweaks.getCurrentContainerManager();
-        if (!this.getHeldStack().func_190926_b()) {
+        if (!this.getHeldStack().isEmpty()) {
             emptySlot = globalContainer.getFirstEmptyIndex(ContainerSection.INVENTORY);
             if (emptySlot != -1) {
                 globalContainer.putHoldItemDown(ContainerSection.INVENTORY, emptySlot);
@@ -153,7 +153,7 @@ extends InvTweaksObfuscation {
             timer = System.nanoTime() - timer;
             log.info("Sorting done in " + timer + "ns");
         }
-        if (!this.getHeldStack().func_190926_b() && (emptySlot = globalContainer.getFirstEmptyIndex(ContainerSection.INVENTORY)) != -1) {
+        if (!this.getHeldStack().isEmpty() && (emptySlot = globalContainer.getFirstEmptyIndex(ContainerSection.INVENTORY)) != -1) {
             globalContainer.putHoldItemDown(ContainerSection.INVENTORY, emptySlot);
         }
         globalContainer.applyChanges();
@@ -169,13 +169,13 @@ extends InvTweaksObfuscation {
             block1: for (int i = 0; i < this.size; ++i) {
                 List<IItemTreeItem> fromItems;
                 ItemStack from = this.containerMgr.getItemStack(i);
-                if (!this.hasToBeMoved(i, priority) || this.lockPriorities[i] >= priority || !this.tree.matches(fromItems = this.tree.getItems(from.func_77973_b().getRegistryName().toString(), from.func_77952_i(), from.func_77978_p()), rule.getKeyword())) continue;
+                if (!this.hasToBeMoved(i, priority) || this.lockPriorities[i] >= priority || !this.tree.matches(fromItems = this.tree.getItems(from.getItem().getRegistryName().toString(), from.getItemDamage(), from.getTagCompound()), rule.getKeyword())) continue;
                 int[] preferredSlots = rule.getPreferredSlots();
                 int stackToMove = i;
                 for (int k : preferredSlots) {
                     int moveResult = this.move(stackToMove, k, priority);
                     if (moveResult == -1) continue;
-                    if (moveResult == k || !this.tree.matches(fromItems = this.tree.getItems((from = this.containerMgr.getItemStack(moveResult)).func_77973_b().getRegistryName().toString(), from.func_77952_i(), from.func_77978_p()), rule.getKeyword()) || i < moveResult) continue block1;
+                    if (moveResult == k || !this.tree.matches(fromItems = this.tree.getItems((from = this.containerMgr.getItemStack(moveResult)).getItem().getRegistryName().toString(), from.getItemDamage(), from.getTagCompound()), rule.getKeyword()) || i < moveResult) continue block1;
                     stackToMove = moveResult;
                 }
             }
@@ -194,7 +194,7 @@ extends InvTweaksObfuscation {
             int emptyIndex = globalContainer.getFirstEmptyIndex(ContainerSection.INVENTORY);
             if (emptyIndex != -1) {
                 for (Slot craftingSlot : craftingSlots) {
-                    if (!craftingSlot.func_75216_d()) continue;
+                    if (!craftingSlot.getHasStack()) continue;
                     globalContainer.move(ContainerSection.CRAFTING_IN, globalContainer.getSlotIndex(InvTweaksHandlerSorting.getSlotNumber(craftingSlot)), ContainerSection.INVENTORY, emptyIndex);
                     emptyIndex = globalContainer.getFirstEmptyIndex(ContainerSection.INVENTORY);
                     if (emptyIndex != -1) continue;
@@ -209,9 +209,9 @@ extends InvTweaksObfuscation {
         log.info("Merging stacks.");
         for (int i = this.size - 1; i >= 0; --i) {
             ItemStack from = this.containerMgr.getItemStack(i);
-            if (from.func_190926_b()) continue;
-            Item fromItem = from.func_77973_b();
-            if (fromItem.func_77645_m()) {
+            if (from.isEmpty()) continue;
+            Item fromItem = from.getItem();
+            if (fromItem.isDamageable()) {
                 this.moveArmor(globalContainer, i, from, fromItem);
                 continue;
             }
@@ -226,10 +226,10 @@ extends InvTweaksObfuscation {
         for (int k = 0; k < n; ++k) {
             ItemStack to;
             Integer lockPriority = nArray[k];
-            if (lockPriority > 0 && !(to = this.containerMgr.getItemStack(j)).func_190926_b() && InvTweaksHandlerSorting.areItemsStackable(from, to)) {
+            if (lockPriority > 0 && !(to = this.containerMgr.getItemStack(j)).isEmpty() && InvTweaksHandlerSorting.areItemsStackable(from, to)) {
                 this.move(i, j, Integer.MAX_VALUE);
                 this.markAsNotMoved(j);
-                if (this.containerMgr.getItemStack(i).func_190926_b()) break;
+                if (this.containerMgr.getItemStack(i).isEmpty()) break;
             }
             ++j;
         }
@@ -242,20 +242,20 @@ extends InvTweaksObfuscation {
                 List<Slot> armorSlots = globalContainer.getSlots(ContainerSection.ARMOR);
                 for (Slot slot : armorSlots) {
                     boolean move = false;
-                    if (!slot.func_75216_d()) {
+                    if (!slot.getHasStack()) {
                         move = true;
                     } else {
-                        Item currentArmor = slot.func_75211_c().func_77973_b();
+                        Item currentArmor = slot.getStack().getItem();
                         if (InvTweaksHandlerSorting.isItemArmor(currentArmor)) {
-                            int armorLevel = ((ItemArmor)currentArmor).field_77879_b;
-                            if (armorLevel < fromItemArmor.field_77879_b || armorLevel == fromItemArmor.field_77879_b && slot.func_75211_c().func_77952_i() < from.func_77952_i()) {
+                            int armorLevel = ((ItemArmor)currentArmor).damageReduceAmount;
+                            if (armorLevel < fromItemArmor.damageReduceAmount || armorLevel == fromItemArmor.damageReduceAmount && slot.getStack().getItemDamage() < from.getItemDamage()) {
                                 move = true;
                             }
                         } else {
                             move = true;
                         }
                     }
-                    if (!slot.func_75214_a(from) || !move) continue;
+                    if (!slot.isItemValid(from) || !move) continue;
                     globalContainer.move(ContainerSection.INVENTORY, i, ContainerSection.ARMOR, globalContainer.getSlotIndex(InvTweaksHandlerSorting.getSlotNumber(slot)));
                 }
             }
@@ -269,15 +269,15 @@ extends InvTweaksObfuscation {
         HashMap<Pair, int[]> itemCounts = new HashMap<Pair, int[]>();
         for (int i = 0; i < this.size; ++i) {
             ItemStack stack = this.containerMgr.getItemStack(i);
-            if (stack.func_190926_b()) continue;
-            item = Pair.of((Object)stack.func_77973_b().getRegistryName().toString(), (Object)stack.func_77952_i());
+            if (stack.isEmpty()) continue;
+            item = Pair.of((Object)stack.getItem().getRegistryName().toString(), (Object)stack.getItemDamage());
             count = (int[])itemCounts.get(item);
             if (count == null) {
-                int[] newCount = new int[]{stack.func_190916_E(), 1};
+                int[] newCount = new int[]{stack.getCount(), 1};
                 itemCounts.put(item, newCount);
                 continue;
             }
-            count[0] = count[0] + stack.func_190916_E();
+            count[0] = count[0] + stack.getCount();
             count[1] = count[1] + 1;
         }
         for (Map.Entry entry : itemCounts.entrySet()) {
@@ -285,13 +285,13 @@ extends InvTweaksObfuscation {
             item = (Pair)entry.getKey();
             count = (int[])entry.getValue();
             int numPerSlot = count[0] / count[1];
-            if (numPerSlot > new ItemStack((Item)Item.field_150901_e.func_82594_a((Object)new ResourceLocation((String)item.getLeft())), 1, 0).func_77976_d()) continue;
+            if (numPerSlot > new ItemStack((Item)Item.REGISTRY.getObject((Object)new ResourceLocation((String)item.getLeft())), 1, 0).getMaxStackSize()) continue;
             LinkedList<Integer> smallStacks = new LinkedList<Integer>();
             LinkedList<Integer> largeStacks = new LinkedList<Integer>();
             for (int i = 0; i < this.size; ++i) {
                 ItemStack stack = this.containerMgr.getItemStack(i);
-                if (stack.func_190926_b() || !Pair.of((Object)stack.func_77973_b().getRegistryName().toString(), (Object)stack.func_77952_i()).equals((Object)item)) continue;
-                int stackSize = stack.func_190916_E();
+                if (stack.isEmpty() || !Pair.of((Object)stack.getItem().getRegistryName().toString(), (Object)stack.getItemDamage()).equals((Object)item)) continue;
+                int stackSize = stack.getCount();
                 if (stackSize > numPerSlot) {
                     largeStacks.offer(i);
                     continue;
@@ -301,12 +301,12 @@ extends InvTweaksObfuscation {
             }
             while (!smallStacks.isEmpty()) {
                 largeIndex = (Integer)largeStacks.peek();
-                int largeSize = this.containerMgr.getItemStack(largeIndex).func_190916_E();
+                int largeSize = this.containerMgr.getItemStack(largeIndex).getCount();
                 int smallIndex = (Integer)smallStacks.peek();
-                int smallSize = this.containerMgr.getItemStack(smallIndex).func_190916_E();
+                int smallSize = this.containerMgr.getItemStack(smallIndex).getCount();
                 this.containerMgr.moveSome(largeIndex, smallIndex, Math.min(numPerSlot - smallSize, largeSize - numPerSlot));
-                largeSize = this.containerMgr.getItemStack(largeIndex).func_190916_E();
-                smallSize = this.containerMgr.getItemStack(smallIndex).func_190916_E();
+                largeSize = this.containerMgr.getItemStack(largeIndex).getCount();
+                smallSize = this.containerMgr.getItemStack(smallIndex).getCount();
                 if (largeSize == numPerSlot) {
                     largeStacks.remove();
                 }
@@ -315,7 +315,7 @@ extends InvTweaksObfuscation {
             }
             while (largeStacks.size() > 1) {
                 largeIndex = (Integer)largeStacks.poll();
-                int largeSize = this.containerMgr.getItemStack(largeIndex).func_190916_E();
+                int largeSize = this.containerMgr.getItemStack(largeIndex).getCount();
                 this.containerMgr.moveSome(largeIndex, (Integer)largeStacks.peek(), largeSize - numPerSlot);
             }
         }
@@ -363,7 +363,7 @@ extends InvTweaksObfuscation {
     private int move(int i, int j, int priority) {
         ItemStack from = this.containerMgr.getItemStack(i);
         ItemStack to = this.containerMgr.getItemStack(j);
-        if (from.func_190926_b() || this.frozenSlots[j] || this.frozenSlots[i]) {
+        if (from.isEmpty() || this.frozenSlots[j] || this.frozenSlots[i]) {
             return -1;
         }
         if (this.lockPriorities[i] <= priority) {
@@ -371,7 +371,7 @@ extends InvTweaksObfuscation {
                 this.markAsMoved(i, priority);
                 return j;
             }
-            if (to.func_190926_b() && this.lockPriorities[j] <= priority && !this.frozenSlots[j]) {
+            if (to.isEmpty() && this.lockPriorities[j] <= priority && !this.frozenSlots[j]) {
                 this.rulePriority[i] = -1;
                 this.keywordOrder[i] = -1;
                 this.rulePriority[j] = priority;
@@ -381,18 +381,18 @@ extends InvTweaksObfuscation {
                 }
                 return -1;
             }
-            if (!to.func_190926_b() && (this.canSwapSlots(i, j, priority) || InvTweaksHandlerSorting.canMergeStacks(from, to))) {
+            if (!to.isEmpty() && (this.canSwapSlots(i, j, priority) || InvTweaksHandlerSorting.canMergeStacks(from, to))) {
                 this.keywordOrder[j] = this.keywordOrder[i];
                 this.rulePriority[j] = priority;
                 this.rulePriority[i] = -1;
                 boolean success = this.containerMgr.move(i, j);
                 if (success) {
                     ItemStack remains = this.containerMgr.getItemStack(i);
-                    if (!remains.func_190926_b()) {
+                    if (!remains.isEmpty()) {
                         int dropSlot = i;
                         if (this.lockPriorities[j] > this.lockPriorities[i]) {
                             for (int k = 0; k < this.size; ++k) {
-                                if (!this.containerMgr.getItemStack(k).func_190926_b() || this.lockPriorities[k] != 0) continue;
+                                if (!this.containerMgr.getItemStack(k).isEmpty() || this.lockPriorities[k] != 0) continue;
                                 dropSlot = k;
                                 break;
                             }
@@ -421,7 +421,7 @@ extends InvTweaksObfuscation {
     }
 
     private boolean hasToBeMoved(int slot, int priority) {
-        return !this.containerMgr.getItemStack(slot).func_190926_b() && this.rulePriority[slot] <= priority;
+        return !this.containerMgr.getItemStack(slot).isEmpty() && this.rulePriority[slot] <= priority;
     }
 
     private boolean isOrderedBefore(int i, int j) {
@@ -431,7 +431,7 @@ extends InvTweaksObfuscation {
     }
 
     private int getItemOrder(@NotNull ItemStack itemStack) {
-        List<IItemTreeItem> items = this.tree.getItems(itemStack.func_77973_b().getRegistryName().toString(), itemStack.func_77952_i(), itemStack.func_77978_p());
+        List<IItemTreeItem> items = this.tree.getItems(itemStack.getItem().getRegistryName().toString(), itemStack.getItemDamage(), itemStack.getTagCompound());
         return items.size() > 0 ? items.get(0).getOrder() : Integer.MAX_VALUE;
     }
 
@@ -537,11 +537,11 @@ extends InvTweaksObfuscation {
         HashMap<Integer, IItemTreeItem> itemSearch = new HashMap<Integer, IItemTreeItem>();
         for (int i = 0; i < this.size; ++i) {
             ItemStack stack = this.containerMgr.getItemStack(i);
-            if (stack.func_190926_b()) continue;
-            int itemSearchKey = Item.func_150891_b((Item)stack.func_77973_b()) * 100000 + (stack.func_77976_d() != 1 ? stack.func_77952_i() : 0);
+            if (stack.isEmpty()) continue;
+            int itemSearchKey = Item.getIdFromItem((Item)stack.getItem()) * 100000 + (stack.getMaxStackSize() != 1 ? stack.getItemDamage() : 0);
             IItemTreeItem item = (IItemTreeItem)itemSearch.get(itemSearchKey);
             if (item == null) {
-                item = this.tree.getItems(stack.func_77973_b().getRegistryName().toString(), stack.func_77952_i(), stack.func_77978_p()).get(0);
+                item = this.tree.getItems(stack.getItem().getRegistryName().toString(), stack.getItemDamage(), stack.getTagCompound()).get(0);
                 itemSearch.put(itemSearchKey, item);
                 stats.put(item, 1);
                 continue;

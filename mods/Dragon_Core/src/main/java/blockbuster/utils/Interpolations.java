@@ -14,8 +14,8 @@ public class Interpolations {
     }
 
     public static float lerpYaw(float a2, float b2, float position) {
-        a2 = MathHelper.func_76142_g((float)a2);
-        b2 = MathHelper.func_76142_g((float)b2);
+        a2 = MathHelper.wrapDegrees((float)a2);
+        b2 = MathHelper.wrapDegrees((float)b2);
         return Interpolations.lerp(a2, Interpolations.normalizeYaw(a2, b2), position);
     }
 
@@ -27,10 +27,10 @@ public class Interpolations {
     }
 
     public static double cubicHermiteYaw(float y0, float y1, float y2, float y3, float position) {
-        y0 = MathHelper.func_76142_g((float)y0);
-        y1 = MathHelper.func_76142_g((float)y1);
-        y2 = MathHelper.func_76142_g((float)y2);
-        y3 = MathHelper.func_76142_g((float)y3);
+        y0 = MathHelper.wrapDegrees((float)y0);
+        y1 = MathHelper.wrapDegrees((float)y1);
+        y2 = MathHelper.wrapDegrees((float)y2);
+        y3 = MathHelper.wrapDegrees((float)y3);
         y1 = Interpolations.normalizeYaw(y0, y1);
         y2 = Interpolations.normalizeYaw(y1, y2);
         y3 = Interpolations.normalizeYaw(y2, y3);
@@ -45,10 +45,10 @@ public class Interpolations {
     }
 
     public static float cubicYaw(float y0, float y1, float y2, float y3, float position) {
-        y0 = MathHelper.func_76142_g((float)y0);
-        y1 = MathHelper.func_76142_g((float)y1);
-        y2 = MathHelper.func_76142_g((float)y2);
-        y3 = MathHelper.func_76142_g((float)y3);
+        y0 = MathHelper.wrapDegrees((float)y0);
+        y1 = MathHelper.wrapDegrees((float)y1);
+        y2 = MathHelper.wrapDegrees((float)y2);
+        y3 = MathHelper.wrapDegrees((float)y3);
         y1 = Interpolations.normalizeYaw(y0, y1);
         y2 = Interpolations.normalizeYaw(y1, y2);
         y3 = Interpolations.normalizeYaw(y2, y3);
@@ -112,8 +112,8 @@ public class Interpolations {
     }
 
     public static double lerpYaw(double a2, double b2, double position) {
-        a2 = MathHelper.func_76138_g((double)a2);
-        b2 = MathHelper.func_76138_g((double)b2);
+        a2 = MathHelper.wrapDegrees((double)a2);
+        b2 = MathHelper.wrapDegrees((double)b2);
         return Interpolations.lerp(a2, Interpolations.normalizeYaw(a2, b2), position);
     }
 
@@ -125,10 +125,10 @@ public class Interpolations {
     }
 
     public static double cubicYaw(double y0, double y1, double y2, double y3, double position) {
-        y0 = MathHelper.func_76138_g((double)y0);
-        y1 = MathHelper.func_76138_g((double)y1);
-        y2 = MathHelper.func_76138_g((double)y2);
-        y3 = MathHelper.func_76138_g((double)y3);
+        y0 = MathHelper.wrapDegrees((double)y0);
+        y1 = MathHelper.wrapDegrees((double)y1);
+        y2 = MathHelper.wrapDegrees((double)y2);
+        y3 = MathHelper.wrapDegrees((double)y3);
         y1 = Interpolations.normalizeYaw(y0, y1);
         y2 = Interpolations.normalizeYaw(y1, y2);
         y3 = Interpolations.normalizeYaw(y2, y3);

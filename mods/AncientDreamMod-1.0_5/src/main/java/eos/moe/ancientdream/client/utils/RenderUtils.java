@@ -70,30 +70,30 @@ public class RenderUtils {
         if (res.length > 0) {
             RenderUtils.bindTexture(res[0]);
         }
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)Math.min(1.0f, Math.max(0.0f, alpha)));
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)Math.min(1.0f, Math.max(0.0f, alpha)));
         float f = (float)(1.0 / textureWidth);
         float f1 = (float)(1.0 / textureHeight);
-        Tessellator tessellator = Tessellator.func_178181_a();
-        BufferBuilder bufferbuilder = tessellator.func_178180_c();
-        bufferbuilder.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        bufferbuilder.func_181662_b(x, y + height, 0.0).func_187315_a(u * (double)f, (v + height) * (double)f1).func_181675_d();
-        bufferbuilder.func_181662_b(x + width, y + height, 0.0).func_187315_a((u + width) * (double)f, (v + height) * (double)f1).func_181675_d();
-        bufferbuilder.func_181662_b(x + width, y, 0.0).func_187315_a((u + width) * (double)f, v * (double)f1).func_181675_d();
-        bufferbuilder.func_181662_b(x, y, 0.0).func_187315_a(u * (double)f, v * (double)f1).func_181675_d();
-        tessellator.func_78381_a();
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.pos(x, y + height, 0.0).tex(u * (double)f, (v + height) * (double)f1).endVertex();
+        bufferbuilder.pos(x + width, y + height, 0.0).tex((u + width) * (double)f, (v + height) * (double)f1).endVertex();
+        bufferbuilder.pos(x + width, y, 0.0).tex((u + width) * (double)f, v * (double)f1).endVertex();
+        bufferbuilder.pos(x, y, 0.0).tex(u * (double)f, v * (double)f1).endVertex();
+        tessellator.draw();
     }
 
     public static void drawText(String text, double x, double y, boolean center, boolean shadow) {
         text = "\u00a7f" + text.replace("&", "\u00a7");
-        FontRenderer fontRenderer = Minecraft.func_71410_x().field_71466_p;
-        fontRenderer.func_175065_a(text, (float)(x - (double)(center ? RenderUtils.getTextWidth(null, text) / 2 : 0)), (float)y, -1, shadow);
+        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+        fontRenderer.drawString(text, (float)(x - (double)(center ? RenderUtils.getTextWidth(null, text) / 2 : 0)), (float)y, -1, shadow);
     }
 
     public static int getTextWidth(FontRenderer fontRenderer, String text) {
         if (fontRenderer == null) {
-            fontRenderer = Minecraft.func_71410_x().field_71466_p;
+            fontRenderer = Minecraft.getMinecraft().fontRenderer;
         }
-        return fontRenderer.func_78256_a(text.replace("&", "\u00a7"));
+        return fontRenderer.getStringWidth(text.replace("&", "\u00a7"));
     }
 
     public static void drawColor(double x, double y, double width, double height, Color c) {
@@ -106,30 +106,30 @@ public class RenderUtils {
         float f = (float)(color >> 16 & 0xFF) / 255.0f;
         float f1 = (float)(color >> 8 & 0xFF) / 255.0f;
         float f2 = (float)(color & 0xFF) / 255.0f;
-        Tessellator tessellator = Tessellator.func_178181_a();
-        BufferBuilder bufferbuilder = tessellator.func_178180_c();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179090_x();
-        GlStateManager.func_187428_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
-        GlStateManager.func_179131_c((float)f, (float)f1, (float)f2, (float)f3);
-        bufferbuilder.func_181668_a(7, DefaultVertexFormats.field_181705_e);
-        bufferbuilder.func_181662_b(x, y + height, 0.0).func_181675_d();
-        bufferbuilder.func_181662_b(x + width, y + height, 0.0).func_181675_d();
-        bufferbuilder.func_181662_b(x + width, y, 0.0).func_181675_d();
-        bufferbuilder.func_181662_b(x, y, 0.0).func_181675_d();
-        tessellator.func_78381_a();
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179084_k();
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.tryBlendFuncSeparate((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
+        GlStateManager.color((float)f, (float)f1, (float)f2, (float)f3);
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION);
+        bufferbuilder.pos(x, y + height, 0.0).endVertex();
+        bufferbuilder.pos(x + width, y + height, 0.0).endVertex();
+        bufferbuilder.pos(x + width, y, 0.0).endVertex();
+        bufferbuilder.pos(x, y, 0.0).endVertex();
+        tessellator.draw();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
     }
 
     public static void scissorBox(float x, float y, float width, float height) {
         float yend = y + height;
-        ScaledResolution sr = new ScaledResolution(Minecraft.func_71410_x());
-        int factor = sr.func_78325_e();
-        if (Minecraft.func_71410_x().field_71462_r == null) {
+        ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+        int factor = sr.getScaleFactor();
+        if (Minecraft.getMinecraft().currentScreen == null) {
             return;
         }
-        float bottomY = (float)Minecraft.func_71410_x().field_71462_r.field_146295_m - yend;
+        float bottomY = (float)Minecraft.getMinecraft().currentScreen.height - yend;
         GL11.glScissor((int)((int)(x * (float)factor)), (int)((int)(bottomY * (float)factor)), (int)((int)(width * (float)factor)), (int)((int)(height * (float)factor)));
     }
 
@@ -139,14 +139,14 @@ public class RenderUtils {
 
     public static void bindTexture(float x, float y, float w, float h, float mx, float my, ResourceLocation resourceLocation, ResourceLocation resourceLocation1) {
         if (new Rectangle((int)x, (int)y, (int)w, (int)h).contains(mx, my)) {
-            Minecraft.func_71410_x().func_110434_K().func_110577_a(resourceLocation1);
+            Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation1);
         } else {
-            Minecraft.func_71410_x().func_110434_K().func_110577_a(resourceLocation);
+            Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation);
         }
     }
 
     public static void bindTexture(ResourceLocation resourceLocation) {
-        Minecraft.func_71410_x().func_110434_K().func_110577_a(resourceLocation);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation);
     }
 }
 

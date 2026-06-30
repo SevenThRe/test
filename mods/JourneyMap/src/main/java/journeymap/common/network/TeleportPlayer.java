@@ -20,7 +20,7 @@ extends MessageProcessor {
     protected JsonObject onServer(Response response) {
         JsonObject jsonObject = response.getAsJson();
         Location location = new Location(jsonObject.get("x").getAsDouble(), jsonObject.get("y").getAsDouble(), jsonObject.get("z").getAsDouble(), jsonObject.get("dim").getAsInt());
-        JourneyMapTeleport.instance().attemptTeleport((Entity)response.getContext().getServerHandler().field_147369_b, location);
+        JourneyMapTeleport.instance().attemptTeleport((Entity)response.getContext().getServerHandler().player, location);
         return null;
     }
 

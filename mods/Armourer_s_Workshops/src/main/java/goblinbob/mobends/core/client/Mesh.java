@@ -27,59 +27,59 @@ public class Mesh {
 
     public Mesh(VertexFormat vertexFormat, int maxVertices) {
         this.vertexFormat = vertexFormat;
-        this.bufferBuilder = new BufferBuilder(vertexFormat.func_177338_f() * maxVertices);
+        this.bufferBuilder = new BufferBuilder(vertexFormat.getSize() * maxVertices);
     }
 
     public void beginDrawing(int drawMode) {
-        this.bufferBuilder.func_181668_a(drawMode, this.vertexFormat);
+        this.bufferBuilder.begin(drawMode, this.vertexFormat);
     }
 
     public void finishDrawing() {
-        this.bufferBuilder.func_178977_d();
+        this.bufferBuilder.finishDrawing();
         this.buffer = new VertexBuffer(this.vertexFormat);
-        this.buffer.func_181722_a(this.bufferBuilder.func_178966_f());
+        this.buffer.bufferData(this.bufferBuilder.getByteBuffer());
     }
 
     public Mesh pos(double x2, double y2, double z2) {
-        this.bufferBuilder.func_181662_b(x2, y2, z2);
+        this.bufferBuilder.pos(x2, y2, z2);
         return this;
     }
 
     public Mesh normal(float x2, float y2, float z2) {
-        this.bufferBuilder.func_181663_c(x2, y2, z2);
+        this.bufferBuilder.normal(x2, y2, z2);
         return this;
     }
 
     public Mesh tex(double u2, double v2) {
-        this.bufferBuilder.func_187315_a(u2, v2);
+        this.bufferBuilder.tex(u2, v2);
         return this;
     }
 
     public Mesh color(IColorRead color) {
-        this.bufferBuilder.func_181666_a(color.getR(), color.getG(), color.getB(), color.getA());
+        this.bufferBuilder.color(color.getR(), color.getG(), color.getB(), color.getA());
         return this;
     }
 
     public void endVertex() {
-        this.bufferBuilder.func_181675_d();
+        this.bufferBuilder.endVertex();
     }
 
     public void display() {
-        if (this.bufferBuilder.func_178989_h() > 0) {
-            int i2 = this.vertexFormat.func_177338_f();
-            ByteBuffer bytebuffer = this.bufferBuilder.func_178966_f();
-            List list = this.vertexFormat.func_177343_g();
+        if (this.bufferBuilder.getVertexCount() > 0) {
+            int i2 = this.vertexFormat.getSize();
+            ByteBuffer bytebuffer = this.bufferBuilder.getByteBuffer();
+            List list = this.vertexFormat.getElements();
             for (int j2 = 0; j2 < list.size(); ++j2) {
                 VertexFormatElement vertexformatelement = (VertexFormatElement)list.get(j2);
-                VertexFormatElement.EnumUsage usage = vertexformatelement.func_177375_c();
-                bytebuffer.position(this.vertexFormat.func_181720_d(j2));
+                VertexFormatElement.EnumUsage usage = vertexformatelement.getUsage();
+                bytebuffer.position(this.vertexFormat.getOffset(j2));
                 usage.preDraw(this.vertexFormat, j2, i2, bytebuffer);
             }
-            GlStateManager.func_187439_f((int)this.bufferBuilder.func_178979_i(), (int)0, (int)this.bufferBuilder.func_178989_h());
+            GlStateManager.glDrawArrays((int)this.bufferBuilder.getDrawMode(), (int)0, (int)this.bufferBuilder.getVertexCount());
             int j1 = list.size();
             for (int i1 = 0; i1 < j1; ++i1) {
                 VertexFormatElement vertexformatelement1 = (VertexFormatElement)list.get(i1);
-                vertexformatelement1.func_177375_c().postDraw(this.vertexFormat, i1, i2, bytebuffer);
+                vertexformatelement1.getUsage().postDraw(this.vertexFormat, i1, i2, bytebuffer);
             }
         }
     }

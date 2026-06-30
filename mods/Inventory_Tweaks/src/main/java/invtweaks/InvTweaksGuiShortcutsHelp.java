@@ -36,43 +36,43 @@ extends GuiScreen {
         this.config = config_;
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         LinkedList<GuiButton> controlList = new LinkedList<GuiButton>();
-        controlList.add(new GuiButton(0, this.field_146294_l / 2 - 100, this.field_146295_m / 6 + 168, "Done"));
-        this.field_146292_n = controlList;
+        controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 6 + 168, "Done"));
+        this.buttonList = controlList;
     }
 
-    public void func_73863_a(int i, int j, float f) {
-        this.func_146276_q_();
-        this.func_73732_a(this.obf.getFontRenderer(), "WARNING: Since 1.3.1, shortcuts won't work as expected. Looking for a workaround...", this.field_146294_l / 2, 5, 0xFF0000);
-        this.func_73732_a(this.obf.getFontRenderer(), I18n.func_135052_a((String)"invtweaks.help.shortcuts.title", (Object[])new Object[0]), this.field_146294_l / 2, 20, 0xFFFFFF);
-        String clickLabel = I18n.func_135052_a((String)"invtweaks.help.shortcuts.click", (Object[])new Object[0]);
-        int y = this.field_146295_m / 6 - 2;
-        this.drawShortcutLine(I18n.func_135052_a((String)"invtweaks.help.shortcuts.onestack", (Object[])new Object[0]), "LSHIFT " + I18n.func_135052_a((String)"invtweaks.help.shortcuts.or", (Object[])new Object[0]) + " RSHIFT + " + clickLabel, 0xFFFF00, y);
-        this.drawShortcutLine("", this.buildUpOrDownLabel("shortcutKeyToUpperSection", this.obf.getKeyBindingForwardKeyCode(), I18n.func_135052_a((String)"invtweaks.help.shortcuts.forward", (Object[])new Object[0])) + " + " + clickLabel, 0xFFFF00, y += 12);
-        this.drawShortcutLine("", this.buildUpOrDownLabel("shortcutKeyToLowerSection", this.obf.getKeyBindingBackKeyCode(), I18n.func_135052_a((String)"invtweaks.help.shortcuts.backwards", (Object[])new Object[0])) + " + " + clickLabel, 0xFFFF00, y += 12);
-        this.drawShortcutLine(I18n.func_135052_a((String)"invtweaks.help.shortcuts.oneitem", (Object[])new Object[0]), this.config.getProperty("shortcutKeyOneItem") + " + " + clickLabel, 0xFFFF00, y += 12);
-        this.drawShortcutLine(I18n.func_135052_a((String)"invtweaks.help.shortcuts.allitems", (Object[])new Object[0]), this.config.getProperty("shortcutKeyAllItems") + " + " + clickLabel, 0xFFFF00, y += 12);
-        this.drawShortcutLine(I18n.func_135052_a((String)"invtweaks.help.shortcuts.everything", (Object[])new Object[0]), this.config.getProperty("shortcutKeyEverything") + " + " + clickLabel, 0xFFFF00, y += 12);
-        this.drawShortcutLine(I18n.func_135052_a((String)"invtweaks.help.shortcuts.hotbar", (Object[])new Object[0]), "0-9 + " + clickLabel, 65331, y += 19);
-        this.drawShortcutLine(I18n.func_135052_a((String)"invtweaks.help.shortcuts.emptyslot", (Object[])new Object[0]), I18n.func_135052_a((String)"invtweaks.help.shortcuts.rightclick", (Object[])new Object[0]), 65331, y += 12);
-        this.drawShortcutLine(I18n.func_135052_a((String)"invtweaks.help.shortcuts.drop", (Object[])new Object[0]), this.config.getProperty("shortcutKeyDrop") + " + " + clickLabel, 65331, y += 12);
-        this.drawShortcutLine(I18n.func_135052_a((String)"invtweaks.help.shortcuts.craftall", (Object[])new Object[0]), "LSHIFT, RSHIFT + " + clickLabel, 0xFF8800, y += 19);
-        this.drawShortcutLine(I18n.func_135052_a((String)"invtweaks.help.shortcuts.craftone", (Object[])new Object[0]), this.config.getProperty("shortcutKeyOneItem") + " + " + clickLabel, 0xFF8800, y += 12);
+    public void drawScreen(int i, int j, float f) {
+        this.drawDefaultBackground();
+        this.drawCenteredString(this.obf.getFontRenderer(), "WARNING: Since 1.3.1, shortcuts won't work as expected. Looking for a workaround...", this.width / 2, 5, 0xFF0000);
+        this.drawCenteredString(this.obf.getFontRenderer(), I18n.format((String)"invtweaks.help.shortcuts.title", (Object[])new Object[0]), this.width / 2, 20, 0xFFFFFF);
+        String clickLabel = I18n.format((String)"invtweaks.help.shortcuts.click", (Object[])new Object[0]);
+        int y = this.height / 6 - 2;
+        this.drawShortcutLine(I18n.format((String)"invtweaks.help.shortcuts.onestack", (Object[])new Object[0]), "LSHIFT " + I18n.format((String)"invtweaks.help.shortcuts.or", (Object[])new Object[0]) + " RSHIFT + " + clickLabel, 0xFFFF00, y);
+        this.drawShortcutLine("", this.buildUpOrDownLabel("shortcutKeyToUpperSection", this.obf.getKeyBindingForwardKeyCode(), I18n.format((String)"invtweaks.help.shortcuts.forward", (Object[])new Object[0])) + " + " + clickLabel, 0xFFFF00, y += 12);
+        this.drawShortcutLine("", this.buildUpOrDownLabel("shortcutKeyToLowerSection", this.obf.getKeyBindingBackKeyCode(), I18n.format((String)"invtweaks.help.shortcuts.backwards", (Object[])new Object[0])) + " + " + clickLabel, 0xFFFF00, y += 12);
+        this.drawShortcutLine(I18n.format((String)"invtweaks.help.shortcuts.oneitem", (Object[])new Object[0]), this.config.getProperty("shortcutKeyOneItem") + " + " + clickLabel, 0xFFFF00, y += 12);
+        this.drawShortcutLine(I18n.format((String)"invtweaks.help.shortcuts.allitems", (Object[])new Object[0]), this.config.getProperty("shortcutKeyAllItems") + " + " + clickLabel, 0xFFFF00, y += 12);
+        this.drawShortcutLine(I18n.format((String)"invtweaks.help.shortcuts.everything", (Object[])new Object[0]), this.config.getProperty("shortcutKeyEverything") + " + " + clickLabel, 0xFFFF00, y += 12);
+        this.drawShortcutLine(I18n.format((String)"invtweaks.help.shortcuts.hotbar", (Object[])new Object[0]), "0-9 + " + clickLabel, 65331, y += 19);
+        this.drawShortcutLine(I18n.format((String)"invtweaks.help.shortcuts.emptyslot", (Object[])new Object[0]), I18n.format((String)"invtweaks.help.shortcuts.rightclick", (Object[])new Object[0]), 65331, y += 12);
+        this.drawShortcutLine(I18n.format((String)"invtweaks.help.shortcuts.drop", (Object[])new Object[0]), this.config.getProperty("shortcutKeyDrop") + " + " + clickLabel, 65331, y += 12);
+        this.drawShortcutLine(I18n.format((String)"invtweaks.help.shortcuts.craftall", (Object[])new Object[0]), "LSHIFT, RSHIFT + " + clickLabel, 0xFF8800, y += 19);
+        this.drawShortcutLine(I18n.format((String)"invtweaks.help.shortcuts.craftone", (Object[])new Object[0]), this.config.getProperty("shortcutKeyOneItem") + " + " + clickLabel, 0xFF8800, y += 12);
         String sortKeyName = this.getKeyName(this.config.getSortKeyCode(), "(Sort Key)");
-        this.drawShortcutLine(I18n.func_135052_a((String)"invtweaks.help.shortcuts.selectconfig", (Object[])new Object[0]), "0-9 + " + sortKeyName, 0x88FFFF, y += 19);
-        super.func_73863_a(i, j, f);
+        this.drawShortcutLine(I18n.format((String)"invtweaks.help.shortcuts.selectconfig", (Object[])new Object[0]), "0-9 + " + sortKeyName, 0x88FFFF, y += 19);
+        super.drawScreen(i, j, f);
     }
 
-    protected void func_146284_a(@NotNull GuiButton guibutton) {
-        switch (guibutton.field_146127_k) {
+    protected void actionPerformed(@NotNull GuiButton guibutton) {
+        switch (guibutton.id) {
             case 0: {
                 this.obf.displayGuiScreen(this.parentScreen);
             }
         }
     }
 
-    protected void func_73869_a(char c, int keyCode) {
+    protected void keyTyped(char c, int keyCode) {
         if (keyCode == 1) {
             this.obf.displayGuiScreen(this.parentScreen);
         }
@@ -97,9 +97,9 @@ extends GuiScreen {
     }
 
     private void drawShortcutLine(@NotNull String label, @Nullable String value, int color, int y) {
-        this.func_73731_b(this.obf.getFontRenderer(), label, 30, y, -1);
+        this.drawString(this.obf.getFontRenderer(), label, 30, y, -1);
         if (value != null) {
-            this.func_73731_b(this.obf.getFontRenderer(), value.contains("DEFAULT") ? "-" : value.replaceAll(", ", " " + I18n.func_135052_a((String)"invtweaks.help.shortcuts.or", (Object[])new Object[0]) + " "), this.field_146294_l / 2 - 30, y, color);
+            this.drawString(this.obf.getFontRenderer(), value.contains("DEFAULT") ? "-" : value.replaceAll(", ", " " + I18n.format((String)"invtweaks.help.shortcuts.or", (Object[])new Object[0]) + " "), this.width / 2 - 30, y, color);
         }
     }
 }

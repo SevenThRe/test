@@ -47,8 +47,8 @@ implements IChunkRenderer {
 
     @Override
     public int getBlockHeight(ChunkMD chunkMd, BlockPos blockPos) {
-        Integer y = this.getBlockHeight(chunkMd, blockPos.func_177958_n() & 0xF, null, blockPos.func_177952_p() & 0xF, null, null);
-        return y == null ? blockPos.func_177956_o() : y.intValue();
+        Integer y = this.getBlockHeight(chunkMd, blockPos.getX() & 0xF, null, blockPos.getZ() & 0xF, null, null);
+        return y == null ? blockPos.getY() : y.intValue();
     }
 
     @Override
@@ -137,8 +137,8 @@ implements IChunkRenderer {
 
     public int getSurfaceBlockHeight(ChunkMD chunkMd, int x, int z, BlockCoordIntPair offset, int defaultVal) {
         ChunkMD targetChunkMd = this.getOffsetChunk(chunkMd, x, z, offset);
-        int newX = (chunkMd.getCoord().field_77276_a << 4) + (x + offset.x) & 0xF;
-        int newZ = (chunkMd.getCoord().field_77275_b << 4) + (z + offset.z) & 0xF;
+        int newX = (chunkMd.getCoord().x << 4) + (x + offset.x) & 0xF;
+        int newZ = (chunkMd.getCoord().z << 4) + (z + offset.z) & 0xF;
         if (targetChunkMd != null) {
             Integer height = this.getBlockHeight(targetChunkMd, newX, null, newZ, null, null);
             if (height == null) {

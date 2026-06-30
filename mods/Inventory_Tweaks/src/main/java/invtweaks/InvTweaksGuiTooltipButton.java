@@ -48,11 +48,11 @@ extends GuiButton {
         this.drawBackground = drawBackground_;
     }
 
-    public void func_191745_a(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
+    public void drawButton(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
         if (this.drawBackground) {
-            super.func_191745_a(mc, mouseX, mouseY, partialTicks);
+            super.drawButton(mc, mouseX, mouseY, partialTicks);
         } else {
-            this.func_73731_b(mc.field_71466_p, this.field_146126_j, this.field_146128_h, this.field_146129_i + (this.field_146121_g - 8) / 2, 0x999999);
+            this.drawString(mc.fontRenderer, this.displayString, this.x, this.y + (this.height - 8) / 2, 0x999999);
         }
         InvTweaksObfuscation obf = new InvTweaksObfuscation(mc);
         if (this.tooltipLines != null) {
@@ -72,30 +72,30 @@ extends GuiButton {
                 int y = mouseY - 11 * this.tooltipLines.length;
                 if (this.tooltipWidth == -1) {
                     for (String line : this.tooltipLines) {
-                        this.tooltipWidth = Math.max(fontRenderer.func_78256_a(line), this.tooltipWidth);
+                        this.tooltipWidth = Math.max(fontRenderer.getStringWidth(line), this.tooltipWidth);
                     }
                 }
-                if (x + this.tooltipWidth > obf.getCurrentScreen().field_146294_l) {
-                    x = obf.getCurrentScreen().field_146294_l - this.tooltipWidth;
+                if (x + this.tooltipWidth > obf.getCurrentScreen().width) {
+                    x = obf.getCurrentScreen().width - this.tooltipWidth;
                 }
-                this.func_73733_a(x - 3, y - 3, x + this.tooltipWidth + 3, y + 11 * this.tooltipLines.length, -1073741824, -1073741824);
+                this.drawGradientRect(x - 3, y - 3, x + this.tooltipWidth + 3, y + 11 * this.tooltipLines.length, -1073741824, -1073741824);
                 int lineCount = 0;
                 for (String line : this.tooltipLines) {
                     int j1 = y + lineCount++ * 11;
                     int k = -1;
-                    fontRenderer.func_175063_a(line, (float)x, (float)j1, k);
+                    fontRenderer.drawStringWithShadow(line, (float)x, (float)j1, k);
                 }
             }
         }
     }
 
     protected boolean isMouseOverButton(int i, int j) {
-        return i >= this.field_146128_h && j >= this.field_146129_i && i < this.field_146128_h + this.field_146120_f && j < this.field_146129_i + this.field_146121_g;
+        return i >= this.x && j >= this.y && i < this.x + this.width && j < this.y + this.height;
     }
 
     protected int getTextColor(int i, int j) {
         int textColor = -2039584;
-        if (!this.field_146124_l) {
+        if (!this.enabled) {
             textColor = -6250336;
         } else if (this.isMouseOverButton(i, j)) {
             textColor = -96;

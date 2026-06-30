@@ -39,7 +39,7 @@ public interface TextureProvider {
                 AncientDream.getLogger().error("couldn't load image from " + path + ", file not exists");
             } else {
                 try {
-                    ResourceLocation location = Minecraft.func_71410_x().func_110434_K().func_110578_a("ancientdream_file_image_" + ID[0], new DynamicTexture(ImageIO.read(file)));
+                    ResourceLocation location = Minecraft.getMinecraft().getTextureManager().getDynamicTextureLocation("ancientdream_file_image_" + ID[0], new DynamicTexture(ImageIO.read(file)));
                     ID[0] = ID[0] + 1;
                     return new BuiltinImage(location);
                 }

@@ -38,19 +38,19 @@ implements IBakedModel {
         gg a2;
     }
 
-    public boolean func_177555_b() {
+    public boolean isAmbientOcclusion() {
         return false;
     }
 
-    public ItemOverrideList func_188617_f() {
+    public ItemOverrideList getOverrides() {
         return null;
     }
 
-    public boolean func_177556_c() {
+    public boolean isGui3d() {
         return true;
     }
 
-    public boolean func_188618_c() {
+    public boolean isBuiltInRenderer() {
         return true;
     }
 
@@ -64,7 +64,7 @@ implements IBakedModel {
         return super.handlePerspective(a2);
     }
 
-    public List<BakedQuad> func_188616_a(@Nullable IBlockState iBlockState, @Nullable EnumFacing enumFacing, long a2) {
+    public List<BakedQuad> getQuads(@Nullable IBlockState iBlockState, @Nullable EnumFacing enumFacing, long a2) {
         return null;
     }
 
@@ -78,7 +78,7 @@ implements IBakedModel {
         a3.m = a2;
     }
 
-    public TextureAtlasSprite func_177554_e() {
+    public TextureAtlasSprite getParticleTexture() {
         return null;
     }
 }

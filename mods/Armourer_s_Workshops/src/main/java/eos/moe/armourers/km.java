@@ -55,16 +55,16 @@ public class km {
             return false;
         }
         pj pj2 = a9.r(a4.r());
-        GlStateManager.func_179123_a();
-        GlStateManager.func_179089_o();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179091_B();
+        GlStateManager.pushAttrib();
+        GlStateManager.enableCull();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.enableBlend();
+        GlStateManager.enableRescaleNormal();
         pj2.render(a2, a4, a3, false, a5, a6, false, a7, a8);
-        GlStateManager.func_179101_C();
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179129_p();
-        GlStateManager.func_179099_b();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableBlend();
+        GlStateManager.disableCull();
+        GlStateManager.popAttrib();
         return true;
     }
 
@@ -83,18 +83,18 @@ public class km {
             return false;
         }
         pj pj2 = a6.r(a2.r());
-        GlStateManager.func_179123_a();
-        GlStateManager.func_179089_o();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179091_B();
+        GlStateManager.pushAttrib();
+        GlStateManager.enableCull();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.enableBlend();
+        GlStateManager.enableRescaleNormal();
         pj2.render(a4, a2, a5, a3);
-        GlStateManager.func_179101_C();
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179129_p();
-        GlStateManager.func_179099_b();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179084_k();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableBlend();
+        GlStateManager.disableCull();
+        GlStateManager.popAttrib();
+        GlStateManager.enableBlend();
+        GlStateManager.disableBlend();
         return true;
     }
 

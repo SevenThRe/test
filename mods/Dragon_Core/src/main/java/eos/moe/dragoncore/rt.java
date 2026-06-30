@@ -39,53 +39,53 @@ implements LayerRenderer<EntityLivingBase> {
         a3.ALLATORIxDEMO = a2;
     }
 
-    public void func_177141_a(EntityLivingBase a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9) {
+    public void doRenderLayer(EntityLivingBase a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9) {
         ItemStack a10;
-        boolean a11 = a2.func_184591_cq() == EnumHandSide.RIGHT;
-        ItemStack a12 = a11 ? a2.func_184592_cb() : a2.func_184614_ca();
-        ItemStack itemStack = a10 = a11 ? a2.func_184614_ca() : a2.func_184592_cb();
-        if (!a12.func_190926_b() || !a10.func_190926_b()) {
+        boolean a11 = a2.getPrimaryHand() == EnumHandSide.RIGHT;
+        ItemStack a12 = a11 ? a2.getHeldItemOffhand() : a2.getHeldItemMainhand();
+        ItemStack itemStack = a10 = a11 ? a2.getHeldItemMainhand() : a2.getHeldItemOffhand();
+        if (!a12.isEmpty() || !a10.isEmpty()) {
             rt a13;
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             a13.ALLATORIxDEMO(a2, a10, ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, EnumHandSide.RIGHT);
             a13.ALLATORIxDEMO(a2, a12, ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND, EnumHandSide.LEFT);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
     private /* synthetic */ void ALLATORIxDEMO(EntityLivingBase a2, ItemStack a3, ItemCameraTransforms.TransformType a4, EnumHandSide a5) {
-        if (!a3.func_190926_b()) {
+        if (!a3.isEmpty()) {
             xz a6;
             rt a7;
-            ModelBase a8 = a7.ALLATORIxDEMO.func_177087_b();
+            ModelBase a8 = a7.ALLATORIxDEMO.getMainModel();
             if (!(a8 instanceof pw)) {
                 return;
             }
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)0.0f, (float)1.5f, (float)0.0f);
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)0.0f, (float)1.5f, (float)0.0f);
             if (a5 == EnumHandSide.LEFT) {
                 if (!a7.translateToHand("core_left_hand")) {
-                    GlStateManager.func_179121_F();
+                    GlStateManager.popMatrix();
                     return;
                 }
             } else if (a5 == EnumHandSide.RIGHT && !a7.translateToHand("core_right_hand")) {
-                GlStateManager.func_179121_F();
+                GlStateManager.popMatrix();
                 return;
             }
-            if ((a6 = (xz)dt.k.ALLATORIxDEMO.getIfPresent((Object)a2.func_110124_au())) != null) {
+            if ((a6 = (xz)dt.k.ALLATORIxDEMO.getIfPresent((Object)a2.getUniqueID())) != null) {
                 a6.c.ALLATORIxDEMO();
             }
-            GlStateManager.func_179114_b((float)-90.0f, (float)1.0f, (float)0.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)-90.0f, (float)1.0f, (float)0.0f, (float)0.0f);
+            GlStateManager.rotate((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
             boolean a9 = a5 == EnumHandSide.LEFT;
-            Minecraft.func_71410_x().func_175597_ag().func_187462_a(a2, a3, a4, a9);
-            GlStateManager.func_179121_F();
+            Minecraft.getMinecraft().getItemRenderer().renderItemSide(a2, a3, a4, a9);
+            GlStateManager.popMatrix();
         }
     }
 
     public boolean translateToHand(String a2) {
         rt a3;
-        ModelBase a4 = a3.ALLATORIxDEMO.func_177087_b();
+        ModelBase a4 = a3.ALLATORIxDEMO.getMainModel();
         if (a4 instanceof pw) {
             pw a5 = (pw)a4;
             ArrayList<mt> a6 = new ArrayList<mt>();
@@ -103,7 +103,7 @@ implements LayerRenderer<EntityLivingBase> {
         return false;
     }
 
-    public boolean func_177142_b() {
+    public boolean shouldCombineTextures() {
         return false;
     }
 }

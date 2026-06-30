@@ -45,28 +45,28 @@ implements IConfigFieldHolder<IntegerField> {
         this.disabledLabelColor = 0x404040;
     }
 
-    public int func_146114_a(boolean par1) {
+    public int getHoverState(boolean par1) {
         return 0;
     }
 
-    protected void func_146119_b(Minecraft par1Minecraft, int par2, int par3) {
-        if (this.field_146125_m && this.isEnabled()) {
+    protected void mouseDragged(Minecraft par1Minecraft, int par2, int par3) {
+        if (this.visible && this.isEnabled()) {
             if (this.dragging) {
-                this.setSliderValue((float)(par2 - (this.field_146128_h + 4)) / (float)(this.field_146120_f - 8));
+                this.setSliderValue((float)(par2 - (this.x + 4)) / (float)(this.width - 8));
             }
-            int k = this.func_146114_a(this.isEnabled());
+            int k = this.getHoverState(this.isEnabled());
             if (this.isEnabled() || this.dragging) {
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
                 double sliderValue = this.getSliderValue();
-                GuiUtils.drawContinuousTexturedBox((ResourceLocation)field_146122_a, (int)(this.field_146128_h + 1 + (int)(sliderValue * (double)(this.field_146120_f - 10))), (int)(this.field_146129_i + 1), (int)0, (int)66, (int)8, (int)(this.field_146121_g - 2), (int)200, (int)20, (int)2, (int)3, (int)2, (int)2, (float)this.field_73735_i);
+                GuiUtils.drawContinuousTexturedBox((ResourceLocation)BUTTON_TEXTURES, (int)(this.x + 1 + (int)(sliderValue * (double)(this.width - 10))), (int)(this.y + 1), (int)0, (int)66, (int)8, (int)(this.height - 2), (int)200, (int)20, (int)2, (int)3, (int)2, (int)2, (float)this.zLevel);
             }
         }
     }
 
     @Override
-    public boolean func_146116_c(Minecraft mc, int mouseX, int mouseY) {
+    public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
         if (super.mousePressed(mc, mouseX, mouseY, false)) {
-            this.setSliderValue((float)(mouseX - (this.field_146128_h + 4)) / (float)(this.field_146120_f - 8));
+            this.setSliderValue((float)(mouseX - (this.x + 4)) / (float)(this.width - 8));
             this.dragging = true;
             return this.checkClickListeners();
         }
@@ -91,11 +91,11 @@ implements IConfigFieldHolder<IntegerField> {
     @Override
     public void updateLabel() {
         if (this.drawString) {
-            this.field_146126_j = this.prefix + this.field.get() + this.suffix;
+            this.displayString = this.prefix + this.field.get() + this.suffix;
         }
     }
 
-    public void func_146118_a(int par1, int par2) {
+    public void mouseReleased(int par1, int par2) {
         if (this.dragging) {
             this.dragging = false;
             this.field.save();
@@ -105,8 +105,8 @@ implements IConfigFieldHolder<IntegerField> {
 
     @Override
     public int getFitWidth(FontRenderer fr) {
-        int max = fr.func_78256_a(this.prefix + this.minValue + this.suffix);
-        max = Math.max(max, fr.func_78256_a(this.prefix + this.maxValue + this.suffix));
+        int max = fr.getStringWidth(this.prefix + this.minValue + this.suffix);
+        max = Math.max(max, fr.getStringWidth(this.prefix + this.maxValue + this.suffix));
         return max + this.WIDTH_PAD;
     }
 

@@ -41,10 +41,10 @@ public class nn {
     }
 
     private static /* synthetic */ void r(Class<? extends Entity> a2) {
-        Object object = Minecraft.func_71410_x().func_175598_ae().func_78715_a(a2);
+        Object object = Minecraft.getMinecraft().getRenderManager().getEntityClassRenderObject(a2);
         if (object instanceof RenderLivingBase) {
             Object object2 = (RenderLivingBase)object;
-            object = ((RenderLivingBase)object).field_177097_h;
+            object = ((RenderLivingBase)object).layerRenderers;
             ki ki2 = new ki((RenderLivingBase)object2);
             object2 = new gd((RenderLivingBase)object2);
             Object object3 = object;
@@ -57,10 +57,10 @@ public class nn {
 
     public static void y() {
         Iterator iterator;
-        Iterator iterator2 = iterator = Minecraft.func_71410_x().func_175598_ae().getSkinMap().values().iterator();
+        Iterator iterator2 = iterator = Minecraft.getMinecraft().getRenderManager().getSkinMap().values().iterator();
         while (iterator2.hasNext()) {
             RenderPlayer renderPlayer = (RenderPlayer)iterator.next();
-            List list = renderPlayer.field_177097_h;
+            List list = renderPlayer.layerRenderers;
             Object object = list.iterator();
             while (object.hasNext()) {
                 if (!((LayerRenderer)object.next() instanceof qg)) continue;

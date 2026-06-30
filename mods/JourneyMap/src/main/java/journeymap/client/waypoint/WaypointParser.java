@@ -138,13 +138,13 @@ public class WaypointParser {
         if (matches != null) {
             boolean changed = false;
             if (event.getMessage() instanceof TextComponentTranslation) {
-                Object[] formatArgs = ((TextComponentTranslation)event.getMessage()).func_150271_j();
+                Object[] formatArgs = ((TextComponentTranslation)event.getMessage()).getFormatArgs();
                 for (int i = 0; i < formatArgs.length && !matches.isEmpty(); ++i) {
                     ITextComponent result;
                     Object arg;
                     if (formatArgs[i] instanceof ITextComponent) {
                         arg = (ITextComponent)formatArgs[i];
-                        result = WaypointParser.addWaypointMarkup(arg.func_150260_c(), matches);
+                        result = WaypointParser.addWaypointMarkup(arg.getUnformattedText(), matches);
                         if (result == null) continue;
                         formatArgs[i] = result;
                         changed = true;
@@ -155,10 +155,10 @@ public class WaypointParser {
                     changed = true;
                 }
                 if (changed) {
-                    event.setMessage((ITextComponent)new TextComponentTranslation(((TextComponentTranslation)event.getMessage()).func_150268_i(), formatArgs));
+                    event.setMessage((ITextComponent)new TextComponentTranslation(((TextComponentTranslation)event.getMessage()).getKey(), formatArgs));
                 }
             } else if (event.getMessage() instanceof TextComponentString) {
-                ITextComponent result = WaypointParser.addWaypointMarkup(event.getMessage().func_150260_c(), matches);
+                ITextComponent result = WaypointParser.addWaypointMarkup(event.getMessage().getUnformattedText(), matches);
                 if (result != null) {
                     event.setMessage(result);
                     changed = true;
@@ -167,7 +167,7 @@ public class WaypointParser {
                 Journeymap.getLogger().warn("No implementation for handling waypoints in ITextComponent " + event.getMessage().getClass());
             }
             if (!changed) {
-                Journeymap.getLogger().warn(String.format("Matched waypoint in chat but failed to update message for %s : %s\n%s", event.getMessage().getClass(), event.getMessage().func_150254_d(), ITextComponent.Serializer.func_150696_a((ITextComponent)event.getMessage())));
+                Journeymap.getLogger().warn(String.format("Matched waypoint in chat but failed to update message for %s : %s\n%s", event.getMessage().getClass(), event.getMessage().getFormattedText(), ITextComponent.Serializer.componentToJson((ITextComponent)event.getMessage())));
             }
         }
     }
@@ -186,15 +186,15 @@ public class WaypointParser {
             }
             matched = true;
             TextComponentString textComponentString = new TextComponentString(match);
-            Style chatStyle = textComponentString.func_150256_b();
-            chatStyle.func_150241_a(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/jm wpedit " + match));
+            Style chatStyle = textComponentString.getStyle();
+            chatStyle.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/jm wpedit " + match));
             TextComponentString hover = new TextComponentString("JourneyMap: ");
-            hover.func_150256_b().func_150238_a(TextFormatting.YELLOW);
+            hover.getStyle().setColor(TextFormatting.YELLOW);
             TextComponentString hover2 = new TextComponentString("Click to create Waypoint.\nCtrl+Click to view on map.");
-            hover2.func_150256_b().func_150238_a(TextFormatting.AQUA);
-            hover.func_150257_a((ITextComponent)hover2);
-            chatStyle.func_150209_a(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (ITextComponent)hover));
-            chatStyle.func_150238_a(TextFormatting.AQUA);
+            hover2.getStyle().setColor(TextFormatting.AQUA);
+            hover.appendSibling((ITextComponent)hover2);
+            chatStyle.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, (ITextComponent)hover));
+            chatStyle.setColor(TextFormatting.AQUA);
             newParts.add(textComponentString);
             index = start + match.length();
             iterator2.remove();
@@ -208,7 +208,7 @@ public class WaypointParser {
         if (!newParts.isEmpty()) {
             TextComponentString replacement = new TextComponentString("");
             for (ITextComponent iTextComponent : newParts) {
-                replacement.func_150257_a(iTextComponent);
+                replacement.appendSibling(iTextComponent);
             }
             return replacement;
         }

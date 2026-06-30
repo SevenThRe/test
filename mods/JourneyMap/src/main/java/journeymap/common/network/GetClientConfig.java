@@ -18,7 +18,7 @@ public class GetClientConfig
 extends MessageProcessor {
     @Override
     protected JsonObject onServer(Response response) {
-        EntityPlayerMP player = response.getContext().getServerHandler().field_147369_b;
+        EntityPlayerMP player = response.getContext().getServerHandler().player;
         return PlayerConfigController.getInstance().getPlayerConfig(player);
     }
 

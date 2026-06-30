@@ -33,26 +33,26 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class CmdChatPosition
 implements ICommand {
-    public String func_71517_b() {
+    public String getName() {
         return "~";
     }
 
-    public String func_71518_a(ICommandSender sender) {
+    public String getUsage(ICommandSender sender) {
         return TextFormatting.AQUA + "~" + TextFormatting.RESET + " : Copy your location into Text";
     }
 
-    public List<String> func_71514_a() {
+    public List<String> getAliases() {
         return null;
     }
 
-    public void func_184881_a(MinecraftServer server, ICommandSender sender, String[] args2) throws CommandException {
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args2) throws CommandException {
         Object pos;
         String text;
         if (args2.length > 1) {
             text = Joiner.on((String)"").skipNulls().join((Object[])args2);
         } else {
-            pos = sender.func_180425_c();
-            text = String.format("[x:%s, y:%s, z:%s]", pos.func_177958_n(), pos.func_177956_o(), pos.func_177952_p());
+            pos = sender.getPosition();
+            text = String.format("[x:%s, y:%s, z:%s]", pos.getX(), pos.getY(), pos.getZ());
         }
         pos = text;
         Journeymap.getClient().queueMainThreadTask(new IMainThreadTask((String)pos){
@@ -63,7 +63,7 @@ implements ICommand {
 
             @Override
             public IMainThreadTask perform(Minecraft mc, JourneymapClient jm) {
-                FMLClientHandler.instance().getClient().func_147108_a((GuiScreen)new WaypointChat(this.val$pos));
+                FMLClientHandler.instance().getClient().displayGuiScreen((GuiScreen)new WaypointChat(this.val$pos));
                 return null;
             }
 
@@ -74,15 +74,15 @@ implements ICommand {
         });
     }
 
-    public boolean func_184882_a(MinecraftServer server, ICommandSender sender) {
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
         return true;
     }
 
-    public List<String> func_184883_a(MinecraftServer server, ICommandSender sender, String[] args2, BlockPos pos) {
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args2, BlockPos pos) {
         return null;
     }
 
-    public boolean func_82358_a(String[] args2, int index) {
+    public boolean isUsernameIndex(String[] args2, int index) {
         return false;
     }
 

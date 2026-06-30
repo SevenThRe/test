@@ -46,7 +46,7 @@ Runnable {
 
     private /* synthetic */ void r(ti a2) {
         if (a2 != null) {
-            a2.func_147631_c();
+            a2.deleteGlTexture();
         }
     }
 
@@ -175,7 +175,7 @@ Runnable {
 
     public void onRemoval(RemovalNotification<yi, ti> a2) {
         rd a3;
-        Minecraft.func_71410_x().func_152344_a((Runnable)new wn(a3, a2));
+        Minecraft.getMinecraft().addScheduledTask((Runnable)new wn(a3, a2));
     }
 
     public void clear() {

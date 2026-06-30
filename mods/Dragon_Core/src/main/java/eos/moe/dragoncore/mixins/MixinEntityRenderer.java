@@ -24,9 +24,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinEntityRenderer {
     @Shadow
     @Final
-    private Minecraft field_78531_r;
+    private Minecraft mc;
     @Shadow
-    private boolean field_78500_U;
+    private boolean cloudFog;
 
     public MixinEntityRenderer() {
         MixinEntityRenderer a2;
@@ -37,12 +37,12 @@ public class MixinEntityRenderer {
         if (qha.ALLATORIxDEMO()) {
             MixinEntityRenderer a4;
             a3.cancel();
-            Entity a5 = a4.field_78531_r.func_175606_aa();
+            Entity a5 = a4.mc.getRenderViewEntity();
             qha.ALLATORIxDEMO(a2);
-            double a6 = a5.field_70169_q + (a5.field_70165_t - a5.field_70169_q) * (double)a2;
-            double a7 = a5.field_70167_r + (a5.field_70163_u - a5.field_70167_r) * (double)a2 + (double)a5.func_70047_e();
-            double a8 = a5.field_70166_s + (a5.field_70161_v - a5.field_70166_s) * (double)a2;
-            a4.field_78500_U = a4.field_78531_r.field_71438_f.func_72721_a(a6, a7, a8, a2);
+            double a6 = a5.prevPosX + (a5.posX - a5.prevPosX) * (double)a2;
+            double a7 = a5.prevPosY + (a5.posY - a5.prevPosY) * (double)a2 + (double)a5.getEyeHeight();
+            double a8 = a5.prevPosZ + (a5.posZ - a5.prevPosZ) * (double)a2;
+            a4.cloudFog = a4.mc.renderGlobal.hasCloudFog(a6, a7, a8, a2);
         }
     }
 

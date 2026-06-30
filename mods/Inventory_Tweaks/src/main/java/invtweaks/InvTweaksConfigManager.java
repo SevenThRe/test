@@ -63,7 +63,7 @@ public class InvTweaksConfigManager {
     private static void showConfigErrors(@NotNull InvTweaksConfig config) {
         List<String> invalid = config.getInvalidKeywords();
         if (invalid.size() > 0) {
-            String error = I18n.func_135052_a((String)"invtweaks.loadconfig.invalidkeywords", (Object[])new Object[0]) + ": ";
+            String error = I18n.format((String)"invtweaks.loadconfig.invalidkeywords", (Object[])new Object[0]) + ": ";
             for (String keyword : config.getInvalidKeywords()) {
                 error = error + keyword + " ";
             }
@@ -131,10 +131,10 @@ public class InvTweaksConfigManager {
             InvTweaksConst.OLDER_CONFIG_RULES_FILE.renameTo(InvTweaksConst.CONFIG_RULES_FILE);
         }
         if (!InvTweaksConst.CONFIG_RULES_FILE.exists() && this.extractFile(InvTweaksConst.DEFAULT_CONFIG_FILE, InvTweaksConst.CONFIG_RULES_FILE)) {
-            InvTweaks.logInGameStatic(InvTweaksConst.CONFIG_RULES_FILE + " " + I18n.func_135052_a((String)"invtweaks.loadconfig.filemissing", (Object[])new Object[0]));
+            InvTweaks.logInGameStatic(InvTweaksConst.CONFIG_RULES_FILE + " " + I18n.format((String)"invtweaks.loadconfig.filemissing", (Object[])new Object[0]));
         }
         if (!InvTweaksConst.CONFIG_TREE_FILE.exists() && this.extractFile(InvTweaksConst.DEFAULT_CONFIG_TREE_FILE, InvTweaksConst.CONFIG_TREE_FILE)) {
-            InvTweaks.logInGameStatic(InvTweaksConst.CONFIG_TREE_FILE + " " + I18n.func_135052_a((String)"invtweaks.loadconfig.filemissing", (Object[])new Object[0]));
+            InvTweaks.logInGameStatic(InvTweaksConst.CONFIG_TREE_FILE + " " + I18n.format((String)"invtweaks.loadconfig.filemissing", (Object[])new Object[0]));
         }
         this.storedConfigLastModified = InvTweaksConfigManager.computeConfigLastModified();
         String error = null;
@@ -197,7 +197,7 @@ public class InvTweaksConfigManager {
     private boolean extractFile(@NotNull ResourceLocation resource, @NotNull File destination) {
         try {
             Throwable throwable = null;
-            try (InputStream input = this.mc.func_110442_L().func_110536_a(resource).func_110527_b();){
+            try (InputStream input = this.mc.getResourceManager().getResource(resource).getInputStream();){
                 FileUtils.copyInputStreamToFile((InputStream)input, (File)destination);
                 boolean bl = true;
                 return bl;

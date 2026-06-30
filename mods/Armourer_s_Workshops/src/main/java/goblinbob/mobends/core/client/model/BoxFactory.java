@@ -35,32 +35,32 @@ public class BoxFactory {
     boolean textureUVSet = false;
 
     public BoxFactory(ModelRenderer renderer, ModelBox source) {
-        this.min = new Vec3f(source.field_78252_a, source.field_78250_b, source.field_78251_c);
-        this.max = new Vec3f(source.field_78248_d, source.field_78249_e, source.field_78246_f);
+        this.min = new Vec3f(source.posX1, source.posY1, source.posZ1);
+        this.max = new Vec3f(source.posX2, source.posY2, source.posZ2);
         this.faces = new TextureFace[6];
-        this.mirrored = renderer.field_78809_i;
+        this.mirrored = renderer.mirror;
         this.faceVisibilityFlag = (byte)63;
         this.textureU = 0;
         this.textureV = 0;
-        TexturedQuad[] quadList = source.field_78254_i;
+        TexturedQuad[] quadList = source.quadList;
         if (quadList == null) {
             return;
         }
-        float textureWidth = renderer.field_78801_a;
-        float textureHeight = renderer.field_78799_b;
+        float textureWidth = renderer.textureWidth;
+        float textureHeight = renderer.textureHeight;
         this.textureUVSet = true;
         for (int i2 = 0; i2 < 6; ++i2) {
             PositionTextureVertex endVertex;
             PositionTextureVertex startVertex;
             if (this.mirrored) {
-                startVertex = quadList[i2].field_78239_a[2];
-                endVertex = quadList[i2].field_78239_a[0];
-                this.faces[i2] = new TextureFace((int)(startVertex.field_78241_b * textureWidth), (int)(startVertex.field_78242_c * textureHeight), (int)((endVertex.field_78241_b - startVertex.field_78241_b) * textureWidth), (int)((endVertex.field_78242_c - startVertex.field_78242_c) * textureHeight));
+                startVertex = quadList[i2].vertexPositions[2];
+                endVertex = quadList[i2].vertexPositions[0];
+                this.faces[i2] = new TextureFace((int)(startVertex.texturePositionX * textureWidth), (int)(startVertex.texturePositionY * textureHeight), (int)((endVertex.texturePositionX - startVertex.texturePositionX) * textureWidth), (int)((endVertex.texturePositionY - startVertex.texturePositionY) * textureHeight));
                 continue;
             }
-            startVertex = quadList[i2].field_78239_a[1];
-            endVertex = quadList[i2].field_78239_a[3];
-            this.faces[i2] = new TextureFace((int)(startVertex.field_78241_b * textureWidth), (int)(startVertex.field_78242_c * textureHeight), (int)((endVertex.field_78241_b - startVertex.field_78241_b) * textureWidth), (int)((endVertex.field_78242_c - startVertex.field_78242_c) * textureHeight));
+            startVertex = quadList[i2].vertexPositions[1];
+            endVertex = quadList[i2].vertexPositions[3];
+            this.faces[i2] = new TextureFace((int)(startVertex.texturePositionX * textureWidth), (int)(startVertex.texturePositionY * textureHeight), (int)((endVertex.texturePositionX - startVertex.texturePositionX) * textureWidth), (int)((endVertex.texturePositionY - startVertex.texturePositionY) * textureHeight));
         }
     }
 

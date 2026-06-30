@@ -35,10 +35,10 @@ public class jy {
     @i(f={"\u5220\u9664\u8d34\u56fe\u7f13\u5b58"}, c=true)
     public static void c(String a2) {
         ResourceLocation a3 = new ResourceLocation("dragoncore", a2);
-        Map a4 = (Map)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.func_71410_x().func_110434_K(), (String[])new String[]{"mapTextureObjects", "field_110585_a"});
+        Map a4 = (Map)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.getMinecraft().getTextureManager(), (String[])new String[]{"mapTextureObjects", "mapTextureObjects"});
         ITextureObject a5 = (ITextureObject)a4.get(a3);
         if (a5 instanceof AbstractTexture) {
-            ((AbstractTexture)a5).func_147631_c();
+            ((AbstractTexture)a5).deleteGlTexture();
             a4.remove(a3);
         }
     }

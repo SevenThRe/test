@@ -62,7 +62,7 @@ implements ScrollPane.Scrollable {
 
     public Button(int width, int height, String label) {
         super(0, 0, 0, width, height, label);
-        this.fontRenderer = FMLClientHandler.instance().getClient().field_71466_p;
+        this.fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
         this.clickListeners = new ArrayList(0);
         this.tooltipSize = 200;
         this.finishInit();
@@ -79,11 +79,11 @@ implements ScrollPane.Scrollable {
         this.setDrawButton(true);
         this.setDrawFrame(true);
         this.setDrawBackground(true);
-        if (this.field_146121_g == 0) {
+        if (this.height == 0) {
             this.setHeight(20);
         }
-        if (this.field_146120_f == 0) {
-            this.func_175211_a(200);
+        if (this.width == 0) {
+            this.setWidth(200);
         }
         this.updateBounds();
     }
@@ -97,70 +97,70 @@ implements ScrollPane.Scrollable {
 
     @Override
     public int getFitWidth(FontRenderer fr) {
-        int max = fr.func_78256_a(this.field_146126_j);
-        return max + this.WIDTH_PAD + (fr.func_78260_a() ? (int)Math.ceil((double)max * 0.25) : 0);
+        int max = fr.getStringWidth(this.displayString);
+        return max + this.WIDTH_PAD + (fr.getBidiFlag() ? (int)Math.ceil((double)max * 0.25) : 0);
     }
 
     public void fitWidth(FontRenderer fr) {
-        this.func_175211_a(this.getFitWidth(fr));
+        this.setWidth(this.getFitWidth(fr));
     }
 
     @Override
     public void drawPartialScrollable(Minecraft minecraft, int x, int y, int width, int height) {
-        minecraft.func_110434_K().func_110577_a(field_146122_a);
+        minecraft.getTextureManager().bindTexture(BUTTON_TEXTURES);
         int k = 0;
-        this.func_73729_b(x, y, 0, 46 + k * 20, width / 2, height);
-        this.func_73729_b(x + width / 2, y, 200 - width / 2, 46 + k * 20, width / 2, height);
+        this.drawTexturedModalRect(x, y, 0, 46 + k * 20, width / 2, height);
+        this.drawTexturedModalRect(x + width / 2, y, 200 - width / 2, 46 + k * 20, width / 2, height);
     }
 
     public void showDisabledOnHover(boolean show) {
         this.showDisabledHoverText = show;
     }
 
-    public boolean func_146115_a() {
-        return super.func_146115_a();
+    public boolean isMouseOver() {
+        return super.isMouseOver();
     }
 
     public void setMouseOver(boolean hover) {
         this.setHovered(hover);
     }
 
-    public void func_146113_a(SoundHandler soundHandler) {
+    public void playPressSound(SoundHandler soundHandler) {
         if (this.isEnabled()) {
-            super.func_146113_a(soundHandler);
+            super.playPressSound(soundHandler);
         }
     }
 
-    public void func_191745_a(Minecraft minecraft, int mouseX, int mouseY, float partialTicks) {
+    public void drawButton(Minecraft minecraft, int mouseX, int mouseY, float partialTicks) {
         if (!this.isVisible()) {
             return;
         }
         if (this.defaultStyle) {
-            super.func_191745_a(minecraft, mouseX, mouseY, partialTicks);
+            super.drawButton(minecraft, mouseX, mouseY, partialTicks);
         } else {
-            minecraft.func_110434_K().func_110577_a(field_146122_a);
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-            this.setHovered(mouseX >= this.field_146128_h && mouseY >= this.field_146129_i && mouseX < this.field_146128_h + this.field_146120_f && mouseY < this.field_146129_i + this.field_146121_g);
-            int hoverState = this.func_146114_a(this.isHovered());
+            minecraft.getTextureManager().bindTexture(BUTTON_TEXTURES);
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            this.setHovered(mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height);
+            int hoverState = this.getHoverState(this.isHovered());
             if (this.isDrawFrame()) {
-                DrawUtil.drawRectangle(this.field_146128_h, this.field_146129_i, this.field_146120_f, 1.0, this.customFrameColorLight, 1.0f);
-                DrawUtil.drawRectangle(this.field_146128_h, this.field_146129_i, 1.0, this.field_146121_g, this.customFrameColorLight, 1.0f);
-                DrawUtil.drawRectangle(this.field_146128_h, this.field_146129_i + this.field_146121_g - 1, this.field_146120_f - 1, 1.0, this.customFrameColorDark, 1.0f);
-                DrawUtil.drawRectangle(this.field_146128_h + this.field_146120_f - 1, this.field_146129_i + 1, 1.0, this.field_146121_g - 1, this.customFrameColorDark, 1.0f);
+                DrawUtil.drawRectangle(this.x, this.y, this.width, 1.0, this.customFrameColorLight, 1.0f);
+                DrawUtil.drawRectangle(this.x, this.y, 1.0, this.height, this.customFrameColorLight, 1.0f);
+                DrawUtil.drawRectangle(this.x, this.y + this.height - 1, this.width - 1, 1.0, this.customFrameColorDark, 1.0f);
+                DrawUtil.drawRectangle(this.x + this.width - 1, this.y + 1, 1.0, this.height - 1, this.customFrameColorDark, 1.0f);
             }
             if (this.isDrawBackground()) {
-                DrawUtil.drawRectangle(this.field_146128_h + 1, this.field_146129_i + 1, this.field_146120_f - 2, this.field_146121_g - 2, hoverState == 2 ? this.customBgHoverColor : this.customBgColor, 1.0f);
+                DrawUtil.drawRectangle(this.x + 1, this.y + 1, this.width - 2, this.height - 2, hoverState == 2 ? this.customBgHoverColor : this.customBgColor, 1.0f);
             } else if (this.isEnabled() && this.isHovered()) {
-                DrawUtil.drawRectangle(this.field_146128_h + 1, this.field_146129_i + 1, this.field_146120_f - 2, this.field_146121_g - 2, this.customBgHoverColor2, 0.5f);
+                DrawUtil.drawRectangle(this.x + 1, this.y + 1, this.width - 2, this.height - 2, this.customBgHoverColor2, 0.5f);
             }
-            this.func_146119_b(minecraft, mouseX, mouseY);
+            this.mouseDragged(minecraft, mouseX, mouseY);
             Integer varLabelColor = this.labelColor;
             if (!this.isEnabled()) {
                 varLabelColor = this.disabledLabelColor;
                 if (this.drawBackground) {
                     float alpha = 0.7f;
-                    int widthOffset = this.field_146120_f - (this.field_146121_g >= 20 ? 3 : 2);
-                    DrawUtil.drawRectangle(this.getX() + 1, this.getY() + 1, widthOffset, this.field_146121_g - 2, this.disabledBgColor, alpha);
+                    int widthOffset = this.width - (this.height >= 20 ? 3 : 2);
+                    DrawUtil.drawRectangle(this.getX() + 1, this.getY() + 1, widthOffset, this.height - 2, this.disabledBgColor, alpha);
                 }
             } else if (this.isHovered()) {
                 varLabelColor = this.hoverLabelColor;
@@ -169,24 +169,24 @@ implements ScrollPane.Scrollable {
             } else if (this.packedFGColour != 0) {
                 varLabelColor = this.packedFGColour;
             }
-            DrawUtil.drawCenteredLabel(this.field_146126_j, (double)this.getCenterX(), (double)this.getMiddleY(), null, 0.0f, varLabelColor, 1.0f, 1.0, this.drawLabelShadow);
+            DrawUtil.drawCenteredLabel(this.displayString, (double)this.getCenterX(), (double)this.getMiddleY(), null, 0.0f, varLabelColor, 1.0f, 1.0, this.drawLabelShadow);
         }
     }
 
     public void drawCenteredString(FontRenderer fontRenderer, String text, float x, float y, int color) {
-        fontRenderer.func_175063_a(text, x - (float)(fontRenderer.func_78256_a(text) / 2), y, color);
+        fontRenderer.drawStringWithShadow(text, x - (float)(fontRenderer.getStringWidth(text) / 2), y, color);
     }
 
     public void drawUnderline() {
         if (this.isVisible()) {
-            DrawUtil.drawRectangle(this.field_146128_h, this.field_146129_i + this.field_146121_g, this.field_146120_f, 1.0, this.customFrameColorDark, 1.0f);
+            DrawUtil.drawRectangle(this.x, this.y + this.height, this.width, 1.0, this.customFrameColorDark, 1.0f);
         }
     }
 
     public void secondaryDrawButton() {
     }
 
-    public boolean func_146116_c(Minecraft minecraft, int mouseX, int mouseY) {
+    public boolean mousePressed(Minecraft minecraft, int mouseX, int mouseY) {
         return this.mousePressed(minecraft, mouseX, mouseY, true);
     }
 
@@ -204,7 +204,7 @@ implements ScrollPane.Scrollable {
                 }
             }
             catch (Throwable t) {
-                Journeymap.getLogger().error("Error trying to toggle button '" + this.field_146126_j + "': " + LogFormatter.toString(t));
+                Journeymap.getLogger().error("Error trying to toggle button '" + this.displayString + "': " + LogFormatter.toString(t));
                 clicked = false;
             }
         }
@@ -222,7 +222,7 @@ implements ScrollPane.Scrollable {
         ArrayList<String> list = new ArrayList<String>();
         if (this.tooltip != null) {
             for (String line : this.tooltip) {
-                list.addAll(this.fontRenderer.func_78271_c(line, this.tooltipSize));
+                list.addAll(this.fontRenderer.listFormattedStringToWidth(line, this.tooltipSize));
             }
             return list;
         }
@@ -259,29 +259,29 @@ implements ScrollPane.Scrollable {
 
     @Override
     public int getWidth() {
-        return this.field_146120_f;
+        return this.width;
     }
 
-    public void func_175211_a(int width) {
-        if (this.field_146120_f != width) {
-            this.field_146120_f = width;
+    public void setWidth(int width) {
+        if (this.width != width) {
+            this.width = width;
             this.bounds = null;
         }
     }
 
     @Override
     public void setScrollableWidth(int width) {
-        this.func_175211_a(width);
+        this.setWidth(width);
     }
 
     @Override
     public int getHeight() {
-        return this.field_146121_g;
+        return this.height;
     }
 
     public void setHeight(int height) {
-        if (this.field_146121_g != height) {
-            this.field_146121_g = height;
+        if (this.height != height) {
+            this.height = height;
             this.bounds = null;
             if (height != 20) {
                 this.defaultStyle = false;
@@ -290,7 +290,7 @@ implements ScrollPane.Scrollable {
     }
 
     public void setTextOnly(FontRenderer fr) {
-        this.setHeight(fr.field_78288_b + 1);
+        this.setHeight(fr.FONT_HEIGHT + 1);
         this.fitWidth(fr);
         this.setDrawBackground(false);
         this.setDrawFrame(false);
@@ -298,7 +298,7 @@ implements ScrollPane.Scrollable {
 
     @Override
     public void drawScrollable(Minecraft mc, int mouseX, int mouseY) {
-        this.func_191745_a(mc, mouseX, mouseY, 0.0f);
+        this.drawButton(mc, mouseX, mouseY, 0.0f);
     }
 
     @Override
@@ -307,42 +307,42 @@ implements ScrollPane.Scrollable {
 
     @Override
     public int getX() {
-        return this.field_146128_h;
+        return this.x;
     }
 
     public void setX(int x) {
-        if (this.field_146128_h != x) {
-            this.field_146128_h = x;
+        if (this.x != x) {
+            this.x = x;
             this.bounds = null;
         }
     }
 
     @Override
     public int getY() {
-        return this.field_146129_i;
+        return this.y;
     }
 
     public void setY(int y) {
-        if (this.field_146129_i != y) {
-            this.field_146129_i = y;
+        if (this.y != y) {
+            this.y = y;
             this.bounds = null;
         }
     }
 
     public int getCenterX() {
-        return this.field_146128_h + this.field_146120_f / 2;
+        return this.x + this.width / 2;
     }
 
     public int getMiddleY() {
-        return this.field_146129_i + this.field_146121_g / 2;
+        return this.y + this.height / 2;
     }
 
     public int getBottomY() {
-        return this.field_146129_i + this.field_146121_g;
+        return this.y + this.height;
     }
 
     public int getRightX() {
-        return this.field_146128_h + this.field_146120_f;
+        return this.x + this.width;
     }
 
     @Override
@@ -362,12 +362,12 @@ implements ScrollPane.Scrollable {
     }
 
     public Button centerHorizontalOn(int x) {
-        this.setX(x - this.field_146120_f / 2);
+        this.setX(x - this.width / 2);
         return this;
     }
 
     public Button centerVerticalOn(int y) {
-        this.setY(y - this.field_146121_g / 2);
+        this.setY(y - this.height / 2);
         return this;
     }
 
@@ -441,24 +441,24 @@ implements ScrollPane.Scrollable {
     }
 
     public boolean isEnabled() {
-        return this.field_146124_l;
+        return this.enabled;
     }
 
     public void setEnabled(boolean enabled) {
-        this.field_146124_l = enabled;
+        this.enabled = enabled;
     }
 
     public boolean isVisible() {
-        return this.field_146125_m;
+        return this.visible;
     }
 
     public void setVisible(boolean visible) {
-        this.field_146125_m = visible;
+        this.visible = visible;
     }
 
     public void setDrawButton(boolean drawButton) {
-        if (drawButton != this.field_146125_m) {
-            this.field_146125_m = drawButton;
+        if (drawButton != this.visible) {
+            this.visible = drawButton;
         }
     }
 
@@ -512,7 +512,7 @@ implements ScrollPane.Scrollable {
     }
 
     public String getDisplayString() {
-        return this.field_146126_j;
+        return this.displayString;
     }
 
     public void refresh() {
@@ -523,11 +523,11 @@ implements ScrollPane.Scrollable {
     }
 
     public boolean isHovered() {
-        return this.field_146123_n;
+        return this.hovered;
     }
 
     public void setHovered(boolean hovered) {
-        this.field_146123_n = hovered;
+        this.hovered = hovered;
     }
 
     public void addClickListener(Function<Button, Boolean> listener) {

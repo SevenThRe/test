@@ -49,11 +49,11 @@ public class xd {
     public static void x() {
         j = OpenGlHelper.lastBrightnessX;
         m = OpenGlHelper.lastBrightnessY;
-        OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)240.0f);
+        OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)240.0f);
     }
 
     public static void h() {
-        OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)j, (float)m);
+        OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)j, (float)m);
     }
 
     public static void z() {
@@ -61,12 +61,12 @@ public class xd {
     }
 
     public static void r(int a2, int a3, int a4, int a5) {
-        Minecraft minecraft = Minecraft.func_71410_x();
+        Minecraft minecraft = Minecraft.getMinecraft();
         ScaledResolution scaledResolution = new ScaledResolution(minecraft);
         Minecraft minecraft2 = minecraft;
-        double d2 = (double)minecraft2.field_71443_c / scaledResolution.func_78327_c();
-        double d3 = (double)minecraft2.field_71440_d / scaledResolution.func_78324_d();
-        xd.y(MathHelper.func_76128_c((double)((double)a2 * d2)), minecraft.field_71440_d - MathHelper.func_76128_c((double)(((double)a3 + (double)a5) * d3)), MathHelper.func_76128_c((double)((double)a4 * d2)), MathHelper.func_76128_c((double)((double)a5 * d3)));
+        double d2 = (double)minecraft2.displayWidth / scaledResolution.getScaledWidth_double();
+        double d3 = (double)minecraft2.displayHeight / scaledResolution.getScaledHeight_double();
+        xd.y(MathHelper.floor((double)((double)a2 * d2)), minecraft.displayHeight - MathHelper.floor((double)(((double)a3 + (double)a5) * d3)), MathHelper.floor((double)((double)a4 * d2)), MathHelper.floor((double)((double)a5 * d3)));
     }
 
     public static void y() {
@@ -74,12 +74,12 @@ public class xd {
     }
 
     public static void r() {
-        GlStateManager.func_179084_k();
+        GlStateManager.disableBlend();
     }
 
     public static void r(int a2, int a3) {
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179112_b((int)a2, (int)a3);
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc((int)a2, (int)a3);
     }
 }
 

@@ -48,12 +48,12 @@ public class AnimationLoader {
     }
 
     public static KeyframeAnimation loadFromResource(ResourceLocation location) throws IOException {
-        InputStream stream = Minecraft.func_71410_x().func_110442_L().func_110536_a(location).func_110527_b();
+        InputStream stream = Minecraft.getMinecraft().getResourceManager().getResource(location).getInputStream();
         if (cachedAnimations.containsKey(location)) {
             return cachedAnimations.get(location);
         }
         KeyframeAnimation animation = null;
-        animation = location.func_110623_a().endsWith(".json") ? (KeyframeAnimation)new Gson().fromJson((Reader)new InputStreamReader(stream), KeyframeAnimation.class) : BinaryAnimationLoader.loadFromBinaryInputStream(stream);
+        animation = location.getPath().endsWith(".json") ? (KeyframeAnimation)new Gson().fromJson((Reader)new InputStreamReader(stream), KeyframeAnimation.class) : BinaryAnimationLoader.loadFromBinaryInputStream(stream);
         if (animation != null) {
             cachedAnimations.put(location, animation);
         }

@@ -50,78 +50,78 @@ implements sa {
         aja a4;
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         int a2;
         aja a3;
-        ScaledResolution a4 = new ScaledResolution(a3.field_146297_k);
-        a3.field_146999_f = a4.func_78326_a();
-        a3.field_147000_g = a4.func_78328_b();
-        super.func_73866_w_();
+        ScaledResolution a4 = new ScaledResolution(a3.mc);
+        a3.xSize = a4.getScaledWidth();
+        a3.ySize = a4.getScaledHeight();
+        super.initGui();
         int a5 = 18;
         for (a2 = 0; a2 < 3; ++a2) {
             for (int a6 = 0; a6 < 9; ++a6) {
-                Slot a7 = (Slot)a3.field_147002_h.field_75151_b.get(a6 + a2 * 9);
-                a7.field_75221_f = a3.field_146295_m + 1 - 76 - 5 + a2 * a5;
+                Slot a7 = (Slot)a3.inventorySlots.inventorySlots.get(a6 + a2 * 9);
+                a7.yPos = a3.height + 1 - 76 - 5 + a2 * a5;
             }
         }
         for (a2 = 0; a2 < 9; ++a2) {
-            Slot a8 = (Slot)a3.field_147002_h.field_75151_b.get(a2 + 27);
-            a8.field_75221_f = a3.field_146295_m + 1 - 5 - a5;
+            Slot a8 = (Slot)a3.inventorySlots.inventorySlots.get(a2 + 27);
+            a8.yPos = a3.height + 1 - 5 - a5;
         }
-        a2 = a3.field_146294_l - 162 - 25;
-        int a9 = a3.field_146295_m - 15 - 14 - 15 + 26;
-        a2 = MathHelper.func_76125_a((int)a2, (int)0, (int)200);
-        a3.b = new dca(a3, a3.field_146294_l - 100, 12, 95, Math.max(0, a9), 14, a3.field_146294_l, a3.field_146295_m, a3);
-        a3.field_146292_n.add(new fp(a3, 0, a3.field_146294_l / 2 - 20 - 20, a3.field_146295_m - 50, "\u2190"));
-        a3.field_146292_n.add(new fp(a3, 0, a3.field_146294_l / 2 + 20, a3.field_146295_m - 50, "\u2192"));
-        a3.field_146292_n.add(new fp(a3, 0, a3.field_146294_l - 120, a3.field_146295_m / 2 - 20 - 20, "\u2191"));
-        a3.field_146292_n.add(new fp(a3, 0, a3.field_146294_l - 120, a3.field_146295_m / 2 + 20, "\u2193"));
-        a3.field_146292_n.add(new fp(a3, 0, a3.field_146294_l / 2 - 20 - 20, 10, "-"));
-        a3.field_146292_n.add(new fp(a3, 0, a3.field_146294_l / 2 + 20, 10, "+"));
-        a3.field_146292_n.add(new fp(a3, 0, 0, a3.field_146295_m / 2 - 20, "\u2190\u2190"));
-        a3.field_146292_n.add(new fp(a3, 0, 40, a3.field_146295_m / 2 - 20, "\u2192\u2192"));
-        a3.field_146292_n.add(new fp(a3, 0, 20, a3.field_146295_m / 2 - 20 - 20, "\u2191\u2191"));
-        a3.field_146292_n.add(new fp(a3, 0, 20, a3.field_146295_m / 2, "\u2193\u2193"));
+        a2 = a3.width - 162 - 25;
+        int a9 = a3.height - 15 - 14 - 15 + 26;
+        a2 = MathHelper.clamp((int)a2, (int)0, (int)200);
+        a3.b = new dca(a3, a3.width - 100, 12, 95, Math.max(0, a9), 14, a3.width, a3.height, a3);
+        a3.buttonList.add(new fp(a3, 0, a3.width / 2 - 20 - 20, a3.height - 50, "\u2190"));
+        a3.buttonList.add(new fp(a3, 0, a3.width / 2 + 20, a3.height - 50, "\u2192"));
+        a3.buttonList.add(new fp(a3, 0, a3.width - 120, a3.height / 2 - 20 - 20, "\u2191"));
+        a3.buttonList.add(new fp(a3, 0, a3.width - 120, a3.height / 2 + 20, "\u2193"));
+        a3.buttonList.add(new fp(a3, 0, a3.width / 2 - 20 - 20, 10, "-"));
+        a3.buttonList.add(new fp(a3, 0, a3.width / 2 + 20, 10, "+"));
+        a3.buttonList.add(new fp(a3, 0, 0, a3.height / 2 - 20, "\u2190\u2190"));
+        a3.buttonList.add(new fp(a3, 0, 40, a3.height / 2 - 20, "\u2192\u2192"));
+        a3.buttonList.add(new fp(a3, 0, 20, a3.height / 2 - 20 - 20, "\u2191\u2191"));
+        a3.buttonList.add(new fp(a3, 0, 20, a3.height / 2, "\u2193\u2193"));
     }
 
-    public void func_73863_a(int a2, int a3, float a4) {
+    public void drawScreen(int a2, int a3, float a4) {
         aja a5;
-        super.func_73863_a(a2, a3, a4);
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179091_B();
-        GlStateManager.func_179140_f();
-        GlStateManager.func_179097_i();
-        OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)240.0f);
-        RenderHelper.func_74520_c();
-        GlStateManager.func_179109_b((float)((float)a5.field_146294_l / 3.0f + ((Float)a5.k.k).floatValue()), (float)((float)a5.field_146295_m / 3.0f + ((Float)a5.k.ALLATORIxDEMO).floatValue()), (float)0.0f);
-        GlStateManager.func_179109_b((float)8.0f, (float)8.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)((Float)a5.y.ALLATORIxDEMO).floatValue(), (float)1.0f, (float)0.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)((Float)a5.y.k).floatValue(), (float)0.0f, (float)1.0f, (float)0.0f);
-        GlStateManager.func_179109_b((float)-8.0f, (float)-8.0f, (float)0.0f);
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179152_a((float)a5.ALLATORIxDEMO, (float)a5.ALLATORIxDEMO, (float)0.0f);
+        super.drawScreen(a2, a3, a4);
+        GlStateManager.pushMatrix();
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.disableLighting();
+        GlStateManager.disableDepth();
+        OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)240.0f);
+        RenderHelper.enableGUIStandardItemLighting();
+        GlStateManager.translate((float)((float)a5.width / 3.0f + ((Float)a5.k.k).floatValue()), (float)((float)a5.height / 3.0f + ((Float)a5.k.ALLATORIxDEMO).floatValue()), (float)0.0f);
+        GlStateManager.translate((float)8.0f, (float)8.0f, (float)0.0f);
+        GlStateManager.rotate((float)((Float)a5.y.ALLATORIxDEMO).floatValue(), (float)1.0f, (float)0.0f, (float)0.0f);
+        GlStateManager.rotate((float)((Float)a5.y.k).floatValue(), (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.translate((float)-8.0f, (float)-8.0f, (float)0.0f);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.scale((float)a5.ALLATORIxDEMO, (float)a5.ALLATORIxDEMO, (float)0.0f);
         if (a5.o != null) {
-            a5.field_146297_k.func_175599_af().func_175042_a(a5.createItemStack(), 0, 0);
+            a5.mc.getRenderItem().renderItemIntoGUI(a5.createItemStack(), 0, 0);
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
         a5.b.ALLATORIxDEMO(a2, a3, a4);
     }
 
     public ItemStack createItemStack() {
         aja a2;
-        ItemStack a3 = new ItemStack(Items.field_151034_e);
-        NBTTagCompound a4 = a3.func_77978_p() == null ? new NBTTagCompound() : a3.func_77978_p();
-        a4.func_74778_a("itemmodel", a2.o);
-        a3.func_77982_d(a4);
+        ItemStack a3 = new ItemStack(Items.APPLE);
+        NBTTagCompound a4 = a3.getTagCompound() == null ? new NBTTagCompound() : a3.getTagCompound();
+        a4.setString("itemmodel", a2.o);
+        a3.setTagCompound(a4);
         return a3;
     }
 
-    public void func_146976_a(float a2, int a3, int a4) {
+    public void drawGuiContainerBackgroundLayer(float a2, int a3, int a4) {
     }
 
-    public void func_146979_b(int a2, int a3) {
+    public void drawGuiContainerForegroundLayer(int a2, int a3) {
         aja a4;
-        a4.func_191948_b(a2, a3);
+        a4.renderHoveredToolTip(a2, a3);
     }
 
     @Override

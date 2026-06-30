@@ -46,7 +46,7 @@ extends AnimationBit<BipedEntityData<?>> {
             this.bringUpAnimation += DataUpdateHandler.ticksPerFrame * 0.15f;
             this.bringUpAnimation = Math.min(this.bringUpAnimation, 1.0f);
         } else {
-            float wiggle = MathHelper.func_76134_b((float)(ticks * 1.0f));
+            float wiggle = MathHelper.cos((float)(ticks * 1.0f));
             data.head.rotation.orientX(wiggle * 5.0f).rotateY(15.0f * handDirMtp);
         }
         mainArm.rotation.orientX(this.bringUpAnimation * -80.0f).rotateZ(45.0f * this.bringUpAnimation * handDirMtp);

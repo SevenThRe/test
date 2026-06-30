@@ -38,9 +38,9 @@ extends AnimationBit<BipedEntityData<?>> {
     @Override
     public void perform(BipedEntityData<?> data) {
         float ticks = DataUpdateHandler.getTicks();
-        float armSway = (MathHelper.func_76134_b((float)(ticks * 0.1625f)) + 1.0f) / 2.0f;
-        float armSway2 = (-MathHelper.func_76126_a((float)(ticks * 0.1625f)) + 1.0f) / 2.0f;
-        float legFlap = MathHelper.func_76134_b((float)(ticks * 0.4625f));
+        float armSway = (MathHelper.cos((float)(ticks * 0.1625f)) + 1.0f) / 2.0f;
+        float armSway2 = (-MathHelper.sin((float)(ticks * 0.1625f)) + 1.0f) / 2.0f;
+        float legFlap = MathHelper.cos((float)(ticks * 0.4625f));
         float foreArmSway = ticks * 0.1625f % ((float)Math.PI * 2) / ((float)Math.PI * 2);
         float foreArmStretch = armSway * 2.0f;
         foreArmStretch -= 1.0f;
@@ -51,9 +51,9 @@ extends AnimationBit<BipedEntityData<?>> {
                 this.transformTransition -= DataUpdateHandler.ticksPerFrame * this.transitionSpeed;
                 this.transformTransition = Math.max(0.0f, this.transformTransition);
             }
-            armSway = (MathHelper.func_76134_b((float)(ticks * 0.0825f)) + 1.0f) / 2.0f;
-            armSway2 = (-MathHelper.func_76126_a((float)(ticks * 0.0825f)) + 1.0f) / 2.0f;
-            legFlap = MathHelper.func_76134_b((float)(ticks * 0.2625f));
+            armSway = (MathHelper.cos((float)(ticks * 0.0825f)) + 1.0f) / 2.0f;
+            armSway2 = (-MathHelper.sin((float)(ticks * 0.0825f)) + 1.0f) / 2.0f;
+            legFlap = MathHelper.cos((float)(ticks * 0.2625f));
             data.leftArm.rotation.setSmoothness(0.3f).orientX(armSway2 * 30.0f - 15.0f).rotateZ(-armSway * 30.0f);
             data.rightArm.rotation.setSmoothness(0.3f).orientX(armSway2 * 30.0f - 15.0f).rotateZ(armSway * 30.0f);
             data.leftForeArm.rotation.setSmoothness(0.3f).orientX(armSway2 * -40.0f);

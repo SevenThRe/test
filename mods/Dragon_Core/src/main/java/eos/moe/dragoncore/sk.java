@@ -21,7 +21,7 @@ import org.lwjgl.opengl.GL11;
 public class sk
 extends Gui {
     public static final ResourceLocation v = new ResourceLocation("nbtedit", "textures/gui/widgets.png");
-    private Minecraft m = Minecraft.func_71410_x();
+    private Minecraft m = Minecraft.getMinecraft();
     private ph<fi> c;
     private qm q;
     public int b;
@@ -36,7 +36,7 @@ extends Gui {
         a6.c = a3;
         a6.y = a4;
         a6.k = a5;
-        a6.o = a6.m.field_71466_p.field_78288_b;
+        a6.o = a6.m.fontRenderer.FONT_HEIGHT;
         a6.updateDisplay();
     }
 
@@ -81,7 +81,7 @@ extends Gui {
     public void updateDisplay() {
         sk a2;
         a2.ALLATORIxDEMO = su.ALLATORIxDEMO(a2.c.ALLATORIxDEMO());
-        a2.b = a2.m.field_71466_p.func_78256_a(a2.ALLATORIxDEMO) + 12;
+        a2.b = a2.m.fontRenderer.getStringWidth(a2.ALLATORIxDEMO) + 12;
     }
 
     public void draw(int a2, int a3) {
@@ -90,18 +90,18 @@ extends Gui {
         boolean a6 = a4.c(a2, a3);
         boolean a7 = a4.ALLATORIxDEMO(a2, a3);
         int a8 = a5 ? 255 : (a6 ? 0xFFFFA0 : (a4.c.ALLATORIxDEMO() ? 0xE0E0E0 : -6250336));
-        a4.m.field_71446_o.func_110577_a(v);
+        a4.m.renderEngine.bindTexture(v);
         if (a5) {
             GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-            Gui.func_73734_a((int)(a4.y + 11), (int)a4.k, (int)(a4.y + a4.b), (int)(a4.k + a4.o), (int)Integer.MIN_VALUE);
+            Gui.drawRect((int)(a4.y + 11), (int)a4.k, (int)(a4.y + a4.b), (int)(a4.k + a4.o), (int)Integer.MIN_VALUE);
         }
         if (a4.c.c()) {
             GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-            a4.func_73729_b(a4.y - 9, a4.k, a4.c.f() ? 9 : 0, a7 ? a4.o : 0, 9, a4.o);
+            a4.drawTexturedModalRect(a4.y - 9, a4.k, a4.c.f() ? 9 : 0, a7 ? a4.o : 0, 9, a4.o);
         }
         GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        a4.func_73729_b(a4.y + 1, a4.k, (a4.c.ALLATORIxDEMO().ALLATORIxDEMO().func_74732_a() - 1) * 9, 18, 9, 9);
-        a4.func_73731_b(a4.m.field_71466_p, a4.ALLATORIxDEMO, a4.y + 11, a4.k + (a4.o - 8) / 2, a8);
+        a4.drawTexturedModalRect(a4.y + 1, a4.k, (a4.c.ALLATORIxDEMO().ALLATORIxDEMO().getId() - 1) * 9, 18, 9, 9);
+        a4.drawString(a4.m.fontRenderer, a4.ALLATORIxDEMO, a4.y + 11, a4.k + (a4.o - 8) / 2, a8);
     }
 
     public boolean shouldDraw(int a2, int a3) {

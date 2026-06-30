@@ -42,7 +42,7 @@ extends ImageSet {
     public ComparableBufferedImage getChunkImage(ChunkMD chunkMd, MapType mapType) {
         RegionCoord regionCoord = this.getRegionCoord();
         BufferedImage regionImage = this.getHolder(mapType).getImage();
-        BufferedImage sub = regionImage.getSubimage(regionCoord.getXOffset(chunkMd.getCoord().field_77276_a), regionCoord.getZOffset(chunkMd.getCoord().field_77275_b), 16, 16);
+        BufferedImage sub = regionImage.getSubimage(regionCoord.getXOffset(chunkMd.getCoord().x), regionCoord.getZOffset(chunkMd.getCoord().z), 16, 16);
         ComparableBufferedImage chunk = new ComparableBufferedImage(16, 16, regionImage.getType());
         chunk.setData(sub.getData());
         return chunk;
@@ -53,7 +53,7 @@ extends ImageSet {
         boolean wasBlank = holder.blank;
         if (chunkImage.isChanged() || wasBlank) {
             RegionCoord regionCoord = this.getRegionCoord();
-            holder.partialImageUpdate(chunkImage, regionCoord.getXOffset(chunkMd.getCoord().field_77276_a), regionCoord.getZOffset(chunkMd.getCoord().field_77275_b));
+            holder.partialImageUpdate(chunkImage, regionCoord.getXOffset(chunkMd.getCoord().x), regionCoord.getZOffset(chunkMd.getCoord().z));
         }
         if (wasBlank) {
             holder.getTexture();

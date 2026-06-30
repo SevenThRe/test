@@ -49,17 +49,17 @@ implements IPartWrapper {
         this.upperPartAnchor = new ModelPart((ModelBase)vanillaModel, false);
         this.lowerPart = new ModelPart((ModelBase)vanillaModel, false);
         this.lowerPartAnchor = new ModelPart((ModelBase)vanillaModel, false);
-        this.upperPart.func_78792_a(this.upperPartAnchor);
-        this.upperPart.func_78792_a(this.lowerPart);
-        this.lowerPart.func_78792_a(this.lowerPartAnchor);
-        this.lowerPart.field_78809_i = this.lowerPartAnchor.field_78809_i = vanillaPart.field_78809_i;
-        this.upperPartAnchor.field_78809_i = this.lowerPartAnchor.field_78809_i;
-        this.upperPart.field_78809_i = this.lowerPartAnchor.field_78809_i;
+        this.upperPart.addChild(this.upperPartAnchor);
+        this.upperPart.addChild(this.lowerPart);
+        this.lowerPart.addChild(this.lowerPartAnchor);
+        this.lowerPart.mirror = this.lowerPartAnchor.mirror = vanillaPart.mirror;
+        this.upperPartAnchor.mirror = this.lowerPartAnchor.mirror;
+        this.upperPart.mirror = this.lowerPartAnchor.mirror;
         this.sliceAppendage(vanillaModel, vanillaPart, cutPlane);
     }
 
     private void sliceAppendage(ModelBiped vanillaModel, ModelRenderer vanillaPart, float cutPlane) {
-        List vanillaBoxes = vanillaPart.field_78804_l;
+        List vanillaBoxes = vanillaPart.cubeList;
         for (ModelBox box : vanillaBoxes) {
             BoxMutator mutator = BoxMutator.createFrom((ModelBase)vanillaModel, vanillaPart, box);
             if (mutator == null) continue;
@@ -73,15 +73,15 @@ implements IPartWrapper {
             }
             this.lowerPartAnchor.addVanillaBox(box);
         }
-        List vanillaChildren = vanillaPart.field_78805_m;
+        List vanillaChildren = vanillaPart.childModels;
         if (vanillaChildren != null) {
             for (ModelRenderer child : vanillaChildren) {
                 if (child == null) continue;
-                if (child.field_78797_d < cutPlane) {
-                    this.upperPartAnchor.func_78792_a(child);
+                if (child.rotationPointY < cutPlane) {
+                    this.upperPartAnchor.addChild(child);
                     continue;
                 }
-                this.lowerPartAnchor.func_78792_a(child);
+                this.lowerPartAnchor.addChild(child);
             }
         }
     }
@@ -98,16 +98,16 @@ implements IPartWrapper {
     public void apply(ArmorWrapper armorWrapper) {
         this.modelPartSetter.replacePart(armorWrapper, this.upperPart);
         this.modelPartSetter.replacePart(armorWrapper.original, this.upperPart);
-        this.upperPart.field_78807_k = this.vanillaPart.field_78807_k;
-        this.upperPart.field_78806_j = this.vanillaPart.field_78806_j;
+        this.upperPart.isHidden = this.vanillaPart.isHidden;
+        this.upperPart.showModel = this.vanillaPart.showModel;
     }
 
     @Override
     public void deapply(ArmorWrapper armorWrapper) {
         this.modelPartSetter.replacePart(armorWrapper, this.vanillaPart);
         this.modelPartSetter.replacePart(armorWrapper.original, this.vanillaPart);
-        this.vanillaPart.field_78807_k = this.upperPart.field_78807_k;
-        this.vanillaPart.field_78806_j = this.upperPart.field_78806_j;
+        this.vanillaPart.isHidden = this.upperPart.isHidden;
+        this.vanillaPart.showModel = this.upperPart.showModel;
     }
 
     @Override

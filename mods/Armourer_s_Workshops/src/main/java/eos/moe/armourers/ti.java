@@ -98,17 +98,17 @@ extends AbstractTexture {
         }
     }
 
-    public void func_110551_a(IResourceManager a2) throws IOException {
+    public void loadTexture(IResourceManager a2) throws IOException {
     }
 
     public void bindTexture() {
         ti a2;
-        if (a2.field_110553_a == -1) {
-            a2.func_110552_b();
+        if (a2.glTextureId == -1) {
+            a2.getGlTextureId();
             ti ti2 = a2;
-            TextureUtil.func_110987_a((int)ti2.field_110553_a, (BufferedImage)ti2.j);
+            TextureUtil.uploadTextureImage((int)ti2.glTextureId, (BufferedImage)ti2.j);
         }
-        GlStateManager.func_179144_i((int)a2.field_110553_a);
+        GlStateManager.bindTexture((int)a2.glTextureId);
     }
 
     private /* synthetic */ int r(byte[] a2, int a3, int a4, yl a5, yi a62) {

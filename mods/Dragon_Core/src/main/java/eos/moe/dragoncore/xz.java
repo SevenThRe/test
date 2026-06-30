@@ -101,15 +101,15 @@ extends qw {
         raa.x.ALLATORIxDEMO();
         hka.ALLATORIxDEMO((Entity)a5.ALLATORIxDEMO(), a5);
         EntityLivingBase a6 = a5.ALLATORIxDEMO();
-        float a7 = ri.ALLATORIxDEMO(a6.field_70760_ar, a6.field_70761_aq, a3);
-        float a8 = ri.ALLATORIxDEMO(a6.field_70758_at, a6.field_70759_as, a3);
+        float a7 = ri.ALLATORIxDEMO(a6.prevRenderYawOffset, a6.renderYawOffset, a3);
+        float a8 = ri.ALLATORIxDEMO(a6.prevRotationYawHead, a6.rotationYawHead, a3);
         float a9 = a8 - a7;
-        boolean bl2 = a4 = a6.func_184218_aH() && a6.func_184187_bx() != null && a6.func_184187_bx().shouldRiderSit();
-        if (a4 && a6.func_184187_bx() instanceof EntityLivingBase) {
-            EntityLivingBase a10 = (EntityLivingBase)a6.func_184187_bx();
-            a7 = ri.ALLATORIxDEMO(a10.field_70760_ar, a10.field_70761_aq, a3);
+        boolean bl2 = a4 = a6.isRiding() && a6.getRidingEntity() != null && a6.getRidingEntity().shouldRiderSit();
+        if (a4 && a6.getRidingEntity() instanceof EntityLivingBase) {
+            EntityLivingBase a10 = (EntityLivingBase)a6.getRidingEntity();
+            a7 = ri.ALLATORIxDEMO(a10.prevRenderYawOffset, a10.renderYawOffset, a3);
             a9 = a8 - a7;
-            float a11 = MathHelper.func_76142_g((float)a9);
+            float a11 = MathHelper.wrapDegrees((float)a9);
             if (a11 < -85.0f) {
                 a11 = -85.0f;
             }
@@ -122,10 +122,10 @@ extends qw {
             }
             a9 = a8 - a7;
         }
-        float a12 = a6.field_70127_C + (a6.field_70125_A - a6.field_70127_C) * a3;
+        float a12 = a6.prevRotationPitch + (a6.rotationPitch - a6.prevRotationPitch) * a3;
         nd a13 = raa.x;
         a13.ALLATORIxDEMO("query.yaw", a9);
-        if (a6.func_184599_cB() > 4) {
+        if (a6.getTicksElytraFlying() > 4) {
             a13.ALLATORIxDEMO("query.pitch", -45.0);
         } else {
             a13.ALLATORIxDEMO("query.pitch", a12);
@@ -213,7 +213,7 @@ extends qw {
 
     public boolean ALLATORIxDEMO(String a2, String ... a3) {
         xz a4;
-        if (a4.ALLATORIxDEMO().field_70128_L) {
+        if (a4.ALLATORIxDEMO().isDead) {
             return false;
         }
         try {

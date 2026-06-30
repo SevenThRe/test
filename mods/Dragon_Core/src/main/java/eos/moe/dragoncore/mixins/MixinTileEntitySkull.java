@@ -40,9 +40,9 @@ extends TileEntity {
     @Inject(method={"readFromNBT"}, at={@At(value="RETURN")})
     private /* synthetic */ void mixin_readFromNBT(NBTTagCompound a2, CallbackInfo a3) {
         MixinTileEntitySkull a4;
-        if (a4.field_145850_b != null) {
-            a4.field_145850_b.func_175642_b(EnumSkyBlock.BLOCK, a4.field_174879_c);
-            a4.field_145850_b.func_180500_c(EnumSkyBlock.SKY, a4.field_174879_c);
+        if (a4.world != null) {
+            a4.world.getLightFor(EnumSkyBlock.BLOCK, a4.pos);
+            a4.world.checkLightFor(EnumSkyBlock.SKY, a4.pos);
         }
     }
 }

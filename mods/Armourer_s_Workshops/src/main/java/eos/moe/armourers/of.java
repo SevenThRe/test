@@ -43,7 +43,7 @@ public class of {
         if (a2.m) {
             a2.y();
         }
-        a2.j = GLAllocation.func_74526_a((int)1);
+        a2.j = GLAllocation.generateDisplayLists((int)1);
         s.incrementAndGet();
         GL11.glNewList((int)a2.j, (int)4864);
     }
@@ -54,7 +54,7 @@ public class of {
 
     public void y() {
         of a2;
-        GLAllocation.func_74523_b((int)a2.j);
+        GLAllocation.deleteDisplayLists((int)a2.j);
         s.decrementAndGet();
         a2.m = false;
     }

@@ -61,62 +61,62 @@ implements sa {
         a6.b = new EntityZombie((World)FMLClientHandler.instance().getWorldClient());
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         int a2;
         jca a3;
-        ScaledResolution a4 = new ScaledResolution(a3.field_146297_k);
-        a3.field_146999_f = a4.func_78326_a();
-        a3.field_147000_g = a4.func_78328_b();
-        super.func_73866_w_();
+        ScaledResolution a4 = new ScaledResolution(a3.mc);
+        a3.xSize = a4.getScaledWidth();
+        a3.ySize = a4.getScaledHeight();
+        super.initGui();
         int a5 = 18;
         for (a2 = 0; a2 < 3; ++a2) {
             for (int a6 = 0; a6 < 9; ++a6) {
-                Slot a7 = (Slot)a3.field_147002_h.field_75151_b.get(a6 + a2 * 9);
-                a7.field_75221_f = a3.field_146295_m + 1 - 76 - 5 + a2 * a5;
+                Slot a7 = (Slot)a3.inventorySlots.inventorySlots.get(a6 + a2 * 9);
+                a7.yPos = a3.height + 1 - 76 - 5 + a2 * a5;
             }
         }
         for (a2 = 0; a2 < 9; ++a2) {
-            Slot a8 = (Slot)a3.field_147002_h.field_75151_b.get(a2 + 27);
-            a8.field_75221_f = a3.field_146295_m + 1 - 5 - a5;
+            Slot a8 = (Slot)a3.inventorySlots.inventorySlots.get(a2 + 27);
+            a8.yPos = a3.height + 1 - 5 - a5;
         }
-        a2 = a3.field_146294_l - 162 - 25;
-        int a9 = a3.field_146295_m - 15 - 14 - 15 + 26;
-        a2 = MathHelper.func_76125_a((int)a2, (int)0, (int)200);
-        a3.q = new gda(a3, a3.field_146294_l - 100, 12, 95, Math.max(0, a9), 14, a3.field_146294_l, a3.field_146295_m, a3);
-        a3.field_146292_n.add(new aia(a3, 0, a3.field_146294_l / 2 - 20 - 20, a3.field_146295_m - 50, "\u2190"));
-        a3.field_146292_n.add(new aia(a3, 0, a3.field_146294_l / 2 + 20, a3.field_146295_m - 50, "\u2192"));
-        a3.field_146292_n.add(new aia(a3, 0, a3.field_146294_l - 120, a3.field_146295_m / 2 - 20 - 20, "\u2191"));
-        a3.field_146292_n.add(new aia(a3, 0, a3.field_146294_l - 120, a3.field_146295_m / 2 + 20, "\u2193"));
-        a3.field_146292_n.add(new aia(a3, 0, a3.field_146294_l / 2 - 20 - 20, 10, "-"));
-        a3.field_146292_n.add(new aia(a3, 0, a3.field_146294_l / 2 + 20, 10, "+"));
-        a3.field_146292_n.add(new aia(a3, 0, 0, a3.field_146295_m / 2 - 20, "\u2190\u2190"));
-        a3.field_146292_n.add(new aia(a3, 0, 40, a3.field_146295_m / 2 - 20, "\u2192\u2192"));
-        a3.field_146292_n.add(new aia(a3, 0, 20, a3.field_146295_m / 2 - 20 - 20, "\u2191\u2191"));
-        a3.field_146292_n.add(new aia(a3, 0, 20, a3.field_146295_m / 2, "\u2193\u2193"));
+        a2 = a3.width - 162 - 25;
+        int a9 = a3.height - 15 - 14 - 15 + 26;
+        a2 = MathHelper.clamp((int)a2, (int)0, (int)200);
+        a3.q = new gda(a3, a3.width - 100, 12, 95, Math.max(0, a9), 14, a3.width, a3.height, a3);
+        a3.buttonList.add(new aia(a3, 0, a3.width / 2 - 20 - 20, a3.height - 50, "\u2190"));
+        a3.buttonList.add(new aia(a3, 0, a3.width / 2 + 20, a3.height - 50, "\u2192"));
+        a3.buttonList.add(new aia(a3, 0, a3.width - 120, a3.height / 2 - 20 - 20, "\u2191"));
+        a3.buttonList.add(new aia(a3, 0, a3.width - 120, a3.height / 2 + 20, "\u2193"));
+        a3.buttonList.add(new aia(a3, 0, a3.width / 2 - 20 - 20, 10, "-"));
+        a3.buttonList.add(new aia(a3, 0, a3.width / 2 + 20, 10, "+"));
+        a3.buttonList.add(new aia(a3, 0, 0, a3.height / 2 - 20, "\u2190\u2190"));
+        a3.buttonList.add(new aia(a3, 0, 40, a3.height / 2 - 20, "\u2192\u2192"));
+        a3.buttonList.add(new aia(a3, 0, 20, a3.height / 2 - 20 - 20, "\u2191\u2191"));
+        a3.buttonList.add(new aia(a3, 0, 20, a3.height / 2, "\u2193\u2193"));
     }
 
-    public void func_146976_a(float a2, int a3, int a4) {
+    public void drawGuiContainerBackgroundLayer(float a2, int a3, int a4) {
         jca a5;
-        jca.func_73734_a((int)0, (int)0, (int)a5.field_146294_l, (int)a5.field_146295_m, (int)0x6C000000);
+        jca.drawRect((int)0, (int)0, (int)a5.width, (int)a5.height, (int)0x6C000000);
         float a6 = (float)((double)System.currentTimeMillis() / 10.0 % 360.0);
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179126_j();
-        GlStateManager.func_179109_b((float)((float)a5.field_146294_l / 2.0f + ((Float)a5.k.k).floatValue()), (float)((float)a5.field_146295_m / 1.2f + ((Float)a5.k.ALLATORIxDEMO).floatValue()), (float)500.0f);
-        GlStateManager.func_179114_b((float)((Float)a5.y.ALLATORIxDEMO).floatValue(), (float)1.0f, (float)0.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)((Float)a5.y.k).floatValue(), (float)0.0f, (float)1.0f, (float)0.0f);
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        a5.b.func_96094_a(a5.o);
-        GuiInventory.func_147046_a((int)0, (int)0, (int)((int)a5.ALLATORIxDEMO), (float)0.0f, (float)0.0f, (EntityLivingBase)a5.b);
-        GlStateManager.func_179097_i();
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179121_F();
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        GlStateManager.enableDepth();
+        GlStateManager.translate((float)((float)a5.width / 2.0f + ((Float)a5.k.k).floatValue()), (float)((float)a5.height / 1.2f + ((Float)a5.k.ALLATORIxDEMO).floatValue()), (float)500.0f);
+        GlStateManager.rotate((float)((Float)a5.y.ALLATORIxDEMO).floatValue(), (float)1.0f, (float)0.0f, (float)0.0f);
+        GlStateManager.rotate((float)((Float)a5.y.k).floatValue(), (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        a5.b.setCustomNameTag(a5.o);
+        GuiInventory.drawEntityOnScreen((int)0, (int)0, (int)((int)a5.ALLATORIxDEMO), (float)0.0f, (float)0.0f, (EntityLivingBase)a5.b);
+        GlStateManager.disableDepth();
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
         a5.q.ALLATORIxDEMO(a3, a4, a2);
     }
 
-    public void func_146979_b(int a2, int a3) {
+    public void drawGuiContainerForegroundLayer(int a2, int a3) {
         jca a4;
-        a4.func_191948_b(a2, a3);
+        a4.renderHoveredToolTip(a2, a3);
     }
 
     @Override

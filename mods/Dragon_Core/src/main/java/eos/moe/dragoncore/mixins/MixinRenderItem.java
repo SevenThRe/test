@@ -66,20 +66,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinRenderItem {
     @Shadow
     @Final
-    private TextureManager field_175057_n;
+    private TextureManager textureManager;
     @Shadow
     @Final
-    private static ResourceLocation field_110798_h;
+    private static ResourceLocation RES_ITEM_GLINT;
 
     public MixinRenderItem() {
         MixinRenderItem a2;
     }
 
     @Shadow
-    public abstract void func_191965_a(IBakedModel var1, int var2);
+    public abstract void renderModel(IBakedModel var1, int var2);
 
     @Shadow
-    protected abstract void func_191961_a(IBakedModel var1, ItemStack var2);
+    protected abstract void renderModel(IBakedModel var1, ItemStack var2);
 
     @Inject(method={"renderItemModelIntoGUI"}, at={@At(value="HEAD")})
     private /* synthetic */ void mixin_renderItemModelIntoGUI_HEAD(ItemStack a2, int a3, int a4, IBakedModel a5, CallbackInfo a6) {
@@ -104,8 +104,8 @@ public abstract class MixinRenderItem {
             if (a7 == null) {
                 return;
             }
-            if (a7.func_188617_f() != null) {
-                a7 = a7.func_188617_f().handleItemState(a7, a2, a3, a4);
+            if (a7.getOverrides() != null) {
+                a7 = a7.getOverrides().handleItemState(a7, a2, a3, a4);
             }
             a5.setReturnValue(a7);
         }
@@ -122,7 +122,7 @@ public abstract class MixinRenderItem {
         String a7;
         String[] a8;
         int a9 = -8372020;
-        if (a4.func_77978_p() != null && a4.func_77978_p().func_74764_b("color") && (a8 = (a7 = a4.func_77978_p().func_74779_i("color")).split(",")).length == 3) {
+        if (a4.getTagCompound() != null && a4.getTagCompound().hasKey("color") && (a8 = (a7 = a4.getTagCompound().getString("color")).split(",")).length == 3) {
             a9 = MixinRenderItem.toRGBA(new Color(MixinRenderItem.toInt(a8[0]), MixinRenderItem.toInt(a8[1]), MixinRenderItem.toInt(a8[2])));
         }
         a6.renderEffect(a3, a9);
@@ -133,7 +133,7 @@ public abstract class MixinRenderItem {
         if (a5 instanceof cv) {
             px.ALLATORIxDEMO(a3, (cv)a5);
         } else {
-            a4.func_77973_b().getTileEntityItemStackRenderer().func_179022_a(a4);
+            a4.getItem().getTileEntityItemStackRenderer().renderByItem(a4);
         }
     }
 
@@ -148,11 +148,11 @@ public abstract class MixinRenderItem {
             MixinRenderItem a5;
             float a6 = OpenGlHelper.lastBrightnessX;
             float a7 = OpenGlHelper.lastBrightnessY;
-            OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)a7);
+            OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)a7);
             RenderStatus.renderModelEmissive = true;
-            a5.func_191961_a(a3, a2);
+            a5.renderModel(a3, a2);
             RenderStatus.renderModelEmissive = false;
-            OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)a6, (float)a7);
+            OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)a6, (float)a7);
         }
     }
 
@@ -165,9 +165,9 @@ public abstract class MixinRenderItem {
             long a6 = System.currentTimeMillis();
             float a7 = a5 - a4;
             float a8 = a5 - a6;
-            return MathHelper.func_76131_a((float)(a8 / a7), (float)0.0f, (float)1.0f);
+            return MathHelper.clamp((float)(a8 / a7), (float)0.0f, (float)1.0f);
         }
-        return cooldownTracker.func_185143_a(itemIn, partialTicks);
+        return cooldownTracker.getCooldown(itemIn, partialTicks);
     }
 
     @Inject(method={"renderItemAndEffectIntoGUI(Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/item/ItemStack;II)V"}, at={@At(value="HEAD")})
@@ -205,38 +205,38 @@ public abstract class MixinRenderItem {
 
     private /* synthetic */ void renderEffect(IBakedModel a2, int a3) {
         MixinRenderItem a4;
-        GlStateManager.func_179132_a((boolean)false);
-        GlStateManager.func_179143_c((int)514);
-        GlStateManager.func_179140_f();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_COLOR, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE);
-        a4.field_175057_n.func_110577_a(field_110798_h);
-        GlStateManager.func_179128_n((int)5890);
-        GlStateManager.func_179094_E();
+        GlStateManager.depthMask((boolean)false);
+        GlStateManager.depthFunc((int)514);
+        GlStateManager.disableLighting();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_COLOR, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE);
+        a4.textureManager.bindTexture(RES_ITEM_GLINT);
+        GlStateManager.matrixMode((int)5890);
+        GlStateManager.pushMatrix();
         float a5 = 8.0f;
         if (a2 instanceof ku) {
             a5 = 0.125f;
         } else if (a2 instanceof jr) {
             a5 = 2.0f;
         }
-        GlStateManager.func_179152_a((float)a5, (float)a5, (float)a5);
-        float a6 = (float)(Minecraft.func_71386_F() % 3000L) / 3000.0f / a5;
-        GlStateManager.func_179109_b((float)a6, (float)0.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)-50.0f, (float)0.0f, (float)0.0f, (float)1.0f);
-        a4.func_191965_a(a2, a3);
-        GlStateManager.func_179121_F();
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179152_a((float)a5, (float)a5, (float)a5);
-        float a7 = (float)(Minecraft.func_71386_F() % 4873L) / 4873.0f / a5;
-        GlStateManager.func_179109_b((float)(-a7), (float)0.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)10.0f, (float)0.0f, (float)0.0f, (float)1.0f);
-        a4.func_191965_a(a2, a3);
-        GlStateManager.func_179121_F();
-        GlStateManager.func_179128_n((int)5888);
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179145_e();
-        GlStateManager.func_179143_c((int)515);
-        GlStateManager.func_179132_a((boolean)true);
-        a4.field_175057_n.func_110577_a(TextureMap.field_110575_b);
+        GlStateManager.scale((float)a5, (float)a5, (float)a5);
+        float a6 = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0f / a5;
+        GlStateManager.translate((float)a6, (float)0.0f, (float)0.0f);
+        GlStateManager.rotate((float)-50.0f, (float)0.0f, (float)0.0f, (float)1.0f);
+        a4.renderModel(a2, a3);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.scale((float)a5, (float)a5, (float)a5);
+        float a7 = (float)(Minecraft.getSystemTime() % 4873L) / 4873.0f / a5;
+        GlStateManager.translate((float)(-a7), (float)0.0f, (float)0.0f);
+        GlStateManager.rotate((float)10.0f, (float)0.0f, (float)0.0f, (float)1.0f);
+        a4.renderModel(a2, a3);
+        GlStateManager.popMatrix();
+        GlStateManager.matrixMode((int)5888);
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.enableLighting();
+        GlStateManager.depthFunc((int)515);
+        GlStateManager.depthMask((boolean)true);
+        a4.textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
     }
 }
 

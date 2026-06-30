@@ -131,7 +131,7 @@ implements InvTweaksAPI {
     }
 
     public void addServerScheduledTask(@NotNull Runnable task) {
-        server.func_152344_a(task);
+        server.addScheduledTask(task);
     }
 
     public void addClientScheduledTask(Runnable task) {

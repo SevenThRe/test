@@ -63,26 +63,26 @@ extends BaseGui {
         }
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         this.xSize = 394.0f;
         this.ySize = 278.0f;
-        this.offsetX = ((float)this.field_146294_l - this.xSize) / 2.0f;
-        this.offsetY = ((float)this.field_146295_m - this.ySize) / 2.0f;
+        this.offsetX = ((float)this.width - this.xSize) / 2.0f;
+        this.offsetY = ((float)this.height - this.ySize) / 2.0f;
     }
 
     @Override
-    public void func_73863_a(int mouseX, int mouseY, float partialTicks) {
-        super.func_73863_a(mouseX, mouseY, partialTicks);
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)this.offsetX, (float)this.offsetY, (float)0.0f);
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)this.offsetX, (float)this.offsetY, (float)0.0f);
         mouseX = (int)((float)mouseX - this.offsetX);
         mouseY = (int)((float)mouseY - this.offsetY);
         if (this.selectGuild != null) {
             RenderUtils.drawTexture(16.0, 41.5, 24.0, 24.0, new ResourceLocation("ancientdream", "gui/guild/" + this.selectGuild.head));
         }
-        GlStateManager.func_179147_l();
+        GlStateManager.enableBlend();
         RenderUtils.drawTexture(0.0, 0.0, 0.0, 0.0, (double)this.xSize, (double)this.ySize, 394.0, 353.0, this.BG);
-        GlStateManager.func_179084_k();
+        GlStateManager.disableBlend();
         if (this.selectGuild != null) {
             int i;
             RenderUtils.drawText(this.selectGuild.leader, 116.0, 45.0, true, true);
@@ -101,7 +101,7 @@ extends BaseGui {
             }
         }
         this.drawComponents(mouseX, mouseY);
-        GlStateManager.func_179109_b((float)137.0f, (float)80.0f, (float)0.0f);
+        GlStateManager.translate((float)137.0f, (float)80.0f, (float)0.0f);
         for (int i = 0; i < this.list.size(); ++i) {
             int y = 7 + i * 21;
             GuildData gd = this.list.get(i);
@@ -114,7 +114,7 @@ extends BaseGui {
             RenderUtils.drawText(gd.zdl, 177.0, y, true, true);
             RenderUtils.drawText(gd.zdl1, 224.0, y, true, true);
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @Override
@@ -122,8 +122,8 @@ extends BaseGui {
     }
 
     @Override
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         mouseX = (int)((float)mouseX - this.offsetX);
         mouseY = (int)((float)mouseY - this.offsetY);
         mouseX -= 137;

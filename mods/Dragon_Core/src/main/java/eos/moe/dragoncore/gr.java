@@ -50,7 +50,7 @@ extends Gui {
     public static final ResourceLocation n = new ResourceLocation("nbtedit", "textures/gui/window.png");
     public static final int j = 178;
     public static final int i = 93;
-    private Minecraft l = Minecraft.func_71410_x();
+    private Minecraft l = Minecraft.getMinecraft();
     private ph<fi> z;
     private NBTBase s;
     private boolean g;
@@ -84,8 +84,8 @@ extends Gui {
         a4.k = new up(1, a2 + 178 - 1, a3 + 50);
         String a5 = a4.m == null ? a4.z.ALLATORIxDEMO().ALLATORIxDEMO() : a4.m.getText();
         String a6 = a4.c == null ? gr.ALLATORIxDEMO(a4.s) : a4.c.getText();
-        a4.m = new ao(a4.l.field_71466_p, a2 + 46, a3 + 18, 116, 15, false);
-        a4.c = new ao(a4.l.field_71466_p, a2 + 46, a3 + 44, 116, 15, true);
+        a4.m = new ao(a4.l.fontRenderer, a2 + 46, a3 + 18, 116, 15, false);
+        a4.c = new ao(a4.l.fontRenderer, a2 + 46, a3 + 44, 116, 15, true);
         a4.m.setText(a5);
         a4.m.setEnableBackgroundDrawing(false);
         a4.m.func_82265_c(a4.g);
@@ -117,10 +117,10 @@ extends Gui {
         } else {
             a4.m.mouseClicked(a2, a3, 0);
             a4.c.mouseClicked(a2, a3, 0);
-            if (a4.q.func_146116_c(a4.l, a2, a3)) {
+            if (a4.q.mousePressed(a4.l, a2, a3)) {
                 a4.c();
             }
-            if (a4.b.func_146116_c(a4.l, a2, a3)) {
+            if (a4.b.mousePressed(a4.l, a2, a3)) {
                 a4.r.closeWindow();
             }
             a4.ALLATORIxDEMO.setEnabled(a4.c.isFocused());
@@ -140,31 +140,31 @@ extends Gui {
 
     public void draw(int a2, int a3) {
         gr a4;
-        a4.l.field_71446_o.func_110577_a(n);
+        a4.l.renderEngine.bindTexture(n);
         GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        a4.func_73729_b(a4.x, a4.v, 0, 0, 178, 93);
+        a4.drawTexturedModalRect(a4.x, a4.v, 0, 0, 178, 93);
         if (!a4.g) {
-            gr.func_73734_a((int)(a4.x + 42), (int)(a4.v + 15), (int)(a4.x + 169), (int)(a4.v + 31), (int)Integer.MIN_VALUE);
+            gr.drawRect((int)(a4.x + 42), (int)(a4.v + 15), (int)(a4.x + 169), (int)(a4.v + 31), (int)Integer.MIN_VALUE);
         }
         if (!a4.t) {
-            gr.func_73734_a((int)(a4.x + 42), (int)(a4.v + 41), (int)(a4.x + 169), (int)(a4.v + 57), (int)Integer.MIN_VALUE);
+            gr.drawRect((int)(a4.x + 42), (int)(a4.v + 41), (int)(a4.x + 169), (int)(a4.v + 57), (int)Integer.MIN_VALUE);
         }
         a4.m.drawTextBox();
         a4.c.drawTextBox();
-        a4.q.func_191745_a(a4.l, a2, a3, 0.0f);
-        a4.b.func_191745_a(a4.l, a2, a3, 0.0f);
+        a4.q.drawButton(a4.l, a2, a3, 0.0f);
+        a4.b.drawButton(a4.l, a2, a3, 0.0f);
         if (a4.o != null) {
-            a4.func_73732_a(a4.l.field_71466_p, a4.o, a4.x + 89, a4.v + 4, 0xFF0000);
+            a4.drawCenteredString(a4.l.fontRenderer, a4.o, a4.x + 89, a4.v + 4, 0xFF0000);
         }
         if (a4.y != null) {
-            a4.func_73732_a(a4.l.field_71466_p, a4.y, a4.x + 89, a4.v + 32, 0xFF0000);
+            a4.drawCenteredString(a4.l.fontRenderer, a4.y, a4.x + 89, a4.v + 32, 0xFF0000);
         }
         a4.k.draw(a2, a3);
         a4.ALLATORIxDEMO.draw(a2, a3);
     }
 
-    public void func_73732_a(FontRenderer a2, String a3, int a4, int a5, int a6) {
-        a2.func_78276_b(a3, a4 - a2.func_78256_a(a3) / 2, a5, a6);
+    public void drawCenteredString(FontRenderer a2, String a3, int a4, int a5, int a6) {
+        a2.drawString(a3, a4 - a2.getStringWidth(a3) / 2, a5, a6);
     }
 
     public void update() {
@@ -189,7 +189,7 @@ extends Gui {
             a4.k.setEnabled(a4.c.isFocused());
         } else if (a3 == 28) {
             a4.ALLATORIxDEMO();
-            if (a4.q.field_146124_l) {
+            if (a4.q.enabled) {
                 a4.c();
             }
         } else {
@@ -209,14 +209,14 @@ extends Gui {
             a2.o = "Duplicate Tag Name";
         }
         try {
-            gr.ALLATORIxDEMO(a2.c.getText(), a2.s.func_74732_a());
+            gr.ALLATORIxDEMO(a2.c.getText(), a2.s.getId());
             a3 &= true;
         }
         catch (NumberFormatException a4) {
             a2.y = a4.getMessage();
             a3 = false;
         }
-        a2.q.field_146124_l = a3;
+        a2.q.enabled = a3;
     }
 
     private /* synthetic */ boolean ALLATORIxDEMO() {
@@ -298,10 +298,10 @@ extends Gui {
     }
 
     private static /* synthetic */ String ALLATORIxDEMO(NBTBase a2) {
-        switch (a2.func_74732_a()) {
+        switch (a2.getId()) {
             case 7: {
                 String a3 = "";
-                for (byte a4 : ((NBTTagByteArray)a2).func_150292_c()) {
+                for (byte a4 : ((NBTTagByteArray)a2).getByteArray()) {
                     a3 = a3 + a4 + " ";
                 }
                 return a3;
@@ -314,7 +314,7 @@ extends Gui {
             }
             case 11: {
                 String a5 = "";
-                for (int a6 : ((NBTTagIntArray)a2).func_150302_c()) {
+                for (int a6 : ((NBTTagIntArray)a2).getIntArray()) {
                     a5 = a5 + a6 + " ";
                 }
                 return a5;

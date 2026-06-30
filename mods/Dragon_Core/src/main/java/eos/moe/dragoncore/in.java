@@ -102,7 +102,7 @@ public class in {
         a5.b = 167;
         InputStream a6 = null;
         try {
-            a6 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a2).func_110527_b();
+            a6 = Minecraft.getMinecraft().getResourceManager().getResource(a2).getInputStream();
             GraphicsEnvironment a7 = GraphicsEnvironment.getLocalGraphicsEnvironment();
             Font a8 = Font.createFont(0, a6);
             a7.registerFont(a8);
@@ -126,37 +126,37 @@ public class in {
             return;
         }
         ln a6 = a5.ALLATORIxDEMO(a2);
-        GlStateManager.func_179131_c((float)a5.y, (float)a5.k, (float)a5.ALLATORIxDEMO, (float)a5.o);
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)a3, (float)a4, (float)0.0f);
-        GlStateManager.func_179152_a((float)a5.q, (float)a5.q, (float)1.0f);
+        GlStateManager.color((float)a5.y, (float)a5.k, (float)a5.ALLATORIxDEMO, (float)a5.o);
+        GlStateManager.enableBlend();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)a3, (float)a4, (float)0.0f);
+        GlStateManager.scale((float)a5.q, (float)a5.q, (float)1.0f);
         float a7 = 0.0f;
         for (ge a8 : a6.k) {
             if (a8.v != co.r) {
                 if (a8.v == co.o) {
-                    GlStateManager.func_179131_c((float)a5.y, (float)a5.k, (float)a5.ALLATORIxDEMO, (float)a5.o);
+                    GlStateManager.color((float)a5.y, (float)a5.k, (float)a5.ALLATORIxDEMO, (float)a5.o);
                     continue;
                 }
                 if (a8.v != co.x) continue;
-                GlStateManager.func_179131_c((float)((float)(a8.m >> 16 & 0xFF) / 255.0f), (float)((float)(a8.m >> 8 & 0xFF) / 255.0f), (float)((float)(a8.m & 0xFF) / 255.0f), (float)a5.o);
+                GlStateManager.color((float)((float)(a8.m >> 16 & 0xFF) / 255.0f), (float)((float)(a8.m >> 8 & 0xFF) / 255.0f), (float)((float)(a8.m & 0xFF) / 255.0f), (float)a5.o);
                 continue;
             }
             if (a8.k != null) {
                 kca a9 = a8.k;
                 ww.ALLATORIxDEMO(a8.k.ALLATORIxDEMO());
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)a5.o);
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)a5.o);
                 mk.ALLATORIxDEMO(a7, 0.0f, a9.z() / a5.q, a9.k() / a5.q, a9.s() / a5.q, a9.w() / a5.q, a9.d() / a5.q, a9.x() / a5.q);
-                GlStateManager.func_179131_c((float)a5.y, (float)a5.k, (float)a5.ALLATORIxDEMO, (float)a5.o);
+                GlStateManager.color((float)a5.y, (float)a5.k, (float)a5.ALLATORIxDEMO, (float)a5.o);
             } else {
-                GlStateManager.func_179144_i((int)a8.y);
+                GlStateManager.bindTexture((int)a8.y);
                 a5.ALLATORIxDEMO(a7, 0.0f, (float)a8.c * a5.ALLATORIxDEMO(), (float)a8.q * a5.ALLATORIxDEMO(), (float)a8.o * a5.ALLATORIxDEMO(), (float)a8.b * a5.ALLATORIxDEMO());
             }
             a7 += (float)a8.o * a5.ALLATORIxDEMO();
         }
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179121_F();
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
     }
 
     private /* synthetic */ ln ALLATORIxDEMO(String a2) {
@@ -210,7 +210,7 @@ public class in {
                     a7 = new ge(a3);
                     if (a8 < 16) {
                         ((ge)a7).v = co.x;
-                        ((ge)a7).m = Minecraft.func_71410_x().field_71466_p.func_175064_b(a17);
+                        ((ge)a7).m = Minecraft.getMinecraft().fontRenderer.getColorCode(a17);
                     } else {
                         ((ge)a7).v = a8 == 16 ? co.v : (a8 == 17 ? co.m : (a8 == 18 ? co.c : (a8 == 19 ? co.q : (a8 == 20 ? co.b : co.o))));
                     }
@@ -272,7 +272,7 @@ public class in {
         a6.o.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         a6.o.drawString(a2 + "", a5.c, a5.q + a8.getAscent());
         a5.y = a6.q;
-        TextureUtil.func_110987_a((int)a6.q, (BufferedImage)a6.b);
+        TextureUtil.uploadTextureImage((int)a6.q, (BufferedImage)a6.b);
         a4.r.put(Character.valueOf(a2), a5);
         return a5;
     }
@@ -323,14 +323,14 @@ public class in {
         float a8 = 0.00390625f;
         float a9 = 0.00390625f;
         boolean a10 = false;
-        BufferBuilder a11 = Tessellator.func_178181_a().func_178180_c();
-        a11.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        a11.func_78914_f();
-        a11.func_181662_b((double)a2, (double)(a3 + a7), (double)a10).func_187315_a((double)(a4 * a8), (double)((a5 + a7) * a9)).func_181675_d();
-        a11.func_181662_b((double)(a2 + a6), (double)(a3 + a7), (double)a10).func_187315_a((double)((a4 + a6) * a8), (double)((a5 + a7) * a9)).func_181675_d();
-        a11.func_181662_b((double)(a2 + a6), (double)a3, (double)a10).func_187315_a((double)((a4 + a6) * a8), (double)(a5 * a9)).func_181675_d();
-        a11.func_181662_b((double)a2, (double)a3, (double)a10).func_187315_a((double)(a4 * a8), (double)(a5 * a9)).func_181675_d();
-        Tessellator.func_178181_a().func_78381_a();
+        BufferBuilder a11 = Tessellator.getInstance().getBuffer();
+        a11.begin(7, DefaultVertexFormats.POSITION_TEX);
+        a11.noColor();
+        a11.pos((double)a2, (double)(a3 + a7), (double)a10).tex((double)(a4 * a8), (double)((a5 + a7) * a9)).endVertex();
+        a11.pos((double)(a2 + a6), (double)(a3 + a7), (double)a10).tex((double)((a4 + a6) * a8), (double)((a5 + a7) * a9)).endVertex();
+        a11.pos((double)(a2 + a6), (double)a3, (double)a10).tex((double)((a4 + a6) * a8), (double)(a5 * a9)).endVertex();
+        a11.pos((double)a2, (double)a3, (double)a10).tex((double)(a4 * a8), (double)(a5 * a9)).endVertex();
+        Tessellator.getInstance().draw();
     }
 
     public int c(String a2) {
@@ -428,7 +428,7 @@ public class in {
     public void ALLATORIxDEMO() {
         in a2;
         for (ef a3 : a2.x) {
-            GlStateManager.func_179150_h((int)a3.q);
+            GlStateManager.deleteTexture((int)a3.q);
         }
         a2.t.clear();
     }

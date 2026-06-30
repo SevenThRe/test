@@ -82,7 +82,7 @@ public class ShoulderState {
     }
 
     public static boolean doShoulderSurfing() {
-        return enabled && Minecraft.func_71410_x().field_71474_y.field_74320_O == 1;
+        return enabled && Minecraft.getMinecraft().gameSettings.thirdPersonView == 1;
     }
 
     public static EnumShaderCompatibility getShaderType() {

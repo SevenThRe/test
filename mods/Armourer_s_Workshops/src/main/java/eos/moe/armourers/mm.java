@@ -47,18 +47,18 @@ public class mm {
 
     public static void r() {
         Iterator iterator;
-        Iterator iterator2 = iterator = Minecraft.func_71410_x().func_175598_ae().getSkinMap().values().iterator();
+        Iterator iterator2 = iterator = Minecraft.getMinecraft().getRenderManager().getSkinMap().values().iterator();
         while (iterator2.hasNext()) {
             RenderPlayer renderPlayer = (RenderPlayer)iterator.next();
             String[] stringArray = new String[2];
             stringArray[0] = "layerRenderers";
-            stringArray[1] = "field_177097_h";
+            stringArray[1] = "layerRenderers";
             Iterator iterator3 = ((List)ReflectionHelper.getPrivateValue(RenderLivingBase.class, (Object)renderPlayer, (String[])stringArray)).iterator();
             while (iterator3.hasNext()) {
                 if (!((LayerRenderer)iterator3.next() instanceof tg)) continue;
                 return;
             }
-            renderPlayer.func_177094_a((LayerRenderer)new tg(renderPlayer));
+            renderPlayer.addLayer((LayerRenderer)new tg(renderPlayer));
             iterator2 = iterator;
         }
     }

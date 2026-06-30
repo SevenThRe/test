@@ -83,15 +83,15 @@ public enum UIManager {
         catch (Throwable e) {
             this.logger.error("Unexpected error: " + LogFormatter.toString(e));
         }
-        this.minecraft.func_147108_a(null);
-        this.minecraft.func_71381_h();
+        this.minecraft.displayGuiScreen(null);
+        this.minecraft.setIngameFocus();
     }
 
     public void closeCurrent() {
         try {
-            if (this.minecraft.field_71462_r != null && this.minecraft.field_71462_r instanceof JmUI) {
-                this.logger.debug("Closing " + this.minecraft.field_71462_r.getClass());
-                ((JmUI)this.minecraft.field_71462_r).close();
+            if (this.minecraft.currentScreen != null && this.minecraft.currentScreen instanceof JmUI) {
+                this.logger.debug("Closing " + this.minecraft.currentScreen.getClass());
+                ((JmUI)this.minecraft.currentScreen).close();
             }
         }
         catch (LinkageError e) {
@@ -105,7 +105,7 @@ public enum UIManager {
     public void openInventory() {
         this.logger.debug("Opening inventory");
         this.closeAll();
-        this.minecraft.func_147108_a((GuiScreen)new GuiInventory((EntityPlayer)this.minecraft.field_71439_g));
+        this.minecraft.displayGuiScreen((GuiScreen)new GuiInventory((EntityPlayer)this.minecraft.player));
     }
 
     public <T extends JmUI> T open(Class<T> uiClass, JmUI returnDisplay) {
@@ -152,8 +152,8 @@ public enum UIManager {
         this.closeCurrent();
         this.logger.debug("Opening UI " + ui.getClass().getSimpleName());
         try {
-            this.minecraft.func_147108_a(ui);
-            KeyBinding.func_74506_a();
+            this.minecraft.displayGuiScreen(ui);
+            KeyBinding.unPressAllKeys();
         }
         catch (LinkageError e) {
             UIManager.handleLinkageError(e);
@@ -204,11 +204,11 @@ public enum UIManager {
     }
 
     public void drawMiniMap() {
-        this.minecraft.field_71424_I.func_76320_a("journeymap");
+        this.minecraft.profiler.startSection("journeymap");
         try {
             boolean doDraw = false;
             if (this.miniMap.getCurrentMinimapProperties().enabled.get().booleanValue()) {
-                GuiScreen currentScreen = this.minecraft.field_71462_r;
+                GuiScreen currentScreen = this.minecraft.currentScreen;
                 boolean bl = doDraw = currentScreen == null || currentScreen instanceof GuiChat;
                 if (doDraw) {
                     if (!MiniMap.uiState().active) {
@@ -232,7 +232,7 @@ public enum UIManager {
             Journeymap.getLogger().error("Error drawing minimap: " + LogFormatter.toString(e));
         }
         finally {
-            this.minecraft.field_71424_I.func_76319_b();
+            this.minecraft.profiler.endSection();
         }
     }
 
@@ -241,10 +241,10 @@ public enum UIManager {
     }
 
     public Fullscreen openFullscreenMap() {
-        if (this.minecraft.field_71462_r instanceof Fullscreen) {
-            return (Fullscreen)this.minecraft.field_71462_r;
+        if (this.minecraft.currentScreen instanceof Fullscreen) {
+            return (Fullscreen)this.minecraft.currentScreen;
         }
-        KeyBinding.func_74506_a();
+        KeyBinding.unPressAllKeys();
         return (Fullscreen)((Object)this.open((GuiScreen)Fullscreen.class));
     }
 

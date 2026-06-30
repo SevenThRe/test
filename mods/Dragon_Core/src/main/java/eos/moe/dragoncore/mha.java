@@ -27,15 +27,15 @@ extends uha {
     @Override
     public void ALLATORIxDEMO() {
         mha a2;
-        GlStateManager.func_179094_E();
-        RenderHelper.func_74518_a();
-        RenderHelper.func_74520_c();
-        GlStateManager.func_179126_j();
-        GlStateManager.func_179137_b((double)a2.c(), (double)a2.ALLATORIxDEMO(), (double)250.0);
-        GlStateManager.func_179152_a((float)a2.ALLATORIxDEMO, (float)a2.ALLATORIxDEMO, (float)a2.ALLATORIxDEMO);
-        Minecraft.func_71410_x().func_175599_af().func_180450_b(a2.ALLATORIxDEMO().v, 0, 0);
-        GlStateManager.func_179121_F();
-        GlStateManager.func_179097_i();
+        GlStateManager.pushMatrix();
+        RenderHelper.disableStandardItemLighting();
+        RenderHelper.enableGUIStandardItemLighting();
+        GlStateManager.enableDepth();
+        GlStateManager.translate((double)a2.c(), (double)a2.ALLATORIxDEMO(), (double)250.0);
+        GlStateManager.scale((float)a2.ALLATORIxDEMO, (float)a2.ALLATORIxDEMO, (float)a2.ALLATORIxDEMO);
+        Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(a2.ALLATORIxDEMO().v, 0, 0);
+        GlStateManager.popMatrix();
+        GlStateManager.disableDepth();
     }
 }
 

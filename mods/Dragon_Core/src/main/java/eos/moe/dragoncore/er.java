@@ -103,16 +103,16 @@ public class er {
     public List<BlockPos> ALLATORIxDEMO(BlockPos a2, float a4) {
         er a5;
         if (a4 == 0.0f) {
-            return a5.o.stream().map(a3 -> new BlockPos(a2.func_177958_n() + -a3.func_177958_n(), a2.func_177956_o() + a3.func_177956_o(), a2.func_177952_p() + -a3.func_177952_p())).collect(Collectors.toList());
+            return a5.o.stream().map(a3 -> new BlockPos(a2.getX() + -a3.getX(), a2.getY() + a3.getY(), a2.getZ() + -a3.getZ())).collect(Collectors.toList());
         }
         if (a4 == 90.0f) {
-            return a5.o.stream().map(a3 -> new BlockPos(a2.func_177958_n() + a3.func_177952_p(), a2.func_177956_o() + a3.func_177956_o(), a2.func_177952_p() + -a3.func_177958_n())).collect(Collectors.toList());
+            return a5.o.stream().map(a3 -> new BlockPos(a2.getX() + a3.getZ(), a2.getY() + a3.getY(), a2.getZ() + -a3.getX())).collect(Collectors.toList());
         }
         if (a4 == 180.0f) {
-            return a5.o.stream().map(a3 -> new BlockPos(a2.func_177958_n() + a3.func_177958_n(), a2.func_177956_o() + a3.func_177956_o(), a2.func_177952_p() + a3.func_177952_p())).collect(Collectors.toList());
+            return a5.o.stream().map(a3 -> new BlockPos(a2.getX() + a3.getX(), a2.getY() + a3.getY(), a2.getZ() + a3.getZ())).collect(Collectors.toList());
         }
         if (a4 == 270.0f) {
-            return a5.o.stream().map(a3 -> new BlockPos(a2.func_177958_n() + -a3.func_177952_p(), a2.func_177956_o() + a3.func_177956_o(), a2.func_177952_p() + a3.func_177958_n())).collect(Collectors.toList());
+            return a5.o.stream().map(a3 -> new BlockPos(a2.getX() + -a3.getZ(), a2.getY() + a3.getY(), a2.getZ() + a3.getX())).collect(Collectors.toList());
         }
         return ImmutableList.of((Object)a2);
     }

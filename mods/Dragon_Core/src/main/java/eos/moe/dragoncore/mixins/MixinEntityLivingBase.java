@@ -24,9 +24,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinEntityLivingBase
 extends Entity {
     @Shadow
-    public float field_70761_aq;
+    public float renderYawOffset;
     @Shadow
-    public float field_70759_as;
+    public float rotationYawHead;
     private boolean onLock = false;
 
     public MixinEntityLivingBase(World a2) {
@@ -42,7 +42,7 @@ extends Entity {
             a5.onLock = true;
         } else if (a5.onLock) {
             a5.onLock = false;
-            a5.field_70761_aq = a5.field_70177_z;
+            a5.renderYawOffset = a5.rotationYaw;
             a4.setReturnValue(Float.valueOf(a3));
         }
     }
@@ -50,9 +50,9 @@ extends Entity {
     protected float updateDistance2(float a2, float a3) {
         boolean a4;
         MixinEntityLivingBase a5;
-        float a6 = MathHelper.func_76142_g((float)(a2 - a5.field_70761_aq));
-        a5.field_70761_aq += a6 * 0.3f;
-        float a7 = MathHelper.func_76142_g((float)(a5.field_70177_z - a5.field_70761_aq));
+        float a6 = MathHelper.wrapDegrees((float)(a2 - a5.renderYawOffset));
+        a5.renderYawOffset += a6 * 0.3f;
+        float a7 = MathHelper.wrapDegrees((float)(a5.rotationYaw - a5.renderYawOffset));
         boolean bl2 = a4 = a7 < -90.0f || a7 >= 90.0f;
         if (a7 < -75.0f) {
             a7 = -75.0f;
@@ -60,9 +60,9 @@ extends Entity {
         if (a7 >= 75.0f) {
             a7 = 75.0f;
         }
-        a5.field_70761_aq = a5.field_70177_z - a7;
+        a5.renderYawOffset = a5.rotationYaw - a7;
         if (a7 * a7 > 2500.0f) {
-            a5.field_70761_aq += a7 * 0.2f;
+            a5.renderYawOffset += a7 * 0.2f;
         }
         if (a4) {
             a3 *= -1.0f;

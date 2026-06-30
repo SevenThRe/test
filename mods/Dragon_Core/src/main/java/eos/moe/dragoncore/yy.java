@@ -94,7 +94,7 @@ IMessageHandler<yy, IMessage> {
             return;
         }
         a4 = (Object)a7;
-        Minecraft.func_71410_x().func_152344_a(() -> a3.ALLATORIxDEMO(a8, (va)((Object)a4)));
+        Minecraft.getMinecraft().addScheduledTask(() -> a3.ALLATORIxDEMO(a8, (va)((Object)a4)));
     }
 
     public static byte[] ALLATORIxDEMO(ByteBuf a2) {
@@ -154,13 +154,13 @@ IMessageHandler<yy, IMessage> {
                 } else if (a8 == Long.TYPE) {
                     a6[a7] = a3.readLong();
                 } else if (a8 == UUID.class) {
-                    a6[a7] = a3.func_179253_g();
+                    a6[a7] = a3.readUniqueId();
                 } else if (a8 == va.class) {
                     a6[a7] = a3;
                 } else if (a8 == ItemStack.class) {
-                    a6[a7] = a3.func_150791_c();
+                    a6[a7] = a3.readItemStack();
                 } else if (a8 == BlockPos.class) {
-                    a6[a7] = BlockPos.func_177969_a((long)a3.readLong());
+                    a6[a7] = BlockPos.fromLong((long)a3.readLong());
                 } else if (a8 == NBTTagCompound.class) {
                     a6[a7] = bp.ALLATORIxDEMO((ByteBuf)a3);
                 }

@@ -26,7 +26,7 @@ public class MixinModelManager {
     @Inject(method={"getModel"}, at={@At(value="HEAD")}, cancellable=true)
     private /* synthetic */ void mixin_getModel(ModelResourceLocation a2, CallbackInfoReturnable<IBakedModel> a3) {
         IBakedModel a4;
-        if (a2 != null && (a4 = dla.x.ALLATORIxDEMO(a2.func_110623_a())) != null) {
+        if (a2 != null && (a4 = dla.x.ALLATORIxDEMO(a2.getPath())) != null) {
             a3.setReturnValue(a4);
         }
     }

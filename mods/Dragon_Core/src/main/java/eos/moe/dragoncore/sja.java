@@ -42,14 +42,14 @@ public class sja {
         if (a4.k.size() == 0) {
             return null;
         }
-        if (a2 == null || a2.func_190926_b()) {
+        if (a2 == null || a2.isEmpty()) {
             return null;
         }
         IItemStack a5 = (IItemStack)a2;
         long a6 = (Long)a5.getMeta("EffectApplyModelTime" + a3, 0L);
         if (a4.ALLATORIxDEMO > a6) {
             String a7 = dj.ALLATORIxDEMO(a2, false, false);
-            int a8 = Item.func_150891_b((Item)a2.func_77973_b());
+            int a8 = Item.getIdFromItem((Item)a2.getItem());
             sfa a9 = null;
             for (sfa a10 : a4.k) {
                 if (sfa.c(a10) != a3 || sfa.ALLATORIxDEMO(a10) != 0 && sfa.ALLATORIxDEMO(a10) != a8 || !al.ALLATORIxDEMO(sfa.ALLATORIxDEMO(a10), a7)) continue;
@@ -75,21 +75,21 @@ public class sja {
         boolean a8 = GL11.glIsEnabled((int)2896);
         boolean a9 = GL11.glIsEnabled((int)2929);
         boolean a10 = GL11.glIsEnabled((int)3042);
-        GlStateManager.func_179140_f();
-        GlStateManager.func_179097_i();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179118_c();
+        GlStateManager.disableLighting();
+        GlStateManager.disableDepth();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.enableBlend();
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.disableAlpha();
         sd.ALLATORIxDEMO(a3, a4, 0.0, 0.0, sfa.c(a7), sfa.ALLATORIxDEMO(a7), sfa.c(a7), sfa.ALLATORIxDEMO(a7));
         if (a8) {
-            GlStateManager.func_179145_e();
+            GlStateManager.enableLighting();
         }
         if (a9) {
-            GlStateManager.func_179126_j();
+            GlStateManager.enableDepth();
         }
         if (!a10) {
-            GlStateManager.func_179084_k();
+            GlStateManager.disableBlend();
         }
     }
 }

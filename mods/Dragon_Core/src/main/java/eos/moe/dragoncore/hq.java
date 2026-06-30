@@ -122,7 +122,7 @@ g {
     @Override
     public void renderAll() {
         block2: {
-            GlStateManager.func_179103_j((int)7425);
+            GlStateManager.shadeModel((int)7425);
             try {
                 hq a2;
                 a2.t.f(a2.q, 1.0f);
@@ -130,11 +130,11 @@ g {
             }
             catch (Exception a3) {
                 a3.printStackTrace();
-                if (!OpenGlHelper.func_176075_f()) break block2;
-                OpenGlHelper.func_176072_g((int)OpenGlHelper.field_176089_P, (int)0);
+                if (!OpenGlHelper.useVbo()) break block2;
+                OpenGlHelper.glBindBuffer((int)OpenGlHelper.GL_ARRAY_BUFFER, (int)0);
             }
         }
-        GlStateManager.func_179103_j((int)7424);
+        GlStateManager.shadeModel((int)7424);
     }
 
     public void sendBoneData(wp a2) {
@@ -330,7 +330,7 @@ g {
 
     public ResourceLocation getResource(String a2) {
         hq a3;
-        String a4 = a3.m.func_110623_a();
+        String a4 = a3.m.getPath();
         int a5 = a4.lastIndexOf(47);
         if (a5 == -1) {
             return new ResourceLocation("dragoncore", a2);
@@ -339,19 +339,19 @@ g {
         return new ResourceLocation("dragoncore", a6 + "/" + a2);
     }
 
-    public void func_78088_a(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
+    public void render(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
         hq a9;
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179137_b((double)0.0, (double)1.501, (double)0.0);
-        GlStateManager.func_179114_b((float)90.0f, (float)1.0f, (float)0.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)180.0f, (float)0.0f, (float)0.0f, (float)1.0f);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((double)0.0, (double)1.501, (double)0.0);
+        GlStateManager.rotate((float)90.0f, (float)1.0f, (float)0.0f, (float)0.0f);
+        GlStateManager.rotate((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.rotate((float)180.0f, (float)0.0f, (float)0.0f, (float)1.0f);
         a9.renderAll();
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
         a9.animate();
         if (a9.v != null && a9.v.ALLATORIxDEMO() != null) {
             if (a2 != null) {
-                a9.v.ALLATORIxDEMO().ALLATORIxDEMO(a2.field_70173_aa % a9.v.ALLATORIxDEMO().o);
+                a9.v.ALLATORIxDEMO().ALLATORIxDEMO(a2.ticksExisted % a9.v.ALLATORIxDEMO().o);
             } else {
                 a9.v.ALLATORIxDEMO().ALLATORIxDEMO(wia.k % a9.v.ALLATORIxDEMO().o);
             }

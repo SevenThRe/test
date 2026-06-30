@@ -16,11 +16,11 @@ public class PlayerRenderer
 extends BipedRenderer<AbstractClientPlayer> {
     @Override
     protected void transformLocally(AbstractClientPlayer entity, EntityData<?> data, float partialTicks) {
-        if (entity.func_70093_af()) {
-            if (entity.field_71075_bZ.field_75100_b) {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.25f, (float)0.0f);
+        if (entity.isSneaking()) {
+            if (entity.capabilities.isFlying) {
+                GlStateManager.translate((float)0.0f, (float)0.25f, (float)0.0f);
             } else {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.3125f, (float)0.0f);
+                GlStateManager.translate((float)0.0f, (float)0.3125f, (float)0.0f);
             }
         }
     }

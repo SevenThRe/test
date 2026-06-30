@@ -48,16 +48,16 @@ implements Serializable {
         }
         mt a7 = new mt(a2, a4.c, a4.m, a5, a4.g);
         if (a3 != null) {
-            a7.func_78793_a(a4.a.getX() - a3.a.getX(), -(a4.a.getY() - a3.a.getY()), a4.a.getZ() - a3.a.getZ());
+            a7.setRotationPoint(a4.a.getX() - a3.a.getX(), -(a4.a.getY() - a3.a.getY()), a4.a.getZ() - a3.a.getZ());
         } else {
-            a7.func_78793_a(a4.a.getX(), -a4.a.getY(), a4.a.getZ());
+            a7.setRotationPoint(a4.a.getX(), -a4.a.getY(), a4.a.getZ());
         }
         if (a4.r != null) {
-            a7.field_78805_m = new ArrayList(a4.r.size());
+            a7.childModels = new ArrayList(a4.r.size());
             for (bf a8 : a4.r) {
                 mt a9 = a8.bake(a2, a4);
                 a9.m = a7;
-                a7.field_78805_m.add(a9);
+                a7.childModels.add(a9);
             }
         }
         return a7;

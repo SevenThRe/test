@@ -43,7 +43,7 @@ public abstract class Mutator<D extends LivingEntityData<E>, E extends EntityLiv
     }
 
     public void fetchFields(RenderLivingBase<? extends E> renderer) {
-        this.layerRenderers = renderer.field_177097_h;
+        this.layerRenderers = renderer.layerRenderers;
     }
 
     public abstract void storeVanillaModel(M var1);
@@ -57,11 +57,11 @@ public abstract class Mutator<D extends LivingEntityData<E>, E extends EntityLiv
     public abstract boolean createParts(M var1, float var2);
 
     public boolean mutate(RenderLivingBase<? extends E> renderer) {
-        if (renderer.func_177087_b() == null || this.shouldModelBeSkipped(renderer.func_177087_b())) {
+        if (renderer.getMainModel() == null || this.shouldModelBeSkipped(renderer.getMainModel())) {
             return false;
         }
         this.fetchFields(renderer);
-        ModelBase model = renderer.func_177087_b();
+        ModelBase model = renderer.getMainModel();
         float scaleFactor = 0.0f;
         boolean isModelVanilla = this.isModelVanilla(model);
         if (isModelVanilla) {
@@ -77,10 +77,10 @@ public abstract class Mutator<D extends LivingEntityData<E>, E extends EntityLiv
     }
 
     public void demutate(RenderLivingBase<? extends E> renderer) {
-        if (this.shouldModelBeSkipped(renderer.func_177087_b())) {
+        if (this.shouldModelBeSkipped(renderer.getMainModel())) {
             return;
         }
-        ModelBase model = renderer.func_177087_b();
+        ModelBase model = renderer.getMainModel();
         this.applyVanillaModel(model);
         if (this.layerRenderers != null) {
             for (int i2 = 0; i2 < this.layerRenderers.size(); ++i2) {
@@ -90,15 +90,15 @@ public abstract class Mutator<D extends LivingEntityData<E>, E extends EntityLiv
     }
 
     public void updateModel(E entity, RenderLivingBase<? extends E> renderer, float partialTicks) {
-        boolean shouldSit = entity.func_184218_aH() && entity.func_184187_bx() != null && entity.func_184187_bx().shouldRiderSit();
-        float f2 = GUtil.interpolateRotation(((EntityLivingBase)entity).field_70760_ar, ((EntityLivingBase)entity).field_70761_aq, partialTicks);
-        float f1 = GUtil.interpolateRotation(((EntityLivingBase)entity).field_70758_at, ((EntityLivingBase)entity).field_70759_as, partialTicks);
+        boolean shouldSit = entity.isRiding() && entity.getRidingEntity() != null && entity.getRidingEntity().shouldRiderSit();
+        float f2 = GUtil.interpolateRotation(((EntityLivingBase)entity).prevRenderYawOffset, ((EntityLivingBase)entity).renderYawOffset, partialTicks);
+        float f1 = GUtil.interpolateRotation(((EntityLivingBase)entity).prevRotationYawHead, ((EntityLivingBase)entity).rotationYawHead, partialTicks);
         float yaw = f1 - f2;
-        if (shouldSit && entity.func_184187_bx() instanceof EntityLivingBase) {
-            EntityLivingBase entitylivingbase = (EntityLivingBase)entity.func_184187_bx();
-            f2 = GUtil.interpolateRotation(entitylivingbase.field_70760_ar, entitylivingbase.field_70761_aq, partialTicks);
+        if (shouldSit && entity.getRidingEntity() instanceof EntityLivingBase) {
+            EntityLivingBase entitylivingbase = (EntityLivingBase)entity.getRidingEntity();
+            f2 = GUtil.interpolateRotation(entitylivingbase.prevRenderYawOffset, entitylivingbase.renderYawOffset, partialTicks);
             yaw = f1 - f2;
-            float f3 = MathHelper.func_76142_g((float)yaw);
+            float f3 = MathHelper.wrapDegrees((float)yaw);
             if (f3 < -85.0f) {
                 f3 = -85.0f;
             }
@@ -111,13 +111,13 @@ public abstract class Mutator<D extends LivingEntityData<E>, E extends EntityLiv
             }
             yaw = f1 - f2;
         }
-        float pitch = ((EntityLivingBase)entity).field_70127_C + (((EntityLivingBase)entity).field_70125_A - ((EntityLivingBase)entity).field_70127_C) * partialTicks;
+        float pitch = ((EntityLivingBase)entity).prevRotationPitch + (((EntityLivingBase)entity).rotationPitch - ((EntityLivingBase)entity).prevRotationPitch) * partialTicks;
         float f5 = 0.0f;
         float f6 = 0.0f;
-        if (!entity.func_184218_aH()) {
-            f5 = ((EntityLivingBase)entity).field_184618_aE + (((EntityLivingBase)entity).field_70721_aZ - ((EntityLivingBase)entity).field_184618_aE) * partialTicks;
-            f6 = ((EntityLivingBase)entity).field_184619_aG - ((EntityLivingBase)entity).field_70721_aZ * (1.0f - partialTicks);
-            if (entity.func_70631_g_()) {
+        if (!entity.isRiding()) {
+            f5 = ((EntityLivingBase)entity).prevLimbSwingAmount + (((EntityLivingBase)entity).limbSwingAmount - ((EntityLivingBase)entity).prevLimbSwingAmount) * partialTicks;
+            f6 = ((EntityLivingBase)entity).limbSwing - ((EntityLivingBase)entity).limbSwingAmount * (1.0f - partialTicks);
+            if (entity.isChild()) {
                 f6 *= 3.0f;
             }
             if (f5 > 1.0f) {
@@ -129,12 +129,12 @@ public abstract class Mutator<D extends LivingEntityData<E>, E extends EntityLiv
         this.headPitch = pitch;
         this.limbSwing = f6;
         this.limbSwingAmount = f5;
-        this.swingProgress = entity.func_70678_g(partialTicks);
+        this.swingProgress = entity.getSwingProgress(partialTicks);
     }
 
     public void performAnimations(D data, String animatedEntityKey, RenderLivingBase<? extends E> renderer, float partialTicks) {
-        ((LivingEntityData)data).headYaw.set(Float.valueOf(MathHelper.func_76142_g((float)this.headYaw)));
-        ((LivingEntityData)data).headPitch.set(Float.valueOf(MathHelper.func_76142_g((float)this.headPitch)));
+        ((LivingEntityData)data).headYaw.set(Float.valueOf(MathHelper.wrapDegrees((float)this.headYaw)));
+        ((LivingEntityData)data).headPitch.set(Float.valueOf(MathHelper.wrapDegrees((float)this.headPitch)));
         ((LivingEntityData)data).limbSwing.set(Float.valueOf(this.limbSwing));
         ((LivingEntityData)data).limbSwingAmount.set(Float.valueOf(this.limbSwingAmount));
         ((LivingEntityData)data).swingProgress.set(Float.valueOf(this.swingProgress));

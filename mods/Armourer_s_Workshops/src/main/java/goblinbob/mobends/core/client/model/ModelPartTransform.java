@@ -97,7 +97,7 @@ AnimationModelRenderer {
     @Override
     public void applyPreTransform(float scale) {
         if (this.globalOffset.x != 0.0f || this.globalOffset.y != 0.0f || this.globalOffset.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.globalOffset.x * scale), (float)(this.globalOffset.y * scale), (float)(this.globalOffset.z * scale));
+            GlStateManager.translate((float)(this.globalOffset.x * scale), (float)(this.globalOffset.y * scale), (float)(this.globalOffset.z * scale));
         }
     }
 
@@ -140,26 +140,26 @@ AnimationModelRenderer {
     @Override
     public void applyLocalTransform(float scale) {
         if (this.position.x != 0.0f || this.position.y != 0.0f || this.position.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.position.x * scale * this.offsetScale), (float)(this.position.y * scale * this.offsetScale), (float)(this.position.z * scale * this.offsetScale));
+            GlStateManager.translate((float)(this.position.x * scale * this.offsetScale), (float)(this.position.y * scale * this.offsetScale), (float)(this.position.z * scale * this.offsetScale));
         }
         if (this.offset.x != 0.0f || this.offset.y != 0.0f || this.offset.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.offset.x * scale * this.offsetScale), (float)(this.offset.y * scale * this.offsetScale), (float)(this.offset.z * scale * this.offsetScale));
+            GlStateManager.translate((float)(this.offset.x * scale * this.offsetScale), (float)(this.offset.y * scale * this.offsetScale), (float)(this.offset.z * scale * this.offsetScale));
         }
         if (this.applyAnimation) {
             if (this.rotateAngleZZ != 0.0f) {
-                GlStateManager.func_179114_b((float)this.rotateAngleZZ, (float)0.0f, (float)0.0f, (float)1.0f);
+                GlStateManager.rotate((float)this.rotateAngleZZ, (float)0.0f, (float)0.0f, (float)1.0f);
             }
             if (this.rotateAngleYY != 0.0f) {
-                GlStateManager.func_179114_b((float)this.rotateAngleYY, (float)0.0f, (float)1.0f, (float)0.0f);
+                GlStateManager.rotate((float)this.rotateAngleYY, (float)0.0f, (float)1.0f, (float)0.0f);
             }
             if (this.rotateAngleXX != 0.0f) {
-                GlStateManager.func_179114_b((float)this.rotateAngleXX, (float)1.0f, (float)0.0f, (float)0.0f);
+                GlStateManager.rotate((float)this.rotateAngleXX, (float)1.0f, (float)0.0f, (float)0.0f);
             }
         } else {
             GlHelper.rotate(this.rotation.getSmooth());
         }
         if (this.scale.x != 0.0f || this.scale.y != 0.0f || this.scale.z != 0.0f) {
-            GlStateManager.func_179152_a((float)this.scale.x, (float)this.scale.y, (float)this.scale.z);
+            GlStateManager.scale((float)this.scale.x, (float)this.scale.y, (float)this.scale.z);
         }
     }
 

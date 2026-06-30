@@ -45,8 +45,8 @@ public class iiiiiiiiii_13 {
     }
 
     static {
-        IIiiiiiIIi = Tessellator.func_178181_a();
-        IIiIiIIIiI = IIiiiiiIIi.func_178180_c();
+        IIiiiiiIIi = Tessellator.getInstance();
+        IIiIiIIIiI = IIiiiiiIIi.getBuffer();
     }
 
     public static void IIIiiiIiii(String IIiiiiiIIi, double IIiiiiiIIi2, double IIiiiiiIIi3, iiiiiiiiii_14 IIiiiiiIIi4, iiiiiiiiii_16 IIiiiiiIIi5, Integer IIiiiiiIIi6, float IIiiiiiIIi7, int IIiiiiiIIi8, float IIiiiiiIIi9, double IIiiiiiIIi10, boolean IIiiiiiIIi11) {
@@ -54,35 +54,35 @@ public class iiiiiiiiii_13 {
     }
 
     public static void IIIiiiIiii() {
-        IIiiiiiIIi.func_78381_a();
+        IIiiiiiIIi.draw();
     }
 
     public static void IIIiiiIiii(String IIiiiiiIIi, double IIiiiiiIIi2, double IIiiiiiIIi3, iiiiiiiiii_14 IIiiiiiIIi4, iiiiiiiiii_16 IIiiiiiIIi5, Integer IIiiiiiIIi6, float IIiiiiiIIi7, Integer IIiiiiiIIi8, float IIiiiiiIIi9, double IIiiiiiIIi10, boolean IIiiiiiIIi11, double IIiiiiiIIi12) {
         double IIiiiiiIIi13 = 0.0;
         double IIiiiiiIIi14 = 0.0;
         if (IIiiiiiIIi6 != null && IIiiiiiIIi7 > 0.0f) {
-            FontRenderer IIiiiiiIIi15 = FMLClientHandler.instance().getClient().field_71466_p;
-            IIiiiiiIIi13 = IIiiiiiIIi15.func_78256_a(IIiiiiiIIi);
+            FontRenderer IIiiiiiIIi15 = FMLClientHandler.instance().getClient().fontRenderer;
+            IIiiiiiIIi13 = IIiiiiiIIi15.getStringWidth(IIiiiiiIIi);
             IIiiiiiIIi14 = iiiiiiiiii_13.IIIiiiIiii(IIiiiiiIIi15, IIiiiiiIIi11);
         }
         iiiiiiiiii_13.IIIiiiIiii(IIiiiiiIIi, IIiiiiiIIi2, IIiiiiiIIi3, IIiiiiiIIi4, IIiiiiiIIi5, IIiiiiiIIi6, IIiiiiiIIi7, IIiiiiiIIi13, IIiiiiiIIi14, IIiiiiiIIi8, IIiiiiiIIi9, IIiiiiiIIi10, IIiiiiiIIi11, IIiiiiiIIi12);
     }
 
     public static int IIIiiiIiii(FontRenderer IIiiiiiIIi, boolean IIiiiiiIIi2) {
-        int IIiiiiiIIi3 = IIiiiiiIIi.func_82883_a() ? 0 : (IIiiiiiIIi2 ? 6 : 4);
-        return IIiiiiiIIi.field_78288_b + IIiiiiiIIi3;
+        int IIiiiiiIIi3 = IIiiiiiIIi.getUnicodeFlag() ? 0 : (IIiiiiiIIi2 ? 6 : 4);
+        return IIiiiiiIIi.FONT_HEIGHT + IIiiiiiIIi3;
     }
 
     public static void IIIiiiIiii(double IIiiiiiIIi, double IIiiiiiIIi2, double IIiiiiiIIi3, double IIiiiiiIIi4, double IIiiiiiIIi5) {
-        IIiIiIIIiI.func_181662_b(IIiiiiiIIi, IIiiiiiIIi2, IIiiiiiIIi3).func_187315_a(IIiiiiiIIi4, IIiiiiiIIi5).func_181675_d();
+        IIiIiIIIiI.pos(IIiiiiiIIi, IIiiiiiIIi2, IIiiiiiIIi3).tex(IIiiiiiIIi4, IIiiiiiIIi5).endVertex();
     }
 
     public static void IIIiiiIiii(int IIiiiiiIIi, int IIiiiiiIIi2, int IIiiiiiIIi3, int IIiiiiiIIi4) {
         int IIiiiiiIIi5 = IIiiiiiIIi3 - IIiiiiiIIi;
         int IIiiiiiIIi6 = IIiiiiiIIi4 - IIiiiiiIIi2;
-        ScaledResolution IIiiiiiIIi7 = new ScaledResolution(Minecraft.func_71410_x());
-        int IIiiiiiIIi8 = IIiiiiiIIi7.func_78325_e();
-        int IIiiiiiIIi9 = IIiiiiiIIi7.func_78328_b() - IIiiiiiIIi4;
+        ScaledResolution IIiiiiiIIi7 = new ScaledResolution(Minecraft.getMinecraft());
+        int IIiiiiiIIi8 = IIiiiiiIIi7.getScaleFactor();
+        int IIiiiiiIIi9 = IIiiiiiIIi7.getScaledHeight() - IIiiiiiIIi4;
         GL11.glScissor((int)(IIiiiiiIIi * IIiiiiiIIi8), (int)(IIiiiiiIIi9 * IIiiiiiIIi8), (int)(IIiiiiiIIi5 * IIiiiiiIIi8), (int)(IIiiiiiIIi6 * IIiiiiiIIi8));
     }
 
@@ -98,19 +98,19 @@ public class iiiiiiiiii_13 {
         if (IIiiiiiIIi == null || IIiiiiiIIi.length() == 0) {
             return;
         }
-        FontRenderer IIiiiiiIIi16 = FMLClientHandler.instance().getClient().field_71466_p;
+        FontRenderer IIiiiiiIIi16 = FMLClientHandler.instance().getClient().fontRenderer;
         boolean IIiiiiiIIi17 = IIiiiiiIIi6 != null && IIiiiiiIIi7 > 0.0f;
-        double IIiiiiiIIi18 = IIiiiiiIIi16.func_78256_a(IIiiiiiIIi);
-        int n = IIiiiiiIIi15 = IIiiiiiIIi17 ? iiiiiiiiii_13.IIIiiiIiii(IIiiiiiIIi16, IIiiiiiIIi13) : IIiiiiiIIi16.field_78288_b;
-        if (!IIiiiiiIIi17 && IIiiiiiIIi16.func_82883_a()) {
+        double IIiiiiiIIi18 = IIiiiiiIIi16.getStringWidth(IIiiiiiIIi);
+        int n = IIiiiiiIIi15 = IIiiiiiIIi17 ? iiiiiiiiii_13.IIIiiiIiii(IIiiiiiIIi16, IIiiiiiIIi13) : IIiiiiiIIi16.FONT_HEIGHT;
+        if (!IIiiiiiIIi17 && IIiiiiiIIi16.getUnicodeFlag()) {
             --IIiiiiiIIi15;
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         try {
             if (IIiiiiiIIi12 != 1.0) {
                 IIiiiiiIIi2 /= IIiiiiiIIi12;
                 IIiiiiiIIi3 /= IIiiiiiIIi12;
-                GlStateManager.func_179139_a((double)IIiiiiiIIi12, (double)IIiiiiiIIi12, (double)0.0);
+                GlStateManager.scale((double)IIiiiiiIIi12, (double)IIiiiiiIIi12, (double)0.0);
             }
             float IIiiiiiIIi19 = (float)IIiiiiiIIi2;
             float IIiiiiiIIi20 = (float)IIiiiiiIIi3;
@@ -132,11 +132,11 @@ public class iiiiiiiiii_13 {
                     IIiiiiiIIi21 = (float)IIiiiiiIIi2;
                 }
             }
-            double IIiiiiiIIi23 = IIiiiiiIIi17 ? (double)(IIiiiiiIIi15 - IIiiiiiIIi16.field_78288_b) / 2.0 : 0.0;
+            double IIiiiiiIIi23 = IIiiiiiIIi17 ? (double)(IIiiiiiIIi15 - IIiiiiiIIi16.FONT_HEIGHT) / 2.0 : 0.0;
             switch (iiiiiiiiii_7.IIiIiIIIiI[IIiiiiiIIi5.ordinal()]) {
                 case 1: {
                     IIiiiiiIIi22 = IIiiiiiIIi3 - (double)IIiiiiiIIi15;
-                    IIiiiiiIIi20 = (float)(IIiiiiiIIi22 + IIiiiiiIIi23 + (double)(!IIiiiiiIIi16.func_82883_a() ? 1 : 0));
+                    IIiiiiiIIi20 = (float)(IIiiiiiIIi22 + IIiiiiiIIi23 + (double)(!IIiiiiiIIi16.getUnicodeFlag() ? 1 : 0));
                     break;
                 }
                 case 2: {
@@ -150,46 +150,46 @@ public class iiiiiiiiii_13 {
                 }
             }
             if (IIiiiiiIIi14 != 0.0) {
-                GlStateManager.func_179137_b((double)IIiiiiiIIi2, (double)IIiiiiiIIi3, (double)0.0);
-                GlStateManager.func_179114_b((float)((float)(-IIiiiiiIIi14)), (float)0.0f, (float)0.0f, (float)1.0f);
-                GlStateManager.func_179137_b((double)(-IIiiiiiIIi2), (double)(-IIiiiiiIIi3), (double)0.0);
+                GlStateManager.translate((double)IIiiiiiIIi2, (double)IIiiiiiIIi3, (double)0.0);
+                GlStateManager.rotate((float)((float)(-IIiiiiiIIi14)), (float)0.0f, (float)0.0f, (float)1.0f);
+                GlStateManager.translate((double)(-IIiiiiiIIi2), (double)(-IIiiiiiIIi3), (double)0.0);
             }
             if (IIiiiiiIIi11 < 1.0f) {
                 IIiiiiiIIi10 = iiiiiiiiii_4.iIIiiiIIiI((int)IIiiiiiIIi10, IIiiiiiIIi11);
             }
-            GlStateManager.func_179137_b((double)((double)IIiiiiiIIi19 - Math.floor(IIiiiiiIIi19)), (double)((double)IIiiiiiIIi20 - Math.floor(IIiiiiiIIi20)), (double)0.0);
-            IIiiiiiIIi16.func_175065_a(IIiiiiiIIi, IIiiiiiIIi19, IIiiiiiIIi20, IIiiiiiIIi10.intValue(), IIiiiiiIIi13);
+            GlStateManager.translate((double)((double)IIiiiiiIIi19 - Math.floor(IIiiiiiIIi19)), (double)((double)IIiiiiiIIi20 - Math.floor(IIiiiiiIIi20)), (double)0.0);
+            IIiiiiiIIi16.drawString(IIiiiiiIIi, IIiiiiiIIi19, IIiiiiiIIi20, IIiiiiiIIi10.intValue(), IIiiiiiIIi13);
         }
         finally {
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
     public static void IIIiiiIiii(double IIiiiiiIIi, double IIiiiiiIIi2, double IIiiiiiIIi3, double IIiiiiiIIi4, double IIiiiiiIIi5, int[] IIiiiiiIIi6) {
-        IIiIiIIIiI.func_181662_b(IIiiiiiIIi, IIiiiiiIIi2, IIiiiiiIIi3).func_187315_a(IIiiiiiIIi4, IIiiiiiIIi5).func_181669_b(IIiiiiiIIi6[0], IIiiiiiIIi6[1], IIiiiiiIIi6[2], IIiiiiiIIi6[3]).func_181675_d();
+        IIiIiIIIiI.pos(IIiiiiiIIi, IIiiiiiIIi2, IIiiiiiIIi3).tex(IIiiiiiIIi4, IIiiiiiIIi5).color(IIiiiiiIIi6[0], IIiiiiiIIi6[1], IIiiiiiIIi6[2], IIiiiiiIIi6[3]).endVertex();
     }
 
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public static void IIIiiiIiii(int IIiiiiiIIi, int IIiiiiiIIi2, float IIiiiiiIIi3, double IIiiiiiIIi4, double IIiiiiiIIi5, double IIiiiiiIIi6, double IIiiiiiIIi7, double IIiiiiiIIi8, double IIiiiiiIIi9, double IIiiiiiIIi10, double IIiiiiiIIi11, double IIiiiiiIIi12, boolean IIiiiiiIIi13, boolean IIiiiiiIIi14, int IIiiiiiIIi15, int IIiiiiiIIi16, boolean IIiiiiiIIi17) {
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         try {
             double IIiiiiiIIi18;
             if (IIiiiiiIIi14) {
-                GlStateManager.func_179147_l();
-                GlStateManager.func_179120_a((int)IIiiiiiIIi15, (int)IIiiiiiIIi16, (int)1, (int)0);
+                GlStateManager.enableBlend();
+                GlStateManager.tryBlendFuncSeparate((int)IIiiiiiIIi15, (int)IIiiiiiIIi16, (int)1, (int)0);
             }
-            GlStateManager.func_179098_w();
-            GlStateManager.func_179144_i((int)IIiiiiiIIi);
+            GlStateManager.enableTexture2D();
+            GlStateManager.bindTexture((int)IIiiiiiIIi);
             if (IIiiiiiIIi3 > 1.0f) {
                 IIiiiiiIIi3 /= 255.0f;
             }
             if (IIiiiiiIIi14) {
                 float[] IIiiiiiIIi19 = iiiiiiiiii_4.IIIiiiIiii(IIiiiiiIIi2);
-                GlStateManager.func_179131_c((float)IIiiiiiIIi19[0], (float)IIiiiiiIIi19[1], (float)IIiiiiiIIi19[2], (float)IIiiiiiIIi3);
+                GlStateManager.color((float)IIiiiiiIIi19[0], (float)IIiiiiiIIi19[1], (float)IIiiiiiIIi19[2], (float)IIiiiiiIIi3);
             } else {
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)IIiiiiiIIi3);
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)IIiiiiiIIi3);
             }
             GL11.glTexParameteri((int)3553, (int)10241, (int)9729);
             GL11.glTexParameteri((int)3553, (int)10240, (int)9729);
@@ -199,9 +199,9 @@ public class iiiiiiiiii_13 {
             if (IIiiiiiIIi12 != 0.0) {
                 IIiiiiiIIi18 = IIiiiiiIIi4 + IIiiiiiIIi6 / 2.0;
                 double IIiiiiiIIi21 = IIiiiiiIIi5 + IIiiiiiIIi7 / 2.0;
-                GlStateManager.func_179137_b((double)IIiiiiiIIi18, (double)IIiiiiiIIi21, (double)0.0);
-                GlStateManager.func_179114_b((float)((float)IIiiiiiIIi12), (float)0.0f, (float)0.0f, (float)1.0f);
-                GlStateManager.func_179137_b((double)(-IIiiiiiIIi18), (double)(-IIiiiiiIIi21), (double)0.0);
+                GlStateManager.translate((double)IIiiiiiIIi18, (double)IIiiiiiIIi21, (double)0.0);
+                GlStateManager.rotate((float)((float)IIiiiiiIIi12), (float)0.0f, (float)0.0f, (float)1.0f);
+                GlStateManager.translate((double)(-IIiiiiiIIi18), (double)(-IIiiiiiIIi21), (double)0.0);
             }
             IIiiiiiIIi18 = IIiiiiiIIi13 ? -IIiiiiiIIi10 : IIiiiiiIIi10;
             iiiiiiiiii_13.IIIiiiIiii(false);
@@ -211,15 +211,15 @@ public class iiiiiiiiii_13 {
             iiiiiiiiii_13.IIIiiiIiii(IIiiiiiIIi4, IIiiiiiIIi5, iIIIIiiIII, IIiiiiiIIi8, IIiiiiiIIi9);
             iiiiiiiiii_13.IIIiiiIiii();
             if (IIiiiiiIIi14) {
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
                 if (IIiiiiiIIi15 != 770 || IIiiiiiIIi16 != 771) {
-                    GlStateManager.func_179147_l();
-                    GlStateManager.func_179120_a((int)770, (int)771, (int)1, (int)0);
+                    GlStateManager.enableBlend();
+                    GlStateManager.tryBlendFuncSeparate((int)770, (int)771, (int)1, (int)0);
                 }
             }
         }
         finally {
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
@@ -231,14 +231,14 @@ public class iiiiiiiiii_13 {
             iiiiiiiiii_13.IIIiiiIiii(IIiiiiiIIi[0], IIiiiiiIIi2, IIiiiiiIIi3, IIiiiiiIIi4, IIiiiiiIIi5, IIiiiiiIIi6, IIiiiiiIIi7, IIiiiiiIIi8, IIiiiiiIIi9, IIiiiiiIIi10, IIiiiiiIIi11, IIiiiiiIIi12);
             return;
         }
-        FontRenderer IIiiiiiIIi13 = FMLClientHandler.instance().getClient().field_71466_p;
-        double IIiiiiiIIi14 = IIiiiiiIIi13.func_82883_a() ? 0.0 : (IIiiiiiIIi11 ? 6.0 : 4.0);
-        double IIiiiiiIIi15 = (double)IIiiiiiIIi13.field_78288_b * IIiiiiiIIi10;
+        FontRenderer IIiiiiiIIi13 = FMLClientHandler.instance().getClient().fontRenderer;
+        double IIiiiiiIIi14 = IIiiiiiIIi13.getUnicodeFlag() ? 0.0 : (IIiiiiiIIi11 ? 6.0 : 4.0);
+        double IIiiiiiIIi15 = (double)IIiiiiiIIi13.FONT_HEIGHT * IIiiiiiIIi10;
         double IIiiiiiIIi16 = IIiiiiiIIi15 * (double)IIiiiiiIIi.length + IIiiiiiIIi14;
         double IIiiiiiIIi17 = 0.0;
         if (IIiiiiiIIi6 != null && IIiiiiiIIi7 > 0.0f) {
             for (String IIiiiiiIIi18 : IIiiiiiIIi) {
-                IIiiiiiIIi17 = Math.max(IIiiiiiIIi17, (double)IIiiiiiIIi13.func_78256_a(IIiiiiiIIi18) * IIiiiiiIIi10);
+                IIiiiiiIIi17 = Math.max(IIiiiiiIIi17, (double)IIiiiiiIIi13.getStringWidth(IIiiiiiIIi18) * IIiiiiiIIi10);
             }
             if (IIiiiiiIIi17 % 2.0 == 0.0) {
                 IIiiiiiIIi17 += 1.0;
@@ -264,7 +264,7 @@ public class iiiiiiiiii_13 {
     }
 
     public static void IIIiiiIiii(double IIiiiiiIIi, double IIiiiiiIIi2, double IIiiiiiIIi3, int[] IIiiiiiIIi4) {
-        IIiIiIIIiI.func_181662_b(IIiiiiiIIi, IIiiiiiIIi2, IIiiiiiIIi3).func_187315_a(1.0, 1.0).func_181669_b(IIiiiiiIIi4[0], IIiiiiiIIi4[1], IIiiiiiIIi4[2], IIiiiiiIIi4[3]).func_181675_d();
+        IIiIiIIIiI.pos(IIiiiiiIIi, IIiiiiiIIi2, IIiiiiiIIi3).tex(1.0, 1.0).color(IIiiiiiIIi4[0], IIiiiiiIIi4[1], IIiiiiiIIi4[2], IIiiiiiIIi4[3]).endVertex();
     }
 
     public static void IIIiiiIiii(int IIiiiiiIIi, int IIiiiiiIIi2, float IIiiiiiIIi3, double IIiiiiiIIi4, double IIiiiiiIIi5, double IIiiiiiIIi6, double IIiiiiiIIi7, boolean IIiiiiiIIi8, double IIiiiiiIIi9) {
@@ -285,9 +285,9 @@ public class iiiiiiiiii_13 {
 
     public static void IIIiiiIiii(boolean IIiiiiiIIi) {
         if (IIiiiiiIIi) {
-            IIiIiIIIiI.func_181668_a(7, DefaultVertexFormats.field_181709_i);
+            IIiIiIIIiI.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
         } else {
-            IIiIiIIIiI.func_181668_a(7, DefaultVertexFormats.field_181707_g);
+            IIiIiIIIiI.begin(7, DefaultVertexFormats.POSITION_TEX);
         }
     }
 }

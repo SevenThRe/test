@@ -65,7 +65,7 @@ implements IPreviewer<D> {
         if (t2 <= 10.0f) {
             ((EntityData)data).overrideOnGroundState(false);
             double yOffset = Math.sin((double)(t2 / 10.0f) * Math.PI) * 0.8;
-            GlStateManager.func_179137_b((double)0.0, (double)yOffset, (double)0.0);
+            GlStateManager.translate((double)0.0, (double)yOffset, (double)0.0);
         } else {
             ((EntityData)data).overrideOnGroundState(true);
         }

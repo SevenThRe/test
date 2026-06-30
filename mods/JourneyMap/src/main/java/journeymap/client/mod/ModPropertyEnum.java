@@ -64,7 +64,7 @@ public class ModPropertyEnum<T> {
 
     public static Method lookupMethod(PropertyEnum propertyEnum, String methodName, Class ... methodArgTypes) {
         if (propertyEnum != null) {
-            return ModPropertyEnum.lookupMethod(propertyEnum.func_177699_b().getName(), methodName, methodArgTypes);
+            return ModPropertyEnum.lookupMethod(propertyEnum.getValueClass().getName(), methodName, methodArgTypes);
         }
         return null;
     }
@@ -92,7 +92,7 @@ public class ModPropertyEnum<T> {
     public T getValue(IBlockState blockState, Object ... args2) {
         if (this.valid) {
             try {
-                Comparable enumValue = (Comparable)blockState.func_177228_b().get((Object)this.propertyEnum);
+                Comparable enumValue = (Comparable)blockState.getProperties().get((Object)this.propertyEnum);
                 if (enumValue != null) {
                     return (T)this.method.invoke((Object)enumValue, args2);
                 }

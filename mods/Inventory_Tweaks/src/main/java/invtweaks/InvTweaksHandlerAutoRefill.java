@@ -59,13 +59,13 @@ extends InvTweaksObfuscation {
 
     public void autoRefillSlot(int slot, @NotNull String wantedId, int wantedDamage) throws Exception {
         ContainerSectionManager container = new ContainerSectionManager(ContainerSection.INVENTORY);
-        ItemStack replacementStack = ItemStack.field_190927_a;
+        ItemStack replacementStack = ItemStack.EMPTY;
         int replacementStackSlot = -1;
         boolean refillBeforeBreak = this.config.getProperty("autoRefillBeforeBreak").equals("true");
         boolean hasSubtypes = false;
-        Item original = (Item)Item.field_150901_e.func_82594_a((Object)new ResourceLocation(wantedId));
+        Item original = (Item)Item.REGISTRY.getObject((Object)new ResourceLocation(wantedId));
         if (original != null) {
-            hasSubtypes = original.func_77614_k();
+            hasSubtypes = original.getHasSubtypes();
         }
         ArrayList<InvTweaksConfigSortingRule> matchingRules = new ArrayList<InvTweaksConfigSortingRule>();
         List<InvTweaksConfigSortingRule> rules = this.config.getRules();
@@ -94,14 +94,14 @@ extends InvTweaksObfuscation {
                 for (int i = 0; i < 36; ++i) {
                     List<IItemTreeItem> candidateItems;
                     ItemStack candidateStack = container.getItemStack(i);
-                    if (candidateStack.func_190926_b() || !tree.matches(candidateItems = tree.getItems(candidateStack.func_77973_b().getRegistryName().toString(), candidateStack.func_77952_i()), rule.getKeyword())) continue;
-                    if (candidateStack.func_77976_d() == 1) {
-                        if (!replacementStack.func_190926_b() && candidateStack.func_77952_i() <= replacementStack.func_77952_i() || refillBeforeBreak && candidateStack.func_77958_k() - candidateStack.func_77952_i() <= this.config.getIntProperty("autoRefillDamageThreshhold")) continue;
+                    if (candidateStack.isEmpty() || !tree.matches(candidateItems = tree.getItems(candidateStack.getItem().getRegistryName().toString(), candidateStack.getItemDamage()), rule.getKeyword())) continue;
+                    if (candidateStack.getMaxStackSize() == 1) {
+                        if (!replacementStack.isEmpty() && candidateStack.getItemDamage() <= replacementStack.getItemDamage() || refillBeforeBreak && candidateStack.getMaxDamage() - candidateStack.getItemDamage() <= this.config.getIntProperty("autoRefillDamageThreshhold")) continue;
                         replacementStack = candidateStack;
                         replacementStackSlot = i;
                         continue;
                     }
-                    if (!replacementStack.func_190926_b() && candidateStack.func_190916_E() >= replacementStack.func_190916_E()) continue;
+                    if (!replacementStack.isEmpty() && candidateStack.getCount() >= replacementStack.getCount()) continue;
                     replacementStack = candidateStack;
                     replacementStackSlot = i;
                 }
@@ -109,13 +109,13 @@ extends InvTweaksObfuscation {
         } else {
             for (int i = 0; i < 36; ++i) {
                 ItemStack candidateStack = container.getItemStack(i);
-                if (candidateStack.func_190926_b() || !Objects.equals(candidateStack.func_77973_b().getRegistryName().toString(), wantedId) || candidateStack.func_77952_i() != wantedDamage) continue;
+                if (candidateStack.isEmpty() || !Objects.equals(candidateStack.getItem().getRegistryName().toString(), wantedId) || candidateStack.getItemDamage() != wantedDamage) continue;
                 replacementStack = candidateStack;
                 replacementStackSlot = i;
                 break;
             }
         }
-        if (!replacementStack.func_190926_b() || refillBeforeBreak && !container.getSlot(slot).func_75211_c().func_190926_b()) {
+        if (!replacementStack.isEmpty() || refillBeforeBreak && !container.getSlot(slot).getStack().isEmpty()) {
             log.info("Automatic stack replacement.");
             InvTweaks.getInstance().addScheduledTask(new Runnable(){
                 private ContainerSectionManager containerMgr;
@@ -131,7 +131,7 @@ extends InvTweaksObfuscation {
                     this.targetedSlot = currentItem;
                     if (i_ != -1) {
                         this.i = i_;
-                        this.expectedItemId = this.containerMgr.getItemStack(this.i).func_77973_b().getRegistryName().toString();
+                        this.expectedItemId = this.containerMgr.getItemStack(this.i).getItem().getRegistryName().toString();
                     } else {
                         this.i = this.containerMgr.getFirstEmptyIndex();
                         this.expectedItemId = null;
@@ -146,14 +146,14 @@ extends InvTweaksObfuscation {
                         return;
                     }
                     ItemStack stack = this.containerMgr.getItemStack(this.i);
-                    if (!stack.func_190926_b() && StringUtils.equals((CharSequence)stack.func_77973_b().getRegistryName().toString(), (CharSequence)this.expectedItemId) || this.refillBeforeBreak) {
+                    if (!stack.isEmpty() && StringUtils.equals((CharSequence)stack.getItem().getRegistryName().toString(), (CharSequence)this.expectedItemId) || this.refillBeforeBreak) {
                         if (this.containerMgr.move(this.targetedSlot, this.i) || this.containerMgr.move(this.i, this.targetedSlot)) {
                             if (!InvTweaksHandlerAutoRefill.this.config.getProperty("enableSounds").equals("false")) {
-                                InvTweaksHandlerAutoRefill.this.mc.func_147118_V().func_147682_a((ISound)PositionedSoundRecord.func_184371_a((SoundEvent)SoundEvents.field_187665_Y, (float)1.0f));
+                                InvTweaksHandlerAutoRefill.this.mc.getSoundHandler().playSound((ISound)PositionedSoundRecord.getMasterRecord((SoundEvent)SoundEvents.ENTITY_CHICKEN_EGG, (float)1.0f));
                             }
-                            if (!this.containerMgr.getItemStack(this.i).func_190926_b() && this.i >= 27) {
+                            if (!this.containerMgr.getItemStack(this.i).isEmpty() && this.i >= 27) {
                                 for (int j = 0; j < 36; ++j) {
-                                    if (!this.containerMgr.getItemStack(j).func_190926_b()) continue;
+                                    if (!this.containerMgr.getItemStack(j).isEmpty()) continue;
                                     this.containerMgr.move(this.i, j);
                                     break;
                                 }

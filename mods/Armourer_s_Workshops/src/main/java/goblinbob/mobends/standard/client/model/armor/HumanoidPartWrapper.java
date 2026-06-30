@@ -44,16 +44,16 @@ implements IPartWrapper {
     public void apply(ArmorWrapper armorWrapper) {
         this.modelPartSetter.replacePart(armorWrapper, this.partContainer);
         this.modelPartSetter.replacePart(armorWrapper.original, this.partContainer);
-        this.partContainer.field_78807_k = this.vanillaPart.field_78807_k;
-        this.partContainer.field_78806_j = this.vanillaPart.field_78806_j;
+        this.partContainer.isHidden = this.vanillaPart.isHidden;
+        this.partContainer.showModel = this.vanillaPart.showModel;
     }
 
     @Override
     public void deapply(ArmorWrapper armorWrapper) {
         this.modelPartSetter.replacePart(armorWrapper, this.vanillaPart);
         this.modelPartSetter.replacePart(armorWrapper.original, this.vanillaPart);
-        this.vanillaPart.field_78807_k = this.partContainer.field_78807_k;
-        this.vanillaPart.field_78806_j = this.partContainer.field_78806_j;
+        this.vanillaPart.isHidden = this.partContainer.isHidden;
+        this.vanillaPart.showModel = this.partContainer.showModel;
     }
 
     @Override

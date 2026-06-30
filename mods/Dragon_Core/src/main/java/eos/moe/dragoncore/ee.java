@@ -57,14 +57,14 @@ extends jj {
     public ee(ui a2, ConfigurationSection a3) {
         super(a2, a3);
         ee a4;
-        a4.oa = Minecraft.func_71410_x().field_71466_p;
+        a4.oa = Minecraft.getMinecraft().fontRenderer;
         a4.ua = a4.createMoLangParser("length", 32);
         a4.ka = a4.createMoLangParserString("text", "").c();
         a4.m = a4.createMoLangParser("focused", false).c();
         a4.g = a4.createMoLangParser("drawBackground", true);
         a4.k = a4.createMoLangParserString("color", "224,224,224");
         if (!a4.ka.isEmpty() && a4.m) {
-            Minecraft.func_71410_x().func_152344_a(() -> {
+            Minecraft.getMinecraft().addScheduledTask(() -> {
                 ee a2;
                 a2.setCursorPosition(999);
             });
@@ -104,7 +104,7 @@ extends jj {
         int a3;
         ee a4;
         String a5 = "";
-        String a6 = ChatAllowedCharacters.func_71565_a((String)a2);
+        String a6 = ChatAllowedCharacters.filterAllowedCharacters((String)a2);
         int a7 = Math.min(a4.q, a4.b);
         int a8 = Math.max(a4.q, a4.b);
         int a9 = a4.getMaxStringLength() - a4.ka.length() - (a7 - a8);
@@ -212,7 +212,7 @@ extends jj {
         ee a3;
         a3.q = a2;
         int a4 = a3.ka.length();
-        a3.q = MathHelper.func_76125_a((int)a3.q, (int)0, (int)a4);
+        a3.q = MathHelper.clamp((int)a3.q, (int)0, (int)a4);
         a3.setSelectionPos(a3.q);
     }
 
@@ -238,23 +238,23 @@ extends jj {
         if (!a4.m) {
             return false;
         }
-        if (GuiScreen.func_175278_g((int)a3)) {
+        if (GuiScreen.isKeyComboCtrlA((int)a3)) {
             a4.setCursorPositionEnd();
             a4.setSelectionPos(0);
             return true;
         }
-        if (GuiScreen.func_175280_f((int)a3)) {
-            GuiScreen.func_146275_d((String)a4.getSelectedText());
+        if (GuiScreen.isKeyComboCtrlC((int)a3)) {
+            GuiScreen.setClipboardString((String)a4.getSelectedText());
             return true;
         }
-        if (GuiScreen.func_175279_e((int)a3)) {
+        if (GuiScreen.isKeyComboCtrlV((int)a3)) {
             if (a4.xa.c()) {
-                a4.writeText(GuiScreen.func_146277_j());
+                a4.writeText(GuiScreen.getClipboardString());
             }
             return true;
         }
-        if (GuiScreen.func_175277_d((int)a3)) {
-            GuiScreen.func_146275_d((String)a4.getSelectedText());
+        if (GuiScreen.isKeyComboCtrlX((int)a3)) {
+            GuiScreen.setClipboardString((String)a4.getSelectedText());
             if (a4.xa.c()) {
                 a4.writeText("");
             }
@@ -262,7 +262,7 @@ extends jj {
         }
         switch (a3) {
             case 14: {
-                if (GuiScreen.func_146271_m()) {
+                if (GuiScreen.isCtrlKeyDown()) {
                     if (a4.xa.c()) {
                         a4.deleteWords(-1);
                     }
@@ -272,7 +272,7 @@ extends jj {
                 return true;
             }
             case 199: {
-                if (GuiScreen.func_146272_n()) {
+                if (GuiScreen.isShiftKeyDown()) {
                     a4.setSelectionPos(0);
                 } else {
                     a4.setCursorPositionZero();
@@ -280,13 +280,13 @@ extends jj {
                 return true;
             }
             case 203: {
-                if (GuiScreen.func_146272_n()) {
-                    if (GuiScreen.func_146271_m()) {
+                if (GuiScreen.isShiftKeyDown()) {
+                    if (GuiScreen.isCtrlKeyDown()) {
                         a4.setSelectionPos(a4.getNthWordFromPos(-1, a4.getSelectionEnd()));
                     } else {
                         a4.setSelectionPos(a4.getSelectionEnd() - 1);
                     }
-                } else if (GuiScreen.func_146271_m()) {
+                } else if (GuiScreen.isCtrlKeyDown()) {
                     a4.setCursorPosition(a4.getNthWordFromCursor(-1));
                 } else {
                     a4.moveCursorBy(-1);
@@ -294,13 +294,13 @@ extends jj {
                 return true;
             }
             case 205: {
-                if (GuiScreen.func_146272_n()) {
-                    if (GuiScreen.func_146271_m()) {
+                if (GuiScreen.isShiftKeyDown()) {
+                    if (GuiScreen.isCtrlKeyDown()) {
                         a4.setSelectionPos(a4.getNthWordFromPos(1, a4.getSelectionEnd()));
                     } else {
                         a4.setSelectionPos(a4.getSelectionEnd() + 1);
                     }
-                } else if (GuiScreen.func_146271_m()) {
+                } else if (GuiScreen.isCtrlKeyDown()) {
                     a4.setCursorPosition(a4.getNthWordFromCursor(1));
                 } else {
                     a4.moveCursorBy(1);
@@ -308,7 +308,7 @@ extends jj {
                 return true;
             }
             case 207: {
-                if (GuiScreen.func_146272_n()) {
+                if (GuiScreen.isShiftKeyDown()) {
                     a4.setSelectionPos(a4.ka.length());
                 } else {
                     a4.setCursorPositionEnd();
@@ -316,7 +316,7 @@ extends jj {
                 return true;
             }
             case 211: {
-                if (GuiScreen.func_146271_m()) {
+                if (GuiScreen.isCtrlKeyDown()) {
                     if (a4.xa.c()) {
                         a4.deleteWords(1);
                     }
@@ -326,7 +326,7 @@ extends jj {
                 return true;
             }
         }
-        if (ChatAllowedCharacters.func_71566_a((char)a2)) {
+        if (ChatAllowedCharacters.isAllowedCharacter((char)a2)) {
             if (a4.xa.c()) {
                 a4.writeText(Character.toString(a2));
             }
@@ -358,8 +358,8 @@ extends jj {
             if (a6.getEnableBackgroundDrawing()) {
                 a7 -= 4;
             }
-            String a8 = a6.oa.func_78269_a(a6.ka.substring(a6.c), a6.p.ALLATORIxDEMO());
-            a6.setCursorPosition(a6.oa.func_78269_a(a8, a7).length() + a6.c);
+            String a8 = a6.oa.trimStringToWidth(a6.ka.substring(a6.c), a6.p.ALLATORIxDEMO());
+            a6.setCursorPosition(a6.oa.trimStringToWidth(a8, a7).length() + a6.c);
             return true;
         }
         return false;
@@ -387,7 +387,7 @@ extends jj {
         int a10 = a2.xa.ALLATORIxDEMO() ? sd.ALLATORIxDEMO(a9) : a2.y;
         int a11 = a2.q - a2.c;
         int a12 = a2.b - a2.c;
-        String a13 = a2.oa.func_78269_a(a2.ka.substring(a2.c), a5);
+        String a13 = a2.oa.trimStringToWidth(a2.ka.substring(a2.c), a5);
         boolean a14 = a11 >= 0 && a11 <= a13.length();
         boolean a15 = a2.m && a2.s / 6 % 2 == 0 && a14;
         int a16 = a7 ? a3 + 4 : a3;
@@ -398,7 +398,7 @@ extends jj {
         }
         if (!a13.isEmpty()) {
             String a19 = a14 ? a13.substring(0, a11) : a13;
-            a18 = a2.oa.func_78276_b(a19, a16, a17, a10);
+            a18 = a2.oa.drawString(a19, a16, a17, a10);
         }
         boolean a20 = a2.q < a2.ka.length() || a2.ka.length() >= a2.getMaxStringLength();
         int a21 = a18;
@@ -408,18 +408,18 @@ extends jj {
             a21 = a18 - 1;
         }
         if (!a13.isEmpty() && a14 && a11 < a13.length()) {
-            a18 = a2.oa.func_78276_b(a13.substring(a11), a18, a17, a10);
+            a18 = a2.oa.drawString(a13.substring(a11), a18, a17, a10);
         }
         if (a15) {
             if (a20) {
-                sd.ALLATORIxDEMO((double)a21, (double)(a17 - 1), 1.0, (double)(1 + a2.oa.field_78288_b), -3092272);
+                sd.ALLATORIxDEMO((double)a21, (double)(a17 - 1), 1.0, (double)(1 + a2.oa.FONT_HEIGHT), -3092272);
             } else {
-                a2.oa.func_175063_a("_", (float)a21, (float)a17, a10);
+                a2.oa.drawStringWithShadow("_", (float)a21, (float)a17, a10);
             }
         }
         if (a12 != a11) {
-            int a22 = a16 + a2.oa.func_78256_a(a13.substring(0, a12));
-            a2.ALLATORIxDEMO(a21, a17 - 1, a22 - 1, a17 + 1 + a2.oa.field_78288_b);
+            int a22 = a16 + a2.oa.getStringWidth(a13.substring(0, a12));
+            a2.ALLATORIxDEMO(a21, a17 - 1, a22 - 1, a17 + 1 + a2.oa.FONT_HEIGHT);
         }
     }
 
@@ -442,20 +442,20 @@ extends jj {
         if (a2 > a7) {
             a2 = a7;
         }
-        Tessellator a8 = Tessellator.func_178181_a();
-        BufferBuilder a9 = a8.func_178180_c();
-        GlStateManager.func_179131_c((float)0.0f, (float)0.0f, (float)255.0f, (float)255.0f);
-        GlStateManager.func_179090_x();
-        GlStateManager.func_179115_u();
-        GlStateManager.func_187422_a((GlStateManager.LogicOp)GlStateManager.LogicOp.OR_REVERSE);
-        a9.func_181668_a(7, DefaultVertexFormats.field_181705_e);
-        a9.func_181662_b((double)a2, (double)a5, 0.0).func_181675_d();
-        a9.func_181662_b((double)a4, (double)a5, 0.0).func_181675_d();
-        a9.func_181662_b((double)a4, (double)a3, 0.0).func_181675_d();
-        a9.func_181662_b((double)a2, (double)a3, 0.0).func_181675_d();
-        a8.func_78381_a();
-        GlStateManager.func_179134_v();
-        GlStateManager.func_179098_w();
+        Tessellator a8 = Tessellator.getInstance();
+        BufferBuilder a9 = a8.getBuffer();
+        GlStateManager.color((float)0.0f, (float)0.0f, (float)255.0f, (float)255.0f);
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableColorLogic();
+        GlStateManager.colorLogicOp((GlStateManager.LogicOp)GlStateManager.LogicOp.OR_REVERSE);
+        a9.begin(7, DefaultVertexFormats.POSITION);
+        a9.pos((double)a2, (double)a5, 0.0).endVertex();
+        a9.pos((double)a4, (double)a5, 0.0).endVertex();
+        a9.pos((double)a4, (double)a3, 0.0).endVertex();
+        a9.pos((double)a2, (double)a3, 0.0).endVertex();
+        a8.draw();
+        GlStateManager.disableColorLogic();
+        GlStateManager.enableTexture2D();
     }
 
     public int getMaxStringLength() {
@@ -487,8 +487,8 @@ extends jj {
             a3.s = 0;
         }
         a3.m = a2;
-        if (Minecraft.func_71410_x().field_71462_r != null) {
-            Minecraft.func_71410_x().field_71462_r.func_193975_a(a2);
+        if (Minecraft.getMinecraft().currentScreen != null) {
+            Minecraft.getMinecraft().currentScreen.setFocused(a2);
         }
     }
 
@@ -517,17 +517,17 @@ extends jj {
                 a3.c = a4;
             }
             int a5 = a3.p.ALLATORIxDEMO();
-            String a6 = a3.oa.func_78269_a(a3.ka.substring(a3.c), a5);
+            String a6 = a3.oa.trimStringToWidth(a3.ka.substring(a3.c), a5);
             int a7 = a6.length() + a3.c;
             if (a2 == a3.c) {
-                a3.c -= a3.oa.func_78262_a(a3.ka, a5, true).length();
+                a3.c -= a3.oa.trimStringToWidth(a3.ka, a5, true).length();
             }
             if (a2 > a7) {
                 a3.c += a2 - a7;
             } else if (a2 <= a3.c) {
                 a3.c -= a3.c - a2;
             }
-            a3.c = MathHelper.func_76125_a((int)a3.c, (int)0, (int)a4);
+            a3.c = MathHelper.clamp((int)a3.c, (int)0, (int)a4);
         }
     }
 

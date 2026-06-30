@@ -161,7 +161,7 @@ public class yi {
 
     @h(c=1)
     public static void y(va a2) {
-        UUID a3 = a2.func_179253_g();
+        UUID a3 = a2.readUniqueId();
         String a4 = a2.readString();
         int a5 = a2.readInt();
         float a6 = 1.0f;
@@ -189,15 +189,15 @@ public class yi {
 
     @h(c=4)
     public static void w(String a2) throws Exception {
-        if (Minecraft.func_71410_x().field_71462_r instanceof GuiChat) {
-            GuiChat a3 = (GuiChat)Minecraft.func_71410_x().field_71462_r;
-            GuiTextField a4 = (GuiTextField)ReflectionHelper.getPrivateValue(GuiChat.class, (Object)a3, (String[])new String[]{"inputField", "field_146415_a"});
+        if (Minecraft.getMinecraft().currentScreen instanceof GuiChat) {
+            GuiChat a3 = (GuiChat)Minecraft.getMinecraft().currentScreen;
+            GuiTextField a4 = (GuiTextField)ReflectionHelper.getPrivateValue(GuiChat.class, (Object)a3, (String[])new String[]{"inputField", "inputField"});
             if (a2.startsWith("[add]")) {
-                a4.func_146180_a(a4.func_146179_b() + a2.substring(5));
+                a4.setText(a4.getText() + a2.substring(5));
             } else if (a2.startsWith("[write]")) {
-                a4.func_146191_b(a2.substring(7));
+                a4.writeText(a2.substring(7));
             } else {
-                a4.func_146180_a(a2);
+                a4.setText(a2);
             }
         }
     }
@@ -216,7 +216,7 @@ public class yi {
     public static void h(va a2) throws Exception {
         int a3 = a2.readInt();
         for (int a4 = 0; a4 < a3; ++a4) {
-            faa.ALLATORIxDEMO(a2.func_150789_c(32768), a2.func_150789_c(32768));
+            faa.ALLATORIxDEMO(a2.readString(32768), a2.readString(32768));
         }
     }
 
@@ -271,7 +271,7 @@ public class yi {
         HashSet<String> a3 = new HashSet<String>();
         int a4 = a2.readInt();
         for (int a5 = 0; a5 < a4; ++a5) {
-            a3.add(a2.func_150789_c(32768));
+            a3.add(a2.readString(32768));
         }
         jla.y.k = a3;
     }
@@ -318,12 +318,12 @@ public class yi {
         float a10 = a2.readFloat();
         SoundCategory a11 = SoundCategory.MASTER;
         try {
-            a11 = SoundCategory.func_187950_a((String)a2.readString());
+            a11 = SoundCategory.getByName((String)a2.readString());
         }
         catch (Exception exception) {
             // empty catch block
         }
-        a3 = a3.isEmpty() ? MathHelper.func_180182_a((Random)ThreadLocalRandom.current()).toString() : a3;
+        a3 = a3.isEmpty() ? MathHelper.getRandomUUID((Random)ThreadLocalRandom.current()).toString() : a3;
         om.ALLATORIxDEMO(null, a3, a4, a11, a5, a6, a8, a9, a10, a7);
     }
 
@@ -354,7 +354,7 @@ public class yi {
 
     @h(c=24)
     public static void ALLATORIxDEMO(int a2) {
-        Minecraft.func_71410_x().field_71474_y.field_74320_O = a2;
+        Minecraft.getMinecraft().gameSettings.thirdPersonView = a2;
     }
 
     @h(c=25)
@@ -367,7 +367,7 @@ public class yi {
         UUID a3 = null;
         boolean a4 = a2.readBoolean();
         if (a4) {
-            a3 = a2.func_179253_g();
+            a3 = a2.readUniqueId();
         }
         int a5 = a2.readInt();
         int a6 = a2.readInt();
@@ -385,18 +385,18 @@ public class yi {
                 a15 = nfa.ALLATORIxDEMO((Entity)a14);
             }
             if (a15 == null) {
-                a15 = a14.func_174791_d().func_72441_c(0.0, 1.5, 0.0);
+                a15 = a14.getPositionVector().add(0.0, 1.5, 0.0);
             }
-            a7 = (float)a15.field_72450_a;
-            a8 = (float)a15.field_72448_b;
-            a9 = (float)a15.field_72449_c;
+            a7 = (float)a15.x;
+            a8 = (float)a15.y;
+            a9 = (float)a15.z;
         }
-        nfa.ALLATORIxDEMO.add(new fla(a5, a6, (World)Minecraft.func_71410_x().field_71441_e, a7, a8, a9, 1.0f, 1.0f, 1.0f));
+        nfa.ALLATORIxDEMO.add(new fla(a5, a6, (World)Minecraft.getMinecraft().world, a7, a8, a9, 1.0f, 1.0f, 1.0f));
     }
 
     @h(c=27)
     public static void d(va a2) {
-        UUID a3 = a2.func_179253_g();
+        UUID a3 = a2.readUniqueId();
         String a4 = a2.readString();
         float a5 = 1.0f;
         try {
@@ -558,7 +558,7 @@ public class yi {
         } else if (a3.equals("openoverride") || a3.equals("opensubgui")) {
             wi.b.c(a2);
         } else {
-            GuiScreen a5 = Minecraft.func_71410_x().field_71462_r;
+            GuiScreen a5 = Minecraft.getMinecraft().currentScreen;
             ui a6 = null;
             if (a2.equals("default")) {
                 a6 = ui.qa;
@@ -593,7 +593,7 @@ public class yi {
         catch (Exception exception) {
             // empty catch block
         }
-        GuiScreen a5 = Minecraft.func_71410_x().field_71462_r;
+        GuiScreen a5 = Minecraft.getMinecraft().currentScreen;
         if (a5 instanceof ui) {
             ui a6 = (ui)a5;
             YamlConfiguration a7 = new YamlConfiguration();
@@ -606,7 +606,7 @@ public class yi {
 
     @h(c=103)
     public static void f(va a2) {
-        GuiScreen a3 = Minecraft.func_71410_x().field_71462_r;
+        GuiScreen a3 = Minecraft.getMinecraft().currentScreen;
         if (a3 instanceof ui) {
             ui a4 = (ui)a3;
             int a5 = a2.readInt();
@@ -623,7 +623,7 @@ public class yi {
 
     @h(c=102)
     public static void c(va a2) {
-        UUID a3 = a2.func_179253_g();
+        UUID a3 = a2.readUniqueId();
         String a4 = a2.readString();
         float a5 = 1.0f;
         try {

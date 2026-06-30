@@ -34,7 +34,7 @@ public class UpdateAllConfigs
 extends CompressedPacket {
     @Override
     protected JsonObject onServer(Response response) {
-        EntityPlayerMP player = response.getContext().getServerHandler().field_147369_b;
+        EntityPlayerMP player = response.getContext().getServerHandler().player;
         if (PlayerConfigController.getInstance().canServerAdmin(player) || FMLCommonHandler.instance().getSide().isClient()) {
             Object properties;
             JsonObject prop = response.getAsJson();
@@ -75,12 +75,12 @@ extends CompressedPacket {
                     properties2.save();
                 }
             }
-            for (EntityPlayerMP playerTo : FMLCommonHandler.instance().getMinecraftServerInstance().func_184103_al().func_181057_v()) {
+            for (EntityPlayerMP playerTo : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers()) {
                 JsonObject config = PlayerConfigController.getInstance().getPlayerConfig(playerTo);
                 this.sendToPlayer(config, playerTo);
             }
         } else {
-            player.func_145747_a((ITextComponent)new TextComponentString("You do not have permission to modify Journeymap's server options!"));
+            player.sendMessage((ITextComponent)new TextComponentString("You do not have permission to modify Journeymap's server options!"));
         }
         return null;
     }

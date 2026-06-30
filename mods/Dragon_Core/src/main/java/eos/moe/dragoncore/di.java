@@ -33,9 +33,9 @@ public class di {
     public void ALLATORIxDEMO(ze a2, String a3) {
         om.q.submit(() -> {
             try {
-                IResourceManager a4 = Minecraft.func_71410_x().func_110442_L();
-                IResource a5 = a4.func_110536_a(new ResourceLocation("dragoncore", a3));
-                InputStream a6 = a5.func_110527_b();
+                IResourceManager a4 = Minecraft.getMinecraft().getResourceManager();
+                IResource a5 = a4.getResource(new ResourceLocation("dragoncore", a3));
+                InputStream a6 = a5.getInputStream();
                 a2.ALLATORIxDEMO(a6);
             }
             catch (IOException a7) {

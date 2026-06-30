@@ -88,19 +88,19 @@ extends GuiScreen {
         this.teamDataList = teamDataList;
     }
 
-    public void func_73866_w_() {
-        super.func_73866_w_();
+    public void initGui() {
+        super.initGui();
         this.xSize = 460.0f;
         this.ySize = 208.0f;
-        this.offsetX = ((float)this.field_146294_l - this.xSize) / 2.0f;
-        this.offsetY = ((float)this.field_146295_m - this.ySize) / 2.0f;
+        this.offsetX = ((float)this.width - this.xSize) / 2.0f;
+        this.offsetY = ((float)this.height - this.ySize) / 2.0f;
     }
 
-    public void func_73863_a(int mouseX, int mouseY, float partialTicks) {
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.hoveredMember = -1;
-        super.func_73863_a(mouseX, mouseY, partialTicks);
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)this.offsetX, (float)this.offsetY, (float)0.0f);
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)this.offsetX, (float)this.offsetY, (float)0.0f);
         RenderUtils.drawTexture(0.0, 0.0, this.xSize, this.ySize, BACKGROUND);
         for (int i = 0; i < 4; ++i) {
             if (this.teamDataList.size() <= i) {
@@ -131,10 +131,10 @@ extends GuiScreen {
         } else {
             RenderUtils.drawText("\u00a7e\u5f00\u542f\u8840\u91cf\u663e\u793a", 67.0, 175.0, true, true);
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
         if (this.clickPos != null && this.teamDataList.size() > this.clickedMember) {
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)this.clickPos.x, (float)this.clickPos.y, (float)100.0f);
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)this.clickPos.x, (float)this.clickPos.y, (float)100.0f);
             RenderUtils.drawTexture(0.0, 0.0, 80.0, 100.0, SUB);
             if (this.isLeader) {
                 RenderUtils.drawTexture(10.0, 12.0, 60.0, 15.0, mouseX - this.clickPos.x, mouseY - this.clickPos.y, BTN, BTN1);
@@ -151,23 +151,23 @@ extends GuiScreen {
                 RenderUtils.drawText("\u00a7a\u53d1\u9001\u4f20\u9001\u8bf7\u6c42", 40.0, 36.0, true, true);
                 RenderUtils.drawText("\u00a7e\u53d1\u9001\u9080\u8bf7\u8bf7\u6c42", 40.0, 57.0, true, true);
             }
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         } else if (this.hoveredMember >= 0 && this.teamDataList.size() > this.hoveredMember) {
-            GuiUtils.drawHoveringText((List)this.teamDataList.get(this.hoveredMember).tip, (int)mouseX, (int)mouseY, (int)this.field_146294_l, (int)this.field_146295_m, (int)-1, (FontRenderer)this.field_146289_q);
+            GuiUtils.drawHoveringText((List)this.teamDataList.get(this.hoveredMember).tip, (int)mouseX, (int)mouseY, (int)this.width, (int)this.height, (int)-1, (FontRenderer)this.fontRenderer);
         }
     }
 
     public EntityLivingBase getEntity(PlayerData playerData) {
         UUID uuid = playerData.uuid;
-        for (Entity entity : this.field_146297_k.field_71441_e.func_72910_y()) {
-            if (!entity.func_110124_au().equals(uuid)) continue;
+        for (Entity entity : this.mc.world.getLoadedEntityList()) {
+            if (!entity.getUniqueID().equals(uuid)) continue;
             return (EntityLivingBase)entity;
         }
-        return new EntityOtherPlayerMP((World)this.field_146297_k.field_71441_e, new GameProfile(playerData.uuid, playerData.name));
+        return new EntityOtherPlayerMP((World)this.mc.world, new GameProfile(playerData.uuid, playerData.name));
     }
 
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         if (this.clickPos != null && this.clickedMember != -1 && Utils.onArea(this.clickPos.x, this.clickPos.y, 80.0f, 100.0f, mouseX, mouseY)) {
             if (this.teamDataList.size() > this.clickedMember) {
                 if (this.isLeader) {
@@ -183,18 +183,18 @@ extends GuiScreen {
         } else if (mouseButton == 0) {
             if (Utils.onArea(360.0f, 167.0f, 70.0f, 25.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
                 if (this.isLeader) {
-                    this.field_146297_k.func_147108_a((GuiScreen)new TeamConfirmApplyGui());
+                    this.mc.displayGuiScreen((GuiScreen)new TeamConfirmApplyGui());
                 } else {
                     MessageSender.sendLeaveTeam();
-                    this.field_146297_k.func_147108_a(null);
+                    this.mc.displayGuiScreen(null);
                 }
             } else if (Utils.onArea(285.0f, 167.0f, 70.0f, 25.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY) && this.isLeader) {
                 MessageSender.sendLeaveTeam();
-                this.field_146297_k.func_147108_a(null);
+                this.mc.displayGuiScreen(null);
             } else if (Utils.onArea(27.0f, 167.0f, 80.0f, 25.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
                 MessageSender.sendChangeHealth();
             } else if (this.hoveredMember != -1 && this.teamDataList.size() <= this.hoveredMember) {
-                this.field_146297_k.func_147108_a((GuiScreen)new GuiChat("/ad team invite "));
+                this.mc.displayGuiScreen((GuiScreen)new GuiChat("/ad team invite "));
             }
         } else if (mouseButton == 1 && this.hoveredMember != -1 && this.teamDataList.size() > this.hoveredMember) {
             this.clickPos = new Point(mouseX, mouseY);
@@ -205,52 +205,52 @@ extends GuiScreen {
         this.clickedMember = -1;
     }
 
-    protected void func_73869_a(char typedChar, int keyCode) throws IOException {
-        super.func_73869_a(typedChar, keyCode);
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+        super.keyTyped(typedChar, keyCode);
     }
 
     public static void drawEntityOnScreen(int posX, int posY, int scale, EntityLivingBase ent) {
-        GlStateManager.func_179142_g();
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)posX, (float)posY, (float)50.0f);
-        GlStateManager.func_179152_a((float)(-scale), (float)scale, (float)scale);
-        GlStateManager.func_179114_b((float)180.0f, (float)0.0f, (float)0.0f, (float)1.0f);
-        float f = ent.field_70761_aq;
-        float f1 = ent.field_70177_z;
-        float f2 = ent.field_70125_A;
-        float f3 = ent.field_70758_at;
-        float f4 = ent.field_70759_as;
-        GlStateManager.func_179114_b((float)135.0f, (float)0.0f, (float)1.0f, (float)0.0f);
-        RenderHelper.func_74519_b();
-        GlStateManager.func_179114_b((float)-135.0f, (float)0.0f, (float)1.0f, (float)0.0f);
-        ent.field_70761_aq = 0.0f;
-        ent.field_70177_z = 0.0f;
-        ent.field_70125_A = 0.0f;
-        ent.field_70759_as = ent.field_70177_z;
-        ent.field_70758_at = ent.field_70177_z;
-        GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)0.0f);
-        RenderManager rendermanager = Minecraft.func_71410_x().func_175598_ae();
-        rendermanager.func_178631_a(180.0f);
-        rendermanager.func_178633_a(false);
-        GlStateManager.func_179126_j();
-        rendermanager.func_188391_a((Entity)ent, 0.0, 0.0, 0.0, 0.0f, 1.0f, false);
-        rendermanager.func_178633_a(true);
-        ent.field_70761_aq = f;
-        ent.field_70177_z = f1;
-        ent.field_70125_A = f2;
-        ent.field_70758_at = f3;
-        ent.field_70759_as = f4;
-        GlStateManager.func_179121_F();
-        RenderHelper.func_74518_a();
-        GlStateManager.func_179101_C();
-        GlStateManager.func_179138_g((int)OpenGlHelper.field_77476_b);
-        GlStateManager.func_179090_x();
-        GlStateManager.func_179138_g((int)OpenGlHelper.field_77478_a);
+        GlStateManager.enableColorMaterial();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)posX, (float)posY, (float)50.0f);
+        GlStateManager.scale((float)(-scale), (float)scale, (float)scale);
+        GlStateManager.rotate((float)180.0f, (float)0.0f, (float)0.0f, (float)1.0f);
+        float f = ent.renderYawOffset;
+        float f1 = ent.rotationYaw;
+        float f2 = ent.rotationPitch;
+        float f3 = ent.prevRotationYawHead;
+        float f4 = ent.rotationYawHead;
+        GlStateManager.rotate((float)135.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.rotate((float)-135.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+        ent.renderYawOffset = 0.0f;
+        ent.rotationYaw = 0.0f;
+        ent.rotationPitch = 0.0f;
+        ent.rotationYawHead = ent.rotationYaw;
+        ent.prevRotationYawHead = ent.rotationYaw;
+        GlStateManager.translate((float)0.0f, (float)0.0f, (float)0.0f);
+        RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
+        rendermanager.setPlayerViewY(180.0f);
+        rendermanager.setRenderShadow(false);
+        GlStateManager.enableDepth();
+        rendermanager.renderEntity((Entity)ent, 0.0, 0.0, 0.0, 0.0f, 1.0f, false);
+        rendermanager.setRenderShadow(true);
+        ent.renderYawOffset = f;
+        ent.rotationYaw = f1;
+        ent.rotationPitch = f2;
+        ent.prevRotationYawHead = f3;
+        ent.rotationYawHead = f4;
+        GlStateManager.popMatrix();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.setActiveTexture((int)OpenGlHelper.lightmapTexUnit);
+        GlStateManager.disableTexture2D();
+        GlStateManager.setActiveTexture((int)OpenGlHelper.defaultTexUnit);
     }
 
-    public void func_146281_b() {
+    public void onGuiClosed() {
         this.timer.shutdown();
-        super.func_146281_b();
+        super.onGuiClosed();
     }
 
     public class PlayerData {

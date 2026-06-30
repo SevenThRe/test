@@ -19,9 +19,9 @@ extends GuiChat {
         super(text);
     }
 
-    public void func_73866_w_() {
-        super.func_73866_w_();
-        this.field_146415_a.func_146196_d();
+    public void initGui() {
+        super.initGui();
+        this.inputField.setCursorPositionZero();
     }
 }
 

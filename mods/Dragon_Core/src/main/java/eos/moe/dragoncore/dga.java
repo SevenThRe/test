@@ -57,18 +57,18 @@ public class dga {
     public static void ALLATORIxDEMO(RenderLivingEvent.Pre<? extends EntityLivingBase> a2) {
         xz a3;
         EntityLivingBase a4 = a2.getEntity();
-        if (a4 instanceof EntityPlayer && (a3 = y.ALLATORIxDEMO(a4.func_110124_au())) != null) {
+        if (a4 instanceof EntityPlayer && (a3 = y.ALLATORIxDEMO(a4.getUniqueID())) != null) {
             jz.ALLATORIxDEMO(a3, a2.getPartialRenderTick());
         }
     }
 
     @SubscribeEvent
     public static void ALLATORIxDEMO(TickEvent.ClientTickEvent a2) {
-        if (a2.phase == TickEvent.Phase.START && Minecraft.func_71410_x().field_71441_e != null) {
-            for (Entity a3 : Minecraft.func_71410_x().field_71441_e.func_72910_y()) {
+        if (a2.phase == TickEvent.Phase.START && Minecraft.getMinecraft().world != null) {
+            for (Entity a3 : Minecraft.getMinecraft().world.getLoadedEntityList()) {
                 EntityPlayer a4;
                 xz a5;
-                if (!(a3 instanceof EntityPlayer) || (a5 = y.ALLATORIxDEMO((a4 = (EntityPlayer)a3).func_110124_au())) == null) continue;
+                if (!(a3 instanceof EntityPlayer) || (a5 = y.ALLATORIxDEMO((a4 = (EntityPlayer)a3).getUniqueID())) == null) continue;
                 a5.ALLATORIxDEMO(bs.c, new String[0]);
             }
         }
@@ -139,9 +139,9 @@ public class dga {
             a5.c((String)entry.getKey(), (String)entry.getValue());
         }
         a5.t = "";
-        a5.r = a2.func_110124_au();
+        a5.r = a2.getUniqueID();
         a5.ALLATORIxDEMO(bs.b, new String[0]);
-        a4.ALLATORIxDEMO.put(a2.func_110124_au(), a5);
+        a4.ALLATORIxDEMO.put(a2.getUniqueID(), a5);
     }
 
     public void c(UUID a2, String a3) {

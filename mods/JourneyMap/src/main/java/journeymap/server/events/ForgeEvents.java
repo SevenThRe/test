@@ -49,10 +49,10 @@ public class ForgeEvents {
         if (event.phase == TickEvent.Phase.END) {
             return;
         }
-        if (PropertiesManager.getInstance().getGlobalProperties().playerTrackingEnabled.get().booleanValue() && FMLCommonHandler.instance().getMinecraftServerInstance().func_184103_al().func_181057_v().size() > 1) {
+        if (PropertiesManager.getInstance().getGlobalProperties().playerTrackingEnabled.get().booleanValue() && FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers().size() > 1) {
             playerUpdateTicks = PropertiesManager.getInstance().getGlobalProperties().playerTrackingUpdateTime.get();
-            World world = FMLCommonHandler.instance().getMinecraftServerInstance().func_130014_f_();
-            if (world != null && world.func_72820_D() % (long)playerUpdateTicks == 0L) {
+            World world = FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld();
+            if (world != null && world.getWorldTime() % (long)playerUpdateTicks == 0L) {
                 this.sendPlayersOnRadarToPlayers();
             }
         }
@@ -81,8 +81,8 @@ public class ForgeEvents {
         GlobalProperties prop = PropertiesManager.getInstance().getGlobalProperties();
         boolean sendToEveryone = prop.playerTrackingEnabled.get();
         boolean sendToOps = prop.opPlayerTrackingEnabled.get();
-        for (EntityPlayerMP player : FMLCommonHandler.instance().getMinecraftServerInstance().func_184103_al().func_181057_v()) {
-            boolean playerRadarEnabled = PropertiesManager.getInstance().getDimProperties((int)player.field_71093_bK).playerRadarEnabled.get();
+        for (EntityPlayerMP player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers()) {
+            boolean playerRadarEnabled = PropertiesManager.getInstance().getDimProperties((int)player.dimension).playerRadarEnabled.get();
             boolean receiverOp = JourneymapServer.isOp((EntityPlayer)player);
             if ((!sendToEveryone || !playerRadarEnabled) && (!sendToOps || !receiverOp)) continue;
             try {
@@ -93,16 +93,16 @@ public class ForgeEvents {
     }
 
     private void sendPlayerTrackingData(EntityPlayerMP entityPlayerMP) {
-        int receiverDimension = entityPlayerMP.field_71093_bK;
+        int receiverDimension = entityPlayerMP.dimension;
         boolean receiverOp = JourneymapServer.isOp((EntityPlayer)entityPlayerMP);
-        ArrayList serverPlayers = new ArrayList(FMLCommonHandler.instance().getMinecraftServerInstance().func_184103_al().func_181057_v());
+        ArrayList serverPlayers = new ArrayList(FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers());
         ArrayList<JsonObject> playerList = new ArrayList<JsonObject>();
         if (serverPlayers != null || serverPlayers.size() > 1) {
             for (EntityPlayerMP playerMp : serverPlayers) {
-                boolean sneaking = playerMp.func_70093_af();
-                int dimension = playerMp.field_71093_bK;
-                UUID playerId = playerMp.func_110124_au();
-                if (entityPlayerMP.func_110124_au().equals(playerId) || sneaking) continue;
+                boolean sneaking = playerMp.isSneaking();
+                int dimension = playerMp.dimension;
+                UUID playerId = playerMp.getUniqueID();
+                if (entityPlayerMP.getUniqueID().equals(playerId) || sneaking) continue;
                 playerList.add(this.buildJsonPlayer((EntityPlayer)playerMp, receiverOp));
             }
             this.sendPlayerList(playerList, entityPlayerMP);
@@ -123,23 +123,23 @@ public class ForgeEvents {
     }
 
     private JsonObject buildJsonPlayer(EntityPlayer playerMp, boolean receiverOp) {
-        boolean sneaking = playerMp.func_70093_af();
-        UUID playerId = playerMp.func_110124_au();
+        boolean sneaking = playerMp.isSneaking();
+        UUID playerId = playerMp.getUniqueID();
         if (receiverOp) {
             sneaking = false;
         }
         JsonObject player = new JsonObject();
-        player.addProperty("name", playerMp.func_70005_c_());
-        player.addProperty("posX", (Number)playerMp.func_180425_c().func_177958_n());
-        player.addProperty("posY", (Number)playerMp.func_180425_c().func_177956_o());
-        player.addProperty("posZ", (Number)playerMp.func_180425_c().func_177952_p());
-        player.addProperty("chunkX", (Number)playerMp.field_70176_ah);
-        player.addProperty("chunkY", (Number)playerMp.field_70162_ai);
-        player.addProperty("chunkZ", (Number)playerMp.field_70164_aj);
-        player.addProperty("rotation", (Number)Float.valueOf(playerMp.field_70759_as));
+        player.addProperty("name", playerMp.getName());
+        player.addProperty("posX", (Number)playerMp.getPosition().getX());
+        player.addProperty("posY", (Number)playerMp.getPosition().getY());
+        player.addProperty("posZ", (Number)playerMp.getPosition().getZ());
+        player.addProperty("chunkX", (Number)playerMp.chunkCoordX);
+        player.addProperty("chunkY", (Number)playerMp.chunkCoordY);
+        player.addProperty("chunkZ", (Number)playerMp.chunkCoordZ);
+        player.addProperty("rotation", (Number)Float.valueOf(playerMp.rotationYawHead));
         player.addProperty("sneaking", Boolean.valueOf(sneaking));
         player.addProperty("playerId", playerId.toString());
-        player.addProperty("dim", (Number)playerMp.field_71093_bK);
+        player.addProperty("dim", (Number)playerMp.dimension);
         return player;
     }
 }

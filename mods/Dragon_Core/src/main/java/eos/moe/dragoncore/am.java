@@ -37,17 +37,17 @@ extends PositionedSoundRecord {
     }
 
     public void setVolume(float a2) {
-        a.field_147662_b = a2;
+        a.volume = a2;
     }
 
     public void setPitch(float a2) {
-        a.field_147663_c = a2;
+        a.pitch = a2;
     }
 
     public void setPosition(float a2, float a3, float a4) {
-        a.field_147660_d = a2;
-        a.field_147661_e = a3;
-        a.field_147658_f = a4;
+        a.xPosF = a2;
+        a.yPosF = a3;
+        a.zPosF = a4;
     }
 
     public void setKey(String a2) {
@@ -60,7 +60,7 @@ extends PositionedSoundRecord {
     }
 
     public void setAttenuation(ISound.AttenuationType a2) {
-        a.field_147666_i = a2;
+        a.attenuationType = a2;
     }
 }
 

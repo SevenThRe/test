@@ -40,7 +40,7 @@ public class gl {
         Point point;
         boolean bl;
         int n2;
-        EnumFacing a82 = EnumFacing.field_82609_l[a82];
+        EnumFacing a82 = EnumFacing.VALUES[a82];
         Point point2 = a11.z();
         int a92 = point2.x;
         int n3 = point2.y;
@@ -127,8 +127,8 @@ public class gl {
                 n2 = a92;
             }
         }
-        a32 = (byte)MathHelper.func_76125_a((int)(n2 + n4 + n8), (int)(a92 + n4), (int)(a92 + n4 + n6));
-        a4 = (byte)MathHelper.func_76125_a((int)(n3 + n5 + n9), (int)(n3 + n5), (int)(n3 + n5 + n7));
+        a32 = (byte)MathHelper.clamp((int)(n2 + n4 + n8), (int)(a92 + n4), (int)(a92 + n4 + n6));
+        a4 = (byte)MathHelper.clamp((int)(n3 + n5 + n9), (int)(n3 + n5), (int)(n3 + n5 + n7));
         Point a32 = new Point(a32, a4);
         if (a32.x >= 0) {
             bl = true;
@@ -180,9 +180,9 @@ public class gl {
         int a62 = a3 + (a5[0] & 0xFF) - a4;
         int n2 = a3 + (a5[1] & 0xFF) - a4;
         a3 = (byte)(a3 + (a5[2] & 0xFF) - a4);
-        a62 = MathHelper.func_76125_a((int)a62, (int)0, (int)255);
-        n2 = MathHelper.func_76125_a((int)n2, (int)0, (int)255);
-        a3 = (byte)MathHelper.func_76125_a((int)a3, (int)0, (int)255);
+        a62 = MathHelper.clamp((int)a62, (int)0, (int)255);
+        n2 = MathHelper.clamp((int)n2, (int)0, (int)255);
+        a3 = (byte)MathHelper.clamp((int)a3, (int)0, (int)255);
         byte[] byArray = new byte[3];
         byArray[0] = (byte)a62;
         byArray[1] = (byte)n2;

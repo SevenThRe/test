@@ -184,7 +184,7 @@ implements s {
             n3 = ++n2;
         }
         if (a2.r()) {
-            a2.w.func_147631_c();
+            a2.w.deleteGlTexture();
         }
     }
 }

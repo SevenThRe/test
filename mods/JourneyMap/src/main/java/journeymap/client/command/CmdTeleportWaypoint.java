@@ -29,20 +29,20 @@ public class CmdTeleportWaypoint {
     }
 
     public static boolean isPermitted(Minecraft mc) {
-        if (mc.func_71401_C() != null) {
-            IntegratedServer mcServer = mc.func_71401_C();
+        if (mc.getIntegratedServer() != null) {
+            IntegratedServer mcServer = mc.getIntegratedServer();
             PlayerList configurationManager = null;
             GameProfile profile = null;
             try {
-                profile = new GameProfile(mc.field_71439_g.func_110124_au(), mc.field_71439_g.func_70005_c_());
-                configurationManager = mcServer.func_184103_al();
-                return configurationManager.func_152596_g(profile) || Journeymap.getClient().isTeleportEnabled();
+                profile = new GameProfile(mc.player.getUniqueID(), mc.player.getName());
+                configurationManager = mcServer.getPlayerList();
+                return configurationManager.canSendCommands(profile) || Journeymap.getClient().isTeleportEnabled();
             }
             catch (Exception e) {
                 e.printStackTrace();
                 try {
                     if (profile != null && configurationManager != null) {
-                        return mcServer.func_71264_H() && mcServer.field_71305_c[0].func_72912_H().func_76086_u() && mcServer.func_71214_G().equalsIgnoreCase(profile.getName());
+                        return mcServer.isSinglePlayer() && mcServer.worlds[0].getWorldInfo().areCommandsAllowed() && mcServer.getServerOwner().equalsIgnoreCase(profile.getName());
                     }
                     Journeymap.getLogger().warn("Failed to check teleport permission both ways: " + LogFormatter.toString(e) + ", and profile or configManager were null.");
                 }
@@ -62,22 +62,22 @@ public class CmdTeleportWaypoint {
         double x = this.waypoint.getBlockCenteredX();
         double z = this.waypoint.getBlockCenteredZ();
         TreeSet dim = (TreeSet)this.waypoint.getDimensions();
-        if ((Integer)dim.first() == -1 && this.mc.field_71439_g.field_71093_bK != -1) {
+        if ((Integer)dim.first() == -1 && this.mc.player.dimension != -1) {
             x /= 8.0;
             z /= 8.0;
-        } else if ((Integer)dim.first() != -1 && this.mc.field_71439_g.field_71093_bK == -1) {
+        } else if ((Integer)dim.first() != -1 && this.mc.player.dimension == -1) {
             x *= 8.0;
             z *= 8.0;
         }
-        if (Journeymap.getClient().isJourneyMapServerConnection() || FMLClientHandler.instance().getClient().func_71356_B()) {
+        if (Journeymap.getClient().isJourneyMapServerConnection() || FMLClientHandler.instance().getClient().isSingleplayer()) {
             teleportCommand = String.format("/jtp %s %s %s %s", x, this.waypoint.getY(), z, dim.first());
             Journeymap.getLogger().info("Attempting jtp teleport with command: " + teleportCommand);
         } else {
             teleportCommand = Journeymap.getClient().getWaypointProperties().teleportCommand.getAsString();
-            teleportCommand = teleportCommand.replace("{name}", this.mc.field_71439_g.func_70005_c_()).replace("{x}", String.valueOf(this.waypoint.getX())).replace("{y}", String.valueOf(this.waypoint.getY())).replace("{z}", String.valueOf(this.waypoint.getZ())).replace("{dim}", String.valueOf(dim.first()));
+            teleportCommand = teleportCommand.replace("{name}", this.mc.player.getName()).replace("{x}", String.valueOf(this.waypoint.getX())).replace("{y}", String.valueOf(this.waypoint.getY())).replace("{z}", String.valueOf(this.waypoint.getZ())).replace("{dim}", String.valueOf(dim.first()));
             Journeymap.getLogger().info("Attempting tp teleport with command: " + teleportCommand);
         }
-        this.mc.field_71439_g.func_71165_d(teleportCommand);
+        this.mc.player.sendChatMessage(teleportCommand);
     }
 }
 

@@ -39,7 +39,7 @@ extends jj {
             a5.openGuiOnMainThread();
         }
         if (a5.k != null && !a5.k.w && a5.isVisible()) {
-            a5.k.func_73863_a(a2, a3, 0.0f);
+            a5.k.drawScreen(a2, a3, 0.0f);
         }
         a5.runAction("postRender");
     }
@@ -68,7 +68,7 @@ extends jj {
 
     public void openGuiOnMainThread() {
         zg a2;
-        Minecraft.func_71410_x().func_152344_a(a2::openGui);
+        Minecraft.getMinecraft().addScheduledTask(a2::openGui);
     }
 
     public void openGui() {
@@ -86,7 +86,7 @@ extends jj {
             a2.k.onGuiClosed1();
         }
         if (a4 != null) {
-            a2.k = new ui(a3, a4, wi.b.ALLATORIxDEMO(), Minecraft.func_71410_x().field_71439_g.field_71069_bz, od.q);
+            a2.k = new ui(a3, a4, wi.b.ALLATORIxDEMO(), Minecraft.getMinecraft().player.inventoryContainer, od.q);
             a2.k.initGui_();
             a2.k.open();
             a2.runAction("loaded");

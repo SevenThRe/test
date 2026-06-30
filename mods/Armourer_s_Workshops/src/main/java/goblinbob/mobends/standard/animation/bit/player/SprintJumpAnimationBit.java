@@ -40,13 +40,13 @@ extends AnimationBit<PlayerData> {
         ModelPartTransform mainForeLeg = sprintLegSwitch ? data.rightForeLeg : data.leftForeLeg;
         ModelPartTransform offForeLeg = sprintLegSwitch ? data.leftForeLeg : data.rightForeLeg;
         float bodyRotationY = 20.0f * legSwitchMtp;
-        float bodyLean = MathHelper.func_76131_a((float)((float)data.getMotionY()), (float)-0.2f, (float)0.2f);
+        float bodyLean = MathHelper.clamp((float)((float)data.getMotionY()), (float)-0.2f, (float)0.2f);
         bodyLean = bodyLean * -100.0f + 20.0f;
         if (this.relax < 1.0f) {
             this.relax += DataUpdateHandler.ticksPerFrame * 0.1f;
             this.relax = Math.min(this.relax, 1.0f);
         }
-        float relaxAngle = MathHelper.func_76129_c((float)MathHelper.func_76129_c((float)this.relax));
+        float relaxAngle = MathHelper.sqrt((float)MathHelper.sqrt((float)this.relax));
         data.centerRotation.setSmoothness(0.3f).orientZero();
         data.globalOffset.slideToZero(0.5f);
         data.body.rotation.setSmoothness(0.3f).orientX(bodyLean).rotateY(bodyRotationY);

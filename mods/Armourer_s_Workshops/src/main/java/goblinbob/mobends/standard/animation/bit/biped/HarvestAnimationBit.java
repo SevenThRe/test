@@ -40,16 +40,16 @@ extends AnimationBit<BipedEntityData<?>> {
         data.localOffset.slideToZero(0.3f);
         data.centerRotation.setSmoothness(0.3f).orientZero();
         float swingProgress = ((Float)data.swingProgress.get()).floatValue();
-        float bodyYaw = MathHelper.func_76126_a((float)(MathHelper.func_76129_c((float)swingProgress) * ((float)Math.PI * 2))) * 30.0f * sideMultiplier;
+        float bodyYaw = MathHelper.sin((float)(MathHelper.sqrt((float)swingProgress) * ((float)Math.PI * 2))) * 30.0f * sideMultiplier;
         data.body.rotation.setSmoothness(0.8f).orientY(bodyYaw);
         float bodyPitch = 0.0f;
-        if (data.getEntity().func_70093_af()) {
+        if (data.getEntity().isSneaking()) {
             data.body.rotation.rotateX(20.0f);
             bodyPitch = 20.0f;
         }
         data.head.rotation.setSmoothness(0.8f).orientX(headPitch - bodyPitch).rotateY(headYaw - bodyYaw);
-        mainArm.rotation.orientInstantX(MathHelper.func_76126_a((float)(MathHelper.func_76129_c((float)swingProgress) * ((float)Math.PI * 2))) * 50.0f - 30.0f);
-        mainArm.rotation.localRotateZ(MathHelper.func_76134_b((float)(MathHelper.func_76129_c((float)swingProgress) * ((float)Math.PI * 2))) * -20.0f + 10.0f).finish();
+        mainArm.rotation.orientInstantX(MathHelper.sin((float)(MathHelper.sqrt((float)swingProgress) * ((float)Math.PI * 2))) * 50.0f - 30.0f);
+        mainArm.rotation.localRotateZ(MathHelper.cos((float)(MathHelper.sqrt((float)swingProgress) * ((float)Math.PI * 2))) * -20.0f + 10.0f).finish();
     }
 }
 

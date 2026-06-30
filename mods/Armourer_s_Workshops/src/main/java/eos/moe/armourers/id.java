@@ -67,7 +67,7 @@ public class id {
             int n2;
             int a22 = 0;
             for (String string : a3) {
-                n2 = a8.func_78256_a(string);
+                n2 = a8.getStringWidth(string);
                 if (n2 <= a22) continue;
                 a22 = n2;
             }
@@ -116,8 +116,8 @@ public class id {
         ItemStack itemStack = id2.j;
         id2.m = null;
         id2.j = null;
-        Minecraft minecraft = Minecraft.func_71410_x();
-        if (minecraft.field_71462_r == null) {
+        Minecraft minecraft = Minecraft.getMinecraft();
+        if (minecraft.currentScreen == null) {
             return;
         }
         if (fk2 != null) {
@@ -130,17 +130,17 @@ public class id {
         if (bl & list != null) {
             float f2 = vk.s;
             id id3 = a3;
-            int[] nArray = id3.r(itemStack, list2, minecraft.field_71462_r.field_146294_l, minecraft.field_71462_r.field_146295_m, a2.getMouseX() + 8, a2.getMouseY(), minecraft.field_71466_p);
+            int[] nArray = id3.r(itemStack, list2, minecraft.currentScreen.width, minecraft.currentScreen.height, a2.getMouseX() + 8, a2.getMouseY(), minecraft.fontRenderer);
             int n2 = (int)((float)nArray[0] - f2 - 28.0f);
             int n3 = nArray[1] - 4;
-            if (id3.r(itemStack, list2, minecraft.field_71462_r.field_146294_l, minecraft.field_71462_r.field_146295_m, a2.getMouseX() + 8, a2.getMouseY(), minecraft.field_71466_p)) {
+            if (id3.r(itemStack, list2, minecraft.currentScreen.width, minecraft.currentScreen.height, a2.getMouseX() + 8, a2.getMouseY(), minecraft.fontRenderer)) {
                 n2 = nArray[0] + nArray[2] + 15;
             }
             if (n3 < 0) {
                 n3 = 0;
             }
-            if ((float)n3 + f2 > (float)minecraft.field_71462_r.field_146295_m) {
-                n3 = minecraft.field_71462_r.field_146295_m - (int)f2;
+            if ((float)n3 + f2 > (float)minecraft.currentScreen.height) {
+                n3 = minecraft.currentScreen.height - (int)f2;
             }
             a3.r(minecraft, n2, n3, f2, fk2);
         }
@@ -165,7 +165,7 @@ public class id {
             int n2;
             int a22 = 0;
             for (String string : a3) {
-                n2 = a8.func_78256_a(string);
+                n2 = a8.getStringWidth(string);
                 if (n2 <= a22) continue;
                 a22 = n2;
             }
@@ -187,7 +187,7 @@ public class id {
         a2 = fk2.r();
         if (fk2.r() != null) {
             if (vk.a) {
-                RenderHelper.func_74518_a();
+                RenderHelper.disableStandardItemLighting();
                 ql.r("skin-preview.png");
                 xd.z();
                 GuiUtils.drawContinuousTexturedBox((int)a3, (int)a4, (int)0, (int)0, (int)((int)a5), (int)((int)a5), (int)62, (int)62, (int)4, (float)400.0f);
@@ -196,7 +196,7 @@ public class id {
             GL11.glPushMatrix();
             GL11.glPushAttrib((int)1048575);
             GL11.glEnable((int)2977);
-            RenderHelper.func_74520_c();
+            RenderHelper.enableGUIStandardItemLighting();
             GL11.glTranslatef((float)-10.0f, (float)-5.0f, (float)600.0f);
             GL11.glTranslatef((float)(a5 / 2.0f + (float)a3), (float)(a5 / 2.0f + (float)a4), (float)0.0f);
             GL11.glScalef((float)10.0f, (float)10.0f, (float)10.0f);
@@ -209,12 +209,12 @@ public class id {
             ih.r(a6, true, false, (float)((int)a5), (float)((int)a5));
             GL11.glPopAttrib();
             GL11.glPopMatrix();
-            RenderHelper.func_74518_a();
+            RenderHelper.disableStandardItemLighting();
             return;
         }
         if (a2 != null) {
             if (vk.a) {
-                RenderHelper.func_74518_a();
+                RenderHelper.disableStandardItemLighting();
                 ql.r("skin-preview.png");
                 xd.z();
                 GuiUtils.drawContinuousTexturedBox((int)a3, (int)a4, (int)0, (int)0, (int)((int)a5), (int)((int)a5), (int)62, (int)62, (int)4, (float)400.0f);
@@ -222,32 +222,32 @@ public class id {
             if (((ModelData)a2).getTransformBakedModel() != null) {
                 Pair<? extends IBakedModel, Matrix4f> pair = ((ModelData)a2).getTransformBakedModel().handlePerspective(ItemCameraTransforms.TransformType.GUI);
                 if (pair.getRight() != null) {
-                    GlStateManager.func_179094_E();
-                    GlStateManager.func_179109_b((float)a3, (float)a4, (float)600.0f);
-                    GlStateManager.func_179109_b((float)(a5 / 2.0f), (float)(a5 / 2.0f), (float)0.0f);
-                    GlStateManager.func_179152_a((float)1.0f, (float)-1.0f, (float)1.0f);
-                    GlStateManager.func_179139_a((double)((double)a5 * 0.8), (double)((double)a5 * 0.8), (double)((double)a5 * 0.8));
+                    GlStateManager.pushMatrix();
+                    GlStateManager.translate((float)a3, (float)a4, (float)600.0f);
+                    GlStateManager.translate((float)(a5 / 2.0f), (float)(a5 / 2.0f), (float)0.0f);
+                    GlStateManager.scale((float)1.0f, (float)-1.0f, (float)1.0f);
+                    GlStateManager.scale((double)((double)a5 * 0.8), (double)((double)a5 * 0.8), (double)((double)a5 * 0.8));
                     ForgeHooksClient.multiplyCurrentGlMatrix((Matrix4f)((Matrix4f)pair.getRight()));
-                    GlStateManager.func_179152_a((float)-1.0f, (float)-1.0f, (float)1.0f);
+                    GlStateManager.scale((float)-1.0f, (float)-1.0f, (float)1.0f);
                     GL11.glRotatef((float)((float)((double)System.currentTimeMillis() / 10.0 % 360.0)), (float)0.0f, (float)1.0f, (float)0.0f);
                     tg.r((ModelData)a2, 0.0625f);
-                    GlStateManager.func_179121_F();
+                    GlStateManager.popMatrix();
                 }
                 return;
             }
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             GL11.glTranslatef((float)-10.0f, (float)-5.0f, (float)600.0f);
             GL11.glTranslatef((float)(a5 / 2.0f + (float)a3), (float)(a5 / 2.0f + (float)a4), (float)0.0f);
-            GlStateManager.func_179109_b((float)10.0f, (float)38.0f, (float)0.0f);
-            GlStateManager.func_179152_a((float)20.0f, (float)20.0f, (float)20.0f);
+            GlStateManager.translate((float)10.0f, (float)38.0f, (float)0.0f);
+            GlStateManager.scale((float)20.0f, (float)20.0f, (float)20.0f);
             float f3 = (float)((double)System.currentTimeMillis() / 10.0 % 360.0);
             GL11.glRotatef((float)f3, (float)0.0f, (float)1.0f, (float)0.0f);
             GL11.glPushAttrib((int)1048575);
             GL11.glEnable((int)2977);
-            GlStateManager.func_179129_p();
+            GlStateManager.disableCull();
             tg.r((ModelData)a2, 0.0625f);
             GL11.glPopAttrib();
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
@@ -272,8 +272,8 @@ public class id {
         List<String> list2 = id2.m;
         id2.m = null;
         id2.j = null;
-        Minecraft minecraft = Minecraft.func_71410_x();
-        if (minecraft.field_71462_r == null) {
+        Minecraft minecraft = Minecraft.getMinecraft();
+        if (minecraft.currentScreen == null) {
             return;
         }
         if (a2 != null) {
@@ -289,10 +289,10 @@ public class id {
             float f3 = vk.oa;
             float f4 = vk.v;
             ScaledResolution scaledResolution2 = scaledResolution = new ScaledResolution(minecraft);
-            double d2 = scaledResolution2.func_78327_c() - (double)f2;
-            double d3 = scaledResolution2.func_78324_d() - (double)f2;
-            int n2 = MathHelper.func_76143_f((double)(d2 * (double)f3));
-            int n3 = MathHelper.func_76143_f((double)(d3 * (double)f4));
+            double d2 = scaledResolution2.getScaledWidth_double() - (double)f2;
+            double d3 = scaledResolution2.getScaledHeight_double() - (double)f2;
+            int n2 = MathHelper.ceil((double)(d2 * (double)f3));
+            int n3 = MathHelper.ceil((double)(d3 * (double)f4));
             a3.r(minecraft, n2, n3, f2, (fk)a2);
             a2 = null;
         }

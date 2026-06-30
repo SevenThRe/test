@@ -4,6 +4,8 @@ This repository is a reverse-engineering aid, not authoritative source code.
 
 Decompiler output can mislead analysis when bytecode is obfuscated, when control flow is intentionally flattened, or when the decompiler reports structured-code failures. Treat Java under `mods/*/src/main/java` as a readable approximation. For classes listed in this report, prefer the matching `bytecode-fallback/*/*.javap.txt` disassembly when checking exact control flow.
 
+Minecraft 1.12 SRG method and field names have been remapped with MCP stable mappings where possible. This improves names such as `field_71466_p` -> `fontRenderer` and `func_73863_a` -> `drawScreen`. Private mod obfuscation is still not recoverable automatically; names such as `iiiiiiiiii_3`, `ao`, or custom `func_*` methods inside mod-owned packages require semantic/manual deobfuscation.
+
 ## Summary
 
 | Mod folder | Class files | CFR Java files | CFR issue notes | Severe CFR issues | Bytecode fallback classes |

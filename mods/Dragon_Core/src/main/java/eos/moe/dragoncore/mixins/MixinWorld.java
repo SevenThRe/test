@@ -36,7 +36,7 @@ public class MixinWorld {
     @Inject(method={"removeEntity"}, at={@At(value="RETURN")})
     private /* synthetic */ void mixin_removeEntity(Entity a2, CallbackInfo a3) {
         if (a2 != null && !(a2 instanceof EntityItem)) {
-            nw.ALLATORIxDEMO(a2.func_110124_au());
+            nw.ALLATORIxDEMO(a2.getUniqueID());
         }
     }
 

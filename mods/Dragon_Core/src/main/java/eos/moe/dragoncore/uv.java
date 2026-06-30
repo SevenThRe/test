@@ -48,8 +48,8 @@ public class uv {
             if (a9[0].equalsIgnoreCase("$texture")) {
                 a8 = a3.ALLATORIxDEMO.endsWith("/") ? a3.ALLATORIxDEMO + a9[1] : a3.ALLATORIxDEMO + "/" + a9[1];
                 a7 = new ResourceLocation("dragoncore", a8);
-                Minecraft.func_71410_x().func_110434_K().func_110577_a(a7);
-                a3.o = (SimpleTexture)Minecraft.func_71410_x().func_110434_K().func_110581_b(a7);
+                Minecraft.getMinecraft().getTextureManager().bindTexture(a7);
+                a3.o = (SimpleTexture)Minecraft.getMinecraft().getTextureManager().getTexture(a7);
                 continue;
             }
             if (a9[0].equalsIgnoreCase("$cubemap")) {
@@ -82,7 +82,7 @@ public class uv {
 
     public void c() {
         uv a2;
-        GL11.glBindTexture((int)3553, (int)a2.o.func_110552_b());
+        GL11.glBindTexture((int)3553, (int)a2.o.getGlTextureId());
         if (a2.v) {
             yq.o.c(new Object[0]);
         }
@@ -98,7 +98,7 @@ public class uv {
             yq.y.ALLATORIxDEMO(new Object[0]);
         }
         if (!a2.b) {
-            GlStateManager.func_179132_a((boolean)false);
+            GlStateManager.depthMask((boolean)false);
         }
         if (a2.y != null) {
             a2.y.start();
@@ -120,7 +120,7 @@ public class uv {
             yq.y.ALLATORIxDEMO(new Object[0]);
         }
         if (!a2.b) {
-            GlStateManager.func_179132_a((boolean)true);
+            GlStateManager.depthMask((boolean)true);
         }
         if (a2.y != null) {
             a2.y.end();

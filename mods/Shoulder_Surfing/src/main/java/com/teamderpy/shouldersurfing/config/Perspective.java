@@ -69,7 +69,7 @@ public enum Perspective {
     }
 
     public static Perspective current() {
-        return Perspective.of(Minecraft.func_71410_x().field_71474_y.field_74320_O, ShoulderState.doShoulderSurfing());
+        return Perspective.of(Minecraft.getMinecraft().gameSettings.thirdPersonView, ShoulderState.doShoulderSurfing());
     }
 }
 

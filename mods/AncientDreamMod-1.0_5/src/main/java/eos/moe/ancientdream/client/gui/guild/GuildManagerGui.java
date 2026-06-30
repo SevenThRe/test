@@ -46,23 +46,23 @@ extends GuiScreen {
         this.maxScrollDistance = Math.max(0.0f, (float)guildData.players.size() * 15.5f - 169.0f);
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         this.xSize = 394.0f;
         this.ySize = 278.0f;
-        this.offsetX = ((float)this.field_146294_l - this.xSize) / 2.0f;
-        this.offsetY = ((float)this.field_146295_m - this.ySize) / 2.0f;
+        this.offsetX = ((float)this.width - this.xSize) / 2.0f;
+        this.offsetY = ((float)this.height - this.ySize) / 2.0f;
     }
 
-    public void func_73863_a(int mouseX, int mouseY, float partialTicks) {
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         int i;
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)this.offsetX, (float)this.offsetY, (float)0.0f);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)this.offsetX, (float)this.offsetY, (float)0.0f);
         mouseX = (int)((float)mouseX - this.offsetX);
         mouseY = (int)((float)mouseY - this.offsetY);
         RenderUtils.drawTexture(16.0, 41.5, 24.0, 24.0, new ResourceLocation("ancientdream", "gui/guild/" + this.guildData.head));
-        GlStateManager.func_179147_l();
+        GlStateManager.enableBlend();
         RenderUtils.drawTexture(0.0, 0.0, 0.0, 0.0, (double)this.xSize, (double)this.ySize, 578.0, 354.0, this.BG);
-        GlStateManager.func_179084_k();
+        GlStateManager.disableBlend();
         RenderUtils.drawText(this.guildData.name, 116.0, 45.0, true, true);
         RenderUtils.drawText(this.guildData.level, 116.0, 56.0, true, true);
         RenderUtils.drawText(this.guildData.points, 228.0, 45.0, true, true);
@@ -99,10 +99,10 @@ extends GuiScreen {
             RenderUtils.drawTexture(158.5, 252.0, 427.0, 333.0, 427.0, 309.5, 68.5, 21.0, 578.0, 354.0, mouseX, mouseY, this.BG);
             RenderUtils.drawTexture(226.5, 252.0, 498.5, 333.0, 498.5, 309.5, 68.5, 21.0, 578.0, 354.0, mouseX, mouseY, this.BG);
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         GL11.glEnable((int)3089);
         RenderUtils.scissorBox(this.offsetX + 137.0f, this.offsetY + 80.0f, 240.0f, 169.0f);
-        GlStateManager.func_179109_b((float)137.0f, (float)80.0f, (float)0.0f);
+        GlStateManager.translate((float)137.0f, (float)80.0f, (float)0.0f);
         for (int j = 0; j < this.guildData.players.size(); ++j) {
             PlayerData data = this.guildData.players.get(j);
             float y = 4.5f + (float)j * 15.5f - this.scrollDistance * this.maxScrollDistance;
@@ -117,10 +117,10 @@ extends GuiScreen {
             RenderUtils.drawText(data.zdl, 216.0, y, true, true);
         }
         GL11.glDisable((int)3089);
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
         if (this.selectPlayer != null) {
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)this.selectPoint.x, (float)this.selectPoint.y, (float)0.0f);
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)this.selectPoint.x, (float)this.selectPoint.y, (float)0.0f);
             RenderUtils.drawTexture(0.0, 0.0, 434.0, 7.0, 91.0, 77.0, 578.0, 354.0, this.BG);
             if (Utils.onArea(10.0f, 18.0f, 70.5f, 10.5f, mouseX - this.selectPoint.x, mouseY - this.selectPoint.y)) {
                 RenderUtils.drawTexture(10.0, 18.0, 433.0, 90.5, 70.5, 10.5, 578.0, 354.0, this.BG);
@@ -134,18 +134,18 @@ extends GuiScreen {
             if (Utils.onArea(10.0f, 52.5f, 70.5f, 10.5f, mouseX - this.selectPoint.x, mouseY - this.selectPoint.y)) {
                 RenderUtils.drawTexture(10.0, 52.5, 433.0, 132.5, 70.5, 10.5, 578.0, 354.0, this.BG);
             }
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
         if (this.scrollPoint != null) {
             int y = (int)((float)mouseY + this.offsetY - (float)this.scrollPoint.y);
             this.scrollDistance = (float)y / 158.0f;
             this.scrollDistance = Math.min(1.0f, Math.max(0.0f, this.scrollDistance));
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         mouseX = (int)((float)mouseX - this.offsetX);
         mouseY = (int)((float)mouseY - this.offsetY);
         if (Utils.onArea(375.0f, 70.0f + this.scrollDistance * 158.0f, 10.0f, 21.0f, mouseX, mouseY)) {
@@ -222,7 +222,7 @@ extends GuiScreen {
         }
         this.selectPoint = null;
         this.selectPlayer = null;
-        if (mouseButton == 1 && this.guildData.leader.equals(this.field_146297_k.field_71439_g.func_70005_c_()) && Utils.onArea(137.0f, 80.0f, 240.0f, 169.0f, mouseX, mouseY)) {
+        if (mouseButton == 1 && this.guildData.leader.equals(this.mc.player.getName()) && Utils.onArea(137.0f, 80.0f, 240.0f, 169.0f, mouseX, mouseY)) {
             for (int i = 0; i < this.guildData.players.size(); ++i) {
                 float y = (float)i * 15.0f - this.scrollDistance * this.maxScrollDistance;
                 PlayerData gd = this.guildData.players.get(i);
@@ -235,8 +235,8 @@ extends GuiScreen {
         }
     }
 
-    protected void func_146286_b(int mouseX, int mouseY, int state) {
-        super.func_146286_b(mouseX, mouseY, state);
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+        super.mouseReleased(mouseX, mouseY, state);
         this.scrollPoint = null;
     }
 

@@ -35,8 +35,8 @@ IMessageHandler<SkillEventPacket, IMessage> {
 
     public void toBytes(ByteBuf byteBuf) {
         PacketBuffer packetBuffer = new PacketBuffer(byteBuf);
-        packetBuffer.func_180714_a(this.actionName);
-        packetBuffer.func_180714_a(this.skill);
+        packetBuffer.writeString(this.actionName);
+        packetBuffer.writeString(this.skill);
     }
 
     public IMessage onMessage(SkillEventPacket packet, MessageContext messageContext) {

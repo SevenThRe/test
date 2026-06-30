@@ -45,7 +45,7 @@ public class EventHandlerManager {
         ClientCommandInvoker clientCommandInvoker = new ClientCommandInvoker();
         clientCommandInvoker.register(new CmdChatPosition());
         clientCommandInvoker.register(new CmdEditWaypoint());
-        ClientCommandHandler.instance.func_71560_a((ICommand)clientCommandInvoker);
+        ClientCommandHandler.instance.registerCommand((ICommand)clientCommandInvoker);
         EventHandlerManager.register(ChunkMonitor.INSTANCE);
     }
 

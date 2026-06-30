@@ -47,7 +47,7 @@ extends BaseGui {
         this.guiData = guiData;
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         this.setSize(400, 250);
     }
 
@@ -94,15 +94,15 @@ extends BaseGui {
             if (this.selectScience.itemStacks.size() == 0) {
                 y2 -= 30.0f;
             }
-            RenderHelper.func_74520_c();
+            RenderHelper.enableGUIStandardItemLighting();
             for (i = 0; i < this.selectScience.itemStacks.size(); ++i) {
                 ItemStack itemStack = (ItemStack)this.selectScience.itemStacks.get(i);
                 RenderUtils.drawTexture((double)x, (double)y2, 0.0, 250.0, 18.0, 18.0, 400.0, 400.0, BG);
-                GlStateManager.func_179094_E();
-                GlStateManager.func_179109_b((float)(x + 1.0f), (float)(y2 + 1.0f), (float)0.0f);
-                this.field_146296_j.func_180450_b(itemStack, 0, 0);
-                this.field_146296_j.func_180453_a(this.field_146289_q, itemStack, 0, 0, null);
-                GlStateManager.func_179121_F();
+                GlStateManager.pushMatrix();
+                GlStateManager.translate((float)(x + 1.0f), (float)(y2 + 1.0f), (float)0.0f);
+                this.itemRender.renderItemAndEffectIntoGUI(itemStack, 0, 0);
+                this.itemRender.renderItemOverlayIntoGUI(this.fontRenderer, itemStack, 0, 0, null);
+                GlStateManager.popMatrix();
                 if (Utils.onArea(x + 1.0f, y2 + 1.0f, 16.0f, 16.0f, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
                     this.hoverItem = itemStack;
                 }
@@ -113,7 +113,7 @@ extends BaseGui {
                 x = 210.0f;
                 y2 += 18.0f;
             }
-            RenderHelper.func_74518_a();
+            RenderHelper.disableStandardItemLighting();
             RenderUtils.drawText("\u00a7l\u7814\u7a76\u9700\u6c42", 210.0, y2 + 23.0f, false, true);
             for (i = 0; i < this.selectScience.info.size(); ++i) {
                 String info = this.selectScience.info.get(i);
@@ -143,7 +143,7 @@ extends BaseGui {
         }
         GL11.glDisable((int)3089);
         if (this.hoverItem != null) {
-            this.func_146285_a(this.hoverItem, (int)((float)mouseX - this.offsetX), (int)((float)mouseY - this.offsetY));
+            this.renderToolTip(this.hoverItem, (int)((float)mouseX - this.offsetX), (int)((float)mouseY - this.offsetY));
         }
         if (this.scrollPoint != null) {
             y = mouseY - this.scrollPoint.y;
@@ -158,8 +158,8 @@ extends BaseGui {
     }
 
     @Override
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         mouseX = (int)((float)mouseX - this.offsetX);
         mouseY = (int)((float)mouseY - this.offsetY);
         if (Utils.onArea(190.0f, 26.0f + this.scrollDistance * 195.0f, 10.0f, 28.0f, mouseX, mouseY)) {
@@ -191,14 +191,14 @@ extends BaseGui {
         }
     }
 
-    protected void func_146286_b(int mouseX, int mouseY, int state) {
-        super.func_146286_b(mouseX, mouseY, state);
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+        super.mouseReleased(mouseX, mouseY, state);
         this.scrollPoint = null;
         this.scrollPoint2 = null;
     }
 
-    protected void func_73869_a(char typedChar, int keyCode) throws IOException {
-        super.func_73869_a(typedChar, keyCode);
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+        super.keyTyped(typedChar, keyCode);
         if (keyCode == 1) {
             MessageSender.sendOpenManager();
         }
@@ -212,17 +212,17 @@ extends BaseGui {
 
         public ScienceData(PacketBuffer buffer) throws IOException {
             int i;
-            this.name = buffer.func_150789_c(32768);
+            this.name = buffer.readString(32768);
             this.itemStacks = new ArrayList<ItemStack>();
             this.info = new ArrayList<String>();
             int size = buffer.readInt();
             for (i = 0; i < size; ++i) {
-                this.itemStacks.add(buffer.func_150791_c());
+                this.itemStacks.add(buffer.readItemStack());
             }
             this.type = buffer.readInt();
             size = buffer.readInt();
             for (i = 0; i < size; ++i) {
-                this.info.add(buffer.func_150789_c(32768));
+                this.info.add(buffer.readString(32768));
             }
         }
 
@@ -237,9 +237,9 @@ extends BaseGui {
         protected List<ScienceData> sciences;
 
         public GuiData(PacketBuffer buffer) throws IOException {
-            this.money = buffer.func_150789_c(32768);
-            this.points = buffer.func_150789_c(32768);
-            this.score = buffer.func_150789_c(32768);
+            this.money = buffer.readString(32768);
+            this.points = buffer.readString(32768);
+            this.score = buffer.readString(32768);
             this.sciences = new ArrayList<ScienceData>();
             int size = buffer.readInt();
             for (int i = 0; i < size; ++i) {

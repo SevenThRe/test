@@ -38,14 +38,14 @@ extends pj {
         if (a2 instanceof EntityPlayer) {
             EntityPlayer entityPlayer = (EntityPlayer)a2;
             pm pm2 = a5;
-            pm2.field_78117_n = entityPlayer.func_70093_af();
-            pm2.field_78093_q = entityPlayer.func_184218_aH();
+            pm2.isSneak = entityPlayer.isSneaking();
+            pm2.isRiding = entityPlayer.isRiding();
         }
         int n3 = n2 = 0;
         while (n3 < ((ArrayList)a3).size()) {
             a2 = (kf)((ArrayList)a3).get(n2);
             GL11.glPushMatrix();
-            if (a5.field_78091_s) {
+            if (a5.isChild) {
                 float f2 = 2.0f;
                 GL11.glScalef((float)(1.0f / f2), (float)(1.0f / f2), (float)(1.0f / f2));
                 GL11.glTranslatef((float)0.0f, (float)(24.0f * v), (float)0.0f);
@@ -74,11 +74,11 @@ extends pj {
         GL11.glPushMatrix();
         pm pm2 = a3;
         pm pm3 = a3;
-        GL11.glRotatef((float)((float)Math.toDegrees(pm3.field_78115_e.field_78808_h)), (float)0.0f, (float)0.0f, (float)1.0f);
-        GL11.glRotatef((float)((float)Math.toDegrees(pm3.field_78115_e.field_78796_g)), (float)0.0f, (float)1.0f, (float)0.0f);
-        GL11.glRotatef((float)((float)Math.toDegrees(pm3.field_178723_h.field_78808_h)), (float)0.0f, (float)0.0f, (float)1.0f);
-        GL11.glRotatef((float)((float)Math.toDegrees(pm2.field_178723_h.field_78796_g)), (float)0.0f, (float)1.0f, (float)0.0f);
-        GL11.glRotatef((float)((float)Math.toDegrees(pm2.field_178723_h.field_78795_f)), (float)1.0f, (float)0.0f, (float)0.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(pm3.bipedBody.rotateAngleZ)), (float)0.0f, (float)0.0f, (float)1.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(pm3.bipedBody.rotateAngleY)), (float)0.0f, (float)1.0f, (float)0.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(pm3.bipedRightArm.rotateAngleZ)), (float)0.0f, (float)0.0f, (float)1.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(pm2.bipedRightArm.rotateAngleY)), (float)0.0f, (float)1.0f, (float)0.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(pm2.bipedRightArm.rotateAngleX)), (float)1.0f, (float)0.0f, (float)0.0f);
         pm2.renderPart(a2);
         GL11.glPopMatrix();
     }

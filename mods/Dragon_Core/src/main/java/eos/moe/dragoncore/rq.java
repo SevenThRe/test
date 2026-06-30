@@ -70,27 +70,27 @@ extends ss {
     }
 
     @Override
-    public void func_78088_a(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
+    public void render(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
         rq a9;
-        a9.func_78087_a(a3, a4, a5, a6, a7, a8, a2);
-        GlStateManager.func_179094_E();
-        if (a9.field_78091_s) {
+        a9.setRotationAngles(a3, a4, a5, a6, a7, a8, a2);
+        GlStateManager.pushMatrix();
+        if (a9.isChild) {
             float a10 = 2.0f;
-            GlStateManager.func_179152_a((float)0.75f, (float)0.75f, (float)0.75f);
-            GlStateManager.func_179109_b((float)0.0f, (float)(16.0f * a8), (float)0.0f);
+            GlStateManager.scale((float)0.75f, (float)0.75f, (float)0.75f);
+            GlStateManager.translate((float)0.0f, (float)(16.0f * a8), (float)0.0f);
             a9.c.d(a8);
-            GlStateManager.func_179121_F();
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179152_a((float)0.5f, (float)0.5f, (float)0.5f);
-            GlStateManager.func_179109_b((float)0.0f, (float)(24.0f * a8), (float)0.0f);
+            GlStateManager.popMatrix();
+            GlStateManager.pushMatrix();
+            GlStateManager.scale((float)0.5f, (float)0.5f, (float)0.5f);
+            GlStateManager.translate((float)0.0f, (float)(24.0f * a8), (float)0.0f);
             a9.q.d(a8);
             a9.b.d(a8);
             a9.o.d(a8);
             a9.y.d(a8);
             a9.k.d(a8);
         } else {
-            if (a2.func_70093_af()) {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.2f, (float)0.0f);
+            if (a2.isSneaking()) {
+                GlStateManager.translate((float)0.0f, (float)0.2f, (float)0.0f);
             }
             a9.c.d(a8);
             a9.q.d(a8);
@@ -99,35 +99,35 @@ extends ss {
             a9.y.d(a8);
             a9.k.d(a8);
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
-    public void func_78087_a(float a2, float a3, float a4, float a5, float a6, float a7, Entity a8) {
+    public void setRotationAngles(float a2, float a3, float a4, float a5, float a6, float a7, Entity a8) {
         rq a9;
-        boolean a10 = a8 instanceof EntityLivingBase && ((EntityLivingBase)a8).func_184599_cB() > 4;
+        boolean a10 = a8 instanceof EntityLivingBase && ((EntityLivingBase)a8).getTicksElytraFlying() > 4;
         a9.c.g = a5 * ((float)Math.PI / 180);
         a9.c.s = a10 ? -0.7853982f : a6 * ((float)Math.PI / 180);
         a9.q.g = 0.0f;
         float a11 = 1.0f;
         if (a10) {
-            a11 = (float)(a8.field_70159_w * a8.field_70159_w + a8.field_70181_x * a8.field_70181_x + a8.field_70179_y * a8.field_70179_y);
+            a11 = (float)(a8.motionX * a8.motionX + a8.motionY * a8.motionY + a8.motionZ * a8.motionZ);
             a11 /= 0.2f;
             a11 = a11 * a11 * a11;
         }
         if (a11 < 1.0f) {
             a11 = 1.0f;
         }
-        a9.b.s = MathHelper.func_76134_b((float)(a2 * 0.6662f + (float)Math.PI)) * 2.0f * a3 * 0.5f / a11;
-        a9.o.s = MathHelper.func_76134_b((float)(a2 * 0.6662f)) * 2.0f * a3 * 0.5f / a11;
+        a9.b.s = MathHelper.cos((float)(a2 * 0.6662f + (float)Math.PI)) * 2.0f * a3 * 0.5f / a11;
+        a9.o.s = MathHelper.cos((float)(a2 * 0.6662f)) * 2.0f * a3 * 0.5f / a11;
         a9.b.t = 0.0f;
         a9.o.t = 0.0f;
-        a9.y.s = MathHelper.func_76134_b((float)(a2 * 0.6662f)) * 1.4f * a3 / a11;
-        a9.k.s = MathHelper.func_76134_b((float)(a2 * 0.6662f + (float)Math.PI)) * 1.4f * a3 / a11;
+        a9.y.s = MathHelper.cos((float)(a2 * 0.6662f)) * 1.4f * a3 / a11;
+        a9.k.s = MathHelper.cos((float)(a2 * 0.6662f + (float)Math.PI)) * 1.4f * a3 / a11;
         a9.y.g = 0.0f;
         a9.k.g = 0.0f;
         a9.y.t = 0.0f;
         a9.k.t = 0.0f;
-        if (a9.field_78093_q) {
+        if (a9.isRiding) {
             a9.b.s += -0.62831855f;
             a9.o.s += -0.62831855f;
             a9.y.s = -1.4137167f;
@@ -139,18 +139,18 @@ extends ss {
         }
         a9.b.g = 0.0f;
         a9.b.t = 0.0f;
-        a9.b.t += MathHelper.func_76134_b((float)(a4 * 0.09f)) * 0.05f + 0.05f;
-        a9.o.t -= MathHelper.func_76134_b((float)(a4 * 0.09f)) * 0.05f + 0.05f;
-        a9.b.s += MathHelper.func_76126_a((float)(a4 * 0.067f)) * 0.05f;
-        a9.o.s -= MathHelper.func_76126_a((float)(a4 * 0.067f)) * 0.05f;
+        a9.b.t += MathHelper.cos((float)(a4 * 0.09f)) * 0.05f + 0.05f;
+        a9.o.t -= MathHelper.cos((float)(a4 * 0.09f)) * 0.05f + 0.05f;
+        a9.b.s += MathHelper.sin((float)(a4 * 0.067f)) * 0.05f;
+        a9.o.s -= MathHelper.sin((float)(a4 * 0.067f)) * 0.05f;
     }
 
-    public void func_178686_a(ModelBase a2) {
+    public void setModelAttributes(ModelBase a2) {
         rq a3;
-        super.func_178686_a(a2);
+        super.setModelAttributes(a2);
         if (a2 instanceof ModelBiped) {
             ModelBiped a4 = (ModelBiped)a2;
-            a3.ALLATORIxDEMO = a4.field_78117_n;
+            a3.ALLATORIxDEMO = a4.isSneak;
         }
     }
 
@@ -171,8 +171,8 @@ extends ss {
     public EnumHandSide getMainHand(Entity a2) {
         if (a2 instanceof EntityLivingBase) {
             EntityLivingBase a3 = (EntityLivingBase)a2;
-            EnumHandSide a4 = a3.func_184591_cq();
-            return a3.field_184622_au == EnumHand.MAIN_HAND ? a4 : a4.func_188468_a();
+            EnumHandSide a4 = a3.getPrimaryHand();
+            return a3.swingingHand == EnumHand.MAIN_HAND ? a4 : a4.opposite();
         }
         return EnumHandSide.RIGHT;
     }

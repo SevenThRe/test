@@ -11,9 +11,11 @@ Layout:
 - `mods/<mod-name>/README.md` - original jar name, metadata, checksum, and file counts.
 - `manifest.json` - machine-readable index for all processed mods.
 - `DECOMPILATION_QUALITY.md` - decompiler warning summary and bytecode fallback guidance.
+- `MCP_REMAPPING.md` - Minecraft 1.12 MCP remapping summary.
 - `decompilation-quality/` - class inventories and parsed CFR issue data.
 - `bytecode-fallback/` - `javap` disassembly for classes where CFR reported severe failures.
 - `Invoke-DecompileMods.ps1` - repeatable decompilation script.
+- `Invoke-ApplyMcpMappings.ps1` - applies MCP stable mappings to SRG names in decompiled Java.
 
 The original jar files and the decompiler binary are intentionally ignored by git.
 

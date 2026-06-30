@@ -49,7 +49,7 @@ public class RadarDrawStepFactory {
                     boolean isPlayer = entityLiving instanceof EntityPlayer;
                     if (isPlayer) {
                         locatorImg = EntityDisplay.getLocatorTexture(playerDisplay, showPlayerHeading);
-                        entityIcon = EntityDisplay.getEntityTexture(playerDisplay, entityLiving.func_110124_au(), entityLiving.func_70005_c_());
+                        entityIcon = EntityDisplay.getEntityTexture(playerDisplay, entityLiving.getUniqueID(), entityLiving.getName());
                         drawStep.update(playerDisplay, locatorImg, entityIcon, dto.color, showPlayerHeading, showEntityNames);
                         drawStepList.add(drawStep);
                         continue;

@@ -62,12 +62,12 @@ public abstract class EntityBender<T extends EntityLivingBase> {
             throw new NullPointerException("The Mod ID cannot be null.");
         }
         if (key == null) {
-            ResourceLocation resourceLocation = EntityList.func_191306_a(entityClass);
+            ResourceLocation resourceLocation = EntityList.getKey(entityClass);
             if (resourceLocation == null) {
                 throw new RuntimeException("Unable to find a key for " + entityClass.getName());
             }
             key = resourceLocation.toString();
-            unlocalizedName = "entity." + EntityList.func_191302_a((ResourceLocation)resourceLocation) + ".name";
+            unlocalizedName = "entity." + EntityList.getTranslationName((ResourceLocation)resourceLocation) + ".name";
         }
         this.key = modId + "-" + key;
         this.unlocalizedName = unlocalizedName;
@@ -94,7 +94,7 @@ public abstract class EntityBender<T extends EntityLivingBase> {
     }
 
     public String getLocalizedName() {
-        return I18n.func_135052_a((String)this.unlocalizedName, (Object[])new Object[0]);
+        return I18n.format((String)this.unlocalizedName, (Object[])new Object[0]);
     }
 
     public boolean isAnimated() {
@@ -159,10 +159,10 @@ public abstract class EntityBender<T extends EntityLivingBase> {
 
     protected T createPreviewEntity() {
         try {
-            EntityLiving entity = (EntityLiving)this.entityClass.getConstructor(World.class).newInstance(Minecraft.func_71410_x().field_71441_e);
-            entity.field_70170_p = Minecraft.func_71410_x().field_71441_e;
-            entity.func_70012_b(0.0, 0.0, 0.0, 0.0f, 0.0f);
-            entity.func_180482_a(entity.field_70170_p.func_175649_E(entity.func_180425_c()), null);
+            EntityLiving entity = (EntityLiving)this.entityClass.getConstructor(World.class).newInstance(Minecraft.getMinecraft().world);
+            entity.world = Minecraft.getMinecraft().world;
+            entity.setLocationAndAngles(0.0, 0.0, 0.0, 0.0f, 0.0f);
+            entity.onInitialSpawn(entity.world.getDifficultyForLocation(entity.getPosition()), null);
             PreviewHelper.registerPreviewEntity((Entity)entity);
             return (T)entity;
         }

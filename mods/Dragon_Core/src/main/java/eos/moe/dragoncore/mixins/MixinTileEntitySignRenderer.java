@@ -39,7 +39,7 @@ extends TileEntitySpecialRenderer<TileEntitySign> {
     @Inject(method={"render(Lnet/minecraft/tileentity/TileEntitySign;DDDFIF)V"}, at={@At(value="HEAD")}, cancellable=true)
     public void mixin_render(TileEntitySign a2, double a3, double a4, double a5, float a6, int a7, float a8, CallbackInfo a9) {
         MixinTileEntitySignRenderer a10;
-        boolean a11 = SignRenderer.renderModel(a10.func_147498_b(), a2, a3, a4, a5, a6, a7, a8, a9);
+        boolean a11 = SignRenderer.renderModel(a10.getFontRenderer(), a2, a3, a4, a5, a6, a7, a8, a9);
         if (a11) {
             ey.ALLATORIxDEMO.add(a2);
             a9.cancel();
@@ -52,8 +52,8 @@ extends TileEntitySpecialRenderer<TileEntitySign> {
 
     private static /* synthetic */ TileEntityChest getAttached(TileEntitySign a2) {
         try {
-            if (a2.func_145838_q() == Blocks.field_150444_as) {
-                int a3 = a2.func_145832_p();
+            if (a2.getBlockType() == Blocks.WALL_SIGN) {
+                int a3 = a2.getBlockMetadata();
                 EnumFacing a4 = null;
                 switch (a3) {
                     case 2: {
@@ -76,8 +76,8 @@ extends TileEntitySpecialRenderer<TileEntitySign> {
                         a4 = EnumFacing.DOWN;
                     }
                 }
-                BlockPos a5 = a2.func_174877_v().func_177972_a(a4);
-                TileEntity a6 = a2.func_145831_w().func_175625_s(a5);
+                BlockPos a5 = a2.getPos().offset(a4);
+                TileEntity a6 = a2.getWorld().getTileEntity(a5);
                 if (a6 instanceof TileEntityChest) {
                     return (TileEntityChest)a6;
                 }

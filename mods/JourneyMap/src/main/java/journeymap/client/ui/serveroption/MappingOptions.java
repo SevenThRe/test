@@ -38,9 +38,9 @@ implements Draw {
 
     private ButtonList buildButtons() {
         ButtonList list = new ButtonList();
-        this.label = new Label(this.fontRenderer.func_78256_a(Constants.getString("jm.server.edit.mapping.label")) + 10, "jm.server.edit.mapping.label", new Object[0]);
+        this.label = new Label(this.fontRenderer.getStringWidth(Constants.getString("jm.server.edit.mapping.label")) + 10, "jm.server.edit.mapping.label", new Object[0]);
         this.label.setHAlign(DrawUtil.HAlign.Center);
-        this.label.func_175211_a(this.label.getFitWidth(this.fontRenderer));
+        this.label.setWidth(this.label.getFitWidth(this.fontRenderer));
         ServerOption surfaceOption = new ServerOption("surface", this.properties);
         ListPropertyButton<ServerOption.Option> surfaceOptionButton = new ListPropertyButton<ServerOption.Option>(EnumSet.allOf(ServerOption.Option.class), Constants.getString("jm.server.edit.mapping.toggle.surface.label"), new EnumField<ServerOption.Option>(Category.Hidden, "", surfaceOption.getOption()));
         surfaceOptionButton.addClickListener(button -> {

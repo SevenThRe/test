@@ -34,14 +34,14 @@ public class td {
     public void x() throws IOException {
         td a2;
         if (a2.k.exists() && a2.k.canRead()) {
-            NBTTagCompound a3 = CompressedStreamTools.func_74797_a((File)a2.k);
+            NBTTagCompound a3 = CompressedStreamTools.read((File)a2.k);
             for (int a4 = 0; a4 < 7; ++a4) {
                 String a5 = "slot" + (a4 + 1);
-                if (a3.func_74764_b(a5)) {
-                    a2.ALLATORIxDEMO[a4].ALLATORIxDEMO = a3.func_74775_l(a5);
+                if (a3.hasKey(a5)) {
+                    a2.ALLATORIxDEMO[a4].ALLATORIxDEMO = a3.getCompoundTag(a5);
                 }
-                if (!a3.func_74764_b(a5 + "Name")) continue;
-                a2.ALLATORIxDEMO[a4].k = a3.func_74779_i(a5 + "Name");
+                if (!a3.hasKey(a5 + "Name")) continue;
+                a2.ALLATORIxDEMO[a4].k = a3.getString(a5 + "Name");
             }
         }
     }
@@ -50,10 +50,10 @@ public class td {
         td a2;
         NBTTagCompound a3 = new NBTTagCompound();
         for (int a4 = 0; a4 < 7; ++a4) {
-            a3.func_74782_a("slot" + (a4 + 1), (NBTBase)a2.ALLATORIxDEMO[a4].ALLATORIxDEMO);
-            a3.func_74778_a("slot" + (a4 + 1) + "Name", a2.ALLATORIxDEMO[a4].k);
+            a3.setTag("slot" + (a4 + 1), (NBTBase)a2.ALLATORIxDEMO[a4].ALLATORIxDEMO);
+            a3.setString("slot" + (a4 + 1) + "Name", a2.ALLATORIxDEMO[a4].k);
         }
-        CompressedStreamTools.func_74795_b((NBTTagCompound)a3, (File)a2.k);
+        CompressedStreamTools.write((NBTTagCompound)a3, (File)a2.k);
     }
 
     public void c() {

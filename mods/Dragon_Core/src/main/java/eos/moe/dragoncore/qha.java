@@ -106,7 +106,7 @@ public class qha {
     public static void ALLATORIxDEMO(EntityViewRenderEvent.CameraSetup a2) {
         float a3;
         EntityPlayerSP a4;
-        Entity a5 = Minecraft.func_71410_x().func_175606_aa();
+        Entity a5 = Minecraft.getMinecraft().getRenderViewEntity();
         if (a5 instanceof EntityLivingBase && System.currentTimeMillis() <= s + (long)(i + l) * (long)z) {
             long a6 = System.currentTimeMillis() - s;
             long a7 = a6 % (long)(i + l);
@@ -118,21 +118,21 @@ public class qha {
             } else {
                 a9 = j * ((float)a7 / (float)i);
             }
-            float a11 = a8.field_70739_aP;
-            GlStateManager.func_179114_b((float)(-a11), (float)0.0f, (float)1.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)(-a9), (float)0.0f, (float)0.0f, (float)1.0f);
-            GlStateManager.func_179114_b((float)a11, (float)0.0f, (float)1.0f, (float)0.0f);
+            float a11 = a8.attackedAtYaw;
+            GlStateManager.rotate((float)(-a11), (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)(-a9), (float)0.0f, (float)0.0f, (float)1.0f);
+            GlStateManager.rotate((float)a11, (float)0.0f, (float)1.0f, (float)0.0f);
         }
-        if ((a4 = Minecraft.func_71410_x().field_71439_g) != null) {
-            a3 = Minecraft.func_71410_x().func_184121_ak();
-            float a12 = (float)a4.field_70173_aa + a3;
+        if ((a4 = Minecraft.getMinecraft().player) != null) {
+            a3 = Minecraft.getMinecraft().getRenderPartialTicks();
+            float a12 = (float)a4.ticksExisted + a3;
             float a13 = 0.0f;
             for (gfa a14 : k) {
-                if (gfa.ALLATORIxDEMO((gfa)a14).field_72450_a == 0.0 && gfa.ALLATORIxDEMO((gfa)a14).field_72448_b == 0.0 && gfa.ALLATORIxDEMO((gfa)a14).field_72449_c == 0.0) {
+                if (gfa.ALLATORIxDEMO((gfa)a14).x == 0.0 && gfa.ALLATORIxDEMO((gfa)a14).y == 0.0 && gfa.ALLATORIxDEMO((gfa)a14).z == 0.0) {
                     a13 += a14.ALLATORIxDEMO((EntityPlayer)a4, a3);
                     continue;
                 }
-                if (!(gfa.ALLATORIxDEMO(a14).func_72438_d(a4.func_174791_d()) < (double)gfa.ALLATORIxDEMO(a14))) continue;
+                if (!(gfa.ALLATORIxDEMO(a14).distanceTo(a4.getPositionVector()) < (double)gfa.ALLATORIxDEMO(a14))) continue;
                 a13 += a14.ALLATORIxDEMO((EntityPlayer)a4, a3);
             }
             if (a13 > 1.0f) {
@@ -143,8 +143,8 @@ public class qha {
             a2.setRoll((float)((double)a2.getRoll() + (double)a13 * Math.cos(a12 * 4.0f) * 25.0));
         }
         if (a5 != null && System.currentTimeMillis() < o) {
-            a3 = Minecraft.func_71410_x().func_184121_ak();
-            float a15 = (float)a5.field_70173_aa + a3;
+            a3 = Minecraft.getMinecraft().getRenderPartialTicks();
+            float a15 = (float)a5.ticksExisted + a3;
             a2.setPitch((float)((double)a2.getPitch() + (double)y * Math.cos(a15 * 3.0f + 2.0f) * 25.0));
             a2.setYaw((float)((double)a2.getYaw() + (double)y * Math.cos(a15 * 5.0f + 1.0f) * 25.0));
             a2.setRoll((float)((double)a2.getRoll() + (double)y * Math.cos(a15 * 4.0f) * 25.0));
@@ -156,8 +156,8 @@ public class qha {
         float a4;
         float a5;
         long a6;
-        Minecraft a7 = Minecraft.func_71410_x();
-        Entity a8 = a7.func_175606_aa();
+        Minecraft a7 = Minecraft.getMinecraft();
+        Entity a8 = a7.getRenderViewEntity();
         float a9 = -999.0f;
         if (g != ala.y) {
             ala.ALLATORIxDEMO(ala.b);
@@ -181,7 +181,7 @@ public class qha {
             a6 = a6 - (long)c - (long)q;
             a10 = a11 - a11 * (double)a6 / (double)b;
             if (v != -999.0f) {
-                float a12 = a8.field_70127_C + (a8.field_70125_A - a8.field_70127_C) * a2;
+                float a12 = a8.prevRotationPitch + (a8.rotationPitch - a8.prevRotationPitch) * a2;
                 a9 = um.x(v, a12, (float)a6 / (float)b);
             }
         }
@@ -190,57 +190,57 @@ public class qha {
         } else if (g == ala.b || g == ala.o) {
             a10 += 4.0;
         }
-        EntityRenderer a13 = a7.field_71460_t;
-        float a14 = a8.func_70047_e();
-        double a15 = a8.field_70169_q + (a8.field_70165_t - a8.field_70169_q) * (double)a2;
-        double a16 = a8.field_70167_r + (a8.field_70163_u - a8.field_70167_r) * (double)a2 + (double)a14;
-        double a17 = a8.field_70166_s + (a8.field_70161_v - a8.field_70166_s) * (double)a2;
-        float a18 = a8.field_70177_z;
-        float a19 = a8.field_70125_A;
-        if (a7.field_71474_y.field_74320_O == 2) {
+        EntityRenderer a13 = a7.entityRenderer;
+        float a14 = a8.getEyeHeight();
+        double a15 = a8.prevPosX + (a8.posX - a8.prevPosX) * (double)a2;
+        double a16 = a8.prevPosY + (a8.posY - a8.prevPosY) * (double)a2 + (double)a14;
+        double a17 = a8.prevPosZ + (a8.posZ - a8.prevPosZ) * (double)a2;
+        float a18 = a8.rotationYaw;
+        float a19 = a8.rotationPitch;
+        if (a7.gameSettings.thirdPersonView == 2) {
             a19 += 180.0f;
         }
-        double a20 = (double)(-MathHelper.func_76126_a((float)(a18 * ((float)Math.PI / 180))) * MathHelper.func_76134_b((float)(a19 * ((float)Math.PI / 180)))) * a10;
-        double a21 = (double)(MathHelper.func_76134_b((float)(a18 * ((float)Math.PI / 180))) * MathHelper.func_76134_b((float)(a19 * ((float)Math.PI / 180)))) * a10;
-        double a22 = (double)(-MathHelper.func_76126_a((float)(a19 * ((float)Math.PI / 180)))) * a10;
+        double a20 = (double)(-MathHelper.sin((float)(a18 * ((float)Math.PI / 180))) * MathHelper.cos((float)(a19 * ((float)Math.PI / 180)))) * a10;
+        double a21 = (double)(MathHelper.cos((float)(a18 * ((float)Math.PI / 180))) * MathHelper.cos((float)(a19 * ((float)Math.PI / 180)))) * a10;
+        double a22 = (double)(-MathHelper.sin((float)(a19 * ((float)Math.PI / 180)))) * a10;
         for (int a23 = 0; a23 < 8; ++a23) {
             double a24;
             a5 = (a23 & 1) * 2 - 1;
             a4 = (a23 >> 1 & 1) * 2 - 1;
             float a25 = (a23 >> 2 & 1) * 2 - 1;
-            if ((a3 = a7.field_71441_e.func_72933_a(new Vec3d(a15 + (double)(a5 *= 0.1f), a16 + (double)(a4 *= 0.1f), a17 + (double)(a25 *= 0.1f)), new Vec3d(a15 - a20 + (double)a5 + (double)a25, a16 - a22 + (double)a4, a17 - a21 + (double)a25))) == null || !((a24 = a3.field_72307_f.func_72438_d(new Vec3d(a15, a16, a17))) < a10)) continue;
+            if ((a3 = a7.world.rayTraceBlocks(new Vec3d(a15 + (double)(a5 *= 0.1f), a16 + (double)(a4 *= 0.1f), a17 + (double)(a25 *= 0.1f)), new Vec3d(a15 - a20 + (double)a5 + (double)a25, a16 - a22 + (double)a4, a17 - a21 + (double)a25))) == null || !((a24 = a3.hitVec.distanceTo(new Vec3d(a15, a16, a17))) < a10)) continue;
             a10 = a24;
         }
-        if (a7.field_71474_y.field_74320_O == 2) {
-            GlStateManager.func_179114_b((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+        if (a7.gameSettings.thirdPersonView == 2) {
+            GlStateManager.rotate((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
         }
-        GlStateManager.func_179114_b((float)(a8.field_70125_A - a19), (float)1.0f, (float)0.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)(a8.field_70177_z - a18), (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.rotate((float)(a8.rotationPitch - a19), (float)1.0f, (float)0.0f, (float)0.0f);
+        GlStateManager.rotate((float)(a8.rotationYaw - a18), (float)0.0f, (float)1.0f, (float)0.0f);
         if (ca.y) {
             gka.ALLATORIxDEMO(0.0f, 0.0f, (float)(-a10), a18, a19);
         } else if (ca.k) {
             laa.ALLATORIxDEMO(0.0f, 0.0f, (float)(-a10), a18, a19);
         } else {
-            GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)((float)(-a10)));
+            GlStateManager.translate((float)0.0f, (float)0.0f, (float)((float)(-a10)));
         }
-        GlStateManager.func_179114_b((float)(a18 - a8.field_70177_z), (float)0.0f, (float)1.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)(a19 - a8.field_70125_A), (float)1.0f, (float)0.0f, (float)0.0f);
-        if (!a7.field_71474_y.field_74325_U) {
-            float a26 = a8.field_70126_B + (a8.field_70177_z - a8.field_70126_B) * a2 + 180.0f;
-            a5 = a8.field_70127_C + (a8.field_70125_A - a8.field_70127_C) * a2;
+        GlStateManager.rotate((float)(a18 - a8.rotationYaw), (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.rotate((float)(a19 - a8.rotationPitch), (float)1.0f, (float)0.0f, (float)0.0f);
+        if (!a7.gameSettings.debugCamEnable) {
+            float a26 = a8.prevRotationYaw + (a8.rotationYaw - a8.prevRotationYaw) * a2 + 180.0f;
+            a5 = a8.prevRotationPitch + (a8.rotationPitch - a8.prevRotationPitch) * a2;
             a4 = 0.0f;
             if (a8 instanceof EntityAnimal) {
                 EntityAnimal a27 = (EntityAnimal)a8;
-                a26 = a27.field_70758_at + (a27.field_70759_as - a27.field_70758_at) * a2 + 180.0f;
+                a26 = a27.prevRotationYawHead + (a27.rotationYawHead - a27.prevRotationYawHead) * a2 + 180.0f;
             }
-            IBlockState a28 = ActiveRenderInfo.func_186703_a((World)a7.field_71441_e, (Entity)a8, (float)a2);
+            IBlockState a28 = ActiveRenderInfo.getBlockStateAtEntityViewpoint((World)a7.world, (Entity)a8, (float)a2);
             a3 = new EntityViewRenderEvent.CameraSetup(a13, a8, a28, (double)a2, a26, a5, a4);
             MinecraftForge.EVENT_BUS.post((Event)a3);
-            GlStateManager.func_179114_b((float)a3.getRoll(), (float)0.0f, (float)0.0f, (float)1.0f);
-            GlStateManager.func_179114_b((float)(a9 == -999.0f ? a3.getPitch() : a9), (float)1.0f, (float)0.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)a3.getYaw(), (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)a3.getRoll(), (float)0.0f, (float)0.0f, (float)1.0f);
+            GlStateManager.rotate((float)(a9 == -999.0f ? a3.getPitch() : a9), (float)1.0f, (float)0.0f, (float)0.0f);
+            GlStateManager.rotate((float)a3.getYaw(), (float)0.0f, (float)1.0f, (float)0.0f);
         }
-        GlStateManager.func_179109_b((float)0.0f, (float)(-a14), (float)0.0f);
+        GlStateManager.translate((float)0.0f, (float)(-a14), (float)0.0f);
     }
 
     @SubscribeEvent

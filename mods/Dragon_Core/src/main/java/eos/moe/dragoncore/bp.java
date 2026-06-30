@@ -38,11 +38,11 @@ public class bp {
     }
 
     public static NBTTagCompound ALLATORIxDEMO(DataInputStream a2) throws IOException {
-        return CompressedStreamTools.func_74794_a((DataInputStream)a2);
+        return CompressedStreamTools.read((DataInputStream)a2);
     }
 
     public static void ALLATORIxDEMO(NBTTagCompound a2, DataOutput a3) throws IOException {
-        CompressedStreamTools.func_74800_a((NBTTagCompound)a2, (DataOutput)a3);
+        CompressedStreamTools.write((NBTTagCompound)a2, (DataOutput)a3);
     }
 
     public static Map<String, NBTBase> ALLATORIxDEMO(NBTTagCompound a2) {
@@ -59,7 +59,7 @@ public class bp {
             a3.writeByte(0);
         } else {
             try {
-                CompressedStreamTools.func_74800_a((NBTTagCompound)a2, (DataOutput)new ByteBufOutputStream(a3));
+                CompressedStreamTools.write((NBTTagCompound)a2, (DataOutput)new ByteBufOutputStream(a3));
             }
             catch (IOException a4) {
                 throw new EncoderException((Throwable)a4);
@@ -75,7 +75,7 @@ public class bp {
         }
         a2.readerIndex(a3);
         try {
-            return CompressedStreamTools.func_152456_a((DataInput)new ByteBufInputStream(a2), (NBTSizeTracker)new NBTSizeTracker(0x200000L));
+            return CompressedStreamTools.read((DataInput)new ByteBufInputStream(a2), (NBTSizeTracker)new NBTSizeTracker(0x200000L));
         }
         catch (IOException a5) {
             throw new EncoderException((Throwable)a5);

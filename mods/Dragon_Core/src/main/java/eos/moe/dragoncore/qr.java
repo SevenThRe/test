@@ -52,10 +52,10 @@ implements RemovalListener<UUID, kp> {
 
     public String getEntityName(Entity a2) {
         qr a3;
-        if (a3.y.containsKey(a2.func_110124_au())) {
-            return a3.y.get(a2.func_110124_au());
+        if (a3.y.containsKey(a2.getUniqueID())) {
+            return a3.y.get(a2.getUniqueID());
         }
-        return en.ALLATORIxDEMO(a2.func_70005_c_().replace(" ", ""));
+        return en.ALLATORIxDEMO(a2.getName().replace(" ", ""));
     }
 
     public YamlConfiguration getMatchYaml(Entity a2) {
@@ -63,7 +63,7 @@ implements RemovalListener<UUID, kp> {
         String a4 = a3.getEntityName(a2);
         String a5 = a3.ALLATORIxDEMO.get(a2.getClass());
         if (a5 == null) {
-            a5 = EntityList.func_75621_b((Entity)a2);
+            a5 = EntityList.getEntityString((Entity)a2);
             a5 = a5 == null ? "unknown" : a5.toLowerCase(Locale.ROOT);
             a3.ALLATORIxDEMO.put(a2.getClass(), a5);
         }

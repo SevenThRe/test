@@ -55,7 +55,7 @@ AnimationModelRenderer {
         this.innerOffset = new Vec3f();
         this.scale = new Vec3f(1.0f, 1.0f, 1.0f);
         this.rotation = new SmoothOrientation();
-        this.field_78809_i = model.field_78809_i;
+        this.mirror = model.mirror;
     }
 
     public ModelRenderer getModel() {
@@ -83,34 +83,34 @@ AnimationModelRenderer {
     }
 
     private void renderContainedModel(float scale) {
-        float x2 = this.innerModel.field_78800_c;
-        float y2 = this.innerModel.field_78797_d;
-        float z2 = this.innerModel.field_78798_e;
-        float ox = this.innerModel.field_82906_o;
-        float oy = this.innerModel.field_82908_p;
-        float oz = this.innerModel.field_82907_q;
-        this.innerModel.field_78808_h = 0.0f;
-        this.innerModel.field_78796_g = 0.0f;
-        this.innerModel.field_78795_f = 0.0f;
-        this.innerModel.field_78798_e = 0.0f;
-        this.innerModel.field_78797_d = 0.0f;
-        this.innerModel.field_78800_c = 0.0f;
-        this.innerModel.field_82907_q = 0.0f;
-        this.innerModel.field_82908_p = 0.0f;
-        this.innerModel.field_82906_o = 0.0f;
-        this.innerModel.field_78806_j = true;
-        this.innerModel.field_78807_k = false;
-        this.innerModel.func_78785_a(scale);
-        this.innerModel.field_78800_c = x2;
-        this.innerModel.field_78797_d = y2;
-        this.innerModel.field_78798_e = z2;
-        this.innerModel.field_82906_o = ox;
-        this.innerModel.field_82908_p = oy;
-        this.innerModel.field_82907_q = oz;
+        float x2 = this.innerModel.rotationPointX;
+        float y2 = this.innerModel.rotationPointY;
+        float z2 = this.innerModel.rotationPointZ;
+        float ox = this.innerModel.offsetX;
+        float oy = this.innerModel.offsetY;
+        float oz = this.innerModel.offsetZ;
+        this.innerModel.rotateAngleZ = 0.0f;
+        this.innerModel.rotateAngleY = 0.0f;
+        this.innerModel.rotateAngleX = 0.0f;
+        this.innerModel.rotationPointZ = 0.0f;
+        this.innerModel.rotationPointY = 0.0f;
+        this.innerModel.rotationPointX = 0.0f;
+        this.innerModel.offsetZ = 0.0f;
+        this.innerModel.offsetY = 0.0f;
+        this.innerModel.offsetX = 0.0f;
+        this.innerModel.showModel = true;
+        this.innerModel.isHidden = false;
+        this.innerModel.render(scale);
+        this.innerModel.rotationPointX = x2;
+        this.innerModel.rotationPointY = y2;
+        this.innerModel.rotationPointZ = z2;
+        this.innerModel.offsetX = ox;
+        this.innerModel.offsetY = oy;
+        this.innerModel.offsetZ = oz;
     }
 
     @SideOnly(value=Side.CLIENT)
-    public void func_78785_a(float scale) {
+    public void render(float scale) {
         this.renderPart(scale);
     }
 
@@ -119,18 +119,18 @@ AnimationModelRenderer {
         if (!this.isShowing()) {
             return;
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         this.applyCharacterTransform(scale);
         if (this.innerOffset.x != 0.0f || this.innerOffset.y != 0.0f || this.innerOffset.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.innerOffset.x * scale), (float)(this.innerOffset.y * scale), (float)(this.innerOffset.z * scale));
+            GlStateManager.translate((float)(this.innerOffset.x * scale), (float)(this.innerOffset.y * scale), (float)(this.innerOffset.z * scale));
         }
         this.renderContainedModel(scale);
-        if (this.field_78805_m != null) {
-            for (int k2 = 0; k2 < this.field_78805_m.size(); ++k2) {
-                ((ModelRenderer)this.field_78805_m.get(k2)).func_78785_a(scale);
+        if (this.childModels != null) {
+            for (int k2 = 0; k2 < this.childModels.size(); ++k2) {
+                ((ModelRenderer)this.childModels.get(k2)).render(scale);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @Override
@@ -138,22 +138,22 @@ AnimationModelRenderer {
         if (!this.isShowing()) {
             return;
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         this.applyLocalTransform(scale);
         if (this.innerOffset.x != 0.0f || this.innerOffset.y != 0.0f || this.innerOffset.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.innerOffset.x * scale), (float)(this.innerOffset.y * scale), (float)(this.innerOffset.z * scale));
+            GlStateManager.translate((float)(this.innerOffset.x * scale), (float)(this.innerOffset.y * scale), (float)(this.innerOffset.z * scale));
         }
         this.renderContainedModel(scale);
-        if (this.field_78805_m != null) {
-            for (int k2 = 0; k2 < this.field_78805_m.size(); ++k2) {
-                ((ModelRenderer)this.field_78805_m.get(k2)).func_78785_a(scale);
+        if (this.childModels != null) {
+            for (int k2 = 0; k2 < this.childModels.size(); ++k2) {
+                ((ModelRenderer)this.childModels.get(k2)).render(scale);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @SideOnly(value=Side.CLIENT)
-    public void func_78794_c(float scale) {
+    public void postRender(float scale) {
         this.applyCharacterTransform(scale);
         this.applyPostTransform(scale);
     }
@@ -169,26 +169,26 @@ AnimationModelRenderer {
     @Override
     public void applyLocalTransform(float scale) {
         if (this.position.x != 0.0f || this.position.y != 0.0f || this.position.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.position.x * scale * this.offsetScale), (float)(this.position.y * scale * this.offsetScale), (float)(this.position.z * scale * this.offsetScale));
+            GlStateManager.translate((float)(this.position.x * scale * this.offsetScale), (float)(this.position.y * scale * this.offsetScale), (float)(this.position.z * scale * this.offsetScale));
         }
         if (this.offset.x != 0.0f || this.offset.y != 0.0f || this.offset.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.offset.x * scale * this.offsetScale), (float)(this.offset.y * scale * this.offsetScale), (float)(this.offset.z * scale * this.offsetScale));
+            GlStateManager.translate((float)(this.offset.x * scale * this.offsetScale), (float)(this.offset.y * scale * this.offsetScale), (float)(this.offset.z * scale * this.offsetScale));
         }
         if (this.applyAnimation) {
             if (this.rotateAngleZZ != 0.0f) {
-                GlStateManager.func_179114_b((float)this.rotateAngleZZ, (float)0.0f, (float)0.0f, (float)1.0f);
+                GlStateManager.rotate((float)this.rotateAngleZZ, (float)0.0f, (float)0.0f, (float)1.0f);
             }
             if (this.rotateAngleYY != 0.0f) {
-                GlStateManager.func_179114_b((float)this.rotateAngleYY, (float)0.0f, (float)1.0f, (float)0.0f);
+                GlStateManager.rotate((float)this.rotateAngleYY, (float)0.0f, (float)1.0f, (float)0.0f);
             }
             if (this.rotateAngleXX != 0.0f) {
-                GlStateManager.func_179114_b((float)this.rotateAngleXX, (float)1.0f, (float)0.0f, (float)0.0f);
+                GlStateManager.rotate((float)this.rotateAngleXX, (float)1.0f, (float)0.0f, (float)0.0f);
             }
         } else {
             GlHelper.rotate(this.rotation.getSmooth());
         }
         if (this.scale.x != 0.0f || this.scale.y != 0.0f || this.scale.z != 0.0f) {
-            GlStateManager.func_179152_a((float)this.scale.x, (float)this.scale.y, (float)this.scale.z);
+            GlStateManager.scale((float)this.scale.x, (float)this.scale.y, (float)this.scale.z);
         }
     }
 
@@ -249,18 +249,18 @@ AnimationModelRenderer {
 
     @Override
     public boolean isShowing() {
-        return this.field_78806_j && !this.field_78807_k;
+        return this.showModel && !this.isHidden;
     }
 
     @Override
     public void setVisible(boolean showModel) {
-        this.field_78806_j = showModel;
+        this.showModel = showModel;
     }
 
     @Override
     public void applyPreTransform(float scale) {
         if (this.globalOffset.x != 0.0f || this.globalOffset.y != 0.0f || this.globalOffset.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.globalOffset.x * scale), (float)(this.globalOffset.y * scale), (float)(this.globalOffset.z * scale));
+            GlStateManager.translate((float)(this.globalOffset.x * scale), (float)(this.globalOffset.y * scale), (float)(this.globalOffset.z * scale));
         }
     }
 

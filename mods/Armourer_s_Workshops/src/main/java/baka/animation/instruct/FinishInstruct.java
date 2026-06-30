@@ -24,7 +24,7 @@ extends InstructBase {
     @Override
     public void perform(PlayerData data) {
         super.perform(data);
-        if (((AbstractClientPlayer)data.getEntity()).func_110124_au().equals(Minecraft.func_71410_x().field_71439_g.func_110124_au())) {
+        if (((AbstractClientPlayer)data.getEntity()).getUniqueID().equals(Minecraft.getMinecraft().player.getUniqueID())) {
             NetworkHandler.finishEvent(this.actionName);
         }
     }

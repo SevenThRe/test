@@ -40,11 +40,11 @@ Serializable {
         jv a6;
         a6.b = a2;
         a6.o = a5;
-        a6.field_78090_t = a3;
-        a6.field_78089_u = a4;
+        a6.textureWidth = a3;
+        a6.textureHeight = a4;
     }
 
-    public void func_78088_a(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
+    public void render(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
         jv a9;
         a9.render(a8);
     }
@@ -63,7 +63,7 @@ Serializable {
         jv a3;
         if (a3.y != null) {
             for (mt a4 : a3.y) {
-                a4.func_78785_a(a2);
+                a4.render(a2);
             }
         }
     }
@@ -111,8 +111,8 @@ Serializable {
 
     private /* synthetic */ void ALLATORIxDEMO(mt a2) {
         jv a3;
-        a3.k.put(a2.field_78802_n, a2);
-        List a4 = a2.field_78805_m;
+        a3.k.put(a2.boxName, a2);
+        List a4 = a2.childModels;
         if (a4 != null) {
             for (ModelRenderer a5 : a4) {
                 if (!(a5 instanceof mt)) continue;

@@ -31,11 +31,11 @@ extends AnimationBit<BipedEntityData<?>> {
     }
 
     private EnumHandSide getTorchHand(EntityLivingBase living) {
-        EnumHandSide mainHand = living.func_184591_cq();
+        EnumHandSide mainHand = living.getPrimaryHand();
         EnumHandSide offHand = mainHand == EnumHandSide.LEFT ? EnumHandSide.RIGHT : EnumHandSide.LEFT;
-        Item mainItem = living.func_184586_b(EnumHand.MAIN_HAND).func_77973_b();
-        Item offItem = living.func_184586_b(EnumHand.OFF_HAND).func_77973_b();
-        Item torch = Item.func_150898_a((Block)Blocks.field_150478_aa);
+        Item mainItem = living.getHeldItem(EnumHand.MAIN_HAND).getItem();
+        Item offItem = living.getHeldItem(EnumHand.OFF_HAND).getItem();
+        Item torch = Item.getItemFromBlock((Block)Blocks.TORCH);
         if (mainItem.equals(torch)) {
             return mainHand;
         }

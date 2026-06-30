@@ -12,7 +12,7 @@ public class jh {
         StackTraceElement[] a2;
         for (StackTraceElement a3 : a2 = new Exception().getStackTrace()) {
             String a4 = a3.getMethodName();
-            if (!a4.equals("renderItemAndEffectIntoGUI") && !a4.equals("func_184391_a")) continue;
+            if (!a4.equals("renderItemAndEffectIntoGUI") && !a4.equals("renderItemAndEffectIntoGUI")) continue;
             return true;
         }
         return false;

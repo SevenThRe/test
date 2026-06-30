@@ -112,7 +112,7 @@ public class wp {
         a4.o = -1;
         a4.j = a2;
         a4.v = false;
-        if (a3.func_110623_a().endsWith(".bmd")) {
+        if (a3.getPath().endsWith(".bmd")) {
             a4.ALLATORIxDEMO(a3, null);
         } else {
             a4.c(a3, null);
@@ -136,7 +136,7 @@ public class wp {
         a5.o = -1;
         a5.j = a2;
         a5.v = true;
-        if (a3.func_110623_a().endsWith(".bmd")) {
+        if (a3.getPath().endsWith(".bmd")) {
             a5.ALLATORIxDEMO(a3, a4);
         } else {
             a5.c(a3, a4);
@@ -278,7 +278,7 @@ public class wp {
             }
         }
         catch (IOException a48) {
-            throw new ks("An error occurred while reading BMD " + a3.func_110623_a(), a48);
+            throw new ks("An error occurred while reading BMD " + a3.getPath(), a48);
         }
     }
 
@@ -465,7 +465,7 @@ public class wp {
     public void f(boolean a2, float a3) {
         wp a4;
         boolean a5 = true;
-        if (!OpenGlHelper.func_176075_f()) {
+        if (!OpenGlHelper.useVbo()) {
             GL11.glBegin((int)4);
             if (!a4.j.k) {
                 for (rw a6 : a4.i) {
@@ -493,11 +493,11 @@ public class wp {
                     a4.c(a5, a3);
                 }
             }
-            OpenGlHelper.func_176072_g((int)OpenGlHelper.field_176089_P, (int)a4.q);
+            OpenGlHelper.glBindBuffer((int)OpenGlHelper.GL_ARRAY_BUFFER, (int)a4.q);
             GL11.glVertexPointer((int)3, (int)5126, (int)0, (long)0L);
-            OpenGlHelper.func_176072_g((int)OpenGlHelper.field_176089_P, (int)a4.b);
+            OpenGlHelper.glBindBuffer((int)OpenGlHelper.GL_ARRAY_BUFFER, (int)a4.b);
             GL11.glTexCoordPointer((int)2, (int)5126, (int)0, (long)0L);
-            OpenGlHelper.func_176072_g((int)OpenGlHelper.field_176089_P, (int)a4.o);
+            OpenGlHelper.glBindBuffer((int)OpenGlHelper.GL_ARRAY_BUFFER, (int)a4.o);
             GL11.glNormalPointer((int)5126, (int)0, (long)0L);
             GL11.glEnableClientState((int)32884);
             GL11.glEnableClientState((int)32888);
@@ -506,7 +506,7 @@ public class wp {
             GL11.glDisableClientState((int)32884);
             GL11.glDisableClientState((int)32888);
             GL11.glDisableClientState((int)32885);
-            OpenGlHelper.func_176072_g((int)OpenGlHelper.field_176089_P, (int)0);
+            OpenGlHelper.glBindBuffer((int)OpenGlHelper.GL_ARRAY_BUFFER, (int)0);
         }
     }
 
@@ -518,11 +518,11 @@ public class wp {
             a5.ALLATORIxDEMO(a4.y, a4.k, a2, a3);
         }
         a4.y.flip();
-        OpenGlHelper.func_176072_g((int)OpenGlHelper.field_176089_P, (int)a4.q);
-        ARBBufferObject.glBufferDataARB((int)OpenGlHelper.field_176089_P, (FloatBuffer)a4.y, (int)35044);
+        OpenGlHelper.glBindBuffer((int)OpenGlHelper.GL_ARRAY_BUFFER, (int)a4.q);
+        ARBBufferObject.glBufferDataARB((int)OpenGlHelper.GL_ARRAY_BUFFER, (FloatBuffer)a4.y, (int)35044);
         a4.k.flip();
-        OpenGlHelper.func_176072_g((int)OpenGlHelper.field_176089_P, (int)a4.o);
-        ARBBufferObject.glBufferDataARB((int)OpenGlHelper.field_176089_P, (FloatBuffer)a4.k, (int)35044);
+        OpenGlHelper.glBindBuffer((int)OpenGlHelper.GL_ARRAY_BUFFER, (int)a4.o);
+        ARBBufferObject.glBufferDataARB((int)OpenGlHelper.GL_ARRAY_BUFFER, (FloatBuffer)a4.k, (int)35044);
     }
 
     private /* synthetic */ void ALLATORIxDEMO(boolean a2, float a3) {
@@ -534,14 +534,14 @@ public class wp {
             a6.ALLATORIxDEMO(a4.y, a5, a4.k, a2, a3);
         }
         a4.y.flip();
-        OpenGlHelper.func_176072_g((int)OpenGlHelper.field_176089_P, (int)a4.q);
-        ARBBufferObject.glBufferDataARB((int)OpenGlHelper.field_176089_P, (FloatBuffer)a4.y, (int)35044);
+        OpenGlHelper.glBindBuffer((int)OpenGlHelper.GL_ARRAY_BUFFER, (int)a4.q);
+        ARBBufferObject.glBufferDataARB((int)OpenGlHelper.GL_ARRAY_BUFFER, (FloatBuffer)a4.y, (int)35044);
         a5.flip();
-        OpenGlHelper.func_176072_g((int)OpenGlHelper.field_176089_P, (int)a4.b);
-        ARBBufferObject.glBufferDataARB((int)OpenGlHelper.field_176089_P, (FloatBuffer)a5, (int)35044);
+        OpenGlHelper.glBindBuffer((int)OpenGlHelper.GL_ARRAY_BUFFER, (int)a4.b);
+        ARBBufferObject.glBufferDataARB((int)OpenGlHelper.GL_ARRAY_BUFFER, (FloatBuffer)a5, (int)35044);
         a4.k.flip();
-        OpenGlHelper.func_176072_g((int)OpenGlHelper.field_176089_P, (int)a4.o);
-        ARBBufferObject.glBufferDataARB((int)OpenGlHelper.field_176089_P, (FloatBuffer)a4.k, (int)35044);
+        OpenGlHelper.glBindBuffer((int)OpenGlHelper.GL_ARRAY_BUFFER, (int)a4.o);
+        ARBBufferObject.glBufferDataARB((int)OpenGlHelper.GL_ARRAY_BUFFER, (FloatBuffer)a4.k, (int)35044);
     }
 
     private static /* synthetic */ String ALLATORIxDEMO(DataInputStream a2) throws IOException {

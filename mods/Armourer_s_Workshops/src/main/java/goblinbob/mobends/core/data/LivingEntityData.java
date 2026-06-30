@@ -92,7 +92,7 @@ extends EntityData<E> {
         } else {
             this.climbing = false;
         }
-        if (((EntityLivingBase)this.entity).field_82175_bq) {
+        if (((EntityLivingBase)this.entity).isSwingInProgress) {
             if (!this.alreadyAttacked || this.ticksAfterAttack > 5.0f) {
                 this.onAttack();
                 this.alreadyAttacked = true;
@@ -128,28 +128,28 @@ extends EntityData<E> {
     }
 
     public float getClimbingRotation() {
-        return this.getLadderFacing().func_185119_l() + 180.0f;
+        return this.getLadderFacing().getHorizontalAngle() + 180.0f;
     }
 
     private static boolean isBlockClimbable(IBlockState state) {
-        return state.func_177230_c() instanceof BlockLadder || state.func_177230_c() instanceof BlockVine;
+        return state.getBlock() instanceof BlockLadder || state.getBlock() instanceof BlockVine;
     }
 
     private static EnumFacing getClimbableBlockFacing(IBlockState state) {
-        if (state.func_177230_c() instanceof BlockLadder) {
-            return (EnumFacing)state.func_177229_b((IProperty)BlockLadder.field_176382_a);
+        if (state.getBlock() instanceof BlockLadder) {
+            return (EnumFacing)state.getValue((IProperty)BlockLadder.FACING);
         }
-        if (state.func_177230_c() instanceof BlockVine) {
-            if (((Boolean)state.func_177229_b((IProperty)BlockVine.field_176278_M)).booleanValue()) {
+        if (state.getBlock() instanceof BlockVine) {
+            if (((Boolean)state.getValue((IProperty)BlockVine.EAST)).booleanValue()) {
                 return EnumFacing.WEST;
             }
-            if (((Boolean)state.func_177229_b((IProperty)BlockVine.field_176280_O)).booleanValue()) {
+            if (((Boolean)state.getValue((IProperty)BlockVine.WEST)).booleanValue()) {
                 return EnumFacing.EAST;
             }
-            if (((Boolean)state.func_177229_b((IProperty)BlockVine.field_176273_b)).booleanValue()) {
+            if (((Boolean)state.getValue((IProperty)BlockVine.NORTH)).booleanValue()) {
                 return EnumFacing.SOUTH;
             }
-            if (((Boolean)state.func_177229_b((IProperty)BlockVine.field_176279_N)).booleanValue()) {
+            if (((Boolean)state.getValue((IProperty)BlockVine.SOUTH)).booleanValue()) {
                 return EnumFacing.NORTH;
             }
         }
@@ -157,10 +157,10 @@ extends EntityData<E> {
     }
 
     public EnumFacing getLadderFacing() {
-        BlockPos position = new BlockPos(Math.floor(((EntityLivingBase)this.entity).field_70165_t), Math.floor(((EntityLivingBase)this.entity).field_70163_u), Math.floor(((EntityLivingBase)this.entity).field_70161_v));
-        IBlockState block = ((EntityLivingBase)this.entity).field_70170_p.func_180495_p(position);
-        IBlockState blockBelow = ((EntityLivingBase)this.entity).field_70170_p.func_180495_p(position.func_177982_a(0, -1, 0));
-        IBlockState blockBelow2 = ((EntityLivingBase)this.entity).field_70170_p.func_180495_p(position.func_177982_a(0, -2, 0));
+        BlockPos position = new BlockPos(Math.floor(((EntityLivingBase)this.entity).posX), Math.floor(((EntityLivingBase)this.entity).posY), Math.floor(((EntityLivingBase)this.entity).posZ));
+        IBlockState block = ((EntityLivingBase)this.entity).world.getBlockState(position);
+        IBlockState blockBelow = ((EntityLivingBase)this.entity).world.getBlockState(position.add(0, -1, 0));
+        IBlockState blockBelow2 = ((EntityLivingBase)this.entity).world.getBlockState(position.add(0, -2, 0));
         EnumFacing facing = EnumFacing.NORTH;
         facing = LivingEntityData.getClimbableBlockFacing(block);
         if (facing == EnumFacing.NORTH) {
@@ -173,22 +173,22 @@ extends EntityData<E> {
     }
 
     public boolean calcClimbing() {
-        if (this.entity == null || ((EntityLivingBase)this.entity).field_70170_p == null) {
+        if (this.entity == null || ((EntityLivingBase)this.entity).world == null) {
             return false;
         }
-        BlockPos position = new BlockPos(Math.floor(((EntityLivingBase)this.entity).field_70165_t), Math.floor(((EntityLivingBase)this.entity).field_70163_u), Math.floor(((EntityLivingBase)this.entity).field_70161_v));
-        IBlockState block = ((EntityLivingBase)this.entity).field_70170_p.func_180495_p(position);
-        IBlockState blockBelow = ((EntityLivingBase)this.entity).field_70170_p.func_180495_p(position.func_177982_a(0, -1, 0));
-        IBlockState blockBelow2 = ((EntityLivingBase)this.entity).field_70170_p.func_180495_p(position.func_177982_a(0, -2, 0));
-        return ((EntityLivingBase)this.entity).func_70617_f_() && !this.isOnGround() && (LivingEntityData.isBlockClimbable(block) || LivingEntityData.isBlockClimbable(blockBelow) || LivingEntityData.isBlockClimbable(blockBelow2));
+        BlockPos position = new BlockPos(Math.floor(((EntityLivingBase)this.entity).posX), Math.floor(((EntityLivingBase)this.entity).posY), Math.floor(((EntityLivingBase)this.entity).posZ));
+        IBlockState block = ((EntityLivingBase)this.entity).world.getBlockState(position);
+        IBlockState blockBelow = ((EntityLivingBase)this.entity).world.getBlockState(position.add(0, -1, 0));
+        IBlockState blockBelow2 = ((EntityLivingBase)this.entity).world.getBlockState(position.add(0, -2, 0));
+        return ((EntityLivingBase)this.entity).isOnLadder() && !this.isOnGround() && (LivingEntityData.isBlockClimbable(block) || LivingEntityData.isBlockClimbable(blockBelow) || LivingEntityData.isBlockClimbable(blockBelow2));
     }
 
     public float getLedgeHeight() {
-        float clientY = (float)(((EntityLivingBase)this.entity).field_70163_u + (((EntityLivingBase)this.entity).field_70163_u - ((EntityLivingBase)this.entity).field_70167_r) * (double)DataUpdateHandler.partialTicks);
-        BlockPos position = new BlockPos(Math.floor(((EntityLivingBase)this.entity).field_70165_t), Math.floor(((EntityLivingBase)this.entity).field_70163_u), Math.floor(((EntityLivingBase)this.entity).field_70161_v));
-        IBlockState block = ((EntityLivingBase)this.entity).field_70170_p.func_180495_p(position.func_177982_a(0, 2, 0));
-        IBlockState blockBelow = ((EntityLivingBase)this.entity).field_70170_p.func_180495_p(position.func_177982_a(0, 1, 0));
-        IBlockState blockBelow2 = ((EntityLivingBase)this.entity).field_70170_p.func_180495_p(position.func_177982_a(0, 0, 0));
+        float clientY = (float)(((EntityLivingBase)this.entity).posY + (((EntityLivingBase)this.entity).posY - ((EntityLivingBase)this.entity).prevPosY) * (double)DataUpdateHandler.partialTicks);
+        BlockPos position = new BlockPos(Math.floor(((EntityLivingBase)this.entity).posX), Math.floor(((EntityLivingBase)this.entity).posY), Math.floor(((EntityLivingBase)this.entity).posZ));
+        IBlockState block = ((EntityLivingBase)this.entity).world.getBlockState(position.add(0, 2, 0));
+        IBlockState blockBelow = ((EntityLivingBase)this.entity).world.getBlockState(position.add(0, 1, 0));
+        IBlockState blockBelow2 = ((EntityLivingBase)this.entity).world.getBlockState(position.add(0, 0, 0));
         if (!LivingEntityData.isBlockClimbable(block)) {
             if (!LivingEntityData.isBlockClimbable(blockBelow)) {
                 if (!LivingEntityData.isBlockClimbable(blockBelow2)) {
@@ -202,10 +202,10 @@ extends EntityData<E> {
     }
 
     public boolean isDrawingBow() {
-        if (((EntityLivingBase)this.entity).func_184605_cv() > 0) {
-            ItemStack mainItemStack = ((EntityLivingBase)this.entity).func_184614_ca();
-            ItemStack offItemStack = ((EntityLivingBase)this.entity).func_184592_cb();
-            if (!mainItemStack.func_190926_b() && mainItemStack.func_77975_n() == EnumAction.BOW || !offItemStack.func_190926_b() && offItemStack.func_77975_n() == EnumAction.BOW) {
+        if (((EntityLivingBase)this.entity).getItemInUseCount() > 0) {
+            ItemStack mainItemStack = ((EntityLivingBase)this.entity).getHeldItemMainhand();
+            ItemStack offItemStack = ((EntityLivingBase)this.entity).getHeldItemOffhand();
+            if (!mainItemStack.isEmpty() && mainItemStack.getItemUseAction() == EnumAction.BOW || !offItemStack.isEmpty() && offItemStack.getItemUseAction() == EnumAction.BOW) {
                 return true;
             }
         }

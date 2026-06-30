@@ -59,14 +59,14 @@ public class sf {
     public void ALLATORIxDEMO(EntityPlayerMP a2, BlockPos a3) {
         if (ov.y.ALLATORIxDEMO((EntityPlayer)a2)) {
             sf a4;
-            a2.func_71121_q().func_152344_a((Runnable)new kj(a4, a2, a3));
+            a2.getServerWorld().addScheduledTask((Runnable)new kj(a4, a2, a3));
         }
     }
 
     public void ALLATORIxDEMO(EntityPlayerMP a2, int a3) {
         if (ov.y.ALLATORIxDEMO((EntityPlayer)a2)) {
             sf a4;
-            a2.func_71121_q().func_152344_a((Runnable)new pn(a4, a2, a3));
+            a2.getServerWorld().addScheduledTask((Runnable)new pn(a4, a2, a3));
         }
     }
 }

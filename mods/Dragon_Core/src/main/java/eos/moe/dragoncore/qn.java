@@ -93,7 +93,7 @@ extends jj {
             a7 = a4;
             a6.runAction("drag");
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         double a13 = a6.e.ALLATORIxDEMO();
         double a14 = a6.n.ALLATORIxDEMO();
         a6.y = (mh)(a13 != 0.0 && a14 != 0.0 ? 1 : 0);
@@ -101,17 +101,17 @@ extends jj {
             GL11.glEnable((int)3089);
             sd.ALLATORIxDEMO((int)a6.getLimitXPos(), (int)a6.getLimitYPos(), (int)a13, (int)a14);
         }
-        GlStateManager.func_179137_b((double)(Math.floor((a6.getXPos() + a6.m.ALLATORIxDEMO() + a8) * 10.0) / 10.0), (double)(Math.floor((a6.getYPos() + a6.c.ALLATORIxDEMO() + a7) * 10.0) / 10.0), (double)0.0);
+        GlStateManager.translate((double)(Math.floor((a6.getXPos() + a6.m.ALLATORIxDEMO() + a8) * 10.0) / 10.0), (double)(Math.floor((a6.getYPos() + a6.c.ALLATORIxDEMO() + a7) * 10.0) / 10.0), (double)0.0);
         double a15 = a6.ba.ALLATORIxDEMO();
         if (a15 != 1.0) {
-            GlStateManager.func_179139_a((double)a15, (double)a15, (double)1.0);
+            GlStateManager.scale((double)a15, (double)a15, (double)1.0);
         }
         if ((a15 = a6.t.ALLATORIxDEMO()) != 1.0) {
             double a16 = a6.p.ALLATORIxDEMO();
             double a17 = a6.u.ALLATORIxDEMO();
-            GlStateManager.func_179137_b((double)(a16 / 2.0), (double)(a17 / 2.0), (double)0.0);
-            GlStateManager.func_179139_a((double)a15, (double)a15, (double)1.0);
-            GlStateManager.func_179137_b((double)(-a16 / 2.0), (double)(-a17 / 2.0), (double)0.0);
+            GlStateManager.translate((double)(a16 / 2.0), (double)(a17 / 2.0), (double)0.0);
+            GlStateManager.scale((double)a15, (double)a15, (double)1.0);
+            GlStateManager.translate((double)(-a16 / 2.0), (double)(-a17 / 2.0), (double)0.0);
         }
     }
 
@@ -128,32 +128,32 @@ extends jj {
         if (a6.ALLATORIxDEMO() != null && a6.ALLATORIxDEMO().endsWith("\u00a7c") && a8) {
             sd.ALLATORIxDEMO(0.0, 0.0, a4.p.ALLATORIxDEMO(), a4.u.ALLATORIxDEMO(), -2130706433);
         }
-        if (!a7.func_190926_b() && sd.ALLATORIxDEMO() >= 1.0f) {
-            RenderItem a9 = Minecraft.func_71410_x().func_175599_af();
-            FontRenderer a10 = a7.func_77973_b().getFontRenderer(a7);
-            FontRenderer a11 = Minecraft.func_71410_x().field_71466_p;
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179139_a((double)(a4.p.ALLATORIxDEMO() / 16.0), (double)(a4.u.ALLATORIxDEMO() / 16.0), (double)1.0);
-            RenderHelper.func_74520_c();
-            GlStateManager.func_179126_j();
+        if (!a7.isEmpty() && sd.ALLATORIxDEMO() >= 1.0f) {
+            RenderItem a9 = Minecraft.getMinecraft().getRenderItem();
+            FontRenderer a10 = a7.getItem().getFontRenderer(a7);
+            FontRenderer a11 = Minecraft.getMinecraft().fontRenderer;
+            GlStateManager.pushMatrix();
+            GlStateManager.scale((double)(a4.p.ALLATORIxDEMO() / 16.0), (double)(a4.u.ALLATORIxDEMO() / 16.0), (double)1.0);
+            RenderHelper.enableGUIStandardItemLighting();
+            GlStateManager.enableDepth();
             wo.ALLATORIxDEMO = true;
-            IBakedModel a12 = a9.func_184393_a(a7, (World)Minecraft.func_71410_x().field_71441_e, null);
+            IBakedModel a12 = a9.getItemModelWithOverrides(a7, (World)Minecraft.getMinecraft().world, null);
             a4.renderItemModelIntoGUI(a7, 0, 0, a12);
             wo.ALLATORIxDEMO = false;
             String a13 = a4.ALLATORIxDEMO.ALLATORIxDEMO();
             if (!a13.isEmpty()) {
-                a9.func_180453_a(a10 == null ? a11 : a10, a7, 0, 0, a13);
+                a9.renderItemOverlayIntoGUI(a10 == null ? a11 : a10, a7, 0, 0, a13);
             } else {
-                a9.func_180453_a(a10 == null ? a11 : a10, a7, 0, 0, a6.ALLATORIxDEMO());
+                a9.renderItemOverlayIntoGUI(a10 == null ? a11 : a10, a7, 0, 0, a6.ALLATORIxDEMO());
             }
-            GlStateManager.func_179121_F();
-            RenderHelper.func_74518_a();
+            GlStateManager.popMatrix();
+            RenderHelper.disableStandardItemLighting();
         }
         if (((ui)((Object)a4.y)).d == a4 && a8) {
-            GlStateManager.func_179140_f();
-            GlStateManager.func_179097_i();
+            GlStateManager.disableLighting();
+            GlStateManager.disableDepth();
             sd.ALLATORIxDEMO(0.0, 0.0, a4.p.ALLATORIxDEMO(), a4.u.ALLATORIxDEMO(), -2130706433);
-            GlStateManager.func_179126_j();
+            GlStateManager.enableDepth();
         }
     }
 
@@ -227,47 +227,47 @@ extends jj {
     public void renderItemModelIntoGUI(ItemStack a2, int a3, int a4, IBakedModel a5) {
         qn a6;
         sja.y.ALLATORIxDEMO(a2, 0.0, 0.0, 0);
-        TextureManager a7 = Minecraft.func_71410_x().func_110434_K();
-        RenderItem a8 = Minecraft.func_71410_x().func_175599_af();
-        GlStateManager.func_179094_E();
-        a7.func_110577_a(TextureMap.field_110575_b);
-        a7.func_110581_b(TextureMap.field_110575_b).func_174936_b(false, false);
-        GlStateManager.func_179091_B();
-        GlStateManager.func_179141_d();
-        GlStateManager.func_179092_a((int)516, (float)0.1f);
-        GlStateManager.func_179147_l();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        a6.ALLATORIxDEMO(a5.func_177556_c());
+        TextureManager a7 = Minecraft.getMinecraft().getTextureManager();
+        RenderItem a8 = Minecraft.getMinecraft().getRenderItem();
+        GlStateManager.pushMatrix();
+        a7.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        a7.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableAlpha();
+        GlStateManager.alphaFunc((int)516, (float)0.1f);
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        a6.ALLATORIxDEMO(a5.isGui3d());
         float a9 = (float)a6.r.ALLATORIxDEMO();
         float a10 = (float)a6.x.ALLATORIxDEMO();
         float a11 = (float)a6.v.ALLATORIxDEMO();
         if (a9 != 0.0f || a10 != 0.0f || a11 != 0.0f) {
-            GlStateManager.func_179114_b((float)a9, (float)1.0f, (float)0.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)a10, (float)0.0f, (float)1.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)a11, (float)0.0f, (float)0.0f, (float)1.0f);
+            GlStateManager.rotate((float)a9, (float)1.0f, (float)0.0f, (float)0.0f);
+            GlStateManager.rotate((float)a10, (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)a11, (float)0.0f, (float)0.0f, (float)1.0f);
         }
         a5 = ForgeHooksClient.handleCameraTransforms((IBakedModel)a5, (ItemCameraTransforms.TransformType)ItemCameraTransforms.TransformType.GUI, (boolean)false);
-        a8.func_180454_a(a2, a5);
-        GlStateManager.func_179118_c();
-        GlStateManager.func_179101_C();
-        GlStateManager.func_179140_f();
-        GlStateManager.func_179121_F();
-        a7.func_110577_a(TextureMap.field_110575_b);
-        a7.func_110581_b(TextureMap.field_110575_b).func_174935_a();
+        a8.renderItem(a2, a5);
+        GlStateManager.disableAlpha();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableLighting();
+        GlStateManager.popMatrix();
+        a7.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        a7.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).restoreLastBlurMipmap();
         sja.y.ALLATORIxDEMO(a2, 0.0, 0.0, 1);
     }
 
     private /* synthetic */ void ALLATORIxDEMO(boolean a2) {
-        RenderItem a3 = Minecraft.func_71410_x().func_175599_af();
-        GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)(100.0f + a3.field_77023_b));
-        GlStateManager.func_179109_b((float)8.0f, (float)8.0f, (float)0.0f);
-        GlStateManager.func_179152_a((float)1.0f, (float)-1.0f, (float)1.0f);
-        GlStateManager.func_179152_a((float)16.0f, (float)16.0f, (float)16.0f);
+        RenderItem a3 = Minecraft.getMinecraft().getRenderItem();
+        GlStateManager.translate((float)0.0f, (float)0.0f, (float)(100.0f + a3.zLevel));
+        GlStateManager.translate((float)8.0f, (float)8.0f, (float)0.0f);
+        GlStateManager.scale((float)1.0f, (float)-1.0f, (float)1.0f);
+        GlStateManager.scale((float)16.0f, (float)16.0f, (float)16.0f);
         if (a2) {
-            GlStateManager.func_179145_e();
+            GlStateManager.enableLighting();
         } else {
-            GlStateManager.func_179140_f();
+            GlStateManager.disableLighting();
         }
     }
 }

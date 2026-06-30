@@ -24,8 +24,8 @@ extends AnimationBit<PlayerData> {
         double magnitude = data.getInterpolatedMotionMagnitude();
         float headPitch = ((Float)data.headPitch.get()).floatValue();
         float headYaw = ((Float)data.headYaw.get()).floatValue();
-        float headYawAbs = MathHelper.func_76135_e((float)headYaw);
-        float speedFactor = MathHelper.func_76131_a((float)((float)magnitude), (float)0.0f, (float)0.2f) / 0.2f;
+        float headYawAbs = MathHelper.abs((float)headYaw);
+        float speedFactor = MathHelper.clamp((float)((float)magnitude), (float)0.0f, (float)0.2f) / 0.2f;
         data.head.rotation.setSmoothness(1.0f).orientY(headYaw).rotateX(-90.0f);
         data.body.rotation.setSmoothness(0.7f).orientX(0.0f);
         data.leftArm.rotation.setSmoothness(0.7f).orientX(0.0f).rotateZ(-60.0f + 55.0f * speedFactor - headYawAbs * 0.5f);

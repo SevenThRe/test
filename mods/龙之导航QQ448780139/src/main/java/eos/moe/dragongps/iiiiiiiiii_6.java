@@ -53,28 +53,28 @@ IMessageHandler<iiiiiiiiii_6, IMessage> {
     }
 
     private static /* synthetic */ void IIIiiiIiii(String IIiiiiiIIi, String IIiiiiiIIi2, Vec3d IIiiiiiIIi3, int IIiiiiiIIi4, List<iiiiiiiiii_2> IIiiiiiIIi5) {
-        if (Minecraft.func_71410_x().field_71439_g == null) {
+        if (Minecraft.getMinecraft().player == null) {
             return;
         }
-        Vec3d IIiiiiiIIi6 = new Vec3d(0.0, 1.0, 0.0).func_72432_b();
-        Vec3d IIiiiiiIIi7 = new Vec3d(1.0, 0.0, 0.0).func_72432_b();
+        Vec3d IIiiiiiIIi6 = new Vec3d(0.0, 1.0, 0.0).normalize();
+        Vec3d IIiiiiiIIi7 = new Vec3d(1.0, 0.0, 0.0).normalize();
         int IIiiiiiIIi8 = 0;
         ArrayList<iiiiiiiiii_8> IIiiiiiIIi9 = new ArrayList<iiiiiiiiii_8>();
         for (iiiiiiiiii_2 IIiiiiiIIi10 : IIiiiiiIIi5) {
             Vec3d IIiiiiiIIi11 = IIiiiiiIIi10.IIiiiiiIIi;
             Vec3d IIiiiiiIIi12 = IIiiiiiIIi10.iIIIIiiIII;
-            Vec3d IIiiiiiIIi13 = new Vec3d(IIiiiiiIIi12.field_72450_a - IIiiiiiIIi11.field_72450_a, IIiiiiiIIi12.field_72448_b - IIiiiiiIIi11.field_72448_b, IIiiiiiIIi12.field_72449_c - IIiiiiiIIi11.field_72449_c);
-            Vec3d IIiiiiiIIi14 = new Vec3d(IIiiiiiIIi13.field_72450_a, IIiiiiiIIi13.field_72448_b, IIiiiiiIIi13.field_72449_c).func_72432_b();
-            double IIiiiiiIIi15 = Math.toDegrees(Math.acos(IIiiiiiIIi13.func_72441_c(0.0, -IIiiiiiIIi13.field_72448_b, 0.0).func_72432_b().func_72430_b(IIiiiiiIIi7)));
-            if (IIiiiiiIIi13.field_72449_c > 0.0) {
+            Vec3d IIiiiiiIIi13 = new Vec3d(IIiiiiiIIi12.x - IIiiiiiIIi11.x, IIiiiiiIIi12.y - IIiiiiiIIi11.y, IIiiiiiIIi12.z - IIiiiiiIIi11.z);
+            Vec3d IIiiiiiIIi14 = new Vec3d(IIiiiiiIIi13.x, IIiiiiiIIi13.y, IIiiiiiIIi13.z).normalize();
+            double IIiiiiiIIi15 = Math.toDegrees(Math.acos(IIiiiiiIIi13.add(0.0, -IIiiiiiIIi13.y, 0.0).normalize().dotProduct(IIiiiiiIIi7)));
+            if (IIiiiiiIIi13.z > 0.0) {
                 IIiiiiiIIi15 = 360.0 - IIiiiiiIIi15;
             }
-            double IIiiiiiIIi16 = Math.toDegrees(Math.acos(IIiiiiiIIi13.func_72432_b().func_72430_b(IIiiiiiIIi6)));
-            int IIiiiiiIIi17 = (int)(IIiiiiiIIi11.func_72438_d(IIiiiiiIIi12) / 1.2) + 1;
+            double IIiiiiiIIi16 = Math.toDegrees(Math.acos(IIiiiiiIIi13.normalize().dotProduct(IIiiiiiIIi6)));
+            int IIiiiiiIIi17 = (int)(IIiiiiiIIi11.distanceTo(IIiiiiiIIi12) / 1.2) + 1;
             for (int IIiiiiiIIi18 = 0; IIiiiiiIIi18 < IIiiiiiIIi17; ++IIiiiiiIIi18) {
-                Vec3d IIiiiiiIIi19 = IIiiiiiIIi11.func_178787_e(IIiiiiiIIi14.func_186678_a((double)IIiiiiiIIi18 * 1.2 + 1.0));
-                if (!(IIiiiiiIIi19.func_72438_d(IIiiiiiIIi12) >= 1.2)) continue;
-                iiiiiiiiii_8 IIiiiiiIIi20 = new iiiiiiiiii_8(IIiiiiiIIi10.IIiIiIIIiI, IIiiiiiIIi19.field_72450_a, IIiiiiiIIi19.field_72448_b, IIiiiiiIIi19.field_72449_c);
+                Vec3d IIiiiiiIIi19 = IIiiiiiIIi11.add(IIiiiiiIIi14.scale((double)IIiiiiiIIi18 * 1.2 + 1.0));
+                if (!(IIiiiiiIIi19.distanceTo(IIiiiiiIIi12) >= 1.2)) continue;
+                iiiiiiiiii_8 IIiiiiiIIi20 = new iiiiiiiiii_8(IIiiiiiIIi10.IIiIiIIIiI, IIiiiiiIIi19.x, IIiiiiiIIi19.y, IIiiiiiIIi19.z);
                 IIiiiiiIIi20.iIIiIIiIii = (float)IIiiiiiIIi15 + 90.0f;
                 IIiiiiiIIi20.iIiIIiIiiI = (float)IIiiiiiIIi16;
                 IIiiiiiIIi20.iIIIIiiIII = ++IIiiiiiIIi8;
@@ -98,7 +98,7 @@ IMessageHandler<iiiiiiiiii_6, IMessage> {
         iiiiiiiiii_6 IIiiiiiIIi2;
         PacketBuffer IIiiiiiIIi3 = new PacketBuffer(IIiiiiiIIi);
         IIiiiiiIIi3.writeInt(IIiiiiiIIi2.iiIIIiIiII);
-        IIiiiiiIIi3.func_180714_a(IIiiiiiIIi2.IIiiiiiIIi);
+        IIiiiiiIIi3.writeString(IIiiiiiIIi2.IIiiiiiIIi);
     }
 
     public iiiiiiiiii_6() {
@@ -112,13 +112,13 @@ IMessageHandler<iiiiiiiiii_6, IMessage> {
             switch (IIiiiiiIIi5) {
                 case 1: {
                     ArrayList<String> IIiiiiiIIi6 = new ArrayList<String>();
-                    String IIiiiiiIIi7 = IIiiiiiIIi4.func_150789_c(30000);
+                    String IIiiiiiIIi7 = IIiiiiiIIi4.readString(30000);
                     int IIiiiiiIIi8 = IIiiiiiIIi4.readInt();
                     for (int IIiiiiiIIi9 = 0; IIiiiiiIIi9 < IIiiiiiIIi8; ++IIiiiiiIIi9) {
-                        IIiiiiiIIi6.add(IIiiiiiIIi4.func_150789_c(30000));
+                        IIiiiiiIIi6.add(IIiiiiiIIi4.readString(30000));
                     }
-                    String IIiiiiiIIi10 = IIiiiiiIIi4.func_150789_c(30000);
-                    String IIiiiiiIIi11 = IIiiiiiIIi4.func_150789_c(30000);
+                    String IIiiiiiIIi10 = IIiiiiiIIi4.readString(30000);
+                    String IIiiiiiIIi11 = IIiiiiiIIi4.readString(30000);
                     double IIiiiiiIIi12 = IIiiiiiIIi4.readDouble();
                     double IIiiiiiIIi13 = IIiiiiiIIi4.readDouble();
                     double IIiiiiiIIi14 = IIiiiiiIIi4.readDouble();
@@ -129,7 +129,7 @@ IMessageHandler<iiiiiiiiii_6, IMessage> {
                     break;
                 }
                 case 2: {
-                    iIIiIIiIii.remove(IIiiiiiIIi4.func_150789_c(30000));
+                    iIIiIIiIii.remove(IIiiiiiIIi4.readString(30000));
                     break;
                 }
                 case 3: {
@@ -137,14 +137,14 @@ IMessageHandler<iiiiiiiiii_6, IMessage> {
                     break;
                 }
                 case 4: {
-                    String IIiiiiiIIi18 = IIiiiiiIIi4.func_150789_c(30000);
-                    String IIiiiiiIIi19 = IIiiiiiIIi4.func_150789_c(30000);
+                    String IIiiiiiIIi18 = IIiiiiiIIi4.readString(30000);
+                    String IIiiiiiIIi19 = IIiiiiiIIi4.readString(30000);
                     int IIiiiiiIIi20 = IIiiiiiIIi4.readInt();
                     int IIiiiiiIIi21 = IIiiiiiIIi4.readInt();
                     ArrayList<iiiiiiiiii_2> IIiiiiiIIi22 = new ArrayList<iiiiiiiiii_2>();
                     Vec3d IIiiiiiIIi23 = null;
                     for (int IIiiiiiIIi24 = 0; IIiiiiiIIi24 < IIiiiiiIIi21; ++IIiiiiiIIi24) {
-                        String IIiiiiiIIi25 = IIiiiiiIIi4.func_150789_c(30000);
+                        String IIiiiiiIIi25 = IIiiiiiIIi4.readString(30000);
                         double IIiiiiiIIi26 = IIiiiiiIIi4.readDouble();
                         double IIiiiiiIIi27 = IIiiiiiIIi4.readDouble();
                         double IIiiiiiIIi28 = IIiiiiiIIi4.readDouble();
@@ -159,7 +159,7 @@ IMessageHandler<iiiiiiiiii_6, IMessage> {
                     break;
                 }
                 case 5: {
-                    IIiiIiiIII.remove(IIiiiiiIIi4.func_150789_c(30000));
+                    IIiiIiiIII.remove(IIiiiiiIIi4.readString(30000));
                     break;
                 }
                 case 6: {
@@ -167,7 +167,7 @@ IMessageHandler<iiiiiiiiii_6, IMessage> {
                     break;
                 }
                 case 7: {
-                    iIIIIiiIII = IIiiiiiIIi4.func_150789_c(30000);
+                    iIIIIiiIII = IIiiiiiIIi4.readString(30000);
                     break;
                 }
                 case 8: {
@@ -181,12 +181,12 @@ IMessageHandler<iiiiiiiiii_6, IMessage> {
                 case 10: {
                     int IIiiiiiIIi33;
                     iiiiiiiiii_15.iiIIIiIiII = true;
-                    String IIiiiiiIIi34 = IIiiiiiIIi4.func_150789_c(30000);
-                    String IIiiiiiIIi35 = IIiiiiiIIi4.func_150789_c(30000);
+                    String IIiiiiiIIi34 = IIiiiiiIIi4.readString(30000);
+                    String IIiiiiiIIi35 = IIiiiiiIIi4.readString(30000);
                     ArrayList<String> IIiiiiiIIi36 = new ArrayList<String>();
                     int IIiiiiiIIi37 = IIiiiiiIIi4.readInt();
                     for (IIiiiiiIIi33 = 0; IIiiiiiIIi33 < IIiiiiiIIi37; ++IIiiiiiIIi33) {
-                        IIiiiiiIIi36.add(IIiiiiiIIi4.func_150789_c(30000));
+                        IIiiiiiIIi36.add(IIiiiiiIIi4.readString(30000));
                     }
                     IIiiiiiIIi33 = -1;
                     for (int IIiiiiiIIi38 = 0; IIiiiiiIIi38 < IIiIiIIIiI.size(); ++IIiiiiiIIi38) {
@@ -202,7 +202,7 @@ IMessageHandler<iiiiiiiiii_6, IMessage> {
                     break;
                 }
                 case 11: {
-                    String IIiiiiiIIi39 = IIiiiiiIIi4.func_150789_c(30000);
+                    String IIiiiiiIIi39 = IIiiiiiIIi4.readString(30000);
                     IIiIiIIIiI.removeIf(IIiiiiiIIi2 -> IIiiiiiIIi2.iIIiiiIIiI().equals(IIiiiiiIIi39));
                     break;
                 }
@@ -216,12 +216,12 @@ IMessageHandler<iiiiiiiiii_6, IMessage> {
                     IIiIiIIIiI.clear();
                     int IIiiiiiIIi41 = IIiiiiiIIi4.readInt();
                     for (int IIiiiiiIIi42 = 0; IIiiiiiIIi42 < IIiiiiiIIi41; ++IIiiiiiIIi42) {
-                        String IIiiiiiIIi43 = IIiiiiiIIi4.func_150789_c(30000);
-                        String IIiiiiiIIi44 = IIiiiiiIIi4.func_150789_c(30000);
+                        String IIiiiiiIIi43 = IIiiiiiIIi4.readString(30000);
+                        String IIiiiiiIIi44 = IIiiiiiIIi4.readString(30000);
                         ArrayList<String> IIiiiiiIIi45 = new ArrayList<String>();
                         int IIiiiiiIIi46 = IIiiiiiIIi4.readInt();
                         for (int IIiiiiiIIi47 = 0; IIiiiiiIIi47 < IIiiiiiIIi46; ++IIiiiiiIIi47) {
-                            IIiiiiiIIi45.add(IIiiiiiIIi4.func_150789_c(30000));
+                            IIiiiiiIIi45.add(IIiiiiiIIi4.readString(30000));
                         }
                         IIiIiIIIiI.add(new iiiiiiiiii_19(IIiiiiiIIi43, IIiiiiiIIi44, IIiiiiiIIi45));
                     }

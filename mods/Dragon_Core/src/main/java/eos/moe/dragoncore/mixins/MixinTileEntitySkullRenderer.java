@@ -55,14 +55,14 @@ public abstract class MixinTileEntitySkullRenderer {
     }
 
     @Shadow
-    public abstract void func_188190_a(float var1, float var2, float var3, EnumFacing var4, float var5, int var6, @Nullable GameProfile var7, int var8, float var9);
+    public abstract void renderSkull(float var1, float var2, float var3, EnumFacing var4, float var5, int var6, @Nullable GameProfile var7, int var8, float var9);
 
     @Inject(method={"render(Lnet/minecraft/tileentity/TileEntitySkull;DDDFIF)V"}, at={@At(value="HEAD")}, cancellable=true)
     private /* synthetic */ void mixin_render(TileEntitySkull a2, double a3, double a4, double a5, float a6, int a7, float a8, CallbackInfo a9) {
         if (vu.ALLATORIxDEMO((TileEntity)a2)) {
             return;
         }
-        float a10 = (float)(a2.func_145906_b() * 360) / 16.0f;
+        float a10 = (float)(a2.getSkullRotation() * 360) / 16.0f;
         gq a11 = cy.q.ALLATORIxDEMO((TileEntity)a2);
         if (a11 != null) {
             a9.cancel();
@@ -82,13 +82,13 @@ public abstract class MixinTileEntitySkullRenderer {
                 if (a7 >= 0) {
                     return;
                 }
-                List<BlockPos> a15 = a13.ALLATORIxDEMO(a2.func_174877_v(), a10);
+                List<BlockPos> a15 = a13.ALLATORIxDEMO(a2.getPos(), a10);
                 if (a15 != null) {
                     for (BlockPos a16 : a15) {
                         DestroyBlockProgress a17;
-                        IBlockState a18 = a2.func_145831_w().func_180495_p(a16);
-                        if (!a18.func_191057_i() || (a17 = a14.getDestroyStage(a16)) == null) continue;
-                        a7 = Math.max(a17.func_73106_e(), a7);
+                        IBlockState a18 = a2.getWorld().getBlockState(a16);
+                        if (!a18.hasCustomBreakingProgress() || (a17 = a14.getDestroyStage(a16)) == null) continue;
+                        a7 = Math.max(a17.getPartialBlockDamage(), a7);
                     }
                 }
                 a14.renderModel(a2, a13, (float)a3, (float)a4, (float)a5, a10, -1);
@@ -137,40 +137,40 @@ public abstract class MixinTileEntitySkullRenderer {
         if (a2 == null) {
             no.ALLATORIxDEMO(0, 0, 0, a9, a10, "idle");
         } else {
-            BlockPos a11 = a2.func_174877_v();
-            no.ALLATORIxDEMO(a11.func_177958_n(), a11.func_177956_o(), a11.func_177952_p(), a9, a10, "idle");
+            BlockPos a11 = a2.getPos();
+            no.ALLATORIxDEMO(a11.getX(), a11.getY(), a11.getZ(), a9, a10, "idle");
         }
         if (a8 >= 0) {
-            Minecraft.func_71410_x().func_110434_K().func_110577_a(DESTROY_STAGES[a8]);
-            GlStateManager.func_179128_n((int)5890);
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179152_a((float)4.0f, (float)2.0f, (float)1.0f);
-            GlStateManager.func_179109_b((float)0.0625f, (float)0.0625f, (float)0.0625f);
-            GlStateManager.func_179128_n((int)5888);
+            Minecraft.getMinecraft().getTextureManager().bindTexture(DESTROY_STAGES[a8]);
+            GlStateManager.matrixMode((int)5890);
+            GlStateManager.pushMatrix();
+            GlStateManager.scale((float)4.0f, (float)2.0f, (float)1.0f);
+            GlStateManager.translate((float)0.0625f, (float)0.0625f, (float)0.0625f);
+            GlStateManager.matrixMode((int)5888);
         } else {
             no.ALLATORIxDEMO(a9);
         }
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179129_p();
-        GlStateManager.func_179109_b((float)(a4 + 0.5f), (float)a5, (float)(a6 + 0.5f));
-        GlStateManager.func_179091_B();
-        GlStateManager.func_179152_a((float)-1.0f, (float)-1.0f, (float)1.0f);
-        GlStateManager.func_179141_d();
-        GlStateManager.func_179114_b((float)a7, (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.pushMatrix();
+        GlStateManager.disableCull();
+        GlStateManager.translate((float)(a4 + 0.5f), (float)a5, (float)(a6 + 0.5f));
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.scale((float)-1.0f, (float)-1.0f, (float)1.0f);
+        GlStateManager.enableAlpha();
+        GlStateManager.rotate((float)a7, (float)0.0f, (float)1.0f, (float)0.0f);
         a10.render(0.0625f);
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
         if (a8 >= 0) {
-            GlStateManager.func_179128_n((int)5890);
-            GlStateManager.func_179121_F();
-            GlStateManager.func_179128_n((int)5888);
+            GlStateManager.matrixMode((int)5890);
+            GlStateManager.popMatrix();
+            GlStateManager.matrixMode((int)5888);
         }
     }
 
     private /* synthetic */ DestroyBlockProgress getDestroyStage(BlockPos a2) {
         if (damagedBlocks == null) {
-            damagedBlocks = Minecraft.func_71410_x().field_71438_f.field_72738_E;
+            damagedBlocks = Minecraft.getMinecraft().renderGlobal.damagedBlocks;
         }
-        return damagedBlocks.values().stream().filter(a3 -> a3.func_180246_b().equals((Object)a2)).findFirst().orElse(null);
+        return damagedBlocks.values().stream().filter(a3 -> a3.getPosition().equals((Object)a2)).findFirst().orElse(null);
     }
 }
 

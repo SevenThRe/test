@@ -43,10 +43,10 @@ implements LayerRenderer<E> {
 
     public void translateToHand(EnumHandSide a2) {
         ki a3;
-        ((ModelBiped)a3.s.func_177087_b()).func_187073_a(0.0625f, a2);
+        ((ModelBiped)a3.s.getMainModel()).postRenderArm(0.0625f, a2);
     }
 
-    public boolean func_177142_b() {
+    public boolean shouldCombineTextures() {
         return false;
     }
 
@@ -64,16 +64,16 @@ implements LayerRenderer<E> {
         ki3.m[5] = vn.u;
     }
 
-    public void func_177141_a(E a2, float a3, float a42, float a5, float a62, float a7, float a8, float a9) {
+    public void doRenderLayer(E a2, float a3, float a42, float a5, float a62, float a7, float a8, float a9) {
         ki a10;
-        double d2 = Minecraft.func_71410_x().field_71439_g.func_70011_f(((EntityLivingBase)a2).field_70165_t, ((EntityLivingBase)a2).field_70163_u, ((EntityLivingBase)a2).field_70161_v);
+        double d2 = Minecraft.getMinecraft().player.getDistance(((EntityLivingBase)a2).posX, ((EntityLivingBase)a2).posY, ((EntityLivingBase)a2).posZ);
         if (d2 > (double)vk.n || !zh.g && d2 != 0.0) {
             return;
         }
         if (zg.r(a2, "any").size() == 0) {
             return;
         }
-        on.r(a2.func_110124_au()).r();
+        on.r(a2.getUniqueID()).r();
         int n2 = a3 = 0;
         while (n2 < a10.m.length) {
             Object a42 = a10.m[a3];
@@ -83,7 +83,7 @@ implements LayerRenderer<E> {
                 fk a62 = (fk)a42.get(a5);
                 if (a62 != null) {
                     E e2 = a2;
-                    a10.r((Entity)e2, a62, e2 != Minecraft.func_71410_x().field_71439_g);
+                    a10.r((Entity)e2, a62, e2 != Minecraft.getMinecraft().player);
                 }
                 n3 = ++a5;
             }
@@ -105,7 +105,7 @@ implements LayerRenderer<E> {
         km km2 = km.t;
         if ((a3 = kd.j.getSkin((fk)a3)) != null) {
             ki a5;
-            on on2 = on.r(a2.func_110124_au());
+            on on2 = on.r(a2.getUniqueID());
             if (in.t.r(((yl)a3).r()).booleanValue()) {
                 on2.s = true;
             }
@@ -142,9 +142,9 @@ implements LayerRenderer<E> {
             if (in.ua.r(((yl)a3).r()).booleanValue()) {
                 on2.t = true;
             }
-            GlStateManager.func_179094_E();
-            km2.r(a2, (ModelBiped)a5.s.func_177087_b(), (yl)a3, new mn(), oh.l, 0.0, a4);
-            GlStateManager.func_179121_F();
+            GlStateManager.pushMatrix();
+            km2.r(a2, (ModelBiped)a5.s.getMainModel(), (yl)a3, new mn(), oh.l, 0.0, a4);
+            GlStateManager.popMatrix();
         }
     }
 }

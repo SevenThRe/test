@@ -31,17 +31,17 @@ extends AnimationBit<PlayerData> {
         AbstractClientPlayer player = (AbstractClientPlayer)data.getEntity();
         double magnitude = data.getInterpolatedMotionMagnitude();
         float ticks = DataUpdateHandler.getTicks();
-        float forwardMomentum = MathHelper.func_76131_a((float)((float)data.getForwardMomentum()), (float)-1.0f, (float)1.0f);
-        float sideMomentum = MathHelper.func_76131_a((float)((float)data.getSidewaysMomentum()), (float)-1.0f, (float)1.0f);
+        float forwardMomentum = MathHelper.clamp((float)((float)data.getForwardMomentum()), (float)-1.0f, (float)1.0f);
+        float sideMomentum = MathHelper.clamp((float)((float)data.getSidewaysMomentum()), (float)-1.0f, (float)1.0f);
         double xzMomentum = data.getInterpolatedXZMotionMagnitude();
         float headPitch = ((Float)data.headPitch.get()).floatValue();
         float headYaw = ((Float)data.headYaw.get()).floatValue();
-        float headYawAbs = MathHelper.func_76135_e((float)headYaw);
-        float yMomentumAngle = (float)MathHelper.func_181159_b((double)xzMomentum, (double)data.getMotionY()) * 180.0f / (float)Math.PI;
-        if (player.func_70051_ag() && !data.isDrawingBow() && data.getTicksAfterAttack() >= 10.0f) {
-            float speedFactor = MathHelper.func_76131_a((float)((float)magnitude), (float)0.0f, (float)0.2f) / 0.2f;
+        float headYawAbs = MathHelper.abs((float)headYaw);
+        float yMomentumAngle = (float)MathHelper.atan2((double)xzMomentum, (double)data.getMotionY()) * 180.0f / (float)Math.PI;
+        if (player.isSprinting() && !data.isDrawingBow() && data.getTicksAfterAttack() >= 10.0f) {
+            float speedFactor = MathHelper.clamp((float)((float)magnitude), (float)0.0f, (float)0.2f) / 0.2f;
             data.centerRotation.setSmoothness(1.0f).orientX(yMomentumAngle * speedFactor).rotateZ(headYaw);
-            float bodyRotationX = MathHelper.func_76131_a((float)(headPitch * 0.8f), (float)-60.0f, (float)0.0f);
+            float bodyRotationX = MathHelper.clamp((float)(headPitch * 0.8f), (float)-60.0f, (float)0.0f);
             data.head.rotation.setSmoothness(1.0f).orientY(headYaw).rotateX(headPitch - bodyRotationX - yMomentumAngle * speedFactor);
             data.body.rotation.setSmoothness(0.7f).orientX(bodyRotationX);
             data.leftArm.rotation.setSmoothness(0.7f).orientX(-bodyRotationX).rotateZ(-60.0f + 55.0f * speedFactor - headYawAbs * 0.5f);
@@ -53,10 +53,10 @@ extends AnimationBit<PlayerData> {
             data.leftForeLeg.rotation.setSmoothness(0.7f).orientX(0.0f);
             data.rightForeLeg.rotation.setSmoothness(0.7f).orientX(0.0f);
         } else if (magnitude < 0.1) {
-            float armSway = (MathHelper.func_76134_b((float)(ticks * 0.0825f)) + 1.0f) / 2.0f;
-            float armSway2 = (-MathHelper.func_76126_a((float)(ticks * 0.0825f)) + 1.0f) / 2.0f;
-            float legFlap = MathHelper.func_76134_b((float)(ticks * 0.125f));
-            float legFlap2 = MathHelper.func_76126_a((float)(ticks * 0.125f));
+            float armSway = (MathHelper.cos((float)(ticks * 0.0825f)) + 1.0f) / 2.0f;
+            float armSway2 = (-MathHelper.sin((float)(ticks * 0.0825f)) + 1.0f) / 2.0f;
+            float legFlap = MathHelper.cos((float)(ticks * 0.125f));
+            float legFlap2 = MathHelper.sin((float)(ticks * 0.125f));
             float foreArmSway = ticks * 0.1625f % ((float)Math.PI * 2) / ((float)Math.PI * 2);
             float foreArmStretch = armSway * 2.0f;
             foreArmStretch -= 1.0f;

@@ -32,19 +32,19 @@ import org.lwjgl.input.Keyboard;
 
 public class CmdEditWaypoint
 implements ICommand {
-    public String func_71517_b() {
+    public String getName() {
         return "wpedit";
     }
 
-    public String func_71518_a(ICommandSender sender) {
+    public String getUsage(ICommandSender sender) {
         return null;
     }
 
-    public List<String> func_71514_a() {
+    public List<String> getAliases() {
         return null;
     }
 
-    public void func_184881_a(MinecraftServer server, ICommandSender sender, String[] args2) throws CommandException {
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args2) throws CommandException {
         String text = Joiner.on((String)" ").skipNulls().join((Object[])args2);
         final Waypoint waypoint = WaypointParser.parse(text);
         if (waypoint != null) {
@@ -76,15 +76,15 @@ implements ICommand {
         }
     }
 
-    public boolean func_184882_a(MinecraftServer server, ICommandSender sender) {
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
         return true;
     }
 
-    public List<String> func_184883_a(MinecraftServer server, ICommandSender sender, String[] args2, BlockPos pos) {
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args2, BlockPos pos) {
         return null;
     }
 
-    public boolean func_82358_a(String[] args2, int index) {
+    public boolean isUsernameIndex(String[] args2, int index) {
         return false;
     }
 

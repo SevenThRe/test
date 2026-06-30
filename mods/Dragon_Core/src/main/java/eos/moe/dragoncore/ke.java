@@ -115,7 +115,7 @@ extends jj {
         super.runClick(a2, a3, a4);
         ITextComponent a6 = a5.getTextComponent(a2, a3);
         if (a6 != null) {
-            a5.y.func_175276_a(a6);
+            a5.y.handleComponentClick(a6);
         }
     }
 
@@ -148,7 +148,7 @@ extends jj {
             TextComponentString a19;
             String a20;
             double a21;
-            if (!(a18 instanceof TextComponentString) || !((double)(a16 = (int)((double)a16 + (a21 = (double)ol.ALLATORIxDEMO(a20 = (a19 = (TextComponentString)a18).func_150265_g(), a13, a11)))) > a15)) continue;
+            if (!(a18 instanceof TextComponentString) || !((double)(a16 = (int)((double)a16 + (a21 = (double)ol.ALLATORIxDEMO(a20 = (a19 = (TextComponentString)a18).getText(), a13, a11)))) > a15)) continue;
             return a19;
         }
         return null;

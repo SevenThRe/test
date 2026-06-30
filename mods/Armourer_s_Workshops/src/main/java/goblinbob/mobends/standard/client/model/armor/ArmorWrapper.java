@@ -44,45 +44,45 @@ extends ModelBiped {
     protected IPartWrapper rightLegParts;
     protected ModelPartTransform bodyTransform;
     private static final IPartWrapper.ModelPartSetter bodySetter = (model, part) -> {
-        model.field_78115_e = part;
+        model.bipedBody = part;
     };
     private static final IPartWrapper.ModelPartSetter headSetter = (model, part) -> {
-        model.field_78116_c = part;
+        model.bipedHead = part;
     };
     private static final IPartWrapper.ModelPartSetter headwearSetter = (model, part) -> {
-        model.field_178720_f = part;
+        model.bipedHeadwear = part;
     };
     private static final IPartWrapper.ModelPartSetter leftArmSetter = (model, part) -> {
-        model.field_178724_i = part;
+        model.bipedLeftArm = part;
     };
     private static final IPartWrapper.ModelPartSetter rightArmSetter = (model, part) -> {
-        model.field_178723_h = part;
+        model.bipedRightArm = part;
     };
     private static final IPartWrapper.ModelPartSetter leftLegSetter = (model, part) -> {
-        model.field_178722_k = part;
+        model.bipedLeftLeg = part;
     };
     private static final IPartWrapper.ModelPartSetter rightLegSetter = (model, part) -> {
-        model.field_178721_j = part;
+        model.bipedRightLeg = part;
     };
 
     private ArmorWrapper(ModelBiped original) {
         this.original = original;
-        this.field_78115_e = original.field_78115_e;
-        this.field_78116_c = original.field_78116_c;
-        this.field_178724_i = original.field_178724_i;
-        this.field_178723_h = original.field_178723_h;
-        this.field_178722_k = original.field_178722_k;
-        this.field_178721_j = original.field_178721_j;
-        this.field_178720_f = original.field_178720_f;
+        this.bipedBody = original.bipedBody;
+        this.bipedHead = original.bipedHead;
+        this.bipedLeftArm = original.bipedLeftArm;
+        this.bipedRightArm = original.bipedRightArm;
+        this.bipedLeftLeg = original.bipedLeftLeg;
+        this.bipedRightLeg = original.bipedRightLeg;
+        this.bipedHeadwear = original.bipedHeadwear;
         this.bodyTransform = new ModelPartTransform();
         this.partWrappers = new ArrayList<IPartWrapper>();
-        this.bodyParts = this.registerWrapper(original, this.field_78115_e, bodySetter, data -> data.body).offsetInner(0.0f, -12.0f, 0.0f);
-        this.headParts = this.registerWrapper(original, this.field_78116_c, headSetter, data -> data.head).setParent(this.bodyTransform);
-        this.headwearParts = this.registerWrapper(original, this.field_178720_f, headwearSetter, data -> data.head).setParent(this.bodyTransform);
-        this.leftArmParts = this.registerWrapper(original, this.field_178724_i, leftArmSetter, data -> data.leftArm, data -> data.leftForeArm, 4.0f, 0.001f).offsetLower(0.0f, -4.0f, -2.0f).setParent(this.bodyTransform);
-        this.rightArmParts = this.registerWrapper(original, this.field_178723_h, rightArmSetter, data -> data.rightArm, data -> data.rightForeArm, 4.0f, 0.001f).offsetLower(0.0f, -4.0f, -2.0f).setParent(this.bodyTransform);
-        this.leftLegParts = this.registerWrapper(original, this.field_178722_k, leftLegSetter, data -> data.leftLeg, data -> data.leftForeLeg, 6.0f, 0.0f).offsetLower(-0.100000024f, -6.0f, 2.0f).offsetInner(-0.100000024f, 0.0f, 0.0f);
-        this.rightLegParts = this.registerWrapper(original, this.field_178721_j, rightLegSetter, data -> data.rightLeg, data -> data.rightForeLeg, 6.0f, 0.0f).offsetLower(0.100000024f, -6.0f, 2.0f).offsetInner(0.100000024f, 0.0f, 0.0f);
+        this.bodyParts = this.registerWrapper(original, this.bipedBody, bodySetter, data -> data.body).offsetInner(0.0f, -12.0f, 0.0f);
+        this.headParts = this.registerWrapper(original, this.bipedHead, headSetter, data -> data.head).setParent(this.bodyTransform);
+        this.headwearParts = this.registerWrapper(original, this.bipedHeadwear, headwearSetter, data -> data.head).setParent(this.bodyTransform);
+        this.leftArmParts = this.registerWrapper(original, this.bipedLeftArm, leftArmSetter, data -> data.leftArm, data -> data.leftForeArm, 4.0f, 0.001f).offsetLower(0.0f, -4.0f, -2.0f).setParent(this.bodyTransform);
+        this.rightArmParts = this.registerWrapper(original, this.bipedRightArm, rightArmSetter, data -> data.rightArm, data -> data.rightForeArm, 4.0f, 0.001f).offsetLower(0.0f, -4.0f, -2.0f).setParent(this.bodyTransform);
+        this.leftLegParts = this.registerWrapper(original, this.bipedLeftLeg, leftLegSetter, data -> data.leftLeg, data -> data.leftForeLeg, 6.0f, 0.0f).offsetLower(-0.100000024f, -6.0f, 2.0f).offsetInner(-0.100000024f, 0.0f, 0.0f);
+        this.rightLegParts = this.registerWrapper(original, this.bipedRightLeg, rightLegSetter, data -> data.rightLeg, data -> data.rightForeLeg, 6.0f, 0.0f).offsetLower(0.100000024f, -6.0f, 2.0f).offsetInner(0.100000024f, 0.0f, 0.0f);
     }
 
     private HumanoidPartWrapper registerWrapper(ModelBiped vanillaModel, ModelRenderer vanillaPart, IPartWrapper.ModelPartSetter setter, IPartWrapper.DataPartSelector dataSelector) {
@@ -97,7 +97,7 @@ extends ModelBiped {
         return wrapper;
     }
 
-    public void func_78088_a(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         if (!this.mutated) {
             throw new MalformedArmorModelException("Operating on a demutated armor wrapper.");
         }
@@ -120,12 +120,12 @@ extends ModelBiped {
         this.bodyTransform.syncUp(dataBiped.body);
         this.partWrappers.forEach(group -> group.syncUp(dataBiped));
         this.apply();
-        this.original.func_178686_a((ModelBase)this);
-        this.original.func_78088_a(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        this.original.setModelAttributes((ModelBase)this);
+        this.original.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
         this.deapply();
     }
 
-    public void func_78087_a(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
     }
 
     public void demutate() {

@@ -34,9 +34,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinRenderGlobal {
     @Shadow
     @Final
-    private RenderManager field_175010_j;
+    private RenderManager renderManager;
     @Shadow
-    private int field_72749_I;
+    private int countEntitiesRendered;
 
     public MixinRenderGlobal() {
         MixinRenderGlobal a2;
@@ -47,7 +47,7 @@ public class MixinRenderGlobal {
         MixinRenderGlobal a8;
         if (a3 instanceof EntityLivingBase) {
             EntityLivingBase a9 = (EntityLivingBase)a3;
-            if (kba.ALLATORIxDEMO.containsKey(a3.func_110124_au())) {
+            if (kba.ALLATORIxDEMO.containsKey(a3.getUniqueID())) {
                 return false;
             }
             rda a10 = raa.r.c(a9);
@@ -55,26 +55,26 @@ public class MixinRenderGlobal {
                 return false;
             }
         }
-        return a8.field_175010_j.func_178635_a(a3, a4, a5, a6, a7);
+        return a8.renderManager.shouldRender(a3, a4, a5, a6, a7);
     }
 
     @Inject(method={"renderEntities"}, at={@At(value="INVOKE", target="Lnet/minecraft/util/math/BlockPos$PooledMutableBlockPos;release()V", shift=At.Shift.AFTER)})
     private /* synthetic */ void onRender(Entity a2, ICamera a3, float a4, CallbackInfo a5) {
         MixinRenderGlobal a6;
-        List a7 = Minecraft.func_71410_x().field_71441_e.field_72996_f;
+        List a7 = Minecraft.getMinecraft().world.loadedEntityList;
         ArrayList<Entity> a8 = new ArrayList<Entity>();
         for (Entity a9 : a7) {
             if (!(a9 instanceof EntityLivingBase)) continue;
             rda a10 = raa.r.c((EntityLivingBase)a9);
-            boolean a11 = kba.ALLATORIxDEMO.containsKey(a9.func_110124_au());
+            boolean a11 = kba.ALLATORIxDEMO.containsKey(a9.getUniqueID());
             a11 = a11 || a10 != null && a10.h();
             if (!a11) continue;
-            ++a6.field_72749_I;
+            ++a6.countEntitiesRendered;
             a8.add(a9);
         }
         if (!a8.isEmpty()) {
             for (Entity a9 : a8) {
-                a6.field_175010_j.func_188388_a(a9, a4, false);
+                a6.renderManager.renderEntityStatic(a9, a4, false);
             }
         }
     }

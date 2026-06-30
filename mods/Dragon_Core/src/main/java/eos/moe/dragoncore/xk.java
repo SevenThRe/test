@@ -33,7 +33,7 @@ implements v {
     public String c() {
         xk a2;
         NBTTagCompound a3 = new NBTTagCompound();
-        a2.ALLATORIxDEMO.func_77955_b(a3);
+        a2.ALLATORIxDEMO.writeToNBT(a3);
         return a3.toString();
     }
 

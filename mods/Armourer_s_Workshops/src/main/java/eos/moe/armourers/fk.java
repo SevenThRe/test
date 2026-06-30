@@ -41,22 +41,22 @@ public class fk {
 
     public static fk r(ItemStack a2) {
         String string;
-        if (a2 == null || a2.func_190926_b() || a2.func_77978_p() == null) {
+        if (a2 == null || a2.isEmpty() || a2.getTagCompound() == null) {
             return null;
         }
         String string2 = null;
         ItemStack itemStack = a2;
-        NBTTagCompound nBTTagCompound = itemStack.func_77978_p();
+        NBTTagCompound nBTTagCompound = itemStack.getTagCompound();
         ISkinStorage iSkinStorage = (ISkinStorage)itemStack;
         if (iSkinStorage.getSkin() != null) {
             string = string2 = iSkinStorage.getSkin();
         } else {
             NBTTagCompound nBTTagCompound2 = nBTTagCompound;
-            if (nBTTagCompound.func_74764_b("skin")) {
-                string = string2 = nBTTagCompound2.func_74779_i("skin");
+            if (nBTTagCompound.hasKey("skin")) {
+                string = string2 = nBTTagCompound2.getString("skin");
             } else {
                 NBTTagCompound nBTTagCompound3 = nBTTagCompound;
-                string = nBTTagCompound2.func_74775_l("armourersWorkshop").func_74775_l("identifier").func_74764_b("dragonname") ? (string2 = nBTTagCompound3.func_74775_l("armourersWorkshop").func_74775_l("identifier").func_74779_i("dragonname")) : (nBTTagCompound3.func_74775_l("armourersWorkshops").func_74775_l("identifier").func_74764_b("dragonname") ? (string2 = nBTTagCompound.func_74775_l("armourersWorkshops").func_74775_l("identifier").func_74779_i("dragonname")) : (string2 = fk.r(a2)));
+                string = nBTTagCompound2.getCompoundTag("armourersWorkshop").getCompoundTag("identifier").hasKey("dragonname") ? (string2 = nBTTagCompound3.getCompoundTag("armourersWorkshop").getCompoundTag("identifier").getString("dragonname")) : (nBTTagCompound3.getCompoundTag("armourersWorkshops").getCompoundTag("identifier").hasKey("dragonname") ? (string2 = nBTTagCompound.getCompoundTag("armourersWorkshops").getCompoundTag("identifier").getString("dragonname")) : (string2 = fk.r(a2)));
             }
         }
         if (string != null && !string2.isEmpty()) {
@@ -97,22 +97,22 @@ public class fk {
 
     private static /* synthetic */ String r(ItemStack a2) {
         int n2;
-        NBTTagCompound nBTTagCompound = a2.func_77978_p();
+        NBTTagCompound nBTTagCompound = a2.getTagCompound();
         if (nBTTagCompound == null) {
             return null;
         }
-        if (!nBTTagCompound.func_150297_b("display", 10)) {
+        if (!nBTTagCompound.hasKey("display", 10)) {
             return null;
         }
-        if ((nBTTagCompound = nBTTagCompound.func_74775_l("display")).func_150299_b("Lore") != 9) {
+        if ((nBTTagCompound = nBTTagCompound.getCompoundTag("display")).getTagId("Lore") != 9) {
             return null;
         }
-        if ((nBTTagCompound = nBTTagCompound.func_150295_c("Lore", 8)).func_82582_d()) {
+        if ((nBTTagCompound = nBTTagCompound.getTagList("Lore", 8)).isEmpty()) {
             return null;
         }
         int n3 = n2 = 0;
-        while (n3 < nBTTagCompound.func_74745_c()) {
-            String string = nBTTagCompound.func_150307_f(n2);
+        while (n3 < nBTTagCompound.tagCount()) {
+            String string = nBTTagCompound.getStringTagAt(n2);
             string = hd.r(string.replace(" ", ""));
             if ((string = zg.j.get(string)) != null) {
                 ((ISkinStorage)a2).setSkin(string);

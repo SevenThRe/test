@@ -23,7 +23,7 @@ public class ya {
     }
 
     public static IResource ALLATORIxDEMO(ResourceLocation a2) throws IOException {
-        return Minecraft.func_71410_x().func_110442_L().func_110536_a(a2);
+        return Minecraft.getMinecraft().getResourceManager().getResource(a2);
     }
 }
 

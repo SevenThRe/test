@@ -38,7 +38,7 @@ extends BipedEntityData<AbstractClientPlayer> {
 
     public PlayerData(AbstractClientPlayer entity) {
         super(entity);
-        CPCManager.put(entity.func_110124_au(), this.controller);
+        CPCManager.put(entity.getUniqueID(), this.controller);
     }
 
     public PlayerController getController() {
@@ -68,7 +68,7 @@ extends BipedEntityData<AbstractClientPlayer> {
     @Override
     public void initModelPose() {
         super.initModelPose();
-        Render render = Minecraft.func_71410_x().func_175598_ae().func_78713_a(this.entity);
+        Render render = Minecraft.getMinecraft().getRenderManager().getEntityRenderObject(this.entity);
         this.cape = new ModelPartTransform(this.body);
         this.nameToPartMap.put("cape", this.cape);
         this.cape.position.set(0.0f, 0.0f, 0.0f);
@@ -115,7 +115,7 @@ extends BipedEntityData<AbstractClientPlayer> {
 
     @Override
     public void onAttack() {
-        if (((AbstractClientPlayer)this.entity).func_184586_b(EnumHand.MAIN_HAND).func_77973_b() == Items.field_190931_a) {
+        if (((AbstractClientPlayer)this.entity).getHeldItem(EnumHand.MAIN_HAND).getItem() == Items.AIR) {
             this.fistPunchArm = !this.fistPunchArm;
             this.ticksAfterAttack = 0.0f;
             return;
@@ -137,7 +137,7 @@ extends BipedEntityData<AbstractClientPlayer> {
                 break;
             }
             case 4: {
-                this.currentAttack = !ModConfig.performSpinAttack || ((AbstractClientPlayer)this.getEntity()).func_184218_aH() ? 1 : 5;
+                this.currentAttack = !ModConfig.performSpinAttack || ((AbstractClientPlayer)this.getEntity()).isRiding() ? 1 : 5;
                 break;
             }
             default: {
@@ -160,7 +160,7 @@ extends BipedEntityData<AbstractClientPlayer> {
     }
 
     public boolean isFlying() {
-        return this.flyingStateOverride != null ? this.flyingStateOverride : ((AbstractClientPlayer)this.entity).field_71075_bZ.field_75100_b;
+        return this.flyingStateOverride != null ? this.flyingStateOverride : ((AbstractClientPlayer)this.entity).capabilities.isFlying;
     }
 }
 

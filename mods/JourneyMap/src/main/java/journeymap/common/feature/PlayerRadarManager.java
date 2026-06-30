@@ -59,7 +59,7 @@ public class PlayerRadarManager {
     public void addPlayer(EntityPlayer player) {
         Object object = this.lock;
         synchronized (object) {
-            this.playersOnServer.put(player.func_110124_au(), player);
+            this.playersOnServer.put(player.getUniqueID(), player);
         }
     }
 
@@ -96,26 +96,26 @@ public class PlayerRadarManager {
     }
 
     private void updatePlayer(EntityPlayer player, JsonObject json) {
-        player.field_70165_t = json.get("posX").getAsInt();
-        player.field_70163_u = json.get("posY").getAsInt();
-        player.field_70161_v = json.get("posZ").getAsInt();
-        player.field_70176_ah = json.get("chunkX").getAsInt();
-        player.field_70162_ai = json.get("chunkY").getAsInt();
-        player.field_70164_aj = json.get("chunkZ").getAsInt();
-        player.field_70759_as = json.get("rotation").getAsFloat();
-        player.func_70095_a(json.get("sneaking").getAsBoolean());
-        player.field_71093_bK = json.get("dim").getAsInt();
+        player.posX = json.get("posX").getAsInt();
+        player.posY = json.get("posY").getAsInt();
+        player.posZ = json.get("posZ").getAsInt();
+        player.chunkCoordX = json.get("chunkX").getAsInt();
+        player.chunkCoordY = json.get("chunkY").getAsInt();
+        player.chunkCoordZ = json.get("chunkZ").getAsInt();
+        player.rotationYawHead = json.get("rotation").getAsFloat();
+        player.setSneaking(json.get("sneaking").getAsBoolean());
+        player.dimension = json.get("dim").getAsInt();
     }
 
     private EntityPlayer buildPlayerFromJson(JsonObject player) {
         Minecraft mc = FMLClientHandler.instance().getClient();
         UUID playerUUID = UUID.fromString(player.get("playerId").getAsString());
         String playerName = player.get("name").getAsString();
-        if (!playerUUID.equals(mc.field_71439_g.func_110124_au())) {
-            EntityOtherPlayerMP playerMp = new EntityOtherPlayerMP((World)mc.field_71441_e, new GameProfile(playerUUID, playerName));
+        if (!playerUUID.equals(mc.player.getUniqueID())) {
+            EntityOtherPlayerMP playerMp = new EntityOtherPlayerMP((World)mc.world, new GameProfile(playerUUID, playerName));
             this.updatePlayer((EntityPlayer)playerMp, player);
-            playerMp.func_184221_a(playerUUID);
-            playerMp.field_70175_ag = true;
+            playerMp.setUniqueId(playerUUID);
+            playerMp.addedToChunk = true;
             return playerMp;
         }
         return null;

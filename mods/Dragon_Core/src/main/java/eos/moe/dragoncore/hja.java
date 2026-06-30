@@ -39,7 +39,7 @@ public class hja {
 
     public eba ALLATORIxDEMO(ItemStack a2) {
         hja a3;
-        if (a2.func_190926_b()) {
+        if (a2.isEmpty()) {
             return null;
         }
         String a4 = dj.ALLATORIxDEMO(a2, false, false);
@@ -76,7 +76,7 @@ public class hja {
 
     public ui ALLATORIxDEMO(ItemStack a2) {
         hja a3;
-        if (a2.func_190926_b() || !ItemStack.func_77989_b((ItemStack)a2, (ItemStack)a3.y) || a3.ALLATORIxDEMO != null && !a3.ALLATORIxDEMO.ALLATORIxDEMO()) {
+        if (a2.isEmpty() || !ItemStack.areItemStacksEqual((ItemStack)a2, (ItemStack)a3.y) || a3.ALLATORIxDEMO != null && !a3.ALLATORIxDEMO.ALLATORIxDEMO()) {
             if (a3.k != null) {
                 a3.k.onGuiClosed1();
             }
@@ -87,7 +87,7 @@ public class hja {
         if (a3.k != null) {
             return a3.k;
         }
-        if (a3.y.func_190926_b()) {
+        if (a3.y.isEmpty()) {
             return null;
         }
         String a4 = dj.ALLATORIxDEMO(a2, false, false);
@@ -95,7 +95,7 @@ public class hja {
             String a6 = baa.ALLATORIxDEMO(a5);
             if (a6 == null || !a4.contains(a6) && !al.ALLATORIxDEMO(baa.ALLATORIxDEMO(a5), a4) || !a5.ALLATORIxDEMO()) continue;
             a3.ALLATORIxDEMO = a5;
-            a3.k = new ui(a4, baa.ALLATORIxDEMO(a5), a3.o, Minecraft.func_71410_x().field_71439_g.field_71069_bz, od.o);
+            a3.k = new ui(a4, baa.ALLATORIxDEMO(a5), a3.o, Minecraft.getMinecraft().player.inventoryContainer, od.o);
             a3.k.initGui_();
             return a3.k;
         }

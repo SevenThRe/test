@@ -25,11 +25,11 @@ extends AbstractTexture {
         a3.ALLATORIxDEMO = a2;
     }
 
-    public void func_110551_a(IResourceManager a2) throws IOException {
+    public void loadTexture(IResourceManager a2) throws IOException {
         eq a3;
-        a3.func_147631_c();
-        BufferedImage a4 = TextureUtil.func_177053_a((InputStream)new ByteArrayInputStream(a3.ALLATORIxDEMO));
-        TextureUtil.func_110989_a((int)a3.func_110552_b(), (BufferedImage)a4, (boolean)false, (boolean)false);
+        a3.deleteGlTexture();
+        BufferedImage a4 = TextureUtil.readBufferedImage((InputStream)new ByteArrayInputStream(a3.ALLATORIxDEMO));
+        TextureUtil.uploadTextureImageAllocate((int)a3.getGlTextureId(), (BufferedImage)a4, (boolean)false, (boolean)false);
     }
 }
 

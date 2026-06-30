@@ -21,12 +21,12 @@ extends Sound {
         a8.ALLATORIxDEMO = a2;
     }
 
-    public ResourceLocation func_188719_a() {
+    public ResourceLocation getSoundLocation() {
         vn a2;
         return a2.ALLATORIxDEMO;
     }
 
-    public ResourceLocation func_188721_b() {
+    public ResourceLocation getSoundAsOggLocation() {
         vn a2;
         return a2.ALLATORIxDEMO;
     }

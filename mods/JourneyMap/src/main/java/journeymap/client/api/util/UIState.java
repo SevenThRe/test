@@ -46,7 +46,7 @@ public final class UIState {
     }
 
     public static UIState newInactive(Context.UI ui, Minecraft minecraft) {
-        BlockPos center = minecraft.field_71441_e == null ? new BlockPos(0, 68, 0) : minecraft.field_71441_e.func_175694_M();
+        BlockPos center = minecraft.world == null ? new BlockPos(0, 68, 0) : minecraft.world.getSpawnPoint();
         return new UIState(ui, false, 0, 0, Context.MapType.Day, center, null, null, null);
     }
 

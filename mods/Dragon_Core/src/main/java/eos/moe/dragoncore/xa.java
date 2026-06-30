@@ -47,7 +47,7 @@ public class xa {
     }
 
     public void z(String a2) {
-        Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString(a2));
+        Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString(a2));
     }
 
     public void k(String a2, Object ... a3) {

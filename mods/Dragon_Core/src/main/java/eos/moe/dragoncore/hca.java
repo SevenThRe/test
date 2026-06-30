@@ -41,16 +41,16 @@ extends uha {
     @Override
     public void ALLATORIxDEMO() {
         hca a2;
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         String a3 = a2.c();
-        GlStateManager.func_179137_b((double)a2.c(), (double)a2.ALLATORIxDEMO(), (double)0.0);
-        GlStateManager.func_179152_a((float)a2.o, (float)a2.o, (float)a2.o);
+        GlStateManager.translate((double)a2.c(), (double)a2.ALLATORIxDEMO(), (double)0.0);
+        GlStateManager.scale((float)a2.o, (float)a2.o, (float)a2.o);
         if (a2.b) {
-            a2.ALLATORIxDEMO().x.func_175065_a(a3, (float)(-a2.ALLATORIxDEMO().x.func_78256_a(a3)) / 2.0f, 0.0f, -1, a2.k);
+            a2.ALLATORIxDEMO().x.drawString(a3, (float)(-a2.ALLATORIxDEMO().x.getStringWidth(a3)) / 2.0f, 0.0f, -1, a2.k);
         } else {
-            a2.ALLATORIxDEMO().x.func_175065_a(a3, 0.0f, 0.0f, -1, a2.k);
+            a2.ALLATORIxDEMO().x.drawString(a3, 0.0f, 0.0f, -1, a2.k);
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     public String c() {
@@ -60,7 +60,7 @@ extends uha {
         }
         String a3 = a2.y;
         List<String> a4 = dj.c(a2.ALLATORIxDEMO().v);
-        if ((a3 = a3.replace("%name%", a2.ALLATORIxDEMO().v.func_82833_r())).contains("%lore_") || a3.contains("%nbt_")) {
+        if ((a3 = a3.replace("%name%", a2.ALLATORIxDEMO().v.getDisplayName())).contains("%lore_") || a3.contains("%nbt_")) {
             Matcher a5 = ALLATORIxDEMO.matcher(a3);
             while (a5.find()) {
                 NBTBase a6;
@@ -76,15 +76,15 @@ extends uha {
                     a3 = a3.replaceAll(Pattern.quote(a5.group()), "");
                     continue;
                 }
-                if (!a7.startsWith("%nbt") || a2.ALLATORIxDEMO().v.func_77978_p() == null) continue;
+                if (!a7.startsWith("%nbt") || a2.ALLATORIxDEMO().v.getTagCompound() == null) continue;
                 String[] a10 = a7.substring(5, a7.length() - 1).split("\\.");
-                NBTTagCompound a11 = a2.ALLATORIxDEMO().v.func_77978_p();
+                NBTTagCompound a11 = a2.ALLATORIxDEMO().v.getTagCompound();
                 for (int a12 = 0; a12 < a10.length - 1; ++a12) {
-                    a11 = a11.func_74775_l(a10[a12]);
+                    a11 = a11.getCompoundTag(a10[a12]);
                 }
-                if (a10.length <= 0 || (a6 = a11.func_74781_a(a10[a10.length - 1])) == null) continue;
-                if (a6.func_74732_a() == 8) {
-                    a3 = a3.replaceAll(Pattern.quote(a5.group()), Matcher.quoteReplacement(((NBTTagString)a6).func_150285_a_()));
+                if (a10.length <= 0 || (a6 = a11.getTag(a10[a10.length - 1])) == null) continue;
+                if (a6.getId() == 8) {
+                    a3 = a3.replaceAll(Pattern.quote(a5.group()), Matcher.quoteReplacement(((NBTTagString)a6).getString()));
                     continue;
                 }
                 a3 = a3.replaceAll(Pattern.quote(a5.group()), Matcher.quoteReplacement(a6.toString()));

@@ -46,9 +46,9 @@ extends cz {
         if (a5.ALLATORIxDEMO.c()) {
             float a6 = OpenGlHelper.lastBrightnessX;
             float a7 = OpenGlHelper.lastBrightnessY;
-            OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)a7);
+            OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)a7);
             sd.ALLATORIxDEMO(0.0, 0.0, a5.v.c(), a5.m.c(), a5.r.c(), a5.x.c(), a5.c.c(), a5.q.c());
-            OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)a6, (float)a7);
+            OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)a6, (float)a7);
         } else {
             sd.ALLATORIxDEMO(0.0, 0.0, a5.v.c(), a5.m.c(), a5.r.c(), a5.x.c(), a5.c.c(), a5.q.c());
         }

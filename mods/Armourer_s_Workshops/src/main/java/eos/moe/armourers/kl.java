@@ -111,7 +111,7 @@ IMessageHandler<kl, IMessage> {
                 Object object = a2;
                 while (false) {
                 }
-                UUID uUID = object.func_179253_g();
+                UUID uUID = object.readUniqueId();
                 HashSet hashSet = Sets.newHashSet(nf.r(object));
                 zg.m.put(uUID, hashSet.stream().map(fk::new).collect(Collectors.toList()));
                 return;
@@ -123,7 +123,7 @@ IMessageHandler<kl, IMessage> {
                 int n4 = n2 = 0;
                 while (n4 < n3) {
                     Object object = a2;
-                    String string = object.func_150789_c(1024);
+                    String string = object.readString(1024);
                     List<String> list = nf.r(object);
                     zg.c.put(string, list.stream().map(fk::new).collect(Collectors.toList()));
                     n4 = ++n2;
@@ -138,8 +138,8 @@ IMessageHandler<kl, IMessage> {
                 int n7 = n5 = 0;
                 while (n7 < n6) {
                     Object object = a2;
-                    String string = object.func_150789_c(1024);
-                    String string2 = object.func_150789_c(1024);
+                    String string = object.readString(1024);
+                    String string2 = object.readString(1024);
                     zg.j.put(string, string2);
                     n7 = ++n5;
                 }
@@ -167,12 +167,12 @@ IMessageHandler<kl, IMessage> {
                     int n8;
                     af.s.clear();
                     Object object = a2;
-                    af.c = object.func_150789_c(1024);
+                    af.c = object.readString(1024);
                     int n9 = object.readInt();
                     int n10 = n8 = 0;
                     while (n10 < n9) {
                         Object object2 = a2;
-                        String string = object2.func_150789_c(1024);
+                        String string = object2.readString(1024);
                         int n11 = object2.readInt();
                         af.s.add((Tuple<String, Integer>)new Tuple((Object)string, (Object)n11));
                         n10 = ++n8;
@@ -183,8 +183,8 @@ IMessageHandler<kl, IMessage> {
             case 9: {
                 kl a3;
                 Object object = a2;
-                String string = object.func_150789_c(1024);
-                String string3 = object.func_150789_c(32768);
+                String string = object.readString(1024);
+                String string3 = object.readString(32768);
                 rg rg2 = (rg)a3.buildGson().fromJson(string3, rg.class);
                 if (rg2.y()) {
                     rg rg3 = rg2;
@@ -200,14 +200,14 @@ IMessageHandler<kl, IMessage> {
                 int n13 = a2.readInt();
                 int n14 = n12 = 0;
                 while (n14 < n13) {
-                    jn.r(a2.func_150789_c(1024), a2.func_150789_c(1024));
+                    jn.r(a2.readString(1024), a2.readString(1024));
                     n14 = ++n12;
                 }
                 return;
             }
             case 13: {
                 float f2 = a2.readFloat();
-                pi.v.j = new de(Minecraft.func_71410_x().field_71439_g, f2);
+                pi.v.j = new de(Minecraft.getMinecraft().player, f2);
                 return;
             }
             case 14: {
@@ -219,7 +219,7 @@ IMessageHandler<kl, IMessage> {
                 return;
             }
             case 17: {
-                Minecraft.func_71410_x().func_152344_a(() -> Minecraft.func_71410_x().func_147108_a((GuiScreen)new GuiInventory((EntityPlayer)Minecraft.func_71410_x().field_71439_g)));
+                Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiInventory((EntityPlayer)Minecraft.getMinecraft().player)));
                 return;
             }
         }

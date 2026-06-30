@@ -36,14 +36,14 @@ extends AnimationBit<PlayerData> {
         data.rightLeg.rotation.orientX(-90.0f).rotateZ(10.0f).rotateY(25.0f);
         data.leftForeLeg.rotation.orientX(60.0f);
         data.rightForeLeg.rotation.orientX(60.0f);
-        Entity ridden = living.func_184187_bx();
+        Entity ridden = living.getRidingEntity();
         if (ridden instanceof EntityLivingBase) {
             EntityLivingBase riddenLiving = (EntityLivingBase)ridden;
-            float relativeHeadYaw = MathHelper.func_76142_g((float)(((EntityLivingBase)living).field_70177_z - riddenLiving.field_70761_aq));
-            float relativeYaw = MathHelper.func_76142_g((float)(((EntityLivingBase)living).field_70177_z - ((Float)data.headYaw.get()).floatValue() - riddenLiving.field_70761_aq));
-            data.body.rotation.orientZ(MathHelper.func_76131_a((float)(-relativeHeadYaw * 0.25f), (float)-20.0f, (float)20.0f));
-            data.leftLeg.rotation.rotateX(-MathHelper.func_76126_a((float)(relativeYaw / 180.0f * (float)Math.PI * 1.5f)) * 45.0f);
-            data.rightLeg.rotation.rotateX(MathHelper.func_76126_a((float)(relativeYaw / 180.0f * (float)Math.PI * 1.5f)) * 45.0f);
+            float relativeHeadYaw = MathHelper.wrapDegrees((float)(((EntityLivingBase)living).rotationYaw - riddenLiving.renderYawOffset));
+            float relativeYaw = MathHelper.wrapDegrees((float)(((EntityLivingBase)living).rotationYaw - ((Float)data.headYaw.get()).floatValue() - riddenLiving.renderYawOffset));
+            data.body.rotation.orientZ(MathHelper.clamp((float)(-relativeHeadYaw * 0.25f), (float)-20.0f, (float)20.0f));
+            data.leftLeg.rotation.rotateX(-MathHelper.sin((float)(relativeYaw / 180.0f * (float)Math.PI * 1.5f)) * 45.0f);
+            data.rightLeg.rotation.rotateX(MathHelper.sin((float)(relativeYaw / 180.0f * (float)Math.PI * 1.5f)) * 45.0f);
         }
     }
 }

@@ -105,7 +105,7 @@ implements IAnimationController<PlayerData> {
     protected AnimationBit<PlayerData> bitLegSitting = new SittingLegAnimationBit();
     protected AnimationBit<PlayerData> bitLegJump = new JumpLegAnimationBit();
     protected AnimationBit<PlayerData> bitLegSneak = new SneakLegAnimationBit();
-    private ItemStack activeItem = ItemStack.field_190927_a;
+    private ItemStack activeItem = ItemStack.EMPTY;
     public long startTime = -1L;
 
     public ItemStack getActiveItem() {
@@ -114,7 +114,7 @@ implements IAnimationController<PlayerData> {
 
     public void setActiveItem(ItemStack activeItem) {
         this.activeItem = activeItem;
-        this.startTime = !this.activeItem.func_190926_b() ? 0L : -1L;
+        this.startTime = !this.activeItem.isEmpty() ? 0L : -1L;
     }
 
     public PlayerController() {
@@ -146,22 +146,22 @@ implements IAnimationController<PlayerData> {
 
     public void performActionAnimations(PlayerData data, AbstractClientPlayer player) {
         EnumHandSide activeHandSide;
-        if (player.func_70089_S() && player.func_70608_bn()) {
+        if (player.isEntityAlive() && player.isPlayerSleeping()) {
             this.layerAction.clearAnimation();
             return;
         }
-        EnumHandSide primaryHand = player.func_184591_cq();
+        EnumHandSide primaryHand = player.getPrimaryHand();
         EnumHandSide offHand = primaryHand == EnumHandSide.RIGHT ? EnumHandSide.LEFT : EnumHandSide.RIGHT;
-        ItemStack heldItemMainhand = player.func_184614_ca();
-        ItemStack heldItemOffhand = player.func_184592_cb();
-        Item activeItem = player.func_184607_cu().func_77973_b();
+        ItemStack heldItemMainhand = player.getHeldItemMainhand();
+        ItemStack heldItemOffhand = player.getHeldItemOffhand();
+        Item activeItem = player.getActiveItemStack().getItem();
         ModelBiped.ArmPose armPoseMain = this.getAction(player, heldItemMainhand);
         ModelBiped.ArmPose armPoseOff = this.getAction(player, heldItemOffhand);
-        EnumHandSide enumHandSide = activeHandSide = player.func_184600_cs() == EnumHand.MAIN_HAND ? primaryHand : offHand;
+        EnumHandSide enumHandSide = activeHandSide = player.getActiveHand() == EnumHand.MAIN_HAND ? primaryHand : offHand;
         if (PlayerController.isShielding(armPoseMain, armPoseOff)) {
             this.bitShield.setActionHand(armPoseMain == ModelBiped.ArmPose.BLOCK ? primaryHand : offHand);
             this.layerAction.playOrContinueBit(this.bitShield, data);
-        } else if (!this.activeItem.func_190926_b()) {
+        } else if (!this.activeItem.isEmpty()) {
             this.bitEating.setActionHand(primaryHand);
             this.layerAction.playOrContinueBit(this.bitEating, data);
         } else if (PlayerController.isHoldingFood(activeItem)) {
@@ -170,7 +170,7 @@ implements IAnimationController<PlayerData> {
         } else if (PlayerController.isHoldingBow(armPoseMain, armPoseOff)) {
             this.bitBow.setActionHand(armPoseMain == ModelBiped.ArmPose.BOW_AND_ARROW ? primaryHand : offHand);
             this.layerAction.playOrContinueBit(this.bitBow, data);
-        } else if (!player.field_82175_bq) {
+        } else if (!player.isSwingInProgress) {
             this.layerAction.clearAnimation();
         }
     }
@@ -179,7 +179,7 @@ implements IAnimationController<PlayerData> {
     public Collection<String> perform(PlayerData data) {
         boolean legAction;
         AbstractClientPlayer player = (AbstractClientPlayer)data.getEntity();
-        player.getEntityData().func_74757_a("OnUseItem", !this.activeItem.func_190926_b());
+        player.getEntityData().setBoolean("OnUseItem", !this.activeItem.isEmpty());
         ArrayList<String> actions = new ArrayList<String>();
         boolean customAction = !this.pipeline.isFinish();
         boolean bl = legAction = customAction && this.pipeline.isLegAction();
@@ -189,11 +189,11 @@ implements IAnimationController<PlayerData> {
             return actions;
         }
         this.layerCape.playOrContinueBit(this.bitCape, data);
-        if (player.func_70089_S() && player.func_70608_bn()) {
+        if (player.isEntityAlive() && player.isPlayerSleeping()) {
             this.layerBase.playOrContinueBit(this.bitSleeping, data);
             this.layerSneak.clearAnimation();
-        } else if (player.func_184218_aH()) {
-            if (player.func_184187_bx() instanceof EntityLivingBase) {
+        } else if (player.isRiding()) {
+            if (player.getRidingEntity() instanceof EntityLivingBase) {
                 if (customAction) {
                     this.layerCustom.playOrContinueBit(this.pipeline, data);
                     this.layerBase.playOrContinueBit(this.bitLegRiding, data);
@@ -207,7 +207,7 @@ implements IAnimationController<PlayerData> {
                 this.layerBase.playOrContinueBit(this.bitSitting, data);
             }
             this.layerSneak.clearAnimation();
-        } else if (player.func_184599_cB() > 4) {
+        } else if (player.getTicksElytraFlying() > 4) {
             this.layerBase.playOrContinueBit(this.bitElytra, data);
             this.layerSneak.clearAnimation();
             this.layerTorch.clearAnimation();
@@ -215,7 +215,7 @@ implements IAnimationController<PlayerData> {
             this.layerBase.playOrContinueBit(this.bitLadderClimb, data);
             this.layerSneak.clearAnimation();
             this.layerTorch.clearAnimation();
-        } else if (player.func_70090_H() && !customAction) {
+        } else if (player.isInWater() && !customAction) {
             this.layerBase.playOrContinueBit(this.bitSwimming, data);
             this.layerSneak.clearAnimation();
             this.layerTorch.clearAnimation();
@@ -229,7 +229,7 @@ implements IAnimationController<PlayerData> {
                 } else {
                     this.layerBase.playOrContinueBit(this.bitFalling, data);
                 }
-            } else if (player.func_70051_ag()) {
+            } else if (player.isSprinting()) {
                 if (customAction) {
                     this.layerBase.playOrContinueBit(this.bitLegSprintJump, data);
                     this.layerCustom.playOrContinueBit(this.pipeline, data);
@@ -250,7 +250,7 @@ implements IAnimationController<PlayerData> {
                     this.layerBase.playOrContinueBit(this.bitStand, data);
                     this.layerTorch.playOrContinueBit(this.bitTorchHolding, data);
                 }
-            } else if (player.func_70051_ag()) {
+            } else if (player.isSprinting()) {
                 if (customAction) {
                     this.layerCustom.playOrContinueBit(this.pipeline, data);
                     this.layerBase.playOrContinueBit(this.bitLegSprint, data);
@@ -265,7 +265,7 @@ implements IAnimationController<PlayerData> {
                 this.layerBase.playOrContinueBit(this.bitWalk, data);
                 this.layerTorch.playOrContinueBit(this.bitTorchHolding, data);
             }
-            if (player.func_70093_af()) {
+            if (player.isSneaking()) {
                 if (customAction) {
                     this.layerCustom.playOrContinueBit(this.pipeline, data);
                     this.layerSneak.playOrContinueBit(this.bitLegSneak, data);
@@ -302,9 +302,9 @@ implements IAnimationController<PlayerData> {
     }
 
     private ModelBiped.ArmPose getAction(AbstractClientPlayer player, ItemStack heldItem) {
-        if (!heldItem.func_190926_b()) {
-            if (player.func_184605_cv() > 0) {
-                EnumAction enumaction = heldItem.func_77975_n();
+        if (!heldItem.isEmpty()) {
+            if (player.getItemInUseCount() > 0) {
+                EnumAction enumaction = heldItem.getItemUseAction();
                 if (enumaction == EnumAction.BLOCK) {
                     return ModelBiped.ArmPose.BLOCK;
                 }

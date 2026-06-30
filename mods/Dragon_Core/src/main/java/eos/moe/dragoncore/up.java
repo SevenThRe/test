@@ -17,7 +17,7 @@ public class up
 extends Gui {
     public static final int c = 14;
     public static final int q = 14;
-    private Minecraft b = Minecraft.func_71410_x();
+    private Minecraft b = Minecraft.getMinecraft();
     private byte o;
     private int y;
     private int k;
@@ -32,16 +32,16 @@ extends Gui {
 
     public void draw(int a2, int a3) {
         up a4;
-        a4.b.field_71446_o.func_110577_a(sk.v);
+        a4.b.renderEngine.bindTexture(sk.v);
         if (a4.inBounds(a2, a3)) {
-            Gui.func_73734_a((int)a4.y, (int)a4.k, (int)(a4.y + 14), (int)(a4.k + 14), (int)-2130706433);
+            Gui.drawRect((int)a4.y, (int)a4.k, (int)(a4.y + 14), (int)(a4.k + 14), (int)-2130706433);
         }
         if (a4.ALLATORIxDEMO) {
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         } else {
-            GlStateManager.func_179131_c((float)0.5f, (float)0.5f, (float)0.5f, (float)1.0f);
+            GlStateManager.color((float)0.5f, (float)0.5f, (float)0.5f, (float)1.0f);
         }
-        a4.func_73729_b(a4.y, a4.k, a4.o * 14, 27, 14, 14);
+        a4.drawTexturedModalRect(a4.y, a4.k, a4.o * 14, 27, 14, 14);
     }
 
     public void setEnabled(boolean a2) {

@@ -186,7 +186,7 @@ implements Serializable {
                 a2.put(a4.ALLATORIxDEMO(), new hy(a4.ALLATORIxDEMO(), a7, a6, a8));
             });
         }
-        return new fu(a5.v, a5.m, a5.c, a5.q, new ResourceLocation(a5.o.func_110624_b(), a5.o.func_110623_a() + "-reversed"), a5.b + "-reversed", a5.y, a2, null);
+        return new fu(a5.v, a5.m, a5.c, a5.q, new ResourceLocation(a5.o.getNamespace(), a5.o.getPath() + "-reversed"), a5.b + "-reversed", a5.y, a2, null);
     }
 
     private /* synthetic */ List<yz> ALLATORIxDEMO(List<yz> a3) {

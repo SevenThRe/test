@@ -35,7 +35,7 @@ public class px {
         if (!wka.k) {
             return;
         }
-        EntityPlayerSP a4 = Minecraft.func_71410_x().field_71439_g;
+        EntityPlayerSP a4 = Minecraft.getMinecraft().player;
         if (a4 == null) {
             return;
         }
@@ -88,35 +88,35 @@ public class px {
             sr a10 = sq.ALLATORIxDEMO(a5, a7);
             String a11 = "default";
             if (wka.ALLATORIxDEMO != null && wka.ALLATORIxDEMO != a4) {
-                a11 = wka.ALLATORIxDEMO.func_110124_au().toString();
+                a11 = wka.ALLATORIxDEMO.getUniqueID().toString();
             } else if (a6) {
-                a11 = a4.func_110124_au().toString();
+                a11 = a4.getUniqueID().toString();
             }
             a8.c(a11);
             a8.ALLATORIxDEMO(a11);
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             if (a3 != cv.y) {
-                GlStateManager.func_179137_b((double)0.5, (double)0.5, (double)0.5);
-                GlStateManager.func_179152_a((float)-1.0f, (float)-1.0f, (float)1.0f);
+                GlStateManager.translate((double)0.5, (double)0.5, (double)0.5);
+                GlStateManager.scale((float)-1.0f, (float)-1.0f, (float)1.0f);
             }
             if (a10 != null) {
                 a10.ALLATORIxDEMO();
             }
             a8.ALLATORIxDEMO();
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-            a9.func_78088_a(null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            a9.render(null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
             if (a8.ALLATORIxDEMO()) {
                 float a12 = OpenGlHelper.lastBrightnessX;
                 float a13 = OpenGlHelper.lastBrightnessY;
-                OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)a13);
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-                a9.func_78088_a(null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
-                OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)a12, (float)a13);
+                OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)a13);
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                a9.render(null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
+                OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)a12, (float)a13);
             }
             if (a9 instanceof jv) {
                 ((jv)a9).clearData();
             }
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 }

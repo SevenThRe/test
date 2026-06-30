@@ -74,11 +74,11 @@ public class EntityHelper {
         timer.start();
         Minecraft mc = FMLClientHandler.instance().getClient();
         List<EntityDTO> list = new ArrayList<EntityDTO>();
-        ArrayList allEntities = new ArrayList(mc.field_71441_e.field_72996_f);
-        AxisAlignedBB bb = EntityHelper.getBB(mc.field_71439_g);
+        ArrayList allEntities = new ArrayList(mc.world.loadedEntityList);
+        AxisAlignedBB bb = EntityHelper.getBB(mc.player);
         try {
             block2: for (Entity entity : allEntities) {
-                if (!(entity instanceof EntityLivingBase) || entity.field_70128_L || !entity.field_70175_ag || !bb.func_72326_a(entity.func_174813_aQ())) continue;
+                if (!(entity instanceof EntityLivingBase) || entity.isDead || !entity.addedToChunk || !bb.intersects(entity.getEntityBoundingBox())) continue;
                 for (Class entityClass : entityClasses) {
                     if (!entityClass.isAssignableFrom(entity.getClass())) continue;
                     EntityLivingBase entityLivingBase = (EntityLivingBase)entity;
@@ -90,7 +90,7 @@ public class EntityHelper {
             }
             if (list.size() > maxEntities) {
                 int before2 = list.size();
-                EntityHelper.entityDTODistanceComparator.player = mc.field_71439_g;
+                EntityHelper.entityDTODistanceComparator.player = mc.player;
                 Collections.sort(list, entityDTODistanceComparator);
                 list = list.subList(0, maxEntities);
             }
@@ -121,7 +121,7 @@ public class EntityHelper {
         if (entityLiving instanceof IMob) {
             return false;
         }
-        EntityLivingBase attackTarget = entityLiving.func_70638_az();
+        EntityLivingBase attackTarget = entityLiving.getAttackTarget();
         return attackTarget == null || !(attackTarget instanceof EntityPlayer) && !(attackTarget instanceof IEntityOwnable);
     }
 
@@ -130,21 +130,21 @@ public class EntityHelper {
         timer.start();
         Minecraft mc = FMLClientHandler.instance().getClient();
         List<EntityPlayer> allPlayers = new ArrayList();
-        if (Journeymap.getClient().isPlayerTrackingEnabled() && !Minecraft.func_71410_x().func_71356_B()) {
-            if (mc.func_147114_u().func_175106_d() != null && mc.func_147114_u().func_175106_d().size() > 1) {
-                for (NetworkPlayerInfo onlinePlayer : mc.func_147114_u().func_175106_d()) {
+        if (Journeymap.getClient().isPlayerTrackingEnabled() && !Minecraft.getMinecraft().isSingleplayer()) {
+            if (mc.getConnection().getPlayerInfoMap() != null && mc.getConnection().getPlayerInfoMap().size() > 1) {
+                for (NetworkPlayerInfo onlinePlayer : mc.getConnection().getPlayerInfoMap()) {
                     EntityPlayer networkedPlayer;
-                    if (onlinePlayer.func_178845_a().getId().equals(mc.field_71439_g.func_110124_au()) || (networkedPlayer = PlayerRadarManager.getInstance().getPlayers().get(onlinePlayer.func_178845_a().getId())) == null || networkedPlayer.field_71093_bK != Minecraft.func_71410_x().field_71439_g.field_71093_bK) continue;
+                    if (onlinePlayer.getGameProfile().getId().equals(mc.player.getUniqueID()) || (networkedPlayer = PlayerRadarManager.getInstance().getPlayers().get(onlinePlayer.getGameProfile().getId())) == null || networkedPlayer.dimension != Minecraft.getMinecraft().player.dimension) continue;
                     allPlayers.add(networkedPlayer);
                 }
             }
         } else {
-            allPlayers.addAll(mc.field_71441_e.field_73010_i);
-            allPlayers.remove(mc.field_71439_g);
+            allPlayers.addAll(mc.world.playerEntities);
+            allPlayers.remove(mc.player);
         }
         int max = Journeymap.getClient().getCoreProperties().maxPlayersData.get();
         if (allPlayers.size() > max) {
-            EntityHelper.entityDistanceComparator.player = mc.field_71439_g;
+            EntityHelper.entityDistanceComparator.player = mc.player;
             Collections.sort(allPlayers, entityDistanceComparator);
             allPlayers = allPlayers.subList(0, max);
         }
@@ -165,7 +165,7 @@ public class EntityHelper {
     }
 
     public static AxisAlignedBB getBoundingBox(EntityPlayer player, double lateralDistance, double verticalDistance) {
-        return player.func_174813_aQ().func_72314_b(lateralDistance, verticalDistance, lateralDistance);
+        return player.getEntityBoundingBox().grow(lateralDistance, verticalDistance, lateralDistance);
     }
 
     public static Map<String, EntityDTO> buildEntityIdMap(List<? extends EntityDTO> list, boolean sort) {
@@ -188,11 +188,11 @@ public class EntityHelper {
      */
     public static ResourceLocation getIconTextureLocation(Entity entity) {
         try {
-            Render entityRender = FMLClientHandler.instance().getClient().func_175598_ae().func_78713_a(entity);
+            Render entityRender = FMLClientHandler.instance().getClient().getRenderManager().getEntityRenderObject(entity);
             ResourceLocation original = null;
             if (entityRender instanceof RenderHorse) {
                 EntityHorse horse = (EntityHorse)entity;
-                original = new ResourceLocation("minecraft", horse.func_110212_cp()[0]);
+                original = new ResourceLocation("minecraft", horse.getVariantTexturePaths()[0]);
             } else if (Pixelmon.loaded) {
                 original = Pixelmon.INSTANCE.getPixelmonResource(entity);
                 if (original != null) return original;
@@ -204,11 +204,11 @@ public class EntityHelper {
                 JMLogger.logOnce("Can't get entityTexture for " + entity.getClass() + " via " + entityRender.getClass(), null);
                 return null;
             }
-            if (original.func_110623_a().contains("/entity/")) return new ResourceLocation(original.func_110624_b(), original.func_110623_a().replace("/entity/", "/entity_icon/"));
+            if (original.getPath().contains("/entity/")) return new ResourceLocation(original.getNamespace(), original.getPath().replace("/entity/", "/entity_icon/"));
             return null;
         }
         catch (Throwable t) {
-            JMLogger.logOnce("Can't get entityTexture for " + entity.func_70005_c_(), t);
+            JMLogger.logOnce("Can't get entityTexture for " + entity.getName(), t);
             return null;
         }
     }
@@ -227,7 +227,7 @@ public class EntityHelper {
             if (e1 == null || e2 == null) {
                 return 0;
             }
-            return Double.compare(e1.func_70068_e((Entity)this.player), e2.func_70068_e((Entity)this.player));
+            return Double.compare(e1.getDistanceSq((Entity)this.player), e2.getDistanceSq((Entity)this.player));
         }
     }
 
@@ -240,7 +240,7 @@ public class EntityHelper {
 
         @Override
         public int compare(Entity o1, Entity o2) {
-            return Double.compare(o1.func_70068_e((Entity)this.player), o2.func_70068_e((Entity)this.player));
+            return Double.compare(o1.getDistanceSq((Entity)this.player), o2.getDistanceSq((Entity)this.player));
         }
     }
 

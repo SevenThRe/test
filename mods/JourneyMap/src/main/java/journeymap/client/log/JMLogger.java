@@ -122,7 +122,7 @@ public class JMLogger {
         for (String string : envProps) {
             sb.append(string).append("=").append(System.getProperty(string)).append(", ");
         }
-        sb.append("game language=").append(Minecraft.func_71410_x().field_71474_y.field_74363_ab).append(", ");
+        sb.append("game language=").append(Minecraft.getMinecraft().gameSettings.language).append(", ");
         sb.append("locale=").append(Constants.getLocale());
         props.put("Environment", sb.toString());
         sb = new StringBuilder();

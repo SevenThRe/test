@@ -159,7 +159,7 @@ public class gl {
             ie.ALLATORIxDEMO.execute(() -> {
                 try {
                     Thread.sleep(50L);
-                    Minecraft.func_71410_x().func_152344_a(() -> gl.ALLATORIxDEMO(a2, false));
+                    Minecraft.getMinecraft().addScheduledTask(() -> gl.ALLATORIxDEMO(a2, false));
                 }
                 catch (InterruptedException a3) {
                     a3.printStackTrace();
@@ -179,7 +179,7 @@ public class gl {
 
     private static /* synthetic */ void ALLATORIxDEMO(int a2, boolean a3) {
         try {
-            long a4 = Minecraft.func_71386_F();
+            long a4 = Minecraft.getSystemTime();
             byte a5 = (byte)(a3 ? 1 : 0);
             Field a6 = Keyboard.class.getDeclaredField("implementation");
             a6.setAccessible(true);
@@ -240,7 +240,7 @@ public class gl {
     public static String ALLATORIxDEMO(String a2) {
         try {
             UUID a3 = UUID.fromString(a2);
-            return EntityList.getLivingEntityByUUID(a3).func_70005_c_();
+            return EntityList.getLivingEntityByUUID(a3).getName();
         }
         catch (Exception a4) {
             return "exception";
@@ -251,7 +251,7 @@ public class gl {
     public static double c(String a2) {
         try {
             UUID a3 = UUID.fromString(a2);
-            return EntityList.getLivingEntityByUUID(a3).func_110143_aJ();
+            return EntityList.getLivingEntityByUUID(a3).getHealth();
         }
         catch (Exception a4) {
             return 0.0;
@@ -262,7 +262,7 @@ public class gl {
     public static double ALLATORIxDEMO(String a2) {
         try {
             UUID a3 = UUID.fromString(a2);
-            return EntityList.getLivingEntityByUUID(a3).func_110138_aP();
+            return EntityList.getLivingEntityByUUID(a3).getMaxHealth();
         }
         catch (Exception a4) {
             return 1.0;
@@ -272,8 +272,8 @@ public class gl {
     @i(f={"\u53d6\u6307\u9488\u751f\u7269\u540d", "Mouse_Entity_Name"})
     public static String c(v a2, v a3) {
         RayTraceResult a4 = gl.ALLATORIxDEMO(a2, a3);
-        if (a4.field_72308_g != null) {
-            return a4.field_72308_g.func_145748_c_().func_150254_d();
+        if (a4.entityHit != null) {
+            return a4.entityHit.getDisplayName().getFormattedText();
         }
         return "";
     }
@@ -281,8 +281,8 @@ public class gl {
     @i(f={"\u53d6\u6307\u9488\u751f\u7269UUID", "Mouse_Entity_UUID"})
     public static String ALLATORIxDEMO(v a2, v a3) {
         RayTraceResult a4 = gl.ALLATORIxDEMO(a2, a3);
-        if (a4.field_72308_g != null) {
-            return a4.field_72308_g.func_110124_au().toString();
+        if (a4.entityHit != null) {
+            return a4.entityHit.getUniqueID().toString();
         }
         return "";
     }
@@ -290,8 +290,8 @@ public class gl {
     @i(f={"\u53d6\u6307\u9488\u751f\u7269\u8840\u91cf", "Mouse_Entity_Health"})
     public static double c(v a2, v a3) {
         RayTraceResult a4 = gl.ALLATORIxDEMO(a2, a3);
-        if (a4.field_72308_g instanceof EntityLivingBase) {
-            return ((EntityLivingBase)a4.field_72308_g).func_110143_aJ();
+        if (a4.entityHit instanceof EntityLivingBase) {
+            return ((EntityLivingBase)a4.entityHit).getHealth();
         }
         return 0.0;
     }
@@ -299,72 +299,72 @@ public class gl {
     @i(f={"\u53d6\u6307\u9488\u751f\u7269\u6700\u5927\u8840\u91cf", "Mouse_Entity_Max_Health"})
     public static double ALLATORIxDEMO(v a2, v a3) {
         RayTraceResult a4 = gl.ALLATORIxDEMO(a2, a3);
-        if (a4.field_72308_g instanceof EntityLivingBase) {
-            return ((EntityLivingBase)a4.field_72308_g).func_110138_aP();
+        if (a4.entityHit instanceof EntityLivingBase) {
+            return ((EntityLivingBase)a4.entityHit).getMaxHealth();
         }
         return 0.0;
     }
 
     private static /* synthetic */ RayTraceResult ALLATORIxDEMO(v a2, v a3) {
         if (a2 == wk.k) {
-            return Minecraft.func_71410_x().field_71476_x;
+            return Minecraft.getMinecraft().objectMouseOver;
         }
         RayTraceResult a4 = gl.ALLATORIxDEMO(a2.ALLATORIxDEMO(), a3.ALLATORIxDEMO());
-        return a4 == null ? Minecraft.func_71410_x().field_71476_x : a4;
+        return a4 == null ? Minecraft.getMinecraft().objectMouseOver : a4;
     }
 
     private static /* synthetic */ RayTraceResult ALLATORIxDEMO(double a3, boolean a4) {
         RayTraceResult a5 = null;
-        Minecraft a6 = Minecraft.func_71410_x();
-        Entity a7 = a6.func_175606_aa();
-        if (a7 != null && a6.field_71441_e != null) {
+        Minecraft a6 = Minecraft.getMinecraft();
+        Entity a7 = a6.getRenderViewEntity();
+        if (a7 != null && a6.world != null) {
             double a8 = a3;
-            a5 = a7.func_174822_a(a8, 0.0f);
-            Vec3d a9 = a7.func_174824_e(0.0f);
+            a5 = a7.rayTrace(a8, 0.0f);
+            Vec3d a9 = a7.getPositionEyes(0.0f);
             boolean a10 = false;
             double a11 = a8;
-            if (a6.field_71442_b.func_78749_i() && a11 < 6.0) {
+            if (a6.playerController.extendedReach() && a11 < 6.0) {
                 a8 = 6.0;
                 a11 = 6.0;
             } else if (a8 > a3) {
                 a10 = true;
             }
             if (a5 != null) {
-                a11 = a5.field_72307_f.func_72438_d(a9);
+                a11 = a5.hitVec.distanceTo(a9);
             }
-            Vec3d a12 = a7.func_70676_i(0.0f);
-            Vec3d a13 = a9.func_72441_c(a12.field_72450_a * a8, a12.field_72448_b * a8, a12.field_72449_c * a8);
+            Vec3d a12 = a7.getLook(0.0f);
+            Vec3d a13 = a9.add(a12.x * a8, a12.y * a8, a12.z * a8);
             Entity a14 = null;
             Vec3d a15 = null;
-            Predicate a16 = Predicates.and((Predicate)EntitySelectors.field_180132_d, a2 -> a2 != null && a2.func_70067_L());
+            Predicate a16 = Predicates.and((Predicate)EntitySelectors.NOT_SPECTATING, a2 -> a2 != null && a2.canBeCollidedWith());
             if (a4) {
                 a16 = Predicates.and((Predicate)a16, a2 -> !(a2 instanceof EntityArmorStand));
             }
-            List a17 = a6.field_71441_e.func_175674_a(a7, a7.func_174813_aQ().func_72321_a(a12.field_72450_a * a8, a12.field_72448_b * a8, a12.field_72449_c * a8).func_72321_a(1.0, 1.0, 1.0), a16);
+            List a17 = a6.world.getEntitiesInAABBexcluding(a7, a7.getEntityBoundingBox().expand(a12.x * a8, a12.y * a8, a12.z * a8).expand(1.0, 1.0, 1.0), a16);
             double a18 = a11;
             for (Entity a19 : a17) {
                 double a20;
-                AxisAlignedBB a21 = a19.func_174813_aQ().func_186662_g((double)a19.func_70111_Y());
-                RayTraceResult a22 = a21.func_72327_a(a9, a13);
-                if (a21.func_72318_a(a9)) {
+                AxisAlignedBB a21 = a19.getEntityBoundingBox().grow((double)a19.getCollisionBorderSize());
+                RayTraceResult a22 = a21.calculateIntercept(a9, a13);
+                if (a21.contains(a9)) {
                     if (!(a18 >= 0.0)) continue;
                     a14 = a19;
-                    a15 = a22 == null ? a9 : a22.field_72307_f;
+                    a15 = a22 == null ? a9 : a22.hitVec;
                     a18 = 0.0;
                     continue;
                 }
-                if (a22 == null || !((a20 = a9.func_72438_d(a22.field_72307_f)) < a18) && a18 != 0.0) continue;
-                if (a19.func_184208_bv() == a7.func_184208_bv() && !a7.canRiderInteract()) {
+                if (a22 == null || !((a20 = a9.distanceTo(a22.hitVec)) < a18) && a18 != 0.0) continue;
+                if (a19.getLowestRidingEntity() == a7.getLowestRidingEntity() && !a7.canRiderInteract()) {
                     if (a18 != 0.0) continue;
                     a14 = a19;
-                    a15 = a22.field_72307_f;
+                    a15 = a22.hitVec;
                     continue;
                 }
                 a14 = a19;
-                a15 = a22.field_72307_f;
+                a15 = a22.hitVec;
                 a18 = a20;
             }
-            if (a14 != null && a10 && a9.func_72438_d(a15) > a3) {
+            if (a14 != null && a10 && a9.distanceTo(a15) > a3) {
                 a14 = null;
                 a5 = new RayTraceResult(RayTraceResult.Type.MISS, a15, null, new BlockPos(a15));
             }

@@ -24,12 +24,12 @@ extends SharedProperty<Boolean> {
 
     @Override
     public void writeToNBT(NBTTagCompound tag) {
-        tag.func_74757_a(this.key, ((Boolean)this.value).booleanValue());
+        tag.setBoolean(this.key, ((Boolean)this.value).booleanValue());
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tag) {
-        this.value = tag.func_74767_n(this.key);
+        this.value = tag.getBoolean(this.key);
     }
 
     @Override

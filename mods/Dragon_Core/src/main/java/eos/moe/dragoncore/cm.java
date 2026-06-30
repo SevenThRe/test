@@ -65,7 +65,7 @@ public class cm {
     public static String ALLATORIxDEMO(Object ... a2) {
         String a3 = "";
         for (Object a4 : a2) {
-            a3 = a3 + I18n.func_74838_a((String)a4.toString());
+            a3 = a3 + I18n.translateToLocal((String)a4.toString());
         }
         return a3;
     }

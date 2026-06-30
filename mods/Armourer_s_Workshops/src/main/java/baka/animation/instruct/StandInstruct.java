@@ -40,9 +40,9 @@ extends InstructBase {
         data.head.rotation.orientX(((Float)data.headPitch.get()).floatValue()).rotateY(((Float)data.headYaw.get()).floatValue());
         float PI = (float)Math.PI;
         float phase = DataUpdateHandler.getTicks() / 10.0f;
-        data.body.rotation.setSmoothness(1.0f).orientX((MathHelper.func_76134_b((float)phase) - 1.0f) / 2.0f * -3.0f);
-        data.rightArm.rotation.setSmoothness(0.4f).orientX(0.0f).rotateZ(MathHelper.func_76134_b((float)(phase + PI / 2.0f)) * -2.5f + 2.5f);
-        data.leftArm.rotation.setSmoothness(0.4f).orientX(0.0f).rotateZ(MathHelper.func_76134_b((float)(phase + PI / 2.0f)) * 2.5f - 2.5f);
+        data.body.rotation.setSmoothness(1.0f).orientX((MathHelper.cos((float)phase) - 1.0f) / 2.0f * -3.0f);
+        data.rightArm.rotation.setSmoothness(0.4f).orientX(0.0f).rotateZ(MathHelper.cos((float)(phase + PI / 2.0f)) * -2.5f + 2.5f);
+        data.leftArm.rotation.setSmoothness(0.4f).orientX(0.0f).rotateZ(MathHelper.cos((float)(phase + PI / 2.0f)) * 2.5f - 2.5f);
         float touchdown = Math.min(data.getTicksAfterTouchdown() * 0.15f, 1.0f);
         if (touchdown < 1.0f) {
             data.body.rotation.setSmoothness(1.0f);

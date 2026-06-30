@@ -80,7 +80,7 @@ extends BooleanPropertyButton {
             this.textureDisabled = null;
         }
         this.textureIcon = TextureCache.getThemeTexture(theme, String.format("icon/%s.png", this.iconName));
-        this.func_175211_a(this.buttonSpec.width);
+        this.setWidth(this.buttonSpec.width);
         this.setHeight(this.buttonSpec.height);
         this.setToggled(false, false);
     }
@@ -132,13 +132,13 @@ extends BooleanPropertyButton {
     }
 
     @Override
-    public void func_191745_a(Minecraft minecraft, int mouseX, int mouseY, float ticks) {
+    public void drawButton(Minecraft minecraft, int mouseX, int mouseY, float ticks) {
         if (!this.isVisible()) {
             return;
         }
-        boolean hover = mouseX >= this.field_146128_h && mouseY >= this.field_146129_i && mouseX < this.field_146128_h + this.field_146120_f && mouseY < this.field_146129_i + this.field_146121_g;
+        boolean hover = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
         this.setMouseOver(hover);
-        int hoverState = this.func_146114_a(hover);
+        int hoverState = this.getHoverState(hover);
         boolean isMouseOver = hoverState == 2;
         TextureImpl activeTexture = this.getActiveTexture(isMouseOver);
         Theme.ColorSpec iconColorSpec = this.getIconColor(isMouseOver);
@@ -166,14 +166,14 @@ extends BooleanPropertyButton {
 
     public void drawNativeButton(Minecraft minecraft, int mouseX, int mouseY) {
         int magic = 20;
-        minecraft.func_110434_K().func_110577_a(field_146122_a);
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        int k = this.func_146114_a(this.func_146115_a());
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179112_b((int)770, (int)771);
-        this.func_73729_b(this.field_146128_h, this.field_146129_i, 0, 46 + k * magic, this.field_146120_f / 2, this.field_146121_g);
-        this.func_73729_b(this.field_146128_h + this.field_146120_f / 2, this.field_146129_i, 200 - this.field_146120_f / 2, 46 + k * magic, this.field_146120_f / 2, this.field_146121_g);
-        this.func_146119_b(minecraft, mouseX, mouseY);
+        minecraft.getTextureManager().bindTexture(BUTTON_TEXTURES);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        int k = this.getHoverState(this.isMouseOver());
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc((int)770, (int)771);
+        this.drawTexturedModalRect(this.x, this.y, 0, 46 + k * magic, this.width / 2, this.height);
+        this.drawTexturedModalRect(this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + k * magic, this.width / 2, this.height);
+        this.mouseDragged(minecraft, mouseX, mouseY);
         int l = 0xE0E0E0;
     }
 
@@ -183,13 +183,13 @@ extends BooleanPropertyButton {
 
     @Override
     public List<String> getTooltip() {
-        if (!this.field_146125_m) {
+        if (!this.visible) {
             return null;
         }
         List<String> list = super.getTooltip();
         String style = null;
         style = !this.isEnabled() ? this.buttonSpec.tooltipDisabledStyle : (this.toggled != false ? this.buttonSpec.tooltipOnStyle : this.buttonSpec.tooltipOffStyle);
-        list.add(0, style + this.field_146126_j);
+        list.add(0, style + this.displayString);
         if (this.additionalTooltips != null) {
             list.addAll(this.additionalTooltips);
         }

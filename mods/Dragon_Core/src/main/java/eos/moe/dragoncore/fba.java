@@ -36,10 +36,10 @@ public class fba {
     }
 
     public static void ALLATORIxDEMO(float a2) {
-        for (Entity a3 : Minecraft.func_71410_x().field_71441_e.func_72910_y()) {
+        for (Entity a3 : Minecraft.getMinecraft().world.getLoadedEntityList()) {
             EntityLivingBase a4;
             rda a5;
-            xz a6 = dt.k.getEntityManager(a3.func_110124_au());
+            xz a6 = dt.k.getEntityManager(a3.getUniqueID());
             if (a6 == null || !(a3 instanceof EntityLivingBase) || a6.c().isEmpty() || (a5 = raa.r.c(a4 = (EntityLivingBase)a3)) == null || a5.ALLATORIxDEMO() == null || a5.ALLATORIxDEMO().ALLATORIxDEMO() == null) continue;
             pw a7 = (pw)a5.ALLATORIxDEMO().ALLATORIxDEMO();
             jv a8 = a7.getBaseModel();
@@ -60,12 +60,12 @@ public class fba {
                 a14.ALLATORIxDEMO((double)a13.getOffsetX(), (double)(-a13.getOffsetY()), (double)a13.getOffsetZ());
                 ll a16 = new ll(0.0f, 0.0f, 0.0f, 1.0f);
                 a16.ALLATORIxDEMO(a14);
-                a11.lastGlobal.x = Interpolations.lerp(a4.field_70169_q, a4.field_70165_t, (double)a2) + (double)a16.x();
-                a11.lastGlobal.y = Interpolations.lerp(a4.field_70167_r, a4.field_70163_u, (double)a2) - (double)a16.f();
-                a11.lastGlobal.z = Interpolations.lerp(a4.field_70166_s, a4.field_70161_v, (double)a2) - (double)a16.c();
-                GlStateManager.func_179094_E();
+                a11.lastGlobal.x = Interpolations.lerp(a4.prevPosX, a4.posX, (double)a2) + (double)a16.x();
+                a11.lastGlobal.y = Interpolations.lerp(a4.prevPosY, a4.posY, (double)a2) - (double)a16.f();
+                a11.lastGlobal.z = Interpolations.lerp(a4.prevPosZ, a4.posZ, (double)a2) - (double)a16.c();
+                GlStateManager.pushMatrix();
                 a11.render(a2);
-                GlStateManager.func_179121_F();
+                GlStateManager.popMatrix();
             }
             a7.clearData();
         }

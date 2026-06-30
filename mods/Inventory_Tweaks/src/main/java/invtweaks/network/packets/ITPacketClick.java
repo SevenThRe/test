@@ -58,9 +58,9 @@ implements ITPacket {
     public void handle(INetHandler handler) {
         if (handler instanceof NetHandlerPlayServer) {
             NetHandlerPlayServer serverHandler = (NetHandlerPlayServer)handler;
-            EntityPlayerMP player = serverHandler.field_147369_b;
-            if (player.field_71070_bA.field_75152_c == this.window) {
-                player.field_71070_bA.func_184996_a(this.slot, this.data, this.action, (EntityPlayer)player);
+            EntityPlayerMP player = serverHandler.player;
+            if (player.openContainer.windowId == this.window) {
+                player.openContainer.slotClick(this.slot, this.data, this.action, (EntityPlayer)player);
             }
         }
     }

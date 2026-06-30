@@ -67,7 +67,7 @@ implements IItemTreeItem {
             return false;
         }
         IItemTreeItem item = (IItemTreeItem)o;
-        return Objects.equals(this.id, item.getId()) && NBTUtil.func_181123_a((NBTBase)this.extraData, (NBTBase)item.getExtraData(), (boolean)true) && (this.damage == Short.MAX_VALUE || this.damage == item.getDamage());
+        return Objects.equals(this.id, item.getId()) && NBTUtil.areNBTEquals((NBTBase)this.extraData, (NBTBase)item.getExtraData(), (boolean)true) && (this.damage == Short.MAX_VALUE || this.damage == item.getDamage());
     }
 
     public String toString() {

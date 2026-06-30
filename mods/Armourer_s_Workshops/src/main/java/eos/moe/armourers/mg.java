@@ -37,14 +37,14 @@ public class mg {
         if (a2.getGui() instanceof GuiChest) {
             Object object;
             String[] stringArray = new String[2];
-            stringArray[0] = "field_147016_v";
+            stringArray[0] = "upperChestInventory";
             stringArray[1] = "upperChestInventory";
             IInventory iInventory = (IInventory)ReflectionHelper.getPrivateValue(GuiChest.class, (Object)((GuiChest)a2.getGui()), (String[])stringArray);
             String[] stringArray2 = new String[2];
-            stringArray2[0] = "field_147015_w";
+            stringArray2[0] = "lowerChestInventory";
             stringArray2[1] = "lowerChestInventory";
             IInventory iInventory2 = (IInventory)ReflectionHelper.getPrivateValue(GuiChest.class, (Object)((GuiChest)a2.getGui()), (String[])stringArray2);
-            Object object2 = object = iInventory2 != null && iInventory2.func_145748_c_() != null ? iInventory2.func_145748_c_().func_150260_c() : "";
+            Object object2 = object = iInventory2 != null && iInventory2.getDisplayName() != null ? iInventory2.getDisplayName().getUnformattedText() : "";
             if (((String)object).startsWith("Dragon_Armourers_Manager")) {
                 a2.setGui((GuiScreen)new uf(iInventory, iInventory2));
                 return;

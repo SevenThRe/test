@@ -93,9 +93,9 @@ public class TextureCache {
         if (location == null) {
             return null;
         }
-        TextureManager textureManager = Minecraft.func_71410_x().func_110434_K();
-        Object textureObject = textureManager.func_110581_b(location);
-        if (!(textureObject != null && textureObject instanceof TextureImpl || (loaded = textureManager.func_110579_a(location, textureObject = new TextureImpl(location))))) {
+        TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
+        Object textureObject = textureManager.getTexture(location);
+        if (!(textureObject != null && textureObject instanceof TextureImpl || (loaded = textureManager.loadTexture(location, textureObject = new TextureImpl(location))))) {
             textureObject = null;
         }
         return (TextureImpl)((Object)textureObject);
@@ -123,18 +123,18 @@ public class TextureCache {
     }
 
     public static BufferedImage resolveImage(ResourceLocation location) {
-        if (location.func_110624_b().equals("fake")) {
+        if (location.getNamespace().equals("fake")) {
             return null;
         }
-        IResourceManager resourceManager = Minecraft.func_71410_x().func_110442_L();
+        IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
         try {
-            IResource resource = resourceManager.func_110536_a(location);
-            InputStream is = resource.func_110527_b();
-            return TextureUtil.func_177053_a((InputStream)is);
+            IResource resource = resourceManager.getResource(location);
+            InputStream is = resource.getInputStream();
+            return TextureUtil.readBufferedImage((InputStream)is);
         }
         catch (FileNotFoundException e) {
             File imgFile;
-            if ("journeymap".equals(location.func_110624_b()) && (imgFile = new File("../src/main/resources/assets/journeymap/" + location.func_110623_a())).exists()) {
+            if ("journeymap".equals(location.getNamespace()) && (imgFile = new File("../src/main/resources/assets/journeymap/" + location.getPath())).exists()) {
                 try {
                     return ImageIO.read(imgFile);
                 }

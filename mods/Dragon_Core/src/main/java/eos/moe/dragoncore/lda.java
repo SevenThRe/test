@@ -33,18 +33,18 @@ public class lda {
     }
 
     public static float ALLATORIxDEMO(EntityLivingBase a2) {
-        xz a3 = dga.y.ALLATORIxDEMO.get(a2.func_110124_au());
+        xz a3 = dga.y.ALLATORIxDEMO.get(a2.getUniqueID());
         if (a3 != null) {
             for (so a4 : a3.ALLATORIxDEMO().values()) {
                 if (!a4.c() || !a4.ALLATORIxDEMO()) continue;
                 return 1.0f;
             }
         }
-        return a2.field_70733_aJ;
+        return a2.swingProgress;
     }
 
     public static boolean ALLATORIxDEMO(EntityLivingBase a2) {
-        xz a3 = dga.y.ALLATORIxDEMO.get(a2.func_110124_au());
+        xz a3 = dga.y.ALLATORIxDEMO.get(a2.getUniqueID());
         if (a3 != null) {
             for (so a4 : a3.ALLATORIxDEMO().values()) {
                 if (!a4.c() || a4.ALLATORIxDEMO() == null) continue;
@@ -57,26 +57,26 @@ public class lda {
     @SubscribeEvent
     public static void ALLATORIxDEMO(InputUpdateEvent a2) {
         if (k.getOrDefault("move", 0L) > System.currentTimeMillis()) {
-            a2.getMovementInput().field_192832_b = 0.0f;
-            a2.getMovementInput().field_78902_a = 0.0f;
-            a2.getMovementInput().field_187256_d = false;
-            a2.getMovementInput().field_187255_c = false;
-            a2.getMovementInput().field_187257_e = false;
-            a2.getMovementInput().field_187258_f = false;
+            a2.getMovementInput().moveForward = 0.0f;
+            a2.getMovementInput().moveStrafe = 0.0f;
+            a2.getMovementInput().backKeyDown = false;
+            a2.getMovementInput().forwardKeyDown = false;
+            a2.getMovementInput().leftKeyDown = false;
+            a2.getMovementInput().rightKeyDown = false;
         }
         if (k.getOrDefault("jump", 0L) > System.currentTimeMillis()) {
-            a2.getMovementInput().field_78901_c = false;
+            a2.getMovementInput().jump = false;
         }
         if (k.getOrDefault("sneak", 0L) > System.currentTimeMillis()) {
-            a2.getMovementInput().field_78899_d = false;
+            a2.getMovementInput().sneak = false;
         }
-        if (om.y > 0 && a2.getMovementInput().field_78899_d) {
+        if (om.y > 0 && a2.getMovementInput().sneak) {
             if (ALLATORIxDEMO == 0L || System.currentTimeMillis() < ALLATORIxDEMO + (long)om.y) {
                 if (ALLATORIxDEMO == 0L) {
                     ALLATORIxDEMO = System.currentTimeMillis();
                 }
-                a2.getMovementInput().field_78902_a = (float)((double)a2.getMovementInput().field_78902_a / 0.3);
-                a2.getMovementInput().field_192832_b = (float)((double)a2.getMovementInput().field_192832_b / 0.3);
+                a2.getMovementInput().moveStrafe = (float)((double)a2.getMovementInput().moveStrafe / 0.3);
+                a2.getMovementInput().moveForward = (float)((double)a2.getMovementInput().moveForward / 0.3);
             }
         } else if (ALLATORIxDEMO != 0L) {
             ALLATORIxDEMO = 0L;

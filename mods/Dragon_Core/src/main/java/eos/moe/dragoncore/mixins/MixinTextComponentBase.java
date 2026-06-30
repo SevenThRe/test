@@ -21,13 +21,13 @@ implements FormatCacheTextComponentBase {
     }
 
     @Shadow
-    public abstract String func_150254_d();
+    public abstract String getFormattedText();
 
     @Override
     public String toStringCache() {
         MixinTextComponentBase a2;
         if (a2.formatCache == null) {
-            a2.formatCache = a2.func_150254_d();
+            a2.formatCache = a2.getFormattedText();
         }
         return a2.formatCache;
     }

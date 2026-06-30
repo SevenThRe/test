@@ -29,12 +29,12 @@ extends AnimationBit<PlayerData> {
         float PI = (float)Math.PI;
         float limbSwing = ((Float)data.limbSwing.get()).floatValue() * 0.6662f;
         float legSwingAmount = 0.7f * ((Float)data.limbSwingAmount.get()).floatValue() / (float)Math.PI * 180.0f;
-        data.rightLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.func_76134_b((float)limbSwing) * legSwingAmount).rotateZ(2.0f);
-        data.leftLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.func_76134_b((float)(limbSwing + (float)Math.PI)) * legSwingAmount).rotateZ(-2.0f);
+        data.rightLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.cos((float)limbSwing) * legSwingAmount).rotateZ(2.0f);
+        data.leftLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.cos((float)(limbSwing + (float)Math.PI)) * legSwingAmount).rotateZ(-2.0f);
         float var = limbSwing / (float)Math.PI % 2.0f;
         data.leftForeLeg.rotation.setSmoothness(0.5f).orientX(var > 1.0f ? 45.0f : 0.0f);
         data.rightForeLeg.rotation.setSmoothness(0.5f).orientX(var > 1.0f ? 0.0f : 45.0f);
-        data.globalOffset.slideY(MathHelper.func_76134_b((float)(limbSwing * 2.0f)) * 0.6f);
+        data.globalOffset.slideY(MathHelper.cos((float)(limbSwing * 2.0f)) * 0.6f);
         float touchdown = Math.min(data.getTicksAfterTouchdown() * 0.15f, 1.0f);
         if (touchdown < 1.0f) {
             data.globalOffset.setY((float)(-Math.sin((double)touchdown * Math.PI)) * 2.0f);

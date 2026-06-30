@@ -28,8 +28,8 @@ extends OnOffButton {
     }
 
     @Override
-    public void func_191745_a(Minecraft minecraft, int mouseX, int mouseY, float f) {
-        super.func_191745_a(minecraft, mouseX, mouseY, f);
+    public void drawButton(Minecraft minecraft, int mouseX, int mouseY, float f) {
+        super.drawButton(minecraft, mouseX, mouseY, f);
         super.drawUnderline();
     }
 
@@ -37,7 +37,7 @@ extends OnOffButton {
         if (active) {
             this.setToggled(this.sort.ascending);
         } else {
-            this.field_146126_j = String.format("%s %s", this.labelInactive, " ");
+            this.displayString = String.format("%s %s", this.labelInactive, " ");
         }
     }
 }

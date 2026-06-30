@@ -46,8 +46,8 @@ public abstract class MixinLightUtil {
     }
 
     private static /* synthetic */ void renderQuadColor1(BufferBuilder a2, BakedQuad a3, int a4) {
-        if (a3.getFormat().equals((Object)a2.func_178973_g())) {
-            a2.func_178981_a(a3.func_178209_a());
+        if (a3.getFormat().equals((Object)a2.getVertexFormat())) {
+            a2.addVertexData(a3.getVertexData());
             ForgeHooksClient.putQuadColor((BufferBuilder)a2, (BakedQuad)a3, (int)a4);
         } else {
             MixinLightUtil.renderQuadColorSlow(a2, a3, a4);

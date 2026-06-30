@@ -80,22 +80,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinHandRender {
     @Shadow
     @Final
-    private RenderItem field_178112_h;
+    private RenderItem itemRenderer;
     private static final Matrix4f flipX = new Matrix4f();
 
     private /* synthetic */ void renderRightArm_transTo(RenderPlayer a2, AbstractClientPlayer a3) {
         float f2 = 1.0f;
-        GlStateManager.func_179124_c((float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f);
         f2 = 0.0625f;
-        a2 = a2.func_177087_b();
-        GlStateManager.func_179147_l();
+        a2 = a2.getMainModel();
+        GlStateManager.enableBlend();
         RenderPlayer renderPlayer = a2;
-        a2.field_78095_p = 0.0f;
-        renderPlayer.field_78117_n = false;
-        a2.func_78087_a(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f, (Entity)a3);
-        renderPlayer.field_178723_h.field_78795_f = 0.0f;
-        a2.field_178732_b.field_78795_f = 0.0f;
-        GlStateManager.func_179084_k();
+        a2.swingProgress = 0.0f;
+        renderPlayer.isSneak = false;
+        a2.setRotationAngles(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f, (Entity)a3);
+        renderPlayer.bipedRightArm.rotateAngleX = 0.0f;
+        a2.bipedRightArmwear.rotateAngleX = 0.0f;
+        GlStateManager.disableBlend();
     }
 
     public MixinHandRender() {
@@ -121,7 +121,7 @@ public class MixinHandRender {
         r r3 = null;
         int n3 = n2 = 0;
         while (n3 < um.values().length) {
-            if (bk.r(um.values()[n2], a32.func_77973_b())) {
+            if (bk.r(um.values()[n2], a32.getItem())) {
                 um2 = um.values()[n2];
                 r3 = object[n2];
             }
@@ -158,20 +158,20 @@ public class MixinHandRender {
         if (fk2.r() != null) {
             boolean bl3;
             a6.cancel();
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179123_a();
-            GlStateManager.func_179089_o();
-            GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            GlStateManager.func_179147_l();
-            GlStateManager.func_179152_a((float)-1.0f, (float)-1.0f, (float)1.0f);
-            GlStateManager.func_179109_b((float)0.0f, (float)0.0625f, (float)0.0625f);
+            GlStateManager.pushMatrix();
+            GlStateManager.pushAttrib();
+            GlStateManager.enableCull();
+            GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+            GlStateManager.enableBlend();
+            GlStateManager.scale((float)-1.0f, (float)-1.0f, (float)1.0f);
+            GlStateManager.translate((float)0.0f, (float)0.0625f, (float)0.0625f);
             if (a5) {
-                GlStateManager.func_179152_a((float)-1.0f, (float)1.0f, (float)1.0f);
-                GlStateManager.func_187407_a((GlStateManager.CullFace)GlStateManager.CullFace.FRONT);
+                GlStateManager.scale((float)-1.0f, (float)1.0f, (float)1.0f);
+                GlStateManager.cullFace((GlStateManager.CullFace)GlStateManager.CullFace.FRONT);
             }
             if (um2 == um.m || fk2.r().r() == vn.c) {
                 MixinHandRender a7;
-                int a32 = a2.func_184612_cw();
+                int a32 = a2.getItemInUseMaxCount();
                 object = km.t.j;
                 bl3 = a5;
                 ((ol)object).j = a7.getAnimationFrame(a32);
@@ -181,20 +181,20 @@ public class MixinHandRender {
                 bl3 = a5;
             }
             if (bl3) {
-                GlStateManager.func_187407_a((GlStateManager.CullFace)GlStateManager.CullFace.BACK);
+                GlStateManager.cullFace((GlStateManager.CullFace)GlStateManager.CullFace.BACK);
             }
-            GlStateManager.func_179129_p();
-            GlStateManager.func_179084_k();
-            GlStateManager.func_179099_b();
-            GlStateManager.func_179121_F();
+            GlStateManager.disableCull();
+            GlStateManager.disableBlend();
+            GlStateManager.popAttrib();
+            GlStateManager.popMatrix();
             return;
         }
         if (fk2.r() != null) {
             Object a32;
             a6.cancel();
             Object object2 = a32 = fk2.r();
-            PlayerModelLoader.applyAnimation((UUID)a2.func_110124_au(), (String)((ModelData)a32).getName(), (byte[])((ModelData)object2).getAnimationBytes(), (String)"idle", (boolean)true);
-            GlStateManager.func_179094_E();
+            PlayerModelLoader.applyAnimation((UUID)a2.getUniqueID(), (String)((ModelData)a32).getName(), (byte[])((ModelData)object2).getAnimationBytes(), (String)"idle", (boolean)true);
+            GlStateManager.pushMatrix();
             if (((ModelData)object2).getTransformBakedModel() != null && (object = ((ModelData)a32).getTransformBakedModel().handlePerspective(a4)).getRight() != null) {
                 a2 = new Matrix4f((Matrix4f)object.getRight());
                 if (a5) {
@@ -205,11 +205,11 @@ public class MixinHandRender {
                 }
                 ForgeHooksClient.multiplyCurrentGlMatrix((Matrix4f)a2);
             }
-            GlStateManager.func_179152_a((float)-1.0f, (float)-1.0f, (float)1.0f);
+            GlStateManager.scale((float)-1.0f, (float)-1.0f, (float)1.0f);
             Object object3 = a32;
             tg.r((ModelData)object3, 0.0625f);
             PlayerModelLoader.getModel((String)((ModelData)object3).getName(), (byte[])((ModelData)a32).getModelBytes()).clearData();
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
@@ -217,8 +217,8 @@ public class MixinHandRender {
     private /* synthetic */ void redirect_renderArmFirstPerson_renderRightArm(RenderPlayer a3, AbstractClientPlayer a4) {
         MixinHandRender a5;
         MobendsHelper.removeRenderEntity(a3);
-        if (Minecraft.func_71410_x().field_71439_g == null) {
-            a3.func_177138_b(a4);
+        if (Minecraft.getMinecraft().player == null) {
+            a3.renderRightArm(a4);
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -230,10 +230,10 @@ public class MixinHandRender {
         arrayList.addAll(list);
         if (list.size() == 0) {
             object2 = new ArrayList<fk>();
-            object2.add((fk)fk.r((ItemStack)a4.field_71071_by.field_70460_b.get(1)));
-            object2.add((fk)fk.r((ItemStack)a4.field_71071_by.field_70460_b.get(2)));
-            object2.add((fk)fk.r((ItemStack)a4.field_71071_by.field_70460_b.get(3)));
-            object2.add(fk.r((ItemStack)a4.field_71071_by.field_70460_b.get(0)));
+            object2.add((fk)fk.r((ItemStack)a4.inventory.armorInventory.get(1)));
+            object2.add((fk)fk.r((ItemStack)a4.inventory.armorInventory.get(2)));
+            object2.add((fk)fk.r((ItemStack)a4.inventory.armorInventory.get(3)));
+            object2.add(fk.r((ItemStack)a4.inventory.armorInventory.get(0)));
             object2.removeIf(Objects::isNull);
             if (!object2.isEmpty() && object.size() > 0) {
                 object2.removeIf(a2 -> "chest".equalsIgnoreCase(a2.r()));
@@ -244,7 +244,7 @@ public class MixinHandRender {
         if ((object2 = EntityBenderRegistry.instance.getForEntity(a4)) != null) {
             ((EntityBender)object2).resetArmWear(a3);
         }
-        object = on.r(a4.func_110124_au());
+        object = on.r(a4.getUniqueID());
         Object object3 = object2 = arrayList.iterator();
         while (object3.hasNext()) {
             fk fk2 = (fk)object2.next();
@@ -258,13 +258,13 @@ public class MixinHandRender {
             zl.s.y((Entity)a4);
             object2 = zl.m.get(a4);
             if (object2 != null && ((ae)object2).y() != null) {
-                Minecraft.func_71410_x().func_110434_K().func_110577_a(zl.m.get(a4).z());
+                Minecraft.getMinecraft().getTextureManager().bindTexture(zl.m.get(a4).z());
                 renderPlayer = a3;
             } else {
-                Minecraft.func_71410_x().func_110434_K().func_110577_a(a4.func_110306_p());
+                Minecraft.getMinecraft().getTextureManager().bindTexture(a4.getLocationSkin());
                 renderPlayer = a3;
             }
-            renderPlayer.func_177138_b(a4);
+            renderPlayer.renderRightArm(a4);
             zl.s.r((Entity)a4);
         }
         if (arrayList.size() == 0) {
@@ -273,7 +273,7 @@ public class MixinHandRender {
         a5.renderRightArm_transTo(a3, a4);
         for (fk fk2 : arrayList) {
             if (fk2.r() != null) {
-                km.t.r(fk2.r(), new dn(0.0625f, new mn(), oh.l, 0, true, false, false, a4.func_110306_p(), true), (Entity)a4, (ModelBiped)a3.func_177087_b());
+                km.t.r(fk2.r(), new dn(0.0625f, new mn(), oh.l, 0, true, false, false, a4.getLocationSkin(), true), (Entity)a4, (ModelBiped)a3.getMainModel());
                 continue;
             }
             if (fk2.r() == null) continue;
@@ -286,7 +286,7 @@ public class MixinHandRender {
         ArrayList<fk> arrayList = new ArrayList<fk>();
         int n3 = n2 = 0;
         while (n3 < 4) {
-            fk fk2 = fk.r((ItemStack)a2.field_71071_by.field_70460_b.get(n2));
+            fk fk2 = fk.r((ItemStack)a2.inventory.armorInventory.get(n2));
             if (fk2 != null && fk2.r() != null && a3.equalsIgnoreCase(fk2.r())) {
                 arrayList.add(fk2);
             }

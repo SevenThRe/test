@@ -30,17 +30,17 @@ extends BaseGui {
         this.texture = texture;
         this.message = message;
         Keyboard.enableRepeatEvents((boolean)true);
-        this.addComponent(new TButton(119.0f, 186.0f, 0.0f, 21.0f, 0.0f, 0.0f, 68.5f, 21.0f, 137.0f, 42.0f, btn -> MessageSender.sendChangeGuildData(this.texture, this.textField.func_146179_b())).setTexture(new ResourceLocation("ancientdream", "gui/guild/settingbtn.png")));
+        this.addComponent(new TButton(119.0f, 186.0f, 0.0f, 21.0f, 0.0f, 0.0f, 68.5f, 21.0f, 137.0f, 42.0f, btn -> MessageSender.sendChangeGuildData(this.texture, this.textField.getText())).setTexture(new ResourceLocation("ancientdream", "gui/guild/settingbtn.png")));
         this.addComponent(new TButton(202.0f, 186.0f, 68.5f, 21.0f, 68.5f, 0.0f, 68.5f, 21.0f, 137.0f, 42.0f, btn -> MessageSender.sendOpenManager()).setTexture(new ResourceLocation("ancientdream", "gui/guild/settingbtn.png")));
     }
 
-    public void func_73866_w_() {
-        super.func_73866_w_();
+    public void initGui() {
+        super.initGui();
         this.setSize(390, 223);
-        this.textField = new GuiTextField(0, this.field_146289_q, 37, 145, 323, 20);
-        this.textField.func_146195_b(true);
-        this.textField.func_146203_f(999);
-        this.textField.func_146180_a(this.message);
+        this.textField = new GuiTextField(0, this.fontRenderer, 37, 145, 323, 20);
+        this.textField.setFocused(true);
+        this.textField.setMaxStringLength(999);
+        this.textField.setText(this.message);
     }
 
     @Override
@@ -58,21 +58,21 @@ extends BaseGui {
             this.hoverTexture = "head" + i + ".png";
             RenderUtils.drawColor(x, y, 44.0, 44.0, -2130706433);
         }
-        this.textField.func_146194_f();
+        this.textField.drawTextBox();
         this.drawComponents((float)mouseX - this.offsetX, (float)mouseY - this.offsetY);
     }
 
     @Override
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         if (this.hoverTexture != null) {
             this.texture = this.hoverTexture;
         }
     }
 
-    protected void func_73869_a(char typedChar, int keyCode) throws IOException {
-        super.func_73869_a(typedChar, keyCode);
-        this.textField.func_146201_a(typedChar, keyCode);
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+        super.keyTyped(typedChar, keyCode);
+        this.textField.textboxKeyTyped(typedChar, keyCode);
         if (keyCode == 1) {
             Keyboard.enableRepeatEvents((boolean)false);
             MessageSender.sendOpenManager();

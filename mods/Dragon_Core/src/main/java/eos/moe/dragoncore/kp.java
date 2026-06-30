@@ -157,7 +157,7 @@ public class kp {
         kp a5;
         for (cz a6 : a5.m.values()) {
             a6.c(a2, a3, a4);
-            GlStateManager.func_179137_b((double)0.0, (double)0.0, (double)-0.01);
+            GlStateManager.translate((double)0.0, (double)0.0, (double)-0.01);
         }
     }
 

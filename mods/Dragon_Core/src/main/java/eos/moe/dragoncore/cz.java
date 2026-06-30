@@ -47,11 +47,11 @@ public abstract class cz {
         double a6 = a5.b.c();
         double a7 = a5.o.c();
         double a8 = a5.k.c();
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179137_b((double)a6, (double)a7, (double)0.0);
-        GlStateManager.func_179139_a((double)a8, (double)a8, (double)1.0);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((double)a6, (double)a7, (double)0.0);
+        GlStateManager.scale((double)a8, (double)a8, (double)1.0);
         a5.ALLATORIxDEMO(a2, a3, a4);
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     public abstract void ALLATORIxDEMO(EntityLivingBase var1, float var2, boolean var3);

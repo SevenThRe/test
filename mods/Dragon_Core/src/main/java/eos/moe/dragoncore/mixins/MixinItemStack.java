@@ -73,15 +73,15 @@ implements IItemStack {
     private static final UUID ATTACK_DAMAGE_MODIFIER = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
     private static final UUID ATTACK_SPEED_MODIFIER = UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3");
     @Shadow
-    private NBTTagCompound field_77990_d;
+    private NBTTagCompound stackTagCompound;
     @Shadow
     @Final
-    private Item field_151002_e;
+    private Item item;
     @Shadow
-    private int field_77991_e;
+    private int itemDamage;
     @Shadow
     @Final
-    public static DecimalFormat field_111284_a;
+    public static DecimalFormat DECIMALFORMAT;
     private Map<String, Object> meta = new HashMap<String, Object>();
 
     public MixinItemStack() {
@@ -89,47 +89,47 @@ implements IItemStack {
     }
 
     @Shadow
-    public abstract boolean func_77942_o();
+    public abstract boolean hasTagCompound();
 
     @Shadow
-    public abstract boolean func_82837_s();
-
-    @Shadow
-    @Nullable
-    public abstract NBTTagCompound func_179543_a(String var1);
-
-    @Shadow
-    public abstract String func_82833_r();
-
-    @Shadow
-    public abstract boolean func_77981_g();
-
-    @Shadow
-    public abstract Item func_77973_b();
-
-    @Shadow
-    public abstract NBTTagList func_77986_q();
-
-    @Shadow
-    public abstract Multimap<String, AttributeModifier> func_111283_C(EntityEquipmentSlot var1);
+    public abstract boolean hasDisplayName();
 
     @Shadow
     @Nullable
-    public abstract NBTTagCompound func_77978_p();
+    public abstract NBTTagCompound getSubCompound(String var1);
 
     @Shadow
-    public abstract boolean func_77951_h();
+    public abstract String getDisplayName();
 
     @Shadow
-    public abstract int func_77958_k();
+    public abstract boolean getHasSubtypes();
 
     @Shadow
-    public abstract int func_77952_i();
+    public abstract Item getItem();
+
+    @Shadow
+    public abstract NBTTagList getEnchantmentTagList();
+
+    @Shadow
+    public abstract Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot var1);
+
+    @Shadow
+    @Nullable
+    public abstract NBTTagCompound getTagCompound();
+
+    @Shadow
+    public abstract boolean isItemDamaged();
+
+    @Shadow
+    public abstract int getMaxDamage();
+
+    @Shadow
+    public abstract int getItemDamage();
 
     private /* synthetic */ boolean hasLore() {
         MixinItemStack a2;
-        NBTTagCompound a3 = a2.func_179543_a("display");
-        return a3 != null && a3.func_150297_b("Lore", 9);
+        NBTTagCompound a3 = a2.getSubCompound("display");
+        return a3 != null && a3.hasKey("Lore", 9);
     }
 
     @Override
@@ -158,7 +158,7 @@ implements IItemStack {
         int a7;
         String a8;
         MixinItemStack a9;
-        if (a9.func_82837_s() || a9.hasLore()) {
+        if (a9.hasDisplayName() || a9.hasLore()) {
             return;
         }
         iga a10 = efa.k.ALLATORIxDEMO((ItemStack)a9);
@@ -169,48 +169,48 @@ implements IItemStack {
         if (!a10.c().isEmpty()) {
             a8 = TextFormatting.ITALIC + a10.c();
         } else {
-            a8 = a9.func_82833_r();
-            if (a9.func_82837_s()) {
+            a8 = a9.getDisplayName();
+            if (a9.hasDisplayName()) {
                 a8 = TextFormatting.ITALIC + a8;
             }
         }
         a8 = a8 + TextFormatting.RESET;
-        if (a3.func_194127_a()) {
+        if (a3.isAdvanced()) {
             String a12 = "";
             if (!a8.isEmpty()) {
                 a8 = a8 + " (";
                 a12 = ")";
             }
-            a7 = Item.func_150891_b((Item)a9.field_151002_e);
-            a8 = a9.func_77981_g() ? a8 + String.format("#%04d/%d%s", a7, a9.field_77991_e, a12) : a8 + String.format("#%04d%s", a7, a12);
-        } else if (!a9.func_82837_s() && a9.field_151002_e == Items.field_151098_aY) {
-            a8 = a8 + " #" + a9.field_77991_e;
+            a7 = Item.getIdFromItem((Item)a9.item);
+            a8 = a9.getHasSubtypes() ? a8 + String.format("#%04d/%d%s", a7, a9.itemDamage, a12) : a8 + String.format("#%04d%s", a7, a12);
+        } else if (!a9.hasDisplayName() && a9.item == Items.FILLED_MAP) {
+            a8 = a8 + " #" + a9.itemDamage;
         }
         a11.add(a8);
         int a13 = 0;
-        if (a9.func_77942_o() && a9.field_77990_d.func_150297_b("HideFlags", 99)) {
-            a13 = a9.field_77990_d.func_74762_e("HideFlags");
+        if (a9.hasTagCompound() && a9.stackTagCompound.hasKey("HideFlags", 99)) {
+            a13 = a9.stackTagCompound.getInteger("HideFlags");
         }
         if ((a13 & 0x20) == 0) {
-            a9.func_77973_b().func_77624_a((ItemStack)a9, a2 == null ? null : a2.field_70170_p, (List)a11, a3);
+            a9.getItem().addInformation((ItemStack)a9, a2 == null ? null : a2.world, (List)a11, a3);
         }
-        if (a9.func_77942_o()) {
+        if (a9.hasTagCompound()) {
             if ((a13 & 1) == 0) {
-                a6 = a9.func_77986_q();
-                for (a7 = 0; a7 < a6.func_74745_c(); ++a7) {
-                    a5 = a6.func_150305_b(a7);
-                    short a14 = a5.func_74765_d("id");
-                    short a15 = a5.func_74765_d("lvl");
-                    Enchantment a16 = Enchantment.func_185262_c((int)a14);
+                a6 = a9.getEnchantmentTagList();
+                for (a7 = 0; a7 < a6.tagCount(); ++a7) {
+                    a5 = a6.getCompoundTagAt(a7);
+                    short a14 = a5.getShort("id");
+                    short a15 = a5.getShort("lvl");
+                    Enchantment a16 = Enchantment.getEnchantmentByID((int)a14);
                     if (a16 == null) continue;
-                    a11.add(a16.func_77316_c((int)a15));
+                    a11.add(a16.getTranslatedName((int)a15));
                 }
             }
-            if (a9.field_77990_d.func_150297_b("display", 10) && (a5 = a9.field_77990_d.func_74775_l("display")).func_150297_b("color", 3)) {
-                if (a3.func_194127_a()) {
-                    a11.add(I18n.func_74837_a((String)"item.color", (Object[])new Object[]{String.format("#%06X", a5.func_74762_e("color"))}));
+            if (a9.stackTagCompound.hasKey("display", 10) && (a5 = a9.stackTagCompound.getCompoundTag("display")).hasKey("color", 3)) {
+                if (a3.isAdvanced()) {
+                    a11.add(I18n.translateToLocalFormatted((String)"item.color", (Object[])new Object[]{String.format("#%06X", a5.getInteger("color"))}));
                 } else {
-                    a11.add(TextFormatting.ITALIC + I18n.func_74838_a((String)"item.dyed"));
+                    a11.add(TextFormatting.ITALIC + I18n.translateToLocal((String)"item.dyed"));
                 }
             }
         }
@@ -221,71 +221,71 @@ implements IItemStack {
         a7 = ((EntityEquipmentSlot[])a5).length;
         for (int a18 = 0; a18 < a7; ++a18) {
             NBTTagCompound a19 = a5[a18];
-            Multimap<String, AttributeModifier> a20 = a9.func_111283_C((EntityEquipmentSlot)a19);
+            Multimap<String, AttributeModifier> a20 = a9.getAttributeModifiers((EntityEquipmentSlot)a19);
             if (a20.isEmpty() || (a13 & 2) != 0) continue;
             a11.add("");
-            a11.add(I18n.func_74838_a((String)("item.modifiers." + a19.func_188450_d())));
+            a11.add(I18n.translateToLocal((String)("item.modifiers." + a19.getName())));
             for (Map.Entry a21 : a20.entries()) {
                 AttributeModifier a22 = (AttributeModifier)a21.getValue();
-                double a23 = a22.func_111164_d();
+                double a23 = a22.getAmount();
                 boolean a24 = false;
                 if (a2 != null) {
-                    if (a22.func_111167_a() == ATTACK_DAMAGE_MODIFIER) {
-                        a23 += a2.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111125_b();
-                        a23 += (double)EnchantmentHelper.func_152377_a((ItemStack)((ItemStack)a9), (EnumCreatureAttribute)EnumCreatureAttribute.UNDEFINED);
+                    if (a22.getID() == ATTACK_DAMAGE_MODIFIER) {
+                        a23 += a2.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getBaseValue();
+                        a23 += (double)EnchantmentHelper.getModifierForCreature((ItemStack)((ItemStack)a9), (EnumCreatureAttribute)EnumCreatureAttribute.UNDEFINED);
                         a24 = true;
-                    } else if (a22.func_111167_a() == ATTACK_SPEED_MODIFIER) {
-                        a23 += a2.func_110148_a(SharedMonsterAttributes.field_188790_f).func_111125_b();
+                    } else if (a22.getID() == ATTACK_SPEED_MODIFIER) {
+                        a23 += a2.getEntityAttribute(SharedMonsterAttributes.ATTACK_SPEED).getBaseValue();
                         a24 = true;
                     }
                 }
-                double a25 = a22.func_111169_c() != 1 && a22.func_111169_c() != 2 ? a23 : a23 * 100.0;
+                double a25 = a22.getOperation() != 1 && a22.getOperation() != 2 ? a23 : a23 * 100.0;
                 if (a24) {
-                    a11.add(" " + I18n.func_74837_a((String)("attribute.modifier.equals." + a22.func_111169_c()), (Object[])new Object[]{field_111284_a.format(a25), I18n.func_74838_a((String)("attribute.name." + (String)a21.getKey()))}));
+                    a11.add(" " + I18n.translateToLocalFormatted((String)("attribute.modifier.equals." + a22.getOperation()), (Object[])new Object[]{DECIMALFORMAT.format(a25), I18n.translateToLocal((String)("attribute.name." + (String)a21.getKey()))}));
                     continue;
                 }
                 if (a23 > 0.0) {
-                    a11.add(TextFormatting.BLUE + " " + I18n.func_74837_a((String)("attribute.modifier.plus." + a22.func_111169_c()), (Object[])new Object[]{field_111284_a.format(a25), I18n.func_74838_a((String)("attribute.name." + (String)a21.getKey()))}));
+                    a11.add(TextFormatting.BLUE + " " + I18n.translateToLocalFormatted((String)("attribute.modifier.plus." + a22.getOperation()), (Object[])new Object[]{DECIMALFORMAT.format(a25), I18n.translateToLocal((String)("attribute.name." + (String)a21.getKey()))}));
                     continue;
                 }
                 if (!(a23 < 0.0)) continue;
-                a11.add(TextFormatting.RED + " " + I18n.func_74837_a((String)("attribute.modifier.take." + a22.func_111169_c()), (Object[])new Object[]{field_111284_a.format(a25 *= -1.0), I18n.func_74838_a((String)("attribute.name." + (String)a21.getKey()))}));
+                a11.add(TextFormatting.RED + " " + I18n.translateToLocalFormatted((String)("attribute.modifier.take." + a22.getOperation()), (Object[])new Object[]{DECIMALFORMAT.format(a25 *= -1.0), I18n.translateToLocal((String)("attribute.name." + (String)a21.getKey()))}));
             }
         }
-        if (a9.func_77942_o() && a9.func_77978_p().func_74767_n("Unbreakable") && (a13 & 4) == 0) {
-            a11.add(TextFormatting.BLUE + I18n.func_74838_a((String)"item.unbreakable"));
+        if (a9.hasTagCompound() && a9.getTagCompound().getBoolean("Unbreakable") && (a13 & 4) == 0) {
+            a11.add(TextFormatting.BLUE + I18n.translateToLocal((String)"item.unbreakable"));
         }
-        if (a9.func_77942_o() && a9.field_77990_d.func_150297_b("CanDestroy", 9) && (a13 & 8) == 0 && !(a6 = a9.field_77990_d.func_150295_c("CanDestroy", 8)).func_82582_d()) {
+        if (a9.hasTagCompound() && a9.stackTagCompound.hasKey("CanDestroy", 9) && (a13 & 8) == 0 && !(a6 = a9.stackTagCompound.getTagList("CanDestroy", 8)).isEmpty()) {
             a11.add("");
-            a11.add(TextFormatting.GRAY + I18n.func_74838_a((String)"item.canBreak"));
-            for (a7 = 0; a7 < a6.func_74745_c(); ++a7) {
-                Block a26 = Block.func_149684_b((String)a6.func_150307_f(a7));
+            a11.add(TextFormatting.GRAY + I18n.translateToLocal((String)"item.canBreak"));
+            for (a7 = 0; a7 < a6.tagCount(); ++a7) {
+                Block a26 = Block.getBlockFromName((String)a6.getStringTagAt(a7));
                 if (a26 != null) {
-                    a11.add(TextFormatting.DARK_GRAY + a26.func_149732_F());
+                    a11.add(TextFormatting.DARK_GRAY + a26.getLocalizedName());
                     continue;
                 }
                 a11.add(TextFormatting.DARK_GRAY + "missingno");
             }
         }
-        if (a9.func_77942_o() && a9.field_77990_d.func_150297_b("CanPlaceOn", 9) && (a13 & 0x10) == 0 && !(a6 = a9.field_77990_d.func_150295_c("CanPlaceOn", 8)).func_82582_d()) {
+        if (a9.hasTagCompound() && a9.stackTagCompound.hasKey("CanPlaceOn", 9) && (a13 & 0x10) == 0 && !(a6 = a9.stackTagCompound.getTagList("CanPlaceOn", 8)).isEmpty()) {
             a11.add("");
-            a11.add(TextFormatting.GRAY + I18n.func_74838_a((String)"item.canPlace"));
-            for (a7 = 0; a7 < a6.func_74745_c(); ++a7) {
-                Block a27 = Block.func_149684_b((String)a6.func_150307_f(a7));
+            a11.add(TextFormatting.GRAY + I18n.translateToLocal((String)"item.canPlace"));
+            for (a7 = 0; a7 < a6.tagCount(); ++a7) {
+                Block a27 = Block.getBlockFromName((String)a6.getStringTagAt(a7));
                 if (a27 != null) {
-                    a11.add(TextFormatting.DARK_GRAY + a27.func_149732_F());
+                    a11.add(TextFormatting.DARK_GRAY + a27.getLocalizedName());
                     continue;
                 }
                 a11.add(TextFormatting.DARK_GRAY + "missingno");
             }
         }
-        if (a3.func_194127_a()) {
-            if (a9.func_77951_h()) {
-                a11.add(I18n.func_74837_a((String)"item.durability", (Object[])new Object[]{a9.func_77958_k() - a9.func_77952_i(), a9.func_77958_k()}));
+        if (a3.isAdvanced()) {
+            if (a9.isItemDamaged()) {
+                a11.add(I18n.translateToLocalFormatted((String)"item.durability", (Object[])new Object[]{a9.getMaxDamage() - a9.getItemDamage(), a9.getMaxDamage()}));
             }
-            a11.add(TextFormatting.DARK_GRAY + ((ResourceLocation)Item.field_150901_e.func_177774_c((Object)a9.field_151002_e)).toString());
-            if (a9.func_77942_o()) {
-                a11.add(TextFormatting.DARK_GRAY + I18n.func_74837_a((String)"item.nbt_tags", (Object[])new Object[]{a9.func_77978_p().func_150296_c().size()}));
+            a11.add(TextFormatting.DARK_GRAY + ((ResourceLocation)Item.REGISTRY.getNameForObject((Object)a9.item)).toString());
+            if (a9.hasTagCompound()) {
+                a11.add(TextFormatting.DARK_GRAY + I18n.translateToLocalFormatted((String)"item.nbt_tags", (Object[])new Object[]{a9.getTagCompound().getKeySet().size()}));
             }
         }
         ForgeEventFactory.onItemTooltip((ItemStack)((ItemStack)a9), (EntityPlayer)a2, (List)a11, (ITooltipFlag)a3);

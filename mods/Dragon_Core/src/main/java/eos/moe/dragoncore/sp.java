@@ -34,32 +34,32 @@ public class sp {
 
     @i(f={"\u53d6\u5b9e\u4f53\u540d"})
     public static String c(kp a2) {
-        return a2.y.func_145748_c_().func_150260_c();
+        return a2.y.getDisplayName().getUnformattedText();
     }
 
     @i(f={"\u53d6\u5b9e\u4f53UUID"})
     public static String ALLATORIxDEMO(kp a2) {
-        return a2.y.func_110124_au().toString();
+        return a2.y.getUniqueID().toString();
     }
 
     @i(f={"\u53d6\u5b9e\u4f53\u9ad8\u5ea6"})
     public static double x(kp a2) {
-        return a2.y.field_70131_O;
+        return a2.y.height;
     }
 
     @i(f={"\u53d6\u5b9e\u4f53\u8840\u91cf"})
     public static double f(kp a2) {
-        return a2.y.func_110143_aJ();
+        return a2.y.getHealth();
     }
 
     @i(f={"\u53d6\u5b9e\u4f53\u6700\u5927\u8840\u91cf"})
     public static double c(kp a2) {
-        return a2.y.func_110138_aP();
+        return a2.y.getMaxHealth();
     }
 
     @i(f={"\u53d6\u5b9e\u4f53\u8840\u91cf\u6bd4\u4f8b"})
     public static double ALLATORIxDEMO(kp a2) {
-        return a2.y.func_110143_aJ() / a2.y.func_110138_aP();
+        return a2.y.getHealth() / a2.y.getMaxHealth();
     }
 
     @i(f={"\u6267\u884c\u65b9\u6cd5", "Function_Execute"})
@@ -103,14 +103,14 @@ public class sp {
         }
         nh a5 = a2.c.get(a3);
         if (a5 != null) {
-            if (Minecraft.func_71410_x().func_152345_ab()) {
+            if (Minecraft.getMinecraft().isCallingFromMinecraftThread()) {
                 return sp.c(a2, a3, a4);
             }
             qg a6 = new qg(Arrays.asList(a4));
             Object a7 = a5.ALLATORIxDEMO().ALLATORIxDEMO().ALLATORIxDEMO();
             ((xn)a7).ALLATORIxDEMO("\u5c40\u90e8\u53d8\u91cf.\u53c2\u6570", a6);
             ((xn)a7).ALLATORIxDEMO("\u5c40\u90e8\u53d8\u91cf.args", a6);
-            ListenableFuture a8 = Minecraft.func_71410_x().func_152343_a(() -> sp.c(a5, (xn)a7));
+            ListenableFuture a8 = Minecraft.getMinecraft().addScheduledTask(() -> sp.c(a5, (xn)a7));
             a8.addListener(() -> a2.v.remove(a8), (Executor)om.q);
             a2.v.add((Future)a8);
         }

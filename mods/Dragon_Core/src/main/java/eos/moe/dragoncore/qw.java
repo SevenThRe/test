@@ -143,7 +143,7 @@ implements da {
                 BedrockScheme a10 = li.k.ALLATORIxDEMO(a9.f());
                 BedrockEmitter a11 = new BedrockEmitter();
                 a11.setScheme(a10);
-                a11.setWorld((World)Minecraft.func_71410_x().field_71441_e);
+                a11.setWorld((World)Minecraft.getMinecraft().world);
                 a3.ALLATORIxDEMO.put(a9, a11);
             }
             a5.f().addAll(a8);

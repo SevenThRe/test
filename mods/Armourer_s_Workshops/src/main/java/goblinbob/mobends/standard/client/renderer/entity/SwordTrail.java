@@ -34,16 +34,16 @@ public class SwordTrail {
     }
 
     public void render() {
-        GlStateManager.func_179143_c((int)515);
-        GlStateManager.func_179147_l();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179129_p();
-        GlStateManager.func_179140_f();
-        GlStateManager.func_179090_x();
+        GlStateManager.depthFunc((int)515);
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.disableCull();
+        GlStateManager.disableLighting();
+        GlStateManager.disableTexture2D();
         GL11.glHint((int)3152, (int)4354);
-        GlStateManager.func_179103_j((int)7425);
-        GlStateManager.func_179094_E();
-        GlStateManager.func_187447_r((int)7);
+        GlStateManager.shadeModel((int)7425);
+        GlStateManager.pushMatrix();
+        GlStateManager.glBegin((int)7);
         Iterator it = this.trailPartList.iterator();
         boolean first = true;
         while (it.hasNext()) {
@@ -51,11 +51,11 @@ public class SwordTrail {
             part.draw(first, !it.hasNext(), this.colorRed, this.colorGreen, this.colorBlue);
             first = false;
         }
-        GlStateManager.func_187437_J();
-        GlStateManager.func_179121_F();
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179129_p();
-        GlStateManager.func_179145_e();
+        GlStateManager.glEnd();
+        GlStateManager.popMatrix();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableCull();
+        GlStateManager.enableLighting();
     }
 
     public void add(BipedEntityData<?> entityData, float velocityX, float velocityY, float velocityZ) {
@@ -166,16 +166,16 @@ public class SwordTrail {
             for (IVec3f point : points) {
                 point.add(this.position);
             }
-            GlStateManager.func_179131_c((float)red, (float)green, (float)blue, (float)alpha);
+            GlStateManager.color((float)red, (float)green, (float)blue, (float)alpha);
             if (!first) {
-                GlStateManager.func_187435_e((float)((Vec3f)points[1]).x, (float)((Vec3f)points[1]).y, (float)((Vec3f)points[1]).z);
-                GlStateManager.func_187435_e((float)((Vec3f)points[0]).x, (float)((Vec3f)points[0]).y, (float)((Vec3f)points[0]).z);
+                GlStateManager.glVertex3f((float)((Vec3f)points[1]).x, (float)((Vec3f)points[1]).y, (float)((Vec3f)points[1]).z);
+                GlStateManager.glVertex3f((float)((Vec3f)points[0]).x, (float)((Vec3f)points[0]).y, (float)((Vec3f)points[0]).z);
             }
-            GlStateManager.func_187435_e((float)((Vec3f)points[0]).x, (float)((Vec3f)points[0]).y, (float)((Vec3f)points[0]).z);
-            GlStateManager.func_187435_e((float)((Vec3f)points[1]).x, (float)((Vec3f)points[1]).y, (float)((Vec3f)points[1]).z);
+            GlStateManager.glVertex3f((float)((Vec3f)points[0]).x, (float)((Vec3f)points[0]).y, (float)((Vec3f)points[0]).z);
+            GlStateManager.glVertex3f((float)((Vec3f)points[1]).x, (float)((Vec3f)points[1]).y, (float)((Vec3f)points[1]).z);
             if (last) {
-                GlStateManager.func_187435_e((float)((Vec3f)points[1]).x, (float)((Vec3f)points[1]).y, (float)((Vec3f)points[1]).z);
-                GlStateManager.func_187435_e((float)((Vec3f)points[0]).x, (float)((Vec3f)points[0]).y, (float)((Vec3f)points[0]).z);
+                GlStateManager.glVertex3f((float)((Vec3f)points[1]).x, (float)((Vec3f)points[1]).y, (float)((Vec3f)points[1]).z);
+                GlStateManager.glVertex3f((float)((Vec3f)points[0]).x, (float)((Vec3f)points[0]).y, (float)((Vec3f)points[0]).z);
             }
         }
 

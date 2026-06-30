@@ -38,9 +38,9 @@ public enum BedBlockProxy implements IBlockColorProxy
     @Override
     public int getBlockColor(ChunkMD chunkMD, BlockMD blockMD, BlockPos blockPos) {
         TileEntity tileentity;
-        if (blockMD.getBlock() instanceof BlockBed && (tileentity = JmBlockAccess.INSTANCE.func_175625_s(blockPos)) instanceof TileEntityBed) {
-            int bedColor = ((TileEntityBed)tileentity).func_193048_a().func_193350_e();
-            if (blockMD.getBlockState().func_177229_b((IProperty)BlockBed.field_176472_a) == BlockBed.EnumPartType.FOOT) {
+        if (blockMD.getBlock() instanceof BlockBed && (tileentity = JmBlockAccess.INSTANCE.getTileEntity(blockPos)) instanceof TileEntityBed) {
+            int bedColor = ((TileEntityBed)tileentity).getColor().getColorValue();
+            if (blockMD.getBlockState().getValue((IProperty)BlockBed.PART) == BlockBed.EnumPartType.FOOT) {
                 return RGB.multiply(0xCCCCCC, bedColor);
             }
             return RGB.multiply(0xFFFFFF, bedColor);

@@ -19,7 +19,7 @@ import net.minecraft.client.Minecraft;
 
 public class ur
 implements b {
-    private static final Executor o = a2 -> Minecraft.func_71410_x().func_152344_a(a2);
+    private static final Executor o = a2 -> Minecraft.getMinecraft().addScheduledTask(a2);
     public b y;
     public b k;
     public b ALLATORIxDEMO;

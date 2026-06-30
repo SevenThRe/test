@@ -17,7 +17,7 @@ public class RFP2Keybind {
     }
 
     public boolean checkForNewPress() {
-        boolean currentlyPressed = this.keyBindingInstance.func_151468_f();
+        boolean currentlyPressed = this.keyBindingInstance.isPressed();
         if (!this.wasPressed && currentlyPressed) {
             this.wasPressed = true;
             return true;

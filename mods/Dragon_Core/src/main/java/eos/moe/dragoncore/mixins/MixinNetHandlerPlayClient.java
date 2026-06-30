@@ -44,9 +44,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value={NetHandlerPlayClient.class})
 public class MixinNetHandlerPlayClient {
     @Shadow
-    private Minecraft field_147299_f;
+    private Minecraft client;
     @Shadow
-    private WorldClient field_147300_g;
+    private WorldClient world;
 
     public MixinNetHandlerPlayClient() {
         MixinNetHandlerPlayClient a2;
@@ -56,12 +56,12 @@ public class MixinNetHandlerPlayClient {
     private /* synthetic */ void overwrite_handleDestroyEntities(SPacketDestroyEntities a2, CallbackInfo a3) {
         MixinNetHandlerPlayClient a4;
         a3.cancel();
-        PacketThreadUtil.func_180031_a((Packet)a2, (INetHandler)((NetHandlerPlayClient)a4), (IThreadListener)a4.field_147299_f);
-        for (int a5 = 0; a5 < a2.func_149098_c().length; ++a5) {
+        PacketThreadUtil.checkThreadAndEnqueue((Packet)a2, (INetHandler)((NetHandlerPlayClient)a4), (IThreadListener)a4.client);
+        for (int a5 = 0; a5 < a2.getEntityIDs().length; ++a5) {
             xz a6;
-            Entity a7 = a4.field_147300_g.func_73045_a(a2.func_149098_c()[a5]);
-            if (a7 instanceof EntityLivingBase && (a6 = dt.k.getEntityManager(a7.func_110124_au())) != null && dt.k.isPlayingAnimation(a6, "death")) continue;
-            a4.field_147300_g.func_73028_b(a2.func_149098_c()[a5]);
+            Entity a7 = a4.world.getEntityByID(a2.getEntityIDs()[a5]);
+            if (a7 instanceof EntityLivingBase && (a6 = dt.k.getEntityManager(a7.getUniqueID())) != null && dt.k.isPlayingAnimation(a6, "death")) continue;
+            a4.world.removeEntityFromWorld(a2.getEntityIDs()[a5]);
         }
     }
 
@@ -73,7 +73,7 @@ public class MixinNetHandlerPlayClient {
     @Inject(method={"handleSpawnMob"}, at={@At(value="RETURN")})
     private /* synthetic */ void mixin_handleSpawnMob(SPacketSpawnMob a2, CallbackInfo a3) {
         try {
-            Entity a4 = Minecraft.func_71410_x().field_71441_e.func_73045_a(a2.func_149024_d());
+            Entity a4 = Minecraft.getMinecraft().world.getEntityByID(a2.getEntityID());
             if (a4 instanceof EntityLivingBase) {
                 dt.k.init((EntityLivingBase)a4, true);
             }

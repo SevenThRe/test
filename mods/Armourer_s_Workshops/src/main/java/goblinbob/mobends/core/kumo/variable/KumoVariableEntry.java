@@ -19,7 +19,7 @@ public class KumoVariableEntry {
     }
 
     public String getLocalizedName() {
-        return I18n.func_135052_a((String)String.format("mobends.variable.%s", this.key), (Object[])new Object[0]);
+        return I18n.format((String)String.format("mobends.variable.%s", this.key), (Object[])new Object[0]);
     }
 }
 

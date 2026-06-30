@@ -84,7 +84,7 @@ implements ScrollListPaneRight.ISlot {
             this.buttonListRight.setHeights(manager.rowHeight);
         }
         this.buttonListRight.fitWidths(fontRenderer);
-        this.internalWidth = fontRenderer.func_78263_a('X') * 32;
+        this.internalWidth = fontRenderer.getCharWidth('X') * 32;
         this.internalWidth += Math.max(manager.colLocation, manager.colName);
         this.internalWidth += this.buttonListLeft.getWidth(this.hgap);
         this.internalWidth += this.buttonListRight.getWidth(this.hgap);
@@ -141,11 +141,11 @@ implements ScrollListPaneRight.ISlot {
         if (color == null) {
             color = waypointValid ? this.waypoint.getSafeColor() : 0x808080;
         }
-        FontRenderer fr = FMLClientHandler.instance().getClient().field_71466_p;
-        int yOffset = 1 + (this.manager.rowHeight - fr.field_78288_b) / 2;
-        fr.func_175063_a(String.format("%sm", this.getDistance()), (float)(x + this.manager.colLocation), (float)(y + yOffset), color.intValue());
+        FontRenderer fr = FMLClientHandler.instance().getClient().fontRenderer;
+        int yOffset = 1 + (this.manager.rowHeight - fr.FONT_HEIGHT) / 2;
+        fr.drawStringWithShadow(String.format("%sm", this.getDistance()), (float)(x + this.manager.colLocation), (float)(y + yOffset), color.intValue());
         String name = waypointValid ? this.waypoint.getName() : TextFormatting.STRIKETHROUGH + this.waypoint.getName();
-        return fr.func_175063_a(name, (float)this.manager.colName, (float)(y + yOffset), color.intValue());
+        return fr.drawStringWithShadow(name, (float)this.manager.colName, (float)(y + yOffset), color.intValue());
     }
 
     protected void drawWaypoint(int x, int y) {
@@ -192,7 +192,7 @@ implements ScrollListPaneRight.ISlot {
 
     public int getDistanceTo(EntityPlayer player) {
         if (this.distance == null) {
-            this.distance = (int)player.func_174791_d().func_72438_d(this.waypoint.getPosition());
+            this.distance = (int)player.getPositionVector().distanceTo(this.waypoint.getPosition());
         }
         return this.distance;
     }
@@ -202,10 +202,10 @@ implements ScrollListPaneRight.ISlot {
         return null;
     }
 
-    public void func_192633_a(int slotIndex, int x, int y, float partialTicks) {
+    public void updatePosition(int slotIndex, int x, int y, float partialTicks) {
     }
 
-    public void func_192634_a(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected, float partialTicks) {
+    public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected, float partialTicks) {
         Minecraft mc = this.manager.getMinecraft();
         this.width = listWidth;
         this.setPosition(x, y);
@@ -227,20 +227,20 @@ implements ScrollListPaneRight.ISlot {
         this.buttonListLeft.layoutHorizontal(this.buttonListRight.getLeftX() - this.hgap * 2, y, false, this.hgap).draw(mc, mouseX, mouseY);
     }
 
-    public boolean func_148278_a(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {
+    public boolean mousePressed(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {
         return this.clickScrollable(x, y);
     }
 
     @Override
     public String[] mouseHover(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {
         for (Button button : this.buttonListLeft) {
-            if (!button.func_146115_a()) continue;
-            this.manager.drawHoveringText(button.getTooltip(), x, y, FMLClientHandler.instance().getClient().field_71466_p);
+            if (!button.isMouseOver()) continue;
+            this.manager.drawHoveringText(button.getTooltip(), x, y, FMLClientHandler.instance().getClient().fontRenderer);
         }
         return new String[0];
     }
 
-    public void func_148277_b(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {
+    public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {
     }
 
     @Override

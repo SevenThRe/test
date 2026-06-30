@@ -42,26 +42,26 @@ public class oy {
             a2 = 4;
         }
         if (a5) {
-            a3.func_181668_a(a2, DefaultVertexFormats.field_181710_j);
+            a3.begin(a2, DefaultVertexFormats.POSITION_TEX_NORMAL);
         } else {
-            a3.func_181668_a(a2, DefaultVertexFormats.field_181708_h);
+            a3.begin(a2, DefaultVertexFormats.POSITION_NORMAL);
         }
         for (int a7 = 0; a7 < a6.o.length; ++a7) {
             if (a5) {
-                a3.func_181662_b((double)a6.o[a7].y * (double)a4, (double)a6.o[a7].k * (double)a4, (double)a6.o[a7].ALLATORIxDEMO * (double)a4).func_187315_a((double)a6.ALLATORIxDEMO[a7].y, (double)a6.ALLATORIxDEMO[a7].k).func_181663_c(a6.k.y, a6.k.k, a6.k.ALLATORIxDEMO).func_181675_d();
+                a3.pos((double)a6.o[a7].y * (double)a4, (double)a6.o[a7].k * (double)a4, (double)a6.o[a7].ALLATORIxDEMO * (double)a4).tex((double)a6.ALLATORIxDEMO[a7].y, (double)a6.ALLATORIxDEMO[a7].k).normal(a6.k.y, a6.k.k, a6.k.ALLATORIxDEMO).endVertex();
                 continue;
             }
-            a3.func_181662_b((double)a6.o[a7].y * (double)a4, (double)a6.o[a7].k * (double)a4, (double)a6.o[a7].ALLATORIxDEMO * (double)a4).func_181663_c(a6.k.y, a6.k.k, a6.k.ALLATORIxDEMO).func_181675_d();
+            a3.pos((double)a6.o[a7].y * (double)a4, (double)a6.o[a7].k * (double)a4, (double)a6.o[a7].ALLATORIxDEMO * (double)a4).normal(a6.k.y, a6.k.k, a6.k.ALLATORIxDEMO).endVertex();
         }
-        Tessellator.func_178181_a().func_78381_a();
+        Tessellator.getInstance().draw();
     }
 
     public hu ALLATORIxDEMO() {
         oy a2;
         Vec3d a3 = new Vec3d((double)(a2.o[1].y - a2.o[0].y), (double)(a2.o[1].k - a2.o[0].k), (double)(a2.o[1].ALLATORIxDEMO - a2.o[0].ALLATORIxDEMO));
         Vec3d a4 = new Vec3d((double)(a2.o[2].y - a2.o[0].y), (double)(a2.o[2].k - a2.o[0].k), (double)(a2.o[2].ALLATORIxDEMO - a2.o[0].ALLATORIxDEMO));
-        Vec3d a5 = a3.func_72431_c(a4).func_72432_b();
-        return new hu((float)a5.field_72450_a, (float)a5.field_72448_b, (float)a5.field_72449_c);
+        Vec3d a5 = a3.crossProduct(a4).normalize();
+        return new hu((float)a5.x, (float)a5.y, (float)a5.z);
     }
 }
 

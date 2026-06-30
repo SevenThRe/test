@@ -38,21 +38,21 @@ extends GuiScreen {
         this.isCreate = isCreate;
     }
 
-    public void func_73866_w_() {
-        super.func_73866_w_();
+    public void initGui() {
+        super.initGui();
         this.xSize = 342.0f;
         this.ySize = 264.0f;
-        this.offsetX = ((float)this.field_146294_l - this.xSize) / 2.0f;
-        this.offsetY = ((float)this.field_146295_m - this.ySize) / 2.0f;
-        this.field = new GuiTextField(1, this.field_146289_q, 71, 165, 200, 30);
-        this.field.func_146195_b(true);
-        this.field.func_146203_f(35);
+        this.offsetX = ((float)this.width - this.xSize) / 2.0f;
+        this.offsetY = ((float)this.height - this.ySize) / 2.0f;
+        this.field = new GuiTextField(1, this.fontRenderer, 71, 165, 200, 30);
+        this.field.setFocused(true);
+        this.field.setMaxStringLength(35);
     }
 
-    public void func_73863_a(int mouseX, int mouseY, float partialTicks) {
-        super.func_73863_a(mouseX, mouseY, partialTicks);
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)this.offsetX, (float)this.offsetY, (float)0.0f);
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)this.offsetX, (float)this.offsetY, (float)0.0f);
         RenderUtils.drawTexture(5.0, 0.0, this.xSize, this.ySize, BACKGROUND);
         RenderUtils.drawTexture(90.0, 228.0, 70.0, 25.0, (float)mouseX - this.offsetX, (float)mouseY - this.offsetY, BTN, BTN1);
         if (this.isCreate) {
@@ -76,17 +76,17 @@ extends GuiScreen {
             if (!new Rectangle(x, y, 40, 40).contains((float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) continue;
             RenderUtils.drawColor((double)x, (double)y, 40.0, 40.0, new Color(255, 255, 255, 127));
         }
-        this.field.func_146194_f();
-        GlStateManager.func_179121_F();
+        this.field.drawTextBox();
+        GlStateManager.popMatrix();
     }
 
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.func_73864_a(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         if (new Rectangle(90, 228, 70, 25).contains((float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
-            MessageSender.sendCreateTeam(this.field.func_146179_b(), "head" + this.selectedTexture + ".png");
-            this.field_146297_k.func_147108_a((GuiScreen)new TeamManagerGui());
+            MessageSender.sendCreateTeam(this.field.getText(), "head" + this.selectedTexture + ".png");
+            this.mc.displayGuiScreen((GuiScreen)new TeamManagerGui());
         } else if (new Rectangle(185, 228, 70, 25).contains((float)mouseX - this.offsetX, (float)mouseY - this.offsetY)) {
-            this.field_146297_k.func_147108_a(null);
+            this.mc.displayGuiScreen(null);
         } else {
             for (int i = 0; i < 10; ++i) {
                 int y;
@@ -97,9 +97,9 @@ extends GuiScreen {
         }
     }
 
-    protected void func_73869_a(char typedChar, int keyCode) throws IOException {
-        super.func_73869_a(typedChar, keyCode);
-        this.field.func_146201_a(typedChar, keyCode);
+    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+        super.keyTyped(typedChar, keyCode);
+        this.field.textboxKeyTyped(typedChar, keyCode);
     }
 }
 

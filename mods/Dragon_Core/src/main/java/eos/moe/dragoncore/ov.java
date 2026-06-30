@@ -121,8 +121,8 @@ public class ov {
     @Mod.EventHandler
     public void ALLATORIxDEMO(FMLServerStartingEvent a2) {
         MinecraftServer a3 = a2.getServer();
-        ServerCommandManager a4 = (ServerCommandManager)a3.func_71187_D();
-        a4.func_71560_a((ICommand)new ir());
+        ServerCommandManager a4 = (ServerCommandManager)a3.getCommandManager();
+        a4.registerCommand((ICommand)new ir());
         m.trace("Server Starting -- Added \"/nbtedit\" command");
     }
 

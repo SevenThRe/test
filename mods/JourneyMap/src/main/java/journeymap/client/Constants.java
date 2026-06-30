@@ -51,7 +51,7 @@ public class Constants {
     public static Locale getLocale() {
         Locale locale = Locale.getDefault();
         try {
-            String lang = FMLClientHandler.instance().getClient().func_135016_M().func_135041_c().func_135034_a();
+            String lang = FMLClientHandler.instance().getClient().getLanguageManager().getCurrentLanguage().getLanguageCode();
             locale = new Locale(lang);
         }
         catch (Exception e) {
@@ -65,7 +65,7 @@ public class Constants {
             return key;
         }
         try {
-            String result = I18n.func_135052_a((String)key, (Object[])new Object[0]);
+            String result = I18n.format((String)key, (Object[])new Object[0]);
             if (result.equals(key)) {
                 Journeymap.getLogger().warn("Message key not found: " + key);
             }
@@ -82,7 +82,7 @@ public class Constants {
             return String.format("%s (%s)", key, Joiner.on((String)",").join(names));
         }
         try {
-            String result = I18n.func_135052_a((String)key, (Object[])names);
+            String result = I18n.format((String)key, (Object[])names);
             if (result.equals(key)) {
                 Journeymap.getLogger().warn("Message key not found: " + key);
             }
@@ -102,8 +102,8 @@ public class Constants {
     public static List<ResourcePackRepository.Entry> getResourcePacks() {
         ArrayList<ResourcePackRepository.Entry> entries = new ArrayList<ResourcePackRepository.Entry>();
         try {
-            ResourcePackRepository resourcepackrepository = FMLClientHandler.instance().getClient().func_110438_M();
-            entries.addAll(resourcepackrepository.func_110613_c());
+            ResourcePackRepository resourcepackrepository = FMLClientHandler.instance().getClient().getResourcePackRepository();
+            entries.addAll(resourcepackrepository.getRepositoryEntries());
         }
         catch (Throwable t) {
             Journeymap.getLogger().error(String.format("Can't get resource pack names: %s", LogFormatter.toString(t)));

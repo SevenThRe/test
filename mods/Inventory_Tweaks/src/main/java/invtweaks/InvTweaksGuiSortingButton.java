@@ -29,31 +29,31 @@ extends InvTweaksGuiIconButton {
     }
 
     @Override
-    public void func_191745_a(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
-        super.func_191745_a(mc, mouseX, mouseY, partialTicks);
+    public void drawButton(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
+        super.drawButton(mc, mouseX, mouseY, partialTicks);
         int textColor = this.getTextColor(mouseX, mouseY);
-        switch (this.field_146126_j) {
+        switch (this.displayString) {
             case "h": {
-                InvTweaksGuiSortingButton.func_73734_a((int)(this.field_146128_h + 3), (int)(this.field_146129_i + 3), (int)(this.field_146128_h + this.field_146120_f - 3), (int)(this.field_146129_i + 4), (int)textColor);
-                InvTweaksGuiSortingButton.func_73734_a((int)(this.field_146128_h + 3), (int)(this.field_146129_i + 6), (int)(this.field_146128_h + this.field_146120_f - 3), (int)(this.field_146129_i + 7), (int)textColor);
+                InvTweaksGuiSortingButton.drawRect((int)(this.x + 3), (int)(this.y + 3), (int)(this.x + this.width - 3), (int)(this.y + 4), (int)textColor);
+                InvTweaksGuiSortingButton.drawRect((int)(this.x + 3), (int)(this.y + 6), (int)(this.x + this.width - 3), (int)(this.y + 7), (int)textColor);
                 break;
             }
             case "v": {
-                InvTweaksGuiSortingButton.func_73734_a((int)(this.field_146128_h + 3), (int)(this.field_146129_i + 3), (int)(this.field_146128_h + 4), (int)(this.field_146129_i + this.field_146121_g - 3), (int)textColor);
-                InvTweaksGuiSortingButton.func_73734_a((int)(this.field_146128_h + 6), (int)(this.field_146129_i + 3), (int)(this.field_146128_h + 7), (int)(this.field_146129_i + this.field_146121_g - 3), (int)textColor);
+                InvTweaksGuiSortingButton.drawRect((int)(this.x + 3), (int)(this.y + 3), (int)(this.x + 4), (int)(this.y + this.height - 3), (int)textColor);
+                InvTweaksGuiSortingButton.drawRect((int)(this.x + 6), (int)(this.y + 3), (int)(this.x + 7), (int)(this.y + this.height - 3), (int)textColor);
                 break;
             }
             default: {
-                InvTweaksGuiSortingButton.func_73734_a((int)(this.field_146128_h + 3), (int)(this.field_146129_i + 3), (int)(this.field_146128_h + this.field_146120_f - 3), (int)(this.field_146129_i + 4), (int)textColor);
-                InvTweaksGuiSortingButton.func_73734_a((int)(this.field_146128_h + 5), (int)(this.field_146129_i + 4), (int)(this.field_146128_h + 6), (int)(this.field_146129_i + 5), (int)textColor);
-                InvTweaksGuiSortingButton.func_73734_a((int)(this.field_146128_h + 4), (int)(this.field_146129_i + 5), (int)(this.field_146128_h + 5), (int)(this.field_146129_i + 6), (int)textColor);
-                InvTweaksGuiSortingButton.func_73734_a((int)(this.field_146128_h + 3), (int)(this.field_146129_i + 6), (int)(this.field_146128_h + this.field_146120_f - 3), (int)(this.field_146129_i + 7), (int)textColor);
+                InvTweaksGuiSortingButton.drawRect((int)(this.x + 3), (int)(this.y + 3), (int)(this.x + this.width - 3), (int)(this.y + 4), (int)textColor);
+                InvTweaksGuiSortingButton.drawRect((int)(this.x + 5), (int)(this.y + 4), (int)(this.x + 6), (int)(this.y + 5), (int)textColor);
+                InvTweaksGuiSortingButton.drawRect((int)(this.x + 4), (int)(this.y + 5), (int)(this.x + 5), (int)(this.y + 6), (int)textColor);
+                InvTweaksGuiSortingButton.drawRect((int)(this.x + 3), (int)(this.y + 6), (int)(this.x + this.width - 3), (int)(this.y + 7), (int)textColor);
             }
         }
     }
 
-    public boolean func_146116_c(Minecraft minecraft, int i, int j) {
-        if (super.func_146116_c(minecraft, i, j)) {
+    public boolean mousePressed(Minecraft minecraft, int i, int j) {
+        if (super.mousePressed(minecraft, i, j)) {
             try {
                 new InvTweaksHandlerSorting(minecraft, this.cfgManager.getConfig(), this.section, this.algorithm, this.rowSize).sort();
             }

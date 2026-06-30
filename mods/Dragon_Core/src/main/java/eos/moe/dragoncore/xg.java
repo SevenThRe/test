@@ -74,8 +74,8 @@ extends jj {
             Object a13;
             a4.ALLATORIxDEMO = a9;
             try {
-                a13 = Minecraft.func_71410_x().func_110442_L().func_110536_a(new ResourceLocation("dragoncore", a9));
-                a12 = TextureUtil.func_177053_a((InputStream)a13.func_110527_b());
+                a13 = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation("dragoncore", a9));
+                a12 = TextureUtil.readBufferedImage((InputStream)a13.getInputStream());
             }
             catch (IOException a14) {
                 a12 = new BufferedImage(a10, a11, 3);

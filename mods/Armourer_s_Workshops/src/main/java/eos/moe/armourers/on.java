@@ -66,7 +66,7 @@ public class on {
         on3.t = false;
         on2.a = false;
         on2.m = new ItemStack[4];
-        Arrays.fill(a2.m, ItemStack.field_190927_a);
+        Arrays.fill(a2.m, ItemStack.EMPTY);
     }
 
     public void r(yl a2) {

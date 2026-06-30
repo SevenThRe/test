@@ -41,28 +41,28 @@ extends AbstractTexture {
     private int iIiIIiIiiI = -1;
     private long iiIIIiIiII;
     private List<Tuple<Integer, Integer>> IIiiIiiIII = new ArrayList<Tuple<Integer, Integer>>();
-    private static Minecraft iIIiIIiIii = Minecraft.func_71410_x();
+    private static Minecraft iIIiIIiIii = Minecraft.getMinecraft();
     private int iIIIIiiIII;
     private String IIiIiIIIiI;
     private int IIiiiiiIIi;
 
-    public int func_110552_b() {
+    public int getGlTextureId() {
         iiiiiiiiii_11 IIiiiiiIIi;
         if (IIiiiiiIIi.iiIIIiIiII != 0L) {
             if (IIiiiiiIIi.IIiiIiiIII.size() == 1) {
-                return (Integer)IIiiiiiIIi.IIiiIiiIII.get(0).func_76341_a();
+                return (Integer)IIiiiiiIIi.IIiiIiiIII.get(0).getFirst();
             }
             long IIiiiiiIIi2 = System.currentTimeMillis() - IIiiiiiIIi.iiIIIiIiII;
             int IIiiiiiIIi3 = 0;
             IIiiiiiIIi2 %= (long)IIiiiiiIIi.IIIiiiIiii();
             int IIiiiiiIIi4 = 0;
             while (IIiiiiiIIi4 < IIiiiiiIIi.IIiiIiiIII.size() && IIiiiiiIIi2 > 0L) {
-                IIiiiiiIIi2 -= (long)((Integer)IIiiiiiIIi.IIiiIiiIII.get(IIiiiiiIIi4).func_76340_b()).intValue();
+                IIiiiiiIIi2 -= (long)((Integer)IIiiiiiIIi.IIiiIiiIII.get(IIiiiiiIIi4).getSecond()).intValue();
                 IIiiiiiIIi3 = IIiiiiiIIi4++;
             }
-            return (Integer)IIiiiiiIIi.IIiiIiiIII.get(IIiiiiiIIi3).func_76341_a();
+            return (Integer)IIiiiiiIIi.IIiiIiiIII.get(IIiiiiiIIi3).getFirst();
         }
-        return super.func_110552_b();
+        return super.getGlTextureId();
     }
 
     private /* synthetic */ int IIIiiiIiii() {
@@ -72,7 +72,7 @@ extends AbstractTexture {
         }
         IIiiiiiIIi.iIiIIiIiiI = 0;
         for (Tuple<Integer, Integer> IIiiiiiIIi2 : IIiiiiiIIi.IIiiIiiIII) {
-            IIiiiiiIIi.iIiIIiIiiI += ((Integer)IIiiiiiIIi2.func_76340_b()).intValue();
+            IIiiiiiIIi.iIiIIiIiiI += ((Integer)IIiiiiiIIi2.getSecond()).intValue();
         }
         return IIiiiiiIIi.iIiIIiIiiI;
     }
@@ -82,15 +82,15 @@ extends AbstractTexture {
         IIiiiiiIIi2.IIiIiIIIiI = IIiiiiiIIi;
     }
 
-    public void func_147631_c() {
+    public void deleteGlTexture() {
         iiiiiiiiii_11 IIiiiiiIIi;
         if (IIiiiiiIIi.IIiiIiiIII.size() > 0) {
             for (Tuple<Integer, Integer> IIiiiiiIIi2 : IIiiiiiIIi.IIiiIiiIII) {
-                TextureUtil.func_147942_a((int)((Integer)IIiiiiiIIi2.func_76341_a()));
+                TextureUtil.deleteTexture((int)((Integer)IIiiiiiIIi2.getFirst()));
             }
             IIiiiiiIIi.IIiiIiiIII.clear();
         }
-        super.func_147631_c();
+        super.deleteGlTexture();
     }
 
     public static Dimension IIIiiiIiii(String IIiiiiiIIi) {
@@ -119,17 +119,17 @@ extends AbstractTexture {
 
     public static ITextureObject IIIiiiIiii(String IIiiiiiIIi) {
         ResourceLocation IIiiiiiIIi2 = new ResourceLocation("dragontracker", IIiiiiiIIi);
-        Object IIiiiiiIIi3 = iIIiIIiIii.func_110434_K().func_110581_b(IIiiiiiIIi2);
+        Object IIiiiiiIIi3 = iIIiIIiIii.getTextureManager().getTexture(IIiiiiiIIi2);
         if (IIiiiiiIIi3 == null) {
             IIiiiiiIIi3 = new iiiiiiiiii_11(IIiiiiiIIi);
-            iIIiIIiIii.func_110434_K().func_110579_a(IIiiiiiIIi2, IIiiiiiIIi3);
+            iIIiIIiIii.getTextureManager().loadTexture(IIiiiiiIIi2, IIiiiiiIIi3);
         }
         return IIiiiiiIIi3;
     }
 
     public static void IIIiiiIiii(String IIiiiiiIIi) {
         ITextureObject IIiiiiiIIi2 = iiiiiiiiii_11.IIIiiiIiii(IIiiiiiIIi);
-        GlStateManager.func_179144_i((int)IIiiiiiIIi2.func_110552_b());
+        GlStateManager.bindTexture((int)IIiiiiiIIi2.getGlTextureId());
     }
 
     /*
@@ -137,19 +137,19 @@ extends AbstractTexture {
      * Enabled force condition propagation
      * Lifted jumps to return sites
      */
-    public void func_110551_a(IResourceManager IIiiiiiIIi) throws IOException {
+    public void loadTexture(IResourceManager IIiiiiiIIi) throws IOException {
         InputStream IIiiiiiIIi2;
         block8: {
             iiiiiiiiii_11 IIiiiiiIIi3;
             if (IIiiiiiIIi3.IIiIiIIIiI.endsWith(".gif")) {
                 try {
                     List<Tuple<Integer, BufferedImage>> IIiiiiiIIi4 = IIiiiiiIIi3.IIIiiiIiii(IIiiiiiIIi3.IIiIiIIIiI);
-                    IIiiiiiIIi3.iIIIIiiIII = ((BufferedImage)IIiiiiiIIi4.get(0).func_76340_b()).getWidth();
-                    IIiiiiiIIi3.IIiiiiiIIi = ((BufferedImage)IIiiiiiIIi4.get(0).func_76340_b()).getHeight();
+                    IIiiiiiIIi3.iIIIIiiIII = ((BufferedImage)IIiiiiiIIi4.get(0).getSecond()).getWidth();
+                    IIiiiiiIIi3.IIiiiiiIIi = ((BufferedImage)IIiiiiiIIi4.get(0).getSecond()).getHeight();
                     for (Tuple<Integer, BufferedImage> IIiiiiiIIi5 : IIiiiiiIIi4) {
-                        int IIiiiiiIIi6 = TextureUtil.func_110996_a();
-                        TextureUtil.func_110989_a((int)IIiiiiiIIi6, (BufferedImage)((BufferedImage)IIiiiiiIIi5.func_76340_b()), (boolean)false, (boolean)false);
-                        IIiiiiiIIi3.IIiiIiiIII.add((Tuple<Integer, Integer>)new Tuple((Object)IIiiiiiIIi6, IIiiiiiIIi5.func_76341_a()));
+                        int IIiiiiiIIi6 = TextureUtil.glGenTextures();
+                        TextureUtil.uploadTextureImageAllocate((int)IIiiiiiIIi6, (BufferedImage)((BufferedImage)IIiiiiiIIi5.getSecond()), (boolean)false, (boolean)false);
+                        IIiiiiiIIi3.IIiiIiiIII.add((Tuple<Integer, Integer>)new Tuple((Object)IIiiiiiIIi6, IIiiiiiIIi5.getFirst()));
                     }
                     IIiiiiiIIi3.iiIIIiIiII = System.currentTimeMillis();
                     return;
@@ -163,10 +163,10 @@ extends AbstractTexture {
             try {
                 IIiiiiiIIi2 = ((Object)((Object)IIiiiiiIIi3)).getClass().getClassLoader().getResourceAsStream(IIiiiiiIIi3.IIiIiIIIiI);
                 if (IIiiiiiIIi2 == null) break block8;
-                BufferedImage IIiiiiiIIi8 = TextureUtil.func_177053_a((InputStream)IIiiiiiIIi2);
+                BufferedImage IIiiiiiIIi8 = TextureUtil.readBufferedImage((InputStream)IIiiiiiIIi2);
                 IIiiiiiIIi3.iIIIIiiIII = IIiiiiiIIi8.getWidth();
                 IIiiiiiIIi3.IIiiiiiIIi = IIiiiiiIIi8.getHeight();
-                TextureUtil.func_110989_a((int)IIiiiiiIIi3.func_110552_b(), (BufferedImage)IIiiiiiIIi8, (boolean)false, (boolean)false);
+                TextureUtil.uploadTextureImageAllocate((int)IIiiiiiIIi3.getGlTextureId(), (BufferedImage)IIiiiiiIIi8, (boolean)false, (boolean)false);
             }
             catch (Exception IIiiiiiIIi9) {
                 try {

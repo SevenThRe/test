@@ -95,13 +95,13 @@ implements CommonProxy {
         String[] ops;
         if (Side.CLIENT.equals((Object)FMLCommonHandler.instance().getSide())) {
             MinecraftServer mcServer = FMLCommonHandler.instance().getMinecraftServerInstance();
-            boolean creative = ((EntityPlayerMP)player).field_71075_bZ.field_75098_d;
-            boolean cheatMode = mcServer.func_184103_al().func_152596_g(new GameProfile(player.func_110124_au(), player.func_70005_c_()));
+            boolean creative = ((EntityPlayerMP)player).capabilities.isCreativeMode;
+            boolean cheatMode = mcServer.getPlayerList().canSendCommands(new GameProfile(player.getUniqueID(), player.getName()));
             return creative || cheatMode;
         }
-        for (String opName : ops = FMLServerHandler.instance().getServer().func_184103_al().func_152606_n()) {
-            UUID opId = FMLServerHandler.instance().getServer().func_184103_al().func_152603_m().func_152700_a(opName).getId();
-            if (!player.getDisplayNameString().equalsIgnoreCase(opName) && !player.func_110124_au().equals(opId) && !Constants.debugOverride((Entity)player)) continue;
+        for (String opName : ops = FMLServerHandler.instance().getServer().getPlayerList().getOppedPlayerNames()) {
+            UUID opId = FMLServerHandler.instance().getServer().getPlayerList().getOppedPlayers().getGameProfileFromName(opName).getId();
+            if (!player.getDisplayNameString().equalsIgnoreCase(opName) && !player.getUniqueID().equals(opId) && !Constants.debugOverride((Entity)player)) continue;
             return true;
         }
         return false;

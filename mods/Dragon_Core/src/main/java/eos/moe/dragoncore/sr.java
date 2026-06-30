@@ -42,15 +42,15 @@ public class sr {
     public void ALLATORIxDEMO() {
         sr a2;
         if (a2.o != null) {
-            GlStateManager.func_179114_b((float)((float)a2.o.field_72450_a), (float)1.0f, (float)0.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)((float)a2.o.field_72448_b), (float)0.0f, (float)1.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)((float)a2.o.field_72449_c), (float)0.0f, (float)0.0f, (float)1.0f);
+            GlStateManager.rotate((float)((float)a2.o.x), (float)1.0f, (float)0.0f, (float)0.0f);
+            GlStateManager.rotate((float)((float)a2.o.y), (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)((float)a2.o.z), (float)0.0f, (float)0.0f, (float)1.0f);
         }
         if (a2.y != null) {
-            GlStateManager.func_179137_b((double)a2.y.field_72450_a, (double)a2.y.field_72448_b, (double)a2.y.field_72449_c);
+            GlStateManager.translate((double)a2.y.x, (double)a2.y.y, (double)a2.y.z);
         }
         if (a2.k != null) {
-            GlStateManager.func_179139_a((double)a2.k.field_72450_a, (double)a2.k.field_72448_b, (double)a2.k.field_72449_c);
+            GlStateManager.scale((double)a2.k.x, (double)a2.k.y, (double)a2.k.z);
         }
     }
 

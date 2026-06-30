@@ -20,13 +20,13 @@ public class UIScissorHelper {
     private int height = 0;
 
     public void setUIBounds(int uiX, int uiY, int uiWidth, int uiHeight) {
-        ScaledResolution scaledResolution = new ScaledResolution(Minecraft.func_71410_x());
-        int scaledWidth = scaledResolution.func_78326_a();
-        int scaledHeight = scaledResolution.func_78328_b();
-        this.x = uiX * Minecraft.func_71410_x().field_71443_c / scaledWidth;
-        this.y = (scaledHeight - uiY - uiHeight) * Minecraft.func_71410_x().field_71440_d / scaledHeight;
-        this.width = uiWidth * Minecraft.func_71410_x().field_71443_c / scaledWidth;
-        this.height = uiHeight * Minecraft.func_71410_x().field_71440_d / scaledHeight;
+        ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
+        int scaledWidth = scaledResolution.getScaledWidth();
+        int scaledHeight = scaledResolution.getScaledHeight();
+        this.x = uiX * Minecraft.getMinecraft().displayWidth / scaledWidth;
+        this.y = (scaledHeight - uiY - uiHeight) * Minecraft.getMinecraft().displayHeight / scaledHeight;
+        this.width = uiWidth * Minecraft.getMinecraft().displayWidth / scaledWidth;
+        this.height = uiHeight * Minecraft.getMinecraft().displayHeight / scaledHeight;
     }
 
     public void enable() {

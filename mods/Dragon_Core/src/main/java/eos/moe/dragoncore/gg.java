@@ -40,7 +40,7 @@ public final class gg {
     }
 
     public gg(Vector3d a2) {
-        a3((float)a2.field_181059_a, (float)a2.field_181060_b, (float)a2.field_181061_c);
+        a3((float)a2.x, (float)a2.y, (float)a2.z);
         gg a3;
     }
 
@@ -98,9 +98,9 @@ public final class gg {
 
     public void ALLATORIxDEMO(float a2, float a3) {
         gg a4;
-        a4.y = MathHelper.func_76131_a((float)a4.y, (float)a2, (float)a3);
-        a4.k = MathHelper.func_76131_a((float)a4.k, (float)a2, (float)a3);
-        a4.ALLATORIxDEMO = MathHelper.func_76131_a((float)a4.ALLATORIxDEMO, (float)a2, (float)a3);
+        a4.y = MathHelper.clamp((float)a4.y, (float)a2, (float)a3);
+        a4.k = MathHelper.clamp((float)a4.k, (float)a2, (float)a3);
+        a4.ALLATORIxDEMO = MathHelper.clamp((float)a4.ALLATORIxDEMO, (float)a2, (float)a3);
     }
 
     public void c(float a2, float a3, float a4) {

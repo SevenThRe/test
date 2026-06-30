@@ -157,12 +157,12 @@ extends InvTweaksObfuscation {
         ShortcutConfig shortcutConfig = new ShortcutConfig();
         this.container = InvTweaks.getCurrentContainerManager();
         Slot slot = InvTweaksObfuscation.getSlotAtMousePosition((GuiContainer)this.getCurrentScreen());
-        if (shortcut != null && slot != null && (slot.func_75216_d() || !this.getHeldStack().func_190926_b())) {
+        if (shortcut != null && slot != null && (slot.getHasStack() || !this.getHeldStack().isEmpty())) {
             int slotNumber = InvTweaksHandlerShortcuts.getSlotNumber(slot);
             shortcutConfig.fromSection = this.container.getSlotSection(slotNumber);
             shortcutConfig.fromIndex = this.container.getSlotIndex(slotNumber);
-            ItemStack itemStack = shortcutConfig.fromStack = slot.func_75216_d() ? slot.func_75211_c().func_77946_l() : this.getHeldStack().func_77946_l();
-            if (!slot.func_75214_a(slot.func_75211_c()) && shortcut.getScope() == ShortcutSpecification.Scope.ONE_ITEM) {
+            ItemStack itemStack = shortcutConfig.fromStack = slot.getHasStack() ? slot.getStack().copy() : this.getHeldStack().copy();
+            if (!slot.isItemValid(slot.getStack()) && shortcut.getScope() == ShortcutSpecification.Scope.ONE_ITEM) {
                 shortcut.setScope(ShortcutSpecification.Scope.ONE_STACK);
             }
             if (shortcutConfig.fromSection != null && shortcutConfig.fromIndex != -1) {
@@ -185,8 +185,8 @@ extends InvTweaksObfuscation {
                         } else if (this.container.hasSection(ContainerSection.FURNACE_IN)) {
                             orderedSections.add(ContainerSection.FURNACE_IN);
                         } else if (this.container.hasSection(ContainerSection.BREWING_INGREDIENT)) {
-                            if (!shortcutConfig.fromStack.func_190926_b()) {
-                                if (shortcutConfig.fromStack.func_77973_b() == Item.field_150901_e.func_82594_a((Object)new ResourceLocation("potion"))) {
+                            if (!shortcutConfig.fromStack.isEmpty()) {
+                                if (shortcutConfig.fromStack.getItem() == Item.REGISTRY.getObject((Object)new ResourceLocation("potion"))) {
                                     orderedSections.add(ContainerSection.BREWING_BOTTLES);
                                 } else {
                                     orderedSections.add(ContainerSection.BREWING_INGREDIENT);
@@ -266,12 +266,12 @@ extends InvTweaksObfuscation {
      * Lifted jumps to return sites
      */
     private void runShortcut(@NotNull ShortcutConfig shortcut) throws TimeoutException {
-        if (!this.getHeldStack().func_190926_b()) {
+        if (!this.getHeldStack().isEmpty()) {
             Slot slot = InvTweaksObfuscation.getSlotAtMousePosition((GuiContainer)this.getCurrentScreen());
             if (slot == null) return;
             int slotNumber = InvTweaksHandlerShortcuts.getSlotNumber(slot);
             this.container.putHoldItemDown(this.container.getSlotSection(slotNumber), this.container.getSlotIndex(slotNumber));
-            if (!this.getHeldStack().func_190926_b()) {
+            if (!this.getHeldStack().isEmpty()) {
                 return;
             }
         }
@@ -299,7 +299,7 @@ extends InvTweaksObfuscation {
                                 break;
                             }
                             case EVERYTHING: {
-                                this.dropAll(shortcut, ItemStack.field_190927_a);
+                                this.dropAll(shortcut, ItemStack.EMPTY);
                             }
                         }
                     }
@@ -307,12 +307,12 @@ extends InvTweaksObfuscation {
                         switch (shortcut.scope) {
                             case ONE_STACK: {
                                 Slot slot = this.container.getSlot(shortcut.fromSection, shortcut.fromIndex);
-                                if (!slot.func_75216_d()) return;
-                                int toIndex = this.getNextTargetIndex(shortcut, slot.func_75211_c());
+                                if (!slot.getHasStack()) return;
+                                int toIndex = this.getNextTargetIndex(shortcut, slot.getStack());
                                 if (shortcut.fromSection != ContainerSection.CRAFTING_OUT && shortcut.toSection != ContainerSection.ENCHANTMENT) {
-                                    while (slot.func_75216_d() && toIndex != -1) {
+                                    while (slot.getHasStack() && toIndex != -1) {
                                         boolean success = this.container.move(shortcut.fromSection, shortcut.fromIndex, shortcut.toSection, toIndex);
-                                        int newIndex = this.getNextTargetIndex(shortcut, slot.func_75211_c());
+                                        int newIndex = this.getNextTargetIndex(shortcut, slot.getStack());
                                         toIndex = success || shortcut.action == ShortcutSpecification.Action.DROP || newIndex != toIndex ? newIndex : -1;
                                     }
                                 } else {
@@ -322,8 +322,8 @@ extends InvTweaksObfuscation {
                             }
                             case ONE_ITEM: {
                                 Slot slot = this.container.getSlot(shortcut.fromSection, shortcut.fromIndex);
-                                if (!slot.func_75216_d()) return;
-                                int toIndex = this.getNextTargetIndex(shortcut, slot.func_75211_c());
+                                if (!slot.getHasStack()) return;
+                                int toIndex = this.getNextTargetIndex(shortcut, slot.getStack());
                                 this.container.moveSome(shortcut.fromSection, shortcut.fromIndex, shortcut.toSection, toIndex, 1);
                                 break block29;
                             }
@@ -335,10 +335,10 @@ extends InvTweaksObfuscation {
                                 break block29;
                             }
                             case EVERYTHING: {
-                                this.moveAll(shortcut, ItemStack.field_190927_a);
+                                this.moveAll(shortcut, ItemStack.EMPTY);
                                 if (shortcut.fromSection != ContainerSection.INVENTORY_HOTBAR || shortcut.toSection != ContainerSection.CHEST) return;
                                 shortcut.fromSection = ContainerSection.INVENTORY_HOTBAR;
-                                this.moveAll(shortcut, ItemStack.field_190927_a);
+                                this.moveAll(shortcut, ItemStack.EMPTY);
                             }
                         }
                     }
@@ -349,9 +349,9 @@ extends InvTweaksObfuscation {
     }
 
     private void dropAll(@NotNull ShortcutConfig shortcut, @NotNull ItemStack stackToMatch) {
-        this.container.getSlots(shortcut.fromSection).stream().filter(slot -> slot.func_75216_d() && (stackToMatch.func_190926_b() || InvTweaksHandlerShortcuts.areSameItemType(stackToMatch, slot.func_75211_c()))).forEach(slot -> {
+        this.container.getSlots(shortcut.fromSection).stream().filter(slot -> slot.getHasStack() && (stackToMatch.isEmpty() || InvTweaksHandlerShortcuts.areSameItemType(stackToMatch, slot.getStack()))).forEach(slot -> {
             int fromIndex = this.container.getSlotIndex(InvTweaksHandlerShortcuts.getSlotNumber(slot));
-            while (slot.func_75216_d()) {
+            while (slot.getHasStack()) {
                 this.container.drop(shortcut.fromSection, fromIndex);
             }
         });
@@ -360,13 +360,13 @@ extends InvTweaksObfuscation {
     private void moveAll(@NotNull ShortcutConfig shortcut, @NotNull ItemStack stackToMatch) {
         int toIndex = Integer.MIN_VALUE;
         for (Slot slot : this.container.getSlots(shortcut.fromSection)) {
-            if (slot.func_75216_d() && (stackToMatch.func_190926_b() || InvTweaksHandlerShortcuts.areSameItemType(stackToMatch, slot.func_75211_c()))) {
+            if (slot.getHasStack() && (stackToMatch.isEmpty() || InvTweaksHandlerShortcuts.areSameItemType(stackToMatch, slot.getStack()))) {
                 int fromIndex = this.container.getSlotIndex(InvTweaksHandlerShortcuts.getSlotNumber(slot));
-                toIndex = this.getNextTargetIndex(shortcut, slot.func_75211_c());
-                while (slot.func_75216_d() && toIndex != -1 && (shortcut.fromSection != shortcut.toSection || fromIndex != toIndex)) {
+                toIndex = this.getNextTargetIndex(shortcut, slot.getStack());
+                while (slot.getHasStack() && toIndex != -1 && (shortcut.fromSection != shortcut.toSection || fromIndex != toIndex)) {
                     boolean success = this.container.move(shortcut.fromSection, fromIndex, shortcut.toSection, toIndex);
-                    int newIndex = this.getNextTargetIndex(shortcut, slot.func_75211_c());
-                    if (success && newIndex == toIndex && slot.func_75216_d()) {
+                    int newIndex = this.getNextTargetIndex(shortcut, slot.getStack());
+                    if (success && newIndex == toIndex && slot.getHasStack()) {
                         throw new RuntimeException("Inventory in invalid sate after move");
                     }
                     if (success || newIndex != toIndex || shortcut.action == ShortcutSpecification.Action.DROP) {
@@ -390,7 +390,7 @@ extends InvTweaksObfuscation {
             int i = 0;
             for (Slot slot : this.container.getSlots(shortcut.toSection)) {
                 ItemStack stack;
-                if (slot.func_75216_d() && InvTweaksObfuscation.areItemsStackable(current, stack = slot.func_75211_c()) && stack.func_190916_E() < stack.func_77976_d()) {
+                if (slot.getHasStack() && InvTweaksObfuscation.areItemsStackable(current, stack = slot.getStack()) && stack.getCount() < stack.getMaxStackSize()) {
                     result = i;
                     break;
                 }
@@ -428,7 +428,7 @@ extends InvTweaksObfuscation {
         public ContainerSection fromSection = null;
         public int fromIndex = -1;
         @NotNull
-        public ItemStack fromStack = ItemStack.field_190927_a;
+        public ItemStack fromStack = ItemStack.EMPTY;
         @Nullable
         public ContainerSection toSection = null;
         public int toIndex = -1;

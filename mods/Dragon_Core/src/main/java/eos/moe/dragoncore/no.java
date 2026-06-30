@@ -69,7 +69,7 @@ public class no {
     }
 
     public static void ALLATORIxDEMO(int a2, int a3, int a4, String a5) {
-        TileEntity a6 = Minecraft.func_71410_x().field_71441_e.func_175625_s(new BlockPos(a2, a3, a4));
+        TileEntity a6 = Minecraft.getMinecraft().world.getTileEntity(new BlockPos(a2, a3, a4));
         if (a6 instanceof TileEntitySkull) {
             TileEntitySkull a7 = (TileEntitySkull)a6;
             String a8 = vu.c((TileEntity)a7);
@@ -84,13 +84,13 @@ public class no {
             }
         } else if (a6 instanceof TileEntitySign) {
             TileEntitySign a12 = (TileEntitySign)a6;
-            if (a12.field_145915_a.length <= 1) {
+            if (a12.signText.length <= 1) {
                 return;
             }
-            if (a12.field_145915_a[1] == null) {
+            if (a12.signText[1] == null) {
                 return;
             }
-            String a13 = a12.field_145915_a[1].func_150254_d();
+            String a13 = a12.signText[1].getFormattedText();
             SignData a14 = SignRenderer.getSignData(a13);
             if (a14 == null) {
                 return;

@@ -85,15 +85,15 @@ public class ClientEventHandler {
     @SubscribeEvent
     public void clientTickEvent(TickEvent.ClientTickEvent event) {
         if (event.phase.equals((Object)TickEvent.Phase.START)) {
-            Minecraft minecraft = Minecraft.func_71410_x();
-            this.getMouseOver(Minecraft.func_71410_x().func_184121_ak());
-            if (minecraft.field_71439_g != null) {
+            Minecraft minecraft = Minecraft.getMinecraft();
+            this.getMouseOver(Minecraft.getMinecraft().getRenderPartialTicks());
+            if (minecraft.player != null) {
                 Vec3d direction;
-                Vec3d vec3d = direction = this.objectMouseOver != null ? this.objectMouseOver.field_72307_f : InjectionDelegation.shoulderSurfingLook(40.0).getValue();
+                Vec3d vec3d = direction = this.objectMouseOver != null ? this.objectMouseOver.hitVec : InjectionDelegation.shoulderSurfingLook(40.0).getValue();
                 if (this.pointedEntityPos != null) {
-                    NetworkManager.sendDirection(direction.field_72450_a, direction.field_72448_b, direction.field_72449_c, true, this.pointedEntityPos.field_72450_a, this.pointedEntityPos.field_72448_b, this.pointedEntityPos.field_72449_c);
+                    NetworkManager.sendDirection(direction.x, direction.y, direction.z, true, this.pointedEntityPos.x, this.pointedEntityPos.y, this.pointedEntityPos.z);
                 } else {
-                    NetworkManager.sendDirection(direction.field_72450_a, direction.field_72448_b, direction.field_72449_c, false, 0.0, 0.0, 0.0);
+                    NetworkManager.sendDirection(direction.x, direction.y, direction.z, false, 0.0, 0.0, 0.0);
                 }
             }
             if (!Perspective.FIRST_PERSON.equals((Object)Perspective.current())) {
@@ -107,52 +107,52 @@ public class ClientEventHandler {
     }
 
     public void getMouseOver(float partialTicks) {
-        Minecraft mc = Minecraft.func_71410_x();
-        final Entity entity = mc.func_175606_aa();
-        if (entity != null && mc.field_71441_e != null) {
+        Minecraft mc = Minecraft.getMinecraft();
+        final Entity entity = mc.getRenderViewEntity();
+        if (entity != null && mc.world != null) {
             double d0 = 40.0;
             this.pointedEntityPos = null;
             this.objectMouseOver = InjectionDelegation.rayTrace1(entity, d0, partialTicks);
-            Vec3d vec3d = entity.func_174824_e(partialTicks);
+            Vec3d vec3d = entity.getPositionEyes(partialTicks);
             double d1 = d0;
             if (this.objectMouseOver != null) {
-                d1 = this.objectMouseOver.field_72307_f.func_72438_d(vec3d);
+                d1 = this.objectMouseOver.hitVec.distanceTo(vec3d);
             }
-            Vec3d vec3d1 = entity.func_70676_i(1.0f);
+            Vec3d vec3d1 = entity.getLook(1.0f);
             Map.Entry<Vec3d, Vec3d> entry = InjectionDelegation.shoulderSurfingLook(d0);
             Entity pointedEntity = null;
             Vec3d pointedEntityPos = null;
-            AxisAlignedBB grow = entity.func_174813_aQ().func_72321_a(vec3d1.field_72450_a * d0, vec3d1.field_72448_b * d0, vec3d1.field_72449_c * d0).func_72314_b(1.0, 1.0, 1.0);
-            List list = mc.field_71441_e.func_175674_a(entity, grow, Predicates.and((Predicate)EntitySelectors.field_180132_d, (Predicate)new Predicate<Entity>(){
+            AxisAlignedBB grow = entity.getEntityBoundingBox().expand(vec3d1.x * d0, vec3d1.y * d0, vec3d1.z * d0).grow(1.0, 1.0, 1.0);
+            List list = mc.world.getEntitiesInAABBexcluding(entity, grow, Predicates.and((Predicate)EntitySelectors.NOT_SPECTATING, (Predicate)new Predicate<Entity>(){
 
                 public boolean apply(Entity p_apply_1_) {
-                    if (p_apply_1_ == null || !p_apply_1_.func_70067_L() || p_apply_1_ instanceof EntityArmorStand || p_apply_1_ instanceof EntityVex) {
+                    if (p_apply_1_ == null || !p_apply_1_.canBeCollidedWith() || p_apply_1_ instanceof EntityArmorStand || p_apply_1_ instanceof EntityVex) {
                         return false;
                     }
-                    return ClientEventHandler.isInFront(entity, p_apply_1_.func_174791_d());
+                    return ClientEventHandler.isInFront(entity, p_apply_1_.getPositionVector());
                 }
             }));
             double d2 = d1;
             for (Entity entity1 : list) {
                 double d3;
-                AxisAlignedBB axisalignedbb = entity1.func_174813_aQ().func_186662_g((double)entity1.func_70111_Y());
-                RayTraceResult raytraceresult = axisalignedbb.func_72327_a(entry.getKey(), entry.getValue());
-                if (axisalignedbb.func_72318_a(vec3d)) {
+                AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow((double)entity1.getCollisionBorderSize());
+                RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(entry.getKey(), entry.getValue());
+                if (axisalignedbb.contains(vec3d)) {
                     if (!(d2 >= 0.0)) continue;
                     pointedEntity = entity1;
-                    pointedEntityPos = raytraceresult == null ? null : raytraceresult.field_72307_f;
+                    pointedEntityPos = raytraceresult == null ? null : raytraceresult.hitVec;
                     d2 = 0.0;
                     continue;
                 }
-                if (raytraceresult == null || !((d3 = vec3d.func_72438_d(raytraceresult.field_72307_f)) < d2) && d2 != 0.0) continue;
-                if (entity1.func_184208_bv() == entity.func_184208_bv() && !entity1.canRiderInteract()) {
+                if (raytraceresult == null || !((d3 = vec3d.distanceTo(raytraceresult.hitVec)) < d2) && d2 != 0.0) continue;
+                if (entity1.getLowestRidingEntity() == entity.getLowestRidingEntity() && !entity1.canRiderInteract()) {
                     if (d2 != 0.0) continue;
                     pointedEntity = entity1;
-                    pointedEntityPos = raytraceresult.field_72307_f;
+                    pointedEntityPos = raytraceresult.hitVec;
                     continue;
                 }
                 pointedEntity = entity1;
-                pointedEntityPos = raytraceresult.field_72307_f;
+                pointedEntityPos = raytraceresult.hitVec;
                 d2 = d3;
             }
             if (pointedEntity != null && pointedEntityPos != null) {
@@ -162,34 +162,34 @@ public class ClientEventHandler {
     }
 
     public static boolean isInFront11(Entity entity, Vec3d target) {
-        Vec3d dir = entity.func_70040_Z();
-        Vec3d distance = target.func_178788_d(entity.func_174791_d());
-        distance = new Vec3d(distance.field_72450_a, 0.0, distance.field_72449_c);
-        double dot = distance.func_72430_b(dir);
+        Vec3d dir = entity.getLookVec();
+        Vec3d distance = target.subtract(entity.getPositionVector());
+        distance = new Vec3d(distance.x, 0.0, distance.z);
+        double dot = distance.dotProduct(dir);
         double cosSq = 0.25;
-        double value = dot * dot / distance.func_189985_c();
-        Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString(value + " " + dot));
+        double value = dot * dot / distance.lengthSquared();
+        Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString(value + " " + dot));
         return dot > 0.0 && value >= cosSq;
     }
 
     public static boolean isInFront(Entity entity, Vec3d target) {
-        Vec3d dir = entity.func_70040_Z();
-        Vec3d distance = target.func_178788_d(entity.func_174791_d());
-        distance = new Vec3d(distance.field_72450_a, 0.0, distance.field_72449_c);
-        double dot = distance.func_72430_b(dir);
+        Vec3d dir = entity.getLookVec();
+        Vec3d distance = target.subtract(entity.getPositionVector());
+        distance = new Vec3d(distance.x, 0.0, distance.z);
+        double dot = distance.dotProduct(dir);
         double cosSq = 0.5;
-        double value = dot * dot / distance.func_189985_c();
+        double value = dot * dot / distance.lengthSquared();
         return dot > 0.0 && value >= cosSq;
     }
 
     public static boolean isInFront(Entity entity, Entity target, double arc) {
-        Vec3d dir = entity.func_70040_Z();
+        Vec3d dir = entity.getLookVec();
         double cos = Math.cos(Math.toRadians(arc));
-        Vec3d relative = target.func_174791_d().func_178788_d(entity.func_174791_d());
-        relative = new Vec3d(relative.field_72450_a, 0.0, relative.field_72449_c);
-        double dot = relative.func_72430_b(dir);
+        Vec3d relative = target.getPositionVector().subtract(entity.getPositionVector());
+        relative = new Vec3d(relative.x, 0.0, relative.z);
+        double dot = relative.dotProduct(dir);
         double cosSq = cos * cos;
-        double value = dot * dot / relative.func_189985_c();
+        double value = dot * dot / relative.lengthSquared();
         if (arc < 180.0 && dot > 0.0 && value >= cosSq) {
             return true;
         }
@@ -198,7 +198,7 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public void preRenderPlayerEvent(RenderPlayerEvent.Pre event) {
-        if (event.isCancelable() && event.getEntityPlayer().equals((Object)Minecraft.func_71410_x().field_71439_g) && Minecraft.func_71410_x().func_175598_ae().func_178627_a() && ShoulderState.getCameraDistance() < 1.6 && Config.CLIENT.keepCameraOutOfHead() && ShoulderState.doShoulderSurfing()) {
+        if (event.isCancelable() && event.getEntityPlayer().equals((Object)Minecraft.getMinecraft().player) && Minecraft.getMinecraft().getRenderManager().isRenderShadow() && ShoulderState.getCameraDistance() < 1.6 && Config.CLIENT.keepCameraOutOfHead() && ShoulderState.doShoulderSurfing()) {
             event.setCanceled(true);
         }
     }
@@ -207,41 +207,41 @@ public class ClientEventHandler {
     public void preRenderGameOverlayEvent(RenderGameOverlayEvent.Pre event) {
         if (event.getType().equals((Object)RenderGameOverlayEvent.ElementType.CROSSHAIRS)) {
             event.setCanceled(true);
-            Minecraft.func_71410_x().func_110434_K().func_110577_a(Gui.field_110324_m);
-            GlStateManager.func_179147_l();
+            Minecraft.getMinecraft().getTextureManager().bindTexture(Gui.ICONS);
+            GlStateManager.enableBlend();
             this.renderAttackIndicator(event.getPartialTicks(), event.getResolution());
         }
     }
 
     protected void renderAttackIndicator(float partialTicks, ScaledResolution p_184045_2_) {
-        Minecraft mc = Minecraft.func_71410_x();
-        GameSettings gamesettings = mc.field_71474_y;
-        if (gamesettings.field_74320_O == 0 || Perspective.current() == Perspective.SHOULDER_SURFING) {
-            if (mc.field_71442_b.func_78747_a() && mc.field_147125_j == null) {
-                RayTraceResult raytraceresult = mc.field_71476_x;
-                if (raytraceresult == null || raytraceresult.field_72313_a != RayTraceResult.Type.BLOCK) {
+        Minecraft mc = Minecraft.getMinecraft();
+        GameSettings gamesettings = mc.gameSettings;
+        if (gamesettings.thirdPersonView == 0 || Perspective.current() == Perspective.SHOULDER_SURFING) {
+            if (mc.playerController.isSpectator() && mc.pointedEntity == null) {
+                RayTraceResult raytraceresult = mc.objectMouseOver;
+                if (raytraceresult == null || raytraceresult.typeOfHit != RayTraceResult.Type.BLOCK) {
                     return;
                 }
-                BlockPos blockpos = raytraceresult.func_178782_a();
-                IBlockState state = mc.field_71441_e.func_180495_p(blockpos);
-                if (!state.func_177230_c().hasTileEntity(state) || !(mc.field_71441_e.func_175625_s(blockpos) instanceof IInventory)) {
+                BlockPos blockpos = raytraceresult.getBlockPos();
+                IBlockState state = mc.world.getBlockState(blockpos);
+                if (!state.getBlock().hasTileEntity(state) || !(mc.world.getTileEntity(blockpos) instanceof IInventory)) {
                     return;
                 }
             }
-            int l = p_184045_2_.func_78326_a();
-            int i1 = p_184045_2_.func_78328_b();
-            if (gamesettings.field_74330_P && !gamesettings.field_74319_N && !mc.field_71439_g.func_175140_cp() && !gamesettings.field_178879_v) {
-                GlStateManager.func_179094_E();
-                GlStateManager.func_179109_b((float)(l / 2), (float)(i1 / 2), (float)-90.0f);
-                Entity entity = mc.func_175606_aa();
-                GlStateManager.func_179114_b((float)(entity.field_70127_C + (entity.field_70125_A - entity.field_70127_C) * partialTicks), (float)-1.0f, (float)0.0f, (float)0.0f);
-                GlStateManager.func_179114_b((float)(entity.field_70126_B + (entity.field_70177_z - entity.field_70126_B) * partialTicks), (float)0.0f, (float)1.0f, (float)0.0f);
-                GlStateManager.func_179152_a((float)-1.0f, (float)-1.0f, (float)-1.0f);
-                OpenGlHelper.func_188785_m((int)10);
-                GlStateManager.func_179121_F();
+            int l = p_184045_2_.getScaledWidth();
+            int i1 = p_184045_2_.getScaledHeight();
+            if (gamesettings.showDebugInfo && !gamesettings.hideGUI && !mc.player.hasReducedDebug() && !gamesettings.reducedDebugInfo) {
+                GlStateManager.pushMatrix();
+                GlStateManager.translate((float)(l / 2), (float)(i1 / 2), (float)-90.0f);
+                Entity entity = mc.getRenderViewEntity();
+                GlStateManager.rotate((float)(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks), (float)-1.0f, (float)0.0f, (float)0.0f);
+                GlStateManager.rotate((float)(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks), (float)0.0f, (float)1.0f, (float)0.0f);
+                GlStateManager.scale((float)-1.0f, (float)-1.0f, (float)-1.0f);
+                OpenGlHelper.renderDirections((int)10);
+                GlStateManager.popMatrix();
             } else {
-                GlStateManager.func_187428_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
-                GlStateManager.func_179141_d();
+                GlStateManager.tryBlendFuncSeparate((GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
+                GlStateManager.enableAlpha();
                 GuiUtils.drawTexturedModalRect((int)(l / 2 - 7), (int)(i1 / 2 - 7), (int)0, (int)0, (int)16, (int)16, (float)-90.0f);
             }
         }

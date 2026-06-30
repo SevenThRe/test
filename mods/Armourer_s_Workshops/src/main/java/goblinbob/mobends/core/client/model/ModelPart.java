@@ -76,7 +76,7 @@ AnimationModelRenderer {
     public ModelPart(ModelBase model, boolean register, int texOffsetX, int texOffsetY) {
         super(model, texOffsetX, texOffsetY);
         if (!register) {
-            model.field_78092_r.remove(model.field_78092_r.size() - 1);
+            model.boxList.remove(model.boxList.size() - 1);
         }
     }
 
@@ -89,7 +89,7 @@ AnimationModelRenderer {
     }
 
     @SideOnly(value=Side.CLIENT)
-    public void func_78785_a(float scale) {
+    public void render(float scale) {
         this.renderPart(scale);
         if (!cancelRenderSkin && this.name != null && this.renderEntity != null) {
             try {
@@ -100,14 +100,14 @@ AnimationModelRenderer {
                         this.field.setAccessible(true);
                     }
                     catch (NoSuchFieldException ex) {
-                        this.field = aClass.getField("field_179059_b");
+                        this.field = aClass.getField("textureName");
                         this.field.setAccessible(true);
                     }
                 }
                 if (this.field != null) {
-                    int o2 = (Integer)this.field.get(GlStateManager.field_179174_p[GlStateManager.field_179162_o]);
+                    int o2 = (Integer)this.field.get(GlStateManager.textureState[GlStateManager.activeTextureUnit]);
                     this.renderPartSkin(scale);
-                    GlStateManager.func_179144_i((int)o2);
+                    GlStateManager.bindTexture((int)o2);
                 }
             }
             catch (ClassNotFoundException | IllegalAccessException | NoSuchFieldException e2) {
@@ -117,7 +117,7 @@ AnimationModelRenderer {
     }
 
     @SideOnly(value=Side.CLIENT)
-    public void func_78791_b(float scale) {
+    public void renderWithRotation(float scale) {
         this.renderPart(scale);
     }
 
@@ -129,18 +129,18 @@ AnimationModelRenderer {
         if (!this.isShowing()) {
             return;
         }
-        if (!this.field_78812_q) {
-            this.func_78788_d(scale);
+        if (!this.compiled) {
+            this.compileDisplayList(scale);
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         this.applyCharacterTransform(scale);
-        GlStateManager.func_179148_o((int)this.field_78811_r);
-        if (this.field_78805_m != null) {
-            for (ModelRenderer childModel : this.field_78805_m) {
-                childModel.func_78785_a(scale);
+        GlStateManager.callList((int)this.displayList);
+        if (this.childModels != null) {
+            for (ModelRenderer childModel : this.childModels) {
+                childModel.render(scale);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @Override
@@ -148,58 +148,58 @@ AnimationModelRenderer {
         if (!this.isShowing()) {
             return;
         }
-        if (!this.field_78812_q) {
-            this.func_78788_d(scale);
+        if (!this.compiled) {
+            this.compileDisplayList(scale);
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         this.applyLocalTransform(scale);
-        GlStateManager.func_179148_o((int)this.field_78811_r);
-        if (this.field_78805_m != null) {
-            for (ModelRenderer childModel : this.field_78805_m) {
-                childModel.func_78785_a(scale);
+        GlStateManager.callList((int)this.displayList);
+        if (this.childModels != null) {
+            for (ModelRenderer childModel : this.childModels) {
+                childModel.render(scale);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @Override
     public void renderPartSkin(float scale) {
-        if (!this.field_78812_q) {
-            this.func_78788_d(scale);
+        if (!this.compiled) {
+            this.compileDisplayList(scale);
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         this.applyCharacterTransform(scale);
         this.drawSkin(scale);
-        if (this.field_78805_m != null) {
-            for (ModelRenderer childModel : this.field_78805_m) {
+        if (this.childModels != null) {
+            for (ModelRenderer childModel : this.childModels) {
                 if (!(childModel instanceof IModelPart)) continue;
                 IModelPart model = (IModelPart)childModel;
                 model.renderPartSkin(scale);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @Override
     public void renderJustPartSkin(float scale) {
-        if (!this.field_78812_q) {
-            this.func_78788_d(scale);
+        if (!this.compiled) {
+            this.compileDisplayList(scale);
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         this.applyLocalTransform(scale);
         this.drawSkin(scale);
-        if (this.field_78805_m != null) {
-            for (ModelRenderer childModel : this.field_78805_m) {
+        if (this.childModels != null) {
+            for (ModelRenderer childModel : this.childModels) {
                 if (!(childModel instanceof IModelPart)) continue;
                 IModelPart model = (IModelPart)childModel;
                 model.renderPartSkin(scale);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @SideOnly(value=Side.CLIENT)
-    public void func_78794_c(float scale) {
+    public void postRender(float scale) {
         this.applyCharacterTransform(scale);
         this.applyPostTransform(scale);
     }
@@ -207,7 +207,7 @@ AnimationModelRenderer {
     @Override
     public void applyPreTransform(float scale) {
         if (this.globalOffset.x != 0.0f || this.globalOffset.y != 0.0f || this.globalOffset.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.globalOffset.x * scale), (float)(this.globalOffset.y * scale), (float)(this.globalOffset.z * scale));
+            GlStateManager.translate((float)(this.globalOffset.x * scale), (float)(this.globalOffset.y * scale), (float)(this.globalOffset.z * scale));
         }
     }
 
@@ -237,15 +237,15 @@ AnimationModelRenderer {
     }
 
     @SideOnly(value=Side.CLIENT)
-    protected void func_78788_d(float scale) {
-        this.field_78811_r = GLAllocation.func_74526_a((int)1);
-        GlStateManager.func_187423_f((int)this.field_78811_r, (int)4864);
-        BufferBuilder bufferbuilder = Tessellator.func_178181_a().func_178180_c();
-        for (ModelBox modelBox : this.field_78804_l) {
-            modelBox.func_178780_a(bufferbuilder, scale);
+    protected void compileDisplayList(float scale) {
+        this.displayList = GLAllocation.generateDisplayLists((int)1);
+        GlStateManager.glNewList((int)this.displayList, (int)4864);
+        BufferBuilder bufferbuilder = Tessellator.getInstance().getBuffer();
+        for (ModelBox modelBox : this.cubeList) {
+            modelBox.render(bufferbuilder, scale);
         }
-        GlStateManager.func_187415_K();
-        this.field_78812_q = true;
+        GlStateManager.glEndList();
+        this.compiled = true;
     }
 
     @Override
@@ -253,7 +253,7 @@ AnimationModelRenderer {
         this.rotation.update(ticksPerFrame);
     }
 
-    public void func_78793_a(float x2, float y2, float z2) {
+    public void setRotationPoint(float x2, float y2, float z2) {
     }
 
     public ModelPart setPosition(float x2, float y2, float z2) {
@@ -262,9 +262,9 @@ AnimationModelRenderer {
     }
 
     public ModelPart setOffset(float x2, float y2, float z2) {
-        this.field_82906_o = x2;
-        this.field_82908_p = y2;
-        this.field_82907_q = z2;
+        this.offsetX = x2;
+        this.offsetY = y2;
+        this.offsetZ = z2;
         return this;
     }
 
@@ -285,38 +285,38 @@ AnimationModelRenderer {
     }
 
     public ModelPart addVanillaBox(ModelBox box) {
-        this.field_78804_l.add(box);
-        this.field_78812_q = false;
+        this.cubeList.add(box);
+        this.compiled = false;
         return this;
     }
 
     public ModelPart addBox(MutatedBox box) {
         this.mutatedBoxes.add(box);
-        this.field_78804_l.add(box);
-        this.field_78812_q = false;
+        this.cubeList.add(box);
+        this.compiled = false;
         return this;
     }
 
     public ModelPart addModelBox(float x2, float y2, float z2, int width, int height, int length, float scaleFactor) {
-        return this.addBox(new MutatedBox(this, this.field_78803_o, this.field_78813_p, x2, y2, z2, width, height, length, scaleFactor));
+        return this.addBox(new MutatedBox(this, this.textureOffsetX, this.textureOffsetY, x2, y2, z2, width, height, length, scaleFactor));
     }
 
     public ModelPart addBox(String partName, float offX, float offY, float offZ, int width, int height, int depth) {
-        partName = this.field_78802_n + "." + partName;
-        TextureOffset textureoffset = this.field_78810_s.func_78084_a(partName);
-        this.func_78784_a(textureoffset.field_78783_a, textureoffset.field_78782_b);
-        return this.addBox((MutatedBox)new MutatedBox(this, this.field_78803_o, this.field_78813_p, offX, offY, offZ, width, height, depth, 0.0f).func_78244_a(partName));
+        partName = this.boxName + "." + partName;
+        TextureOffset textureoffset = this.baseModel.getTextureOffset(partName);
+        this.setTextureOffset(textureoffset.textureOffsetX, textureoffset.textureOffsetY);
+        return this.addBox((MutatedBox)new MutatedBox(this, this.textureOffsetX, this.textureOffsetY, offX, offY, offZ, width, height, depth, 0.0f).setBoxName(partName));
     }
 
     public ModelPart addBox(float offX, float offY, float offZ, int width, int height, int depth) {
-        return this.addBox(new MutatedBox(this, this.field_78803_o, this.field_78813_p, offX, offY, offZ, width, height, depth, 0.0f));
+        return this.addBox(new MutatedBox(this, this.textureOffsetX, this.textureOffsetY, offX, offY, offZ, width, height, depth, 0.0f));
     }
 
     public ModelPart addBox(float offX, float offY, float offZ, int width, int height, int depth, boolean mirrored) {
-        return this.addBox(new MutatedBox(this, this.field_78803_o, this.field_78813_p, offX, offY, offZ, width, height, depth, 0.0f, mirrored));
+        return this.addBox(new MutatedBox(this, this.textureOffsetX, this.textureOffsetY, offX, offY, offZ, width, height, depth, 0.0f, mirrored));
     }
 
-    public void func_78790_a(float x2, float y2, float z2, int width, int height, int length, float scaleFactor) {
+    public void addBox(float x2, float y2, float z2, int width, int height, int length, float scaleFactor) {
         this.addModelBox(x2, y2, z2, width, height, length, scaleFactor);
     }
 
@@ -325,7 +325,7 @@ AnimationModelRenderer {
     }
 
     public MutatedBox getBox(int idx) {
-        return (MutatedBox)((Object)this.field_78804_l.get(idx));
+        return (MutatedBox)((Object)this.cubeList.get(idx));
     }
 
     @Override
@@ -365,7 +365,7 @@ AnimationModelRenderer {
 
     @Override
     public boolean isShowing() {
-        return this.field_78806_j && !this.field_78807_k;
+        return this.showModel && !this.isHidden;
     }
 
     protected void updateBounds() {
@@ -381,7 +381,7 @@ AnimationModelRenderer {
     }
 
     public ModelPart setMirror(boolean mirror) {
-        this.field_78809_i = mirror;
+        this.mirror = mirror;
         return this;
     }
 
@@ -391,7 +391,7 @@ AnimationModelRenderer {
 
     @Override
     public void setVisible(boolean showModel) {
-        this.field_78806_j = showModel;
+        this.showModel = showModel;
     }
 
     public ModelPart setParent(IModelPart parent) {
@@ -400,16 +400,16 @@ AnimationModelRenderer {
     }
 
     public int getTextureOffsetX() {
-        return this.field_78803_o;
+        return this.textureOffsetX;
     }
 
     public int getTextureOffsetY() {
-        return this.field_78813_p;
+        return this.textureOffsetY;
     }
 
     public void drawSkin(float scale) {
         if (this.name != null && this.renderEntity != null) {
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             switch (this.name) {
                 case "\u5934": {
                     DragonArmourers.renderHead(this.renderEntity);
@@ -460,7 +460,7 @@ AnimationModelRenderer {
                     DragonArmourers.renderRightFeet(this.renderEntity);
                 }
             }
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
@@ -477,26 +477,26 @@ AnimationModelRenderer {
     @Override
     public void applyLocalTransform(float scale) {
         if (this.position.x != 0.0f || this.position.y != 0.0f || this.position.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.position.x * scale * this.offsetScale), (float)(this.position.y * scale * this.offsetScale), (float)(this.position.z * scale * this.offsetScale));
+            GlStateManager.translate((float)(this.position.x * scale * this.offsetScale), (float)(this.position.y * scale * this.offsetScale), (float)(this.position.z * scale * this.offsetScale));
         }
         if (this.offset.x != 0.0f || this.offset.y != 0.0f || this.offset.z != 0.0f) {
-            GlStateManager.func_179109_b((float)(this.offset.x * scale * this.offsetScale), (float)(this.offset.y * scale * this.offsetScale), (float)(this.offset.z * scale * this.offsetScale));
+            GlStateManager.translate((float)(this.offset.x * scale * this.offsetScale), (float)(this.offset.y * scale * this.offsetScale), (float)(this.offset.z * scale * this.offsetScale));
         }
         if (this.applyAnimation) {
             if (this.rotateAngleZZ != 0.0f) {
-                GlStateManager.func_179114_b((float)this.rotateAngleZZ, (float)0.0f, (float)0.0f, (float)1.0f);
+                GlStateManager.rotate((float)this.rotateAngleZZ, (float)0.0f, (float)0.0f, (float)1.0f);
             }
             if (this.rotateAngleYY != 0.0f) {
-                GlStateManager.func_179114_b((float)this.rotateAngleYY, (float)0.0f, (float)1.0f, (float)0.0f);
+                GlStateManager.rotate((float)this.rotateAngleYY, (float)0.0f, (float)1.0f, (float)0.0f);
             }
             if (this.rotateAngleXX != 0.0f) {
-                GlStateManager.func_179114_b((float)this.rotateAngleXX, (float)1.0f, (float)0.0f, (float)0.0f);
+                GlStateManager.rotate((float)this.rotateAngleXX, (float)1.0f, (float)0.0f, (float)0.0f);
             }
         } else {
             GlHelper.rotate(this.rotation.getSmooth());
         }
         if (this.scale.x != 0.0f || this.scale.y != 0.0f || this.scale.z != 0.0f) {
-            GlStateManager.func_179152_a((float)this.scale.x, (float)this.scale.y, (float)this.scale.z);
+            GlStateManager.scale((float)this.scale.x, (float)this.scale.y, (float)this.scale.z);
         }
     }
 

@@ -23,36 +23,36 @@ extends Container {
     private IInventory m;
     private rg j;
 
-    public boolean func_75145_c(EntityPlayer a2) {
+    public boolean canInteractWith(EntityPlayer a2) {
         return true;
     }
 
-    public boolean func_94531_b(Slot a2) {
+    public boolean canDragIntoSlot(Slot a2) {
         dj a3;
-        return !a3.j.y() || a2.field_75222_d >= a3.s.func_70302_i_();
+        return !a3.j.y() || a2.slotNumber >= a3.s.getSizeInventory();
     }
 
-    public ItemStack func_82846_b(EntityPlayer a2, int a3) {
+    public ItemStack transferStackInSlot(EntityPlayer a2, int a3) {
         dj a4;
-        a2 = ItemStack.field_190927_a;
-        Slot slot = (Slot)a4.field_75151_b.get(a3);
-        if (slot != null && slot.func_75216_d()) {
-            ItemStack itemStack = slot.func_75211_c();
-            a2 = itemStack.func_77946_l();
+        a2 = ItemStack.EMPTY;
+        Slot slot = (Slot)a4.inventorySlots.get(a3);
+        if (slot != null && slot.getHasStack()) {
+            ItemStack itemStack = slot.getStack();
+            a2 = itemStack.copy();
             if (a3 < 63) {
                 dj dj2 = a4;
-                if (!dj2.func_75135_a(itemStack, 63, dj2.field_75151_b.size(), true)) {
-                    return ItemStack.field_190927_a;
+                if (!dj2.mergeItemStack(itemStack, 63, dj2.inventorySlots.size(), true)) {
+                    return ItemStack.EMPTY;
                 }
-            } else if (!a4.func_75135_a(itemStack, 0, 63, false)) {
-                return ItemStack.field_190927_a;
+            } else if (!a4.mergeItemStack(itemStack, 0, 63, false)) {
+                return ItemStack.EMPTY;
             }
             Slot slot2 = slot;
-            if (itemStack.func_190926_b()) {
-                slot2.func_75215_d(ItemStack.field_190927_a);
+            if (itemStack.isEmpty()) {
+                slot2.putStack(ItemStack.EMPTY);
                 return a2;
             }
-            slot2.func_75218_e();
+            slot2.onSlotChanged();
         }
         return a2;
     }
@@ -64,18 +64,18 @@ extends Container {
         dj2.m = a3;
         dj2.s = a4;
         int n2 = a2 = 0;
-        while (n2 < a4.func_70302_i_()) {
-            a5.func_75146_a(new Slot(a4, a2++, 999, 999));
+        while (n2 < a4.getSizeInventory()) {
+            a5.addSlotToContainer(new Slot(a4, a2++, 999, 999));
             n2 = a2;
         }
         int n3 = a2 = 9;
         while (n3 < 36) {
-            a5.func_75146_a(new Slot(a3, a2++, 999, 999));
+            a5.addSlotToContainer(new Slot(a3, a2++, 999, 999));
             n3 = a2;
         }
         int n4 = a2 = 0;
         while (n4 < 9) {
-            a5.func_75146_a(new Slot(a3, a2++, 999, 999));
+            a5.addSlotToContainer(new Slot(a3, a2++, 999, 999));
             n4 = a2;
         }
     }

@@ -107,7 +107,7 @@ implements Comparable<CoreProperties> {
     public boolean isValid(boolean fix) {
         boolean valid = super.isValid(fix);
         if (FMLClientHandler.instance().getClient() != null) {
-            int gameRenderDistance = FMLClientHandler.instance().getClient().field_71474_y.field_151451_c;
+            int gameRenderDistance = FMLClientHandler.instance().getClient().gameSettings.renderDistanceChunks;
             for (IntegerField prop : Arrays.asList(this.renderDistanceCaveMax, this.renderDistanceSurfaceMax)) {
                 if (prop.get() <= gameRenderDistance) continue;
                 this.warn(String.format("Render distance %s is less than %s", gameRenderDistance, prop.getDeclaredField()));

@@ -56,16 +56,16 @@ implements LayerDelegate.Layer {
         if (this.lastCoord == null) {
             this.lastCoord = blockCoord;
         }
-        long now = Minecraft.func_71386_F();
+        long now = Minecraft.getSystemTime();
         int proximity = (int)Math.max(1.0, 8.0 / gridRenderer.getUIState().blockSize);
         if (this.clickDrawStep.blockCoord != null && !blockCoord.equals((Object)this.clickDrawStep.blockCoord)) {
             this.unclick();
         } else {
             this.drawStepList.add(this.clickDrawStep);
         }
-        AxisAlignedBB area = new AxisAlignedBB((double)(blockCoord.func_177958_n() - proximity), -1.0, (double)(blockCoord.func_177952_p() - proximity), (double)(blockCoord.func_177958_n() + proximity), (double)(mc.field_71441_e.func_72940_L() + 1), (double)(blockCoord.func_177952_p() + proximity));
+        AxisAlignedBB area = new AxisAlignedBB((double)(blockCoord.getX() - proximity), -1.0, (double)(blockCoord.getZ() - proximity), (double)(blockCoord.getX() + proximity), (double)(mc.world.getActualHeight() + 1), (double)(blockCoord.getZ() + proximity));
         if (!this.lastCoord.equals((Object)blockCoord)) {
-            if (!area.func_72318_a(new Vec3d((double)this.lastCoord.func_177958_n(), 1.0, (double)this.lastCoord.func_177952_p()))) {
+            if (!area.contains(new Vec3d((double)this.lastCoord.getX(), 1.0, (double)this.lastCoord.getZ()))) {
                 this.selected = null;
                 this.lastCoord = blockCoord;
                 this.startHover = now;
@@ -78,11 +78,11 @@ implements LayerDelegate.Layer {
         if (now - this.startHover < 100L) {
             return this.drawStepList;
         }
-        int dimension = mc.field_71439_g.field_71093_bK;
+        int dimension = mc.player.dimension;
         Collection<Waypoint> waypoints = DataCache.INSTANCE.getWaypoints(false);
         ArrayList<Waypoint> proximal = new ArrayList<Waypoint>();
         for (Waypoint waypoint : waypoints) {
-            if (!waypoint.isEnable() || !waypoint.isInPlayerDimension() || !area.func_72318_a(new Vec3d((double)waypoint.getX(), (double)waypoint.getY(), (double)waypoint.getZ()))) continue;
+            if (!waypoint.isEnable() || !waypoint.isInPlayerDimension() || !area.contains(new Vec3d((double)waypoint.getX(), (double)waypoint.getY(), (double)waypoint.getZ()))) continue;
             proximal.add(waypoint);
         }
         if (!proximal.isEmpty()) {
@@ -109,7 +109,7 @@ implements LayerDelegate.Layer {
                 UIManager.INSTANCE.openWaypointManager(this.selected, this.fullscreen);
                 return this.drawStepList;
             }
-            Waypoint waypoint = Waypoint.at(blockCoord, Waypoint.Type.Normal, mc.field_71439_g.field_71093_bK);
+            Waypoint waypoint = Waypoint.at(blockCoord, Waypoint.Type.Normal, mc.player.dimension);
             UIManager.INSTANCE.openWaypointEditor(waypoint, true, this.fullscreen);
         }
         return this.drawStepList;
@@ -129,8 +129,8 @@ implements LayerDelegate.Layer {
             }
 
             private double getDistance(Waypoint waypoint) {
-                double dx = waypoint.getX() - blockCoord.func_177958_n();
-                double dz = waypoint.getZ() - blockCoord.func_177952_p();
+                double dx = waypoint.getX() - blockCoord.getX();
+                double dz = waypoint.getZ() - blockCoord.getZ();
                 return Math.sqrt(dx * dx + dz * dz);
             }
         });

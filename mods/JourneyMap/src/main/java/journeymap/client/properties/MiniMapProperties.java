@@ -77,7 +77,7 @@ extends InGameMapProperties {
     }
 
     public int getSize() {
-        return (int)Math.max(128.0, Math.floor((double)this.sizePercent.get().intValue() / 100.0 * (double)FMLClientHandler.instance().getClient().field_71440_d));
+        return (int)Math.max(128.0, Math.floor((double)this.sizePercent.get().intValue() / 100.0 * (double)FMLClientHandler.instance().getClient().displayHeight));
     }
 
     @Override
@@ -86,7 +86,7 @@ extends InGameMapProperties {
         if (isNew) {
             if (this.getId() == 1) {
                 this.setActive(true);
-                if (FMLClientHandler.instance().getClient() != null && FMLClientHandler.instance().getClient().field_71466_p.func_82883_a()) {
+                if (FMLClientHandler.instance().getClient() != null && FMLClientHandler.instance().getClient().fontRenderer.getUnicodeFlag()) {
                     this.fontScale.set(2);
                     this.compassFontScale.set(2);
                 }
@@ -99,7 +99,7 @@ extends InGameMapProperties {
                 this.orientation.set(Orientation.North);
                 this.reticleOrientation.set(ReticleOrientation.Compass);
                 this.sizePercent.set(30);
-                if (FMLClientHandler.instance().getClient() != null && FMLClientHandler.instance().getClient().field_71466_p.func_82883_a()) {
+                if (FMLClientHandler.instance().getClient() != null && FMLClientHandler.instance().getClient().fontRenderer.getUnicodeFlag()) {
                     this.fontScale.set(2);
                     this.compassFontScale.set(2);
                 }

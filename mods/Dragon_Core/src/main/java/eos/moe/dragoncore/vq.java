@@ -54,9 +54,9 @@ public class vq
 implements IResourceManagerReloadListener {
     public vq() {
         vq a2;
-        IResourceManager a3 = Minecraft.func_71410_x().func_110442_L();
+        IResourceManager a3 = Minecraft.getMinecraft().getResourceManager();
         if (a3 instanceof SimpleReloadableResourceManager) {
-            ((SimpleReloadableResourceManager)a3).func_110542_a((IResourceManagerReloadListener)a2);
+            ((SimpleReloadableResourceManager)a3).registerReloadListener((IResourceManagerReloadListener)a2);
         }
     }
 
@@ -71,29 +71,29 @@ implements IResourceManagerReloadListener {
         Deque a4 = (Deque)ReflectionHelper.getPrivateValue(ModelLoaderRegistry.class, null, (String[])new String[]{"loadingModels"});
         Set a5 = (Set)ReflectionHelper.getPrivateValue(ModelLoaderRegistry.class, null, (String[])new String[]{"textures"});
         Map a6 = (Map)ReflectionHelper.getPrivateValue(ModelLoaderRegistry.class, null, (String[])new String[]{"aliases"});
-        a3.entrySet().removeIf(a2 -> ((ResourceLocation)a2.getKey()).func_110624_b().equals("dragoncore"));
-        a4.removeIf(a2 -> a2.func_110624_b().equals("dragoncore"));
-        a5.removeIf(a2 -> a2.func_110624_b().equals("dragoncore"));
-        a6.entrySet().removeIf(a2 -> ((ResourceLocation)a2.getKey()).func_110624_b().equals("dragoncore"));
+        a3.entrySet().removeIf(a2 -> ((ResourceLocation)a2.getKey()).getNamespace().equals("dragoncore"));
+        a4.removeIf(a2 -> a2.getNamespace().equals("dragoncore"));
+        a5.removeIf(a2 -> a2.getNamespace().equals("dragoncore"));
+        a6.entrySet().removeIf(a2 -> ((ResourceLocation)a2.getKey()).getNamespace().equals("dragoncore"));
     }
 
     public static void ALLATORIxDEMO() {
         System.out.println("\u5f00\u59cb\u91cd\u8f7d\u8d44\u6e90\u6587\u4ef6");
         wka.k = false;
-        Map a3 = (Map)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.func_71410_x().func_110434_K(), (String[])new String[]{"mapTextureObjects", "field_110585_a"});
+        Map a3 = (Map)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.getMinecraft().getTextureManager(), (String[])new String[]{"mapTextureObjects", "mapTextureObjects"});
         a3.entrySet().removeIf(a2 -> {
-            boolean a3 = "dragoncore".equals(((ResourceLocation)a2.getKey()).func_110624_b());
+            boolean a3 = "dragoncore".equals(((ResourceLocation)a2.getKey()).getNamespace());
             if (a3 && a2.getValue() instanceof AbstractTexture) {
                 AbstractTexture a4 = (AbstractTexture)a2.getValue();
-                a4.func_147631_c();
+                a4.deleteGlTexture();
             }
             if (a3 && a2.getValue() instanceof GifTexture) {
                 GifHandler.removeGif((ResourceLocation)a2.getKey());
-                ((GifTexture)((Object)((Object)a2.getValue()))).func_147631_c();
+                ((GifTexture)((Object)((Object)a2.getValue()))).deleteGlTexture();
             }
             return a3;
         });
-        List a4 = (List)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.func_71410_x().func_110434_K(), (String[])new String[]{"listTickables", "field_110583_b"});
+        List a4 = (List)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.getMinecraft().getTextureManager(), (String[])new String[]{"listTickables", "listTickables"});
         a4.removeIf(a2 -> a2 instanceof vw || a2 instanceof ww);
         wq.b.reload();
         oa.c();
@@ -117,11 +117,11 @@ implements IResourceManagerReloadListener {
         System.out.println("\u8d44\u6e90\u6587\u4ef6\u91cd\u8f7d\u5b8c\u6210");
     }
 
-    public void func_110549_a(IResourceManager a2) {
+    public void onResourceManagerReload(IResourceManager a2) {
         if (a2 instanceof SimpleReloadableResourceManager) {
-            ((SimpleReloadableResourceManager)a2).func_110545_a((IResourcePack)new pq());
-            ((SimpleReloadableResourceManager)a2).func_110545_a((IResourcePack)new wq());
-            ((SimpleReloadableResourceManager)a2).func_110545_a((IResourcePack)kx.k);
+            ((SimpleReloadableResourceManager)a2).reloadResourcePack((IResourcePack)new pq());
+            ((SimpleReloadableResourceManager)a2).reloadResourcePack((IResourcePack)new wq());
+            ((SimpleReloadableResourceManager)a2).reloadResourcePack((IResourcePack)kx.k);
             if (wka.k) {
                 wka.k = false;
                 vq.c();

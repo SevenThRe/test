@@ -41,27 +41,27 @@ implements Serializable {
         }
         float a11 = 0.0f / a8;
         float a12 = 0.0f / a9;
-        a3[0] = a3[0].func_78240_a(a6 / a8 - a11, a5 / a9 + a12);
-        a3[1] = a3[1].func_78240_a(a4 / a8 + a11, a5 / a9 + a12);
-        a3[2] = a3[2].func_78240_a(a4 / a8 + a11, a7 / a9 - a12);
-        a3[3] = a3[3].func_78240_a(a6 / a8 - a11, a7 / a9 - a12);
+        a3[0] = a3[0].setTexturePosition(a6 / a8 - a11, a5 / a9 + a12);
+        a3[1] = a3[1].setTexturePosition(a4 / a8 + a11, a5 / a9 + a12);
+        a3[2] = a3[2].setTexturePosition(a4 / a8 + a11, a7 / a9 - a12);
+        a3[3] = a3[3].setTexturePosition(a6 / a8 - a11, a7 / a9 - a12);
     }
 
     @SideOnly(value=Side.CLIENT)
-    public void func_178765_a(BufferBuilder a2, float a3) {
+    public void draw(BufferBuilder a2, float a3) {
         jq a4;
-        Vec3d a5 = a4.field_78239_a[1].field_78243_a.func_72444_a(a4.field_78239_a[0].field_78243_a);
-        Vec3d a6 = a4.field_78239_a[1].field_78243_a.func_72444_a(a4.field_78239_a[2].field_78243_a);
-        Vec3d a7 = a6.func_72431_c(a5).func_72432_b();
-        float a8 = (float)a7.field_72450_a;
-        float a9 = (float)a7.field_72448_b;
-        float a10 = (float)a7.field_72449_c;
-        a2.func_181668_a(7, DefaultVertexFormats.field_181703_c);
+        Vec3d a5 = a4.vertexPositions[1].vector3D.subtractReverse(a4.vertexPositions[0].vector3D);
+        Vec3d a6 = a4.vertexPositions[1].vector3D.subtractReverse(a4.vertexPositions[2].vector3D);
+        Vec3d a7 = a6.crossProduct(a5).normalize();
+        float a8 = (float)a7.x;
+        float a9 = (float)a7.y;
+        float a10 = (float)a7.z;
+        a2.begin(7, DefaultVertexFormats.OLDMODEL_POSITION_TEX_NORMAL);
         for (int a11 = 0; a11 < 4; ++a11) {
-            PositionTextureVertex a12 = a4.field_78239_a[a11];
-            a2.func_181662_b(a12.field_78243_a.field_72450_a * (double)a3, a12.field_78243_a.field_72448_b * (double)a3, a12.field_78243_a.field_72449_c * (double)a3).func_187315_a((double)a12.field_78241_b, (double)a12.field_78242_c).func_181663_c(a8, a9, a10).func_181675_d();
+            PositionTextureVertex a12 = a4.vertexPositions[a11];
+            a2.pos(a12.vector3D.x * (double)a3, a12.vector3D.y * (double)a3, a12.vector3D.z * (double)a3).tex((double)a12.texturePositionX, (double)a12.texturePositionY).normal(a8, a9, a10).endVertex();
         }
-        Tessellator.func_178181_a().func_78381_a();
+        Tessellator.getInstance().draw();
     }
 }
 

@@ -91,7 +91,7 @@ public class RegionLoader {
         RegionImageCache.INSTANCE.clear();
         File jmImageWorldDir = FileHandler.getJMWorldDir(mc);
         Stack<RegionCoord> stack = new Stack<RegionCoord>();
-        AnvilChunkLoader anvilChunkLoader = new AnvilChunkLoader(FileHandler.getWorldSaveDir(mc), DataFixesManager.func_188279_a());
+        AnvilChunkLoader anvilChunkLoader = new AnvilChunkLoader(FileHandler.getWorldSaveDir(mc), DataFixesManager.createFixer());
         int validFileCount = 0;
         int existingImageCount = 0;
         block0: for (File anvilFile : anvilFiles = regionDir.listFiles()) {
@@ -109,7 +109,7 @@ public class RegionLoader {
             if (!RegionImageHandler.getRegionImageFile(rc, mapType, false).exists()) {
                 List<ChunkPos> chunkCoords = rc.getChunkCoordsInRegion();
                 for (ChunkPos coord : chunkCoords) {
-                    if (!anvilChunkLoader.chunkExists((World)mc.field_71441_e, coord.field_77276_a, coord.field_77275_b)) continue;
+                    if (!anvilChunkLoader.chunkExists((World)mc.world, coord.x, coord.z)) continue;
                     stack.add(rc);
                     continue block0;
                 }
@@ -120,7 +120,7 @@ public class RegionLoader {
         if (stack.isEmpty() && validFileCount != existingImageCount) {
             this.logger.warn("Anvil region files in " + regionDir + ": " + validFileCount + ", matching image files: " + existingImageCount + ", but found nothing to do for mapType " + mapType);
         }
-        if (stack.contains(playerRc = RegionCoord.fromChunkPos(jmImageWorldDir, mapType, mc.field_71439_g.field_70176_ah, mc.field_71439_g.field_70164_aj))) {
+        if (stack.contains(playerRc = RegionCoord.fromChunkPos(jmImageWorldDir, mapType, mc.player.chunkCoordX, mc.player.chunkCoordZ))) {
             stack.remove(playerRc);
         }
         Collections.sort(stack, new Comparator<RegionCoord>(){

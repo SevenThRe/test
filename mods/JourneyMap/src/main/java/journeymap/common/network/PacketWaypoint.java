@@ -42,11 +42,11 @@ implements IMessage {
         try {
             int i = packetBuffer.readInt();
             if (i == -1) {
-                Minecraft.func_71410_x().func_152343_a(UIManager.INSTANCE::openFullscreenMap);
+                Minecraft.getMinecraft().addScheduledTask(UIManager.INSTANCE::openFullscreenMap);
                 return;
             }
             for (int i1 = 0; i1 < i; ++i1) {
-                this.waypointList.add(packetBuffer.func_150789_c(32768));
+                this.waypointList.add(packetBuffer.readString(32768));
             }
         }
         catch (Throwable var3) {

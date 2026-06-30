@@ -45,8 +45,8 @@ public class Policy {
         if (this.allowInSingleplayer == this.allowInMultiplayer) {
             return this.allowInSingleplayer;
         }
-        IntegratedServer server = mc.func_71401_C();
-        boolean bl = isSinglePlayer = server != null && !server.func_71344_c();
+        IntegratedServer server = mc.getIntegratedServer();
+        boolean bl = isSinglePlayer = server != null && !server.getPublic();
         if (this.allowInSingleplayer && isSinglePlayer) {
             return true;
         }

@@ -39,17 +39,17 @@ extends uha {
     @Override
     public void ALLATORIxDEMO() {
         vda a2;
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179137_b((double)a2.c(), (double)a2.ALLATORIxDEMO(), (double)0.0);
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((double)a2.c(), (double)a2.ALLATORIxDEMO(), (double)0.0);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         ww.ALLATORIxDEMO(a2.ALLATORIxDEMO);
         float a3 = (float)a2.x();
         float a4 = (float)a2.f();
-        GlStateManager.func_179118_c();
+        GlStateManager.disableAlpha();
         mk.ALLATORIxDEMO(0.0f, 0.0f, 0.0f, 0.0f, a3, a4, a3, a4);
-        GlStateManager.func_179101_C();
-        GlStateManager.func_179140_f();
-        GlStateManager.func_179121_F();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableLighting();
+        GlStateManager.popMatrix();
     }
 }
 

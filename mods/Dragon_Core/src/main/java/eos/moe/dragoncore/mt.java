@@ -57,43 +57,43 @@ Serializable {
         super((ModelBase)a2, a4);
         mt a7;
         a7.q = a3;
-        a7.field_78795_f = a3.getX();
-        a7.field_78796_g = a3.getY();
-        a7.field_78808_h = a3.getZ();
-        a7.field_78806_j = !a6;
+        a7.rotateAngleX = a3.getX();
+        a7.rotateAngleY = a3.getY();
+        a7.rotateAngleZ = a3.getZ();
+        a7.showModel = !a6;
         a7.c = a5;
     }
 
     @Override
     public String getName() {
         mt a2;
-        return a2.field_78802_n;
+        return a2.boxName;
     }
 
     @Override
     public void setRotateAngle(float a2, float a3, float a4) {
-        a.field_78795_f = a2;
-        a.field_78796_g = a3;
-        a.field_78808_h = a4;
+        a.rotateAngleX = a2;
+        a.rotateAngleY = a3;
+        a.rotateAngleZ = a4;
     }
 
     @Override
     public void setOffsets(float a2, float a3, float a4) {
-        a.field_82906_o = a2;
-        a.field_82908_p = a3;
-        a.field_82907_q = a4;
+        a.offsetX = a2;
+        a.offsetY = a3;
+        a.offsetZ = a4;
     }
 
     @Override
     public bax getRotateAngle() {
         mt a2;
-        return new bax(a2.field_78795_f, a2.field_78796_g, a2.field_78808_h);
+        return new bax(a2.rotateAngleX, a2.rotateAngleY, a2.rotateAngleZ);
     }
 
     @Override
     public bax getOffsets() {
         mt a2;
-        return new bax(a2.field_82906_o, a2.field_82908_p, a2.field_82907_q);
+        return new bax(a2.offsetX, a2.offsetY, a2.offsetZ);
     }
 
     @Override
@@ -102,38 +102,38 @@ Serializable {
         if (a3) {
             a4.render2(a2);
         } else {
-            a4.func_78785_a(a2);
+            a4.render(a2);
         }
     }
 
     public void render2(float a2) {
         mt a3;
-        if (!a3.field_78807_k && a3.field_78806_j) {
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)(a3.field_82906_o * a2), (float)(a3.field_82908_p * a2), (float)(a3.field_82907_q * a2));
+        if (!a3.isHidden && a3.showModel) {
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)(a3.offsetX * a2), (float)(a3.offsetY * a2), (float)(a3.offsetZ * a2));
             a3.ALLATORIxDEMO(a2);
-            GlStateManager.func_179152_a((float)a3.b.getX(), (float)a3.b.getY(), (float)a3.b.getZ());
-            if (a3.field_78805_m != null) {
-                for (ModelRenderer a4 : a3.field_78805_m) {
-                    a4.func_78785_a(a2);
+            GlStateManager.scale((float)a3.b.getX(), (float)a3.b.getY(), (float)a3.b.getZ());
+            if (a3.childModels != null) {
+                for (ModelRenderer a4 : a3.childModels) {
+                    a4.render(a2);
                 }
             }
-            GlStateManager.func_179152_a((float)(1.0f / a3.b.getX()), (float)(1.0f / a3.b.getY()), (float)(1.0f / a3.b.getZ()));
-            GlStateManager.func_179121_F();
+            GlStateManager.scale((float)(1.0f / a3.b.getX()), (float)(1.0f / a3.b.getY()), (float)(1.0f / a3.b.getZ()));
+            GlStateManager.popMatrix();
         }
     }
 
-    public void func_78785_a(float a2) {
+    public void render(float a2) {
         mt a3;
-        if (!a3.field_78807_k && a3.field_78806_j) {
+        if (!a3.isHidden && a3.showModel) {
             if (!a3.o) {
-                a3.func_78788_d(a2);
+                a3.compileDisplayList(a2);
             }
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)(a3.field_82906_o * a2), (float)(a3.field_82908_p * a2), (float)(a3.field_82907_q * a2));
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)(a3.offsetX * a2), (float)(a3.offsetY * a2), (float)(a3.offsetZ * a2));
             a3.ALLATORIxDEMO(a2);
             a3.c(a2);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
@@ -142,18 +142,18 @@ Serializable {
         if (a4.m != null) {
             a4.m.position(a2, a3);
         }
-        a2.ALLATORIxDEMO((double)(a4.field_82906_o * a3), (double)(a4.field_82908_p * a3), (double)(a4.field_82907_q * a3));
-        if (a4.field_78800_c != 0.0f || a4.field_78797_d != 0.0f || a4.field_78798_e != 0.0f) {
-            a2.ALLATORIxDEMO((double)(a4.field_78800_c * a3), (double)(a4.field_78797_d * a3), (double)(a4.field_78798_e * a3));
+        a2.ALLATORIxDEMO((double)(a4.offsetX * a3), (double)(a4.offsetY * a3), (double)(a4.offsetZ * a3));
+        if (a4.rotationPointX != 0.0f || a4.rotationPointY != 0.0f || a4.rotationPointZ != 0.0f) {
+            a2.ALLATORIxDEMO((double)(a4.rotationPointX * a3), (double)(a4.rotationPointY * a3), (double)(a4.rotationPointZ * a3));
         }
-        if (a4.field_78808_h != 0.0f) {
-            a2.ALLATORIxDEMO(gg.o.ALLATORIxDEMO(a4.field_78808_h));
+        if (a4.rotateAngleZ != 0.0f) {
+            a2.ALLATORIxDEMO(gg.o.ALLATORIxDEMO(a4.rotateAngleZ));
         }
-        if (a4.field_78796_g != 0.0f) {
-            a2.ALLATORIxDEMO(gg.q.ALLATORIxDEMO(a4.field_78796_g));
+        if (a4.rotateAngleY != 0.0f) {
+            a2.ALLATORIxDEMO(gg.q.ALLATORIxDEMO(a4.rotateAngleY));
         }
-        if (a4.field_78795_f != 0.0f) {
-            a2.ALLATORIxDEMO(gg.m.ALLATORIxDEMO(a4.field_78795_f));
+        if (a4.rotateAngleX != 0.0f) {
+            a2.ALLATORIxDEMO(gg.m.ALLATORIxDEMO(a4.rotateAngleX));
         }
         a2.x(nk.c(a4.b.getX(), a4.b.getY(), a4.b.getZ()));
         return a2;
@@ -161,8 +161,8 @@ Serializable {
 
     public nk backPosition(nk a2, float a3) {
         mt a4;
-        if (a4.field_78800_c != 0.0f || a4.field_78797_d != 0.0f || a4.field_78798_e != 0.0f) {
-            a2.ALLATORIxDEMO((double)(-a4.field_78800_c * a3), (double)(-a4.field_78797_d * a3), (double)(-a4.field_78798_e * a3));
+        if (a4.rotationPointX != 0.0f || a4.rotationPointY != 0.0f || a4.rotationPointZ != 0.0f) {
+            a2.ALLATORIxDEMO((double)(-a4.rotationPointX * a3), (double)(-a4.rotationPointY * a3), (double)(-a4.rotationPointZ * a3));
         }
         if (a4.m != null) {
             a4.m.backPosition(a2, a3);
@@ -170,38 +170,38 @@ Serializable {
         return a2;
     }
 
-    public void func_78791_b(float a2) {
+    public void renderWithRotation(float a2) {
         mt a3;
-        if (!a3.field_78807_k && a3.field_78806_j) {
+        if (!a3.isHidden && a3.showModel) {
             if (!a3.o) {
-                a3.func_78788_d(a2);
+                a3.compileDisplayList(a2);
             }
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             a3.ALLATORIxDEMO(a2);
-            GlStateManager.func_179148_o((int)a3.k);
-            GlStateManager.func_179121_F();
+            GlStateManager.callList((int)a3.k);
+            GlStateManager.popMatrix();
         }
     }
 
     private /* synthetic */ void c(float a2) {
         mt a3;
-        GlStateManager.func_179152_a((float)a3.b.getX(), (float)a3.b.getY(), (float)a3.b.getZ());
+        GlStateManager.scale((float)a3.b.getX(), (float)a3.b.getY(), (float)a3.b.getZ());
         if (a3.y) {
-            GlStateManager.func_179148_o((int)a3.k);
+            GlStateManager.callList((int)a3.k);
         }
-        if (a3.field_78805_m != null) {
-            for (ModelRenderer a4 : a3.field_78805_m) {
-                a4.func_78785_a(a2);
+        if (a3.childModels != null) {
+            for (ModelRenderer a4 : a3.childModels) {
+                a4.render(a2);
             }
         }
-        GlStateManager.func_179152_a((float)(1.0f / a3.b.getX()), (float)(1.0f / a3.b.getY()), (float)(1.0f / a3.b.getZ()));
+        GlStateManager.scale((float)(1.0f / a3.b.getX()), (float)(1.0f / a3.b.getY()), (float)(1.0f / a3.b.getZ()));
     }
 
-    public void func_78794_c(float a2) {
+    public void postRender(float a2) {
         mt a3;
-        if (!a3.field_78807_k && a3.field_78806_j) {
+        if (!a3.isHidden && a3.showModel) {
             if (!a3.o) {
-                a3.func_78788_d(a2);
+                a3.compileDisplayList(a2);
             }
             a3.ALLATORIxDEMO(a2);
         }
@@ -209,58 +209,58 @@ Serializable {
 
     public void applyTransAndRotations(float a2) {
         mt a3;
-        GlStateManager.func_179109_b((float)(a3.field_82906_o * a2), (float)(a3.field_82908_p * a2), (float)(a3.field_82907_q * a2));
+        GlStateManager.translate((float)(a3.offsetX * a2), (float)(a3.offsetY * a2), (float)(a3.offsetZ * a2));
         a3.ALLATORIxDEMO(a2);
     }
 
     private /* synthetic */ void ALLATORIxDEMO(float a2) {
         mt a3;
-        if (a3.field_78800_c != 0.0f || a3.field_78797_d != 0.0f || a3.field_78798_e != 0.0f) {
-            GlStateManager.func_179109_b((float)(a3.field_78800_c * a2), (float)(a3.field_78797_d * a2), (float)(a3.field_78798_e * a2));
+        if (a3.rotationPointX != 0.0f || a3.rotationPointY != 0.0f || a3.rotationPointZ != 0.0f) {
+            GlStateManager.translate((float)(a3.rotationPointX * a2), (float)(a3.rotationPointY * a2), (float)(a3.rotationPointZ * a2));
         }
         if (a3.ALLATORIxDEMO != null) {
             a3.ALLATORIxDEMO.run();
         }
-        if (a3.field_78808_h != 0.0f) {
-            GlStateManager.func_179114_b((float)a3.field_78808_h, (float)0.0f, (float)0.0f, (float)1.0f);
+        if (a3.rotateAngleZ != 0.0f) {
+            GlStateManager.rotate((float)a3.rotateAngleZ, (float)0.0f, (float)0.0f, (float)1.0f);
         }
-        if (a3.field_78796_g != 0.0f) {
-            GlStateManager.func_179114_b((float)a3.field_78796_g, (float)0.0f, (float)1.0f, (float)0.0f);
+        if (a3.rotateAngleY != 0.0f) {
+            GlStateManager.rotate((float)a3.rotateAngleY, (float)0.0f, (float)1.0f, (float)0.0f);
         }
-        if (a3.field_78795_f != 0.0f) {
-            GlStateManager.func_179114_b((float)a3.field_78795_f, (float)1.0f, (float)0.0f, (float)0.0f);
+        if (a3.rotateAngleX != 0.0f) {
+            GlStateManager.rotate((float)a3.rotateAngleX, (float)1.0f, (float)0.0f, (float)0.0f);
         }
     }
 
     public void resetData() {
         mt a2;
-        a2.field_78795_f = a2.q.getX();
-        a2.field_78796_g = a2.q.getY();
-        a2.field_78808_h = a2.q.getZ();
-        a2.field_82906_o = 0.0f;
-        a2.field_82908_p = 0.0f;
-        a2.field_82907_q = 0.0f;
+        a2.rotateAngleX = a2.q.getX();
+        a2.rotateAngleY = a2.q.getY();
+        a2.rotateAngleZ = a2.q.getZ();
+        a2.offsetX = 0.0f;
+        a2.offsetY = 0.0f;
+        a2.offsetZ = 0.0f;
         a2.b.set(1.0f, 1.0f, 1.0f);
-        if (a2.field_78805_m != null) {
-            for (ModelRenderer a3 : a2.field_78805_m) {
+        if (a2.childModels != null) {
+            for (ModelRenderer a3 : a2.childModels) {
                 if (!(a3 instanceof mt)) continue;
                 ((mt)a3).resetData();
             }
         }
     }
 
-    public void func_78788_d(float a2) {
+    public void compileDisplayList(float a2) {
         mt a3;
-        a3.k = GLAllocation.func_74526_a((int)1);
-        GlStateManager.func_187423_f((int)a3.k, (int)4864);
-        BufferBuilder a4 = Tessellator.func_178181_a().func_178180_c();
-        for (ModelBox modelBox : a3.field_78804_l) {
-            modelBox.func_178780_a(a4, a2);
+        a3.k = GLAllocation.generateDisplayLists((int)1);
+        GlStateManager.glNewList((int)a3.k, (int)4864);
+        BufferBuilder a4 = Tessellator.getInstance().getBuffer();
+        for (ModelBox modelBox : a3.cubeList) {
+            modelBox.render(a4, a2);
         }
         for (xu xu2 : a3.c) {
             xu2.ALLATORIxDEMO(a4, a2);
         }
-        GlStateManager.func_187415_K();
+        GlStateManager.glEndList();
         a3.o = true;
     }
 
@@ -284,8 +284,8 @@ Serializable {
 
     public mt getPiece(String a2) {
         mt a3;
-        for (ModelRenderer a4 : a3.field_78805_m) {
-            if (!(a4 instanceof mt) || !a2.equalsIgnoreCase(a4.field_78802_n)) continue;
+        for (ModelRenderer a4 : a3.childModels) {
+            if (!(a4 instanceof mt) || !a2.equalsIgnoreCase(a4.boxName)) continue;
             return (mt)a4;
         }
         return null;
@@ -293,8 +293,8 @@ Serializable {
 
     public ModelRenderer findPiece(String a2) {
         mt a3;
-        for (ModelRenderer a4 : a3.field_78805_m) {
-            if (a2.equalsIgnoreCase(a4.field_78802_n)) {
+        for (ModelRenderer a4 : a3.childModels) {
+            if (a2.equalsIgnoreCase(a4.boxName)) {
                 return a4;
             }
             if (!(a4 instanceof mt)) continue;
@@ -307,9 +307,9 @@ Serializable {
     public String getTopParentName() {
         mt a2;
         if (a2.m != null) {
-            return a2.m.field_78802_n;
+            return a2.m.boxName;
         }
-        return a2.field_78802_n;
+        return a2.boxName;
     }
 }
 

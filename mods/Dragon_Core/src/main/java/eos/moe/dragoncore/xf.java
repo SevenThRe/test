@@ -34,7 +34,7 @@ implements v {
         if (a2 == null) {
             throw new RuntimeException("value is null");
         }
-        a3.k = a2.func_150254_d();
+        a3.k = a2.getFormattedText();
     }
 
     public xf(String a2) {

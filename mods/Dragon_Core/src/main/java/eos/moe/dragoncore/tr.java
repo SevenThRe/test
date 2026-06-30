@@ -37,7 +37,7 @@ public class tr {
 
     @i(f={"\u53d6\u4e16\u754c\u5c4f\u5e55\u5750\u6807"})
     public static qg ALLATORIxDEMO(double a2, double a3, double a4) {
-        uy a5 = tr.ALLATORIxDEMO(a2, a3, a4, Minecraft.func_71410_x().func_184121_ak());
+        uy a5 = tr.ALLATORIxDEMO(a2, a3, a4, Minecraft.getMinecraft().getRenderPartialTicks());
         ArrayList<String> a6 = new ArrayList<String>();
         a6.add(String.valueOf(uy.c(a5)));
         a6.add(String.valueOf(uy.ALLATORIxDEMO(a5)));
@@ -48,13 +48,13 @@ public class tr {
     @i(f={"\u53d6\u4e16\u754c\u5c4f\u5e55\u5750\u6807\u4fee\u6b63"})
     public static qg ALLATORIxDEMO(double a2, double a3, double a4, float a5) {
         double a6;
-        uy a7 = tr.ALLATORIxDEMO(a2, a3, a4, Minecraft.func_71410_x().func_184121_ak());
+        uy a7 = tr.ALLATORIxDEMO(a2, a3, a4, Minecraft.getMinecraft().getRenderPartialTicks());
         if (a5 <= 0.0f || a5 > 1.0f) {
             a5 = 0.66f;
         }
-        ScaledResolution a8 = new ScaledResolution(Minecraft.func_71410_x());
-        double a9 = a8.func_78327_c();
-        double a10 = a8.func_78324_d();
+        ScaledResolution a8 = new ScaledResolution(Minecraft.getMinecraft());
+        double a9 = a8.getScaledWidth_double();
+        double a10 = a8.getScaledHeight_double();
         double a11 = 0.0;
         double a12 = 0.0;
         a11 = a9 / 2.0 + (double)uy.c(a7);
@@ -96,29 +96,29 @@ public class tr {
         float a7;
         float a8;
         EntityRenderer a9;
-        Minecraft a10 = Minecraft.func_71410_x();
-        RenderManager a11 = Minecraft.func_71410_x().func_175598_ae();
-        Vec3d a12 = ActiveRenderInfo.func_178806_a((Entity)a11.field_78734_h, (double)a5);
+        Minecraft a10 = Minecraft.getMinecraft();
+        RenderManager a11 = Minecraft.getMinecraft().getRenderManager();
+        Vec3d a12 = ActiveRenderInfo.projectViewFromEntity((Entity)a11.renderViewEntity, (double)a5);
         ik a13 = new ik(0.0f, 0.0f, 0.0f, 1.0f);
-        a13.ALLATORIxDEMO(gg.q.ALLATORIxDEMO(-a11.field_78735_i));
-        a13.ALLATORIxDEMO(gg.m.ALLATORIxDEMO(a11.field_78732_j));
+        a13.ALLATORIxDEMO(gg.q.ALLATORIxDEMO(-a11.playerViewY));
+        a13.ALLATORIxDEMO(gg.m.ALLATORIxDEMO(a11.playerViewX));
         a13.c();
-        gg a14 = new gg((float)(a12.field_72450_a - a2), (float)(a12.field_72448_b - a3), (float)(a12.field_72449_c - a4));
+        gg a14 = new gg((float)(a12.x - a2), (float)(a12.y - a3), (float)(a12.z - a4));
         a14.ALLATORIxDEMO(a13);
-        if (a10.field_71474_y.field_74336_f && (a9 = a10.func_175598_ae().field_78734_h) instanceof EntityPlayer) {
+        if (a10.gameSettings.viewBobbing && (a9 = a10.getRenderManager().renderViewEntity) instanceof EntityPlayer) {
             EntityPlayer a15 = (EntityPlayer)a9;
-            float a16 = a15.field_70140_Q;
-            a8 = a16 - a15.field_70141_P;
+            float a16 = a15.distanceWalkedModified;
+            a8 = a16 - a15.prevDistanceWalkedModified;
             a7 = -(a16 + a8 * a5);
-            a6 = tr.ALLATORIxDEMO(a5, a15.field_71107_bF, a15.field_71109_bG);
-            gg a17 = new gg(-(MathHelper.func_76126_a((float)(a7 * (float)Math.PI)) * a6 * 0.5f), Math.abs(MathHelper.func_76134_b((float)(a7 * (float)Math.PI)) * a6), 0.0f);
+            a6 = tr.ALLATORIxDEMO(a5, a15.prevCameraYaw, a15.cameraYaw);
+            gg a17 = new gg(-(MathHelper.sin((float)(a7 * (float)Math.PI)) * a6 * 0.5f), Math.abs(MathHelper.cos((float)(a7 * (float)Math.PI)) * a6), 0.0f);
             a17.c(-a17.c());
             a14.f(a17);
         }
-        a9 = Minecraft.func_71410_x().field_71460_t;
-        float a18 = a9.func_78481_a(a5, true);
+        a9 = Minecraft.getMinecraft().entityRenderer;
+        float a18 = a9.getFOVModifier(a5, true);
         ScaledResolution a19 = new ScaledResolution(a10);
-        a8 = (float)a19.func_78324_d() / 2.0f;
+        a8 = (float)a19.getScaledHeight_double() / 2.0f;
         a7 = a8 / (a14.ALLATORIxDEMO() * (float)Math.tan(Math.toRadians(a18 / 2.0f)));
         a6 = -a14.f() * a7;
         float a20 = a14.c() * a7;

@@ -111,7 +111,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 public class hka
 extends RenderLivingBase
 implements Runnable {
-    private static final Minecraft m = Minecraft.func_71410_x();
+    private static final Minecraft m = Minecraft.getMinecraft();
     public static boolean c = false;
     private static final ScheduledExecutorService q = Executors.newScheduledThreadPool(1);
     public static ShaderManager b;
@@ -121,9 +121,9 @@ implements Runnable {
     private Field ALLATORIxDEMO;
 
     public hka() {
-        super(Minecraft.func_71410_x().func_175598_ae(), null, 1.0f);
+        super(Minecraft.getMinecraft().getRenderManager(), null, 1.0f);
         hka a2;
-        a2.func_177094_a(new rt(a2));
+        a2.addLayer(new rt(a2));
         q.scheduleAtFixedRate(() -> {
             hka a2;
             sj.ALLATORIxDEMO(a2);
@@ -139,33 +139,33 @@ implements Runnable {
     private static /* synthetic */ void ALLATORIxDEMO(int a2, int a3, float a4, float a5, float a6, float a7, float a8, float a9) {
         a8 = 1.0f / a8;
         a9 = 1.0f / a9;
-        Tessellator a10 = Tessellator.func_178181_a();
-        BufferBuilder a11 = a10.func_178180_c();
-        a11.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        a11.func_181662_b((double)((float)a2 - a6 / 2.0f), (double)((float)a3 + a7 - a7 / 2.0f), 0.0).func_187315_a((double)(a4 * a8), (double)((a5 + a7) * a9)).func_181675_d();
-        a11.func_181662_b((double)((float)a2 + a6 - a6 / 2.0f), (double)((float)a3 + a7 - a7 / 2.0f), 0.0).func_187315_a((double)((a4 + a6) * a8), (double)((a5 + a7) * a9)).func_181675_d();
-        a11.func_181662_b((double)((float)a2 + a6 - a6 / 2.0f), (double)((float)a3 - a7 / 2.0f), 0.0).func_187315_a((double)((a4 + a6) * a8), (double)(a5 * a9)).func_181675_d();
-        a11.func_181662_b((double)((float)a2 - a6 / 2.0f), (double)((float)a3 - a7 / 2.0f), 0.0).func_187315_a((double)(a4 * a8), (double)(a5 * a9)).func_181675_d();
-        a10.func_78381_a();
+        Tessellator a10 = Tessellator.getInstance();
+        BufferBuilder a11 = a10.getBuffer();
+        a11.begin(7, DefaultVertexFormats.POSITION_TEX);
+        a11.pos((double)((float)a2 - a6 / 2.0f), (double)((float)a3 + a7 - a7 / 2.0f), 0.0).tex((double)(a4 * a8), (double)((a5 + a7) * a9)).endVertex();
+        a11.pos((double)((float)a2 + a6 - a6 / 2.0f), (double)((float)a3 + a7 - a7 / 2.0f), 0.0).tex((double)((a4 + a6) * a8), (double)((a5 + a7) * a9)).endVertex();
+        a11.pos((double)((float)a2 + a6 - a6 / 2.0f), (double)((float)a3 - a7 / 2.0f), 0.0).tex((double)((a4 + a6) * a8), (double)(a5 * a9)).endVertex();
+        a11.pos((double)((float)a2 - a6 / 2.0f), (double)((float)a3 - a7 / 2.0f), 0.0).tex((double)(a4 * a8), (double)(a5 * a9)).endVertex();
+        a10.draw();
     }
 
     public static void ALLATORIxDEMO(int a2, int a3, float a4, float a5, float a6, float a7, float a8, float a9, float a10, float a11) {
         a10 = 1.0f / a10;
         a11 = 1.0f / a11;
-        Tessellator a12 = Tessellator.func_178181_a();
-        BufferBuilder a13 = a12.func_178180_c();
-        a13.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        a13.func_181662_b((double)((float)a2 - a8 / 2.0f), (double)((float)a3 + a7 - a9 / 2.0f), 0.0).func_187315_a((double)(a4 * a10), (double)((a5 + a7) * a11)).func_181675_d();
-        a13.func_181662_b((double)((float)a2 + a6 - a8 / 2.0f), (double)((float)a3 + a7 - a9 / 2.0f), 0.0).func_187315_a((double)((a4 + a6) * a10), (double)((a5 + a7) * a11)).func_181675_d();
-        a13.func_181662_b((double)((float)a2 + a6 - a8 / 2.0f), (double)((float)a3 - a9 / 2.0f), 0.0).func_187315_a((double)((a4 + a6) * a10), (double)(a5 * a11)).func_181675_d();
-        a13.func_181662_b((double)((float)a2 - a8 / 2.0f), (double)((float)a3 - a9 / 2.0f), 0.0).func_187315_a((double)(a4 * a10), (double)(a5 * a11)).func_181675_d();
-        a12.func_78381_a();
+        Tessellator a12 = Tessellator.getInstance();
+        BufferBuilder a13 = a12.getBuffer();
+        a13.begin(7, DefaultVertexFormats.POSITION_TEX);
+        a13.pos((double)((float)a2 - a8 / 2.0f), (double)((float)a3 + a7 - a9 / 2.0f), 0.0).tex((double)(a4 * a10), (double)((a5 + a7) * a11)).endVertex();
+        a13.pos((double)((float)a2 + a6 - a8 / 2.0f), (double)((float)a3 + a7 - a9 / 2.0f), 0.0).tex((double)((a4 + a6) * a10), (double)((a5 + a7) * a11)).endVertex();
+        a13.pos((double)((float)a2 + a6 - a8 / 2.0f), (double)((float)a3 - a9 / 2.0f), 0.0).tex((double)((a4 + a6) * a10), (double)(a5 * a11)).endVertex();
+        a13.pos((double)((float)a2 - a8 / 2.0f), (double)((float)a3 - a9 / 2.0f), 0.0).tex((double)(a4 * a10), (double)(a5 * a11)).endVertex();
+        a12.draw();
     }
 
     @SubscribeEvent
     public void onjoin(EntityJoinWorldEvent a2) {
         if (a2.getEntity() != null && !(a2.getEntity() instanceof EntityItem)) {
-            nw.c(a2.getEntity().func_110124_au());
+            nw.c(a2.getEntity().getUniqueID());
         }
     }
 
@@ -182,7 +182,7 @@ implements Runnable {
         if (!wka.k) {
             return;
         }
-        EntityPlayerSP a4 = Minecraft.func_71410_x().field_71439_g;
+        EntityPlayerSP a4 = Minecraft.getMinecraft().player;
         rda a5 = raa.r.c((EntityLivingBase)a4);
         if (a5 != null && a5.ALLATORIxDEMO() != 0.0) {
             a4.eyeHeight = (float)a5.ALLATORIxDEMO();
@@ -202,7 +202,7 @@ implements Runnable {
             return;
         }
         EntityOtherPlayerMP a4 = (EntityOtherPlayerMP)a2.getEntity();
-        if (a4.func_70005_c_().contains("\u00a7")) {
+        if (a4.getName().contains("\u00a7")) {
             return;
         }
         a3.drawEntityHealthBar((EntityLivingBase)a4, "player", a2.getX(), a2.getY(), a2.getZ());
@@ -228,7 +228,7 @@ implements Runnable {
     @SubscribeEvent
     public void onEntityJoinWorldEvent(EntityJoinWorldEvent a2) {
         hka a3;
-        a3.y.put(a2.getEntity().func_110124_au(), System.currentTimeMillis() + 55L);
+        a3.y.put(a2.getEntity().getUniqueID(), System.currentTimeMillis() + 55L);
     }
 
     @SubscribeEvent(priority=EventPriority.LOWEST)
@@ -244,12 +244,12 @@ implements Runnable {
         if (a2.isCanceled()) {
             return;
         }
-        Long a5 = a4.y.get(a2.getEntity().func_110124_au());
+        Long a5 = a4.y.get(a2.getEntity().getUniqueID());
         if (a5 != null) {
-            if (a5 > System.currentTimeMillis() && (!a2.getEntity().func_145818_k_() || a2.getEntity().func_70005_c_().contains("Adyeshach"))) {
+            if (a5 > System.currentTimeMillis() && (!a2.getEntity().hasCustomName() || a2.getEntity().getName().contains("Adyeshach"))) {
                 a2.setCanceled(true);
             } else {
-                a4.y.remove(a2.getEntity().func_110124_au());
+                a4.y.remove(a2.getEntity().getUniqueID());
             }
         }
         if ((a3 = raa.r.c(a2.getEntity())) == null) {
@@ -257,7 +257,7 @@ implements Runnable {
         }
         double a6 = a2.getX();
         double a7 = a2.getY();
-        if (a2.getEntity() instanceof EntityPlayer && a2.getEntity().func_70093_af()) {
+        if (a2.getEntity() instanceof EntityPlayer && a2.getEntity().isSneaking()) {
             a7 += 0.125;
         }
         double a8 = a2.getZ();
@@ -274,21 +274,21 @@ implements Runnable {
                 return;
             }
             EntityLivingBase a14 = a2.getEntity();
-            a14.field_70131_O = a3.c();
-            a14.field_70130_N = a3.ALLATORIxDEMO();
+            a14.height = a3.c();
+            a14.width = a3.ALLATORIxDEMO();
             if (!a3.ALLATORIxDEMO()) {
                 return;
             }
             a2.setCanceled(true);
-            String a15 = a14.func_95999_t();
-            if (om.o && a15 != null && a15.contains("-") && a15.endsWith("\u7279\u6548") && !((String)(a11 = a15.substring(0, a15.indexOf("-")))).equals(hka.m.field_71439_g.func_70005_c_())) {
+            String a15 = a14.getCustomNameTag();
+            if (om.o && a15 != null && a15.contains("-") && a15.endsWith("\u7279\u6548") && !((String)(a11 = a15.substring(0, a15.indexOf("-")))).equals(hka.m.player.getName())) {
                 return;
             }
             a11 = null;
             AnimationEntityModel a16 = null;
             if (!a3.c() && !a3.k()) {
                 dt.k.init(a14, true);
-                a11 = dt.k.getEntityManager(a14.func_110124_au());
+                a11 = dt.k.getEntityManager(a14.getUniqueID());
                 if (a11 != null && a13 instanceof AnimationEntityModel) {
                     a16 = (AnimationEntityModel)a13;
                     raa.x.ALLATORIxDEMO();
@@ -298,11 +298,11 @@ implements Runnable {
                 hq a17 = (hq)a13;
                 float a18 = 0.0f;
                 a10 = 0.0f;
-                if (a14.func_70089_S()) {
+                if (a14.isEntityAlive()) {
                     boolean a19;
-                    a18 = Interpolations.lerp(a14.field_184618_aE, a14.field_70721_aZ, a2.getPartialRenderTick());
-                    a10 = a14.field_184619_aG - a14.field_70721_aZ * (1.0f - a2.getPartialRenderTick());
-                    if (a14.func_70631_g_()) {
+                    a18 = Interpolations.lerp(a14.prevLimbSwingAmount, a14.limbSwingAmount, a2.getPartialRenderTick());
+                    a10 = a14.limbSwing - a14.limbSwingAmount * (1.0f - a2.getPartialRenderTick());
+                    if (a14.isChild()) {
                         a10 *= 3.0f;
                     }
                     if (a18 > 1.0f) {
@@ -317,21 +317,21 @@ implements Runnable {
                 }
             }
             float a20 = a2.getPartialRenderTick();
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179129_p();
-            a4.field_77045_g = a13;
-            a4.field_77045_g.field_78095_p = a4.func_77040_d(a14, a20);
-            a4.field_77045_g.field_78093_q = a9 = a14.func_184218_aH() && a14.func_184187_bx() != null && a14.func_184187_bx().shouldRiderSit();
-            a4.field_77045_g.field_78091_s = a14.func_70631_g_();
+            GlStateManager.pushMatrix();
+            GlStateManager.disableCull();
+            a4.mainModel = a13;
+            a4.mainModel.swingProgress = a4.getSwingProgress(a14, a20);
+            a4.mainModel.isRiding = a9 = a14.isRiding() && a14.getRidingEntity() != null && a14.getRidingEntity().shouldRiderSit();
+            a4.mainModel.isChild = a14.isChild();
             try {
-                a10 = a4.func_77034_a(a14.field_70760_ar, a14.field_70761_aq, a20);
-                float a21 = a4.func_77034_a(a14.field_70758_at, a14.field_70759_as, a20);
+                a10 = a4.interpolateRotation(a14.prevRenderYawOffset, a14.renderYawOffset, a20);
+                float a21 = a4.interpolateRotation(a14.prevRotationYawHead, a14.rotationYawHead, a20);
                 float a22 = a21 - a10;
-                if (a9 && a14.func_184187_bx() instanceof EntityLivingBase) {
-                    EntityLivingBase a23 = (EntityLivingBase)a14.func_184187_bx();
-                    a10 = a4.func_77034_a(a23.field_70760_ar, a23.field_70761_aq, a20);
+                if (a9 && a14.getRidingEntity() instanceof EntityLivingBase) {
+                    EntityLivingBase a23 = (EntityLivingBase)a14.getRidingEntity();
+                    a10 = a4.interpolateRotation(a23.prevRenderYawOffset, a23.renderYawOffset, a20);
                     a22 = a21 - a10;
-                    float a24 = MathHelper.func_76142_g((float)a22);
+                    float a24 = MathHelper.wrapDegrees((float)a22);
                     if (a24 < -85.0f) {
                         a24 = -85.0f;
                     }
@@ -344,10 +344,10 @@ implements Runnable {
                     }
                     a22 = a21 - a10;
                 }
-                float a25 = a14.field_70127_C + (a14.field_70125_A - a14.field_70127_C) * a20;
+                float a25 = a14.prevRotationPitch + (a14.rotationPitch - a14.prevRotationPitch) * a20;
                 nd a26 = raa.x;
                 a26.ALLATORIxDEMO("query.yaw", a22);
-                if (a14.func_184599_cB() > 4) {
+                if (a14.getTicksElytraFlying() > 4) {
                     a26.ALLATORIxDEMO("query.pitch", -45.0);
                 } else {
                     a26.ALLATORIxDEMO("query.pitch", a25);
@@ -359,23 +359,23 @@ implements Runnable {
                         for (Map.Entry<String, Boolean> a27 : ((xz)a11).b.entrySet()) {
                             AnimationModelRenderer a28 = a16.getBaseModel().getPiece(a27.getKey());
                             if (a28 == null || !(a28 instanceof ModelRenderer)) continue;
-                            ((ModelRenderer)a28).field_78806_j = a27.getValue();
+                            ((ModelRenderer)a28).showModel = a27.getValue();
                         }
                     }
                 }
-                a4.func_77039_a(a14, a6, a7, a8);
-                float a29 = a4.func_77044_a(a14, a20);
+                a4.renderLivingAt(a14, a6, a7, a8);
+                float a29 = a4.handleRotationFloat(a14, a20);
                 if (!a3.k() && a3.f() != 0.0f) {
-                    GlStateManager.func_179152_a((float)a3.f(), (float)a3.f(), (float)a3.f());
+                    GlStateManager.scale((float)a3.f(), (float)a3.f(), (float)a3.f());
                 }
-                a4.func_77043_a(a14, a29, a10, a20);
-                float a30 = a4.func_188322_c(a14, a20);
+                a4.applyRotations(a14, a29, a10, a20);
+                float a30 = a4.prepareScale(a14, a20);
                 float a31 = 0.0f;
                 float a32 = 0.0f;
-                if (!a14.func_184218_aH()) {
-                    a31 = a14.field_184618_aE + (a14.field_70721_aZ - a14.field_184618_aE) * a20;
-                    a32 = a14.field_184619_aG - a14.field_70721_aZ * (1.0f - a20);
-                    if (a14.func_70631_g_()) {
+                if (!a14.isRiding()) {
+                    a31 = a14.prevLimbSwingAmount + (a14.limbSwingAmount - a14.prevLimbSwingAmount) * a20;
+                    a32 = a14.limbSwing - a14.limbSwingAmount * (1.0f - a20);
+                    if (a14.isChild()) {
                         a32 *= 3.0f;
                     }
                     if (a31 > 1.0f) {
@@ -383,54 +383,54 @@ implements Runnable {
                     }
                     a22 = a21 - a10;
                 }
-                GlStateManager.func_179141_d();
-                a4.field_77045_g.func_78086_a(a14, a32, a31, a20);
-                if (a4.field_188301_f) {
-                    boolean a33 = a4.func_177088_c(a14);
-                    GlStateManager.func_179142_g();
-                    GlStateManager.func_187431_e((int)a4.func_188298_c((Entity)a14));
-                    if (!a4.field_188323_j) {
-                        a4.func_77036_a(a14, a32, a31, a29, a22, a25, a30);
+                GlStateManager.enableAlpha();
+                a4.mainModel.setLivingAnimations(a14, a32, a31, a20);
+                if (a4.renderOutlines) {
+                    boolean a33 = a4.setScoreTeamColor(a14);
+                    GlStateManager.enableColorMaterial();
+                    GlStateManager.enableOutlineMode((int)a4.getTeamColor((Entity)a14));
+                    if (!a4.renderMarker) {
+                        a4.renderModel(a14, a32, a31, a29, a22, a25, a30);
                     }
-                    a4.func_177093_a(a14, a32, a31, a20, a29, a22, a25, a30);
-                    if (!(a14 instanceof EntityPlayer) || !((EntityPlayer)a14).func_175149_v()) {
-                        a4.func_177093_a(a14, a32, a31, a20, a29, a22, a25, a30);
+                    a4.renderLayers(a14, a32, a31, a20, a29, a22, a25, a30);
+                    if (!(a14 instanceof EntityPlayer) || !((EntityPlayer)a14).isSpectator()) {
+                        a4.renderLayers(a14, a32, a31, a20, a29, a22, a25, a30);
                     }
-                    GlStateManager.func_187417_n();
-                    GlStateManager.func_179119_h();
+                    GlStateManager.disableOutlineMode();
+                    GlStateManager.disableColorMaterial();
                     if (a33) {
-                        a4.func_180565_e();
+                        a4.unsetScoreTeamColor();
                     }
                 } else {
                     boolean a34 = a4.setDoRenderBrightness(a14, a20, a3.s());
-                    GlStateManager.func_179094_E();
+                    GlStateManager.pushMatrix();
                     a3.ALLATORIxDEMO();
-                    a4.func_77036_a(a14, a32, a31, a29, a22, a25, a30);
-                    GlStateManager.func_179121_F();
+                    a4.renderModel(a14, a32, a31, a29, a22, a25, a30);
+                    GlStateManager.popMatrix();
                     if (a34) {
-                        a4.func_177091_f();
+                        a4.unsetBrightness();
                     }
-                    GlStateManager.func_179132_a((boolean)true);
-                    if (!(a14 instanceof EntityPlayer) || !((EntityPlayer)a14).func_175149_v()) {
-                        a4.func_177093_a(a14, a32, a31, a20, a29, a22, a25, a30);
+                    GlStateManager.depthMask((boolean)true);
+                    if (!(a14 instanceof EntityPlayer) || !((EntityPlayer)a14).isSpectator()) {
+                        a4.renderLayers(a14, a32, a31, a20, a29, a22, a25, a30);
                     }
                 }
-                GlStateManager.func_179101_C();
+                GlStateManager.disableRescaleNormal();
             }
             catch (Exception a35) {
                 a35.printStackTrace();
             }
-            if (a4.field_77045_g instanceof pw) {
-                ((pw)a4.field_77045_g).clearData();
+            if (a4.mainModel instanceof pw) {
+                ((pw)a4.mainModel).clearData();
             }
-            GlStateManager.func_179138_g((int)OpenGlHelper.field_77476_b);
-            GlStateManager.func_179098_w();
-            GlStateManager.func_179138_g((int)OpenGlHelper.field_77478_a);
-            GlStateManager.func_179089_o();
-            GlStateManager.func_179121_F();
+            GlStateManager.setActiveTexture((int)OpenGlHelper.lightmapTexUnit);
+            GlStateManager.enableTexture2D();
+            GlStateManager.setActiveTexture((int)OpenGlHelper.defaultTexUnit);
+            GlStateManager.enableCull();
+            GlStateManager.popMatrix();
             a4.drawEntityHealthBar(a14, a3.ALLATORIxDEMO(), a6, a7, a8);
-            if (!a4.field_188301_f && !a3.z()) {
-                a2.getRenderer().func_177067_a(a14, a6, a7, a8);
+            if (!a4.renderOutlines && !a3.z()) {
+                a2.getRenderer().renderName(a14, a6, a7, a8);
             }
             MinecraftForge.EVENT_BUS.post((Event)new RenderLivingEvent.Post(a14, a2.getRenderer(), a20, a6, a7, a8));
         } else {
@@ -438,11 +438,11 @@ implements Runnable {
         }
     }
 
-    public void func_77036_a(EntityLivingBase a2, float a3, float a4, float a5, float a6, float a7, float a8) {
+    public void renderModel(EntityLivingBase a2, float a3, float a4, float a5, float a6, float a7, float a8) {
         boolean a9;
         boolean a10;
         hka a11;
-        if (a2.field_70128_L) {
+        if (a2.isDead) {
             return;
         }
         if (a11.ALLATORIxDEMO != null) {
@@ -460,84 +460,84 @@ implements Runnable {
                 a11.k = true;
             }
         }
-        boolean bl2 = a10 = !(a9 = a11.func_193115_c(a2)) && !a2.func_98034_c((EntityPlayer)Minecraft.func_71410_x().field_71439_g);
+        boolean bl2 = a10 = !(a9 = a11.isVisible(a2)) && !a2.isInvisibleToPlayer((EntityPlayer)Minecraft.getMinecraft().player);
         if (a9 || a10) {
             String a13;
             rda a14 = raa.r.c(a2);
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-            xz a15 = dt.k.getEntityManager(a2.func_110124_au());
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            xz a15 = dt.k.getEntityManager(a2.getUniqueID());
             String string = a13 = a15 != null ? a15.c() : null;
             if (a13 == null) {
-                a11.func_110776_a(a14.x());
+                a11.bindTexture(a14.x());
             } else if (!a13.contains(",")) {
-                a11.func_110776_a(new ResourceLocation("dragoncore", "models/entities/" + a13));
+                a11.bindTexture(new ResourceLocation("dragoncore", "models/entities/" + a13));
             } else {
                 String[] a16 = a13.split(",");
-                a11.func_110776_a(new ResourceLocation("dragoncore", "models/entities/" + a16[0]));
+                a11.bindTexture(new ResourceLocation("dragoncore", "models/entities/" + a16[0]));
                 if (a16.length == 5) {
-                    GlStateManager.func_179131_c((float)((float)NumberUtils.toInt((String)a16[1]) / 255.0f), (float)((float)NumberUtils.toInt((String)a16[2]) / 255.0f), (float)((float)NumberUtils.toInt((String)a16[3]) / 255.0f), (float)((float)NumberUtils.toInt((String)a16[4]) / 255.0f));
+                    GlStateManager.color((float)((float)NumberUtils.toInt((String)a16[1]) / 255.0f), (float)((float)NumberUtils.toInt((String)a16[2]) / 255.0f), (float)((float)NumberUtils.toInt((String)a16[3]) / 255.0f), (float)((float)NumberUtils.toInt((String)a16[4]) / 255.0f));
                 }
             }
             if (a10) {
-                GlStateManager.func_187408_a((GlStateManager.Profile)GlStateManager.Profile.TRANSPARENT_MODEL);
+                GlStateManager.enableBlendProfile((GlStateManager.Profile)GlStateManager.Profile.TRANSPARENT_MODEL);
             }
-            a11.field_77045_g.func_78088_a((Entity)a2, a3, a4, a5, a6, a7, a8);
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            a11.mainModel.render((Entity)a2, a3, a4, a5, a6, a7, a8);
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
             a13 = a15 != null ? a15.ALLATORIxDEMO() : null;
             boolean a17 = false;
             if (a13 == null) {
                 if (a14.ALLATORIxDEMO() != null) {
                     a17 = true;
-                    a11.func_110776_a(a14.ALLATORIxDEMO());
+                    a11.bindTexture(a14.ALLATORIxDEMO());
                 }
             } else if (!a13.contains(",")) {
                 a17 = true;
-                a11.func_110776_a(new ResourceLocation("dragoncore", "models/entities/" + a13));
+                a11.bindTexture(new ResourceLocation("dragoncore", "models/entities/" + a13));
             } else {
                 a17 = true;
                 String[] a18 = a13.split(",");
-                a11.func_110776_a(new ResourceLocation("dragoncore", "models/entities/" + a18[0]));
+                a11.bindTexture(new ResourceLocation("dragoncore", "models/entities/" + a18[0]));
                 if (a18.length == 5) {
-                    GlStateManager.func_179131_c((float)((float)NumberUtils.toInt((String)a18[1]) / 255.0f), (float)((float)NumberUtils.toInt((String)a18[2]) / 255.0f), (float)((float)NumberUtils.toInt((String)a18[3]) / 255.0f), (float)((float)NumberUtils.toInt((String)a18[4]) / 255.0f));
+                    GlStateManager.color((float)((float)NumberUtils.toInt((String)a18[1]) / 255.0f), (float)((float)NumberUtils.toInt((String)a18[2]) / 255.0f), (float)((float)NumberUtils.toInt((String)a18[3]) / 255.0f), (float)((float)NumberUtils.toInt((String)a18[4]) / 255.0f));
                 }
             }
             if (a17) {
                 float a19 = OpenGlHelper.lastBrightnessX;
                 float a20 = OpenGlHelper.lastBrightnessY;
-                OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)a20);
-                a11.field_77045_g.func_78088_a((Entity)a2, a3, a4, a5, a6, a7, a8);
-                OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)a19, (float)a20);
+                OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)a20);
+                a11.mainModel.render((Entity)a2, a3, a4, a5, a6, a7, a8);
+                OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)a19, (float)a20);
             }
             if (a10) {
-                GlStateManager.func_187440_b((GlStateManager.Profile)GlStateManager.Profile.TRANSPARENT_MODEL);
+                GlStateManager.disableBlendProfile((GlStateManager.Profile)GlStateManager.Profile.TRANSPARENT_MODEL);
             }
         }
     }
 
-    public void func_110776_a(ResourceLocation a2) {
+    public void bindTexture(ResourceLocation a2) {
         if (!hka.ALLATORIxDEMO(a2)) {
             hka a3;
-            super.func_110776_a(a2);
+            super.bindTexture(a2);
         }
     }
 
     public static boolean ALLATORIxDEMO(ResourceLocation a2) {
-        if (a2.func_110624_b().equals("dragoncore")) {
-            IResourceManager a4 = Minecraft.func_71410_x().func_110442_L();
-            TextureManager a5 = Minecraft.func_71410_x().func_110434_K();
-            if (a5.func_110581_b(a2) == null) {
-                try (IResource a6 = a4.func_110536_a(a2);){
-                    if (a6.func_110528_c()) {
+        if (a2.getNamespace().equals("dragoncore")) {
+            IResourceManager a4 = Minecraft.getMinecraft().getResourceManager();
+            TextureManager a5 = Minecraft.getMinecraft().getTextureManager();
+            if (a5.getTexture(a2) == null) {
+                try (IResource a6 = a4.getResource(a2);){
+                    if (a6.hasMetadata()) {
                         vw a7 = new vw("");
-                        a7.func_174943_a(a4, a3 -> a3.func_174942_a(a2));
-                        a5.func_110580_a(a2, (ITickableTextureObject)a7);
+                        a7.loadSprites(a4, a3 -> a3.registerSprite(a2));
+                        a5.loadTickableTexture(a2, (ITickableTextureObject)a7);
                     }
                 }
                 catch (IOException iOException) {
                     // empty catch block
                 }
             }
-            a5.func_110577_a(a2);
+            a5.bindTexture(a2);
             return true;
         }
         return false;
@@ -549,93 +549,93 @@ implements Runnable {
             return;
         }
         nha a8 = ega.k.ALLATORIxDEMO().get(a3);
-        float a9 = a7.field_76990_c.field_78735_i;
-        float a10 = a7.field_76990_c.field_78732_j;
-        boolean a11 = a7.field_76990_c.field_78733_k.field_74320_O == 2;
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179137_b((double)a4, (double)(a5 + a8.ALLATORIxDEMO(a2)), (double)a6);
-        GlStateManager.func_187432_a((float)0.0f, (float)1.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)(-a9), (float)0.0f, (float)1.0f, (float)0.0f);
-        GlStateManager.func_179114_b((float)((float)(a11 ? -1 : 1) * a10), (float)1.0f, (float)0.0f, (float)0.0f);
-        GlStateManager.func_179152_a((float)-0.025f, (float)-0.025f, (float)0.025f);
-        GlStateManager.func_179140_f();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_187428_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        float a9 = a7.renderManager.playerViewY;
+        float a10 = a7.renderManager.playerViewX;
+        boolean a11 = a7.renderManager.options.thirdPersonView == 2;
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((double)a4, (double)(a5 + a8.ALLATORIxDEMO(a2)), (double)a6);
+        GlStateManager.glNormal3f((float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.rotate((float)(-a9), (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.rotate((float)((float)(a11 ? -1 : 1) * a10), (float)1.0f, (float)0.0f, (float)0.0f);
+        GlStateManager.scale((float)-0.025f, (float)-0.025f, (float)0.025f);
+        GlStateManager.disableLighting();
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         ww.ALLATORIxDEMO(a8.c());
-        float a12 = a8.x(a2.func_110143_aJ(), a2.func_110138_aP());
-        float a13 = a8.f(a2.func_110143_aJ(), a2.func_110138_aP());
+        float a12 = a8.x(a2.getHealth(), a2.getMaxHealth());
+        float a13 = a8.f(a2.getHealth(), a2.getMaxHealth());
         hka.ALLATORIxDEMO(0, 0, 0.0f, 0.0f, a12, a13, a12, a13);
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         ww.ALLATORIxDEMO(a8.ALLATORIxDEMO());
-        GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)-0.1f);
-        GlStateManager.func_179139_a((double)1.01, (double)1.01, (double)1.01);
-        float a14 = a8.c(a2.func_110143_aJ(), a2.func_110138_aP());
-        float a15 = a8.ALLATORIxDEMO(a2.func_110143_aJ(), a2.func_110138_aP());
+        GlStateManager.translate((float)0.0f, (float)0.0f, (float)-0.1f);
+        GlStateManager.scale((double)1.01, (double)1.01, (double)1.01);
+        float a14 = a8.c(a2.getHealth(), a2.getMaxHealth());
+        float a15 = a8.ALLATORIxDEMO(a2.getHealth(), a2.getMaxHealth());
         hka.ALLATORIxDEMO(0, 0, 0.0f, 0.0f, a14, a15, a12, a13, a12, a13);
-        GlStateManager.func_179109_b((float)(-a12 / 2.0f), (float)(-a13 / 2.0f), (float)-0.1f);
+        GlStateManager.translate((float)(-a12 / 2.0f), (float)(-a13 / 2.0f), (float)-0.1f);
         for (tca a16 : a8.ALLATORIxDEMO()) {
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179152_a((float)a16.ALLATORIxDEMO(), (float)a16.ALLATORIxDEMO(), (float)a16.ALLATORIxDEMO());
-            String a17 = a16.ALLATORIxDEMO(a2.func_110143_aJ(), a2.func_110138_aP(), a2.func_145748_c_().func_150254_d());
-            float a18 = a16.c(a2.func_110143_aJ(), a2.func_110138_aP());
-            float a19 = a16.ALLATORIxDEMO(a2.func_110143_aJ(), a2.func_110138_aP());
+            GlStateManager.pushMatrix();
+            GlStateManager.scale((float)a16.ALLATORIxDEMO(), (float)a16.ALLATORIxDEMO(), (float)a16.ALLATORIxDEMO());
+            String a17 = a16.ALLATORIxDEMO(a2.getHealth(), a2.getMaxHealth(), a2.getDisplayName().getFormattedText());
+            float a18 = a16.c(a2.getHealth(), a2.getMaxHealth());
+            float a19 = a16.ALLATORIxDEMO(a2.getHealth(), a2.getMaxHealth());
             if (a16.ALLATORIxDEMO()) {
-                a18 -= (float)hka.m.field_71466_p.func_78256_a(a17) * a16.ALLATORIxDEMO() / 2.0f;
+                a18 -= (float)hka.m.fontRenderer.getStringWidth(a17) * a16.ALLATORIxDEMO() / 2.0f;
             }
-            hka.m.field_71466_p.func_175065_a(a17, a18, a19, -16777216, false);
-            GlStateManager.func_179121_F();
+            hka.m.fontRenderer.drawString(a17, a18, a19, -16777216, false);
+            GlStateManager.popMatrix();
         }
-        GlStateManager.func_179145_e();
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179121_F();
+        GlStateManager.enableLighting();
+        GlStateManager.disableBlend();
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.popMatrix();
     }
 
     public static void ALLATORIxDEMO(Entity a2, xz a3) {
         nd a4 = raa.x;
-        Minecraft a5 = Minecraft.func_71410_x();
-        float a6 = a5.func_184121_ak();
+        Minecraft a5 = Minecraft.getMinecraft();
+        float a6 = a5.getRenderPartialTicks();
         if (a3.q != null) {
             for (Map.Entry<String, Double> entry : a3.q.entrySet()) {
                 a4.ALLATORIxDEMO("query." + entry.getKey(), entry.getValue());
             }
         }
-        a4.ALLATORIxDEMO("query.actor_count", (double)a5.field_71441_e.field_72996_f.size());
-        a4.ALLATORIxDEMO("query.time_of_day", qe.ALLATORIxDEMO(a5.field_71441_e.func_82737_E()));
-        a4.ALLATORIxDEMO("query.moon_phase", (double)a5.field_71441_e.func_72853_d());
+        a4.ALLATORIxDEMO("query.actor_count", (double)a5.world.loadedEntityList.size());
+        a4.ALLATORIxDEMO("query.time_of_day", qe.ALLATORIxDEMO(a5.world.getTotalWorldTime()));
+        a4.ALLATORIxDEMO("query.moon_phase", (double)a5.world.getMoonPhase());
         if (a2 != null) {
-            Entity a8 = a5.func_175606_aa();
+            Entity a8 = a5.getRenderViewEntity();
             if (a8 == null) {
                 return;
             }
-            Vec3d vec3d = new Vec3d(a8.field_70169_q + (a8.field_70165_t - a8.field_70169_q) * (double)a6, a8.field_70167_r + (a8.field_70163_u - a8.field_70167_r) * (double)a6, a8.field_70166_s + (a8.field_70161_v - a8.field_70166_s) * (double)a6);
-            Vec3d a9 = new Vec3d(a2.field_70169_q + (a2.field_70165_t - a2.field_70169_q) * (double)a6, a2.field_70167_r + (a2.field_70163_u - a2.field_70167_r) * (double)a6, a2.field_70166_s + (a2.field_70161_v - a2.field_70166_s) * (double)a6);
-            double a10 = vec3d.func_178787_e(ActiveRenderInfo.getCameraPosition()).func_72438_d(a9);
+            Vec3d vec3d = new Vec3d(a8.prevPosX + (a8.posX - a8.prevPosX) * (double)a6, a8.prevPosY + (a8.posY - a8.prevPosY) * (double)a6, a8.prevPosZ + (a8.posZ - a8.prevPosZ) * (double)a6);
+            Vec3d a9 = new Vec3d(a2.prevPosX + (a2.posX - a2.prevPosX) * (double)a6, a2.prevPosY + (a2.posY - a2.prevPosY) * (double)a6, a2.prevPosZ + (a2.posZ - a2.prevPosZ) * (double)a6);
+            double a10 = vec3d.add(ActiveRenderInfo.getCameraPosition()).distanceTo(a9);
             a4.ALLATORIxDEMO("query.distance_from_camera", a10);
-            a4.ALLATORIxDEMO("query.is_on_ground", qe.ALLATORIxDEMO(a2.field_70122_E));
-            a4.ALLATORIxDEMO("query.is_in_water", qe.ALLATORIxDEMO(a2.func_70090_H()));
-            a4.ALLATORIxDEMO("query.is_in_water_or_rain", qe.ALLATORIxDEMO(a2.func_70026_G()));
+            a4.ALLATORIxDEMO("query.is_on_ground", qe.ALLATORIxDEMO(a2.onGround));
+            a4.ALLATORIxDEMO("query.is_in_water", qe.ALLATORIxDEMO(a2.isInWater()));
+            a4.ALLATORIxDEMO("query.is_in_water_or_rain", qe.ALLATORIxDEMO(a2.isWet()));
             if (a2 instanceof EntityLivingBase) {
                 EntityLivingBase a11 = (EntityLivingBase)a2;
-                a4.ALLATORIxDEMO("query.health", a11.func_110143_aJ());
-                a4.ALLATORIxDEMO("query.max_health", a11.func_110138_aP());
-                a4.ALLATORIxDEMO("query.is_on_fire", qe.ALLATORIxDEMO(a11.func_70027_ad()));
-                double a12 = a11.field_70159_w;
-                double a13 = a11.field_70179_y;
-                float a14 = MathHelper.func_76133_a((double)(a12 * a12 + a13 * a13));
+                a4.ALLATORIxDEMO("query.health", a11.getHealth());
+                a4.ALLATORIxDEMO("query.max_health", a11.getMaxHealth());
+                a4.ALLATORIxDEMO("query.is_on_fire", qe.ALLATORIxDEMO(a11.isBurning()));
+                double a12 = a11.motionX;
+                double a13 = a11.motionZ;
+                float a14 = MathHelper.sqrt((double)(a12 * a12 + a13 * a13));
                 a4.ALLATORIxDEMO("query.ground_speed", a14);
-                float a15 = hka.ALLATORIxDEMO(a11, Minecraft.func_71410_x().func_184121_ak()) - hka.ALLATORIxDEMO(a11, (float)((double)Minecraft.func_71410_x().func_184121_ak() - 0.1));
+                float a15 = hka.ALLATORIxDEMO(a11, Minecraft.getMinecraft().getRenderPartialTicks()) - hka.ALLATORIxDEMO(a11, (float)((double)Minecraft.getMinecraft().getRenderPartialTicks() - 0.1));
                 a4.ALLATORIxDEMO("query.yaw_speed", a15);
             }
         }
     }
 
     private static /* synthetic */ float ALLATORIxDEMO(EntityLivingBase a2, float a3) {
-        return a2.field_70126_B + (a2.field_70177_z - a2.field_70126_B) * a3;
+        return a2.prevRotationYaw + (a2.rotationYaw - a2.prevRotationYaw) * a3;
     }
 
-    public ResourceLocation func_110775_a(Entity a2) {
+    public ResourceLocation getEntityTexture(Entity a2) {
         rda a3 = raa.r.c((EntityLivingBase)a2);
         if (a3 == null) {
             return new ResourceLocation("dragoncore", "empty.png");
@@ -643,31 +643,31 @@ implements Runnable {
         return a3.x();
     }
 
-    public float func_188322_c(EntityLivingBase a2, float a3) {
+    public float prepareScale(EntityLivingBase a2, float a3) {
         hka a4;
         rda a5 = raa.r.c(a2);
         if (a5 != null && a5.k()) {
-            GlStateManager.func_179091_B();
-            GlStateManager.func_179152_a((float)a5.f(), (float)a5.f(), (float)a5.f());
-            GlStateManager.func_179114_b((float)180.0f, (float)0.0f, (float)((float)a2.field_70163_u), (float)0.0f);
-            a4.func_77041_b(a2, a3);
+            GlStateManager.enableRescaleNormal();
+            GlStateManager.scale((float)a5.f(), (float)a5.f(), (float)a5.f());
+            GlStateManager.rotate((float)180.0f, (float)0.0f, (float)((float)a2.posY), (float)0.0f);
+            a4.preRenderCallback(a2, a3);
             return 0.0625f;
         }
-        return super.func_188322_c(a2, a3);
+        return super.prepareScale(a2, a3);
     }
 
     public boolean setDoRenderBrightness(EntityLivingBase a2, float a3, boolean a4) {
         hka a5;
-        int a6 = a2.field_70725_aQ;
-        int a7 = a2.field_70737_aN;
+        int a6 = a2.deathTime;
+        int a7 = a2.hurtTime;
         if (!a4) {
-            a2.field_70725_aQ = 0;
-            a2.field_70737_aN = 0;
+            a2.deathTime = 0;
+            a2.hurtTime = 0;
         }
-        boolean a8 = super.func_177092_a(a2, a3, true);
+        boolean a8 = super.setBrightness(a2, a3, true);
         if (!a4) {
-            a2.field_70725_aQ = a6;
-            a2.field_70737_aN = a7;
+            a2.deathTime = a6;
+            a2.hurtTime = a7;
         }
         return a8;
     }

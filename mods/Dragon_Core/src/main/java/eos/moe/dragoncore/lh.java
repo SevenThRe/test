@@ -31,13 +31,13 @@ implements IMessage {
     }
 
     public void fromBytes(ByteBuf a2) {
-        a.k = BlockPos.func_177969_a((long)a2.readLong());
+        a.k = BlockPos.fromLong((long)a2.readLong());
         a.ALLATORIxDEMO = bp.ALLATORIxDEMO(a2);
     }
 
     public void toBytes(ByteBuf a2) {
         lh a3;
-        a2.writeLong(a3.k.func_177986_g());
+        a2.writeLong(a3.k.toLong());
         bp.ALLATORIxDEMO(a3.ALLATORIxDEMO, a2);
     }
 }

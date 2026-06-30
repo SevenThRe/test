@@ -102,26 +102,26 @@ extends TextureMap {
         this.b = iconCreatorIn;
     }
 
-    public void func_110551_a(IResourceManager a2) throws IOException {
+    public void loadTexture(IResourceManager a2) throws IOException {
         vw a3;
         if (a3.b != null) {
-            a3.func_174943_a(a2, a3.b);
+            a3.loadSprites(a2, a3.b);
         }
     }
 
-    public void func_174943_a(IResourceManager a2, ITextureMapPopulator a3) {
+    public void loadSprites(IResourceManager a2, ITextureMapPopulator a3) {
         vw a4;
         a4.y = false;
         a4.m.clear();
-        a4.func_147631_c();
-        a3.func_177059_a((TextureMap)a4);
-        a4.func_110571_b(a2);
+        a4.deleteGlTexture();
+        a3.registerSprites((TextureMap)a4);
+        a4.loadTextureAtlas(a2);
         a4.y = true;
     }
 
-    public void func_110571_b(IResourceManager a2) {
+    public void loadTextureAtlas(IResourceManager a2) {
         vw a3;
-        int a4 = Minecraft.func_71369_N();
+        int a4 = Minecraft.getGLMaximumTextureSize();
         Stitcher a5 = new Stitcher(a4, a4, 0, a3.o);
         a3.c.clear();
         a3.v.clear();
@@ -167,35 +167,35 @@ extends TextureMap {
         vw a6;
         ProgressManager.pop((ProgressManager.ProgressBar)a3);
         int a7 = Math.min(a4, a5);
-        int a8 = MathHelper.func_151239_c((int)a7);
+        int a8 = MathHelper.log2((int)a7);
         a3 = ProgressManager.push((String)"Texture creation", (int)2);
         a3.step("Stitching");
-        a2.func_94305_f();
+        a2.doStitch();
         a3.step("Allocating GL texture");
-        TextureUtil.func_180600_a((int)a6.func_110552_b(), (int)a6.o, (int)a2.func_110935_a(), (int)a2.func_110936_b());
+        TextureUtil.allocateTextureImpl((int)a6.getGlTextureId(), (int)a6.o, (int)a2.getCurrentWidth(), (int)a2.getCurrentHeight());
         HashMap a9 = Maps.newHashMap(a6.m);
         ProgressManager.pop((ProgressManager.ProgressBar)a3);
-        a3 = ProgressManager.push((String)"Texture mipmap and upload", (int)a2.func_94309_g().size());
-        for (TextureAtlasSprite a10 : a2.func_94309_g()) {
-            a3.step(a10.func_94215_i());
-            String a11 = a10.func_94215_i();
+        a3 = ProgressManager.push((String)"Texture mipmap and upload", (int)a2.getStichSlots().size());
+        for (TextureAtlasSprite a10 : a2.getStichSlots()) {
+            a3.step(a10.getIconName());
+            String a11 = a10.getIconName();
             a9.remove(a11);
             a6.c.put(a11, a10);
             try {
-                TextureUtil.func_147955_a((int[][])a10.func_147965_a(0), (int)a10.func_94211_a(), (int)a10.func_94216_b(), (int)a10.func_130010_a(), (int)a10.func_110967_i(), (boolean)false, (boolean)false);
+                TextureUtil.uploadTextureMipmap((int[][])a10.getFrameTextureData(0), (int)a10.getIconWidth(), (int)a10.getIconHeight(), (int)a10.getOriginX(), (int)a10.getOriginY(), (boolean)false, (boolean)false);
             }
             catch (Throwable a12) {
-                CrashReport a13 = CrashReport.func_85055_a((Throwable)a12, (String)"Stitching texture atlas");
-                CrashReportCategory a14 = a13.func_85058_a("Texture being stitched together");
-                a14.func_71507_a("Atlas path", (Object)a6.q);
-                a14.func_71507_a("Sprite", (Object)a10);
+                CrashReport a13 = CrashReport.makeCrashReport((Throwable)a12, (String)"Stitching texture atlas");
+                CrashReportCategory a14 = a13.makeCategory("Texture being stitched together");
+                a14.addCrashSection("Atlas path", (Object)a6.q);
+                a14.addCrashSection("Sprite", (Object)a10);
                 throw new ReportedException(a13);
             }
-            if (!a10.func_130098_m()) continue;
+            if (!a10.hasAnimationMetadata()) continue;
             a6.v.add(a10);
         }
         for (TextureAtlasSprite a10 : a9.values()) {
-            a10.func_94217_a(Minecraft.func_71410_x().func_147117_R().func_174944_f());
+            a10.copyFrom(Minecraft.getMinecraft().getTextureMapBlocks().getMissingSprite());
         }
         ProgressManager.pop((ProgressManager.ProgressBar)a3);
     }
@@ -211,8 +211,8 @@ extends TextureMap {
             if (!a3.hasCustomLoader(a2, a5)) {
                 boolean a7;
                 try {
-                    a6 = a2.func_110536_a(a5);
-                    a3.func_188539_a(a6, a4.o + 1);
+                    a6 = a2.getResource(a5);
+                    a3.loadSpriteFrames(a6, a4.o + 1);
                     break block10;
                 }
                 catch (RuntimeException a8) {
@@ -232,43 +232,43 @@ extends TextureMap {
             }
         }
         try {
-            a3.func_147963_d(a4.o);
+            a3.generateMipmaps(a4.o);
             return true;
         }
         catch (Throwable a11) {
-            CrashReport a12 = CrashReport.func_85055_a((Throwable)a11, (String)"Applying mipmap");
-            CrashReportCategory a13 = a12.func_85058_a("Sprite being mipmapped");
-            a13.func_189529_a("Sprite name", (ICrashReportDetail)new qo(a4, a3));
-            a13.func_189529_a("Sprite size", (ICrashReportDetail)new uu(a4, a3));
-            a13.func_189529_a("Sprite frames", (ICrashReportDetail)new cr(a4, a3));
-            a13.func_71507_a("Mipmap levels", (Object)a4.o);
+            CrashReport a12 = CrashReport.makeCrashReport((Throwable)a11, (String)"Applying mipmap");
+            CrashReportCategory a13 = a12.makeCategory("Sprite being mipmapped");
+            a13.addDetail("Sprite name", (ICrashReportDetail)new qo(a4, a3));
+            a13.addDetail("Sprite size", (ICrashReportDetail)new uu(a4, a3));
+            a13.addDetail("Sprite frames", (ICrashReportDetail)new cr(a4, a3));
+            a13.addCrashSection("Mipmap levels", (Object)a4.o);
             throw new ReportedException(a12);
         }
     }
 
     private /* synthetic */ ResourceLocation ALLATORIxDEMO(TextureAtlasSprite a2) {
-        ResourceLocation a3 = new ResourceLocation(a2.func_94215_i());
-        return new ResourceLocation(a3.func_110624_b(), String.format("%s%s", a3.func_110623_a(), ".png"));
+        ResourceLocation a3 = new ResourceLocation(a2.getIconName());
+        return new ResourceLocation(a3.getNamespace(), String.format("%s%s", a3.getPath(), ".png"));
     }
 
-    public TextureAtlasSprite func_110572_b(String a2) {
+    public TextureAtlasSprite getAtlasSprite(String a2) {
         vw a3;
         TextureAtlasSprite a4 = a3.c.get(a2);
         if (a4 == null) {
-            return Minecraft.func_71410_x().func_147117_R().func_174944_f();
+            return Minecraft.getMinecraft().getTextureMapBlocks().getMissingSprite();
         }
         return a4;
     }
 
-    public void func_94248_c() {
+    public void updateAnimations() {
         vw a2;
-        GlStateManager.func_179144_i((int)a2.func_110552_b());
+        GlStateManager.bindTexture((int)a2.getGlTextureId());
         for (TextureAtlasSprite a3 : a2.v) {
-            a3.func_94219_l();
+            a3.updateAnimation();
         }
     }
 
-    public TextureAtlasSprite func_174942_a(ResourceLocation a2) {
+    public TextureAtlasSprite registerSprite(ResourceLocation a2) {
         vw a3;
         if (a2 == null) {
             throw new IllegalArgumentException("Location cannot be null!");
@@ -284,15 +284,15 @@ extends TextureMap {
     }
 
     private /* synthetic */ void ALLATORIxDEMO(ResourceLocation a2, jt a3) {
-        if (a2.func_110623_a().endsWith("_e")) {
+        if (a2.getPath().endsWith("_e")) {
             return;
         }
-        ResourceLocation a4 = new ResourceLocation(a2.func_110624_b(), a2.func_110623_a() + "_e");
-        ResourceLocation a5 = new ResourceLocation(a2.func_110624_b(), a2.func_110623_a() + "_e.png");
+        ResourceLocation a4 = new ResourceLocation(a2.getNamespace(), a2.getPath() + "_e");
+        ResourceLocation a5 = new ResourceLocation(a2.getNamespace(), a2.getPath() + "_e.png");
         try {
             vw a6;
-            Minecraft.func_71410_x().func_110442_L().func_110536_a(a5);
-            jt a7 = (jt)a6.func_174942_a(a4);
+            Minecraft.getMinecraft().getResourceManager().getResource(a5);
+            jt a7 = (jt)a6.registerSprite(a4);
             a7.k = true;
             a3.ALLATORIxDEMO = a7;
         }
@@ -301,12 +301,12 @@ extends TextureMap {
         }
     }
 
-    public void func_110550_d() {
+    public void tick() {
         vw a2;
-        a2.func_94248_c();
+        a2.updateAnimations();
     }
 
-    public void func_147633_a(int a2) {
+    public void setMipmapLevels(int a2) {
         a.o = a2;
     }
 
@@ -318,7 +318,7 @@ extends TextureMap {
 
     public boolean setTextureEntry(TextureAtlasSprite a2) {
         vw a3;
-        String a4 = a2.func_94215_i();
+        String a4 = a2.getIconName();
         if (!a3.m.containsKey(a4)) {
             a3.m.put(a4, a2);
             return true;

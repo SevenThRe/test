@@ -38,16 +38,16 @@ extends GuiListExtended {
     public ScrollListPane(JmUI parent, Minecraft mc, int width, int height, int top, int bottom, int slotHeight) {
         super(mc, width, height, top, bottom, slotHeight);
         this.parent = parent;
-        this.func_148122_a(width, height, top, bottom);
+        this.setDimensions(width, height, top, bottom);
     }
 
-    public void func_148122_a(int width, int height, int top, int bottom) {
-        super.func_148122_a(width, height, top, bottom);
-        this.scrollbarX = this.field_148155_a - this.hpad;
-        this.listWidth = this.field_148155_a - this.hpad * 4;
+    public void setDimensions(int width, int height, int top, int bottom) {
+        super.setDimensions(width, height, top, bottom);
+        this.scrollbarX = this.width - this.hpad;
+        this.listWidth = this.width - this.hpad * 4;
     }
 
-    protected int func_148127_b() {
+    protected int getSize() {
         return this.currentSlots == null ? 0 : this.currentSlots.size();
     }
 
@@ -75,34 +75,34 @@ extends GuiListExtended {
         }
         int sizeAfter = this.currentSlots.size();
         if (sizeBefore < sizeAfter) {
-            this.func_148145_f(-(sizeAfter * this.field_148149_f));
-            this.func_148145_f(this.lastClickedIndex * this.field_148149_f);
+            this.scrollBy(-(sizeAfter * this.slotHeight));
+            this.scrollBy(this.lastClickedIndex * this.slotHeight);
         }
     }
 
     public void scrollTo(ISlot slot) {
-        this.func_148145_f(-(this.currentSlots.size() * this.field_148149_f));
-        this.func_148145_f(this.currentSlots.indexOf(slot) * this.field_148149_f);
+        this.scrollBy(-(this.currentSlots.size() * this.slotHeight));
+        this.scrollBy(this.currentSlots.indexOf(slot) * this.slotHeight);
     }
 
-    public void func_178039_p() {
-        super.func_178039_p();
+    public void handleMouseInput() {
+        super.handleMouseInput();
     }
 
-    protected void func_148144_a(int index, boolean doubleClick, int mouseX, int mouseY) {
+    protected void elementClicked(int index, boolean doubleClick, int mouseX, int mouseY) {
     }
 
-    public boolean func_148131_a(int slotIndex) {
+    public boolean isSelected(int slotIndex) {
         return false;
     }
 
-    protected void func_148123_a() {
+    protected void drawBackground() {
     }
 
-    protected void func_192637_a(int slotIndex, int x, int y, int slotHeight, int mouseX, int mouseY, float partialTicks) {
-        boolean selected = this.func_148124_c(mouseX, mouseY) == slotIndex;
+    protected void drawSlot(int slotIndex, int x, int y, int slotHeight, int mouseX, int mouseY, float partialTicks) {
+        boolean selected = this.getSlotIndexFromScreenCoords(mouseX, mouseY) == slotIndex;
         ISlot slot = this.getSlot(slotIndex);
-        slot.func_192634_a(slotIndex, x, y, this.func_148139_c(), slotHeight, mouseX, mouseY, selected, 0.0f);
+        slot.drawEntry(slotIndex, x, y, this.getListWidth(), slotHeight, mouseX, mouseY, selected, 0.0f);
         SlotMetadata tooltipMetadata = slot.getCurrentTooltip();
         if (tooltipMetadata != null && !Arrays.equals(tooltipMetadata.getTooltip(), this.lastTooltip)) {
             this.lastTooltipMetadata = tooltipMetadata;
@@ -111,20 +111,20 @@ extends GuiListExtended {
         }
     }
 
-    public int func_148139_c() {
+    public int getListWidth() {
         return this.listWidth;
     }
 
-    public boolean func_148179_a(int mouseX, int mouseY, int mouseEvent) {
+    public boolean mouseClicked(int mouseX, int mouseY, int mouseEvent) {
         int slotIndex;
-        if (this.func_148141_e(mouseY) && (slotIndex = this.func_148124_c(mouseX, mouseY)) >= 0) {
-            int i1 = this.field_148152_e + this.hpad + this.field_148155_a / 2 - this.func_148139_c() / 2 + 2;
-            int j1 = this.field_148153_b + 4 - this.func_148148_g() + slotIndex * this.field_148149_f + this.field_148160_j;
+        if (this.isMouseYWithinSlotBounds(mouseY) && (slotIndex = this.getSlotIndexFromScreenCoords(mouseX, mouseY)) >= 0) {
+            int i1 = this.left + this.hpad + this.width / 2 - this.getListWidth() / 2 + 2;
+            int j1 = this.top + 4 - this.getAmountScrolled() + slotIndex * this.slotHeight + this.headerPadding;
             int relativeX = mouseX - i1;
             int relativeY = mouseY - j1;
             this.lastClickedIndex = -1;
-            if (this.getSlot(slotIndex).func_148278_a(slotIndex, mouseX, mouseY, mouseEvent, relativeX, relativeY)) {
-                this.func_148143_b(false);
+            if (this.getSlot(slotIndex).mousePressed(slotIndex, mouseX, mouseY, mouseEvent, relativeX, relativeY)) {
+                this.setEnabled(false);
                 this.lastClickedIndex = slotIndex;
                 this.lastPressed = this.getSlot(slotIndex).getLastPressed();
                 this.updateSlots();
@@ -134,13 +134,13 @@ extends GuiListExtended {
         return false;
     }
 
-    public boolean func_148181_b(int x, int y, int mouseEvent) {
-        boolean result = super.func_148181_b(x, y, mouseEvent);
+    public boolean mouseReleased(int x, int y, int mouseEvent) {
+        boolean result = super.mouseReleased(x, y, mouseEvent);
         this.lastPressed = null;
         return result;
     }
 
-    public GuiListExtended.IGuiListEntry func_148180_b(int index) {
+    public GuiListExtended.IGuiListEntry getListEntry(int index) {
         return this.getSlot(index);
     }
 
@@ -167,7 +167,7 @@ extends GuiListExtended {
     }
 
     public boolean keyTyped(char c, int i) {
-        for (int slotIndex = 0; slotIndex < this.func_148127_b(); ++slotIndex) {
+        for (int slotIndex = 0; slotIndex < this.getSize(); ++slotIndex) {
             if (!this.getSlot(slotIndex).keyTyped(c, i)) continue;
             this.lastClickedIndex = slotIndex;
             this.lastPressed = this.getSlot(slotIndex).getLastPressed();
@@ -177,18 +177,18 @@ extends GuiListExtended {
         return false;
     }
 
-    protected int func_148137_d() {
+    protected int getScrollBarX() {
         return this.scrollbarX;
     }
 
     protected void drawContainerBackground(Tessellator tessellator) {
-        this.parent.func_73733_a(0, this.field_148153_b, this.field_148155_a, this.field_148153_b + this.field_148158_l, -1072689136, -804253680);
+        this.parent.drawGradientRect(0, this.top, this.width, this.top + this.height, -1072689136, -804253680);
     }
 
-    protected int func_148138_e() {
-        int contentHeight = super.func_148138_e();
+    protected int getContentHeight() {
+        int contentHeight = super.getContentHeight();
         if (this.alignTop) {
-            contentHeight = Math.max(this.field_148154_c - this.field_148153_b - 4, contentHeight);
+            contentHeight = Math.max(this.bottom - this.top - 4, contentHeight);
         }
         return contentHeight;
     }

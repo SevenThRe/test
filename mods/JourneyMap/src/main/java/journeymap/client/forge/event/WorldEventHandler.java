@@ -31,8 +31,8 @@ implements EventHandlerManager.EventHandler {
     public void onUnload(WorldEvent.Unload event) {
         try {
             World world = event.getWorld();
-            EntityPlayerSP player = Minecraft.func_71410_x().field_71439_g;
-            if (player != null && player.field_71093_bK == world.field_73011_w.getDimension()) {
+            EntityPlayerSP player = Minecraft.getMinecraft().player;
+            if (player != null && player.dimension == world.provider.getDimension()) {
                 Journeymap.getClient().stopMapping();
                 FeatureManager.INSTANCE.reset();
             }

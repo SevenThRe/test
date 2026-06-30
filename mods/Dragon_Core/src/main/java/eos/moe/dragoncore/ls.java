@@ -39,16 +39,16 @@ public class ls {
         if (a2.phase == TickEvent.Phase.END) {
             return;
         }
-        if (Minecraft.func_71410_x().field_71441_e == null || Minecraft.func_71410_x().field_71439_g == null) {
+        if (Minecraft.getMinecraft().world == null || Minecraft.getMinecraft().player == null) {
             return;
         }
-        if (!Minecraft.func_71410_x().func_147113_T()) {
+        if (!Minecraft.getMinecraft().isGamePaused()) {
             y = a2.renderTickTime;
         }
-        if (k > (a3 = (float)Minecraft.func_71410_x().field_71439_g.field_70173_aa + a2.renderTickTime)) {
+        if (k > (a3 = (float)Minecraft.getMinecraft().player.ticksExisted + a2.renderTickTime)) {
             ls.ALLATORIxDEMO();
         }
-        if (!Minecraft.func_71410_x().field_71441_e.field_72995_K || !Minecraft.func_71410_x().func_147113_T()) {
+        if (!Minecraft.getMinecraft().world.isRemote || !Minecraft.getMinecraft().isGamePaused()) {
             ALLATORIxDEMO = Math.min(Math.max(0.0f, a3 - k), 1.0f);
             k = a3;
             for (xz a4 : dt.k.ALLATORIxDEMO.asMap().values()) {
@@ -67,7 +67,7 @@ public class ls {
 
     @SubscribeEvent
     public void ALLATORIxDEMO(TickEvent.ClientTickEvent a2) {
-        if (a2.phase == TickEvent.Phase.END || Minecraft.func_71410_x().field_71439_g == null || Minecraft.func_71410_x().func_147113_T()) {
+        if (a2.phase == TickEvent.Phase.END || Minecraft.getMinecraft().player == null || Minecraft.getMinecraft().isGamePaused()) {
             return;
         }
         for (xz a3 : dt.k.ALLATORIxDEMO.asMap().values()) {

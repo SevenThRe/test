@@ -25,25 +25,25 @@ extends AnimationBit<PlayerData> {
         AbstractClientPlayer player = (AbstractClientPlayer)data.getEntity();
         data.cape.rotation.orientX(0.0f);
         double partialTicks = DataUpdateHandler.partialTicks;
-        double d0 = player.field_71091_bM + (player.field_71094_bP - player.field_71091_bM) * partialTicks - (player.field_70169_q + (player.field_70165_t - player.field_70169_q) * partialTicks);
-        double d1 = player.field_71096_bN + (player.field_71095_bQ - player.field_71096_bN) * partialTicks - (player.field_70167_r + (player.field_70163_u - player.field_70167_r) * partialTicks);
-        double d2 = player.field_71097_bO + (player.field_71085_bR - player.field_71097_bO) * partialTicks - (player.field_70166_s + (player.field_70161_v - player.field_70166_s) * partialTicks);
-        double f2 = (double)player.field_70760_ar + (double)(player.field_70761_aq - player.field_70760_ar) * partialTicks;
+        double d0 = player.prevChasingPosX + (player.chasingPosX - player.prevChasingPosX) * partialTicks - (player.prevPosX + (player.posX - player.prevPosX) * partialTicks);
+        double d1 = player.prevChasingPosY + (player.chasingPosY - player.prevChasingPosY) * partialTicks - (player.prevPosY + (player.posY - player.prevPosY) * partialTicks);
+        double d2 = player.prevChasingPosZ + (player.chasingPosZ - player.prevChasingPosZ) * partialTicks - (player.prevPosZ + (player.posZ - player.prevPosZ) * partialTicks);
+        double f2 = (double)player.prevRenderYawOffset + (double)(player.renderYawOffset - player.prevRenderYawOffset) * partialTicks;
         double d3 = Math.sin(f2 * 0.017453292);
         double d4 = -Math.cos(f2 * 0.017453292);
         double f1 = d1 * 10.0;
-        f1 = MathHelper.func_151237_a((double)f1, (double)-6.0, (double)32.0);
+        f1 = MathHelper.clamp((double)f1, (double)-6.0, (double)32.0);
         float f22 = (float)(d0 * d3 + d2 * d4) * 100.0f;
         float f3 = (float)(d0 * d4 - d2 * d3) * 100.0f;
         if (f22 < 0.0f) {
             f22 = 0.0f;
         }
-        double f4 = (double)player.field_71107_bF + (double)(player.field_71109_bG - player.field_71107_bF) * partialTicks;
-        f1 += Math.sin(((double)player.field_70141_P + (double)(player.field_70140_Q - player.field_70141_P) * partialTicks) * 6.0) * 32.0 * f4;
-        if (player.func_70093_af()) {
+        double f4 = (double)player.prevCameraYaw + (double)(player.cameraYaw - player.prevCameraYaw) * partialTicks;
+        f1 += Math.sin(((double)player.prevDistanceWalkedModified + (double)(player.distanceWalkedModified - player.prevDistanceWalkedModified) * partialTicks) * 6.0) * 32.0 * f4;
+        if (player.isSneaking()) {
             f1 += 25.0;
         }
-        if (data.isFlying() && player.func_70051_ag()) {
+        if (data.isFlying() && player.isSprinting()) {
             data.cape.rotation.setSmoothness(0.5f).orientX(0.0f);
             data.setCapeWaveSpeed(4.0f);
         } else {

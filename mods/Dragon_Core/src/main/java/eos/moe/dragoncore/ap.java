@@ -35,16 +35,16 @@ extends TextureAtlasSprite {
 
     public boolean updateIcon(BufferedImage a2) {
         ap a3;
-        a3.field_130223_c = a3.field_130224_d = Math.max(a2.getHeight(), a2.getWidth());
+        a3.width = a3.height = Math.max(a2.getHeight(), a2.getWidth());
         if (a2.getWidth() != a2.getHeight()) {
-            BufferedImage a4 = new BufferedImage(a3.field_130223_c, a3.field_130223_c, 7);
+            BufferedImage a4 = new BufferedImage(a3.width, a3.width, 7);
             Graphics2D a5 = a4.createGraphics();
-            a5.drawImage((Image)a2, (a3.field_130223_c - a2.getWidth()) / 2, (a3.field_130223_c - a2.getHeight()) / 2, null);
+            a5.drawImage((Image)a2, (a3.width - a2.getWidth()) / 2, (a3.width - a2.getHeight()) / 2, null);
             a5.dispose();
             a2 = a4;
         }
         a3.y = a2;
-        a3.func_110971_a(a3.field_130223_c, a3.field_130224_d, 0, 0, false);
+        a3.initSprite(a3.width, a3.height, 0, 0, false);
         a3.onImageUpdate();
         return true;
     }
@@ -52,7 +52,7 @@ extends TextureAtlasSprite {
     public void onRemove() {
         ap a2;
         if (a2.k != -1) {
-            TextureUtil.func_147942_a((int)a2.k);
+            TextureUtil.deleteTexture((int)a2.k);
             a2.k = -1;
         }
     }
@@ -70,17 +70,17 @@ extends TextureAtlasSprite {
         if (a2.k != -1) {
             a2.onRemove();
         }
-        a2.k = TextureUtil.func_110996_a();
-        TextureUtil.func_110987_a((int)a2.k, (BufferedImage)a2.y);
+        a2.k = TextureUtil.glGenTextures();
+        TextureUtil.uploadTextureImage((int)a2.k, (BufferedImage)a2.y);
     }
 
-    public void func_110971_a(int a2, int a3, int a4, int a5, boolean a6) {
+    public void initSprite(int a2, int a3, int a4, int a5, boolean a6) {
         ap a7;
-        super.func_110971_a(a2, a3, a4, a5, a6);
-        int[][] a8 = new int[][]{new int[a7.func_94211_a() * a7.func_94216_b()]};
-        a7.y.getRGB(a4, a5, a7.func_94211_a(), a7.func_94216_b(), a8[0], 0, a7.func_94211_a());
-        a7.func_130103_l();
-        a7.field_110976_a.add(a8);
+        super.initSprite(a2, a3, a4, a5, a6);
+        int[][] a8 = new int[][]{new int[a7.getIconWidth() * a7.getIconHeight()]};
+        a7.y.getRGB(a4, a5, a7.getIconWidth(), a7.getIconHeight(), a8[0], 0, a7.getIconWidth());
+        a7.clearFramesTextureData();
+        a7.framesTextureData.add(a8);
     }
 }
 

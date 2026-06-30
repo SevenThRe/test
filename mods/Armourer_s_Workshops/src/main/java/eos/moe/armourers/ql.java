@@ -59,16 +59,16 @@ extends AbstractTexture {
     private /* synthetic */ void h(InputStream a2) throws Exception {
         ql a3;
         a2 = a3.r((InputStream)((Object)a2));
-        a3.c = ((BufferedImage)a2.get(0).func_76340_b()).getWidth();
-        a3.m = ((BufferedImage)((Tuple)a2.get(0)).func_76340_b()).getHeight();
+        a3.c = ((BufferedImage)a2.get(0).getSecond()).getWidth();
+        a3.m = ((BufferedImage)((Tuple)a2.get(0)).getSecond()).getHeight();
         Iterator iterator = a2 = a2.iterator();
         while (iterator.hasNext()) {
             int n2;
             Tuple tuple = (Tuple)a2.next();
-            int n3 = n2 = TextureUtil.func_110996_a();
-            a3.g.put(n3, (BufferedImage)tuple.func_76340_b());
-            TextureUtil.func_110989_a((int)n3, (BufferedImage)((BufferedImage)tuple.func_76340_b()), (boolean)false, (boolean)false);
-            a3.r.add((Tuple<Integer, Integer>)new Tuple((Object)n2, tuple.func_76341_a()));
+            int n3 = n2 = TextureUtil.glGenTextures();
+            a3.g.put(n3, (BufferedImage)tuple.getSecond());
+            TextureUtil.uploadTextureImageAllocate((int)n3, (BufferedImage)((BufferedImage)tuple.getSecond()), (boolean)false, (boolean)false);
+            a3.r.add((Tuple<Integer, Integer>)new Tuple((Object)n2, tuple.getFirst()));
             iterator = a2;
         }
         a3.j = System.currentTimeMillis();
@@ -120,7 +120,7 @@ extends AbstractTexture {
 
     static {
         s = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
-        z = Minecraft.func_71410_x();
+        z = Minecraft.getMinecraft();
     }
 
     public ql(String a2) {
@@ -133,7 +133,7 @@ extends AbstractTexture {
         ql2.v = a2;
     }
 
-    public void func_110551_a(IResourceManager a2) throws IOException {
+    public void loadTexture(IResourceManager a2) throws IOException {
         ql a3;
         if (a3.v.startsWith("http")) {
             a3.z();
@@ -146,7 +146,7 @@ extends AbstractTexture {
         if (a2 == null || a2.isEmpty()) {
             return;
         }
-        GlStateManager.func_179144_i((int)ql.r(a2).func_110552_b());
+        GlStateManager.bindTexture((int)ql.r(a2).getGlTextureId());
     }
 
     private /* synthetic */ void z() {
@@ -155,7 +155,7 @@ extends AbstractTexture {
             ql a2;
             try {
                 InputStream inputStream = new URL(a2.v).openStream();
-                Minecraft.func_71410_x().func_152344_a(() -> {
+                Minecraft.getMinecraft().addScheduledTask(() -> {
                     ql a3;
                     a3.z(inputStream);
                 });
@@ -171,18 +171,18 @@ extends AbstractTexture {
 
     private /* synthetic */ void y(InputStream a2) throws Exception {
         ql a3;
-        a3.w = a2 = TextureUtil.func_177053_a((InputStream)a2);
+        a3.w = a2 = TextureUtil.readBufferedImage((InputStream)a2);
         a3.c = ((BufferedImage)a3.w).getWidth();
         a3.m = ((BufferedImage)a2).getHeight();
-        TextureUtil.func_110989_a((int)a3.func_110552_b(), (BufferedImage)a2, (boolean)false, (boolean)false);
+        TextureUtil.uploadTextureImageAllocate((int)a3.getGlTextureId(), (BufferedImage)a2, (boolean)false, (boolean)false);
     }
 
     public static ql r(String a2) {
         ResourceLocation resourceLocation = new ResourceLocation("dragonarmourers", a2);
-        ql ql2 = (ql)z.func_110434_K().func_110581_b(resourceLocation);
+        ql ql2 = (ql)z.getTextureManager().getTexture(resourceLocation);
         if (ql2 == null) {
             ql2 = new ql(a2);
-            z.func_110434_K().func_110579_a(resourceLocation, (ITextureObject)ql2);
+            z.getTextureManager().loadTexture(resourceLocation, (ITextureObject)ql2);
         }
         return ql2;
     }
@@ -220,18 +220,18 @@ extends AbstractTexture {
         return a222;
     }
 
-    public void func_147631_c() {
+    public void deleteGlTexture() {
         ql a2;
         if (a2.r.size() > 0) {
             Iterator<Tuple<Integer, Integer>> iterator;
             Iterator<Tuple<Integer, Integer>> iterator2 = iterator = a2.r.iterator();
             while (iterator2.hasNext()) {
-                TextureUtil.func_147942_a((int)((Integer)iterator.next().func_76341_a()));
+                TextureUtil.deleteTexture((int)((Integer)iterator.next().getFirst()));
                 iterator2 = iterator;
             }
             a2.r.clear();
         }
-        super.func_147631_c();
+        super.deleteGlTexture();
     }
 
     private /* synthetic */ int r() {
@@ -244,31 +244,31 @@ extends AbstractTexture {
         Iterator<Tuple<Integer, Integer>> iterator2 = iterator = a2.r.iterator();
         while (iterator2.hasNext()) {
             Tuple<Integer, Integer> tuple = iterator.next();
-            a2.t += ((Integer)tuple.func_76340_b()).intValue();
+            a2.t += ((Integer)tuple.getSecond()).intValue();
             iterator2 = iterator;
         }
         return a2.t;
     }
 
-    public int func_110552_b() {
+    public int getGlTextureId() {
         ql a2;
         if (a2.j != 0L) {
             int n2;
             if (a2.r.size() == 1) {
-                return (Integer)a2.r.get(0).func_76341_a();
+                return (Integer)a2.r.get(0).getFirst();
             }
             long l2 = System.currentTimeMillis() - a2.j;
             int n3 = 0;
             l2 %= (long)a2.r();
             int n4 = n2 = 0;
             while (n4 < a2.r.size() && l2 > 0L) {
-                l2 -= (long)((Integer)a2.r.get(n2).func_76340_b()).intValue();
+                l2 -= (long)((Integer)a2.r.get(n2).getSecond()).intValue();
                 n3 = n2++;
                 n4 = n2;
             }
-            return (Integer)a2.r.get(n3).func_76341_a();
+            return (Integer)a2.r.get(n3).getFirst();
         }
-        return super.func_110552_b();
+        return super.getGlTextureId();
     }
 }
 

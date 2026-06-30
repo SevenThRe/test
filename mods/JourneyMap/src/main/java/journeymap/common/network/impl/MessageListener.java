@@ -37,7 +37,7 @@ implements IMessageHandler<Message, IMessage> {
             if (requestObject.getSuperclass() == MessageProcessor.class || requestObject.getSuperclass() == CompressedPacket.class) {
                 MessageProcessor.process(response, ctx, requestObject);
             } else {
-                String error = String.format("Bad Network request: %s attempted to send an unqualified packet request.", ctx.side.isClient() ? "THE SERVER" : ctx.getServerHandler().field_147369_b.func_70005_c_());
+                String error = String.format("Bad Network request: %s attempted to send an unqualified packet request.", ctx.side.isClient() ? "THE SERVER" : ctx.getServerHandler().player.getName());
                 this.logger.error(error);
             }
         }

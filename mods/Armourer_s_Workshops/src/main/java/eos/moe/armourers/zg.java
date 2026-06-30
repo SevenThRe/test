@@ -50,21 +50,21 @@ public class zg {
         Object object;
         ArrayList<fk> arrayList2;
         ArrayList<fk> arrayList3 = new ArrayList<fk>();
-        if (a4 == zg.l.field_71439_g && pk.m.size() > 0) {
-            arrayList3.addAll(pk.m.stream().map(a2 -> new fk((String)a2.func_76341_a())).collect(Collectors.toList()));
+        if (a4 == zg.l.player && pk.m.size() > 0) {
+            arrayList3.addAll(pk.m.stream().map(a2 -> new fk((String)a2.getFirst())).collect(Collectors.toList()));
             arrayList2 = arrayList3;
         } else if (cj.m == a4) {
             arrayList3.addAll(cj.c.stream().map(fk::new).collect(Collectors.toList()));
             arrayList2 = arrayList3;
         } else {
             ArrayList<fk> arrayList4;
-            if (m.containsKey(a4.func_110124_au())) {
-                object = m.get(a4.func_110124_au());
+            if (m.containsKey(a4.getUniqueID())) {
+                object = m.get(a4.getUniqueID());
                 ArrayList<fk> arrayList5 = arrayList3;
                 arrayList4 = arrayList5;
                 arrayList5.addAll((Collection<fk>)object);
             } else {
-                object = hd.r(a4.func_145748_c_().func_150260_c().replace(" ", ""));
+                object = hd.r(a4.getDisplayName().getUnformattedText().replace(" ", ""));
                 if (c.containsKey(object)) {
                     arrayList = c.get(object);
                     arrayList3.addAll(arrayList);
@@ -72,7 +72,7 @@ public class zg {
                 arrayList4 = arrayList3;
             }
             arrayList4.removeIf(Objects::isNull);
-            object = on.r(a4.func_110124_au());
+            object = on.r(a4.getUniqueID());
             if (object != null && arrayList3.stream().noneMatch(a2 -> "outfit".equalsIgnoreCase(a2.r()))) {
                 arrayList = new ArrayList<fk>();
                 boolean bl = arrayList.add(fk.r(((on)object).r()[0]));
@@ -118,9 +118,9 @@ public class zg {
         if (cj.m == a3) {
             return cj.c.contains("\u9690\u8eab");
         }
-        String string = hd.r(a3.func_145748_c_().func_150260_c().replace(" ", ""));
-        if (m.containsKey(a3.func_110124_au())) {
-            return ((List)m.getOrDefault(a3.func_110124_au(), new ArrayList())).stream().anyMatch(a2 -> a2.j.equalsIgnoreCase("\u9690\u8eab"));
+        String string = hd.r(a3.getDisplayName().getUnformattedText().replace(" ", ""));
+        if (m.containsKey(a3.getUniqueID())) {
+            return ((List)m.getOrDefault(a3.getUniqueID(), new ArrayList())).stream().anyMatch(a2 -> a2.j.equalsIgnoreCase("\u9690\u8eab"));
         }
         if (c.containsKey(string)) {
             return ((List)c.getOrDefault(string, new ArrayList())).stream().anyMatch(a2 -> a2.j.equalsIgnoreCase("\u9690\u8eab"));
@@ -147,7 +147,7 @@ public class zg {
         c = new HashMap();
         j = new HashMap();
         v = new ConcurrentHashMap<String, ModelData>();
-        l = Minecraft.func_71410_x();
+        l = Minecraft.getMinecraft();
         Object[] objectArray = new String[2];
         objectArray[0] = "shield";
         objectArray[1] = "item";

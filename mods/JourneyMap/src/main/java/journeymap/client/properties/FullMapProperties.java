@@ -18,7 +18,7 @@ extends InGameMapProperties {
     @Override
     public void postLoad(boolean isNew) {
         super.postLoad(isNew);
-        if (isNew && FMLClientHandler.instance().getClient() != null && FMLClientHandler.instance().getClient().field_71466_p.func_82883_a()) {
+        if (isNew && FMLClientHandler.instance().getClient() != null && FMLClientHandler.instance().getClient().fontRenderer.getUnicodeFlag()) {
             this.fontScale.set(2);
         }
     }

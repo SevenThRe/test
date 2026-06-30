@@ -33,27 +33,27 @@ extends ModelBase {
     }
 
     public static void ALLATORIxDEMO(ju a2, ModelRenderer a3) {
-        a3.field_78795_f = a2.s;
-        a3.field_78796_g = a2.g;
-        a3.field_78808_h = a2.t;
-        a3.field_78800_c = a2.i;
-        a3.field_78797_d = a2.l;
-        a3.field_78798_e = a2.z;
+        a3.rotateAngleX = a2.s;
+        a3.rotateAngleY = a2.g;
+        a3.rotateAngleZ = a2.t;
+        a3.rotationPointX = a2.i;
+        a3.rotationPointY = a2.l;
+        a3.rotationPointZ = a2.z;
     }
 
     public static void ALLATORIxDEMO(ModelRenderer a2, ju a3) {
-        a3.s = a2.field_78795_f;
-        a3.g = a2.field_78796_g;
-        a3.t = a2.field_78808_h;
-        a3.i = a2.field_78800_c;
-        a3.l = a2.field_78797_d;
-        a3.z = a2.field_78798_e;
+        a3.s = a2.rotateAngleX;
+        a3.g = a2.rotateAngleY;
+        a3.t = a2.rotateAngleZ;
+        a3.i = a2.rotationPointX;
+        a3.l = a2.rotationPointY;
+        a3.z = a2.rotationPointZ;
     }
 
-    public void func_78088_a(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
+    public void render(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
         ss a9;
         a9.ALLATORIxDEMO.ALLATORIxDEMO(a8);
-        super.func_78088_a(a2, a3, a4, a5, a6, a7, a8);
+        super.render(a2, a3, a4, a5, a6, a7, a8);
     }
 }
 

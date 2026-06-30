@@ -42,29 +42,29 @@ public class tm {
     @i(f={"\u5e8f\u5217\u5316\u7269\u54c1", "ItemStack_Serialize"})
     public static String c(ItemStack a2) {
         NBTTagCompound a3 = new NBTTagCompound();
-        a2.func_77955_b(a3);
+        a2.writeToNBT(a3);
         return a3.toString();
     }
 
     @i(f={"\u53cd\u5e8f\u5217\u5316\u7269\u54c1", "ItemStack_DeSerialize"})
     public static xk ALLATORIxDEMO(String a2) {
         try {
-            NBTTagCompound a3 = JsonToNBT.func_180713_a((String)a2);
+            NBTTagCompound a3 = JsonToNBT.getTagFromJson((String)a2);
             return new xk(new ItemStack(a3));
         }
         catch (NBTException a4) {
-            return new xk(ItemStack.field_190927_a);
+            return new xk(ItemStack.EMPTY);
         }
     }
 
     @i(f={"\u53d6\u7269\u54c1\u6570", "ItemStack_Get_Count"})
     public static int x(ItemStack a2) {
-        return a2.func_190926_b() ? 0 : a2.func_190916_E();
+        return a2.isEmpty() ? 0 : a2.getCount();
     }
 
     @i(f={"\u53d6\u7269\u54c1\u540d", "ItemStack_Get_Name"})
     public static String ALLATORIxDEMO(ItemStack a2) {
-        return a2.func_190926_b() ? "" : a2.func_82833_r();
+        return a2.isEmpty() ? "" : a2.getDisplayName();
     }
 
     @i(f={"\u53d6\u7269\u54c1Lore\u6570", "ItemStack_Get_Lore_Size"})
@@ -111,7 +111,7 @@ public class tm {
 
     @i(f={"\u53d6\u7269\u54c1NBT", "ItemStack_Get_NBT"})
     public static String ALLATORIxDEMO(ItemStack a2, String a3) {
-        NBTTagCompound a4 = a2.func_77978_p();
+        NBTTagCompound a4 = a2.getTagCompound();
         if (a4 != null) {
             NBTBase a5;
             if (a3.isEmpty()) {
@@ -119,11 +119,11 @@ public class tm {
             }
             String[] a6 = a3.split("\\.");
             for (int a7 = 0; a7 < a6.length - 1; ++a7) {
-                a4 = a4.func_74775_l(a6[a7]);
+                a4 = a4.getCompoundTag(a6[a7]);
             }
-            if (a6.length > 0 && (a5 = a4.func_74781_a(a6[a6.length - 1])) != null) {
-                if (a5.func_74732_a() == 8) {
-                    return ((NBTTagString)a5).func_150285_a_();
+            if (a6.length > 0 && (a5 = a4.getTag(a6[a6.length - 1])) != null) {
+                if (a5.getId() == 8) {
+                    return ((NBTTagString)a5).getString();
                 }
                 return a5.toString();
             }
@@ -133,21 +133,21 @@ public class tm {
 
     @i(f={"\u5339\u914d\u7269\u54c1", "ItemStack_Match"})
     public static boolean ALLATORIxDEMO(ItemStack a2, String a3, v a4) {
-        if (a2.func_190926_b()) {
+        if (a2.isEmpty()) {
             return false;
         }
-        if (a2.func_77973_b().getRegistryName() != null && a2.func_77973_b().getRegistryName().func_110623_a().contains("shulker_box")) {
+        if (a2.getItem().getRegistryName() != null && a2.getItem().getRegistryName().getPath().contains("shulker_box")) {
             return false;
         }
         Pattern a5 = Pattern.compile(a3);
         String a6 = dj.ALLATORIxDEMO(a2, false, false);
-        int a7 = Item.func_150891_b((Item)a2.func_77973_b());
+        int a7 = Item.getIdFromItem((Item)a2.getItem());
         return (a4 instanceof wk || a7 == (int)a4.ALLATORIxDEMO()) && al.ALLATORIxDEMO(a5, a6);
     }
 
     @i(f={"\u53d6\u7269\u54c1\u62a4\u7532\u503c", "ItemStack_Get_Armor"})
     public static int ALLATORIxDEMO(ItemStack a2) {
-        return a2.func_77973_b() instanceof ItemArmor ? ((ItemArmor)a2.func_77973_b()).field_77879_b : 0;
+        return a2.getItem() instanceof ItemArmor ? ((ItemArmor)a2.getItem()).damageReduceAmount : 0;
     }
 }
 

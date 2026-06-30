@@ -62,35 +62,35 @@ import org.apache.logging.log4j.Logger;
 public class VanillaBlockSpriteProxy
 implements IBlockSpritesProxy {
     private static Logger logger = Journeymap.getLogger();
-    BlockModelShapes bms = FMLClientHandler.instance().getClient().func_175602_ab().func_175023_a();
+    BlockModelShapes bms = FMLClientHandler.instance().getClient().getBlockRendererDispatcher().getBlockModelShapes();
 
     @Override
     @Nullable
     public Collection<ColoredSprite> getSprites(BlockMD blockMD, @Nullable ChunkMD chunkMD, @Nullable BlockPos blockPos) {
         IBlockState blockState = blockMD.getBlockState();
-        Block block = blockState.func_177230_c();
+        Block block = blockState.getBlock();
         if (block instanceof IFluidBlock) {
             ResourceLocation loc = ((IFluidBlock)block).getFluid().getStill();
-            TextureAtlasSprite tas = FMLClientHandler.instance().getClient().func_147117_R().func_110572_b(loc.toString());
+            TextureAtlasSprite tas = FMLClientHandler.instance().getClient().getTextureMapBlocks().getAtlasSprite(loc.toString());
             return Collections.singletonList(new ColoredSprite(tas, null));
         }
-        if (blockState.func_177227_a().contains(BlockDoublePlant.field_176492_b)) {
-            blockState = blockState.func_177226_a((IProperty)BlockDoublePlant.field_176492_b, (Comparable)BlockDoublePlant.EnumBlockHalf.UPPER);
+        if (blockState.getPropertyKeys().contains(BlockDoublePlant.HALF)) {
+            blockState = blockState.withProperty((IProperty)BlockDoublePlant.HALF, (Comparable)BlockDoublePlant.EnumBlockHalf.UPPER);
         }
         HashMap<String, ColoredSprite> map = new HashMap<String, ColoredSprite>();
         try {
-            IBakedModel model = this.bms.func_178125_b(blockState);
+            IBakedModel model = this.bms.getModelForState(blockState);
             block2: for (IBlockState state : new IBlockState[]{blockState, null}) {
                 for (EnumFacing facing : new EnumFacing[]{EnumFacing.UP, null}) {
                     if (this.getSprites(blockMD, model, state, facing, map, chunkMD, blockPos)) break block2;
                 }
             }
             if (map.isEmpty()) {
-                TextureAtlasSprite defaultSprite = this.bms.func_178122_a(blockState);
+                TextureAtlasSprite defaultSprite = this.bms.getTexture(blockState);
                 if (defaultSprite != null) {
-                    map.put(defaultSprite.func_94215_i(), new ColoredSprite(defaultSprite, null));
+                    map.put(defaultSprite.getIconName(), new ColoredSprite(defaultSprite, null));
                     if (!blockMD.isVanillaBlock() && logger.isDebugEnabled()) {
-                        logger.debug(String.format("Resorted to using BlockModelStates.getTexture() to use %s as color for %s", defaultSprite.func_94215_i(), blockState));
+                        logger.debug(String.format("Resorted to using BlockModelStates.getTexture() to use %s as color for %s", defaultSprite.getIconName(), blockState));
                     }
                 } else {
                     logger.warn(String.format("Unable to get any texture to use as color for %s", blockState));
@@ -110,8 +110,8 @@ implements IBlockSpritesProxy {
         BlockRenderLayer originalLayer = MinecraftForgeClient.getRenderLayer();
         if (blockPos != null && chunkMD != null && chunkMD.getWorld() != null) {
             try {
-                blockState = blockMD.getBlock().func_176221_a(blockState, (IBlockAccess)chunkMD.getWorld(), blockPos);
-                model = this.bms.func_178125_b(blockState);
+                blockState = blockMD.getBlock().getActualState(blockState, (IBlockAccess)chunkMD.getWorld(), blockPos);
+                model = this.bms.getModelForState(blockState);
                 blockState = blockMD.getBlock().getExtendedState(blockState, (IBlockAccess)chunkMD.getWorld(), blockPos);
             }
             catch (Exception exception) {
@@ -123,7 +123,7 @@ implements IBlockSpritesProxy {
             for (BlockRenderLayer layer : BlockRenderLayer.values()) {
                 if (!blockMD.getBlock().canRenderInLayer(blockState, layer)) continue;
                 ForgeHooksClient.setRenderLayer((BlockRenderLayer)layer);
-                List quads = model.func_188616_a(blockState, facing, 0L);
+                List quads = model.getQuads(blockState, facing, 0L);
                 if (!this.addSprites(map, quads)) continue;
                 if (!blockMD.isVanillaBlock() && logger.isDebugEnabled()) {
                     logger.debug(String.format("Success during [%s] %s.getQuads(%s, %s, %s)", layer, model.getClass(), blockState, facing, 0));
@@ -155,8 +155,8 @@ implements IBlockSpritesProxy {
         for (BakedQuad quad : quads) {
             ResourceLocation resourceLocation;
             String iconName;
-            TextureAtlasSprite sprite = quad.func_187508_a();
-            if (sprite == null || sprites.containsKey(iconName = quad.func_187508_a().func_94215_i()) || (resourceLocation = new ResourceLocation(iconName)).equals((Object)TextureMap.field_174945_f)) continue;
+            TextureAtlasSprite sprite = quad.getSprite();
+            if (sprite == null || sprites.containsKey(iconName = quad.getSprite().getIconName()) || (resourceLocation = new ResourceLocation(iconName)).equals((Object)TextureMap.LOCATION_MISSING_TEXTURE)) continue;
             sprites.put(iconName, new ColoredSprite(quad));
             added = true;
         }

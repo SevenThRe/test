@@ -40,7 +40,7 @@ extends AnimationBit<PlayerData> {
         data.leftForeArm.rotation.orient(-4.0f, 1.0f, 0.0f, 0.0f);
         float PI = (float)Math.PI;
         float phase = DataUpdateHandler.getTicks() / 10.0f;
-        data.head.rotation.setSmoothness(1.0f).orientX((MathHelper.func_76134_b((float)phase) - 1.0f) / 2.0f * -3.0f);
+        data.head.rotation.setSmoothness(1.0f).orientX((MathHelper.cos((float)phase) - 1.0f) / 2.0f * -3.0f);
         data.rightArm.rotation.setSmoothness(0.4f).orientX(0.0f).rotateZ(2.5f);
         data.leftArm.rotation.setSmoothness(0.4f).orientX(0.0f).rotateZ(-2.5f);
     }

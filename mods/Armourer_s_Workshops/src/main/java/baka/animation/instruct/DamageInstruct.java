@@ -43,17 +43,17 @@ extends InstructBase {
     @Override
     public void perform(PlayerData data) {
         super.perform(data);
-        if (((AbstractClientPlayer)data.getEntity()).func_110124_au().equals(Minecraft.func_71410_x().field_71439_g.func_110124_au())) {
-            if (Minecraft.func_71410_x().func_152345_ab()) {
-                List<EntityLivingBase> entityLivingBases = this.collectEntities(Minecraft.func_71410_x().func_175606_aa(), this.distance, this.arc);
+        if (((AbstractClientPlayer)data.getEntity()).getUniqueID().equals(Minecraft.getMinecraft().player.getUniqueID())) {
+            if (Minecraft.getMinecraft().isCallingFromMinecraftThread()) {
+                List<EntityLivingBase> entityLivingBases = this.collectEntities(Minecraft.getMinecraft().getRenderViewEntity(), this.distance, this.arc);
                 entityLivingBases = this.filterWall(entityLivingBases);
-                List<UUID> collect = entityLivingBases.stream().map(Entity::func_110124_au).collect(Collectors.toList());
+                List<UUID> collect = entityLivingBases.stream().map(Entity::getUniqueID).collect(Collectors.toList());
                 NetworkHandler.damageEvent(this.actionName, collect);
             } else {
-                Minecraft.func_71410_x().func_152344_a(() -> {
-                    List<EntityLivingBase> entityLivingBases = this.collectEntities(Minecraft.func_71410_x().func_175606_aa(), this.distance, this.arc);
+                Minecraft.getMinecraft().addScheduledTask(() -> {
+                    List<EntityLivingBase> entityLivingBases = this.collectEntities(Minecraft.getMinecraft().getRenderViewEntity(), this.distance, this.arc);
                     entityLivingBases = this.filterWall(entityLivingBases);
-                    List<UUID> collect = entityLivingBases.stream().map(Entity::func_110124_au).collect(Collectors.toList());
+                    List<UUID> collect = entityLivingBases.stream().map(Entity::getUniqueID).collect(Collectors.toList());
                     NetworkHandler.damageEvent(this.actionName, collect);
                 });
             }
@@ -61,22 +61,22 @@ extends InstructBase {
     }
 
     protected final Vec3d getVectorForRotation(float pitch, float yaw) {
-        float f2 = MathHelper.func_76134_b((float)(-yaw * ((float)Math.PI / 180) - (float)Math.PI));
-        float f1 = MathHelper.func_76126_a((float)(-yaw * ((float)Math.PI / 180) - (float)Math.PI));
-        float f22 = -MathHelper.func_76134_b((float)(-pitch * ((float)Math.PI / 180)));
-        float f3 = MathHelper.func_76126_a((float)(-pitch * ((float)Math.PI / 180)));
+        float f2 = MathHelper.cos((float)(-yaw * ((float)Math.PI / 180) - (float)Math.PI));
+        float f1 = MathHelper.sin((float)(-yaw * ((float)Math.PI / 180) - (float)Math.PI));
+        float f22 = -MathHelper.cos((float)(-pitch * ((float)Math.PI / 180)));
+        float f3 = MathHelper.sin((float)(-pitch * ((float)Math.PI / 180)));
         return new Vec3d((double)(f1 * f22), (double)f3, (double)(f2 * f22));
     }
 
     protected List<EntityLivingBase> filterWall(List<EntityLivingBase> entities) {
         ArrayList<EntityLivingBase> list = new ArrayList<EntityLivingBase>();
-        Entity player = Minecraft.func_71410_x().func_175606_aa();
-        Vec3d vec3d = new Vec3d(player.field_70165_t, player.field_70163_u + (double)(player.func_70047_e() * 0.7f), player.field_70161_v);
+        Entity player = Minecraft.getMinecraft().getRenderViewEntity();
+        Vec3d vec3d = new Vec3d(player.posX, player.posY + (double)(player.getEyeHeight() * 0.7f), player.posZ);
         for (EntityLivingBase entity : entities) {
-            Vec3d vec3d1 = new Vec3d(entity.field_70165_t, player.field_70163_u + (double)(player.func_70047_e() * 0.7f), entity.field_70161_v);
-            RayTraceResult raytraceresult = player.field_70170_p.func_147447_a(vec3d, vec3d1, false, true, false);
-            if (raytraceresult != null && raytraceresult.field_72313_a == RayTraceResult.Type.BLOCK || player.field_70163_u - (entity.field_70163_u + (double)entity.field_70131_O) > 1.0) continue;
-            if (entity.field_70163_u - (player.field_70163_u + (double)player.field_70131_O) > 1.0) {
+            Vec3d vec3d1 = new Vec3d(entity.posX, player.posY + (double)(player.getEyeHeight() * 0.7f), entity.posZ);
+            RayTraceResult raytraceresult = player.world.rayTraceBlocks(vec3d, vec3d1, false, true, false);
+            if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK || player.posY - (entity.posY + (double)entity.height) > 1.0) continue;
+            if (entity.posY - (player.posY + (double)player.height) > 1.0) {
                 // empty if block
             }
             list.add(entity);
@@ -87,9 +87,9 @@ extends InstructBase {
     protected List<EntityLivingBase> collectEntities(Entity player, float range, float arc) {
         ArrayList<EntityLivingBase> list = new ArrayList<EntityLivingBase>();
         if (player != null) {
-            List entitiesWithinAABBExcludingEntity = player.field_70170_p.func_72839_b(player, player.func_174813_aQ().func_186662_g((double)range));
-            Vec3d dir = this.getVectorForRotation(0.0f, player.field_70177_z);
-            dir = new Vec3d(dir.field_72450_a, 0.0, dir.field_72449_c);
+            List entitiesWithinAABBExcludingEntity = player.world.getEntitiesWithinAABBExcludingEntity(player, player.getEntityBoundingBox().grow((double)range));
+            Vec3d dir = this.getVectorForRotation(0.0f, player.rotationYaw);
+            dir = new Vec3d(dir.x, 0.0, dir.z);
             double cos = Math.cos((double)arc * Math.PI / 180.0);
             double cosSq = cos * cos;
             for (Entity entity : entitiesWithinAABBExcludingEntity) {
@@ -99,10 +99,10 @@ extends InstructBase {
                     list.add(entityLivingBase);
                     continue;
                 }
-                Vec3d relative = entityLivingBase.func_174791_d().func_178788_d(player.func_174791_d());
-                relative = new Vec3d(relative.field_72450_a, 0.0, relative.field_72449_c);
-                double dot = relative.func_72430_b(dir);
-                double value = dot * dot / relative.func_189985_c();
+                Vec3d relative = entityLivingBase.getPositionVector().subtract(player.getPositionVector());
+                relative = new Vec3d(relative.x, 0.0, relative.z);
+                double dot = relative.dotProduct(dir);
+                double value = dot * dot / relative.lengthSquared();
                 if ((double)arc < 180.0 && dot > 0.0 && value >= cosSq) {
                     list.add(entityLivingBase);
                     continue;

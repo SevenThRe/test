@@ -142,10 +142,10 @@ implements e {
         while (n3 < 6) {
             xm a3;
             NBTTagCompound nBTTagCompound = a2;
-            nBTTagCompound.func_74774_a(c + n2, a3.w[n2]);
-            a2.func_74774_a(new StringBuilder().insert(0, s).append(n2).toString(), a3.l[n2]);
-            nBTTagCompound.func_74774_a(new StringBuilder().insert(0, j).append(n2).toString(), a3.v[n2]);
-            nBTTagCompound.func_74774_a(new StringBuilder().insert(0, m).append(n2).toString(), a3.r[n2++]);
+            nBTTagCompound.setByte(c + n2, a3.w[n2]);
+            a2.setByte(new StringBuilder().insert(0, s).append(n2).toString(), a3.l[n2]);
+            nBTTagCompound.setByte(new StringBuilder().insert(0, j).append(n2).toString(), a3.v[n2]);
+            nBTTagCompound.setByte(new StringBuilder().insert(0, m).append(n2).toString(), a3.r[n2++]);
             n3 = n2;
         }
     }
@@ -196,14 +196,14 @@ implements e {
             xm a3;
             xm xm2 = a3;
             int n4 = n2;
-            xm2.w[n4] = a2.func_74771_c(c + n4);
+            xm2.w[n4] = a2.getByte(c + n4);
             int n5 = n2;
-            xm2.l[n5] = a2.func_74771_c(new StringBuilder().insert(0, s).append(n5).toString());
+            xm2.l[n5] = a2.getByte(new StringBuilder().insert(0, s).append(n5).toString());
             NBTTagCompound nBTTagCompound = a2;
-            xm2.v[n2] = nBTTagCompound.func_74771_c(new StringBuilder().insert(0, j).append(n2).toString());
-            if (nBTTagCompound.func_74764_b(new StringBuilder().insert(0, m).append(n2).toString())) {
+            xm2.v[n2] = nBTTagCompound.getByte(new StringBuilder().insert(0, j).append(n2).toString());
+            if (nBTTagCompound.hasKey(new StringBuilder().insert(0, m).append(n2).toString())) {
                 int n6 = n2;
-                a3.r[n6] = a2.func_74771_c(new StringBuilder().insert(0, m).append(n6).toString());
+                a3.r[n6] = a2.getByte(new StringBuilder().insert(0, m).append(n6).toString());
             } else {
                 a3.r[n2] = -1;
             }

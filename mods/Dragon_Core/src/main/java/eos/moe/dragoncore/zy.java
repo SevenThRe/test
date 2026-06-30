@@ -74,10 +74,10 @@ public class zy {
             return;
         }
         a5.u = a3;
-        a5.a = a5.u.field_78090_t;
-        a5.e = a5.u.field_78089_u;
+        a5.a = a5.u.textureWidth;
+        a5.e = a5.u.textureHeight;
         try {
-            a5.ALLATORIxDEMO(a5.u.field_78092_r);
+            a5.ALLATORIxDEMO(a5.u.boxList);
         }
         catch (IOException a6) {
             a6.printStackTrace();
@@ -96,20 +96,20 @@ public class zy {
 
     private /* synthetic */ void f(ModelRenderer a2) throws IOException {
         zy a3;
-        if (!a2.field_78806_j || a2.field_78807_k) {
+        if (!a2.showModel || a2.isHidden) {
             return;
         }
-        a3.g += a2.field_78800_c;
-        a3.t += a2.field_78797_d;
-        a3.r += a2.field_78798_e;
-        a3.o = a2.field_78795_f * 57.295776f;
-        a3.y = a2.field_78796_g * 57.295776f;
-        a3.k = a2.field_78808_h * 57.295776f;
+        a3.g += a2.rotationPointX;
+        a3.t += a2.rotationPointY;
+        a3.r += a2.rotationPointZ;
+        a3.o = a2.rotateAngleX * 57.295776f;
+        a3.y = a2.rotateAngleY * 57.295776f;
+        a3.k = a2.rotateAngleZ * 57.295776f;
         a3.ALLATORIxDEMO(a2);
-        if (a2.field_78804_l != null) {
-            for (ModelBox a4 : a2.field_78804_l) {
+        if (a2.cubeList != null) {
+            for (ModelBox a4 : a2.cubeList) {
                 TexturedQuad[] a5;
-                for (TexturedQuad a6 : a5 = (TexturedQuad[])ReflectionHelper.getPrivateValue(ModelBox.class, (Object)a4, (String[])new String[]{"quadList", "field_78811_r"})) {
+                for (TexturedQuad a6 : a5 = (TexturedQuad[])ReflectionHelper.getPrivateValue(ModelBox.class, (Object)a4, (String[])new String[]{"quadList", "displayList"})) {
                     a3.ALLATORIxDEMO(a6);
                 }
             }
@@ -119,17 +119,17 @@ public class zy {
         a3.j.clear();
         a3.i.clear();
         a3.ALLATORIxDEMO.clear();
-        a3.ALLATORIxDEMO(a2.field_78805_m);
-        a3.g -= a2.field_78800_c;
-        a3.t -= a2.field_78797_d;
-        a3.r -= a2.field_78798_e;
+        a3.ALLATORIxDEMO(a2.childModels);
+        a3.g -= a2.rotationPointX;
+        a3.t -= a2.rotationPointY;
+        a3.r -= a2.rotationPointZ;
     }
 
     private /* synthetic */ void c(ModelRenderer a2) {
         zy a3;
-        a3.x += a2.field_78800_c;
-        a3.v += a2.field_78797_d;
-        a3.m += a2.field_78798_e;
+        a3.x += a2.rotationPointX;
+        a3.v += a2.rotationPointY;
+        a3.m += a2.rotationPointZ;
         if (a3.o != 0.0f) {
             a3.t = (float)((double)a3.t * Math.cos(a3.o) + (double)a3.r * Math.sin(a3.o));
             a3.r = (float)((double)a3.t * -Math.sin(a3.o) + (double)a3.r * Math.cos(a3.o));
@@ -161,22 +161,22 @@ public class zy {
     private /* synthetic */ void ALLATORIxDEMO(TexturedQuad a2) {
         Object a3;
         zy a4;
-        Vec3d a5 = a2.field_78239_a[1].field_78243_a.func_72444_a(a2.field_78239_a[0].field_78243_a);
-        Vec3d a6 = a2.field_78239_a[1].field_78243_a.func_72444_a(a2.field_78239_a[2].field_78243_a);
-        Vec3d a7 = a6.func_72431_c(a5).func_72432_b();
-        float a8 = (float)a7.field_72450_a;
-        float a9 = (float)a7.field_72448_b;
-        float a10 = (float)a7.field_72449_c;
+        Vec3d a5 = a2.vertexPositions[1].vector3D.subtractReverse(a2.vertexPositions[0].vector3D);
+        Vec3d a6 = a2.vertexPositions[1].vector3D.subtractReverse(a2.vertexPositions[2].vector3D);
+        Vec3d a7 = a6.crossProduct(a5).normalize();
+        float a8 = (float)a7.x;
+        float a9 = (float)a7.y;
+        float a10 = (float)a7.z;
         int a11 = a4.l + 1;
         int a12 = a4.z + 1;
         int a13 = a4.s + 1;
         for (int a14 = 0; a14 < 4; ++a14) {
-            a3 = a2.field_78239_a[a14];
-            a4.ALLATORIxDEMO((float)a3.field_78243_a.field_72450_a, (float)a3.field_78243_a.field_72448_b, (float)a3.field_78243_a.field_72449_c);
+            a3 = a2.vertexPositions[a14];
+            a4.ALLATORIxDEMO((float)a3.vector3D.x, (float)a3.vector3D.y, (float)a3.vector3D.z);
             String a15 = "v " + (a4.g + a4.c) + " " + -1.0f * (a4.t + a4.q) + " " + (a4.r + a4.b);
             a4.n.add(a15);
             ++a4.l;
-            String a16 = "vt " + a3.field_78241_b + " " + a3.field_78242_c;
+            String a16 = "vt " + a3.texturePositionX + " " + a3.texturePositionY;
             a4.j.add(a16);
             ++a4.z;
         }
@@ -189,7 +189,7 @@ public class zy {
 
     private /* synthetic */ void ALLATORIxDEMO(ModelRenderer a2) throws IOException {
         zy a3;
-        String a4 = a2.field_78802_n == null || a2.field_78802_n.equals("null") ? "Cube." + a3.w++ : a2.field_78802_n;
+        String a4 = a2.boxName == null || a2.boxName.equals("null") ? "Cube." + a3.w++ : a2.boxName;
         FileUtils.write((File)a3.p, (CharSequence)("g " + a4 + "\n"), (Charset)Charsets.UTF_8, (boolean)true);
     }
 
@@ -197,7 +197,7 @@ public class zy {
         boolean a5;
         File a6 = new File(a2);
         if (!a6.exists() && !a6.mkdirs()) {
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u521b\u5efa\u6587\u4ef6\u5939\u5931\u8d25"));
+            Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u521b\u5efa\u6587\u4ef6\u5939\u5931\u8d25"));
             return false;
         }
         File a7 = new File(a2 + "/" + a3 + "." + a4);
@@ -206,7 +206,7 @@ public class zy {
                 a5 = a7.createNewFile();
             }
             catch (IOException a8) {
-                Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u521b\u5efa\u6587\u4ef6\u5931\u8d25"));
+                Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u521b\u5efa\u6587\u4ef6\u5931\u8d25"));
                 a8.printStackTrace();
                 return false;
             }
@@ -216,12 +216,12 @@ public class zy {
             a5 = a7.createNewFile();
         }
         catch (IOException a9) {
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u521b\u5efa\u6587\u4ef6\u5931\u8d25"));
+            Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u521b\u5efa\u6587\u4ef6\u5931\u8d25"));
             a9.printStackTrace();
             return false;
         }
         if (!a5) {
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u521b\u5efa\u6587\u4ef6\u5931\u8d25"));
+            Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u521b\u5efa\u6587\u4ef6\u5931\u8d25"));
             return false;
         }
         a.p = a7;

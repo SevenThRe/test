@@ -61,7 +61,7 @@ extends JmUI {
     }
 
     @Override
-    public void func_73866_w_() {
+    public void initGui() {
         Button button2;
         Journeymap.getClient().getCoreProperties().splashViewed.set(Journeymap.JM_VERSION.toString());
         if (this.info == null) {
@@ -77,7 +77,7 @@ extends JmUI {
             }
             return;
         }
-        this.field_146292_n.clear();
+        this.buttonList.clear();
         FontRenderer fr = this.getFontRenderer();
         this.devButtons = new ButtonList();
         for (SplashPerson dev : this.devs) {
@@ -87,7 +87,7 @@ extends JmUI {
         }
         this.devButtons.setWidths(20);
         this.devButtons.setHeights(20);
-        this.devButtons.layoutDistributedHorizontal(0, 35, this.field_146294_l, true);
+        this.devButtons.layoutDistributedHorizontal(0, 35, this.width, true);
         this.peopleButtons = new ButtonList();
         for (SplashPerson peep : this.people) {
             button2 = new Button(peep.name);
@@ -96,21 +96,21 @@ extends JmUI {
         }
         this.peopleButtons.setWidths(20);
         this.peopleButtons.setHeights(20);
-        this.peopleButtons.layoutDistributedHorizontal(0, this.field_146295_m - 65, this.field_146294_l, true);
+        this.peopleButtons.layoutDistributedHorizontal(0, this.height - 65, this.width, true);
         this.infoButtons = new ButtonList();
         for (SplashInfo.Line line : this.info.lines) {
             button2 = new SplashInfoButton(line);
             button2.setDrawBackground(false);
             button2.setDefaultStyle(false);
             button2.setDrawFrame(false);
-            button2.setHeight(fr.field_78288_b + 5);
+            button2.setHeight(fr.FONT_HEIGHT + 5);
             if (line.hasAction()) {
                 button2.setTooltip(Constants.getString("jm.common.splash_action"));
             }
             this.infoButtons.add(button2);
         }
         this.infoButtons.equalizeWidths(fr);
-        this.field_146292_n.addAll(this.infoButtons);
+        this.buttonList.addAll(this.infoButtons);
         this.buttonClose = new Button(Constants.getString("jm.common.close"));
         this.buttonClose.addClickListener(button -> {
             this.closeAndReturn();
@@ -126,12 +126,12 @@ extends JmUI {
             return true;
         });
         this.bottomButtons = new ButtonList(this.buttonOptions);
-        if (this.field_146297_k.field_71441_e != null) {
+        if (this.mc.world != null) {
             this.bottomButtons.add(this.buttonClose);
         }
         this.bottomButtons.equalizeWidths(fr);
         this.bottomButtons.setWidths(Math.max(100, this.buttonOptions.getWidth()));
-        this.field_146292_n.addAll(this.bottomButtons);
+        this.buttonList.addAll(this.bottomButtons);
         this.buttonWebsite = new Button("http://journeymap.info");
         this.buttonWebsite.setTooltip(Constants.getString("jm.common.website"));
         this.buttonWebsite.addClickListener(button -> {
@@ -146,7 +146,7 @@ extends JmUI {
         });
         this.linkButtons = new ButtonList(this.buttonWebsite, this.buttonDownload);
         this.linkButtons.equalizeWidths(fr);
-        this.field_146292_n.addAll(this.linkButtons);
+        this.buttonList.addAll(this.linkButtons);
         int commonWidth = Math.max(this.bottomButtons.getWidth(0) / this.bottomButtons.size(), this.linkButtons.getWidth(0) / this.linkButtons.size());
         this.bottomButtons.setWidths(commonWidth);
         this.linkButtons.setWidths(commonWidth);
@@ -155,7 +155,7 @@ extends JmUI {
         this.buttonPatreon.setDrawBackground(false);
         this.buttonPatreon.setDrawFrame(false);
         this.buttonPatreon.setTooltip(Constants.getString("jm.common.patreon"), Constants.getString("jm.common.patreon.tooltip"));
-        this.buttonPatreon.func_175211_a(this.patreonLogo.getWidth() / this.scaleFactor);
+        this.buttonPatreon.setWidth(this.patreonLogo.getWidth() / this.scaleFactor);
         this.buttonPatreon.setHeight(this.patreonLogo.getHeight() / this.scaleFactor);
         this.buttonPatreon.addClickListener(button -> {
             FullscreenActions.launchPatreon();
@@ -166,7 +166,7 @@ extends JmUI {
         this.buttonDiscord.setDrawBackground(false);
         this.buttonDiscord.setDrawFrame(false);
         this.buttonDiscord.setTooltip(Constants.getString("jm.common.discord"), Constants.getString("jm.common.discord.tooltip"));
-        this.buttonDiscord.func_175211_a(this.discordLogo.getWidth() / this.scaleFactor);
+        this.buttonDiscord.setWidth(this.discordLogo.getWidth() / this.scaleFactor);
         this.buttonDiscord.setHeight(this.discordLogo.getHeight() / this.scaleFactor);
         this.buttonDiscord.addClickListener(button -> {
             FullscreenActions.discord();
@@ -176,32 +176,32 @@ extends JmUI {
         this.logoButtons.setLayout(ButtonList.Layout.Horizontal, ButtonList.Direction.LeftToRight);
         this.logoButtons.setHeights(Math.max(this.discordLogo.getHeight(), this.patreonLogo.getHeight()) / this.scaleFactor);
         this.logoButtons.setWidths(Math.max(this.discordLogo.getWidth(), this.patreonLogo.getWidth()) / this.scaleFactor);
-        this.field_146292_n.addAll(this.logoButtons);
+        this.buttonList.addAll(this.logoButtons);
     }
 
     @Override
     protected void layoutButtons() {
         boolean movePeople;
-        if (this.field_146292_n.isEmpty()) {
-            this.func_73866_w_();
+        if (this.buttonList.isEmpty()) {
+            this.initGui();
         }
-        int mx = Mouse.getEventX() * this.field_146294_l / this.field_146297_k.field_71443_c;
-        int my = this.field_146295_m - Mouse.getEventY() * this.field_146295_m / this.field_146297_k.field_71440_d - 1;
+        int mx = Mouse.getEventX() * this.width / this.mc.displayWidth;
+        int my = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
         int hgap = 4;
         int vgap = 4;
         FontRenderer fr = this.getFontRenderer();
         int estimatedInfoHeight = this.infoButtons.getHeight(4);
         int estimatedButtonsHeight = (this.buttonClose.getHeight() + 4) * 3 + 4;
         ((Object)((Object)this)).getClass();
-        int centerHeight = this.field_146295_m - 35 - estimatedButtonsHeight;
-        int lineHeight = (int)((double)fr.field_78288_b * 1.4);
-        int bx = this.field_146294_l / 2;
+        int centerHeight = this.height - 35 - estimatedButtonsHeight;
+        int lineHeight = (int)((double)fr.FONT_HEIGHT * 1.4);
+        int bx = this.width / 2;
         int by = 0;
         boolean bl = movePeople = System.currentTimeMillis() - this.lastPeopleMove > 20L;
         if (movePeople) {
             this.lastPeopleMove = System.currentTimeMillis();
         }
-        Rectangle2D.Double screenBounds = new Rectangle2D.Double(0.0, 0.0, this.field_146294_l, this.field_146295_m);
+        Rectangle2D.Double screenBounds = new Rectangle2D.Double(0.0, 0.0, this.width, this.height);
         if (!this.devButtons.isEmpty()) {
             for (SplashPerson dev : this.devs) {
                 if (dev.getButton().mouseOver(mx, my)) {
@@ -237,8 +237,8 @@ extends JmUI {
             DrawUtil.drawGradientRect(listX, listY, listWidth, listHeight, 0x404040, 1.0f, 0, 1.0f);
             DrawUtil.drawLabel(Constants.getString("jm.common.splash_whatisnew"), bx, topY, DrawUtil.HAlign.Center, DrawUtil.VAlign.Below, 0, 0.0f, 65535, 1.0f, 1.0, true);
         }
-        int rowHeight = this.buttonOptions.field_146121_g + 4;
-        by = this.field_146295_m - rowHeight - 4;
+        int rowHeight = this.buttonOptions.height + 4;
+        by = this.height - rowHeight - 4;
         this.bottomButtons.layoutCenteredHorizontal(bx, by, true, 4);
         this.linkButtons.layoutCenteredHorizontal(bx, by -= rowHeight, true, 4);
         this.logoButtons.layoutCenteredHorizontal(bx, by -= 4 + this.logoButtons.getHeight(), true, 6);
@@ -252,7 +252,7 @@ extends JmUI {
         int imgSize = (int)((float)person.getSkin().getWidth() * scale);
         int imgY = button.getY() - 2;
         int imgX = button.getCenterX() - imgSize / 2;
-        GlStateManager.func_179141_d();
+        GlStateManager.enableAlpha();
         if (!(person instanceof SplashPerson.Fake)) {
             DrawUtil.drawGradientRect(imgX - 1, imgY - 1, imgSize + 2, imgSize + 2, 0, 0.4f, 0, 0.8f);
             DrawUtil.drawImage(person.getSkin(), 1.0f, imgX, imgY, false, scale, 0.0);
@@ -279,11 +279,11 @@ extends JmUI {
         return by += lineHeight;
     }
 
-    protected void func_146284_a(GuiButton guibutton) {
+    protected void actionPerformed(GuiButton guibutton) {
     }
 
     @Override
-    protected void func_73869_a(char c, int i) {
+    protected void keyTyped(char c, int i) {
         switch (i) {
             case 1: {
                 this.closeAndReturn();
@@ -301,7 +301,7 @@ extends JmUI {
         }
 
         @Override
-        public boolean func_146116_c(Minecraft minecraft, int mouseX, int mouseY) {
+        public boolean mousePressed(Minecraft minecraft, int mouseX, int mouseY) {
             boolean pressed = super.mousePressed(minecraft, mouseX, mouseY, false);
             if (pressed) {
                 this.infoLine.invokeAction(AboutDialog.this);

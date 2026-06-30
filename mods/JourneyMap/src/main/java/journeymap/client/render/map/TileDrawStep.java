@@ -100,10 +100,10 @@ implements TextureImpl.Listener<RegionTextureImpl> {
         Integer textureId = -1;
         boolean useScaled = false;
         if (this.highQuality && this.scaledTexture != null) {
-            textureId = this.scaledTexture.func_110552_b();
+            textureId = this.scaledTexture.getGlTextureId();
             useScaled = true;
         } else {
-            textureId = !regionUpdatePending ? Integer.valueOf(this.getRegionTextureHolder().getTexture().func_110552_b()) : Integer.valueOf(-1);
+            textureId = !regionUpdatePending ? Integer.valueOf(this.getRegionTextureHolder().getTexture().getGlTextureId()) : Integer.valueOf(-1);
         }
         if (textureFilter != this.lastTextureFilter) {
             this.lastTextureFilter = textureFilter;
@@ -123,12 +123,12 @@ implements TextureImpl.Listener<RegionTextureImpl> {
         double endU = useScaled ? 1.0 : (double)this.sx2 / 512.0;
         double endV = useScaled ? 1.0 : (double)this.sy2 / 512.0;
         DrawUtil.drawRectangle(startX, startY, endX - startX, endY - startY, bgColor, 0.8f);
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179120_a((int)770, (int)771, (int)1, (int)0);
-        GlStateManager.func_179098_w();
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate((int)770, (int)771, (int)1, (int)0);
+        GlStateManager.enableTexture2D();
         if (textureId != -1) {
-            GlStateManager.func_179144_i((int)textureId);
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)alpha);
+            GlStateManager.bindTexture((int)textureId);
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)alpha);
             GL11.glTexParameteri((int)3553, (int)10241, (int)textureFilter);
             GL11.glTexParameteri((int)3553, (int)10240, (int)textureFilter);
             GL11.glTexParameteri((int)3553, (int)10242, (int)textureWrap);
@@ -151,8 +151,8 @@ implements TextureImpl.Listener<RegionTextureImpl> {
             long age = (System.currentTimeMillis() - imageTimestamp) / 1000L;
             DrawUtil.drawLabel(this.mapType + " tile age: " + age + " seconds old", debugX + 5, debugY + 30, DrawUtil.HAlign.Right, DrawUtil.VAlign.Below, 0xFFFFFF, 255.0f, 255, 255.0f, 1.0, false);
         }
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179082_a((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.clearColor((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         this.drawTimer.stop();
         int glErr = GL11.glGetError();
         if (glErr != 0) {
@@ -295,7 +295,7 @@ implements TextureImpl.Listener<RegionTextureImpl> {
                 this.needsScaledUpdate = true;
             } else {
                 for (ChunkPos area : dirtyAreas) {
-                    if (area.field_77276_a < this.sx1 || area.field_77275_b < this.sy1 || area.field_77276_a + 16 > this.sx2 || area.field_77275_b + 16 > this.sy2) continue;
+                    if (area.x < this.sx1 || area.z < this.sy1 || area.x + 16 > this.sx2 || area.z + 16 > this.sy2) continue;
                     this.needsScaledUpdate = true;
                     return;
                 }

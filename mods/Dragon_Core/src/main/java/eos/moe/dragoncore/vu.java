@@ -52,7 +52,7 @@ public class vu {
     public static er ALLATORIxDEMO(TileEntity a2) {
         if (a2 instanceof TileEntitySkull) {
             TileEntitySkull a3 = (TileEntitySkull)a2;
-            return vu.ALLATORIxDEMO(a3.func_152108_a());
+            return vu.ALLATORIxDEMO(a3.getPlayerProfile());
         }
         return null;
     }
@@ -80,7 +80,7 @@ public class vu {
     public static String c(TileEntity a2) {
         if (a2 instanceof TileEntitySkull) {
             TileEntitySkull a3 = (TileEntitySkull)a2;
-            return vu.c(a3.func_152108_a());
+            return vu.c(a3.getPlayerProfile());
         }
         return null;
     }
@@ -100,7 +100,7 @@ public class vu {
 
     public static String ALLATORIxDEMO(TileEntity a2) {
         if (a2 instanceof TileEntitySkull) {
-            GameProfile a3 = ((TileEntitySkull)a2).func_152108_a();
+            GameProfile a3 = ((TileEntitySkull)a2).getPlayerProfile();
             return vu.ALLATORIxDEMO(a3);
         }
         return null;
@@ -115,7 +115,7 @@ public class vu {
     }
 
     public static boolean ALLATORIxDEMO(TileEntity a2) {
-        GameProfile a3 = ((TileEntitySkull)a2).func_152108_a();
+        GameProfile a3 = ((TileEntitySkull)a2).getPlayerProfile();
         return a3 != null && a3.getProperties().containsKey((Object)"hideBlock");
     }
 }

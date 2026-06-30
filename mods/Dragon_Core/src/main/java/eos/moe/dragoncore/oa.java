@@ -105,10 +105,10 @@ public class oa {
         if (b.containsKey(a2)) {
             return;
         }
-        IResourceManager a3 = Minecraft.func_71410_x().func_110442_L();
+        IResourceManager a3 = Minecraft.getMinecraft().getResourceManager();
         try {
-            IResource a4 = a3.func_110536_a(new ResourceLocation("dragoncore", a2));
-            Cursor a5 = oa.ALLATORIxDEMO(a4.func_110527_b());
+            IResource a4 = a3.getResource(new ResourceLocation("dragoncore", a2));
+            Cursor a5 = oa.ALLATORIxDEMO(a4.getInputStream());
             b.put(a2, a5);
         }
         catch (FileNotFoundException a6) {
@@ -151,9 +151,9 @@ public class oa {
     }
 
     public static void ALLATORIxDEMO() {
-        IResourceManager a2 = Minecraft.func_71410_x().func_110442_L();
+        IResourceManager a2 = Minecraft.getMinecraft().getResourceManager();
         try {
-            a2.func_110536_a(new ResourceLocation("dragoncore", "Mouse_Click.png"));
+            a2.getResource(new ResourceLocation("dragoncore", "Mouse_Click.png"));
             ALLATORIxDEMO = true;
         }
         catch (Throwable throwable) {

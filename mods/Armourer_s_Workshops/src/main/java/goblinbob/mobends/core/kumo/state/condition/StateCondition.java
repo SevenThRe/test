@@ -31,7 +31,7 @@ implements ITriggerCondition {
                 return !entityData.isOnGround();
             }
             case SPRINTING: {
-                return entityData.getEntity().func_70051_ag();
+                return entityData.getEntity().isSprinting();
             }
             case STANDING_STILL: {
                 return entityData.isStillHorizontally();

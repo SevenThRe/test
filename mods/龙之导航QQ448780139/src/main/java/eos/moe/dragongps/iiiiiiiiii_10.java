@@ -65,7 +65,7 @@ public class iiiiiiiiii_10 {
 
     public Vec3d IIIiiiIiii() {
         iiiiiiiiii_10 IIiiiiiIIi;
-        return new Vec3d((double)IIiiiiiIIi.IIiiIiiIII.func_177958_n() + 0.5, (double)IIiiiiiIIi.IIiiIiiIII.func_177956_o() + 0.5, (double)IIiiiiiIIi.IIiiIiiIII.func_177952_p() + 0.5);
+        return new Vec3d((double)IIiiiiiIIi.IIiiIiiIII.getX() + 0.5, (double)IIiiiiiIIi.IIiiIiiIII.getY() + 0.5, (double)IIiiiiiIIi.IIiiIiiIII.getZ() + 0.5);
     }
 }
 

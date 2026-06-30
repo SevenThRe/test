@@ -176,7 +176,7 @@ implements ITabCompleter {
 
     public Fullscreen() {
         super(null);
-        this.field_146297_k = FMLClientHandler.instance().getClient();
+        this.mc = FMLClientHandler.instance().getClient();
         this.layerDelegate = new LayerDelegate(this);
         this.manager = new WaypointManagerRight();
         if (Journeymap.getClient().getFullMapProperties().showCaves.get().booleanValue() && DataCache.getPlayer().underground.booleanValue() && Fullscreen.state.follow.get() && FeatureManager.isAllowed(Feature.MapCaves)) {
@@ -195,17 +195,17 @@ implements ITabCompleter {
     public void reset() {
         state.requireRefresh();
         gridRenderer.clear();
-        this.field_146292_n.clear();
+        this.buttonList.clear();
     }
 
     @Override
-    public void func_73866_w_() {
+    public void initGui() {
         this.fullMapProperties = Journeymap.getClient().getFullMapProperties();
         state.requireRefresh();
-        state.refresh(this.field_146297_k, (EntityPlayer)this.field_146297_k.field_71439_g, this.fullMapProperties);
+        state.refresh(this.mc, (EntityPlayer)this.mc.player, this.fullMapProperties);
         MapType mapType = state.getMapType();
         Keyboard.enableRepeatEvents((boolean)true);
-        if (mapType.dimension != this.field_146297_k.field_71439_g.field_71093_bK) {
+        if (mapType.dimension != this.mc.player.dimension) {
             gridRenderer.clear();
         }
         this.initButtons();
@@ -214,16 +214,16 @@ implements ITabCompleter {
         if (splashViewed == null || !thisVersion.equals(splashViewed)) {
             UIManager.INSTANCE.openSplash(this);
         }
-        this.manager.func_73866_w_();
+        this.manager.initGui();
     }
 
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    public void func_73863_a(int width, int height, float f) {
+    public void drawScreen(int width, int height, float f) {
         try {
-            this.func_146278_c(0);
+            this.drawBackground(0);
             this.drawMap();
             this.drawScreenTimer.start();
             this.layoutButtons();
@@ -233,10 +233,10 @@ implements ITabCompleter {
                 this.updateMapType(state.getMapType());
                 this.firstLayoutPass = false;
             } else {
-                for (int k = 0; k < this.field_146292_n.size(); ++k) {
+                for (int k = 0; k < this.buttonList.size(); ++k) {
                     Button button;
-                    GuiButton guibutton = (GuiButton)this.field_146292_n.get(k);
-                    guibutton.func_191745_a(this.field_146297_k, width, height, f);
+                    GuiButton guibutton = (GuiButton)this.buttonList.get(k);
+                    guibutton.drawButton(this.mc, width, height, f);
                     if (tooltip != null || !(guibutton instanceof Button) || !(button = (Button)guibutton).mouseOver(this.mx, this.my)) continue;
                     tooltip = button.getTooltip();
                 }
@@ -244,16 +244,16 @@ implements ITabCompleter {
             if (!WaypointStore.INSTANCE.getAll().isEmpty()) {
                 Color c = new Color(34, 36, 54, 255);
                 int c1 = c.getBlue() | c.getGreen() << 8 | c.getRed() << 16 | c.getAlpha() << 24;
-                Fullscreen.func_73734_a((int)(this.field_146294_l - 174), (int)0, (int)this.field_146294_l, (int)this.field_146295_m, (int)c1);
-                Fullscreen.func_73734_a((int)(this.field_146294_l - 176), (int)0, (int)(this.field_146294_l - 174), (int)this.field_146295_m, (int)-1);
-                this.manager.func_73863_a(width, height, f);
+                Fullscreen.drawRect((int)(this.width - 174), (int)0, (int)this.width, (int)this.height, (int)c1);
+                Fullscreen.drawRect((int)(this.width - 176), (int)0, (int)(this.width - 174), (int)this.height, (int)-1);
+                this.manager.drawScreen(width, height, f);
             }
             if (this.chat != null) {
-                this.chat.func_73863_a(width, height, f);
+                this.chat.drawScreen(width, height, f);
             }
             if (tooltip != null && !tooltip.isEmpty()) {
                 this.drawHoveringText(tooltip, this.mx, this.my, this.getFontRenderer());
-                RenderHelper.func_74518_a();
+                RenderHelper.disableStandardItemLighting();
             }
         }
         catch (Throwable e) {
@@ -265,7 +265,7 @@ implements ITabCompleter {
         }
     }
 
-    protected void func_146284_a(GuiButton guibutton) {
+    protected void actionPerformed(GuiButton guibutton) {
         if (guibutton instanceof ThemeToolbar) {
             return;
         }
@@ -278,23 +278,23 @@ implements ITabCompleter {
     }
 
     @Override
-    public void func_146280_a(Minecraft minecraft, int width, int height) {
-        super.func_146280_a(minecraft, width, height);
+    public void setWorldAndResolution(Minecraft minecraft, int width, int height) {
+        super.setWorldAndResolution(minecraft, width, height);
         state.requireRefresh();
         if (this.chat == null) {
             this.chat = new MapChat("", true);
         }
         if (this.chat != null) {
-            this.chat.func_146280_a(minecraft, width, height);
+            this.chat.setWorldAndResolution(minecraft, width, height);
         }
-        this.func_73866_w_();
+        this.initGui();
         this.refreshState();
         this.drawMap();
-        this.manager.func_146280_a(minecraft, width, height);
+        this.manager.setWorldAndResolution(minecraft, width, height);
     }
 
     void initButtons() {
-        if (this.field_146292_n.isEmpty()) {
+        if (this.buttonList.isEmpty()) {
             this.firstLayoutPass = true;
             Theme theme = ThemeLoader.getCurrentTheme();
             MapType mapType = state.getMapType();
@@ -307,40 +307,40 @@ implements ITabCompleter {
             this.buttonDay.setToggled(mapType.isDay(), false);
             this.buttonDay.setStaysOn(true);
             this.buttonDay.addToggleListener((button, toggled) -> {
-                if (button.field_146124_l) {
+                if (button.enabled) {
                     this.updateMapType(MapType.day(state.getDimension()));
                 }
-                return button.field_146124_l;
+                return button.enabled;
             });
             this.buttonNight.setToggled(mapType.isNight(), false);
             this.buttonNight.setStaysOn(true);
             this.buttonNight.addToggleListener((button, toggled) -> {
-                if (button.field_146124_l) {
+                if (button.enabled) {
                     this.updateMapType(MapType.night(state.getDimension()));
                 }
-                return button.field_146124_l;
+                return button.enabled;
             });
             this.buttonTopo.setDrawButton(this.coreProperties.mapTopography.get());
             this.buttonTopo.setToggled(mapType.isTopo(), false);
             this.buttonTopo.setStaysOn(true);
             this.buttonTopo.addToggleListener((button, toggled) -> {
-                if (button.field_146124_l) {
+                if (button.enabled) {
                     this.updateMapType(MapType.topo(state.getDimension()));
                 }
-                return button.field_146124_l;
+                return button.enabled;
             });
             this.buttonLayers.setEnabled(FeatureManager.isAllowed(Feature.MapCaves));
             this.buttonLayers.setToggled(mapType.isUnderground(), false);
             this.buttonLayers.setStaysOn(true);
             this.buttonLayers.addToggleListener((button, toggled) -> {
-                if (button.field_146124_l) {
+                if (button.enabled) {
                     this.updateMapType(MapType.underground(DataCache.getPlayer()));
                 }
-                return button.field_146124_l;
+                return button.enabled;
             });
             FontRenderer fontRenderer = this.getFontRenderer();
             this.sliderCaveLayer = new IntSliderButton(state.getLastSlice(), Constants.getString("jm.fullscreen.map_cave_layers.button") + " ", "");
-            this.sliderCaveLayer.func_175211_a(this.sliderCaveLayer.getFitWidth(fontRenderer) + fontRenderer.func_78256_a("0"));
+            this.sliderCaveLayer.setWidth(this.sliderCaveLayer.getFitWidth(fontRenderer) + fontRenderer.getStringWidth("0"));
             this.sliderCaveLayer.setDefaultStyle(false);
             this.sliderCaveLayer.setDrawBackground(true);
             Theme.Control.ButtonSpec buttonSpec = this.buttonLayers.getButtonSpec();
@@ -351,7 +351,7 @@ implements ITabCompleter {
                 this.refreshState();
                 return Boolean.TRUE;
             });
-            this.field_146292_n.add(this.sliderCaveLayer);
+            this.buttonList.add(this.sliderCaveLayer);
             this.buttonSearch = new ThemeButton(theme, "jm.fullscreen.search", "search");
             this.buttonSearch.addToggleListener((button, toggled) -> {
                 this.toggleSearchBar(toggled);
@@ -400,7 +400,7 @@ implements ITabCompleter {
             this.buttonTheme.addToggleListener((button, toggled) -> {
                 ThemeLoader.loadNextTheme();
                 UIManager.INSTANCE.getMiniMap().reset();
-                this.field_146292_n.clear();
+                this.buttonList.clear();
                 return false;
             });
             String[] tooltips = new String[]{TextFormatting.ITALIC + Constants.getString("jm.common.ui_theme_name", theme.name), TextFormatting.ITALIC + Constants.getString("jm.common.ui_theme_author", theme.author)};
@@ -409,7 +409,7 @@ implements ITabCompleter {
             this.buttonOptions.addToggleListener((button, toggled) -> {
                 try {
                     UIManager.INSTANCE.openOptionsManager();
-                    this.field_146292_n.clear();
+                    this.buttonList.clear();
                     return true;
                 }
                 catch (Exception e) {
@@ -455,7 +455,7 @@ implements ITabCompleter {
             this.buttonVillagers.setDrawButton(FeatureManager.isAllowed(Feature.RadarVillagers));
             this.buttonPlayers = new ThemeToggle(theme, "jm.common.show_players", "players", this.fullMapProperties.showPlayers);
             this.buttonPlayers.setTooltip(Constants.getString("jm.common.show_players.tooltip"));
-            this.buttonPlayers.setDrawButton(!this.field_146297_k.func_71356_B() && FeatureManager.isAllowed(Feature.RadarPlayers));
+            this.buttonPlayers.setDrawButton(!this.mc.isSingleplayer() && FeatureManager.isAllowed(Feature.RadarPlayers));
             this.buttonGrid = new ThemeToggle(theme, "jm.common.show_grid", "grid", this.fullMapProperties.showGrid);
             this.buttonGrid.setTooltip(Constants.getString("jm.common.show_grid_shift.tooltip"));
             this.buttonGrid.setTooltip(Constants.getString("jm.common.show_grid_shift.tooltip"));
@@ -508,10 +508,10 @@ implements ITabCompleter {
             boolean automapRunning = Journeymap.getClient().isTaskManagerEnabled(MapRegionTask.Manager.class);
             String autoMapOn = Constants.getString("jm.common.automap_stop_title");
             String autoMapOff = Constants.getString("jm.common.automap_title");
-            this.autoMapOnTooltip = fontRenderer.func_78271_c(Constants.getString("jm.common.automap_stop_text"), 200);
-            this.autoMapOffTooltip = fontRenderer.func_78271_c(Constants.getString("jm.common.automap_text"), 200);
+            this.autoMapOnTooltip = fontRenderer.listFormattedStringToWidth(Constants.getString("jm.common.automap_stop_text"), 200);
+            this.autoMapOffTooltip = fontRenderer.listFormattedStringToWidth(Constants.getString("jm.common.automap_text"), 200);
             this.buttonAutomap = new ThemeToggle(theme, autoMapOn, autoMapOff, "automap");
-            this.buttonAutomap.setEnabled(FMLClientHandler.instance().getClient().func_71356_B() && Journeymap.getClient().getCoreProperties().mappingEnabled.get() != false);
+            this.buttonAutomap.setEnabled(FMLClientHandler.instance().getClient().isSingleplayer() && Journeymap.getClient().getCoreProperties().mappingEnabled.get() != false);
             this.buttonAutomap.setToggled(automapRunning, false);
             this.buttonAutomap.addToggleListener((button, toggled) -> {
                 if (toggled) {
@@ -519,12 +519,12 @@ implements ITabCompleter {
                 } else {
                     Journeymap.getClient().toggleTask(MapRegionTask.Manager.class, false, null);
                     this.buttonAutomap.setToggled(false, false);
-                    this.field_146292_n.clear();
+                    this.buttonList.clear();
                 }
                 return true;
             });
             this.buttonDeletemap = new ThemeButton(theme, "jm.common.deletemap_title", "delete");
-            this.buttonDeletemap.setAdditionalTooltips(fontRenderer.func_78271_c(Constants.getString("jm.common.deletemap_text"), 200));
+            this.buttonDeletemap.setAdditionalTooltips(fontRenderer.listFormattedStringToWidth(Constants.getString("jm.common.deletemap_text"), 200));
             this.buttonDeletemap.addToggleListener((button, toggled) -> {
                 UIManager.INSTANCE.open(DeleteMapConfirmation.class, this);
                 return false;
@@ -543,7 +543,7 @@ implements ITabCompleter {
                 return true;
             });
             this.buttonResetPalette = new ThemeButton(theme, "jm.common.colorreset_title", "reset");
-            this.buttonResetPalette.setAdditionalTooltips(fontRenderer.func_78271_c(Constants.getString("jm.common.colorreset_text"), 200));
+            this.buttonResetPalette.setAdditionalTooltips(fontRenderer.listFormattedStringToWidth(Constants.getString("jm.common.colorreset_text"), 200));
             this.buttonResetPalette.addToggleListener((button, toggled) -> {
                 Journeymap.getClient().queueMainThreadTask(new EnsureCurrentColorsTask(true, true));
                 return false;
@@ -552,10 +552,10 @@ implements ITabCompleter {
             this.mapTypeToolbar.addAllButtons(this);
             this.optionsToolbar = new ThemeToolbar(theme, new Button[0]);
             this.optionsToolbar.addAllButtons(this);
-            this.optionsToolbar.field_146125_m = false;
+            this.optionsToolbar.visible = false;
             this.menuToolbar = new ThemeToolbar(theme, this.buttonWaypointManager, this.buttonOptions, this.overlayRenderButton);
             this.menuToolbar.addAllButtons(this);
-            this.menuToolbar.field_146125_m = false;
+            this.menuToolbar.visible = false;
             this.zoomToolbar = new ThemeToolbar(theme, this.buttonSearch, this.buttonFollow, this.buttonZoomIn, this.buttonZoomOut);
             this.zoomToolbar.setLayout(ButtonList.Layout.Vertical, ButtonList.Direction.LeftToRight);
             this.zoomToolbar.addAllButtons(this);
@@ -569,21 +569,21 @@ implements ITabCompleter {
     protected void layoutButtons() {
         boolean showCaveLayers;
         if (this.buttonDay != null && !this.buttonDay.hasValidTextures()) {
-            this.field_146292_n.clear();
+            this.buttonList.clear();
         }
-        if (this.field_146292_n.isEmpty()) {
+        if (this.buttonList.isEmpty()) {
             this.initButtons();
         }
         this.menuToolbar.setDrawToolbar(!this.isChatOpen());
         MapType mapType = state.getMapType();
         this.buttonDay.setEnabled(state.isSurfaceMappingAllowed());
-        this.buttonDay.setToggled(this.buttonDay.field_146124_l && mapType.isDay());
+        this.buttonDay.setToggled(this.buttonDay.enabled && mapType.isDay());
         this.buttonNight.setEnabled(state.isSurfaceMappingAllowed());
-        this.buttonNight.setToggled(this.buttonNight.field_146124_l && mapType.isNight());
+        this.buttonNight.setToggled(this.buttonNight.enabled && mapType.isNight());
         this.buttonTopo.setEnabled(state.isTopoMappingAllowed());
-        this.buttonTopo.setToggled(this.buttonTopo.field_146124_l && mapType.isTopo());
+        this.buttonTopo.setToggled(this.buttonTopo.enabled && mapType.isTopo());
         this.buttonCaves.setEnabled(state.isCaveMappingAllowed());
-        this.buttonCaves.setToggled(this.buttonCaves.field_146124_l && mapType.isUnderground());
+        this.buttonCaves.setToggled(this.buttonCaves.enabled && mapType.isUnderground());
         this.buttonFollow.setEnabled(!Fullscreen.state.follow.get());
         boolean automapRunning = Journeymap.getClient().isTaskManagerEnabled(MapRegionTask.Manager.class);
         boolean mappingEnabled = Journeymap.getClient().getCoreProperties().mappingEnabled.get();
@@ -600,17 +600,17 @@ implements ITabCompleter {
         this.buttonDisable.setEnabled(!mainThreadActive);
         this.overlayRenderButton.setVisible(System.getProperty("journeymap.map_testing") != null);
         int padding = this.mapTypeToolbar.getToolbarSpec().padding;
-        this.zoomToolbar.layoutCenteredVertical(this.zoomToolbar.getHMargin(), this.field_146295_m / 2, true, padding);
+        this.zoomToolbar.layoutCenteredVertical(this.zoomToolbar.getHMargin(), this.height / 2, true, padding);
         this.searchToolBar.layoutHorizontal(this.zoomToolbar.getRightX() + 2, this.zoomToolbar.getY() + 1, true, 7, true);
         this.searchTextX.setX(this.searchTextX.getX() + 3);
         this.searchTextZ.setX(this.searchTextZ.getX() + 2);
         this.buttonExecuteSearch.setDisplayClickToggle(false);
         int topY = this.mapTypeToolbar.getVMargin();
         int margin = this.mapTypeToolbar.getHMargin();
-        this.buttonClose.leftOf(this.field_146294_l - this.zoomToolbar.getHMargin()).below(this.mapTypeToolbar.getVMargin());
-        this.buttonAlert.leftOf(this.field_146294_l - this.zoomToolbar.getHMargin()).below(this.buttonClose, padding);
+        this.buttonClose.leftOf(this.width - this.zoomToolbar.getHMargin()).below(this.mapTypeToolbar.getVMargin());
+        this.buttonAlert.leftOf(this.width - this.zoomToolbar.getHMargin()).below(this.buttonClose, padding);
         int toolbarsWidth = this.mapTypeToolbar.getWidth() + this.optionsToolbar.getWidth() + margin + padding;
-        int startX = (this.field_146294_l - toolbarsWidth) / 2;
+        int startX = (this.width - toolbarsWidth) / 2;
         Rectangle2D.Double oldBounds = this.mapTypeToolbar.getBounds();
         this.mapTypeToolbar.layoutHorizontal(startX + this.mapTypeToolbar.getWidth(), topY, false, padding);
         if (!this.mapTypeToolbar.getBounds().equals(oldBounds)) {
@@ -618,12 +618,12 @@ implements ITabCompleter {
         }
         oldBounds = this.optionsToolbar.getBounds();
         this.optionsToolbar.layoutHorizontal(this.mapTypeToolbar.getRightX() + margin, topY, true, padding);
-        this.optionsToolbar.field_146125_m = true;
+        this.optionsToolbar.visible = true;
         if (!this.optionsToolbar.getBounds().equals(oldBounds)) {
             this.optionsToolbarBounds = null;
         }
         oldBounds = this.menuToolbar.getBounds();
-        this.menuToolbar.layoutCenteredHorizontal(this.field_146294_l / 2, this.field_146295_m - this.menuToolbar.field_146121_g - this.menuToolbar.getVMargin(), true, padding);
+        this.menuToolbar.layoutCenteredHorizontal(this.width / 2, this.height - this.menuToolbar.height - this.menuToolbar.getVMargin(), true, padding);
         if (!this.menuToolbar.getBounds().equals(oldBounds)) {
             this.menuToolbarBounds = null;
         }
@@ -673,22 +673,22 @@ implements ITabCompleter {
         return this.mapTypeToolbarBounds;
     }
 
-    public void func_146274_d() throws IOException {
+    public void handleMouseInput() throws IOException {
         try {
             boolean empty = WaypointStore.INSTANCE.getAll().isEmpty();
             if (!empty) {
-                this.manager.func_146274_d();
+                this.manager.handleMouseInput();
             }
             if (this.chat != null && !this.chat.isHidden()) {
-                this.chat.func_146274_d();
+                this.chat.handleMouseInput();
             }
-            this.mx = Mouse.getEventX() * this.field_146294_l / this.field_146297_k.field_71443_c;
-            this.my = this.field_146295_m - Mouse.getEventY() * this.field_146295_m / this.field_146297_k.field_71440_d - 1;
-            if (!empty && this.mx > this.field_146294_l - 170) {
+            this.mx = Mouse.getEventX() * this.width / this.mc.displayWidth;
+            this.my = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
+            if (!empty && this.mx > this.width - 170) {
                 return;
             }
             if (Mouse.getEventButtonState()) {
-                this.func_73864_a(this.mx, this.my, Mouse.getEventButton());
+                this.mouseClicked(this.mx, this.my, Mouse.getEventButton());
             } else {
                 int wheel = Mouse.getEventDWheel();
                 if (wheel > 0) {
@@ -696,7 +696,7 @@ implements ITabCompleter {
                 } else if (wheel < 0) {
                     this.zoomOut();
                 } else {
-                    this.func_146286_b(this.mx, this.my, Mouse.getEventButton());
+                    this.mouseReleased(this.mx, this.my, Mouse.getEventButton());
                 }
             }
         }
@@ -705,15 +705,15 @@ implements ITabCompleter {
         }
     }
 
-    protected void func_73864_a(int mouseX, int mouseY, int mouseButton) throws IOException {
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
         try {
             if (this.chat != null && !this.chat.isHidden()) {
-                this.chat.func_73864_a(mouseX, mouseY, mouseButton);
+                this.chat.mouseClicked(mouseX, mouseY, mouseButton);
             }
-            super.func_73864_a(mouseX, mouseY, mouseButton);
+            super.mouseClicked(mouseX, mouseY, mouseButton);
             Point2D.Double mousePosition = new Point2D.Double(Mouse.getEventX(), gridRenderer.getHeight() - Mouse.getEventY());
             if (mouseButton == 1) {
-                this.layerDelegate.onMouseClicked(this.field_146297_k, gridRenderer, mousePosition, mouseButton, this.getMapFontScale());
+                this.layerDelegate.onMouseClicked(this.mc, gridRenderer, mousePosition, mouseButton, this.getMapFontScale());
             }
         }
         catch (Throwable t) {
@@ -722,9 +722,9 @@ implements ITabCompleter {
     }
 
     @Override
-    protected void func_146286_b(int mouseX, int mouseY, int which) {
+    protected void mouseReleased(int mouseX, int mouseY, int which) {
         try {
-            super.func_146286_b(mouseX, mouseY, which);
+            super.mouseReleased(mouseX, mouseY, which);
             if (this.isMouseOverButton(mouseX, mouseY) || this.sliderCaveLayer.isVisible()) {
                 return;
             }
@@ -741,7 +741,7 @@ implements ITabCompleter {
                 this.msy = this.my;
                 try {
                     gridRenderer.move(-mouseDragX, -mouseDragY);
-                    gridRenderer.updateTiles(state.getMapType(), state.getZoom(), state.isHighQuality(), this.field_146297_k.field_71443_c, this.field_146297_k.field_71440_d, false, 0.0, 0.0);
+                    gridRenderer.updateTiles(state.getMapType(), state.getZoom(), state.isHighQuality(), this.mc.displayWidth, this.mc.displayHeight, false, 0.0, 0.0);
                     gridRenderer.setZoom(this.fullMapProperties.zoomLevel.get());
                 }
                 catch (Exception e) {
@@ -751,7 +751,7 @@ implements ITabCompleter {
                 this.refreshState();
             }
             Point2D.Double mousePosition = new Point2D.Double(Mouse.getEventX(), gridRenderer.getHeight() - Mouse.getEventY());
-            this.layerDelegate.onMouseMove(this.field_146297_k, gridRenderer, mousePosition, this.getMapFontScale(), this.isScrolling);
+            this.layerDelegate.onMouseMove(this.mc, gridRenderer, mousePosition, this.getMapFontScale(), this.isScrolling);
         }
         catch (Throwable t) {
             Journeymap.getLogger().error(LogFormatter.toPartialString(t));
@@ -830,8 +830,8 @@ implements ITabCompleter {
     void toggleFollow() {
         boolean isFollow = !Fullscreen.state.follow.get();
         this.setFollow(isFollow);
-        if (isFollow && this.field_146297_k.field_71439_g != null) {
-            this.sliderCaveLayer.setValue(this.field_146297_k.field_71439_g.field_70162_ai);
+        if (isFollow && this.mc.player != null) {
+            this.sliderCaveLayer.setValue(this.mc.player.chunkCoordY);
             if (state.getMapType().isUnderground()) {
                 this.sliderCaveLayer.checkClickListeners();
             }
@@ -848,14 +848,14 @@ implements ITabCompleter {
 
     public void createWaypointAtMouse() {
         Point2D.Double mousePosition = new Point2D.Double(Mouse.getEventX(), gridRenderer.getHeight() - Mouse.getEventY());
-        BlockPos blockPos = this.layerDelegate.getBlockPos(this.field_146297_k, gridRenderer, mousePosition);
-        Waypoint waypoint = Waypoint.at(blockPos, Waypoint.Type.Normal, this.field_146297_k.field_71439_g.field_71093_bK);
+        BlockPos blockPos = this.layerDelegate.getBlockPos(this.mc, gridRenderer, mousePosition);
+        Waypoint waypoint = Waypoint.at(blockPos, Waypoint.Type.Normal, this.mc.player.dimension);
         UIManager.INSTANCE.openWaypointEditor(waypoint, true, this);
     }
 
     public void chatPositionAtMouse() {
         Point2D.Double mousePosition = new Point2D.Double(Mouse.getEventX(), gridRenderer.getHeight() - Mouse.getEventY());
-        BlockPos blockPos = this.layerDelegate.getBlockPos(this.field_146297_k, gridRenderer, mousePosition);
+        BlockPos blockPos = this.layerDelegate.getBlockPos(this.mc, gridRenderer, mousePosition);
         Waypoint waypoint = Waypoint.at(blockPos, Waypoint.Type.Normal, state.getDimension());
         this.openChat(waypoint.toChatString());
     }
@@ -865,32 +865,32 @@ implements ITabCompleter {
     }
 
     @Override
-    public void func_73869_a(char c, int key) throws IOException {
-        String oldText = this.manager.nameField.func_146179_b();
-        this.manager.nameField.func_146201_a(c, key);
-        String newText = this.manager.nameField.func_146179_b();
+    public void keyTyped(char c, int key) throws IOException {
+        String oldText = this.manager.nameField.getText();
+        this.manager.nameField.textboxKeyTyped(c, key);
+        String newText = this.manager.nameField.getText();
         if (!oldText.equals(newText)) {
             this.manager.filterName = newText;
             this.manager.items.clear();
-            this.manager.func_73866_w_();
+            this.manager.initGui();
         }
-        if (this.searchTextX.func_146115_a()) {
+        if (this.searchTextX.isMouseOver()) {
             this.searchTextX.keyTyped(c, key);
             return;
         }
-        if (this.searchTextZ.func_146115_a()) {
+        if (this.searchTextZ.isMouseOver()) {
             this.searchTextZ.keyTyped(c, key);
             return;
         }
         if (this.isChatOpen()) {
-            this.chat.func_73869_a(c, key);
+            this.chat.keyTyped(c, key);
             return;
         }
-        if (this.field_146297_k.field_71474_y.field_74310_D.func_151463_i() == key) {
+        if (this.mc.gameSettings.keyBindChat.getKeyCode() == key) {
             this.openChat("");
             return;
         }
-        if (this.field_146297_k.field_71474_y.field_74323_J.func_151463_i() == key) {
+        if (this.mc.gameSettings.keyBindCommand.getKeyCode() == key) {
             this.openChat("/");
             return;
         }
@@ -899,17 +899,17 @@ implements ITabCompleter {
         }
     }
 
-    public void func_73876_c() {
-        super.func_73876_c();
-        this.manager.func_73876_c();
+    public void updateScreen() {
+        super.updateScreen();
+        this.manager.updateScreen();
         if (this.chat != null) {
-            this.chat.func_73876_c();
+            this.chat.updateScreen();
         }
     }
 
     @Override
-    public void func_146278_c(int layer) {
-        DrawUtil.drawRectangle(0.0, 0.0, this.field_146294_l, this.field_146295_m, this.bgColor, 1.0f);
+    public void drawBackground(int layer) {
+        DrawUtil.drawRectangle(0.0, 0.0, this.width, this.height, this.bgColor, 1.0f);
     }
 
     /*
@@ -939,19 +939,19 @@ implements ITabCompleter {
             gridRenderer.clearGlErrors(false);
             gridRenderer.updateRotation(0.0);
             if (Fullscreen.state.follow.get()) {
-                gridRenderer.center(state.getWorldDir(), mapType, this.field_146297_k.field_71439_g.field_70165_t, this.field_146297_k.field_71439_g.field_70161_v, this.fullMapProperties.zoomLevel.get());
+                gridRenderer.center(state.getWorldDir(), mapType, this.mc.player.posX, this.mc.player.posZ, this.fullMapProperties.zoomLevel.get());
             }
-            gridRenderer.updateTiles(mapType, state.getZoom(), state.isHighQuality(), this.field_146297_k.field_71443_c, this.field_146297_k.field_71440_d, false, 0.0, 0.0);
+            gridRenderer.updateTiles(mapType, state.getZoom(), state.isHighQuality(), this.mc.displayWidth, this.mc.displayHeight, false, 0.0, 0.0);
             gridRenderer.draw(1.0f, xOffset, yOffset, this.fullMapProperties.showGrid.get());
             gridRenderer.draw(state.getDrawSteps(), (double)xOffset, (double)yOffset, (double)this.getMapFontScale(), 0.0);
             gridRenderer.draw(state.getDrawWaypointSteps(), (double)xOffset, (double)yOffset, (double)this.getMapFontScale(), 0.0);
-            if (this.fullMapProperties.showSelf.get().booleanValue() && (playerPixel = gridRenderer.getPixel(this.field_146297_k.field_71439_g.field_70165_t, this.field_146297_k.field_71439_g.field_70161_v)) != null) {
+            if (this.fullMapProperties.showSelf.get().booleanValue() && (playerPixel = gridRenderer.getPixel(this.mc.player.posX, this.mc.player.posZ)) != null) {
                 boolean large = ((EntityDisplay)this.fullMapProperties.playerDisplay.get()).isLarge();
                 TextureImpl bgTex = large ? TextureCache.getTexture(TextureCache.PlayerArrowBG_Large) : TextureCache.getTexture(TextureCache.PlayerArrowBG);
                 TextureImpl fgTex = large ? TextureCache.getTexture(TextureCache.PlayerArrow_Large) : TextureCache.getTexture(TextureCache.PlayerArrow);
-                DrawUtil.drawColoredEntity(((Point2D)playerPixel).getX() + (double)xOffset, ((Point2D)playerPixel).getY() + (double)yOffset, bgTex, 0xFFFFFF, 1.0f, 1.0f, this.field_146297_k.field_71439_g.field_70759_as);
+                DrawUtil.drawColoredEntity(((Point2D)playerPixel).getX() + (double)xOffset, ((Point2D)playerPixel).getY() + (double)yOffset, bgTex, 0xFFFFFF, 1.0f, 1.0f, this.mc.player.rotationYawHead);
                 int playerColor = this.coreProperties.getColor(this.coreProperties.colorSelf);
-                DrawUtil.drawColoredEntity(((Point2D)playerPixel).getX() + (double)xOffset, ((Point2D)playerPixel).getY() + (double)yOffset, fgTex, playerColor, 1.0f, 1.0f, this.field_146297_k.field_71439_g.field_70759_as);
+                DrawUtil.drawColoredEntity(((Point2D)playerPixel).getX() + (double)xOffset, ((Point2D)playerPixel).getY() + (double)yOffset, fgTex, playerColor, 1.0f, 1.0f, this.mc.player.rotationYawHead);
             }
             gridRenderer.draw(this.layerDelegate.getDrawSteps(), (double)xOffset, (double)yOffset, (double)this.getMapFontScale(), 0.0);
             this.drawLogo();
@@ -968,7 +968,7 @@ implements ITabCompleter {
     }
 
     public void centerOn(Waypoint waypoint) {
-        if (waypoint.getDimensions().contains(this.field_146297_k.field_71439_g.field_71093_bK)) {
+        if (waypoint.getDimensions().contains(this.mc.player.dimension)) {
             if (!waypoint.isPersistent()) {
                 this.addTempMarker(waypoint);
             }
@@ -981,13 +981,13 @@ implements ITabCompleter {
         state.requireRefresh();
         gridRenderer.center(state.getWorldDir(), state.getMapType(), x, z, this.fullMapProperties.zoomLevel.get());
         this.refreshState();
-        this.func_73876_c();
+        this.updateScreen();
     }
 
     public void addTempMarker(Waypoint waypoint) {
         try {
             BlockPos pos = waypoint.getBlockPos();
-            PolygonOverlay polygonOverlay = new PolygonOverlay("journeymap", waypoint.getName(), this.field_146297_k.field_71439_g.field_71093_bK, new ShapeProperties().setStrokeColor(255).setStrokeOpacity(1.0f).setStrokeWidth(1.5f), new MapPolygon(pos.func_177982_a(-1, 0, 2), pos.func_177982_a(2, 0, 2), pos.func_177982_a(2, 0, -1), pos.func_177982_a(-1, 0, -1)));
+            PolygonOverlay polygonOverlay = new PolygonOverlay("journeymap", waypoint.getName(), this.mc.player.dimension, new ShapeProperties().setStrokeColor(255).setStrokeOpacity(1.0f).setStrokeWidth(1.5f), new MapPolygon(pos.add(-1, 0, 2), pos.add(2, 0, 2), pos.add(2, 0, -1), pos.add(-1, 0, -1)));
             polygonOverlay.setActiveMapTypes(EnumSet.allOf(Context.MapType.class));
             polygonOverlay.setActiveUIs(EnumSet.of(Context.UI.Fullscreen));
             polygonOverlay.setLabel(waypoint.getName());
@@ -1003,7 +1003,7 @@ implements ITabCompleter {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     void refreshState() {
-        EntityPlayerSP player = this.field_146297_k.field_71439_g;
+        EntityPlayerSP player = this.mc.player;
         if (player == null) {
             this.logger.warn("Could not get player");
             return;
@@ -1014,25 +1014,25 @@ implements ITabCompleter {
             this.menuToolbarBounds = null;
             this.optionsToolbarBounds = null;
             this.fullMapProperties = Journeymap.getClient().getFullMapProperties();
-            state.refresh(this.field_146297_k, (EntityPlayer)player, this.fullMapProperties);
+            state.refresh(this.mc, (EntityPlayer)player, this.fullMapProperties);
             MapType mapType = state.getMapType();
             gridRenderer.setContext(state.getWorldDir(), mapType);
             if (Fullscreen.state.follow.get()) {
-                gridRenderer.center(state.getWorldDir(), mapType, this.field_146297_k.field_71439_g.field_70165_t, this.field_146297_k.field_71439_g.field_70161_v, this.fullMapProperties.zoomLevel.get());
+                gridRenderer.center(state.getWorldDir(), mapType, this.mc.player.posX, this.mc.player.posZ, this.fullMapProperties.zoomLevel.get());
             } else {
                 gridRenderer.setZoom(this.fullMapProperties.zoomLevel.get());
             }
-            gridRenderer.updateTiles(mapType, state.getZoom(), state.isHighQuality(), this.field_146297_k.field_71443_c, this.field_146297_k.field_71440_d, true, 0.0, 0.0);
-            state.generateDrawSteps(this.field_146297_k, gridRenderer, this.waypointRenderer, this.radarRenderer, this.fullMapProperties, false);
+            gridRenderer.updateTiles(mapType, state.getZoom(), state.isHighQuality(), this.mc.displayWidth, this.mc.displayHeight, true, 0.0, 0.0);
+            state.generateDrawSteps(this.mc, gridRenderer, this.waypointRenderer, this.radarRenderer, this.fullMapProperties, false);
             LocationFormat.LocationFormatKeys locationFormatKeys = this.locationFormat.getFormatKeys(this.fullMapProperties.locationFormat.get());
-            Fullscreen.state.playerLastPos = locationFormatKeys.format(this.fullMapProperties.locationFormatVerbose.get(), MathHelper.func_76128_c((double)this.field_146297_k.field_71439_g.field_70165_t), MathHelper.func_76128_c((double)this.field_146297_k.field_71439_g.field_70161_v), MathHelper.func_76128_c((double)this.field_146297_k.field_71439_g.func_174813_aQ().field_72338_b), this.field_146297_k.field_71439_g.field_70162_ai) + " " + state.getPlayerBiome();
+            Fullscreen.state.playerLastPos = locationFormatKeys.format(this.fullMapProperties.locationFormatVerbose.get(), MathHelper.floor((double)this.mc.player.posX), MathHelper.floor((double)this.mc.player.posZ), MathHelper.floor((double)this.mc.player.getEntityBoundingBox().minY), this.mc.player.chunkCoordY) + " " + state.getPlayerBiome();
             state.updateLastRefresh();
         }
         finally {
             timer.stop();
         }
         Point2D.Double mousePosition = new Point2D.Double(Mouse.getEventX(), gridRenderer.getHeight() - Mouse.getEventY());
-        this.layerDelegate.onMouseMove(this.field_146297_k, gridRenderer, mousePosition, this.getMapFontScale(), this.isScrolling);
+        this.layerDelegate.onMouseMove(this.mc, gridRenderer, mousePosition, this.getMapFontScale(), this.isScrolling);
     }
 
     public void openChat(String defaultText) {
@@ -1041,7 +1041,7 @@ implements ITabCompleter {
             this.chat.setHidden(false);
         } else {
             this.chat = new MapChat(defaultText, false);
-            this.chat.func_146280_a(this.field_146297_k, this.field_146294_l, this.field_146295_m);
+            this.chat.setWorldAndResolution(this.mc, this.width, this.height);
         }
     }
 
@@ -1057,12 +1057,12 @@ implements ITabCompleter {
         this.manager.close();
     }
 
-    public void func_146281_b() {
+    public void onGuiClosed() {
         Keyboard.enableRepeatEvents((boolean)false);
     }
 
     boolean isRefreshReady() {
-        return this.isScrolling == false && (state.shouldRefresh(this.field_146297_k, this.fullMapProperties) || gridRenderer.hasUnloadedTile());
+        return this.isScrolling == false && (state.shouldRefresh(this.mc, this.fullMapProperties) || gridRenderer.hasUnloadedTile());
     }
 
     public int getScreenScaleFactor() {
@@ -1072,7 +1072,7 @@ implements ITabCompleter {
     public void moveCanvas(int deltaBlockX, int deltaBlockz) {
         this.refreshState();
         gridRenderer.move(deltaBlockX, deltaBlockz);
-        gridRenderer.updateTiles(state.getMapType(), state.getZoom(), state.isHighQuality(), this.field_146297_k.field_71443_c, this.field_146297_k.field_71440_d, true, 0.0, 0.0);
+        gridRenderer.updateTiles(state.getMapType(), state.getZoom(), state.isHighQuality(), this.mc.displayWidth, this.mc.displayHeight, true, 0.0, 0.0);
         ClientAPI.INSTANCE.flagOverlaysForRerender();
         this.setFollow(false);
     }
@@ -1088,15 +1088,15 @@ implements ITabCompleter {
         if (this.logo.isDefunct()) {
             this.logo = TextureCache.getTexture(TextureCache.Logo);
         }
-        DrawUtil.sizeDisplay(this.field_146297_k.field_71443_c, this.field_146297_k.field_71440_d);
+        DrawUtil.sizeDisplay(this.mc.displayWidth, this.mc.displayHeight);
         Theme.Container.Toolbar toolbar = ThemeLoader.getCurrentTheme().container.toolbar;
         float scale = this.scaleFactor * 2;
-        DrawUtil.sizeDisplay(this.field_146294_l, this.field_146295_m);
+        DrawUtil.sizeDisplay(this.width, this.height);
         DrawUtil.drawImage(this.logo, toolbar.horizontal.margin, toolbar.vertical.margin, false, 1.0f / scale, 0.0);
     }
 
     @Override
-    public boolean func_73868_f() {
+    public boolean doesGuiPauseGame() {
         return false;
     }
 
@@ -1117,8 +1117,8 @@ implements ITabCompleter {
         }
     }
 
-    public void func_184072_a(String ... newCompletions) {
-        this.chat.func_184072_a(newCompletions);
+    public void setCompletions(String ... newCompletions) {
+        this.chat.setCompletions(newCompletions);
     }
 }
 

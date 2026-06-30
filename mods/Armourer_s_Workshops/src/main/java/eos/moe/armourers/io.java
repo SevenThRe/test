@@ -55,10 +55,10 @@ extends pj {
         if (a2 instanceof EntityPlayer) {
             object = (EntityPlayer)a2;
             io io2 = a5;
-            io2.field_78117_n = object.func_70093_af();
-            io2.field_78093_q = object.func_184218_aH();
+            io2.isSneak = object.isSneaking();
+            io2.isRiding = object.isRiding();
         }
-        RenderHelper.func_74520_c();
+        RenderHelper.enableGUIStandardItemLighting();
         if (((yl)a3).r() & a4.h()) {
             object = rd.v.getTextureForSkin((yl)a3, a4.r(), a4.r());
             ((ti)((Object)object)).bindTexture();
@@ -67,10 +67,10 @@ extends pj {
             GL11.glEnable((int)3008);
             if (!a4.z()) {
                 io io3 = a5;
-                io3.field_78115_e.func_78785_a(v);
-                io3.field_178724_i.func_78785_a(v);
+                io3.bipedBody.render(v);
+                io3.bipedLeftArm.render(v);
             }
-            a5.field_178723_h.func_78785_a(v);
+            a5.bipedRightArm.render(v);
             GL11.glPopAttrib();
         }
         boolean bl = in.b.r(((yl)a3).r());
@@ -78,13 +78,13 @@ extends pj {
         while (n2 < arrayList.size()) {
             a3 = arrayList.get(a2);
             GL11.glPushMatrix();
-            if (a5.field_78091_s) {
+            if (a5.isChild) {
                 float f2 = 2.0f;
                 GL11.glScalef((float)(1.0f / f2), (float)(1.0f / f2), (float)(1.0f / f2));
                 GL11.glTranslatef((float)0.0f, (float)(24.0f * v), (float)0.0f);
             }
-            if (a5.field_78117_n && !a4.z()) {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.2f, (float)0.0f);
+            if (a5.isSneak && !a4.z()) {
+                GlStateManager.translate((float)0.0f, (float)0.2f, (float)0.0f);
             }
             if (((kf)a3).r().r().equals("base") && !a4.z()) {
                 a5.r(new mk((kf)a3, a4));
@@ -105,9 +105,9 @@ extends pj {
         GL11.glTranslatef((float)(5.0f * a2.r()), (float)0.0f, (float)0.0f);
         GL11.glTranslatef((float)0.0f, (float)(2.0f * a2.r()), (float)0.0f);
         io io2 = a4;
-        GL11.glRotatef((float)((float)Math.toDegrees(io2.field_178724_i.field_78808_h)), (float)0.0f, (float)0.0f, (float)1.0f);
-        GL11.glRotatef((float)((float)Math.toDegrees(io2.field_178724_i.field_78796_g)), (float)0.0f, (float)1.0f, (float)0.0f);
-        GL11.glRotatef((float)((float)Math.toDegrees(io2.field_178724_i.field_78795_f)), (float)1.0f, (float)0.0f, (float)0.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(io2.bipedLeftArm.rotateAngleZ)), (float)0.0f, (float)0.0f, (float)1.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(io2.bipedLeftArm.rotateAngleY)), (float)0.0f, (float)1.0f, (float)0.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(io2.bipedLeftArm.rotateAngleX)), (float)1.0f, (float)0.0f, (float)0.0f);
         if (io2.s & !a3) {
             GL11.glTranslatef((float)(-0.25f * a2.r()), (float)0.0f, (float)0.0f);
             GL11.glTranslatef((float)0.0f, (float)(0.5f * a2.r()), (float)0.0f);
@@ -123,9 +123,9 @@ extends pj {
         GL11.glTranslatef((float)(-5.0f * a2.r()), (float)0.0f, (float)0.0f);
         GL11.glTranslatef((float)0.0f, (float)(2.0f * a2.r()), (float)0.0f);
         io io2 = a4;
-        GL11.glRotatef((float)((float)Math.toDegrees(io2.field_178723_h.field_78808_h)), (float)0.0f, (float)0.0f, (float)1.0f);
-        GL11.glRotatef((float)((float)Math.toDegrees(io2.field_178723_h.field_78796_g)), (float)0.0f, (float)1.0f, (float)0.0f);
-        GL11.glRotatef((float)((float)Math.toDegrees(io2.field_178723_h.field_78795_f)), (float)1.0f, (float)0.0f, (float)0.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(io2.bipedRightArm.rotateAngleZ)), (float)0.0f, (float)0.0f, (float)1.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(io2.bipedRightArm.rotateAngleY)), (float)0.0f, (float)1.0f, (float)0.0f);
+        GL11.glRotatef((float)((float)Math.toDegrees(io2.bipedRightArm.rotateAngleX)), (float)1.0f, (float)0.0f, (float)0.0f);
         if (io2.s & !a3) {
             GL11.glTranslatef((float)(0.25f * a2.r()), (float)0.0f, (float)0.0f);
             GL11.glTranslatef((float)0.0f, (float)(0.5f * a2.r()), (float)0.0f);
@@ -138,8 +138,8 @@ extends pj {
     private /* synthetic */ void r(mk a2) {
         io a3;
         GL11.glPushMatrix();
-        if (a3.field_78117_n) {
-            GL11.glRotated((double)Math.toDegrees(a3.field_78115_e.field_78795_f), (double)1.0, (double)0.0, (double)0.0);
+        if (a3.isSneak) {
+            GL11.glRotated((double)Math.toDegrees(a3.bipedBody.rotateAngleX), (double)1.0, (double)0.0, (double)0.0);
         }
         GL11.glColor3f((float)1.0f, (float)1.0f, (float)1.0f);
         a3.renderPart(a2);

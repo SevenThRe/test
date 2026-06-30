@@ -50,10 +50,10 @@ implements LayerRenderer<EntityPlayer> {
         km km2 = km.t;
         if (a3 != null) {
             qg a7;
-            on.y(a2.func_110124_au()).r(a3);
-            GlStateManager.func_179094_E();
-            km2.r(a3, new dn(0.0625f, (n)new mn(), a4, a5, a6, false, false, ((AbstractClientPlayer)a2).func_110306_p()), (Entity)a2, (ModelBiped)a7.j.func_177087_b());
-            GlStateManager.func_179121_F();
+            on.y(a2.getUniqueID()).r(a3);
+            GlStateManager.pushMatrix();
+            km2.r(a3, new dn(0.0625f, (n)new mn(), a4, a5, a6, false, false, ((AbstractClientPlayer)a2).getLocationSkin()), (Entity)a2, (ModelBiped)a7.j.getMainModel());
+            GlStateManager.popMatrix();
         }
     }
 
@@ -71,7 +71,7 @@ implements LayerRenderer<EntityPlayer> {
         qg3.m[5] = vn.u;
     }
 
-    public boolean func_177142_b() {
+    public boolean shouldCombineTextures() {
         return false;
     }
 
@@ -80,14 +80,14 @@ implements LayerRenderer<EntityPlayer> {
         if (MobendsHelper.isAnimation()) {
             return;
         }
-        double d2 = Minecraft.func_71410_x().field_71439_g.func_70011_f(a2.field_70165_t, a2.field_70163_u, a2.field_70161_v);
+        double d2 = Minecraft.getMinecraft().player.getDistance(a2.posX, a2.posY, a2.posZ);
         if (d2 > (double)vk.n || !zh.g && d2 != 0.0) {
             return;
         }
         qg qg2 = a10;
-        qg2.j.func_177087_b().field_178724_i.field_78807_k = false;
-        qg2.j.func_177087_b().field_178723_h.field_78807_k = false;
-        on.r(a2.func_110124_au()).r();
+        qg2.j.getMainModel().bipedLeftArm.isHidden = false;
+        qg2.j.getMainModel().bipedRightArm.isHidden = false;
+        on.r(a2.getUniqueID()).r();
         oh a32 = oh.l;
         r[] a42 = a10.m;
         int a52 = a10.m.length;
@@ -96,7 +96,7 @@ implements LayerRenderer<EntityPlayer> {
             r a72 = a42[a6];
             for (fk a82 : zg.r((Entity)a2, a72)) {
                 if (a82 == null) continue;
-                a10.r(a2, a82, a32, 0.0, a2 != Minecraft.func_71410_x().field_71439_g);
+                a10.r(a2, a82, a32, 0.0, a2 != Minecraft.getMinecraft().player);
             }
             n2 = ++a6;
         }

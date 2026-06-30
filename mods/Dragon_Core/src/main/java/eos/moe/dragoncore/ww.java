@@ -85,7 +85,7 @@ implements ITickable {
     public static void x() {
         ResourceLocation a2 = new ResourceLocation("dragoncore", "alpha0.png");
         s = new SimpleTexture(a2);
-        Minecraft.func_71410_x().func_110434_K().func_110579_a(a2, (ITextureObject)s);
+        Minecraft.getMinecraft().getTextureManager().loadTexture(a2, (ITextureObject)s);
     }
 
     public ww(String a2) {
@@ -100,7 +100,7 @@ implements ITickable {
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
-    public void func_110551_a(IResourceManager a2) throws IOException {
+    public void loadTexture(IResourceManager a2) throws IOException {
         block12: {
             ww a3;
             if (a3.g.startsWith("data:image/") && a3.g.contains(",")) {
@@ -145,9 +145,9 @@ implements ITickable {
                 });
             } else {
                 try {
-                    IResource a5 = a2.func_110536_a(new ResourceLocation("dragoncore", a3.g));
-                    if (!a5.func_110528_c()) {
-                        InputStream a6 = a5.func_110527_b();
+                    IResource a5 = a2.getResource(new ResourceLocation("dragoncore", a3.g));
+                    if (!a5.hasMetadata()) {
+                        InputStream a6 = a5.getInputStream();
                         y.submit(() -> {
                             try {
                                 ww a4;
@@ -184,26 +184,26 @@ implements ITickable {
 
     private /* synthetic */ void ALLATORIxDEMO(IResource a2) throws IOException {
         ww a3;
-        IResource a4 = Minecraft.func_71410_x().func_110442_L().func_110536_a(new ResourceLocation("dragoncore", a3.g));
-        PngSizeInfo a5 = PngSizeInfo.func_188532_a((IResource)a4);
-        int a6 = Minecraft.func_71410_x().field_71474_y.field_151442_I;
+        IResource a4 = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation("dragoncore", a3.g));
+        PngSizeInfo a5 = PngSizeInfo.makeFromResource((IResource)a4);
+        int a6 = Minecraft.getMinecraft().gameSettings.mipmapLevels;
         a3.o = new jt(a3.g);
-        a3.o.func_188538_a(a5, true);
-        a3.o.func_188539_a(a2, a6 + 1);
-        a3.o.func_147963_d(a6);
-        TextureUtil.func_180600_a((int)a3.func_110552_b(), (int)a6, (int)a3.o.func_94211_a(), (int)a3.o.func_94216_b());
-        TextureUtil.func_147955_a((int[][])a3.o.func_147965_a(0), (int)a3.o.func_94211_a(), (int)a3.o.func_94216_b(), (int)a3.o.func_130010_a(), (int)a3.o.func_110967_i(), (boolean)false, (boolean)false);
-        List a7 = (List)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.func_71410_x().func_110434_K(), (String[])new String[]{"listTickables", "field_110583_b"});
+        a3.o.loadSprite(a5, true);
+        a3.o.loadSpriteFrames(a2, a6 + 1);
+        a3.o.generateMipmaps(a6);
+        TextureUtil.allocateTextureImpl((int)a3.getGlTextureId(), (int)a6, (int)a3.o.getIconWidth(), (int)a3.o.getIconHeight());
+        TextureUtil.uploadTextureMipmap((int[][])a3.o.getFrameTextureData(0), (int)a3.o.getIconWidth(), (int)a3.o.getIconHeight(), (int)a3.o.getOriginX(), (int)a3.o.getOriginY(), (boolean)false, (boolean)false);
+        List a7 = (List)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.getMinecraft().getTextureManager(), (String[])new String[]{"listTickables", "listTickables"});
         a7.add(a3);
-        GlStateManager.func_179144_i((int)a3.func_110552_b());
-        a3.o.func_94219_l();
+        GlStateManager.bindTexture((int)a3.getGlTextureId());
+        a3.o.updateAnimation();
     }
 
-    public void func_110550_d() {
+    public void tick() {
         ww a2;
         if (a2.o != null) {
-            GlStateManager.func_179144_i((int)a2.func_110552_b());
-            a2.o.func_94219_l();
+            GlStateManager.bindTexture((int)a2.getGlTextureId());
+            a2.o.updateAnimation();
         }
     }
 
@@ -230,9 +230,9 @@ implements ITickable {
         int[] a5 = a3.getBufferImageData(a4);
         qx a6 = new qx(a4, 1000, -1);
         a3.v.add(a6);
-        Minecraft.func_71410_x().func_152344_a(() -> {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
             ww a4;
-            qx.ALLATORIxDEMO(a6, TextureUtil.func_110996_a());
+            qx.ALLATORIxDEMO(a6, TextureUtil.glGenTextures());
             a4.updateDynamicTexture(qx.c(a6), a5, a4.q, a4.b);
         });
     }
@@ -241,16 +241,16 @@ implements ITickable {
         byte[] a3 = IOUtils.toByteArray((InputStream)a2);
         a2 = new ByteArrayInputStream(a3);
         List<Tuple<Integer, BufferedImage>> a4 = ww.ALLATORIxDEMO(a2);
-        a6.q = ((BufferedImage)a4.get(0).func_76340_b()).getWidth();
-        a6.b = ((BufferedImage)a4.get(0).func_76340_b()).getHeight();
+        a6.q = ((BufferedImage)a4.get(0).getSecond()).getWidth();
+        a6.b = ((BufferedImage)a4.get(0).getSecond()).getHeight();
         for (Tuple<Integer, BufferedImage> a5 : a4) {
             ww a6;
-            int[] a7 = a6.getBufferImageData((BufferedImage)a5.func_76340_b());
-            qx a8 = new qx((BufferedImage)a5.func_76340_b(), (Integer)a5.func_76341_a(), -1);
+            int[] a7 = a6.getBufferImageData((BufferedImage)a5.getSecond());
+            qx a8 = new qx((BufferedImage)a5.getSecond(), (Integer)a5.getFirst(), -1);
             a6.v.add(a8);
-            Minecraft.func_71410_x().func_152344_a(() -> {
+            Minecraft.getMinecraft().addScheduledTask(() -> {
                 ww a4;
-                qx.ALLATORIxDEMO(a8, TextureUtil.func_110996_a());
+                qx.ALLATORIxDEMO(a8, TextureUtil.glGenTextures());
                 a4.updateDynamicTexture(qx.c(a8), a7, a4.q, a4.b);
             });
         }
@@ -263,8 +263,8 @@ implements ITickable {
     }
 
     public void updateDynamicTexture(int a2, int[] a3, int a4, int a5) {
-        TextureUtil.func_110991_a((int)a2, (int)a4, (int)a5);
-        TextureUtil.func_110988_a((int)a2, (int[])a3, (int)a4, (int)a5);
+        TextureUtil.allocateTexture((int)a2, (int)a4, (int)a5);
+        TextureUtil.uploadTexture((int)a2, (int[])a3, (int)a4, (int)a5);
     }
 
     private static /* synthetic */ List<Tuple<Integer, BufferedImage>> ALLATORIxDEMO(InputStream a2) throws NullPointerException {
@@ -281,28 +281,28 @@ implements ITickable {
         return a5;
     }
 
-    public int func_110552_b() {
+    public int getGlTextureId() {
         ww a2;
         if (a2.t) {
             return -1;
         }
         int a3 = -1;
         if (a2.o != null) {
-            a3 = super.func_110552_b();
+            a3 = super.getGlTextureId();
         }
         if (a2.v.size() > 0) {
             a2.f();
             a3 = qx.c(a2.v.get(a2.m));
         }
-        return a3 == -1 ? s.func_110552_b() : a3;
+        return a3 == -1 ? s.getGlTextureId() : a3;
     }
 
-    public void func_147631_c() {
+    public void deleteGlTexture() {
         ww a2;
-        super.func_147631_c();
+        super.deleteGlTexture();
         for (qx a3 : a2.v) {
             if (qx.c(a3) == -1) continue;
-            TextureUtil.func_147942_a((int)qx.c(a3));
+            TextureUtil.deleteTexture((int)qx.c(a3));
         }
     }
 
@@ -339,19 +339,19 @@ implements ITickable {
     }
 
     public static void ALLATORIxDEMO(String a2) {
-        GlStateManager.func_179144_i((int)ww.ALLATORIxDEMO(a2).func_110552_b());
+        GlStateManager.bindTexture((int)ww.ALLATORIxDEMO(a2).getGlTextureId());
     }
 
     public static ww ALLATORIxDEMO(String a2) {
         ResourceLocation a3;
         a2 = ww.ALLATORIxDEMO(a2);
-        TextureManager a4 = Minecraft.func_71410_x().func_110434_K();
-        Object a5 = a4.func_110581_b(a3 = new ResourceLocation("dragoncore", a2));
+        TextureManager a4 = Minecraft.getMinecraft().getTextureManager();
+        Object a5 = a4.getTexture(a3 = new ResourceLocation("dragoncore", a2));
         if (a5 == null) {
             a5 = new ww(a2);
-            a4.func_110579_a(a3, a5);
+            a4.loadTexture(a3, a5);
         }
-        if (a5 == TextureUtil.field_111001_a) {
+        if (a5 == TextureUtil.MISSING_TEXTURE) {
             a5 = k;
         }
         return (ww)((Object)a5);
@@ -360,13 +360,13 @@ implements ITickable {
     public static ITextureObject ALLATORIxDEMO(String a2) {
         ResourceLocation a3;
         a2 = ww.ALLATORIxDEMO(a2);
-        TextureManager a4 = Minecraft.func_71410_x().func_110434_K();
-        Object a5 = a4.func_110581_b(a3 = new ResourceLocation("dragoncore", a2));
+        TextureManager a4 = Minecraft.getMinecraft().getTextureManager();
+        Object a5 = a4.getTexture(a3 = new ResourceLocation("dragoncore", a2));
         if (a5 == null) {
             a5 = new ww(a2);
-            a4.func_110579_a(a3, a5);
+            a4.loadTexture(a3, a5);
         }
-        if (a5 == TextureUtil.field_111001_a) {
+        if (a5 == TextureUtil.MISSING_TEXTURE) {
             a5 = k;
         }
         return a5;

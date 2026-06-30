@@ -17,10 +17,10 @@ implements IConfigFieldHolder<CustomField> {
         super(field.get().toString());
         this.field = field;
         if (field.isNumber()) {
-            this.textBox = new TextBox(this.field_146126_j, this.fontRenderer, this.field_146120_f, this.field_146121_g, field.isNumber(), field.allowNeg());
+            this.textBox = new TextBox(this.displayString, this.fontRenderer, this.width, this.height, field.isNumber(), field.allowNeg());
             this.textBox.setClamp(field.getMinValue(), field.getMaxValue());
         } else {
-            this.textBox = new TextBox(this.field_146126_j, this.fontRenderer, this.field_146120_f, this.field_146121_g);
+            this.textBox = new TextBox(this.displayString, this.fontRenderer, this.width, this.height);
         }
         this.textBox.setY(this.textBox.getY() - 1);
         this.textBox.setHeight(this.textBox.getHeight() - 4);
@@ -36,8 +36,8 @@ implements IConfigFieldHolder<CustomField> {
 
     @Override
     public boolean keyTyped(char typedChar, int keyCode) {
-        boolean press = this.textBox.func_146201_a(typedChar, keyCode);
-        this.setValue(this.textBox.func_146179_b());
+        boolean press = this.textBox.textboxKeyTyped(typedChar, keyCode);
+        this.setValue(this.textBox.getText());
         return press;
     }
 

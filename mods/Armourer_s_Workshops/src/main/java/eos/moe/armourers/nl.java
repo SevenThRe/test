@@ -62,7 +62,7 @@ public class nl {
         nl a2;
         nl nl2 = a2;
         nl nl3 = a2;
-        nl3.r = Minecraft.func_71410_x();
+        nl3.r = Minecraft.getMinecraft();
         nl nl4 = a2;
         nl3.s = new BufferedImage(v, m, 2);
         nl3.w = -1;
@@ -90,14 +90,14 @@ public class nl {
         nl a2;
         nl nl2 = a2;
         nl2.h();
-        nl2.z = TextureUtil.func_110996_a();
-        TextureUtil.func_110987_a((int)nl2.z, (BufferedImage)a2.s);
+        nl2.z = TextureUtil.glGenTextures();
+        TextureUtil.uploadTextureImage((int)nl2.z, (BufferedImage)a2.s);
     }
 
     private /* synthetic */ void h() {
         nl a2;
         if (a2.z != -1) {
-            TextureUtil.func_147942_a((int)a2.z);
+            TextureUtil.deleteTexture((int)a2.z);
             a2.z = -1;
         }
     }
@@ -126,18 +126,18 @@ public class nl {
             bufferedImage2 = null;
             InputStream inputStream2 = null;
             try {
-                ITextureObject iTextureObject = a3.r.func_110434_K().func_110581_b(a2);
+                ITextureObject iTextureObject = a3.r.getTextureManager().getTexture(a2);
                 if (iTextureObject instanceof ThreadDownloadImageData) {
                     ThreadDownloadImageData threadDownloadImageData = (ThreadDownloadImageData)iTextureObject;
                     String[] stringArray = new String[3];
                     stringArray[0] = "bufferedImage";
-                    stringArray[1] = "field_110560_d";
+                    stringArray[1] = "bufferedImage";
                     stringArray[2] = "bpr.h";
                     bufferedImage2 = (BufferedImage)ObfuscationReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, (Object)threadDownloadImageData, (String[])stringArray);
                     inputStream = inputStream2;
                     break block9;
                 }
-                inputStream2 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a2).func_110527_b();
+                inputStream2 = Minecraft.getMinecraft().getResourceManager().getResource(a2).getInputStream();
                 bufferedImage2 = ImageIO.read(inputStream2);
                 inputStream = inputStream2;
             }
@@ -196,7 +196,7 @@ public class nl {
         if (a2.t) {
             a2.z();
         }
-        GlStateManager.func_179144_i((int)a2.z);
+        GlStateManager.bindTexture((int)a2.z);
     }
 }
 

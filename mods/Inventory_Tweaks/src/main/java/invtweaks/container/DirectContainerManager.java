@@ -52,32 +52,32 @@ implements IContainerManager {
         Slot destSlot;
         ItemStack srcStack = this.getItemStack(srcSection, srcIndex);
         ItemStack destStack = this.getItemStack(destSection, destIndex);
-        if (srcStack.func_190926_b() && destIndex != -999) {
+        if (srcStack.isEmpty() && destIndex != -999) {
             return false;
         }
         if (srcSection == destSection && srcIndex == destIndex) {
             return true;
         }
-        if (destIndex != -999 && !(destSlot = this.getSlot(destSection, destIndex)).func_75214_a(srcStack)) {
+        if (destIndex != -999 && !(destSlot = this.getSlot(destSection, destIndex)).isItemValid(srcStack)) {
             return false;
         }
-        if (!InvTweaks.getInstance().getHeldStack().func_190926_b()) {
+        if (!InvTweaks.getInstance().getHeldStack().isEmpty()) {
             int firstEmptyIndex = this.getFirstEmptyIndex(ContainerSection.INVENTORY);
             if (firstEmptyIndex == -1) return false;
             this.leftClick(ContainerSection.INVENTORY, firstEmptyIndex);
         }
-        assert (!srcStack.func_190926_b());
-        if (!destStack.func_190926_b() && !InvTweaksObfuscation.areItemsStackable(srcStack, destStack)) {
+        assert (!srcStack.isEmpty());
+        if (!destStack.isEmpty() && !InvTweaksObfuscation.areItemsStackable(srcStack, destStack)) {
             int intermediateSlot = this.getFirstEmptyUsableSlotNumber();
             ContainerSection intermediateSection = this.getSlotSection(intermediateSlot);
             int intermediateIndex = this.getSlotIndex(intermediateSlot);
             if (intermediateIndex == -1) return false;
             Slot interSlot = this.getSlot(intermediateSection, intermediateIndex);
-            if (!interSlot.func_75214_a(destStack)) {
+            if (!interSlot.isItemValid(destStack)) {
                 return false;
             }
             Slot srcSlot = this.getSlot(srcSection, srcIndex);
-            if (!srcSlot.func_75214_a(destStack)) {
+            if (!srcSlot.isItemValid(destStack)) {
                 return false;
             }
             this.leftClick(destSection, destIndex);
@@ -90,9 +90,9 @@ implements IContainerManager {
         } else {
             this.leftClick(srcSection, srcIndex);
             this.leftClick(destSection, destIndex);
-            if (InvTweaks.getInstance().getHeldStack().func_190926_b()) return true;
+            if (InvTweaks.getInstance().getHeldStack().isEmpty()) return true;
             Slot srcSlot = this.getSlot(srcSection, srcIndex);
-            if (srcSlot.func_75214_a(InvTweaks.getInstance().getHeldStack())) {
+            if (srcSlot.isItemValid(InvTweaks.getInstance().getHeldStack())) {
                 this.leftClick(srcSection, srcIndex);
                 return true;
             } else {
@@ -107,13 +107,13 @@ implements IContainerManager {
     @Override
     public boolean moveSome(ContainerSection srcSection, int srcIndex, ContainerSection destSection, int destIndex, int amount) {
         ItemStack source = this.getItemStack(srcSection, srcIndex);
-        if (source.func_190926_b() || srcSection == destSection && srcIndex == destIndex) {
+        if (source.isEmpty() || srcSection == destSection && srcIndex == destIndex) {
             return true;
         }
         ItemStack destination = this.getItemStack(srcSection, srcIndex);
-        int sourceSize = source.func_190916_E();
+        int sourceSize = source.getCount();
         int movedAmount = Math.min(amount, sourceSize);
-        if (destination.func_190926_b() || InvTweaksObfuscation.areItemStacksEqual(source, destination)) {
+        if (destination.isEmpty() || InvTweaksObfuscation.areItemStacksEqual(source, destination)) {
             this.leftClick(srcSection, srcIndex);
             for (int i = 0; i < movedAmount; ++i) {
                 this.rightClick(destSection, destIndex);
@@ -129,8 +129,8 @@ implements IContainerManager {
     @Override
     public boolean putHoldItemDown(ContainerSection destSection, int destIndex) {
         ItemStack heldStack = InvTweaks.getInstance().getHeldStack();
-        if (!heldStack.func_190926_b()) {
-            if (this.getItemStack(destSection, destIndex).func_190926_b()) {
+        if (!heldStack.isEmpty()) {
+            if (this.getItemStack(destSection, destIndex).isEmpty()) {
                 this.click(destSection, destIndex, false);
                 return true;
             }
@@ -144,7 +144,7 @@ implements IContainerManager {
         int slot = this.indexToSlot(section, index);
         if (slot != -1) {
             int data = rightClick ? 1 : 0;
-            InvTweaksMod.proxy.slotClick(InvTweaks.getInstance().getPlayerController(), this.container.field_75152_c, slot, data, ClickType.PICKUP, InvTweaks.getInstance().getThePlayer());
+            InvTweaksMod.proxy.slotClick(InvTweaks.getInstance().getPlayerController(), this.container.windowId, slot, data, ClickType.PICKUP, InvTweaks.getInstance().getThePlayer());
         }
     }
 
@@ -179,7 +179,7 @@ implements IContainerManager {
     public int getFirstEmptyIndex(ContainerSection section) {
         int i = 0;
         for (Slot slot : this.slotRefs.get((Object)section)) {
-            if (!slot.func_75216_d()) {
+            if (!slot.getHasStack()) {
                 return i;
             }
             ++i;
@@ -189,7 +189,7 @@ implements IContainerManager {
 
     @Override
     public boolean isSlotEmpty(ContainerSection section, int slot) {
-        return this.hasSection(section) && this.getItemStack(section, slot).func_190926_b();
+        return this.hasSection(section) && this.getItemStack(section, slot).isEmpty();
     }
 
     @Override
@@ -234,10 +234,10 @@ implements IContainerManager {
     @NotNull
     public ItemStack getItemStack(ContainerSection section, int index) {
         int slot = this.indexToSlot(section, index);
-        if (slot >= 0 && slot < this.container.field_75151_b.size()) {
+        if (slot >= 0 && slot < this.container.inventorySlots.size()) {
             return InvTweaksObfuscation.getSlotStack(this.container, slot);
         }
-        return ItemStack.field_190927_a;
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -249,7 +249,7 @@ implements IContainerManager {
     private int getFirstEmptyUsableSlotNumber() {
         for (ContainerSection section : this.slotRefs.keySet()) {
             for (Slot slot : this.slotRefs.get((Object)section)) {
-                if (!InvTweaksObfuscation.isBasicSlot(slot) || slot.func_75216_d()) continue;
+                if (!InvTweaksObfuscation.isBasicSlot(slot) || slot.getHasStack()) continue;
                 return InvTweaksObfuscation.getSlotNumber(slot);
             }
         }

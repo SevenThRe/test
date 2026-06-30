@@ -52,17 +52,17 @@ extends GuiListExtended {
     public ScrollListPaneRight(JmUI parent, Minecraft mc, int width, int height, int top, int bottom, int slotHeight) {
         super(mc, width, height, top, bottom, slotHeight);
         this.parent = parent;
-        this.func_148122_a(width, height, top, bottom);
+        this.setDimensions(width, height, top, bottom);
     }
 
-    public void func_148122_a(int width, int height, int top, int bottom) {
-        super.func_148122_a(width, height, top, bottom);
-        this.scrollbarX = this.field_148155_a - this.hpad;
+    public void setDimensions(int width, int height, int top, int bottom) {
+        super.setDimensions(width, height, top, bottom);
+        this.scrollbarX = this.width - this.hpad;
         this.listWidth = 150;
-        this.field_148152_e = this.field_148155_a - 170;
+        this.left = this.width - 170;
     }
 
-    protected int func_148127_b() {
+    protected int getSize() {
         return this.currentSlots == null ? 0 : this.currentSlots.size();
     }
 
@@ -90,35 +90,35 @@ extends GuiListExtended {
         }
         int sizeAfter = this.currentSlots.size();
         if (sizeBefore < sizeAfter) {
-            this.func_148145_f(-(sizeAfter * this.field_148149_f));
-            this.func_148145_f(this.lastClickedIndex * this.field_148149_f);
+            this.scrollBy(-(sizeAfter * this.slotHeight));
+            this.scrollBy(this.lastClickedIndex * this.slotHeight);
         }
     }
 
     public void scrollTo(ISlot slot) {
-        this.func_148145_f(-(this.currentSlots.size() * this.field_148149_f));
-        this.func_148145_f(this.currentSlots.indexOf(slot) * this.field_148149_f);
+        this.scrollBy(-(this.currentSlots.size() * this.slotHeight));
+        this.scrollBy(this.currentSlots.indexOf(slot) * this.slotHeight);
     }
 
-    public void func_178039_p() {
-        super.func_178039_p();
+    public void handleMouseInput() {
+        super.handleMouseInput();
     }
 
-    protected void func_148144_a(int index, boolean doubleClick, int mouseX, int mouseY) {
+    protected void elementClicked(int index, boolean doubleClick, int mouseX, int mouseY) {
     }
 
-    public boolean func_148131_a(int slotIndex) {
+    public boolean isSelected(int slotIndex) {
         return false;
     }
 
-    protected void func_148123_a() {
+    protected void drawBackground() {
     }
 
-    protected void func_192637_a(int slotIndex, int x, int y, int slotHeight, int mouseX, int mouseY, float partialTicks) {
-        boolean selected = this.func_148124_c(mouseX, mouseY) == slotIndex;
+    protected void drawSlot(int slotIndex, int x, int y, int slotHeight, int mouseX, int mouseY, float partialTicks) {
+        boolean selected = this.getSlotIndexFromScreenCoords(mouseX, mouseY) == slotIndex;
         ISlot slot = this.getSlot(slotIndex);
-        int j1 = this.func_148135_f();
-        slot.func_192634_a(slotIndex, x, y, this.func_148139_c() + (j1 > 0 ? 0 : 15), slotHeight, mouseX, mouseY, selected, 0.0f);
+        int j1 = this.getMaxScroll();
+        slot.drawEntry(slotIndex, x, y, this.getListWidth() + (j1 > 0 ? 0 : 15), slotHeight, mouseX, mouseY, selected, 0.0f);
         SlotMetadata tooltipMetadata = slot.getCurrentTooltip();
         if (tooltipMetadata != null && !Arrays.equals(tooltipMetadata.getTooltip(), this.lastTooltip)) {
             this.lastTooltipMetadata = tooltipMetadata;
@@ -127,20 +127,20 @@ extends GuiListExtended {
         }
     }
 
-    public int func_148139_c() {
+    public int getListWidth() {
         return this.listWidth;
     }
 
-    public boolean func_148179_a(int mouseX, int mouseY, int mouseEvent) {
+    public boolean mouseClicked(int mouseX, int mouseY, int mouseEvent) {
         int slotIndex;
-        if (this.func_148141_e(mouseY) && (slotIndex = this.func_148124_c(mouseX, mouseY)) >= 0) {
-            int i1 = this.field_148152_e;
-            int j1 = this.field_148153_b + 4 - this.func_148148_g() + slotIndex * this.field_148149_f + this.field_148160_j;
+        if (this.isMouseYWithinSlotBounds(mouseY) && (slotIndex = this.getSlotIndexFromScreenCoords(mouseX, mouseY)) >= 0) {
+            int i1 = this.left;
+            int j1 = this.top + 4 - this.getAmountScrolled() + slotIndex * this.slotHeight + this.headerPadding;
             int relativeX = mouseX - i1;
             int relativeY = mouseY - j1;
             this.lastClickedIndex = -1;
-            if (this.getSlot(slotIndex).func_148278_a(slotIndex, mouseX, mouseY, mouseEvent, relativeX, relativeY)) {
-                this.func_148143_b(false);
+            if (this.getSlot(slotIndex).mousePressed(slotIndex, mouseX, mouseY, mouseEvent, relativeX, relativeY)) {
+                this.setEnabled(false);
                 this.lastClickedIndex = slotIndex;
                 this.lastPressed = this.getSlot(slotIndex).getLastPressed();
                 this.updateSlots();
@@ -150,21 +150,21 @@ extends GuiListExtended {
         return false;
     }
 
-    public int func_148124_c(int posX, int posY) {
-        int i = this.field_148152_e;
-        int j = this.field_148152_e + this.func_148139_c();
-        int k = posY - this.field_148153_b - this.field_148160_j + (int)this.field_148169_q - 4;
-        int l = k / this.field_148149_f;
-        return posX < this.func_148137_d() && posX >= i && posX <= j && l >= 0 && k >= 0 && l < this.func_148127_b() ? l : -1;
+    public int getSlotIndexFromScreenCoords(int posX, int posY) {
+        int i = this.left;
+        int j = this.left + this.getListWidth();
+        int k = posY - this.top - this.headerPadding + (int)this.amountScrolled - 4;
+        int l = k / this.slotHeight;
+        return posX < this.getScrollBarX() && posX >= i && posX <= j && l >= 0 && k >= 0 && l < this.getSize() ? l : -1;
     }
 
-    public boolean func_148181_b(int x, int y, int mouseEvent) {
-        boolean result = super.func_148181_b(x, y, mouseEvent);
+    public boolean mouseReleased(int x, int y, int mouseEvent) {
+        boolean result = super.mouseReleased(x, y, mouseEvent);
         this.lastPressed = null;
         return result;
     }
 
-    public GuiListExtended.IGuiListEntry func_148180_b(int index) {
+    public GuiListExtended.IGuiListEntry getListEntry(int index) {
         return this.getSlot(index);
     }
 
@@ -191,7 +191,7 @@ extends GuiListExtended {
     }
 
     public boolean keyTyped(char c, int i) {
-        for (int slotIndex = 0; slotIndex < this.func_148127_b(); ++slotIndex) {
+        for (int slotIndex = 0; slotIndex < this.getSize(); ++slotIndex) {
             if (!this.getSlot(slotIndex).keyTyped(c, i)) continue;
             this.lastClickedIndex = slotIndex;
             this.lastPressed = this.getSlot(slotIndex).getLastPressed();
@@ -201,18 +201,18 @@ extends GuiListExtended {
         return false;
     }
 
-    protected int func_148137_d() {
+    protected int getScrollBarX() {
         return this.scrollbarX;
     }
 
     protected void drawContainerBackground(Tessellator tessellator) {
-        this.parent.func_73733_a(0, this.field_148153_b, this.field_148155_a, this.field_148153_b + this.field_148158_l, -1072689136, -804253680);
+        this.parent.drawGradientRect(0, this.top, this.width, this.top + this.height, -1072689136, -804253680);
     }
 
-    protected int func_148138_e() {
-        int contentHeight = super.func_148138_e();
+    protected int getContentHeight() {
+        int contentHeight = super.getContentHeight();
         if (this.alignTop) {
-            contentHeight = Math.max(this.field_148154_c - this.field_148153_b - 4, contentHeight);
+            contentHeight = Math.max(this.bottom - this.top - 4, contentHeight);
         }
         return contentHeight;
     }
@@ -221,100 +221,100 @@ extends GuiListExtended {
         this.alignTop = alignTop;
     }
 
-    public void func_148128_a(int mouseXIn, int mouseYIn, float partialTicks) {
-        if (this.field_178041_q) {
-            this.field_148150_g = mouseXIn;
-            this.field_148162_h = mouseYIn;
-            this.func_148123_a();
-            int i = this.func_148137_d();
+    public void drawScreen(int mouseXIn, int mouseYIn, float partialTicks) {
+        if (this.visible) {
+            this.mouseX = mouseXIn;
+            this.mouseY = mouseYIn;
+            this.drawBackground();
+            int i = this.getScrollBarX();
             int j = i + 6;
-            this.func_148121_k();
-            GlStateManager.func_179140_f();
-            GlStateManager.func_179106_n();
-            Tessellator tessellator = Tessellator.func_178181_a();
-            BufferBuilder bufferbuilder = tessellator.func_178180_c();
-            int k = this.field_148152_e;
-            int l = this.field_148153_b + 4 - (int)this.field_148169_q;
-            if (this.field_148165_u) {
-                this.func_148129_a(k, l, tessellator);
+            this.bindAmountScrolled();
+            GlStateManager.disableLighting();
+            GlStateManager.disableFog();
+            Tessellator tessellator = Tessellator.getInstance();
+            BufferBuilder bufferbuilder = tessellator.getBuffer();
+            int k = this.left;
+            int l = this.top + 4 - (int)this.amountScrolled;
+            if (this.hasListHeader) {
+                this.drawListHeader(k, l, tessellator);
             }
-            this.func_192638_a(k, l, mouseXIn, mouseYIn, partialTicks);
-            GlStateManager.func_179097_i();
-            GlStateManager.func_179147_l();
-            GlStateManager.func_187428_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ZERO, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE);
-            GlStateManager.func_179118_c();
-            GlStateManager.func_179103_j((int)7425);
-            GlStateManager.func_179090_x();
+            this.drawSelectionBox(k, l, mouseXIn, mouseYIn, partialTicks);
+            GlStateManager.disableDepth();
+            GlStateManager.enableBlend();
+            GlStateManager.tryBlendFuncSeparate((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ZERO, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE);
+            GlStateManager.disableAlpha();
+            GlStateManager.shadeModel((int)7425);
+            GlStateManager.disableTexture2D();
             int i1 = 4;
-            int j1 = this.func_148135_f();
+            int j1 = this.getMaxScroll();
             if (j1 > 0) {
-                int k1 = (this.field_148154_c - this.field_148153_b) * (this.field_148154_c - this.field_148153_b) / this.func_148138_e();
-                int l1 = (int)this.field_148169_q * (this.field_148154_c - this.field_148153_b - (k1 = MathHelper.func_76125_a((int)k1, (int)32, (int)(this.field_148154_c - this.field_148153_b - 8)))) / j1 + this.field_148153_b;
-                if (l1 < this.field_148153_b) {
-                    l1 = this.field_148153_b;
+                int k1 = (this.bottom - this.top) * (this.bottom - this.top) / this.getContentHeight();
+                int l1 = (int)this.amountScrolled * (this.bottom - this.top - (k1 = MathHelper.clamp((int)k1, (int)32, (int)(this.bottom - this.top - 8)))) / j1 + this.top;
+                if (l1 < this.top) {
+                    l1 = this.top;
                 }
-                bufferbuilder.func_181668_a(7, DefaultVertexFormats.field_181709_i);
-                bufferbuilder.func_181662_b((double)i, (double)this.field_148154_c, 0.0).func_187315_a(0.0, 1.0).func_181669_b(0, 0, 0, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)j, (double)this.field_148154_c, 0.0).func_187315_a(1.0, 1.0).func_181669_b(0, 0, 0, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)j, (double)this.field_148153_b, 0.0).func_187315_a(1.0, 0.0).func_181669_b(0, 0, 0, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)i, (double)this.field_148153_b, 0.0).func_187315_a(0.0, 0.0).func_181669_b(0, 0, 0, 255).func_181675_d();
-                tessellator.func_78381_a();
-                bufferbuilder.func_181668_a(7, DefaultVertexFormats.field_181709_i);
-                bufferbuilder.func_181662_b((double)i, (double)(l1 + k1), 0.0).func_187315_a(0.0, 1.0).func_181669_b(128, 128, 128, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)j, (double)(l1 + k1), 0.0).func_187315_a(1.0, 1.0).func_181669_b(128, 128, 128, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)j, (double)l1, 0.0).func_187315_a(1.0, 0.0).func_181669_b(128, 128, 128, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)i, (double)l1, 0.0).func_187315_a(0.0, 0.0).func_181669_b(128, 128, 128, 255).func_181675_d();
-                tessellator.func_78381_a();
-                bufferbuilder.func_181668_a(7, DefaultVertexFormats.field_181709_i);
-                bufferbuilder.func_181662_b((double)i, (double)(l1 + k1 - 1), 0.0).func_187315_a(0.0, 1.0).func_181669_b(192, 192, 192, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)(j - 1), (double)(l1 + k1 - 1), 0.0).func_187315_a(1.0, 1.0).func_181669_b(192, 192, 192, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)(j - 1), (double)l1, 0.0).func_187315_a(1.0, 0.0).func_181669_b(192, 192, 192, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)i, (double)l1, 0.0).func_187315_a(0.0, 0.0).func_181669_b(192, 192, 192, 255).func_181675_d();
-                tessellator.func_78381_a();
+                bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                bufferbuilder.pos((double)i, (double)this.bottom, 0.0).tex(0.0, 1.0).color(0, 0, 0, 255).endVertex();
+                bufferbuilder.pos((double)j, (double)this.bottom, 0.0).tex(1.0, 1.0).color(0, 0, 0, 255).endVertex();
+                bufferbuilder.pos((double)j, (double)this.top, 0.0).tex(1.0, 0.0).color(0, 0, 0, 255).endVertex();
+                bufferbuilder.pos((double)i, (double)this.top, 0.0).tex(0.0, 0.0).color(0, 0, 0, 255).endVertex();
+                tessellator.draw();
+                bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                bufferbuilder.pos((double)i, (double)(l1 + k1), 0.0).tex(0.0, 1.0).color(128, 128, 128, 255).endVertex();
+                bufferbuilder.pos((double)j, (double)(l1 + k1), 0.0).tex(1.0, 1.0).color(128, 128, 128, 255).endVertex();
+                bufferbuilder.pos((double)j, (double)l1, 0.0).tex(1.0, 0.0).color(128, 128, 128, 255).endVertex();
+                bufferbuilder.pos((double)i, (double)l1, 0.0).tex(0.0, 0.0).color(128, 128, 128, 255).endVertex();
+                tessellator.draw();
+                bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                bufferbuilder.pos((double)i, (double)(l1 + k1 - 1), 0.0).tex(0.0, 1.0).color(192, 192, 192, 255).endVertex();
+                bufferbuilder.pos((double)(j - 1), (double)(l1 + k1 - 1), 0.0).tex(1.0, 1.0).color(192, 192, 192, 255).endVertex();
+                bufferbuilder.pos((double)(j - 1), (double)l1, 0.0).tex(1.0, 0.0).color(192, 192, 192, 255).endVertex();
+                bufferbuilder.pos((double)i, (double)l1, 0.0).tex(0.0, 0.0).color(192, 192, 192, 255).endVertex();
+                tessellator.draw();
             }
-            this.func_148142_b(mouseXIn, mouseYIn);
-            GlStateManager.func_179098_w();
-            GlStateManager.func_179103_j((int)7424);
-            GlStateManager.func_179141_d();
-            GlStateManager.func_179084_k();
+            this.renderDecorations(mouseXIn, mouseYIn);
+            GlStateManager.enableTexture2D();
+            GlStateManager.shadeModel((int)7424);
+            GlStateManager.enableAlpha();
+            GlStateManager.disableBlend();
         }
     }
 
-    protected void func_192638_a(int insideLeft, int insideTop, int mouseXIn, int mouseYIn, float partialTicks) {
-        int i = this.func_148127_b();
-        Tessellator tessellator = Tessellator.func_178181_a();
-        BufferBuilder bufferbuilder = tessellator.func_178180_c();
-        int h = this.field_148154_c - 38;
+    protected void drawSelectionBox(int insideLeft, int insideTop, int mouseXIn, int mouseYIn, float partialTicks) {
+        int i = this.getSize();
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        int h = this.bottom - 38;
         GL11.glEnable((int)3089);
         int yend = 38 + h;
-        ScaledResolution sr = new ScaledResolution(Minecraft.func_71410_x());
-        int factor = sr.func_78325_e();
-        int bottomY = sr.func_78328_b() - yend;
+        ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+        int factor = sr.getScaleFactor();
+        int bottomY = sr.getScaledHeight() - yend;
         GL11.glScissor((int)0, (int)(bottomY * factor), (int)9999, (int)(h * factor));
         for (int j = 0; j < i; ++j) {
-            int k = insideTop + j * this.field_148149_f + this.field_148160_j;
-            int l = this.field_148149_f - 4;
-            if (k > this.field_148154_c || k + l < this.field_148153_b) {
-                this.func_192639_a(j, insideLeft, k, partialTicks);
+            int k = insideTop + j * this.slotHeight + this.headerPadding;
+            int l = this.slotHeight - 4;
+            if (k > this.bottom || k + l < this.top) {
+                this.updateItemPos(j, insideLeft, k, partialTicks);
             }
-            if (this.field_148166_t && this.func_148131_a(j)) {
-                int i1 = this.field_148152_e + (this.field_148155_a / 2 - this.func_148139_c() / 2);
-                int j1 = this.field_148152_e + this.field_148155_a / 2 + this.func_148139_c() / 2;
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-                GlStateManager.func_179090_x();
-                bufferbuilder.func_181668_a(7, DefaultVertexFormats.field_181709_i);
-                bufferbuilder.func_181662_b((double)i1, (double)(k + l + 2), 0.0).func_187315_a(0.0, 1.0).func_181669_b(128, 128, 128, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)j1, (double)(k + l + 2), 0.0).func_187315_a(1.0, 1.0).func_181669_b(128, 128, 128, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)j1, (double)(k - 2), 0.0).func_187315_a(1.0, 0.0).func_181669_b(128, 128, 128, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)i1, (double)(k - 2), 0.0).func_187315_a(0.0, 0.0).func_181669_b(128, 128, 128, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)(i1 + 1), (double)(k + l + 1), 0.0).func_187315_a(0.0, 1.0).func_181669_b(0, 0, 0, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)(j1 - 1), (double)(k + l + 1), 0.0).func_187315_a(1.0, 1.0).func_181669_b(0, 0, 0, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)(j1 - 1), (double)(k - 1), 0.0).func_187315_a(1.0, 0.0).func_181669_b(0, 0, 0, 255).func_181675_d();
-                bufferbuilder.func_181662_b((double)(i1 + 1), (double)(k - 1), 0.0).func_187315_a(0.0, 0.0).func_181669_b(0, 0, 0, 255).func_181675_d();
-                tessellator.func_78381_a();
-                GlStateManager.func_179098_w();
+            if (this.showSelectionBox && this.isSelected(j)) {
+                int i1 = this.left + (this.width / 2 - this.getListWidth() / 2);
+                int j1 = this.left + this.width / 2 + this.getListWidth() / 2;
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                GlStateManager.disableTexture2D();
+                bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+                bufferbuilder.pos((double)i1, (double)(k + l + 2), 0.0).tex(0.0, 1.0).color(128, 128, 128, 255).endVertex();
+                bufferbuilder.pos((double)j1, (double)(k + l + 2), 0.0).tex(1.0, 1.0).color(128, 128, 128, 255).endVertex();
+                bufferbuilder.pos((double)j1, (double)(k - 2), 0.0).tex(1.0, 0.0).color(128, 128, 128, 255).endVertex();
+                bufferbuilder.pos((double)i1, (double)(k - 2), 0.0).tex(0.0, 0.0).color(128, 128, 128, 255).endVertex();
+                bufferbuilder.pos((double)(i1 + 1), (double)(k + l + 1), 0.0).tex(0.0, 1.0).color(0, 0, 0, 255).endVertex();
+                bufferbuilder.pos((double)(j1 - 1), (double)(k + l + 1), 0.0).tex(1.0, 1.0).color(0, 0, 0, 255).endVertex();
+                bufferbuilder.pos((double)(j1 - 1), (double)(k - 1), 0.0).tex(1.0, 0.0).color(0, 0, 0, 255).endVertex();
+                bufferbuilder.pos((double)(i1 + 1), (double)(k - 1), 0.0).tex(0.0, 0.0).color(0, 0, 0, 255).endVertex();
+                tessellator.draw();
+                GlStateManager.enableTexture2D();
             }
-            this.func_192637_a(j, insideLeft, k, l, mouseXIn, mouseYIn, partialTicks);
+            this.drawSlot(j, insideLeft, k, l, mouseXIn, mouseYIn, partialTicks);
         }
         GL11.glDisable((int)3089);
     }

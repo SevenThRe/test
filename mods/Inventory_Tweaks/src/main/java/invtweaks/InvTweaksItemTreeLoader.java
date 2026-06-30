@@ -130,7 +130,7 @@ extends DefaultHandler {
             NBTTagCompound extraData = null;
             if (extraDataAttr != null) {
                 try {
-                    extraData = JsonToNBT.func_180713_a((String)extraDataAttr);
+                    extraData = JsonToNBT.getTagFromJson((String)extraDataAttr);
                 }
                 catch (NBTException e) {
                     throw new RuntimeException("Data attribute failed for tree entry '" + name + "'", e);

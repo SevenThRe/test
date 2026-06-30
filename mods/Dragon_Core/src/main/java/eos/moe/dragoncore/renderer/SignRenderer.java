@@ -105,19 +105,19 @@ public class SignRenderer {
     }
 
     public static boolean renderModel(FontRenderer a2, TileEntitySign a3, double a4, double a5, double a6, float a7, int a8, float a9, CallbackInfo a10) {
-        if (a3.field_145915_a.length <= 1 || a3.field_145915_a[1] == null) {
+        if (a3.signText.length <= 1 || a3.signText[1] == null) {
             return false;
         }
-        if (!(a3.field_145915_a[1] instanceof TextComponentBase)) {
+        if (!(a3.signText[1] instanceof TextComponentBase)) {
             return false;
         }
-        String a11 = FormatCacheTextComponentBase.of(a3.field_145915_a[1]).toStringCache();
+        String a11 = FormatCacheTextComponentBase.of(a3.signText[1]).toStringCache();
         SignData a12 = SignRenderer.getSignData(a11);
         if (a12 == null || a12.getModel() == null || a12.getCheck() == null || !a12.getCheck().contains("\u00a7")) {
             return false;
         }
         a10.cancel();
-        int a13 = a3.func_145832_p();
+        int a13 = a3.getBlockMetadata();
         float a14 = 0.0f;
         if (a13 == 2) {
             a14 = 180.0f;
@@ -129,60 +129,60 @@ public class SignRenderer {
             a14 = -90.0f;
         }
         String a15 = a12.getModel();
-        BlockPos a16 = a3.func_174877_v();
+        BlockPos a16 = a3.getPos();
         jv a17 = no.ALLATORIxDEMO(a15);
-        no.ALLATORIxDEMO(a16.func_177958_n(), a16.func_177956_o(), a16.func_177952_p(), a15, a17, "idle");
-        GlStateManager.func_179126_j();
-        GlStateManager.func_179143_c((int)515);
-        GlStateManager.func_179132_a((boolean)true);
-        GlStateManager.func_179129_p();
+        no.ALLATORIxDEMO(a16.getX(), a16.getY(), a16.getZ(), a15, a17, "idle");
+        GlStateManager.enableDepth();
+        GlStateManager.depthFunc((int)515);
+        GlStateManager.depthMask((boolean)true);
+        GlStateManager.disableCull();
         if (a8 >= 0) {
             SignRenderer.bindTexture(DESTROY_STAGES[a8]);
-            GlStateManager.func_179128_n((int)5890);
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179152_a((float)4.0f, (float)4.0f, (float)1.0f);
-            GlStateManager.func_179109_b((float)0.0625f, (float)0.0625f, (float)0.0625f);
-            GlStateManager.func_179128_n((int)5888);
+            GlStateManager.matrixMode((int)5890);
+            GlStateManager.pushMatrix();
+            GlStateManager.scale((float)4.0f, (float)4.0f, (float)1.0f);
+            GlStateManager.translate((float)0.0625f, (float)0.0625f, (float)0.0625f);
+            GlStateManager.matrixMode((int)5888);
         } else {
             no.ALLATORIxDEMO(a15);
         }
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179091_B();
+        GlStateManager.pushMatrix();
+        GlStateManager.enableRescaleNormal();
         if (a8 < 0) {
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)a9);
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)a9);
         }
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179137_b((double)a4, (double)a5, (double)a6);
-        GlStateManager.func_179109_b((float)0.5f, (float)0.0f, (float)0.5f);
-        GlStateManager.func_179114_b((float)(-a14), (float)0.0f, (float)1.0f, (float)0.0f);
-        GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)-1.0f);
-        GlStateManager.func_179152_a((float)1.0f, (float)-1.0f, (float)-1.0f);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((double)a4, (double)a5, (double)a6);
+        GlStateManager.translate((float)0.5f, (float)0.0f, (float)0.5f);
+        GlStateManager.rotate((float)(-a14), (float)0.0f, (float)1.0f, (float)0.0f);
+        GlStateManager.translate((float)0.0f, (float)0.0f, (float)-1.0f);
+        GlStateManager.scale((float)1.0f, (float)-1.0f, (float)-1.0f);
         a17.render(0.0625f);
         a17.clearData();
-        GlStateManager.func_179121_F();
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
+        GlStateManager.popMatrix();
         float a18 = 1.0f;
-        GlStateManager.func_179131_c((float)a18, (float)a18, (float)a18, (float)a18);
+        GlStateManager.color((float)a18, (float)a18, (float)a18, (float)a18);
         if (a8 >= 0) {
-            GlStateManager.func_179128_n((int)5890);
-            GlStateManager.func_179121_F();
-            GlStateManager.func_179128_n((int)5888);
+            GlStateManager.matrixMode((int)5890);
+            GlStateManager.popMatrix();
+            GlStateManager.matrixMode((int)5888);
         }
         return true;
     }
 
     public static void renderText(FontRenderer a2, TileEntitySign a3, double a4, double a5, double a6) {
-        if (!(a3.field_145915_a[1] instanceof TextComponentBase)) {
+        if (!(a3.signText[1] instanceof TextComponentBase)) {
             return;
         }
         float a7 = SignRenderer.distance(a4, a5, a6);
         if (a7 <= 16.0f) {
-            String a8 = FormatCacheTextComponentBase.of(a3.field_145915_a[1]).toStringCache();
+            String a8 = FormatCacheTextComponentBase.of(a3.signText[1]).toStringCache();
             SignData a9 = SignRenderer.getSignData(a8);
             if (a9 == null || a9.getModel() == null || a9.getCheck() == null || !a9.getCheck().contains("\u00a7")) {
                 return;
             }
-            int a10 = a3.func_145832_p();
+            int a10 = a3.getBlockMetadata();
             float a11 = 0.0f;
             if (a10 == 2) {
                 a11 = 180.0f;
@@ -193,97 +193,97 @@ public class SignRenderer {
             if (a10 == 5) {
                 a11 = -90.0f;
             }
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179126_j();
-            GlStateManager.func_179091_B();
-            GlStateManager.func_179109_b((float)((float)a4 + 0.5f), (float)((float)a5 + 1.5f), (float)((float)a6 + 0.5f));
-            GlStateManager.func_179089_o();
-            GlStateManager.func_179101_C();
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179140_f();
-            GlStateManager.func_179152_a((float)0.75f, (float)0.75f, (float)0.75f);
-            GlStateManager.func_179114_b((float)(-a11), (float)0.0f, (float)1.0f, (float)0.0f);
-            GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)-1.45f);
-            GlStateManager.func_179137_b((double)0.0, (double)a9.getOffsetY(), (double)0.0);
-            GlStateManager.func_179123_a();
-            GlStateManager.func_179114_b((float)-35.0f, (float)1.0f, (float)0.0f, (float)0.0f);
-            RenderHelper.func_74519_b();
+            GlStateManager.pushMatrix();
+            GlStateManager.enableDepth();
+            GlStateManager.enableRescaleNormal();
+            GlStateManager.translate((float)((float)a4 + 0.5f), (float)((float)a5 + 1.5f), (float)((float)a6 + 0.5f));
+            GlStateManager.enableCull();
+            GlStateManager.disableRescaleNormal();
+            GlStateManager.pushMatrix();
+            GlStateManager.disableLighting();
+            GlStateManager.scale((float)0.75f, (float)0.75f, (float)0.75f);
+            GlStateManager.rotate((float)(-a11), (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.translate((float)0.0f, (float)0.0f, (float)-1.45f);
+            GlStateManager.translate((double)0.0, (double)a9.getOffsetY(), (double)0.0);
+            GlStateManager.pushAttrib();
+            GlStateManager.rotate((float)-35.0f, (float)1.0f, (float)0.0f, (float)0.0f);
+            RenderHelper.enableStandardItemLighting();
             try {
                 if (a9.getItem() != null && a7 < 13.0f) {
-                    RenderItem a12 = Minecraft.func_71410_x().func_175599_af();
+                    RenderItem a12 = Minecraft.getMinecraft().getRenderItem();
                     if (a9.getItemStack() == null) {
-                        NBTTagCompound a13 = JsonToNBT.func_180713_a((String)a9.getItem());
+                        NBTTagCompound a13 = JsonToNBT.getTagFromJson((String)a9.getItem());
                         ItemStack a14 = new ItemStack(a13);
                         a9.setItemStack(a14);
                     }
-                    a12.func_181564_a(a9.getItemStack(), ItemCameraTransforms.TransformType.FIXED);
+                    a12.renderItem(a9.getItemStack(), ItemCameraTransforms.TransformType.FIXED);
                 }
             }
             catch (NBTException a12) {
                 // empty catch block
             }
-            RenderHelper.func_74518_a();
-            GlStateManager.func_179099_b();
-            GlStateManager.func_179121_F();
-            GlStateManager.func_179152_a((float)1.0f, (float)-1.0f, (float)-1.0f);
-            GlStateManager.func_179091_B();
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179129_p();
-            GlStateManager.func_179147_l();
-            GlStateManager.func_187428_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
-            GlStateManager.func_179114_b((float)(-a11), (float)0.0f, (float)1.0f, (float)0.0f);
+            RenderHelper.disableStandardItemLighting();
+            GlStateManager.popAttrib();
+            GlStateManager.popMatrix();
+            GlStateManager.scale((float)1.0f, (float)-1.0f, (float)-1.0f);
+            GlStateManager.enableRescaleNormal();
+            GlStateManager.pushMatrix();
+            GlStateManager.disableCull();
+            GlStateManager.enableBlend();
+            GlStateManager.tryBlendFuncSeparate((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
+            GlStateManager.rotate((float)(-a11), (float)0.0f, (float)1.0f, (float)0.0f);
             if (a10 == 3 || a10 == 2) {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)0.45f);
+                GlStateManager.translate((float)0.0f, (float)0.0f, (float)0.45f);
             } else {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)-0.45f);
+                GlStateManager.translate((float)0.0f, (float)0.0f, (float)-0.45f);
             }
-            GlStateManager.func_179114_b((float)(-a11), (float)0.0f, (float)-1.0f, (float)0.0f);
-            GlStateManager.func_179137_b((double)0.0, (double)(-a9.getOffsetY()), (double)0.0);
-            float a15 = Minecraft.func_71410_x().func_175598_ae().field_78735_i;
-            float a16 = Minecraft.func_71410_x().func_175598_ae().field_78732_j;
-            GlStateManager.func_179114_b((float)a15, (float)0.0f, (float)1.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)a16, (float)1.0f, (float)0.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
-            GlStateManager.func_179139_a((double)0.015, (double)0.015, (double)0.015);
+            GlStateManager.rotate((float)(-a11), (float)0.0f, (float)-1.0f, (float)0.0f);
+            GlStateManager.translate((double)0.0, (double)(-a9.getOffsetY()), (double)0.0);
+            float a15 = Minecraft.getMinecraft().getRenderManager().playerViewY;
+            float a16 = Minecraft.getMinecraft().getRenderManager().playerViewX;
+            GlStateManager.rotate((float)a15, (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)a16, (float)1.0f, (float)0.0f, (float)0.0f);
+            GlStateManager.rotate((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.scale((double)0.015, (double)0.015, (double)0.015);
             float a17 = a7 / 7.0f + 1.0f;
-            GlStateManager.func_179152_a((float)a17, (float)a17, (float)a17);
+            GlStateManager.scale((float)a17, (float)a17, (float)a17);
             int a18 = 0;
             int a19 = a9.getInfo().size() * 10;
             for (String a20 : a9.getInfo()) {
-                a18 = Math.max(a2.func_78256_a(a20), a18);
+                a18 = Math.max(a2.getStringWidth(a20), a18);
             }
             float a21 = (float)a18 / 2.0f;
             float a22 = (float)a19 / 2.0f;
-            GlStateManager.func_179132_a((boolean)false);
-            GlStateManager.func_179090_x();
-            Tessellator a23 = Tessellator.func_178181_a();
-            BufferBuilder a24 = a23.func_178180_c();
-            a24.func_181668_a(7, DefaultVertexFormats.field_181706_f);
-            a24.func_181662_b((double)(-a21), (double)(-a22 - 1.0f), 0.001).func_181669_b(a9.getColorR(), a9.getColorG(), a9.getColorB(), a9.getColorA()).func_181675_d();
-            a24.func_181662_b((double)(-a21), (double)(a22 - 1.0f), 0.001).func_181669_b(a9.getColorR(), a9.getColorG(), a9.getColorB(), a9.getColorA()).func_181675_d();
-            a24.func_181662_b((double)a21, (double)(a22 - 1.0f), 0.001).func_181669_b(a9.getColorR(), a9.getColorG(), a9.getColorB(), a9.getColorA()).func_181675_d();
-            a24.func_181662_b((double)a21, (double)(-a22 - 1.0f), 0.001).func_181669_b(a9.getColorR(), a9.getColorG(), a9.getColorB(), a9.getColorA()).func_181675_d();
-            a23.func_78381_a();
-            GlStateManager.func_179098_w();
+            GlStateManager.depthMask((boolean)false);
+            GlStateManager.disableTexture2D();
+            Tessellator a23 = Tessellator.getInstance();
+            BufferBuilder a24 = a23.getBuffer();
+            a24.begin(7, DefaultVertexFormats.POSITION_COLOR);
+            a24.pos((double)(-a21), (double)(-a22 - 1.0f), 0.001).color(a9.getColorR(), a9.getColorG(), a9.getColorB(), a9.getColorA()).endVertex();
+            a24.pos((double)(-a21), (double)(a22 - 1.0f), 0.001).color(a9.getColorR(), a9.getColorG(), a9.getColorB(), a9.getColorA()).endVertex();
+            a24.pos((double)a21, (double)(a22 - 1.0f), 0.001).color(a9.getColorR(), a9.getColorG(), a9.getColorB(), a9.getColorA()).endVertex();
+            a24.pos((double)a21, (double)(-a22 - 1.0f), 0.001).color(a9.getColorR(), a9.getColorG(), a9.getColorB(), a9.getColorA()).endVertex();
+            a23.draw();
+            GlStateManager.enableTexture2D();
             for (int a25 = 0; a25 < a9.getInfo().size(); ++a25) {
                 String a26 = a9.getInfo().get(a25);
-                int a27 = a2.func_78256_a(a26);
-                a2.func_78276_b(a26, -a27 / 2, (int)(-a22 + (float)(a25 * 10)), -1);
+                int a27 = a2.getStringWidth(a26);
+                a2.drawString(a26, -a27 / 2, (int)(-a22 + (float)(a25 * 10)), -1);
             }
-            GlStateManager.func_179132_a((boolean)true);
-            GlStateManager.func_179084_k();
-            GlStateManager.func_179126_j();
-            GlStateManager.func_179145_e();
-            GlStateManager.func_179121_F();
-            GlStateManager.func_179121_F();
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            GlStateManager.depthMask((boolean)true);
+            GlStateManager.disableBlend();
+            GlStateManager.enableDepth();
+            GlStateManager.enableLighting();
+            GlStateManager.popMatrix();
+            GlStateManager.popMatrix();
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         }
     }
 
     protected static void bindTexture(ResourceLocation a2) {
-        TextureManager a3 = Minecraft.func_71410_x().func_110434_K();
+        TextureManager a3 = Minecraft.getMinecraft().getTextureManager();
         if (a3 != null) {
-            a3.func_110577_a(a2);
+            a3.bindTexture(a2);
         }
     }
 }

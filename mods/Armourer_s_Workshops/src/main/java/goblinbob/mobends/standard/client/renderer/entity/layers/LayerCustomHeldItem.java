@@ -43,60 +43,60 @@ implements LayerRenderer<EntityLivingBase> {
         this.livingEntityRenderer = livingEntityRendererIn;
     }
 
-    public void func_177141_a(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+    public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         ItemStack itemstack1;
-        boolean flag = entitylivingbaseIn.func_184591_cq() == EnumHandSide.RIGHT;
-        ItemStack itemstack = flag ? entitylivingbaseIn.func_184592_cb() : entitylivingbaseIn.func_184614_ca();
-        ItemStack itemStack = itemstack1 = flag ? entitylivingbaseIn.func_184614_ca() : entitylivingbaseIn.func_184592_cb();
-        if (!itemstack.func_190926_b() || !itemstack1.func_190926_b()) {
-            GlStateManager.func_179094_E();
-            if (this.livingEntityRenderer.func_177087_b().field_78091_s) {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.75f, (float)0.0f);
-                GlStateManager.func_179152_a((float)0.5f, (float)0.5f, (float)0.5f);
+        boolean flag = entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT;
+        ItemStack itemstack = flag ? entitylivingbaseIn.getHeldItemOffhand() : entitylivingbaseIn.getHeldItemMainhand();
+        ItemStack itemStack = itemstack1 = flag ? entitylivingbaseIn.getHeldItemMainhand() : entitylivingbaseIn.getHeldItemOffhand();
+        if (!itemstack.isEmpty() || !itemstack1.isEmpty()) {
+            GlStateManager.pushMatrix();
+            if (this.livingEntityRenderer.getMainModel().isChild) {
+                GlStateManager.translate((float)0.0f, (float)0.75f, (float)0.0f);
+                GlStateManager.scale((float)0.5f, (float)0.5f, (float)0.5f);
             }
             this.renderHeldItem(entitylivingbaseIn, itemstack1, ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, EnumHandSide.RIGHT);
             this.renderHeldItem(entitylivingbaseIn, itemstack, ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND, EnumHandSide.LEFT);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
     private void renderHeldItem(EntityLivingBase entity, ItemStack p_188358_2_, ItemCameraTransforms.TransformType p_188358_3_, EnumHandSide handSide) {
-        if (!p_188358_2_.func_190926_b()) {
-            GlStateManager.func_179094_E();
-            if (entity.func_70093_af()) {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.2f, (float)0.0f);
+        if (!p_188358_2_.isEmpty()) {
+            GlStateManager.pushMatrix();
+            if (entity.isSneaking()) {
+                GlStateManager.translate((float)0.0f, (float)0.2f, (float)0.0f);
             }
             this.translateToHand(handSide, entity);
-            GlStateManager.func_179114_b((float)-90.0f, (float)1.0f, (float)0.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)-90.0f, (float)1.0f, (float)0.0f, (float)0.0f);
+            GlStateManager.rotate((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
             boolean flag = handSide == EnumHandSide.LEFT;
             boolean isSmallArm = ((IRenderPlayer)this.livingEntityRenderer).isSmallArms();
-            boolean isHidden = SkinRenderHelper.isArmHidden(entity.func_110124_au(), flag);
+            boolean isHidden = SkinRenderHelper.isArmHidden(entity.getUniqueID(), flag);
             if (isSmallArm && !isHidden) {
-                GlStateManager.func_179109_b((float)((float)(flag ? -0.5 : 0.5) / 16.0f), (float)0.125f, (float)-0.625f);
+                GlStateManager.translate((float)((float)(flag ? -0.5 : 0.5) / 16.0f), (float)0.125f, (float)-0.625f);
             } else if (isSmallArm && isHidden) {
-                GlStateManager.func_179109_b((float)((float)(flag ? -1 : 1) / 16.0f), (float)0.125f, (float)-0.625f);
+                GlStateManager.translate((float)((float)(flag ? -1 : 1) / 16.0f), (float)0.125f, (float)-0.625f);
             } else {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.125f, (float)-0.625f);
+                GlStateManager.translate((float)0.0f, (float)0.125f, (float)-0.625f);
             }
-            Minecraft.func_71410_x().func_175597_ag().func_187462_a(entity, p_188358_2_, p_188358_3_, flag);
-            GlStateManager.func_179121_F();
+            Minecraft.getMinecraft().getItemRenderer().renderItemSide(entity, p_188358_2_, p_188358_3_, flag);
+            GlStateManager.popMatrix();
         }
     }
 
     protected void translateToHand(EnumHandSide handSide, EntityLivingBase entity) {
         Object entityData = EntityDatabase.instance.get(entity);
-        ((ModelBiped)this.livingEntityRenderer.func_177087_b()).func_187073_a(0.0625f, handSide);
+        ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.0625f, handSide);
         if (entityData instanceof BipedEntityData) {
             BipedEntityData bipedData = (BipedEntityData)entityData;
             SmoothOrientation itemRotation = handSide == EnumHandSide.RIGHT ? bipedData.renderRightItemRotation : bipedData.renderLeftItemRotation;
-            GlStateManager.func_179109_b((float)0.0f, (float)0.5f, (float)0.0f);
+            GlStateManager.translate((float)0.0f, (float)0.5f, (float)0.0f);
             GlHelper.rotate(itemRotation.getSmooth());
-            GlStateManager.func_179109_b((float)0.0f, (float)-0.5f, (float)0.0f);
+            GlStateManager.translate((float)0.0f, (float)-0.5f, (float)0.0f);
         }
     }
 
-    public boolean func_177142_b() {
+    public boolean shouldCombineTextures() {
         return false;
     }
 }

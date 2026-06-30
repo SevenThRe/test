@@ -203,7 +203,7 @@ extends jj {
             a8.k = a19;
         }
         if (a8.hasVerticalScrollbar()) {
-            Minecraft.func_71410_x().field_71446_o.func_110577_a(new ResourceLocation("minecraft", "aa.png"));
+            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("minecraft", "aa.png"));
             a4 = Math.max((int)((double)(1.0f * (float)a8.a.k / (float)a8.a.ALLATORIxDEMO) * a12), 2);
             double a29 = a9 + a11 - 6.0;
             double a30 = a10 + (double)(1.0f * (float)a8.r / (float)a8.a.ALLATORIxDEMO) * (a12 - 4.0) + 1.0;
@@ -280,7 +280,7 @@ extends jj {
         if (!a4.e) {
             return;
         }
-        if (GuiScreen.func_175278_g((int)a3)) {
+        if (GuiScreen.isKeyComboCtrlA((int)a3)) {
             int a5;
             a4.t = a5 = 0;
             a4.s = a5;
@@ -293,31 +293,31 @@ extends jj {
         String a6 = a4.w;
         if (a3 == 203) {
             int a7 = 1;
-            if (GuiScreen.func_146271_m()) {
+            if (GuiScreen.isCtrlKeyDown()) {
                 Matcher a8 = a4.a.x.matcher(a4.subStringText(0, a4.t));
                 while (a8.find()) {
                     if (a8.start() == a8.end()) continue;
                     a7 = a4.t - a8.start();
                 }
             }
-            a4.ALLATORIxDEMO(a4.t - a7, GuiScreen.func_146272_n());
+            a4.ALLATORIxDEMO(a4.t - a7, GuiScreen.isShiftKeyDown());
             return;
         }
         if (a3 == 205) {
             Matcher a9;
             int a10 = 1;
-            if (GuiScreen.func_146271_m() && ((a9 = a4.a.x.matcher(a4.subStringText(a4.t))).find() && a9.start() > 0 || a9.find())) {
+            if (GuiScreen.isCtrlKeyDown() && ((a9 = a4.a.x.matcher(a4.subStringText(a4.t))).find() && a9.start() > 0 || a9.find())) {
                 a10 = a9.start();
             }
-            a4.ALLATORIxDEMO(a4.t + a10, GuiScreen.func_146272_n());
+            a4.ALLATORIxDEMO(a4.t + a10, GuiScreen.isShiftKeyDown());
             return;
         }
         if (a3 == 200) {
-            a4.ALLATORIxDEMO(a4.c(), GuiScreen.func_146272_n());
+            a4.ALLATORIxDEMO(a4.c(), GuiScreen.isShiftKeyDown());
             return;
         }
         if (a3 == 208) {
-            a4.ALLATORIxDEMO(a4.ALLATORIxDEMO(), GuiScreen.func_146272_n());
+            a4.ALLATORIxDEMO(a4.ALLATORIxDEMO(), GuiScreen.isShiftKeyDown());
             return;
         }
         if (a3 == 211) {
@@ -343,7 +343,7 @@ extends jj {
             a4.g = a13;
             return;
         }
-        if (GuiScreen.func_175277_d((int)a3)) {
+        if (GuiScreen.isKeyComboCtrlX((int)a3)) {
             if (a4.s != a4.g) {
                 int a15;
                 cm.ALLATORIxDEMO(a4.subStringText(a4.s, a4.g));
@@ -355,17 +355,17 @@ extends jj {
             }
             return;
         }
-        if (GuiScreen.func_175280_f((int)a3)) {
+        if (GuiScreen.isKeyComboCtrlC((int)a3)) {
             if (a4.s != a4.g) {
                 cm.ALLATORIxDEMO(a4.subStringText(a4.s, a4.g));
             }
             return;
         }
-        if (GuiScreen.func_175279_e((int)a3)) {
+        if (GuiScreen.isKeyComboCtrlV((int)a3)) {
             a4.ALLATORIxDEMO(cm.ALLATORIxDEMO());
             return;
         }
-        if (a3 == 44 && GuiScreen.func_146271_m()) {
+        if (a3 == 44 && GuiScreen.isCtrlKeyDown()) {
             int a17;
             if (a4.m.isEmpty()) {
                 return;
@@ -380,14 +380,14 @@ extends jj {
             a4.q = false;
         } else {
             int a19;
-            if (a3 != 21 || !GuiScreen.func_146271_m()) {
+            if (a3 != 21 || !GuiScreen.isCtrlKeyDown()) {
                 if (a3 == 15) {
                     a4.ALLATORIxDEMO("    ");
                 }
                 if (a3 == 28) {
                     a4.ALLATORIxDEMO('\n' + a4.ALLATORIxDEMO());
                 }
-                if (ChatAllowedCharacters.func_71566_a((char)a2)) {
+                if (ChatAllowedCharacters.isAllowedCharacter((char)a2)) {
                     a4.ALLATORIxDEMO(Character.toString(a2));
                 }
                 return;
@@ -654,20 +654,20 @@ extends jj {
         float a9 = (float)(a6 >> 16 & 0xFF) / 255.0f;
         float a10 = (float)(a6 >> 8 & 0xFF) / 255.0f;
         float a11 = (float)(a6 & 0xFF) / 255.0f;
-        Tessellator a12 = Tessellator.func_178181_a();
-        BufferBuilder a13 = a12.func_178180_c();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179090_x();
-        GlStateManager.func_187428_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
-        GlStateManager.func_179131_c((float)a9, (float)a10, (float)a11, (float)a8);
-        a13.func_181668_a(7, DefaultVertexFormats.field_181705_e);
-        a13.func_181662_b(a2, a5, 0.0).func_181675_d();
-        a13.func_181662_b(a4, a5, 0.0).func_181675_d();
-        a13.func_181662_b(a4, a3, 0.0).func_181675_d();
-        a13.func_181662_b(a2, a3, 0.0).func_181675_d();
-        a12.func_78381_a();
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179084_k();
+        Tessellator a12 = Tessellator.getInstance();
+        BufferBuilder a13 = a12.getBuffer();
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.tryBlendFuncSeparate((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
+        GlStateManager.color((float)a9, (float)a10, (float)a11, (float)a8);
+        a13.begin(7, DefaultVertexFormats.POSITION);
+        a13.pos(a2, a5, 0.0).endVertex();
+        a13.pos(a4, a5, 0.0).endVertex();
+        a13.pos(a4, a3, 0.0).endVertex();
+        a13.pos(a2, a3, 0.0).endVertex();
+        a12.draw();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
     }
 
     @Override

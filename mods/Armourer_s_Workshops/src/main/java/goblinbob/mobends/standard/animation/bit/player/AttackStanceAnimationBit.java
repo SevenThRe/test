@@ -37,7 +37,7 @@ extends AnimationBit<PlayerData> {
     @Override
     public void perform(PlayerData data) {
         AbstractClientPlayer player = (AbstractClientPlayer)data.getEntity();
-        EnumHandSide primaryHand = player.func_184591_cq();
+        EnumHandSide primaryHand = player.getPrimaryHand();
         boolean mainHandSwitch = primaryHand == EnumHandSide.RIGHT;
         float handDirMtp = mainHandSwitch ? 1.0f : -1.0f;
         ModelPartTransform mainArm = mainHandSwitch ? data.rightArm : data.leftArm;
@@ -70,7 +70,7 @@ extends AnimationBit<PlayerData> {
         if (touchdown < 1.0f) {
             data.body.rotation.setSmoothness(1.0f);
             data.body.rotation.orientX(5.0f * (1.0f - touchdown) + 15.0f);
-            data.globalOffset.setY(-MathHelper.func_76126_a((float)(touchdown * (float)Math.PI)) * 2.0f - 2.0f);
+            data.globalOffset.setY(-MathHelper.sin((float)(touchdown * (float)Math.PI)) * 2.0f - 2.0f);
         }
     }
 }

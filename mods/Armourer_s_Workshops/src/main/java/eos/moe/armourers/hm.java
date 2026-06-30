@@ -47,12 +47,12 @@ extends pj {
         if (a3 == null) {
             return;
         }
-        GlStateManager.func_179123_a();
-        RenderHelper.func_74520_c();
-        GlStateManager.func_179089_o();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179091_B();
+        GlStateManager.pushAttrib();
+        RenderHelper.enableGUIStandardItemLighting();
+        GlStateManager.enableCull();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.enableBlend();
+        GlStateManager.enableRescaleNormal();
         int n2 = a2 = 0;
         while (n2 < a3.y().size()) {
             GL11.glPushMatrix();
@@ -63,10 +63,10 @@ extends pj {
             GL11.glPopMatrix();
             n2 = ++a2;
         }
-        GlStateManager.func_179101_C();
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179129_p();
-        GlStateManager.func_179099_b();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableBlend();
+        GlStateManager.disableCull();
+        GlStateManager.popAttrib();
     }
 }
 

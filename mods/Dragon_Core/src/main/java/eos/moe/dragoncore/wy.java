@@ -81,9 +81,9 @@ public class wy {
     public Map<String, kq> ALLATORIxDEMO(ResourceLocation a2) throws to {
         try {
             Throwable throwable = null;
-            try (IResource a3 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a2);){
+            try (IResource a3 = Minecraft.getMinecraft().getResourceManager().getResource(a2);){
                 wy a4;
-                InputStream a5 = a3.func_110527_b();
+                InputStream a5 = a3.getInputStream();
                 Map<String, kq> map = a4.ALLATORIxDEMO(a2, a5);
                 return map;
             }
@@ -102,7 +102,7 @@ public class wy {
     public Map<String, kq> ALLATORIxDEMO(ResourceLocation a2, InputStream a3) throws to {
         wy a4;
         BufferedReader a5 = new BufferedReader(new InputStreamReader(a3, StandardCharsets.UTF_8));
-        JsonObject a6 = (JsonObject)JsonUtils.func_188173_a((Gson)ALLATORIxDEMO, (Reader)a5, JsonObject.class, (boolean)true);
+        JsonObject a6 = (JsonObject)JsonUtils.gsonDeserialize((Gson)ALLATORIxDEMO, (Reader)a5, JsonObject.class, (boolean)true);
         return a4.ALLATORIxDEMO(a2, a6);
     }
 
@@ -154,7 +154,7 @@ public class wy {
                     a9.add(a5.ALLATORIxDEMO(((JsonElement)a21.getValue()).getAsJsonObject()));
                 }
             }
-            a7.put(a12, new fu(a14, a17, a15, a16, new ResourceLocation(a3.func_110624_b(), a3.func_110623_a() + "/" + a12), a12, a11, !a18.isEmpty() ? Collections.unmodifiableMap(a18.stream().collect(Collectors.toMap(hy::ALLATORIxDEMO, a2 -> a2))) : null, a22));
+            a7.put(a12, new fu(a14, a17, a15, a16, new ResourceLocation(a3.getNamespace(), a3.getPath() + "/" + a12), a12, a11, !a18.isEmpty() ? Collections.unmodifiableMap(a18.stream().collect(Collectors.toMap(hy::ALLATORIxDEMO, a2 -> a2))) : null, a22));
         }
         return a7;
     }

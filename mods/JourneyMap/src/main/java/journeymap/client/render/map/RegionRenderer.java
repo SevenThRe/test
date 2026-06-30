@@ -47,7 +47,7 @@ public class RegionRenderer {
 
     private Stack<RegionCoord> getRegions() {
         try {
-            Minecraft minecraft = Minecraft.func_71410_x();
+            Minecraft minecraft = Minecraft.getMinecraft();
             RegionLoader regionLoader = new RegionLoader(minecraft, Fullscreen.state().getMapType(), true);
             return regionLoader.getRegions();
         }

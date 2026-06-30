@@ -80,7 +80,7 @@ public class ri {
         a11.renderType = a10;
         a11.setScheme((BedrockScheme)a9);
         a11.maxLifeTicks = a7;
-        a11.setWorld((World)Minecraft.func_71410_x().field_71441_e);
+        a11.setWorld((World)Minecraft.getMinecraft().world);
         try {
             a8 = a6.split(",");
             if (a8.length == 3) {
@@ -106,9 +106,9 @@ public class ri {
                 a11.setTarget(a14);
                 a11.targetUUID = a13;
                 if (a14 != null) {
-                    a11.lastGlobal.x = Interpolations.lerp(a14.field_70169_q, a14.field_70165_t, 0.0);
-                    a11.lastGlobal.y = Interpolations.lerp(a14.field_70167_r, a14.field_70163_u, 0.0);
-                    a11.lastGlobal.z = Interpolations.lerp(a14.field_70166_s, a14.field_70161_v, 0.0);
+                    a11.lastGlobal.x = Interpolations.lerp(a14.prevPosX, a14.posX, 0.0);
+                    a11.lastGlobal.y = Interpolations.lerp(a14.prevPosY, a14.posY, 0.0);
+                    a11.lastGlobal.z = Interpolations.lerp(a14.prevPosZ, a14.posZ, 0.0);
                 }
             }
             a5 = a5.replace("headyaw", "variable.heady").replace("yaw", "variable.bodyyaw").replace("pitch", "variable.headpitch");
@@ -155,8 +155,8 @@ public class ri {
     }
 
     public static void c() {
-        for (Entity a2 : Minecraft.func_71410_x().field_71441_e.func_72910_y()) {
-            xz xz2 = dt.k.getEntityManager(a2.func_110124_au());
+        for (Entity a2 : Minecraft.getMinecraft().world.getLoadedEntityList()) {
+            xz xz2 = dt.k.getEntityManager(a2.getUniqueID());
             if (xz2 == null || !(a2 instanceof EntityLivingBase) || xz2.c().isEmpty()) continue;
             for (BedrockEmitter a4 : xz2.c().values()) {
                 a4.setTarget((EntityLivingBase)a2);
@@ -195,9 +195,9 @@ public class ri {
                 if (a3.targetUUID != null) {
                     a4 = a3.target;
                     if (a4 == null) continue;
-                    a3.lastGlobal.x = Interpolations.lerp(a4.field_70169_q, a4.field_70165_t, (double)a2);
-                    a3.lastGlobal.y = Interpolations.lerp(a4.field_70167_r, a4.field_70163_u, (double)a2);
-                    a3.lastGlobal.z = Interpolations.lerp(a4.field_70166_s, a4.field_70161_v, (double)a2);
+                    a3.lastGlobal.x = Interpolations.lerp(a4.prevPosX, a4.posX, (double)a2);
+                    a3.lastGlobal.y = Interpolations.lerp(a4.prevPosY, a4.posY, (double)a2);
+                    a3.lastGlobal.z = Interpolations.lerp(a4.prevPosZ, a4.posZ, (double)a2);
                 }
                 a3.prevRotation.set(a3.rotation);
                 a3.rotation.setIdentity();
@@ -205,16 +205,16 @@ public class ri {
                 try {
                     if (a3.look) {
                         if (a3.target != null) {
-                            Matrix3f a5 = MatrixUtils.getZYXrotationMatrix(0.0f, (float)Math.toRadians(-a3.target.field_70759_as), (float)Math.toRadians(a3.target.field_70125_A));
+                            Matrix3f a5 = MatrixUtils.getZYXrotationMatrix(0.0f, (float)Math.toRadians(-a3.target.rotationYawHead), (float)Math.toRadians(a3.target.rotationPitch));
                             a3.rotation.set(a5);
                         }
                     } else if (a4 != null && a4.length == 3) {
                         float a6;
                         float a7;
                         if (a3.target != null && a3.scheme != null) {
-                            float a8 = ri.ALLATORIxDEMO(a3.target.field_70758_at, a3.target.field_70759_as, a2);
-                            a7 = ri.ALLATORIxDEMO(a3.target.field_70760_ar, a3.target.field_70761_aq, a2);
-                            a6 = ri.ALLATORIxDEMO(a3.target.field_70127_C, a3.target.field_70125_A, a2);
+                            float a8 = ri.ALLATORIxDEMO(a3.target.prevRotationYawHead, a3.target.rotationYawHead, a2);
+                            a7 = ri.ALLATORIxDEMO(a3.target.prevRenderYawOffset, a3.target.renderYawOffset, a2);
+                            a6 = ri.ALLATORIxDEMO(a3.target.prevRotationPitch, a3.target.rotationPitch, a2);
                             a3.scheme.parser.setValue("variable.heady", a8);
                             a3.scheme.parser.setValue("variable.bodyyaw", a7);
                             a3.scheme.parser.setValue("variable.headpitch", a6);
@@ -229,9 +229,9 @@ public class ri {
                 catch (Exception a11) {
                     a11.printStackTrace();
                 }
-                GlStateManager.func_179094_E();
+                GlStateManager.pushMatrix();
                 a3.render(a2);
-                GlStateManager.func_179121_F();
+                GlStateManager.popMatrix();
             }
             ri.f();
             ALLATORIxDEMO = false;
@@ -240,15 +240,15 @@ public class ri {
 
     public static float ALLATORIxDEMO(EntityLivingBase a2, float a3) {
         boolean a4;
-        float a5 = ri.ALLATORIxDEMO(a2.field_70760_ar, a2.field_70761_aq, a3);
-        float a6 = ri.ALLATORIxDEMO(a2.field_70758_at, a2.field_70759_as, a3);
+        float a5 = ri.ALLATORIxDEMO(a2.prevRenderYawOffset, a2.renderYawOffset, a3);
+        float a6 = ri.ALLATORIxDEMO(a2.prevRotationYawHead, a2.rotationYawHead, a3);
         float a7 = a6 - a5;
-        boolean bl2 = a4 = a2.func_184218_aH() && a2.func_184187_bx() != null && a2.func_184187_bx().shouldRiderSit();
-        if (a4 && a2.func_184187_bx() instanceof EntityLivingBase) {
-            EntityLivingBase a8 = (EntityLivingBase)a2.func_184187_bx();
-            a5 = ri.ALLATORIxDEMO(a8.field_70760_ar, a8.field_70761_aq, a3);
+        boolean bl2 = a4 = a2.isRiding() && a2.getRidingEntity() != null && a2.getRidingEntity().shouldRiderSit();
+        if (a4 && a2.getRidingEntity() instanceof EntityLivingBase) {
+            EntityLivingBase a8 = (EntityLivingBase)a2.getRidingEntity();
+            a5 = ri.ALLATORIxDEMO(a8.prevRenderYawOffset, a8.renderYawOffset, a3);
             a7 = a6 - a5;
-            float a9 = MathHelper.func_76142_g((float)a7);
+            float a9 = MathHelper.wrapDegrees((float)a7);
             if (a9 < -85.0f) {
                 a9 = -85.0f;
             }
@@ -266,13 +266,13 @@ public class ri {
     public static float ALLATORIxDEMO(String a2, EntityLivingBase a3, float a4) {
         if (a3 != null) {
             if (a2.contains("headyaw")) {
-                a2 = a2.replace("headyaw", String.valueOf(ri.ALLATORIxDEMO(a3.field_70758_at, a3.field_70759_as, a4)));
+                a2 = a2.replace("headyaw", String.valueOf(ri.ALLATORIxDEMO(a3.prevRotationYawHead, a3.rotationYawHead, a4)));
             }
             if (a2.contains("yaw")) {
-                a2 = a2.replace("yaw", String.valueOf(ri.ALLATORIxDEMO(a3.field_70760_ar, a3.field_70761_aq, a4)));
+                a2 = a2.replace("yaw", String.valueOf(ri.ALLATORIxDEMO(a3.prevRenderYawOffset, a3.renderYawOffset, a4)));
             }
             if (a2.contains("pitch")) {
-                a2 = a2.replace("pitch", String.valueOf(ri.ALLATORIxDEMO(a3.field_70127_C, a3.field_70125_A, a4)));
+                a2 = a2.replace("pitch", String.valueOf(ri.ALLATORIxDEMO(a3.prevRotationPitch, a3.rotationPitch, a4)));
             }
         }
         return (float)vk.f(a2);
@@ -302,7 +302,7 @@ public class ri {
         if (a2.phase == TickEvent.Phase.START) {
             return;
         }
-        if (Minecraft.func_71410_x().field_71441_e == null) {
+        if (Minecraft.getMinecraft().world == null) {
             return;
         }
         ri.c();
@@ -310,13 +310,13 @@ public class ri {
 
     @SubscribeEvent
     public static void ALLATORIxDEMO(FMLNetworkEvent.ClientDisconnectionFromServerEvent a2) {
-        Minecraft.func_71410_x().func_152344_a(ri::ALLATORIxDEMO);
+        Minecraft.getMinecraft().addScheduledTask(ri::ALLATORIxDEMO);
     }
 
     @SubscribeEvent
     public static void ALLATORIxDEMO(RenderWorldLastEvent a2) {
         for (GifTexture a3 : GifHandler.gifs.values()) {
-            a3.func_110550_d();
+            a3.tick();
         }
     }
 }

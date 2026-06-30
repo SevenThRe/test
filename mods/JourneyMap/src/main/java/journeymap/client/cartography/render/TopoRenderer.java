@@ -57,7 +57,7 @@ implements IChunkRenderer {
         if (super.updateOptions(chunkMd, mapType)) {
             double worldHeight = 256.0;
             if (chunkMd != null) {
-                worldHeight = chunkMd.getWorld().func_72800_K();
+                worldHeight = chunkMd.getWorld().getHeight();
             }
             this.topoProperties = Journeymap.getClient().getTopoProperties();
             if (System.currentTimeMillis() - this.lastTopoFileUpdate > 5000L && this.lastTopoFileUpdate < this.topoProperties.lastModified()) {
@@ -193,8 +193,8 @@ implements IChunkRenderer {
                     float offsetHeight = this.getOffsetBlockHeight(chunkMd, x, null, z, null, null, offset, (int)h);
                     if (isWater && !isShore) {
                         ChunkMD targetChunkMd = this.getOffsetChunk(chunkMd, x, z, offset);
-                        int newX = (chunkMd.getCoord().field_77276_a << 4) + (x + offset.x) & 0xF;
-                        int newZ = (chunkMd.getCoord().field_77275_b << 4) + (z + offset.z) & 0xF;
+                        int newX = (chunkMd.getCoord().x << 4) + (x + offset.x) & 0xF;
+                        int newZ = (chunkMd.getCoord().z << 4) + (z + offset.z) & 0xF;
                         if (targetChunkMd != null) {
                             if (this.mapBathymetry && this.mapBathymetry && this.getFluidHeights(chunkMd, null)[z][x] == null) {
                                 isShore = true;
@@ -239,7 +239,7 @@ implements IChunkRenderer {
 
     @Override
     public int getBlockHeight(ChunkMD chunkMd, BlockPos blockPos) {
-        return FMLClientHandler.instance().getClient().field_71441_e.func_175726_f(blockPos).func_177440_h(blockPos).func_177956_o();
+        return FMLClientHandler.instance().getClient().world.getChunk(blockPos).getPrecipitationHeight(blockPos).getY();
     }
 
     protected boolean paintContour(BufferedImage chunkImage, ChunkMD chunkMd, BlockMD topBlockMd, int x, int y, int z) {

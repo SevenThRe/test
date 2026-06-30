@@ -47,9 +47,9 @@ public class nda {
         }
         if (a2.getGui() instanceof GuiChest) {
             String a4;
-            a32 = (IInventory)ReflectionHelper.getPrivateValue(GuiChest.class, (Object)((GuiChest)a2.getGui()), (String[])new String[]{"field_147016_v", "upperChestInventory"});
-            IInventory a5 = (IInventory)ReflectionHelper.getPrivateValue(GuiChest.class, (Object)((GuiChest)a2.getGui()), (String[])new String[]{"field_147015_w", "lowerChestInventory"});
-            String string = a4 = a5 != null && a5.func_145748_c_() != null ? a5.func_145748_c_().func_150260_c() : "";
+            a32 = (IInventory)ReflectionHelper.getPrivateValue(GuiChest.class, (Object)((GuiChest)a2.getGui()), (String[])new String[]{"upperChestInventory", "upperChestInventory"});
+            IInventory a5 = (IInventory)ReflectionHelper.getPrivateValue(GuiChest.class, (Object)((GuiChest)a2.getGui()), (String[])new String[]{"lowerChestInventory", "lowerChestInventory"});
+            String string = a4 = a5 != null && a5.getDisplayName() != null ? a5.getDisplayName().getUnformattedText() : "";
             if (a4.startsWith("Dragon_Core_ItemManager")) {
                 a2.setGui((GuiScreen)new aja((IInventory)a32, a5));
             } else if (a4.startsWith("Dragon_Core_EntityManager")) {

@@ -35,7 +35,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(value=Side.CLIENT)
 public class rk
 extends ModelBase {
-    private Minecraft m = Minecraft.func_71410_x();
+    private Minecraft m = Minecraft.getMinecraft();
     public static rk j = new rk();
 
     public rk() {
@@ -84,12 +84,12 @@ lbl30:
             v2 = var4_6;
         }
         var2_4 = v2 != false ? var5_7 + 4 : var5_7 + 2;
-        GlStateManager.func_179123_a();
+        GlStateManager.pushAttrib();
         GL11.glEnable((int)2884);
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179128_n((int)5890);
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179137_b((double)0.0, (double)(fe.r() / 256.0), (double)0.0);
+        GlStateManager.enableTexture2D();
+        GlStateManager.matrixMode((int)5890);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((double)0.0, (double)(fe.r() / 256.0), (double)0.0);
         a = var3_5.s.length;
         v3 = a = var5_7;
         while (v3 < var2_4) {
@@ -114,8 +114,8 @@ lbl30:
                 }
                 if (v6 & v7 < var3_5.s.length && var3_5.m[a] && var3_5.s[a].r()) {
                     if (var4_6) {
-                        GlStateManager.func_179123_a();
-                        GlStateManager.func_179140_f();
+                        GlStateManager.pushAttrib();
+                        GlStateManager.disableLighting();
                         xd.x();
                     }
                     if (vk.p) {
@@ -128,24 +128,24 @@ lbl30:
                     }
                     if (var4_6) {
                         xd.h();
-                        GlStateManager.func_179145_e();
-                        GlStateManager.func_179099_b();
+                        GlStateManager.enableLighting();
+                        GlStateManager.popAttrib();
                     }
                 }
             }
             v3 = ++a;
         }
-        GlStateManager.func_179121_F();
-        GlStateManager.func_179128_n((int)5888);
-        GlStateManager.func_179117_G();
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179099_b();
+        GlStateManager.popMatrix();
+        GlStateManager.matrixMode((int)5888);
+        GlStateManager.resetColor();
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.popAttrib();
     }
 
     private /* synthetic */ void r(ArrayList<gl> a2, mk a3, ul a4) {
         int n2;
         g g2 = gk.j;
-        g2.r(DefaultVertexFormats.field_181712_l);
+        g2.r(DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
         int n3 = n2 = 0;
         while (n3 < a2.size()) {
             a2.get(++n2).r(g2, a3, a4);

@@ -29,11 +29,11 @@ public class EntityDatabase {
     }
 
     public <T extends LivingEntityData<E>, E extends EntityLivingBase> T get(E entity) {
-        return this.get(entity.func_145782_y());
+        return this.get(entity.getEntityId());
     }
 
     public <T extends LivingEntityData<E>, E extends EntityLivingBase> T getOrMake(IEntityDataFactory<E> dataCreationFunction, E entity) {
-        int entityId = entity.func_145782_y();
+        int entityId = entity.getEntityId();
         Object data = this.get(entityId);
         if (data == null) {
             data = (LivingEntityData)dataCreationFunction.createEntityData(entity);
@@ -47,7 +47,7 @@ public class EntityDatabase {
     }
 
     public void add(Entity entity, LivingEntityData<?> data) {
-        this.add(entity.func_145782_y(), data);
+        this.add(entity.getEntityId(), data);
     }
 
     public void updateClient() {
@@ -56,7 +56,7 @@ public class EntityDatabase {
             Map.Entry<Integer, LivingEntityData<?>> entry = it.next();
             LivingEntityData<?> entityData = entry.getValue();
             Object entityInData = entityData.getEntity();
-            Entity entity = Minecraft.func_71410_x().field_71441_e.func_73045_a(entry.getKey().intValue());
+            Entity entity = Minecraft.getMinecraft().world.getEntityByID(entry.getKey().intValue());
             if (!(PreviewHelper.isPreviewEntity(entityInData) || entity != null && entityInData == entity)) {
                 EntityBenderRegistry.instance.clearCache(entityInData);
                 it.remove();

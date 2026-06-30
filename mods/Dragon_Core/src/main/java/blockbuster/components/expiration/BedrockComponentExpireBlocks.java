@@ -63,11 +63,11 @@ extends BedrockComponentBase {
 
     public Block getBlock(BedrockEmitter emitter, BedrockParticle particle) {
         if (emitter.world == null) {
-            return Blocks.field_150350_a;
+            return Blocks.AIR;
         }
         Vector3d position = particle.getGlobalPosition(emitter);
-        this.pos.func_189532_c(position.getX(), position.getY(), position.getZ());
-        return emitter.world.func_180495_p((BlockPos)this.pos).func_177230_c();
+        this.pos.setPos(position.getX(), position.getY(), position.getZ());
+        return emitter.world.getBlockState((BlockPos)this.pos).getBlock();
     }
 }
 

@@ -47,9 +47,9 @@ public class PacketRegistry {
             TextComponentString text1 = new TextComponentString("Disabling Journeymap for this server.");
             TextComponentString text2 = new TextComponentString("This client cannot connect to servers running versions older than Journeymap 5.5.5");
             TextComponentString text3 = new TextComponentString("Please downgrade to Journeymap 5.5.4 to connect to this server or ask the server admin to update Journeymap.");
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)text1);
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)text2);
-            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)text3);
+            Minecraft.getMinecraft().player.sendMessage((ITextComponent)text1);
+            Minecraft.getMinecraft().player.sendMessage((ITextComponent)text2);
+            Minecraft.getMinecraft().player.sendMessage((ITextComponent)text3);
         }
         catch (Exception exception) {
             // empty catch block

@@ -93,7 +93,7 @@ public class Stratum {
     public void setChunkMd(ChunkMD chunkMd) {
         this.chunkMd = chunkMd;
         if (chunkMd != null) {
-            this.worldAmbientLight = chunkMd.getWorld().func_72971_b(1.0f) * 15.0f;
+            this.worldAmbientLight = chunkMd.getWorld().getSunBrightness(1.0f) * 15.0f;
             this.worldHasNoSky = chunkMd.hasNoSky();
         } else {
             this.worldAmbientLight = 15.0f;

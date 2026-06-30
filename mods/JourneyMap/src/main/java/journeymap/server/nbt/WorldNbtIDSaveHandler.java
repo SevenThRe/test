@@ -22,8 +22,8 @@ public class WorldNbtIDSaveHandler {
 
     public WorldNbtIDSaveHandler() {
         try {
-            this.world = Constants.SERVER.func_130014_f_();
-            this.data = (NBTWorldSaveDataHandler)this.world.getPerWorldStorage().func_75742_a(NBTWorldSaveDataHandler.class, DAT_FILE);
+            this.world = Constants.SERVER.getEntityWorld();
+            this.data = (NBTWorldSaveDataHandler)this.world.getPerWorldStorage().getOrLoadData(NBTWorldSaveDataHandler.class, DAT_FILE);
         }
         catch (Exception e) {
             Journeymap.getLogger().warn("Error in worldID handler", (Throwable)e);
@@ -38,8 +38,8 @@ public class WorldNbtIDSaveHandler {
         if (this.data == null) {
             return this.createNewWorldID();
         }
-        if (this.data.getData().func_74764_b(WORLD_ID_KEY)) {
-            return this.data.getData().func_74779_i(WORLD_ID_KEY);
+        if (this.data.getData().hasKey(WORLD_ID_KEY)) {
+            return this.data.getData().getString(WORLD_ID_KEY);
         }
         return "noWorldIDFound";
     }
@@ -47,15 +47,15 @@ public class WorldNbtIDSaveHandler {
     private String createNewWorldID() {
         String worldID = UUID.randomUUID().toString();
         this.data = new NBTWorldSaveDataHandler(DAT_FILE);
-        this.world.getPerWorldStorage().func_75745_a(WORLD_ID_KEY, (WorldSavedData)this.data);
+        this.world.getPerWorldStorage().setData(WORLD_ID_KEY, (WorldSavedData)this.data);
         this.saveWorldID(worldID);
         return worldID;
     }
 
     private void saveWorldID(String worldID) {
         if (this.data != null) {
-            this.data.getData().func_74778_a(WORLD_ID_KEY, worldID);
-            this.data.func_76185_a();
+            this.data.getData().setString(WORLD_ID_KEY, worldID);
+            this.data.markDirty();
         }
     }
 }

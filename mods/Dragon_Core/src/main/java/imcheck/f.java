@@ -35,7 +35,7 @@ public class f {
             return;
         }
         try {
-            IMManager.ALLATORIxDEMO(Minecraft.func_71410_x().field_71462_r != null);
+            IMManager.ALLATORIxDEMO(Minecraft.getMinecraft().currentScreen != null);
         }
         catch (Throwable a3) {
             ALLATORIxDEMO = false;

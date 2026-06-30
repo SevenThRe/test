@@ -16,19 +16,19 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(value={SPacketCustomPayload.class})
 public class MixinSPacketCustomPayload {
     @Shadow
-    private String field_149172_a;
+    private String channel;
     @Shadow
-    private PacketBuffer field_149171_b;
+    private PacketBuffer data;
 
     public MixinSPacketCustomPayload() {
         MixinSPacketCustomPayload a2;
     }
 
     @Overwrite
-    public void func_148837_a(PacketBuffer a2) {
-        a.field_149172_a = a2.func_150789_c(20);
+    public void readPacketData(PacketBuffer a2) {
+        a.channel = a2.readString(20);
         int a3 = a2.readableBytes();
-        a.field_149171_b = new PacketBuffer(a2.readBytes(a3));
+        a.data = new PacketBuffer(a2.readBytes(a3));
     }
 }
 

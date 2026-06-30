@@ -39,7 +39,7 @@ import org.lwjgl.opengl.GL11;
 public class RenderWaypointBeacon {
     static final ResourceLocation beam = new ResourceLocation("textures/entity/beacon_beam.png");
     static Minecraft mc = FMLClientHandler.instance().getClient();
-    static RenderManager renderManager = mc.func_175598_ae();
+    static RenderManager renderManager = mc.getRenderManager();
     static String distanceLabel = Constants.getString("jm.waypoint.distance_meters", "%1.0f");
     static WaypointProperties waypointProperties;
 
@@ -53,7 +53,7 @@ public class RenderWaypointBeacon {
         try {
             waypointProperties = Journeymap.getClient().getWaypointProperties();
             Collection<Waypoint> waypoints = WaypointStore.INSTANCE.getAll();
-            int playerDim = RenderWaypointBeacon.mc.field_71439_g.field_71093_bK;
+            int playerDim = RenderWaypointBeacon.mc.player.dimension;
             for (Waypoint wp : waypoints) {
                 if (!wp.isEnable() || !wp.getDimensions().contains(playerDim)) continue;
                 try {
@@ -73,16 +73,16 @@ public class RenderWaypointBeacon {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     static void doRender(Waypoint waypoint) {
-        if (RenderWaypointBeacon.renderManager.field_78734_h == null) {
+        if (RenderWaypointBeacon.renderManager.renderViewEntity == null) {
             return;
         }
-        RenderHelper.func_74519_b();
+        RenderHelper.enableStandardItemLighting();
         try {
             double maxRenderDistance;
             double viewDistance;
-            Vec3d playerVec = RenderWaypointBeacon.renderManager.field_78734_h.func_174791_d();
-            Vec3d waypointVec = waypoint.getPosition().func_72441_c(0.0, 0.118, 0.0);
-            double actualDistance = playerVec.func_72438_d(waypointVec);
+            Vec3d playerVec = RenderWaypointBeacon.renderManager.renderViewEntity.getPositionVector();
+            Vec3d waypointVec = waypoint.getPosition().add(0.0, 0.118, 0.0);
+            double actualDistance = playerVec.distanceTo(waypointVec);
             int maxDistance = RenderWaypointBeacon.waypointProperties.maxDistance.get();
             if (maxDistance > 0 && actualDistance > (double)maxDistance) {
                 return;
@@ -100,30 +100,30 @@ public class RenderWaypointBeacon {
                     fadeAlpha = (float)(actualDistance - (double)minDistance) / 3.0f;
                 }
             }
-            if ((viewDistance = actualDistance) > (maxRenderDistance = (double)(RenderWaypointBeacon.mc.field_71474_y.field_151451_c * 16))) {
-                Vec3d delta = waypointVec.func_178788_d(playerVec).func_72432_b();
-                waypointVec = playerVec.func_72441_c(delta.field_72450_a * maxRenderDistance, delta.field_72448_b * maxRenderDistance, delta.field_72449_c * maxRenderDistance);
+            if ((viewDistance = actualDistance) > (maxRenderDistance = (double)(RenderWaypointBeacon.mc.gameSettings.renderDistanceChunks * 16))) {
+                Vec3d delta = waypointVec.subtract(playerVec).normalize();
+                waypointVec = playerVec.add(delta.x * maxRenderDistance, delta.y * maxRenderDistance, delta.z * maxRenderDistance);
                 viewDistance = maxRenderDistance;
             }
-            double shiftX = waypointVec.field_72450_a - RenderWaypointBeacon.renderManager.field_78730_l;
-            double shiftY = waypointVec.field_72448_b - RenderWaypointBeacon.renderManager.field_78731_m;
-            double shiftZ = waypointVec.field_72449_c - RenderWaypointBeacon.renderManager.field_78728_n;
+            double shiftX = waypointVec.x - RenderWaypointBeacon.renderManager.viewerPosX;
+            double shiftY = waypointVec.y - RenderWaypointBeacon.renderManager.viewerPosY;
+            double shiftZ = waypointVec.z - RenderWaypointBeacon.renderManager.viewerPosZ;
             boolean showStaticBeam = RenderWaypointBeacon.waypointProperties.showStaticBeam.get();
             boolean showRotatingBeam = RenderWaypointBeacon.waypointProperties.showRotatingBeam.get();
             if (showStaticBeam || showRotatingBeam) {
-                RenderWaypointBeacon.renderBeam(shiftX, -RenderWaypointBeacon.renderManager.field_78731_m, shiftZ, waypoint.getColor(), fadeAlpha, showStaticBeam, showRotatingBeam);
+                RenderWaypointBeacon.renderBeam(shiftX, -RenderWaypointBeacon.renderManager.viewerPosY, shiftZ, waypoint.getColor(), fadeAlpha, showStaticBeam, showRotatingBeam);
             }
             String label = waypoint.getName();
             boolean labelHidden = false;
             if (viewDistance > 0.5 && RenderWaypointBeacon.waypointProperties.autoHideLabel.get().booleanValue()) {
                 double playerYaw;
                 int angle = 5;
-                double yaw = Math.atan2(RenderWaypointBeacon.renderManager.field_78728_n - waypointVec.field_72449_c, RenderWaypointBeacon.renderManager.field_78730_l - waypointVec.field_72450_a);
+                double yaw = Math.atan2(RenderWaypointBeacon.renderManager.viewerPosZ - waypointVec.z, RenderWaypointBeacon.renderManager.viewerPosX - waypointVec.x);
                 double degrees = Math.toDegrees(yaw) + 90.0;
                 if (degrees < 0.0) {
                     degrees = 360.0 + degrees;
                 }
-                if ((playerYaw = (double)(RenderWaypointBeacon.renderManager.field_78734_h.func_70079_am() % 360.0f)) < 0.0) {
+                if ((playerYaw = (double)(RenderWaypointBeacon.renderManager.renderViewEntity.getRotationYawHead() % 360.0f)) < 0.0) {
                     playerYaw += 360.0;
                 }
                 playerYaw = Math.toRadians(playerYaw);
@@ -151,72 +151,72 @@ public class RenderWaypointBeacon {
                 }
                 if (sb.length() > 0) {
                     label = sb.toString();
-                    GlStateManager.func_179094_E();
-                    GlStateManager.func_179140_f();
+                    GlStateManager.pushMatrix();
+                    GlStateManager.disableLighting();
                     GL11.glNormal3d((double)0.0, (double)0.0, (double)(-1.0 * scale));
-                    GlStateManager.func_179137_b((double)shiftX, (double)shiftY, (double)shiftZ);
-                    GlStateManager.func_179114_b((float)(-RenderWaypointBeacon.renderManager.field_78735_i), (float)0.0f, (float)1.0f, (float)0.0f);
-                    GlStateManager.func_179114_b((float)RenderWaypointBeacon.renderManager.field_78732_j, (float)1.0f, (float)0.0f, (float)0.0f);
-                    GlStateManager.func_179139_a((double)(-scale), (double)(-scale), (double)scale);
-                    GlStateManager.func_179132_a((boolean)true);
-                    GlStateManager.func_179132_a((boolean)true);
-                    GlStateManager.func_179126_j();
+                    GlStateManager.translate((double)shiftX, (double)shiftY, (double)shiftZ);
+                    GlStateManager.rotate((float)(-RenderWaypointBeacon.renderManager.playerViewY), (float)0.0f, (float)1.0f, (float)0.0f);
+                    GlStateManager.rotate((float)RenderWaypointBeacon.renderManager.playerViewX, (float)1.0f, (float)0.0f, (float)0.0f);
+                    GlStateManager.scale((double)(-scale), (double)(-scale), (double)scale);
+                    GlStateManager.depthMask((boolean)true);
+                    GlStateManager.depthMask((boolean)true);
+                    GlStateManager.enableDepth();
                     int fontScale = RenderWaypointBeacon.waypointProperties.fontScale.get();
                     double labelY = 0.0 - halfTexHeight - 8.0;
                     DrawUtil.drawLabel(label, 1.0, labelY, DrawUtil.HAlign.Center, DrawUtil.VAlign.Above, 0, 0.6f * fadeAlpha, waypoint.getSafeColor(), fadeAlpha, fontScale, false);
-                    GlStateManager.func_179097_i();
-                    GlStateManager.func_179132_a((boolean)false);
+                    GlStateManager.disableDepth();
+                    GlStateManager.depthMask((boolean)false);
                     DrawUtil.drawLabel(label, 1.0, labelY, DrawUtil.HAlign.Center, DrawUtil.VAlign.Above, 0, 0.4f * fadeAlpha, waypoint.getSafeColor(), fadeAlpha, fontScale, false);
-                    GlStateManager.func_179121_F();
+                    GlStateManager.popMatrix();
                 }
             }
             if (viewDistance > 0.1 && RenderWaypointBeacon.waypointProperties.showTexture.get().booleanValue()) {
-                GlStateManager.func_179094_E();
-                GlStateManager.func_179140_f();
+                GlStateManager.pushMatrix();
+                GlStateManager.disableLighting();
                 GL11.glNormal3d((double)0.0, (double)0.0, (double)(-1.0 * scale));
-                GlStateManager.func_179097_i();
-                GlStateManager.func_179132_a((boolean)false);
+                GlStateManager.disableDepth();
+                GlStateManager.depthMask((boolean)false);
                 int n = RenderWaypointBeacon.waypointProperties.textureSmall.get() != false ? 1 : 2;
-                GlStateManager.func_179137_b((double)shiftX, (double)shiftY, (double)shiftZ);
-                GlStateManager.func_179114_b((float)(-RenderWaypointBeacon.renderManager.field_78735_i), (float)0.0f, (float)1.0f, (float)0.0f);
-                GlStateManager.func_179114_b((float)RenderWaypointBeacon.renderManager.field_78732_j, (float)1.0f, (float)0.0f, (float)0.0f);
-                GlStateManager.func_179139_a((double)(-(scale *= (double)n)), (double)(-scale), (double)scale);
+                GlStateManager.translate((double)shiftX, (double)shiftY, (double)shiftZ);
+                GlStateManager.rotate((float)(-RenderWaypointBeacon.renderManager.playerViewY), (float)0.0f, (float)1.0f, (float)0.0f);
+                GlStateManager.rotate((float)RenderWaypointBeacon.renderManager.playerViewX, (float)1.0f, (float)0.0f, (float)0.0f);
+                GlStateManager.scale((double)(-(scale *= (double)n)), (double)(-scale), (double)scale);
                 GL11.glNormal3d((double)0.0, (double)0.0, (double)(-1.0 * scale));
                 DrawUtil.drawColoredImage(texture, waypoint.getColor(), fadeAlpha, (double)(0 - texture.getWidth() / 2) + 0.5, 0.0 - halfTexHeight + 0.2, 0.0);
-                GlStateManager.func_179121_F();
+                GlStateManager.popMatrix();
             }
         }
         finally {
-            GlStateManager.func_179132_a((boolean)true);
-            GlStateManager.func_179126_j();
-            GlStateManager.func_179145_e();
-            GlStateManager.func_179132_a((boolean)true);
-            GlStateManager.func_179089_o();
-            GlStateManager.func_179084_k();
-            GlStateManager.func_179106_n();
-            RenderHelper.func_74518_a();
+            GlStateManager.depthMask((boolean)true);
+            GlStateManager.enableDepth();
+            GlStateManager.enableLighting();
+            GlStateManager.depthMask((boolean)true);
+            GlStateManager.enableCull();
+            GlStateManager.disableBlend();
+            GlStateManager.disableFog();
+            RenderHelper.disableStandardItemLighting();
         }
     }
 
     static void renderBeam(double x, double y, double z, Integer color, float alpha, boolean staticBeam, boolean rotatingBeam) {
         float f1 = alpha;
-        RenderWaypointBeacon.mc.field_71446_o.func_110577_a(beam);
+        RenderWaypointBeacon.mc.renderEngine.bindTexture(beam);
         GL11.glTexParameterf((int)3553, (int)10242, (float)10497.0f);
-        GlStateManager.func_179140_f();
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179126_j();
-        GlStateManager.func_179120_a((int)770, (int)1, (int)1, (int)0);
-        float time = RenderWaypointBeacon.mc.field_71441_e.func_82737_E();
-        if (mc.func_147113_T()) {
-            time = Minecraft.func_71386_F() / 50L;
+        GlStateManager.disableLighting();
+        GlStateManager.disableBlend();
+        GlStateManager.enableDepth();
+        GlStateManager.tryBlendFuncSeparate((int)770, (int)1, (int)1, (int)0);
+        float time = RenderWaypointBeacon.mc.world.getTotalWorldTime();
+        if (mc.isGamePaused()) {
+            time = Minecraft.getSystemTime() / 50L;
         }
-        float texOffset = -(-time * 0.2f - (float)MathHelper.func_76141_d((float)(-time * 0.1f))) * 0.6f;
+        float texOffset = -(-time * 0.2f - (float)MathHelper.floor((float)(-time * 0.1f))) * 0.6f;
         if (rotatingBeam) {
             boolean b0 = true;
             double d3 = (double)time * 0.025 * (1.0 - (double)(b0 & true) * 2.5);
             int[] rgba = RGB.ints((int)color, alpha * 0.45f);
             DrawUtil.startDrawingQuads(true);
-            GlStateManager.func_179147_l();
+            GlStateManager.enableBlend();
             double d4 = (double)b0 * 0.2;
             double d5 = Math.cos(d3 + 2.356194490192345) * d4;
             double d6 = Math.sin(d3 + 2.356194490192345) * d4;
@@ -250,15 +250,15 @@ public class RenderWaypointBeacon {
             DrawUtil.draw();
         }
         if (staticBeam) {
-            GlStateManager.func_179129_p();
+            GlStateManager.disableCull();
             double d26 = 256.0f * f1;
             double d29 = -1.0f + texOffset;
             double d30 = (double)(256.0f * f1) + d29;
             x -= 0.5;
             z -= 0.5;
-            GlStateManager.func_179147_l();
-            GlStateManager.func_179120_a((int)770, (int)771, (int)1, (int)0);
-            GlStateManager.func_179132_a((boolean)false);
+            GlStateManager.enableBlend();
+            GlStateManager.tryBlendFuncSeparate((int)770, (int)771, (int)1, (int)0);
+            GlStateManager.depthMask((boolean)false);
             int[] rgba = RGB.ints((int)color, alpha * 0.4f);
             DrawUtil.startDrawingQuads(true);
             DrawUtil.addVertexWithUV(x + 0.2, y + d26, z + 0.2, 1.0, d30, rgba);
@@ -278,12 +278,12 @@ public class RenderWaypointBeacon {
             DrawUtil.addVertexWithUV(x + 0.2, y, z + 0.2, 0.0, d29, rgba);
             DrawUtil.addVertexWithUV(x + 0.2, y + d26, z + 0.2, 0.0, d30, rgba);
             DrawUtil.draw();
-            GlStateManager.func_179084_k();
+            GlStateManager.disableBlend();
         }
-        GlStateManager.func_179145_e();
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179145_e();
-        GlStateManager.func_179126_j();
+        GlStateManager.enableLighting();
+        GlStateManager.enableTexture2D();
+        GlStateManager.enableLighting();
+        GlStateManager.enableDepth();
     }
 }
 

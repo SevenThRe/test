@@ -174,10 +174,10 @@ public class ih {
         AxisAlignedBB axisAlignedBB = new AxisAlignedBB((double)((float)a2.x() * f2), (double)((float)a2.s() * f2), (double)((float)a2.r() * f2), (double)((float)(a2.x() + a2.y()) * f2), (double)((float)(a2.s() + a2.h()) * f2), (double)((float)(a2.r() + a2.z()) * f2));
         GL11.glEnable((int)3042);
         GL11.glDisable((int)2896);
-        OpenGlHelper.func_148821_a((int)770, (int)771, (int)1, (int)0);
+        OpenGlHelper.glBlendFunc((int)770, (int)771, (int)1, (int)0);
         GL11.glLineWidth((float)1.0f);
         GL11.glDisable((int)3553);
-        RenderGlobal.func_189697_a((AxisAlignedBB)axisAlignedBB, (float)((float)a3 / 255.0f), (float)((float)a4 / 255.0f), (float)((float)a5 / 255.0f), (float)1.0f);
+        RenderGlobal.drawSelectionBoundingBox((AxisAlignedBB)axisAlignedBB, (float)((float)a3 / 255.0f), (float)((float)a4 / 255.0f), (float)((float)a5 / 255.0f), (float)1.0f);
         GL11.glEnable((int)3553);
         GL11.glEnable((int)2896);
         GL11.glDisable((int)3042);

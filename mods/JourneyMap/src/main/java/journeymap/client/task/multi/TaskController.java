@@ -169,8 +169,8 @@ public class TaskController {
      */
     public void performTasks() {
         block15: {
-            Profiler profiler = FMLClientHandler.instance().getClient().field_71424_I;
-            profiler.func_76320_a("journeymapTask");
+            Profiler profiler = FMLClientHandler.instance().getClient().profiler;
+            profiler.startSection("journeymapTask");
             StatTimer totalTimer = StatTimer.get("TaskController.performMultithreadTasks", 1, 500).start();
             try {
                 if (this.lock.tryLock()) {
@@ -217,7 +217,7 @@ public class TaskController {
             }
             finally {
                 totalTimer.stop();
-                profiler.func_76319_b();
+                profiler.endSection();
             }
         }
     }

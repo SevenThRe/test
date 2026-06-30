@@ -35,11 +35,11 @@ public class GetAllConfigs
 extends CompressedPacket {
     @Override
     protected JsonObject onServer(Response response) {
-        EntityPlayerMP player = response.getContext().getServerHandler().field_147369_b;
+        EntityPlayerMP player = response.getContext().getServerHandler().player;
         if (PlayerConfigController.getInstance().canServerAdmin(player) || FMLCommonHandler.instance().getSide().isClient()) {
             return this.collectServerSettings();
         }
-        player.func_145747_a((ITextComponent)new TextComponentString("You do not have permission to modify Journeymap's server options!"));
+        player.sendMessage((ITextComponent)new TextComponentString("You do not have permission to modify Journeymap's server options!"));
         return null;
     }
 
@@ -72,7 +72,7 @@ extends CompressedPacket {
             DimensionProperties dimensionProperties = PropertiesManager.getInstance().getDimProperties(d);
             dim.addProperty("enabled", dimensionProperties.enabled.get());
             dim.addProperty("dimId", (Number)d);
-            dim.addProperty("dimName", DimensionManager.getProviderType((int)d).func_186065_b());
+            dim.addProperty("dimName", DimensionManager.getProviderType((int)d).getName());
             this.getCommonProperties(dimensionProperties, dim);
             dimensionConfigs.add((JsonElement)dim);
         }

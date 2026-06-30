@@ -48,28 +48,28 @@ implements LayerRenderer<AbstractClientPlayer> {
         ItemStack itemstack;
         PlayerData data = (PlayerData)BenderHelper.getData(player, (RenderLivingBase<? extends EntityLivingBase>)this.playerRenderer);
         assert (data != null);
-        if (player.func_152122_n() && !player.func_82150_aj() && player.func_175148_a(EnumPlayerModelParts.CAPE) && player.func_110303_q() != null && (itemstack = player.func_184582_a(EntityEquipmentSlot.CHEST)).func_77973_b() != Items.field_185160_cR) {
-            GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-            this.playerRenderer.func_110776_a(player.func_110303_q());
-            GlStateManager.func_179094_E();
-            if (player.func_70093_af()) {
-                if (player.field_71075_bZ.field_75100_b) {
-                    GlStateManager.func_179109_b((float)0.0f, (float)(4.0f * scale), (float)0.0f);
+        if (player.hasPlayerInfo() && !player.isInvisible() && player.isWearing(EnumPlayerModelParts.CAPE) && player.getLocationCape() != null && (itemstack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST)).getItem() != Items.ELYTRA) {
+            GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            this.playerRenderer.bindTexture(player.getLocationCape());
+            GlStateManager.pushMatrix();
+            if (player.isSneaking()) {
+                if (player.capabilities.isFlying) {
+                    GlStateManager.translate((float)0.0f, (float)(4.0f * scale), (float)0.0f);
                 } else {
-                    GlStateManager.func_179109_b((float)0.0f, (float)(4.0f * scale), (float)0.0f);
+                    GlStateManager.translate((float)0.0f, (float)(4.0f * scale), (float)0.0f);
                 }
             }
             data.body.applyLocalTransform(0.0625f);
-            GlStateManager.func_179109_b((float)0.0f, (float)(-12.0f * scale), (float)(2.2f * scale));
+            GlStateManager.translate((float)0.0f, (float)(-12.0f * scale), (float)(2.2f * scale));
             data.cape.applyLocalTransform(0.0625f);
-            GlStateManager.func_179114_b((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
             this.capeRenderer.applyAnimation(data);
             this.capeRenderer.render(0.0625f);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
-    public boolean func_177142_b() {
+    public boolean shouldCombineTextures() {
         return false;
     }
 }

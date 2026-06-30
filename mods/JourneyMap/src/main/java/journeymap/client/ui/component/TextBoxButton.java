@@ -30,40 +30,40 @@ extends Button {
     }
 
     public String getText() {
-        return this.textBox.func_146179_b();
+        return this.textBox.getText();
     }
 
     public String getSelectedText() {
-        return this.textBox.func_146207_c();
+        return this.textBox.getSelectedText();
     }
 
     @Override
-    public void func_191745_a(Minecraft minecraft, int mouseX, int mouseY, float partialTicks) {
+    public void drawButton(Minecraft minecraft, int mouseX, int mouseY, float partialTicks) {
         this.textBox.setMinLength(1);
         this.textBox.setX(this.getX());
         this.textBox.setY(this.getY());
-        this.textBox.func_146194_f();
+        this.textBox.drawTextBox();
     }
 
     @Override
-    public boolean func_146116_c(Minecraft minecraft, int mouseX, int mouseY) {
-        this.textBox.func_146195_b(true);
-        return this.textBox.func_146192_a(mouseX, mouseY, 0);
+    public boolean mousePressed(Minecraft minecraft, int mouseX, int mouseY) {
+        this.textBox.setFocused(true);
+        return this.textBox.mouseClicked(mouseX, mouseY, 0);
     }
 
     @Override
     public boolean keyTyped(char typedChar, int keyCode) {
-        return this.textBox.func_146201_a(typedChar, keyCode);
+        return this.textBox.textboxKeyTyped(typedChar, keyCode);
     }
 
     @Override
-    public boolean func_146115_a() {
-        return this.textBox.func_146206_l();
+    public boolean isMouseOver() {
+        return this.textBox.isFocused();
     }
 
     @Override
     public void setVisible(boolean visible) {
-        this.textBox.func_146189_e(visible);
+        this.textBox.setVisible(visible);
         super.setVisible(visible);
     }
 
@@ -90,9 +90,9 @@ extends Button {
     @Override
     public int getWidth() {
         if (this.textBox != null) {
-            return this.textBox.func_146200_o();
+            return this.textBox.getWidth();
         }
-        return this.field_146120_f;
+        return this.width;
     }
 
     @Override
@@ -100,11 +100,11 @@ extends Button {
         if (this.textBox != null) {
             return this.textBox.getHeight();
         }
-        return this.field_146121_g;
+        return this.height;
     }
 
     public void setText(String text) {
-        this.textBox.func_146180_a(text);
+        this.textBox.setText(text);
     }
 }
 

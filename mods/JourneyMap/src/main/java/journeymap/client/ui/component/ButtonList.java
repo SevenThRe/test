@@ -156,7 +156,7 @@ extends ArrayList<Button> {
 
     public Button findButton(int id) {
         for (Button button : this) {
-            if (button.field_146127_k != id) continue;
+            if (button.id != id) continue;
             return button;
         }
         return null;
@@ -177,7 +177,7 @@ extends ArrayList<Button> {
         this.hgap = hgap;
         Button last = null;
         for (Button button2 : this) {
-            if (!button2.field_146125_m) continue;
+            if (!button2.visible) continue;
             if (last == null) {
                 if (leftToRight) {
                     button2.rightOf(startX).setY(y);
@@ -325,7 +325,7 @@ extends ArrayList<Button> {
 
     public ButtonList draw(Minecraft minecraft, int mouseX, int mouseY) {
         for (Button button : this) {
-            button.func_191745_a(minecraft, mouseX, mouseY, 0.0f);
+            button.drawButton(minecraft, mouseX, mouseY, 0.0f);
         }
         return this;
     }
@@ -338,7 +338,7 @@ extends ArrayList<Button> {
 
     public void setWidths(int width) {
         for (Button button : this) {
-            button.func_175211_a(width);
+            button.setWidth(width);
         }
     }
 
@@ -380,7 +380,7 @@ extends ArrayList<Button> {
         }
         if (totalWidth < maxTotalWidth && (pad = (maxTotalWidth - totalWidth) / this.size()) > 0) {
             for (Button button : this) {
-                button.func_175211_a(button.getWidth() + pad);
+                button.setWidth(button.getWidth() + pad);
             }
         }
     }
@@ -388,7 +388,7 @@ extends ArrayList<Button> {
     public int getVisibleButtonCount() {
         int count = 0;
         for (Button button : this) {
-            if (!button.field_146125_m) continue;
+            if (!button.visible) continue;
             ++count;
         }
         return count;

@@ -43,57 +43,57 @@ extends InvTweaksGuiSettingsAbstract {
 
     public InvTweaksGuiSettingsAdvanced(Minecraft mc_, GuiScreen parentScreen_, InvTweaksConfig config_) {
         super(mc_, parentScreen_, config_);
-        labelSortOnPickup = I18n.func_135052_a((String)"invtweaks.settings.advanced.sortonpickup", (Object[])new Object[0]);
-        labelEquipArmor = I18n.func_135052_a((String)"invtweaks.settings.advanced.autoequip", (Object[])new Object[0]);
-        labelEnableSounds = I18n.func_135052_a((String)"invtweaks.settings.advanced.sounds", (Object[])new Object[0]);
-        labelChestButtons = I18n.func_135052_a((String)"invtweaks.settings.chestbuttons", (Object[])new Object[0]);
-        labelServerAssist = I18n.func_135052_a((String)"invtweaks.settings.advanced.serverassist", (Object[])new Object[0]);
+        labelSortOnPickup = I18n.format((String)"invtweaks.settings.advanced.sortonpickup", (Object[])new Object[0]);
+        labelEquipArmor = I18n.format((String)"invtweaks.settings.advanced.autoequip", (Object[])new Object[0]);
+        labelEnableSounds = I18n.format((String)"invtweaks.settings.advanced.sounds", (Object[])new Object[0]);
+        labelChestButtons = I18n.format((String)"invtweaks.settings.chestbuttons", (Object[])new Object[0]);
+        labelServerAssist = I18n.format((String)"invtweaks.settings.advanced.serverassist", (Object[])new Object[0]);
     }
 
     @Override
-    public void func_73866_w_() {
-        super.func_73866_w_();
-        List controlList = this.field_146292_n;
+    public void initGui() {
+        super.initGui();
+        List controlList = this.buttonList;
         Point p = new Point();
         int i = 0;
         this.moveToButtonCoords(1, p);
-        controlList.add(new GuiButton(100, p.getX() + 55, this.field_146295_m / 6 + 144, I18n.func_135052_a((String)"invtweaks.settings.advanced.mappingsfile", (Object[])new Object[0])));
+        controlList.add(new GuiButton(100, p.getX() + 55, this.height / 6 + 144, I18n.format((String)"invtweaks.settings.advanced.mappingsfile", (Object[])new Object[0])));
         i += 2;
         this.moveToButtonCoords(i++, p);
-        InvTweaksGuiTooltipButton sortOnPickupBtn = new InvTweaksGuiTooltipButton(1, p.getX(), p.getY(), this.computeBooleanButtonLabel("enableSortingOnPickup", labelSortOnPickup), I18n.func_135052_a((String)"invtweaks.settings.advanced.sortonpickup.tooltip", (Object[])new Object[0]));
+        InvTweaksGuiTooltipButton sortOnPickupBtn = new InvTweaksGuiTooltipButton(1, p.getX(), p.getY(), this.computeBooleanButtonLabel("enableSortingOnPickup", labelSortOnPickup), I18n.format((String)"invtweaks.settings.advanced.sortonpickup.tooltip", (Object[])new Object[0]));
         controlList.add(sortOnPickupBtn);
         this.moveToButtonCoords(i++, p);
-        InvTweaksGuiTooltipButton enableSoundsBtn = new InvTweaksGuiTooltipButton(3, p.getX(), p.getY(), this.computeBooleanButtonLabel("enableSounds", labelEnableSounds), I18n.func_135052_a((String)"invtweaks.settings.advanced.sounds.tooltip", (Object[])new Object[0]));
+        InvTweaksGuiTooltipButton enableSoundsBtn = new InvTweaksGuiTooltipButton(3, p.getX(), p.getY(), this.computeBooleanButtonLabel("enableSounds", labelEnableSounds), I18n.format((String)"invtweaks.settings.advanced.sounds.tooltip", (Object[])new Object[0]));
         controlList.add(enableSoundsBtn);
         this.moveToButtonCoords(i++, p);
-        controlList.add(new InvTweaksGuiTooltipButton(4, p.getX(), p.getY(), this.computeBooleanButtonLabel("showChestButtons", labelChestButtons), I18n.func_135052_a((String)"invtweaks.settings.chestbuttons.tooltip", (Object[])new Object[0])));
+        controlList.add(new InvTweaksGuiTooltipButton(4, p.getX(), p.getY(), this.computeBooleanButtonLabel("showChestButtons", labelChestButtons), I18n.format((String)"invtweaks.settings.chestbuttons.tooltip", (Object[])new Object[0])));
         this.moveToButtonCoords(i++, p);
-        InvTweaksGuiTooltipButton autoEquipArmorBtn = new InvTweaksGuiTooltipButton(2, p.getX(), p.getY(), this.computeBooleanButtonLabel("enableAutoEquipArmor", labelEquipArmor), I18n.func_135052_a((String)"invtweaks.settings.advanced.autoequip.tooltip", (Object[])new Object[0]));
+        InvTweaksGuiTooltipButton autoEquipArmorBtn = new InvTweaksGuiTooltipButton(2, p.getX(), p.getY(), this.computeBooleanButtonLabel("enableAutoEquipArmor", labelEquipArmor), I18n.format((String)"invtweaks.settings.advanced.autoequip.tooltip", (Object[])new Object[0]));
         controlList.add(autoEquipArmorBtn);
         this.moveToButtonCoords(i++, p);
-        InvTweaksGuiTooltipButton serverAssistBtn = new InvTweaksGuiTooltipButton(5, p.getX(), p.getY(), this.computeBooleanButtonLabel("enableServerItemSwap", labelServerAssist), I18n.func_135052_a((String)"invtweaks.settings.advanced.serverassist.tooltip", (Object[])new Object[0]));
+        InvTweaksGuiTooltipButton serverAssistBtn = new InvTweaksGuiTooltipButton(5, p.getX(), p.getY(), this.computeBooleanButtonLabel("enableServerItemSwap", labelServerAssist), I18n.format((String)"invtweaks.settings.advanced.serverassist.tooltip", (Object[])new Object[0]));
         controlList.add(serverAssistBtn);
         if (!Desktop.isDesktopSupported()) {
             controlList.stream().forEach(button -> {
-                if (button.field_146127_k == 100) {
-                    button.field_146124_l = false;
+                if (button.id == 100) {
+                    button.enabled = false;
                 }
             });
         }
-        this.field_146292_n = controlList;
+        this.buttonList = controlList;
     }
 
     @Override
-    public void func_73863_a(int i, int j, float f) {
-        super.func_73863_a(i, j, f);
-        int x = this.field_146294_l / 2;
-        this.func_73732_a(this.obf.getFontRenderer(), I18n.func_135052_a((String)"invtweaks.settings.pvpwarning.pt1", (Object[])new Object[0]), x, 40, 0x999999);
-        this.func_73732_a(this.obf.getFontRenderer(), I18n.func_135052_a((String)"invtweaks.settings.pvpwarning.pt2", (Object[])new Object[0]), x, 50, 0x999999);
+    public void drawScreen(int i, int j, float f) {
+        super.drawScreen(i, j, f);
+        int x = this.width / 2;
+        this.drawCenteredString(this.obf.getFontRenderer(), I18n.format((String)"invtweaks.settings.pvpwarning.pt1", (Object[])new Object[0]), x, 40, 0x999999);
+        this.drawCenteredString(this.obf.getFontRenderer(), I18n.format((String)"invtweaks.settings.pvpwarning.pt2", (Object[])new Object[0]), x, 50, 0x999999);
     }
 
     @Override
-    protected void func_146284_a(@NotNull GuiButton guibutton) {
-        switch (guibutton.field_146127_k) {
+    protected void actionPerformed(@NotNull GuiButton guibutton) {
+        switch (guibutton.id) {
             case 1: {
                 this.toggleBooleanButton(guibutton, "enableSortingOnPickup", labelSortOnPickup);
                 break;
@@ -125,7 +125,7 @@ extends InvTweaksGuiSettingsAbstract {
                 break;
             }
             case 200: {
-                this.obf.displayGuiScreen(new InvTweaksGuiSettings(this.field_146297_k, this.parentScreen, this.config));
+                this.obf.displayGuiScreen(new InvTweaksGuiSettings(this.mc, this.parentScreen, this.config));
             }
         }
     }

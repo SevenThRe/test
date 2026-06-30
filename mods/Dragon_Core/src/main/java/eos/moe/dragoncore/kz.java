@@ -40,7 +40,7 @@ public class kz {
 
     public static BufferedImage ALLATORIxDEMO(ResourceLocation a2) throws IOException {
         try {
-            InputStream a3 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a2).func_110527_b();
+            InputStream a3 = Minecraft.getMinecraft().getResourceManager().getResource(a2).getInputStream();
             return ImageIO.read(a3);
         }
         catch (IOException a4) {

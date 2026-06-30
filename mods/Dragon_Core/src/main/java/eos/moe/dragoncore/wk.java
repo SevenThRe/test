@@ -40,7 +40,7 @@ implements v {
 
     @Override
     public ItemStack ALLATORIxDEMO() {
-        return ItemStack.field_190927_a;
+        return ItemStack.EMPTY;
     }
 
     @Override

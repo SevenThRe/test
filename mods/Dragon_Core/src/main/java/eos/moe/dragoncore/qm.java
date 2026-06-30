@@ -57,7 +57,7 @@ import org.lwjgl.opengl.GL11;
 
 public class qm
 extends Gui {
-    private Minecraft e = Minecraft.func_71410_x();
+    private Minecraft e = Minecraft.getMinecraft();
     private yh n;
     private List<sk> j;
     private le[] i;
@@ -94,7 +94,7 @@ extends Gui {
 
     public qm(yh a2) {
         qm a3;
-        a3.t = Minecraft.func_71410_x().field_71466_p.field_78288_b + 2;
+        a3.t = Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 2;
         a3.n = a2;
         a3.x = -1;
         a3.y = -1;
@@ -157,7 +157,7 @@ extends Gui {
             a3.l[15].setEnabled(ov.c != null);
         } else if (a2.ALLATORIxDEMO().ALLATORIxDEMO() instanceof NBTTagList) {
             if (a2.c()) {
-                byte a6 = ((fi)((ph)a2.ALLATORIxDEMO().get(0)).ALLATORIxDEMO()).ALLATORIxDEMO().func_74732_a();
+                byte a6 = ((fi)((ph)a2.ALLATORIxDEMO().get(0)).ALLATORIxDEMO()).ALLATORIxDEMO().getId();
                 for (bl a7 : a3.l) {
                     a7.setEnabled(false);
                 }
@@ -166,7 +166,7 @@ extends Gui {
                 a3.l[11].setEnabled(!(((fi)((ph)((Object)a2.ALLATORIxDEMO())).ALLATORIxDEMO()).ALLATORIxDEMO() instanceof NBTTagList));
                 a3.l[13].setEnabled(true);
                 a3.l[14].setEnabled(true);
-                a3.l[15].setEnabled(ov.c != null && ov.c.ALLATORIxDEMO().func_74732_a() == a6);
+                a3.l[15].setEnabled(ov.c != null && ov.c.ALLATORIxDEMO().getId() == a6);
             } else {
                 for (bl a8 : a3.l) {
                     a8.setEnabled(true);
@@ -336,7 +336,7 @@ extends Gui {
             } else {
                 a4.x = -1;
             }
-            qm.func_73734_a((int)(a4.m - 20), (int)29, (int)a4.m, (int)a4.v, (int)Integer.MIN_VALUE);
+            qm.drawRect((int)(a4.m - 20), (int)29, (int)a4.m, (int)a4.v, (int)Integer.MIN_VALUE);
             int a8 = (a4.v - 29) * (a4.v - 29) / a4.ALLATORIxDEMO();
             if (a8 < 32) {
                 a8 = 32;
@@ -347,26 +347,26 @@ extends Gui {
             if ((a5 = -a4.b * (a4.v - 29 - a8) / a4.q + 29) < 29) {
                 a5 = 29;
             }
-            a4.func_73733_a(a4.m - 20, a5, a4.m, a5 + a8, -2130706433, -2144128205);
+            a4.drawGradientRect(a4.m - 20, a5, a4.m, a5 + a8, -2130706433, -2144128205);
         }
     }
 
     public void overlayBackground(int a2, int a3, int a4, int a5) {
         qm a6;
-        Tessellator a7 = Tessellator.func_178181_a();
-        BufferBuilder a8 = a7.func_178180_c();
-        a6.e.field_71446_o.func_110577_a(field_110325_k);
+        Tessellator a7 = Tessellator.getInstance();
+        BufferBuilder a8 = a7.getBuffer();
+        a6.e.renderEngine.bindTexture(OPTIONS_BACKGROUND);
         GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         float a9 = 32.0f;
-        a8.func_181668_a(7, DefaultVertexFormats.field_181706_f);
+        a8.begin(7, DefaultVertexFormats.POSITION_COLOR);
         Color a10 = new Color(0x404040);
-        a8.func_181669_b(a10.getRed(), a10.getGreen(), a10.getBlue(), a5);
-        a8.func_181662_b(0.0, (double)a3, 0.0).func_187315_a(0.0, (double)((float)a3 / a9));
-        a8.func_181662_b((double)a6.m, (double)a3, 0.0).func_187315_a((double)((float)a6.m / a9), (double)((float)a3 / a9));
-        a8.func_181669_b(a10.getRed(), a10.getGreen(), a10.getBlue(), a4);
-        a8.func_181662_b((double)a6.m, (double)a2, 0.0).func_187315_a((double)((float)a6.m / a9), (double)((float)a2 / a9));
-        a8.func_181662_b(0.0, (double)a2, 0.0).func_187315_a(0.0, (double)((float)a2 / a9));
-        a7.func_78381_a();
+        a8.color(a10.getRed(), a10.getGreen(), a10.getBlue(), a5);
+        a8.pos(0.0, (double)a3, 0.0).tex(0.0, (double)((float)a3 / a9));
+        a8.pos((double)a6.m, (double)a3, 0.0).tex((double)((float)a6.m / a9), (double)((float)a3 / a9));
+        a8.color(a10.getRed(), a10.getGreen(), a10.getBlue(), a4);
+        a8.pos((double)a6.m, (double)a2, 0.0).tex((double)((float)a6.m / a9), (double)((float)a2 / a9));
+        a8.pos(0.0, (double)a2, 0.0).tex(0.0, (double)((float)a2 / a9));
+        a7.draw();
     }
 
     public void mouseClicked(int a2, int a3) {
@@ -390,7 +390,7 @@ extends Gui {
                     if (gui.inBoundsOfX(a2, a3)) {
                         gui.reset();
                         ov.ALLATORIxDEMO().c();
-                        a4.e.func_147118_V().func_147682_a((ISound)PositionedSoundRecord.func_184371_a((SoundEvent)SoundEvents.field_187909_gi, (float)1.0f));
+                        a4.e.getSoundHandler().playSound((ISound)PositionedSoundRecord.getMasterRecord((SoundEvent)SoundEvents.UI_BUTTON_CLICK, (float)1.0f));
                         return;
                     }
                     if (!gui.inBounds(a2, a3)) continue;
@@ -419,24 +419,24 @@ extends Gui {
 
     private /* synthetic */ void ALLATORIxDEMO(le a2) {
         qm a3;
-        if (a2.m.ALLATORIxDEMO.func_82582_d()) {
+        if (a2.m.ALLATORIxDEMO.isEmpty()) {
             ph<fi> a4 = a3.o == null ? a3.n.ALLATORIxDEMO() : a3.o;
             NBTBase a5 = a4.ALLATORIxDEMO().ALLATORIxDEMO();
             String a6 = a4.ALLATORIxDEMO().ALLATORIxDEMO();
             if (a5 instanceof NBTTagList) {
                 NBTTagList a7 = new NBTTagList();
                 a3.n.ALLATORIxDEMO(a4, a7);
-                a2.m.ALLATORIxDEMO.func_74782_a(a6, (NBTBase)a7);
+                a2.m.ALLATORIxDEMO.setTag(a6, (NBTBase)a7);
             } else if (a5 instanceof NBTTagCompound) {
                 NBTTagCompound a8 = new NBTTagCompound();
                 a3.n.ALLATORIxDEMO(a4, a8);
-                a2.m.ALLATORIxDEMO.func_74782_a(a6, (NBTBase)a8);
+                a2.m.ALLATORIxDEMO.setTag(a6, (NBTBase)a8);
             } else {
-                a2.m.ALLATORIxDEMO.func_74782_a(a6, a5.func_74737_b());
+                a2.m.ALLATORIxDEMO.setTag(a6, a5.copy());
             }
             a2.saved();
             ov.ALLATORIxDEMO().c();
-            a3.e.func_147118_V().func_147682_a((ISound)PositionedSoundRecord.func_184371_a((SoundEvent)SoundEvents.field_187909_gi, (float)1.0f));
+            a3.e.getSoundHandler().playSound((ISound)PositionedSoundRecord.getMasterRecord((SoundEvent)SoundEvents.UI_BUTTON_CLICK, (float)1.0f));
         } else {
             Map<String, NBTBase> a9 = bp.ALLATORIxDEMO(a2.m.ALLATORIxDEMO);
             if (a9.isEmpty()) {
@@ -449,12 +449,12 @@ extends Gui {
                 Map.Entry<String, NBTBase> a10 = a9.entrySet().iterator().next();
                 assert (a10 != null);
                 String a11 = a10.getKey();
-                NBTBase a12 = a10.getValue().func_74737_b();
+                NBTBase a12 = a10.getValue().copy();
                 if (a3.o == a3.n.ALLATORIxDEMO() && a12 instanceof NBTTagCompound && a11.equals("ROOT")) {
                     a3.c(null);
                     a3.n = new yh((NBTTagCompound)a12);
                     a3.initGUI();
-                    a3.e.func_147118_V().func_147682_a((ISound)PositionedSoundRecord.func_184371_a((SoundEvent)SoundEvents.field_187909_gi, (float)1.0f));
+                    a3.e.getSoundHandler().playSound((ISound)PositionedSoundRecord.getMasterRecord((SoundEvent)SoundEvents.UI_BUTTON_CLICK, (float)1.0f));
                 } else if (a3.ALLATORIxDEMO(a3.o.ALLATORIxDEMO().ALLATORIxDEMO(), a12)) {
                     a3.o.ALLATORIxDEMO(true);
                     Object a13 = a3.o.ALLATORIxDEMO().iterator();
@@ -468,7 +468,7 @@ extends Gui {
                     a3.n.c((ph<fi>)a13);
                     a3.c((ph<fi>)a13);
                     a3.initGUI(true);
-                    a3.e.func_147118_V().func_147682_a((ISound)PositionedSoundRecord.func_184371_a((SoundEvent)SoundEvents.field_187909_gi, (float)1.0f));
+                    a3.e.getSoundHandler().playSound((ISound)PositionedSoundRecord.getMasterRecord((SoundEvent)SoundEvents.UI_BUTTON_CLICK, (float)1.0f));
                 }
             }
         }
@@ -608,7 +608,7 @@ extends Gui {
         }
         if (a2 instanceof NBTTagList) {
             NBTTagList a4 = (NBTTagList)a2;
-            return a4.func_74745_c() == 0 || a4.func_150303_d() == a3.func_74732_a();
+            return a4.tagCount() == 0 || a4.getTagType() == a3.getId();
         }
         return false;
     }
@@ -765,13 +765,13 @@ extends Gui {
         if (a4.y != -1) {
             a4.i[a4.y].keyTyped(a2, a3);
         } else {
-            if (a3 == 46 && GuiControls.func_146271_m()) {
+            if (a3 == 46 && GuiControls.isCtrlKeyDown()) {
                 a4.f();
             }
-            if (a3 == 47 && GuiControls.func_146271_m() && a4.ALLATORIxDEMO()) {
+            if (a3 == 47 && GuiControls.isCtrlKeyDown() && a4.ALLATORIxDEMO()) {
                 a4.x();
             }
-            if (a3 == 45 && GuiControls.func_146271_m()) {
+            if (a3 == 45 && GuiControls.isCtrlKeyDown()) {
                 a4.c();
             }
         }
@@ -797,7 +797,7 @@ extends Gui {
     }
 
     private /* synthetic */ void ALLATORIxDEMO(BufferBuilder a2, int a3, int a4) {
-        int a5 = a2.func_78909_a(a4);
+        int a5 = a2.getColorIndex(a4);
         int a6 = a3 >> 16 & 0xFF;
         int a7 = a3 >> 8 & 0xFF;
         int a8 = a3 & 0xFF;

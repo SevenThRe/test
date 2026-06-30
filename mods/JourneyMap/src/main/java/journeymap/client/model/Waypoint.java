@@ -116,7 +116,7 @@ implements Serializable {
     }
 
     public Waypoint(String name, BlockPos pos, Color color, Type type, Integer currentDimension) {
-        this(name, pos.func_177958_n(), pos.func_177956_o(), pos.func_177952_p(), true, color.getRed(), color.getGreen(), color.getBlue(), type, "journeymap", currentDimension, Arrays.asList(currentDimension));
+        this(name, pos.getX(), pos.getY(), pos.getZ(), true, color.getRed(), color.getGreen(), color.getBlue(), type, "journeymap", currentDimension, Arrays.asList(currentDimension));
     }
 
     public Waypoint(String name, int x, int y, int z, boolean enable, int red, int green, int blue, Type type, String origin, Integer currentDimension, Collection<Integer> dimensions) {
@@ -125,7 +125,7 @@ implements Serializable {
         }
         if (dimensions == null || dimensions.size() == 0) {
             dimensions = new TreeSet<Integer>();
-            dimensions.add(FMLClientHandler.instance().getClient().field_71439_g.field_70170_p.field_73011_w.getDimension());
+            dimensions.add(FMLClientHandler.instance().getClient().player.world.provider.getDimension());
         }
         this.dimensions = new TreeSet<Integer>(dimensions);
         this.dimensions.add(currentDimension);
@@ -150,8 +150,8 @@ implements Serializable {
     }
 
     public static Waypoint of(EntityPlayer player) {
-        BlockPos blockPos = new BlockPos(MathHelper.func_76128_c((double)player.field_70165_t), MathHelper.func_76128_c((double)player.field_70163_u), MathHelper.func_76128_c((double)player.field_70161_v));
-        return Waypoint.at(blockPos, Type.Normal, FMLClientHandler.instance().getClient().field_71439_g.field_70170_p.field_73011_w.getDimension());
+        BlockPos blockPos = new BlockPos(MathHelper.floor((double)player.posX), MathHelper.floor((double)player.posY), MathHelper.floor((double)player.posZ));
+        return Waypoint.at(blockPos, Type.Normal, FMLClientHandler.instance().getClient().player.world.provider.getDimension());
     }
 
     public static Waypoint at(BlockPos blockPos, Type type, int dimension) {
@@ -163,7 +163,7 @@ implements Serializable {
             String timeDate = simpleDateFormat.format(now);
             name = String.format("%s %s", Constants.getString("jm.waypoint.deathpoint"), timeDate);
         } else {
-            name = Waypoint.createName(blockPos.func_177958_n(), blockPos.func_177952_p());
+            name = Waypoint.createName(blockPos.getX(), blockPos.getZ());
         }
         Waypoint waypoint = new Waypoint(name, blockPos, Color.white, type, dimension);
         waypoint.setRandomColor();
@@ -265,7 +265,7 @@ implements Serializable {
     }
 
     public boolean isInPlayerDimension() {
-        return this.dimensions.contains(FMLClientHandler.instance().getClient().field_71439_g.field_70170_p.field_73011_w.getDimension());
+        return this.dimensions.contains(FMLClientHandler.instance().getClient().player.world.provider.getDimension());
     }
 
     public String getId() {
@@ -295,7 +295,7 @@ implements Serializable {
     }
 
     public int getX() {
-        if (this.mc != null && this.mc.field_71439_g != null && this.mc.field_71439_g.field_71093_bK == -1) {
+        if (this.mc != null && this.mc.player != null && this.mc.player.dimension == -1) {
             return this.x / 8;
         }
         return this.x;
@@ -314,7 +314,7 @@ implements Serializable {
     }
 
     public int getZ() {
-        if (this.mc != null && this.mc.field_71439_g != null && this.mc.field_71439_g.field_71093_bK == -1) {
+        if (this.mc != null && this.mc.player != null && this.mc.player.dimension == -1) {
             return this.z / 8;
         }
         return this.z;

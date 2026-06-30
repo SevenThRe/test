@@ -71,9 +71,9 @@ public final class PolygonsKt {
                 Pair[] pairArray = new Pair[3];
                 BlockPos blockPos = point;
                 Intrinsics.checkExpressionValueIsNotNull(blockPos, "point");
-                pairArray[0] = TuplesKt.to("x", blockPos.func_177958_n());
-                pairArray[1] = TuplesKt.to("y", point.func_177956_o());
-                pairArray[2] = TuplesKt.to("z", point.func_177952_p());
+                pairArray[0] = TuplesKt.to("x", blockPos.getX());
+                pairArray[1] = TuplesKt.to("y", point.getY());
+                pairArray[2] = TuplesKt.to("z", point.getZ());
                 points.add(MapsKt.mapOf(pairArray));
             }
             $i$f$forEach = false;
@@ -88,9 +88,9 @@ public final class PolygonsKt {
                         Pair[] pairArray = new Pair[3];
                         BlockPos blockPos = holePoint;
                         Intrinsics.checkExpressionValueIsNotNull(blockPos, "holePoint");
-                        pairArray[0] = TuplesKt.to("x", blockPos.func_177958_n());
-                        pairArray[1] = TuplesKt.to("y", holePoint.func_177956_o());
-                        pairArray[2] = TuplesKt.to("z", holePoint.func_177952_p());
+                        pairArray[0] = TuplesKt.to("x", blockPos.getX());
+                        pairArray[1] = TuplesKt.to("y", holePoint.getY());
+                        pairArray[2] = TuplesKt.to("z", holePoint.getZ());
                         holePoints.add(MapsKt.mapOf(pairArray));
                     }
                     holes.add(holePoints);

@@ -46,20 +46,20 @@ implements ITickableTextureObject {
 
     public static void bindTexture(ResourceLocation location, int ticks, float partialTicks) {
         ITextureObject object;
-        TextureManager textures = Minecraft.func_71410_x().field_71446_o;
-        if (location.func_110623_a().endsWith("gif") && (object = textures.func_110581_b(location)) instanceof GifTexture) {
+        TextureManager textures = Minecraft.getMinecraft().renderEngine;
+        if (location.getPath().endsWith("gif") && (object = textures.getTexture(location)) instanceof GifTexture) {
             GifTexture texture = (GifTexture)object;
             int lastIndex = texture.index;
             if (ticks >= 0) {
                 texture.calculateIndex(ticks, partialTicks);
             }
-            GlStateManager.func_179144_i((int)texture.func_110552_b());
+            GlStateManager.bindTexture((int)texture.getGlTextureId());
             if (ticks >= 0) {
                 texture.index = lastIndex;
             }
             return;
         }
-        textures.func_110577_a(location);
+        textures.bindTexture(location);
     }
 
     public static void updateTick() {
@@ -81,12 +81,12 @@ implements ITickableTextureObject {
         }
     }
 
-    public void func_110551_a(IResourceManager resourceManager) throws IOException {
+    public void loadTexture(IResourceManager resourceManager) throws IOException {
     }
 
-    public void func_110550_d() {
-        Minecraft mc2 = Minecraft.func_71410_x();
-        if (mc2.field_71439_g == null) {
+    public void tick() {
+        Minecraft mc2 = Minecraft.getMinecraft();
+        if (mc2.player == null) {
             return;
         }
         this.calculateIndex(globalTick, 0.0f);
@@ -106,14 +106,14 @@ implements ITickableTextureObject {
         }
     }
 
-    public int func_110552_b() {
+    public int getGlTextureId() {
         if (this.index < 0 || this.index >= this.elements.size()) {
             return -1;
         }
         return this.elements.get((int)this.index).id;
     }
 
-    public void func_147631_c() {
+    public void deleteGlTexture() {
         for (GifElement element : this.elements) {
             GL11.glDeleteTextures((int)element.id);
             element.id = -1;
@@ -127,7 +127,7 @@ implements ITickableTextureObject {
         public GifElement(int delay, int w2, int h2, ByteBuffer buffer) {
             this.delay = delay;
             this.id = GL11.glGenTextures();
-            GlStateManager.func_179144_i((int)this.id);
+            GlStateManager.bindTexture((int)this.id);
             GL11.glTexParameteri((int)3553, (int)10241, (int)9728);
             GL11.glTexParameteri((int)3553, (int)10240, (int)9728);
             GL11.glTexImage2D((int)3553, (int)0, (int)32856, (int)w2, (int)h2, (int)0, (int)6408, (int)5121, (ByteBuffer)buffer);

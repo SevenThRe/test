@@ -97,7 +97,7 @@ extends gt<E> {
         } else {
             a2.ALLATORIxDEMO = false;
         }
-        if (((EntityLivingBase)a2.s).field_82175_bq) {
+        if (((EntityLivingBase)a2.s).isSwingInProgress) {
             if (!a2.k || a2.b > 5.0f) {
                 a2.x();
                 a2.k = true;
@@ -134,55 +134,55 @@ extends gt<E> {
 
     public float x() {
         yu a2;
-        return a2.ALLATORIxDEMO().func_185119_l() + 180.0f;
+        return a2.ALLATORIxDEMO().getHorizontalAngle() + 180.0f;
     }
 
     @Override
     public EnumFacing ALLATORIxDEMO() {
         yu a2;
-        BlockPos a3 = new BlockPos(Math.floor(((EntityLivingBase)a2.s).field_70165_t), Math.floor(((EntityLivingBase)a2.s).field_70163_u), Math.floor(((EntityLivingBase)a2.s).field_70161_v));
-        IBlockState a4 = ((EntityLivingBase)a2.s).field_70170_p.func_180495_p(a3);
-        IBlockState a5 = ((EntityLivingBase)a2.s).field_70170_p.func_180495_p(a3.func_177982_a(0, -1, 0));
-        IBlockState a6 = ((EntityLivingBase)a2.s).field_70170_p.func_180495_p(a3.func_177982_a(0, -2, 0));
-        if (a4.func_177230_c() instanceof BlockLadder) {
-            return (EnumFacing)a4.func_177229_b((IProperty)BlockLadder.field_176382_a);
+        BlockPos a3 = new BlockPos(Math.floor(((EntityLivingBase)a2.s).posX), Math.floor(((EntityLivingBase)a2.s).posY), Math.floor(((EntityLivingBase)a2.s).posZ));
+        IBlockState a4 = ((EntityLivingBase)a2.s).world.getBlockState(a3);
+        IBlockState a5 = ((EntityLivingBase)a2.s).world.getBlockState(a3.add(0, -1, 0));
+        IBlockState a6 = ((EntityLivingBase)a2.s).world.getBlockState(a3.add(0, -2, 0));
+        if (a4.getBlock() instanceof BlockLadder) {
+            return (EnumFacing)a4.getValue((IProperty)BlockLadder.FACING);
         }
-        if (a5.func_177230_c() instanceof BlockLadder) {
-            return (EnumFacing)a5.func_177229_b((IProperty)BlockLadder.field_176382_a);
+        if (a5.getBlock() instanceof BlockLadder) {
+            return (EnumFacing)a5.getValue((IProperty)BlockLadder.FACING);
         }
-        if (a6.func_177230_c() instanceof BlockLadder) {
-            return (EnumFacing)a6.func_177229_b((IProperty)BlockLadder.field_176382_a);
+        if (a6.getBlock() instanceof BlockLadder) {
+            return (EnumFacing)a6.getValue((IProperty)BlockLadder.FACING);
         }
         return EnumFacing.NORTH;
     }
 
     public boolean w() {
         yu a2;
-        if (a2.s == null || ((EntityLivingBase)a2.s).field_70170_p == null) {
+        if (a2.s == null || ((EntityLivingBase)a2.s).world == null) {
             return false;
         }
-        BlockPos a3 = new BlockPos(Math.floor(((EntityLivingBase)a2.s).field_70165_t), Math.floor(((EntityLivingBase)a2.s).field_70163_u), Math.floor(((EntityLivingBase)a2.s).field_70161_v));
-        IBlockState a4 = ((EntityLivingBase)a2.s).field_70170_p.func_180495_p(a3);
-        IBlockState a5 = ((EntityLivingBase)a2.s).field_70170_p.func_180495_p(a3.func_177982_a(0, -1, 0));
-        IBlockState a6 = ((EntityLivingBase)a2.s).field_70170_p.func_180495_p(a3.func_177982_a(0, -2, 0));
-        if (!((EntityLivingBase)a2.s).func_70617_f_() || a2.x()) {
+        BlockPos a3 = new BlockPos(Math.floor(((EntityLivingBase)a2.s).posX), Math.floor(((EntityLivingBase)a2.s).posY), Math.floor(((EntityLivingBase)a2.s).posZ));
+        IBlockState a4 = ((EntityLivingBase)a2.s).world.getBlockState(a3);
+        IBlockState a5 = ((EntityLivingBase)a2.s).world.getBlockState(a3.add(0, -1, 0));
+        IBlockState a6 = ((EntityLivingBase)a2.s).world.getBlockState(a3.add(0, -2, 0));
+        if (!((EntityLivingBase)a2.s).isOnLadder() || a2.x()) {
             return false;
         }
-        boolean a7 = a4.func_177230_c() instanceof BlockLadder || a5.func_177230_c() instanceof BlockLadder || a6.func_177230_c() instanceof BlockLadder;
-        boolean a8 = a4.func_177230_c() instanceof BlockVine || a5.func_177230_c() instanceof BlockVine || a6.func_177230_c() instanceof BlockVine;
+        boolean a7 = a4.getBlock() instanceof BlockLadder || a5.getBlock() instanceof BlockLadder || a6.getBlock() instanceof BlockLadder;
+        boolean a8 = a4.getBlock() instanceof BlockVine || a5.getBlock() instanceof BlockVine || a6.getBlock() instanceof BlockVine;
         return a7 || a8;
     }
 
     public float c() {
         yu a2;
-        float a3 = (float)(((EntityLivingBase)a2.s).field_70163_u + (((EntityLivingBase)a2.s).field_70163_u - ((EntityLivingBase)a2.s).field_70167_r) * (double)ls.y);
-        BlockPos a4 = new BlockPos(Math.floor(((EntityLivingBase)a2.s).field_70165_t), Math.floor(((EntityLivingBase)a2.s).field_70163_u), Math.floor(((EntityLivingBase)a2.s).field_70161_v));
-        IBlockState a5 = ((EntityLivingBase)a2.s).field_70170_p.func_180495_p(a4.func_177982_a(0, 2, 0));
-        IBlockState a6 = ((EntityLivingBase)a2.s).field_70170_p.func_180495_p(a4.func_177982_a(0, 1, 0));
-        IBlockState a7 = ((EntityLivingBase)a2.s).field_70170_p.func_180495_p(a4.func_177982_a(0, 0, 0));
-        if (!(a5.func_177230_c() instanceof BlockLadder)) {
-            if (!(a6.func_177230_c() instanceof BlockLadder)) {
-                if (!(a7.func_177230_c() instanceof BlockLadder)) {
+        float a3 = (float)(((EntityLivingBase)a2.s).posY + (((EntityLivingBase)a2.s).posY - ((EntityLivingBase)a2.s).prevPosY) * (double)ls.y);
+        BlockPos a4 = new BlockPos(Math.floor(((EntityLivingBase)a2.s).posX), Math.floor(((EntityLivingBase)a2.s).posY), Math.floor(((EntityLivingBase)a2.s).posZ));
+        IBlockState a5 = ((EntityLivingBase)a2.s).world.getBlockState(a4.add(0, 2, 0));
+        IBlockState a6 = ((EntityLivingBase)a2.s).world.getBlockState(a4.add(0, 1, 0));
+        IBlockState a7 = ((EntityLivingBase)a2.s).world.getBlockState(a4.add(0, 0, 0));
+        if (!(a5.getBlock() instanceof BlockLadder)) {
+            if (!(a6.getBlock() instanceof BlockLadder)) {
+                if (!(a7.getBlock() instanceof BlockLadder)) {
                     return a3 - (float)((int)a3) + 2.0f;
                 }
                 return a3 - (float)((int)a3) + 1.0f;
@@ -194,10 +194,10 @@ extends gt<E> {
 
     public boolean z() {
         yu a2;
-        if (((EntityLivingBase)a2.s).func_184605_cv() > 0) {
-            ItemStack a3 = ((EntityLivingBase)a2.s).func_184614_ca();
-            ItemStack a4 = ((EntityLivingBase)a2.s).func_184592_cb();
-            if (!a3.func_190926_b() && a3.func_77975_n() == EnumAction.BOW || !a4.func_190926_b() && a4.func_77975_n() == EnumAction.BOW) {
+        if (((EntityLivingBase)a2.s).getItemInUseCount() > 0) {
+            ItemStack a3 = ((EntityLivingBase)a2.s).getHeldItemMainhand();
+            ItemStack a4 = ((EntityLivingBase)a2.s).getHeldItemOffhand();
+            if (!a3.isEmpty() && a3.getItemUseAction() == EnumAction.BOW || !a4.isEmpty() && a4.getItemUseAction() == EnumAction.BOW) {
                 return true;
             }
         }

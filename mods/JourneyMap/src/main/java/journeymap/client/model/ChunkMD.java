@@ -53,9 +53,9 @@ public class ChunkMD {
         if (chunk == null) {
             throw new IllegalArgumentException("Chunk can't be null");
         }
-        this.coord = new ChunkPos(chunk.field_76635_g, chunk.field_76647_h);
+        this.coord = new ChunkPos(chunk.x, chunk.z);
         this.setProperty(PROP_LOADED, Long.valueOf(System.currentTimeMillis()));
-        this.properties.put(PROP_IS_SLIME_CHUNK, Boolean.valueOf(chunk.func_76617_a(987234911L).nextInt(10) == 0));
+        this.properties.put(PROP_IS_SLIME_CHUNK, Boolean.valueOf(chunk.getRandomWithSeed(987234911L).nextInt(10) == 0));
         this.chunkReference = new WeakReference<Chunk>(chunk);
         if (forceRetain) {
             this.retainedChunk = chunk;
@@ -70,7 +70,7 @@ public class ChunkMD {
     }
 
     public IBlockState getBlockState(BlockPos blockPos) {
-        return JmBlockAccess.INSTANCE.func_180495_p(blockPos);
+        return JmBlockAccess.INSTANCE.getBlockState(blockPos);
     }
 
     public BlockMD getBlockMD(BlockPos blockPos) {
@@ -80,24 +80,24 @@ public class ChunkMD {
     @Nullable
     public Biome getBiome(BlockPos pos) {
         Chunk chunk = this.getChunk();
-        byte[] blockBiomeArray = chunk.func_76605_m();
-        int i = pos.func_177958_n() & 0xF;
-        int j = pos.func_177952_p() & 0xF;
+        byte[] blockBiomeArray = chunk.getBiomeArray();
+        int i = pos.getX() & 0xF;
+        int j = pos.getZ() & 0xF;
         int k = blockBiomeArray[j << 4 | i] & 0xFF;
         if (k == 255) {
-            Biome biome = chunk.func_177412_p().func_72959_q().func_180300_a(pos, null);
+            Biome biome = chunk.getWorld().getBiomeProvider().getBiome(pos, null);
             if (biome == null) {
                 return null;
             }
-            k = Biome.func_185362_a((Biome)biome);
+            k = Biome.getIdForBiome((Biome)biome);
             blockBiomeArray[j << 4 | i] = (byte)(k & 0xFF);
         }
-        return Biome.func_150568_d((int)k);
+        return Biome.getBiome((int)k);
     }
 
     public int getSavedLightValue(int localX, int y, int localZ) {
         try {
-            return this.getChunk().func_177413_a(EnumSkyBlock.BLOCK, this.getBlockPos(localX, y, localZ));
+            return this.getChunk().getLightFor(EnumSkyBlock.BLOCK, this.getBlockPos(localX, y, localZ));
         }
         catch (ArrayIndexOutOfBoundsException e) {
             return 1;
@@ -125,7 +125,7 @@ public class ChunkMD {
                     --y;
                     continue;
                 }
-                if (chunk.func_177444_d(blockPos)) {
+                if (chunk.canSeeSky(blockPos)) {
                     --y;
                     continue;
                 }
@@ -140,25 +140,25 @@ public class ChunkMD {
 
     public boolean hasChunk() {
         Chunk chunk = (Chunk)this.chunkReference.get();
-        boolean result = chunk != null && !(chunk instanceof EmptyChunk) && chunk.func_177410_o();
+        boolean result = chunk != null && !(chunk instanceof EmptyChunk) && chunk.isLoaded();
         return result;
     }
 
     public int getHeight(BlockPos blockPos) {
-        return this.getChunk().func_177433_f(blockPos);
+        return this.getChunk().getHeight(blockPos);
     }
 
     public int getPrecipitationHeight(int localX, int localZ) {
-        return this.getChunk().func_177440_h(this.getBlockPos(localX, 0, localZ)).func_177956_o();
+        return this.getChunk().getPrecipitationHeight(this.getBlockPos(localX, 0, localZ)).getY();
     }
 
     public int getPrecipitationHeight(BlockPos blockPos) {
-        return this.getChunk().func_177440_h(blockPos).func_177956_o();
+        return this.getChunk().getPrecipitationHeight(blockPos).getY();
     }
 
     public int getLightOpacity(BlockMD blockMD, int localX, int y, int localZ) {
         BlockPos pos = this.getBlockPos(localX, y, localZ);
-        return blockMD.getBlockState().func_177230_c().getLightOpacity(blockMD.getBlockState(), (IBlockAccess)JmBlockAccess.INSTANCE, pos);
+        return blockMD.getBlockState().getBlock().getLightOpacity(blockMD.getBlockState(), (IBlockAccess)JmBlockAccess.INSTANCE, pos);
     }
 
     public Serializable getProperty(String name) {
@@ -205,19 +205,19 @@ public class ChunkMD {
     }
 
     public World getWorld() {
-        return this.getChunk().func_177412_p();
+        return this.getChunk().getWorld();
     }
 
     public int getWorldActualHeight() {
-        return this.getWorld().func_72940_L() + 1;
+        return this.getWorld().getActualHeight() + 1;
     }
 
     public Boolean hasNoSky() {
-        return !this.getWorld().field_73011_w.func_76569_d();
+        return !this.getWorld().provider.isSurfaceWorld();
     }
 
     public boolean canBlockSeeTheSky(int localX, int y, int localZ) {
-        return this.getChunk().func_177444_d(this.getBlockPos(localX, y, localZ));
+        return this.getChunk().canSeeSky(this.getBlockPos(localX, y, localZ));
     }
 
     public ChunkPos getCoord() {
@@ -268,11 +268,11 @@ public class ChunkMD {
     }
 
     public int toWorldX(int localX) {
-        return (this.coord.field_77276_a << 4) + localX;
+        return (this.coord.x << 4) + localX;
     }
 
     public int toWorldZ(int localZ) {
-        return (this.coord.field_77275_b << 4) + localZ;
+        return (this.coord.z << 4) + localZ;
     }
 
     public BlockDataArrays getBlockData() {
@@ -296,7 +296,7 @@ public class ChunkMD {
     }
 
     public int getDimension() {
-        return this.getWorld().field_73011_w.getDimension();
+        return this.getWorld().provider.getDimension();
     }
 
     public void stopChunkRetention() {

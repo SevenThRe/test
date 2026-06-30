@@ -33,7 +33,7 @@ extends CacheLoader<Class, Map<String, EntityDTO>> {
                 finalList.remove(entityDTO);
                 continue;
             }
-            if (!entityLiving.func_184207_aI()) continue;
+            if (!entityLiving.isBeingRidden()) continue;
             finalList.remove(entityDTO);
         }
         return EntityHelper.buildEntityIdMap(finalList, true);

@@ -434,7 +434,7 @@ implements ConfigurationSection {
             return def;
         }
         try {
-            NBTTagCompound nbtbase = JsonToNBT.func_180713_a((String)string);
+            NBTTagCompound nbtbase = JsonToNBT.getTagFromJson((String)string);
             return new ItemStack(nbtbase);
         }
         catch (NBTException e2) {

@@ -185,7 +185,7 @@ public class fr {
     @SideOnly(value=Side.CLIENT)
     public static BufferedInputStream ALLATORIxDEMO(ResourceLocation a2) {
         try {
-            return new BufferedInputStream(Minecraft.func_71410_x().func_110442_L().func_110536_a(a2).func_110527_b());
+            return new BufferedInputStream(Minecraft.getMinecraft().getResourceManager().getResource(a2).getInputStream());
         }
         catch (IOException a3) {
             a3.printStackTrace();

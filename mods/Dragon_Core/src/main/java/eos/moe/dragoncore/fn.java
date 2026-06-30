@@ -26,12 +26,12 @@ implements IMessage {
     }
 
     public void fromBytes(ByteBuf a2) {
-        a.ALLATORIxDEMO = BlockPos.func_177969_a((long)a2.readLong());
+        a.ALLATORIxDEMO = BlockPos.fromLong((long)a2.readLong());
     }
 
     public void toBytes(ByteBuf a2) {
         fn a3;
-        a2.writeLong(a3.ALLATORIxDEMO.func_177986_g());
+        a2.writeLong(a3.ALLATORIxDEMO.toLong());
     }
 
     public static /* synthetic */ BlockPos ALLATORIxDEMO(fn a2) {

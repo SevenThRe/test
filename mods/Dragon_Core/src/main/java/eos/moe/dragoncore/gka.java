@@ -28,15 +28,15 @@ public class gka {
     }
 
     public static void ALLATORIxDEMO(float a2, float a3, float a4, float a5, float a6) {
-        WorldClient a7 = Minecraft.func_71410_x().field_71441_e;
+        WorldClient a7 = Minecraft.getMinecraft().world;
         if (ShoulderState.doShoulderSurfing() && a7 != null) {
             Vec3d a8 = new Vec3d(Config.CLIENT.getOffsetX(), -Config.CLIENT.getOffsetY(), -Config.CLIENT.getOffsetZ() + (double)a4);
-            double a9 = ShoulderSurfingHelper.cameraDistance((World)a7, (double)a8.func_72433_c(), (float)a5, (float)a6);
-            Vec3d a10 = a8.func_72432_b().func_186678_a(a9);
+            double a9 = ShoulderSurfingHelper.cameraDistance((World)a7, (double)a8.length(), (float)a5, (float)a6);
+            Vec3d a10 = a8.normalize().scale(a9);
             ShoulderState.setCameraDistance((double)a9);
-            GlStateManager.func_179137_b((double)a10.field_72450_a, (double)a10.field_72448_b, (double)a10.field_72449_c);
+            GlStateManager.translate((double)a10.x, (double)a10.y, (double)a10.z);
         } else {
-            GlStateManager.func_179109_b((float)a2, (float)a3, (float)a4);
+            GlStateManager.translate((float)a2, (float)a3, (float)a4);
         }
     }
 

@@ -23,7 +23,7 @@ public class GlHelper {
     private static final FloatBuffer BUF_FLOAT_16 = BufferUtils.createFloatBuffer((int)16);
 
     public static void vertex(IVec3fRead vector) {
-        GlStateManager.func_187435_e((float)vector.getX(), (float)vector.getY(), (float)vector.getZ());
+        GlStateManager.glVertex3f((float)vector.getX(), (float)vector.getY(), (float)vector.getZ());
     }
 
     public static void vertex(IVec3dRead vector) {
@@ -31,11 +31,11 @@ public class GlHelper {
     }
 
     public static void rotate(Quaternion quaternionIn) {
-        GlStateManager.func_179110_a((FloatBuffer)QuaternionUtils.quatToGlMatrix(BUF_FLOAT_16, quaternionIn));
+        GlStateManager.multMatrix((FloatBuffer)QuaternionUtils.quatToGlMatrix(BUF_FLOAT_16, quaternionIn));
     }
 
     public static void transform(IMat4x4d matrixIn) {
-        GlStateManager.func_179110_a((FloatBuffer)MatrixUtils.matToGlMatrix(matrixIn, BUF_FLOAT_16));
+        GlStateManager.multMatrix((FloatBuffer)MatrixUtils.matToGlMatrix(matrixIn, BUF_FLOAT_16));
     }
 }
 

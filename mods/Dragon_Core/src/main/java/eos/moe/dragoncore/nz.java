@@ -38,17 +38,17 @@ public class nz {
 
     public static void ALLATORIxDEMO(TickEvent.ClientTickEvent a2) {
         EntityRenderer a3;
-        EntityPlayerSP a4 = Minecraft.func_71410_x().field_71439_g;
+        EntityPlayerSP a4 = Minecraft.getMinecraft().player;
         if (a4 == null && ALLATORIxDEMO != null) {
             nz.c();
-        } else if (a4 != null && (a3 = Minecraft.func_71410_x().field_71460_t) != null && ALLATORIxDEMO != null && !a3.func_147702_a()) {
-            a3.func_175069_a(new ResourceLocation("dragoncore", "shaders/post/" + ALLATORIxDEMO + ".json"));
+        } else if (a4 != null && (a3 = Minecraft.getMinecraft().entityRenderer) != null && ALLATORIxDEMO != null && !a3.isShaderActive()) {
+            a3.loadShader(new ResourceLocation("dragoncore", "shaders/post/" + ALLATORIxDEMO + ".json"));
         }
     }
 
     public static void ALLATORIxDEMO() {
-        EntityRenderer a2 = Minecraft.func_71410_x().field_71460_t;
-        a2.func_181022_b();
+        EntityRenderer a2 = Minecraft.getMinecraft().entityRenderer;
+        a2.stopUseShader();
     }
 }
 

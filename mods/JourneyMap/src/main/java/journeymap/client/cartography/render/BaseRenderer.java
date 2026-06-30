@@ -138,8 +138,8 @@ implements IChunkRenderer {
             nightLightDiff = Math.max(this.tweakMoonlightLevel, Math.max((float)stratum.getLightLevel(), this.tweakMoonlightLevel - (float)lightAttenuation)) / 15.0f;
         }
         int basicColor = stratum.getBlockMD().getBlockColor(stratum.getChunkMd(), stratum.getBlockPos());
-        Block block = stratum.getBlockMD().getBlockState().func_177230_c();
-        if (block == Blocks.field_150426_aN || block == Blocks.field_150374_bv) {
+        Block block = stratum.getBlockMD().getBlockState().getBlock();
+        if (block == Blocks.GLOWSTONE || block == Blocks.LIT_REDSTONE_LAMP) {
             basicColor = RGB.adjustBrightness(basicColor, this.tweakBrightenLightsourceBlock);
         }
         if (waterAbove && waterColor != null) {
@@ -211,8 +211,8 @@ implements IChunkRenderer {
     protected abstract Integer getBlockHeight(ChunkMD var1, int var2, Integer var3, int var4, Integer var5, Integer var6);
 
     protected int getOffsetBlockHeight(ChunkMD chunkMd, int x, Integer vSlice, int z, Integer sliceMinY, Integer sliceMaxY, BlockCoordIntPair offset, int defaultVal) {
-        int blockX = (chunkMd.getCoord().field_77276_a << 4) + (x + offset.x);
-        int blockZ = (chunkMd.getCoord().field_77275_b << 4) + (z + offset.z);
+        int blockX = (chunkMd.getCoord().x << 4) + (x + offset.x);
+        int blockZ = (chunkMd.getCoord().z << 4) + (z + offset.z);
         ChunkPos targetCoord = new ChunkPos(blockX >> 4, blockZ >> 4);
         ChunkMD targetChunkMd = null;
         targetChunkMd = targetCoord.equals((Object)chunkMd.getCoord()) ? chunkMd : this.dataCache.getChunkMD(targetCoord);
@@ -246,7 +246,7 @@ implements IChunkRenderer {
             return null;
         }
         int sliceMinY = Math.max(vSlice << 4, 0);
-        if (sliceMinY >= (sliceMaxY = Math.min(hardSliceMaxY = (vSlice + 1 << 4) - 1, chunkMd.getWorld().func_72940_L()))) {
+        if (sliceMinY >= (sliceMaxY = Math.min(hardSliceMaxY = (vSlice + 1 << 4) - 1, chunkMd.getWorld().getActualHeight()))) {
             sliceMaxY = sliceMinY + 2;
         }
         return new int[]{sliceMinY, sliceMaxY};
@@ -307,8 +307,8 @@ implements IChunkRenderer {
     }
 
     public ChunkMD getOffsetChunk(ChunkMD chunkMd, int x, int z, BlockCoordIntPair offset) {
-        int blockX = (chunkMd.getCoord().field_77276_a << 4) + (x + offset.x);
-        int blockZ = (chunkMd.getCoord().field_77275_b << 4) + (z + offset.z);
+        int blockX = (chunkMd.getCoord().x << 4) + (x + offset.x);
+        int blockZ = (chunkMd.getCoord().z << 4) + (z + offset.z);
         ChunkPos targetCoord = new ChunkPos(blockX >> 4, blockZ >> 4);
         if (targetCoord.equals((Object)chunkMd.getCoord())) {
             return chunkMd;

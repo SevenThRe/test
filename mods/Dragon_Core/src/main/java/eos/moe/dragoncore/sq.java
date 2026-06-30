@@ -65,14 +65,14 @@ public class sq {
         String a3 = a2.x();
         if (!y.containsKey(a2.f())) {
             String a4 = null;
-            IResourceManager a5 = Minecraft.func_71410_x().func_110442_L();
+            IResourceManager a5 = Minecraft.getMinecraft().getResourceManager();
             try {
-                a5.func_110536_a(new ResourceLocation("dragoncore", "models/items/" + a3 + "/glow_texture.png"));
+                a5.getResource(new ResourceLocation("dragoncore", "models/items/" + a3 + "/glow_texture.png"));
                 a4 = "glow_texture.png";
             }
             catch (Exception a6) {
                 try {
-                    a5.func_110536_a(new ResourceLocation("dragoncore", "models/items/" + a3 + "/texture_e.png"));
+                    a5.getResource(new ResourceLocation("dragoncore", "models/items/" + a3 + "/texture_e.png"));
                     a4 = "texture_e.png";
                 }
                 catch (Exception exception) {
@@ -91,7 +91,7 @@ public class sq {
                         } else if (a2.ALLATORIxDEMO()) {
                             a5 = new ny(zt.ALLATORIxDEMO(new ResourceLocation("dragoncore", "models/items/" + a3 + "/model.obj")));
                         } else {
-                            Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u00a7c\u672a\u8bbe\u5b9a\u7684\u7269\u54c1\u6a21\u578b\u7c7b\u578b:" + a2.f()));
+                            Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u00a7c\u672a\u8bbe\u5b9a\u7684\u7269\u54c1\u6a21\u578b\u7c7b\u578b:" + a2.f()));
                         }
                         if (a5 == null) break block10;
                         Map<String, kq> a6 = null;
@@ -106,7 +106,7 @@ public class sq {
                     }
                     catch (Exception a7) {
                         a7.printStackTrace();
-                        Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u00a7c\u65e0\u6cd5\u52a0\u8f7d\u7269\u54c1\u6a21\u578b:" + a2.f()));
+                        Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u00a7c\u65e0\u6cd5\u52a0\u8f7d\u7269\u54c1\u6a21\u578b:" + a2.f()));
                     }
                 }
             });
@@ -119,7 +119,7 @@ public class sq {
         ny a5;
         vja a6;
         EntityLivingBase a7 = pm.ALLATORIxDEMO(a2);
-        if (a7 != null && !a7.func_184614_ca().func_190926_b() && (a6 = dla.x.ALLATORIxDEMO(a7.func_184614_ca())) != null && (a5 = sq.ALLATORIxDEMO(a6)) != null) {
+        if (a7 != null && !a7.getHeldItemMainhand().isEmpty() && (a6 = dla.x.ALLATORIxDEMO(a7.getHeldItemMainhand())) != null && (a5 = sq.ALLATORIxDEMO(a6)) != null) {
             a5.ALLATORIxDEMO(a2.toString(), a3, a4);
         }
     }
@@ -137,8 +137,8 @@ public class sq {
         }
         try {
             a5 = new HashMap<String, sr>();
-            a4 = Minecraft.func_71410_x().func_110442_L().func_110536_a(new ResourceLocation("dragoncore", "models/items/" + a6 + "/transform.yml"));
-            YamlConfiguration a8 = YamlConfiguration.loadConfiguration(a4.func_110527_b());
+            a4 = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation("dragoncore", "models/items/" + a6 + "/transform.yml"));
+            YamlConfiguration a8 = YamlConfiguration.loadConfiguration(a4.getInputStream());
             for (String a9 : a8.getKeys(false)) {
                 ConfigurationSection a10 = a8.getConfigurationSection(a9);
                 if (a10 == null) continue;

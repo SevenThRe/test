@@ -84,9 +84,9 @@ extends CommonProxy {
     public void onTick(@NotNull TickEvent.ClientTickEvent tick) {
         if (tick.phase == TickEvent.Phase.START) {
             Minecraft mc = FMLClientHandler.instance().getClient();
-            if (mc.field_71441_e != null && mc.field_71439_g != null) {
-                if (mc.field_71462_r != null) {
-                    this.instance.onTickInGUI(mc.field_71462_r);
+            if (mc.world != null && mc.player != null) {
+                if (mc.currentScreen != null) {
+                    this.instance.onTickInGUI(mc.currentScreen);
                 } else {
                     this.instance.onTickInGame();
                 }
@@ -113,10 +113,10 @@ extends CommonProxy {
     @Override
     public void slotClick(@NotNull PlayerControllerMP playerController, int windowId, int slot, int data, @NotNull ClickType action, @NotNull EntityPlayer player) {
         if (this.serverSupportEnabled) {
-            player.field_71070_bA.func_184996_a(slot, data, action, player);
+            player.openContainer.slotClick(slot, data, action, player);
             ((FMLEmbeddedChannel)invtweaksChannel.get(Side.CLIENT)).writeOutbound(new Object[]{new ITPacketClick(slot, data, action, windowId)});
         } else {
-            playerController.func_187098_a(windowId, slot, data, action, player);
+            playerController.windowClick(windowId, slot, data, action, player);
         }
     }
 
@@ -155,9 +155,9 @@ extends CommonProxy {
     @Override
     public void sort(ContainerSection section, SortingMethod method) {
         Minecraft mc = FMLClientHandler.instance().getClient();
-        Container currentContainer = mc.field_71439_g.field_71069_bz;
-        if (InvTweaksObfuscation.isGuiContainer(mc.field_71462_r)) {
-            currentContainer = ((GuiContainer)mc.field_71462_r).field_147002_h;
+        Container currentContainer = mc.player.inventoryContainer;
+        if (InvTweaksObfuscation.isGuiContainer(mc.currentScreen)) {
+            currentContainer = ((GuiContainer)mc.currentScreen).inventorySlots;
         }
         try {
             new InvTweaksHandlerSorting(mc, InvTweaks.getConfigManager().getConfig(), section, method, InvTweaksObfuscation.getSpecialChestRowSize(currentContainer)).sort();
@@ -170,7 +170,7 @@ extends CommonProxy {
 
     @Override
     public void addClientScheduledTask(@NotNull Runnable task) {
-        Minecraft.func_71410_x().func_152344_a(task);
+        Minecraft.getMinecraft().addScheduledTask(task);
     }
 
     @SubscribeEvent

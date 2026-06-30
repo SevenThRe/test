@@ -44,13 +44,13 @@ public class fx {
     public void ALLATORIxDEMO(EntityPlayer a2, String a3, TextFormatting a4) {
         if (a2 != null) {
             TextComponentString a5 = new TextComponentString(a3);
-            a5.func_150256_b().func_150238_a(a4);
-            a2.func_145747_a((ITextComponent)a5);
+            a5.getStyle().setColor(a4);
+            a2.sendMessage((ITextComponent)a5);
         }
     }
 
     public boolean ALLATORIxDEMO(EntityPlayer a2) {
-        return ov.q ? a2.func_70003_b(4, "nbtedit") : a2.field_71075_bZ.field_75098_d;
+        return ov.q ? a2.canUseCommand(4, "nbtedit") : a2.capabilities.isCreativeMode;
     }
 }
 

@@ -27,7 +27,7 @@ extends RenderBendsArrow<EntityTippedArrow> {
     }
 
     protected ResourceLocation getEntityTexture(EntityTippedArrow entity) {
-        return entity.func_184557_n() > 0 ? RES_TIPPED_ARROW : RES_ARROW;
+        return entity.getColor() > 0 ? RES_TIPPED_ARROW : RES_ARROW;
     }
 
     public static class Factory

@@ -26,7 +26,7 @@ public class MixinMinecraft {
 
     @Inject(method={"resize"}, at={@At(value="RETURN")})
     private /* synthetic */ void mixin_resize(int a2, int a3, CallbackInfo a4) {
-        Minecraft a5 = Minecraft.func_71410_x();
+        Minecraft a5 = Minecraft.getMinecraft();
         de.o = new ScaledResolution(a5);
         for (ui a6 : wi.b.ALLATORIxDEMO()) {
             a6.onScreenResize();

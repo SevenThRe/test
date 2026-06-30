@@ -126,10 +126,10 @@ implements IComponentParticleRender {
         float u2 = this.u2 / (float)this.textureWidth;
         float v1 = this.v1 / (float)this.textureHeight;
         float v2 = this.v2 / (float)this.textureHeight;
-        builder.func_181662_b((double)this.vertices[0].x, (double)this.vertices[0].y, (double)this.vertices[0].z).func_187315_a((double)u1, (double)v1).func_187314_a(lightX, lightY).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
-        builder.func_181662_b((double)this.vertices[1].x, (double)this.vertices[1].y, (double)this.vertices[1].z).func_187315_a((double)u2, (double)v1).func_187314_a(lightX, lightY).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
-        builder.func_181662_b((double)this.vertices[2].x, (double)this.vertices[2].y, (double)this.vertices[2].z).func_187315_a((double)u2, (double)v2).func_187314_a(lightX, lightY).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
-        builder.func_181662_b((double)this.vertices[3].x, (double)this.vertices[3].y, (double)this.vertices[3].z).func_187315_a((double)u1, (double)v2).func_187314_a(lightX, lightY).func_181666_a(particle.r, particle.g, particle.b, particle.a).func_181675_d();
+        builder.pos((double)this.vertices[0].x, (double)this.vertices[0].y, (double)this.vertices[0].z).tex((double)u1, (double)v1).lightmap(lightX, lightY).color(particle.r, particle.g, particle.b, particle.a).endVertex();
+        builder.pos((double)this.vertices[1].x, (double)this.vertices[1].y, (double)this.vertices[1].z).tex((double)u2, (double)v1).lightmap(lightX, lightY).color(particle.r, particle.g, particle.b, particle.a).endVertex();
+        builder.pos((double)this.vertices[2].x, (double)this.vertices[2].y, (double)this.vertices[2].z).tex((double)u2, (double)v2).lightmap(lightX, lightY).color(particle.r, particle.g, particle.b, particle.a).endVertex();
+        builder.pos((double)this.vertices[3].x, (double)this.vertices[3].y, (double)this.vertices[3].z).tex((double)u1, (double)v2).lightmap(lightX, lightY).color(particle.r, particle.g, particle.b, particle.a).endVertex();
         if (!particle.isCollisionTinting(emitter)) {
             this.lit = tmpLit;
         }

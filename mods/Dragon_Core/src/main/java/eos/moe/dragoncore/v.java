@@ -43,7 +43,7 @@ public interface v {
     }
 
     default public ItemStack ALLATORIxDEMO() {
-        return ItemStack.field_190927_a;
+        return ItemStack.EMPTY;
     }
 
     default public p ALLATORIxDEMO() {

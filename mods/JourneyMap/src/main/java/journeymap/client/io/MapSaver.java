@@ -96,7 +96,7 @@ public class MapSaver {
             Minecraft mc = FMLClientHandler.instance().getClient();
             String date = dateFormat.format(new Date());
             String worldName = WorldData.getWorldName(mc, false);
-            String dimName = WorldData.getSafeDimensionName(new WorldData.WrappedProvider(mc.field_71441_e.field_73011_w));
+            String dimName = WorldData.getSafeDimensionName(new WorldData.WrappedProvider(mc.world.provider));
             String fileName = Joiner.on((String)"_").skipNulls().join((Object)date, (Object)worldName, new Object[]{dimName, this.mapType.name, this.mapType.vSlice}) + ".png";
             File screenshotsDir = new File(FileHandler.getMinecraftDirectory(), "screenshots");
             if (!screenshotsDir.exists()) {

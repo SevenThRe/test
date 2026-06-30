@@ -36,47 +36,47 @@ extends LayerArmorBase<ModelBiped> {
         super(rendererIn);
     }
 
-    public void func_177177_a() {
-        this.field_177189_c = new ModelBiped(0.5f);
-        this.field_177186_d = new ModelBiped(1.0f);
+    public void initArmor() {
+        this.modelLeggings = new ModelBiped(0.5f);
+        this.modelArmor = new ModelBiped(1.0f);
     }
 
     protected void setModelSlotVisible(ModelBiped model, EntityEquipmentSlot slotIn) {
         this.hideModelParts(model);
         switch (slotIn) {
             case HEAD: {
-                model.field_78116_c.field_78806_j = true;
-                model.field_178720_f.field_78806_j = true;
+                model.bipedHead.showModel = true;
+                model.bipedHeadwear.showModel = true;
                 break;
             }
             case CHEST: {
-                model.field_78115_e.field_78806_j = true;
-                model.field_178723_h.field_78806_j = true;
-                model.field_178724_i.field_78806_j = true;
+                model.bipedBody.showModel = true;
+                model.bipedRightArm.showModel = true;
+                model.bipedLeftArm.showModel = true;
                 break;
             }
             case LEGS: {
-                model.field_78115_e.field_78806_j = true;
-                model.field_178721_j.field_78806_j = true;
-                model.field_178722_k.field_78806_j = true;
+                model.bipedBody.showModel = true;
+                model.bipedRightLeg.showModel = true;
+                model.bipedLeftLeg.showModel = true;
                 break;
             }
             case FEET: {
-                model.field_178721_j.field_78806_j = true;
-                model.field_178722_k.field_78806_j = true;
+                model.bipedRightLeg.showModel = true;
+                model.bipedLeftLeg.showModel = true;
                 break;
             }
         }
     }
 
     protected void hideModelParts(ModelBiped model) {
-        model.func_178719_a(false);
+        model.setVisible(false);
     }
 
     protected ModelBiped getArmorModelHook(EntityLivingBase entity, ItemStack itemStack, EntityEquipmentSlot slot, ModelBiped model) {
         Object entityData = EntityDatabase.instance.get(entity);
         ModelBiped suggestedModel = ForgeHooksClient.getArmorModel((EntityLivingBase)entity, (ItemStack)itemStack, (EntityEquipmentSlot)slot, (ModelBiped)model);
-        boolean shouldBeMutated = !ModConfig.shouldKeepArmorAsVanilla(itemStack.func_77973_b()) && entityData != null && entityData instanceof BipedEntityData;
+        boolean shouldBeMutated = !ModConfig.shouldKeepArmorAsVanilla(itemStack.getItem()) && entityData != null && entityData instanceof BipedEntityData;
         try {
             return ArmorModelFactory.getArmorModel(suggestedModel, shouldBeMutated);
         }

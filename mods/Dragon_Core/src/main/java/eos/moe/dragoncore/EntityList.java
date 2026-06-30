@@ -38,17 +38,17 @@ public class EntityList {
     @SubscribeEvent(priority=EventPriority.HIGHEST)
     public static void onTick(TickEvent.ClientTickEvent a2) {
         entities.clear();
-        WorldClient a3 = Minecraft.func_71410_x().field_71441_e;
+        WorldClient a3 = Minecraft.getMinecraft().world;
         if (a3 != null) {
-            for (Entity a4 : a3.func_72910_y()) {
-                entities.put(a4.func_110124_au(), a4);
+            for (Entity a4 : a3.getLoadedEntityList()) {
+                entities.put(a4.getUniqueID(), a4);
             }
         }
     }
 
     @SubscribeEvent
     public static void onJoin(EntityJoinWorldEvent a2) {
-        entities.put(a2.getEntity().func_110124_au(), a2.getEntity());
+        entities.put(a2.getEntity().getUniqueID(), a2.getEntity());
     }
 
     public static Entity getEntityByUUID(UUID a2) {

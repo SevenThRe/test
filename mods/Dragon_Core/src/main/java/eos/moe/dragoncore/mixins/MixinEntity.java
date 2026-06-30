@@ -21,13 +21,13 @@ public class MixinEntity
 implements IEntity,
 AnimationTextureEntity {
     @Shadow
-    public double field_70169_q;
+    public double prevPosX;
     @Shadow
-    public double field_70167_r;
+    public double prevPosY;
     @Shadow
-    public double field_70166_s;
+    public double prevPosZ;
     @Shadow
-    public float field_70131_O;
+    public float height;
     private double prevPrevPosX;
     private double prevPrevPosY;
     private double prevPrevPosZ;
@@ -41,9 +41,9 @@ AnimationTextureEntity {
     @Inject(method={"onEntityUpdate"}, at={@At(value="HEAD")})
     public void onUpdate(CallbackInfo a2) {
         MixinEntity a3;
-        a3.prevPrevPosX = a3.field_70169_q;
-        a3.prevPrevPosY = a3.field_70167_r;
-        a3.prevPrevPosZ = a3.field_70166_s;
+        a3.prevPrevPosX = a3.prevPosX;
+        a3.prevPrevPosY = a3.prevPosY;
+        a3.prevPrevPosZ = a3.prevPosZ;
     }
 
     @Inject(method={"turn"}, at={@At(value="HEAD")}, cancellable=true)

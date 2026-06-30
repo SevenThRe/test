@@ -87,7 +87,7 @@ public class raa {
         String a3;
         raa a4;
         rda a5 = a4.ALLATORIxDEMO(a2);
-        if (a5 != null && a5.f() && !a4.v.containsKey(a2.func_110124_au()) && !(a3 = a4.ALLATORIxDEMO(a2)).contains("\u00a7")) {
+        if (a5 != null && a5.f() && !a4.v.containsKey(a2.getUniqueID()) && !(a3 = a4.ALLATORIxDEMO(a2)).contains("\u00a7")) {
             a5 = null;
         }
         return a5;
@@ -97,13 +97,13 @@ public class raa {
         raa a3;
         String a4 = a3.ALLATORIxDEMO.get(a2.getClass());
         if (a4 == null) {
-            a4 = EntityList.func_75621_b((Entity)a2);
+            a4 = EntityList.getEntityString((Entity)a2);
             a4 = a4 == null ? "unknown" : a4.toLowerCase(Locale.ROOT);
             a3.ALLATORIxDEMO.put(a2.getClass(), a4);
         }
         String a5 = a3.c(a2);
-        if (a3.v.containsKey(a2.func_110124_au())) {
-            a5 = a3.v.get(a2.func_110124_au());
+        if (a3.v.containsKey(a2.getUniqueID())) {
+            a5 = a3.v.get(a2.getUniqueID());
         }
         if (a3.o.containsKey(a5)) {
             return a3.o.get(a5);
@@ -124,11 +124,11 @@ public class raa {
     }
 
     public String c(EntityLivingBase a2) {
-        return en.ALLATORIxDEMO(a2.func_70005_c_().replace(" ", ""));
+        return en.ALLATORIxDEMO(a2.getName().replace(" ", ""));
     }
 
     public String ALLATORIxDEMO(EntityLivingBase a2) {
-        return a2.func_70005_c_().replace(" ", "");
+        return a2.getName().replace(" ", "");
     }
 
     public gga f(rda a2) {
@@ -140,19 +140,19 @@ public class raa {
         }
         ResourceLocation a6 = a2.c();
         ResourceLocation a7 = a2.f();
-        if (a6.func_110623_a().endsWith(".bbmodel")) {
+        if (a6.getPath().endsWith(".bbmodel")) {
             try {
-                a3 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a6);
+                a3 = Minecraft.getMinecraft().getResourceManager().getResource(a6);
                 Throwable throwable = null;
                 try {
-                    dx a8 = ax.ALLATORIxDEMO(a3.func_110527_b());
-                    pq.ALLATORIxDEMO(a6.func_110623_a() + "/model.json", a8.c());
-                    pq.ALLATORIxDEMO(a6.func_110623_a() + "/animation.json", a8.ALLATORIxDEMO());
+                    dx a8 = ax.ALLATORIxDEMO(a3.getInputStream());
+                    pq.ALLATORIxDEMO(a6.getPath() + "/model.json", a8.c());
+                    pq.ALLATORIxDEMO(a6.getPath() + "/animation.json", a8.ALLATORIxDEMO());
                     for (Map.Entry<String, byte[]> a9 : a8.ALLATORIxDEMO().entrySet()) {
-                        pq.ALLATORIxDEMO(a6.func_110623_a() + "/" + a9.getKey(), a9.getValue());
+                        pq.ALLATORIxDEMO(a6.getPath() + "/" + a9.getKey(), a9.getValue());
                     }
-                    a7 = new ResourceLocation(a6.func_110624_b(), a6.func_110623_a() + "/animation.json");
-                    a6 = new ResourceLocation(a6.func_110624_b(), a6.func_110623_a() + "/model.json");
+                    a7 = new ResourceLocation(a6.getNamespace(), a6.getPath() + "/animation.json");
+                    a6 = new ResourceLocation(a6.getNamespace(), a6.getPath() + "/model.json");
                 }
                 catch (Throwable throwable2) {
                     throwable = throwable2;
@@ -191,7 +191,7 @@ public class raa {
             }
             for (mt mt2 : a8.getBaseModel().getPieceMap().values()) {
                 for (xu a9 : mt2.c) {
-                    a9.ALLATORIxDEMO(a2.c().func_110623_a());
+                    a9.ALLATORIxDEMO(a2.c().getPath());
                 }
             }
             Map<String, kq> a10 = null;

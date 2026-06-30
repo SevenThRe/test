@@ -64,7 +64,7 @@ public class mo {
     }
 
     public static boolean r(double a2, double a3, double a4) {
-        return !(Minecraft.func_71410_x().field_71439_g.func_70011_f(a2, a3, a4) > (double)vk.n);
+        return !(Minecraft.getMinecraft().player.getDistance(a2, a3, a4) > (double)vk.n);
     }
 
     public static void r(kf a2, int[][] a3, int[] a4, int[][][] a5, int a6) {
@@ -318,7 +318,7 @@ public class mo {
         enumFacingArray[4] = EnumFacing.WEST;
         enumFacingArray[5] = EnumFacing.EAST;
         EnumFacing[] enumFacingArray2 = enumFacingArray;
-        int n3 = mo.r(a3.func_177958_n(), a3.func_177956_o(), a3.func_177952_p(), a4, a5);
+        int n3 = mo.r(a3.getX(), a3.getY(), a3.getZ(), a4, a5);
         boolean bl = false;
         if (n3 > 0) {
             x x2 = a2.r(n3 - 1);
@@ -330,8 +330,8 @@ public class mo {
             int n6;
             EnumFacing enumFacing = enumFacingArray2[n2];
             Vec3i vec3i = a3;
-            int n7 = vec3i.func_177958_n() + enumFacing.func_82601_c();
-            int n8 = mo.r(n7, n6 = vec3i.func_177956_o() + enumFacing.func_96559_d(), n3 = vec3i.func_177952_p() + enumFacing.func_82599_e(), a4, a5);
+            int n7 = vec3i.getX() + enumFacing.getXOffset();
+            int n8 = mo.r(n7, n6 = vec3i.getY() + enumFacing.getYOffset(), n3 = vec3i.getZ() + enumFacing.getZOffset(), a4, a5);
             if (n8 < 1) {
                 n5 = n8;
                 arrayList.add(new Vec3i(n7, n6, n3));
@@ -429,40 +429,40 @@ public class mo {
     }
 
     public static boolean r(Entity a2) {
-        return mo.r(a2.field_70165_t, a2.field_70163_u, a2.field_70161_v);
+        return mo.r(a2.posX, a2.posY, a2.posZ);
     }
 
     private static /* synthetic */ boolean r(Vec3i a2, xf a3) {
         Vec3i vec3i;
         boolean bl;
-        if (a2.func_177958_n() > -2) {
+        if (a2.getX() > -2) {
             bl = true;
             vec3i = a2;
         } else {
             bl = false;
             vec3i = a2;
         }
-        if (bl & vec3i.func_177958_n() < a3.y() + 1) {
+        if (bl & vec3i.getX() < a3.y() + 1) {
             Vec3i vec3i2;
             boolean bl2;
-            if (a2.func_177956_o() > -2) {
+            if (a2.getY() > -2) {
                 bl2 = true;
                 vec3i2 = a2;
             } else {
                 bl2 = false;
                 vec3i2 = a2;
             }
-            if (bl2 & vec3i2.func_177956_o() < a3.h() + 1) {
+            if (bl2 & vec3i2.getY() < a3.h() + 1) {
                 Vec3i vec3i3;
                 boolean bl3;
-                if (a2.func_177952_p() > -2) {
+                if (a2.getZ() > -2) {
                     bl3 = true;
                     vec3i3 = a2;
                 } else {
                     bl3 = false;
                     vec3i3 = a2;
                 }
-                return bl3 & vec3i3.func_177952_p() < a3.z() + 1;
+                return bl3 & vec3i3.getZ() < a3.z() + 1;
             }
         }
         return false;

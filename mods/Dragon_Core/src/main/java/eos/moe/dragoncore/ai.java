@@ -29,19 +29,19 @@ public class ai {
 
     @i(f={"Display_SetFullScreen"}, c=true)
     public static void ALLATORIxDEMO(boolean a2) {
-        Minecraft a3 = Minecraft.func_71410_x();
+        Minecraft a3 = Minecraft.getMinecraft();
         if (a2) {
-            if (!a3.func_71372_G()) {
-                a3.func_71352_k();
+            if (!a3.isFullScreen()) {
+                a3.toggleFullscreen();
             }
-        } else if (a3.func_71372_G()) {
-            a3.func_71352_k();
+        } else if (a3.isFullScreen()) {
+            a3.toggleFullscreen();
         }
     }
 
     @i(f={"Display_IsFullScreen"})
     public static boolean c() {
-        return Minecraft.func_71410_x().func_71372_G();
+        return Minecraft.getMinecraft().isFullScreen();
     }
 
     @i(f={"Display_IsResizable"})
@@ -81,16 +81,16 @@ public class ai {
 
     @i(f={"Display_Resize"}, c=true)
     public static void c(int a2, int a3) {
-        Minecraft a4 = Minecraft.func_71410_x();
+        Minecraft a4 = Minecraft.getMinecraft();
         try {
             boolean a5 = Display.isResizable();
             Display.setFullscreen((boolean)false);
             Display.setResizable((boolean)true);
             Display.setDisplayMode((DisplayMode)new DisplayMode(a2, a3));
             ai.c(a5);
-            a4.func_71370_a(a2, a3);
-            Display.setVSyncEnabled((boolean)a4.field_71474_y.field_74352_v);
-            a4.func_175601_h();
+            a4.resize(a2, a3);
+            Display.setVSyncEnabled((boolean)a4.gameSettings.enableVsync);
+            a4.updateDisplay();
         }
         catch (Exception a6) {
             a6.printStackTrace();

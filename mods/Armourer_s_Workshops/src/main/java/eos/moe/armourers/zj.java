@@ -51,12 +51,12 @@ implements ITickable {
     private ch m;
     private final ModelData.Texture j;
 
-    public void func_110550_d() {
+    public void tick() {
         zj a2;
         if (a2.m != null) {
             zj zj2 = a2;
-            GlStateManager.func_179144_i((int)zj2.func_110552_b());
-            zj2.m.func_94219_l();
+            GlStateManager.bindTexture((int)zj2.getGlTextureId());
+            zj2.m.updateAnimation();
         }
     }
 
@@ -65,40 +65,40 @@ implements ITickable {
         a3.j = a2;
     }
 
-    public void func_110551_a(IResourceManager a22) throws IOException {
+    public void loadTexture(IResourceManager a22) throws IOException {
         PngSizeInfo pngSizeInfo;
         zj a3;
         block5: {
             block4: {
                 if (s == null) {
                     s = new MetadataSerializer();
-                    s.func_110504_a((IMetadataSectionSerializer)new AnimationMetadataSectionSerializer(), AnimationMetadataSection.class);
+                    s.registerMetadataSectionType((IMetadataSectionSerializer)new AnimationMetadataSectionSerializer(), AnimationMetadataSection.class);
                 }
                 zj zj2 = a3;
-                zj2.func_147631_c();
+                zj2.deleteGlTexture();
                 a22 = zj2.j.getMeta();
                 pngSizeInfo = new PngSizeInfo((InputStream)new ByteArrayInputStream(a3.j.getData()));
                 if (a22 == null) break block4;
                 PngSizeInfo pngSizeInfo2 = pngSizeInfo;
-                if (pngSizeInfo2.field_188534_b / pngSizeInfo2.field_188533_a >= 2) break block5;
+                if (pngSizeInfo2.pngHeight / pngSizeInfo2.pngWidth >= 2) break block5;
             }
-            BufferedImage bufferedImage = TextureUtil.func_177053_a((InputStream)new ByteArrayInputStream(a3.j.getData()));
-            TextureUtil.func_110989_a((int)a3.func_110552_b(), (BufferedImage)bufferedImage, (boolean)false, (boolean)false);
+            BufferedImage bufferedImage = TextureUtil.readBufferedImage((InputStream)new ByteArrayInputStream(a3.j.getData()));
+            TextureUtil.uploadTextureImageAllocate((int)a3.getGlTextureId(), (BufferedImage)bufferedImage, (boolean)false, (boolean)false);
             return;
         }
         SimpleResource simpleResource = new SimpleResource(a3.j.getName(), null, (InputStream)new ByteArrayInputStream(a3.j.getData()), (InputStream)new ByteArrayInputStream(((String)a22).getBytes(StandardCharsets.UTF_8)), s);
-        int a22 = Minecraft.func_71410_x().field_71474_y.field_151442_I;
+        int a22 = Minecraft.getMinecraft().gameSettings.mipmapLevels;
         zj zj3 = a3;
         a3.m = new ch(a3.j.getName());
-        zj3.m.func_188538_a(pngSizeInfo, true);
-        zj3.m.func_188539_a((IResource)simpleResource, a22 + 1);
-        zj3.m.func_147963_d(a22);
-        TextureUtil.func_180600_a((int)zj3.func_110552_b(), (int)a22, (int)a3.m.func_94211_a(), (int)a3.m.func_94216_b());
-        TextureUtil.func_147955_a((int[][])zj3.m.func_147965_a(0), (int)a3.m.func_94211_a(), (int)a3.m.func_94216_b(), (int)a3.m.func_130010_a(), (int)a3.m.func_110967_i(), (boolean)false, (boolean)false);
+        zj3.m.loadSprite(pngSizeInfo, true);
+        zj3.m.loadSpriteFrames((IResource)simpleResource, a22 + 1);
+        zj3.m.generateMipmaps(a22);
+        TextureUtil.allocateTextureImpl((int)zj3.getGlTextureId(), (int)a22, (int)a3.m.getIconWidth(), (int)a3.m.getIconHeight());
+        TextureUtil.uploadTextureMipmap((int[][])zj3.m.getFrameTextureData(0), (int)a3.m.getIconWidth(), (int)a3.m.getIconHeight(), (int)a3.m.getOriginX(), (int)a3.m.getOriginY(), (boolean)false, (boolean)false);
         String[] stringArray = new String[2];
         stringArray[0] = "listTickables";
-        stringArray[1] = "field_110583_b";
-        ((List)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.func_71410_x().func_110434_K(), (String[])stringArray)).add(a3);
+        stringArray[1] = "listTickables";
+        ((List)ReflectionHelper.getPrivateValue(TextureManager.class, (Object)Minecraft.getMinecraft().getTextureManager(), (String[])stringArray)).add(a3);
     }
 }
 

@@ -56,7 +56,7 @@ implements EventHandlerManager.EventHandler {
     @SubscribeEvent(priority=EventPriority.NORMAL)
     public void onRenderOverlayDebug(RenderGameOverlayEvent.Text event) {
         try {
-            if (this.mc.field_71474_y.field_74330_P && !"off".equalsIgnoreCase(Journeymap.getClient().getCoreProperties().logLevel.get())) {
+            if (this.mc.gameSettings.showDebugInfo && !"off".equalsIgnoreCase(Journeymap.getClient().getCoreProperties().logLevel.get())) {
                 event.getLeft().add(null);
                 if (Journeymap.getClient().getCoreProperties().mappingEnabled.get().booleanValue()) {
                     for (String line : MapPlayerTask.getDebugStats()) {
@@ -65,7 +65,7 @@ implements EventHandlerManager.EventHandler {
                 } else {
                     event.getLeft().add(Constants.getString("jm.common.enable_mapping_false_text") + DEBUG_SUFFIX);
                 }
-                if (this.mc.field_71474_y.field_74329_Q) {
+                if (this.mc.gameSettings.showDebugProfilerChart) {
                     if (System.currentTimeMillis() - this.statTimerCheck > 3000L) {
                         this.statTimerReport = StatTimer.getReportByTotalTime(DEBUG_PREFIX, DEBUG_SUFFIX);
                         this.statTimerCheck = System.currentTimeMillis();

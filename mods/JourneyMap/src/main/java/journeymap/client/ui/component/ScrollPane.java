@@ -55,26 +55,26 @@ extends GuiSlot {
         return (int)this.origin.getY();
     }
 
-    public int func_148146_j() {
-        return this.field_148149_f;
+    public int getSlotHeight() {
+        return this.slotHeight;
     }
 
     public void setDimensions(int width, int height, int marginTop, int marginBottom, int x, int y) {
-        super.func_148122_a(width, height, marginTop, height - marginBottom);
+        super.setDimensions(width, height, marginTop, height - marginBottom);
         this.paneWidth = width;
         this.paneHeight = height;
         this.origin.setLocation(x, y);
     }
 
-    protected int func_148127_b() {
+    protected int getSize() {
         return this.items.size();
     }
 
-    protected void func_148144_a(int i, boolean flag, int p1, int p2) {
+    protected void elementClicked(int i, boolean flag, int p1, int p2) {
         this.selected = this.items.get(i);
     }
 
-    protected boolean func_148131_a(int i) {
+    protected boolean isSelected(int i) {
         return this.items.get(i) == this.selected;
     }
 
@@ -86,7 +86,7 @@ extends GuiSlot {
         this.selected = item;
     }
 
-    protected void func_148123_a() {
+    protected void drawBackground() {
     }
 
     public Button mouseClicked(int mouseX, int mouseY, int mouseButton) {
@@ -96,8 +96,8 @@ extends GuiSlot {
                 if (scrollable == null || !this.inFullView(scrollable)) continue;
                 if (scrollable instanceof Button) {
                     Button button = (Button)scrollable;
-                    if (!button.func_146116_c(this.mc, mouseX, mouseY)) continue;
-                    this.func_148147_a(button);
+                    if (!button.mousePressed(this.mc, mouseX, mouseY)) continue;
+                    this.actionPerformed(button);
                     return button;
                 }
                 scrollable.clickScrollable(this.mc, mouseX, mouseY);
@@ -106,9 +106,9 @@ extends GuiSlot {
         return null;
     }
 
-    public void func_148128_a(int mX, int mY, float f) {
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)this.getX(), (float)this.getY(), (float)0.0f);
+    public void drawScreen(int mX, int mY, float f) {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)this.getX(), (float)this.getY(), (float)0.0f);
         this._mouseX = mX;
         this._mouseY = mY;
         if (this.selected == null || Mouse.isButtonDown((int)0) || Mouse.getDWheel() != 0 || !Mouse.next() || Mouse.getEventButtonState()) {
@@ -116,17 +116,17 @@ extends GuiSlot {
         }
         this.firstVisibleIndex = -1;
         this.lastVisibleIndex = -1;
-        super.func_148128_a(mX - this.getX(), mY - this.getY(), f);
-        GlStateManager.func_179121_F();
+        super.drawScreen(mX - this.getX(), mY - this.getY(), f);
+        GlStateManager.popMatrix();
     }
 
-    protected void func_192637_a(int index, int xPosition, int y, int l, int var6, int var7, float f) {
+    protected void drawSlot(int index, int xPosition, int y, int l, int var6, int var7, float f) {
         if (this.firstVisibleIndex == -1) {
             this.firstVisibleIndex = index;
         }
         this.lastVisibleIndex = Math.max(this.lastVisibleIndex, index);
-        GlStateManager.func_179094_E();
-        GlStateManager.func_179109_b((float)(-this.getX()), (float)(-this.getY()), (float)0.0f);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)(-this.getX()), (float)(-this.getY()), (float)0.0f);
         int margin = 4;
         int itemX = this.getX() + 2;
         int itemY = y + this.getY();
@@ -151,19 +151,19 @@ extends GuiSlot {
                 item.drawPartialScrollable(this.mc, itemX, drawY, item.getWidth(), item.getHeight() - yDiff);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     public boolean inFullView(Scrollable item) {
         return item.getY() >= this.getY() && item.getY() + item.getHeight() <= this.getY() + this.paneHeight;
     }
 
-    protected int func_148137_d() {
+    protected int getScrollBarX() {
         return this.paneWidth;
     }
 
     public int getWidth() {
-        boolean scrollVisible = 0 < this.func_148148_g();
+        boolean scrollVisible = 0 < this.getAmountScrolled();
         return this.paneWidth + (scrollVisible ? 5 : 0);
     }
 
@@ -182,8 +182,8 @@ extends GuiSlot {
     protected void drawContainerBackground(Tessellator tess) {
         int width = this.getWidth();
         float alpha = 0.4f;
-        DrawUtil.drawRectangle(0.0, this.field_148153_b, width, this.paneHeight, Color.BLACK.getRGB(), alpha);
-        DrawUtil.drawRectangle(width - 6, this.field_148153_b, 5.0, this.paneHeight, Color.BLACK.getRGB(), alpha);
+        DrawUtil.drawRectangle(0.0, this.top, width, this.paneHeight, Color.BLACK.getRGB(), alpha);
+        DrawUtil.drawRectangle(width - 6, this.top, 5.0, this.paneHeight, Color.BLACK.getRGB(), alpha);
         if (this.showFrame) {
             alpha = 1.0f;
             DrawUtil.drawRectangle(-1.0, -1.0, width + 2, 1.0, this.frameColor, alpha);
@@ -193,8 +193,8 @@ extends GuiSlot {
         }
     }
 
-    public void func_178039_p() {
-        super.func_178039_p();
+    public void handleMouseInput() {
+        super.handleMouseInput();
     }
 
     public int getFirstVisibleIndex() {

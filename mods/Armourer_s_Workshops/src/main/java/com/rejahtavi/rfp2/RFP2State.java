@@ -69,8 +69,8 @@ public class RFP2State {
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
     public void onEvent1(TickEvent.ClientTickEvent event) {
-        if (Minecraft.func_71410_x().field_71439_g != null && Minecraft.func_71410_x().field_71474_y.field_74312_F.func_151470_d() && this.tick++ >= 2) {
-            Minecraft.func_71410_x().field_71439_g.func_184609_a(EnumHand.MAIN_HAND);
+        if (Minecraft.getMinecraft().player != null && Minecraft.getMinecraft().gameSettings.keyBindAttack.isKeyDown() && this.tick++ >= 2) {
+            Minecraft.getMinecraft().player.swingArm(EnumHand.MAIN_HAND);
             this.tick = 0;
         }
     }
@@ -104,7 +104,7 @@ public class RFP2State {
 
     @SubscribeEvent(priority=EventPriority.HIGHEST)
     public void onEvent(RenderHandEvent event) {
-        EntityPlayerSP player = Minecraft.func_71410_x().field_71439_g;
+        EntityPlayerSP player = Minecraft.getMinecraft().player;
         if (player != null && RFP2.state.isModEnabled((EntityPlayer)player) && RFP2.state.isRealArmsEnabled((EntityPlayer)player)) {
             event.setCanceled(true);
         }
@@ -112,7 +112,7 @@ public class RFP2State {
 
     @SubscribeEvent
     public void onEntityJoin(EntityJoinWorldEvent e2) {
-        if (e2.getEntity() == Minecraft.func_71410_x().field_71439_g) {
+        if (e2.getEntity() == Minecraft.getMinecraft().player) {
             this.resetDummy();
             this.spawnDelay = 0;
         }
@@ -131,21 +131,21 @@ public class RFP2State {
             if (this.suspendApiDelay > 0) {
                 --this.suspendApiDelay;
             }
-            if ((player = Minecraft.func_71410_x().field_71439_g) != null) {
+            if ((player = Minecraft.getMinecraft().player) != null) {
                 if (this.dummy == null) {
                     if (this.spawnDelay > 0) {
                         this.spawnDelay = this.enableMod ? --this.spawnDelay : 40;
                     } else {
                         this.attemptDummySpawn((EntityPlayer)player);
                     }
-                } else if (this.dummy.field_70170_p.field_73011_w.getDimension() != player.field_70170_p.field_73011_w.getDimension()) {
+                } else if (this.dummy.world.provider.getDimension() != player.world.provider.getDimension()) {
                     this.resetDummy();
                     RFP2.logger.log(RFP2.LOGGING_LEVEL_DEBUG, this.getClass().getName() + ": Respawning dummy because player changed dimension.");
-                } else if (this.dummy.func_70068_e((Entity)player) > 5.0) {
+                } else if (this.dummy.getDistanceSq((Entity)player) > 5.0) {
                     this.resetDummy();
                     this.spawnDelay = 0;
                     RFP2.logger.log(RFP2.LOGGING_LEVEL_DEBUG, this.getClass().getName() + ": Respawning dummy because player and dummy became separated.");
-                } else if (this.dummy.lastTickUpdated < player.field_70170_p.func_82737_E() - 20L) {
+                } else if (this.dummy.lastTickUpdated < player.world.getTotalWorldTime() - 20L) {
                     this.resetDummy();
                     RFP2.logger.log(RFP2.LOGGING_LEVEL_DEBUG, this.getClass().getName() + ": Respawning dummy because state became stale. (Is the server lagging?)");
                 }
@@ -160,11 +160,11 @@ public class RFP2State {
         this.detectModConflicts(player);
         try {
             if (this.dummy != null) {
-                this.dummy.func_70106_y();
+                this.dummy.setDead();
             }
-            this.dummy = new EntityPlayerDummy(player.field_70170_p);
-            this.dummy.func_70080_a(player.field_70165_t, player.field_70163_u, player.field_70161_v, player.field_70177_z, player.field_70125_A);
-            player.field_70170_p.func_72838_d((Entity)this.dummy);
+            this.dummy = new EntityPlayerDummy(player.world);
+            this.dummy.setPositionAndRotation(player.posX, player.posY, player.posZ, player.rotationYaw, player.rotationPitch);
+            player.world.spawnEntity((Entity)this.dummy);
         }
         catch (Exception e2) {
             RFP2.logger.log(RFP2.LOGGING_LEVEL_MED, this.getClass().getName() + ": failed to spawn PlayerDummy! Will retry. Exception:", (Object)e2.toString());
@@ -175,7 +175,7 @@ public class RFP2State {
 
     void resetDummy() {
         if (this.dummy != null) {
-            this.dummy.func_70106_y();
+            this.dummy.setDead();
         }
         this.dummy = null;
         this.spawnDelay = 40;
@@ -203,7 +203,7 @@ public class RFP2State {
         if (this.checkEnableModDelay == 0L) {
             Entity playerMountEntity;
             this.checkEnableModDelay = 4L;
-            this.lastActivateCheckResult = RFP2Config.compatibility.disableWhenSwimming && this.dummy.isSwimming() ? false : ((playerMountEntity = player.func_184187_bx()) == null ? true : !this.stringMatchesRegexList(playerMountEntity.func_70005_c_().toLowerCase(), RFP2Config.compatibility.mountConflictList));
+            this.lastActivateCheckResult = RFP2Config.compatibility.disableWhenSwimming && this.dummy.isSwimming() ? false : ((playerMountEntity = player.getRidingEntity()) == null ? true : !this.stringMatchesRegexList(playerMountEntity.getName().toLowerCase(), RFP2Config.compatibility.mountConflictList));
         }
         return this.lastActivateCheckResult;
     }
@@ -217,8 +217,8 @@ public class RFP2State {
         }
         if (this.checkEnableRealArmsDelay == 0L) {
             this.checkEnableRealArmsDelay = 1L;
-            String itemMainHand = player.field_71071_by.func_70448_g().func_77973_b().getRegistryName().toString().toLowerCase();
-            String itemOffHand = ((ItemStack)player.field_71071_by.field_184439_c.get(0)).func_77973_b().getRegistryName().toString().toLowerCase();
+            String itemMainHand = player.inventory.getCurrentItem().getItem().getRegistryName().toString().toLowerCase();
+            String itemOffHand = ((ItemStack)player.inventory.offHandInventory.get(0)).getItem().getRegistryName().toString().toLowerCase();
             this.lastRealArmsCheckResult = RFP2Config.compatibility.disableArmsWhenAnyItemHeld ? itemMainHand.equals("minecraft:air") && itemOffHand.equals("minecraft:air") : !this.stringMatchesRegexList(itemMainHand, RFP2Config.compatibility.heldItemConflictList) && !this.stringMatchesRegexList(itemOffHand, RFP2Config.compatibility.heldItemConflictList);
         }
         return this.lastRealArmsCheckResult;

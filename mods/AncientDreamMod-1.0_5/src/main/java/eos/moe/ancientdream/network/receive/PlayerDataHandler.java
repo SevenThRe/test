@@ -16,8 +16,8 @@ public class PlayerDataHandler
 implements MessageHandler {
     @Override
     public void readBuffer(PacketBuffer buffer) {
-        String key = buffer.func_150789_c(32768);
-        String yamlStr = buffer.func_150789_c(32768);
+        String key = buffer.readString(32768);
+        String yamlStr = buffer.readString(32768);
         YamlConfiguration yaml = new YamlConfiguration();
         try {
             yaml.loadFromString(yamlStr);

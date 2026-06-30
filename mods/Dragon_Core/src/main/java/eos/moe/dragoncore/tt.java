@@ -30,17 +30,17 @@ implements AnimationEntityModel {
         a2.ALLATORIxDEMO();
     }
 
-    public void func_78088_a(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
+    public void render(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
         tt a9;
-        a9.func_78087_a(a3, a4, a5, a6, a7, a8, a2);
-        GlStateManager.func_179094_E();
+        a9.setRotationAngles(a3, a4, a5, a6, a7, a8, a2);
+        GlStateManager.pushMatrix();
         a9.k.ALLATORIxDEMO(a8);
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
-    public void func_78087_a(float a2, float a3, float a4, float a5, float a6, float a7, Entity a8) {
+    public void setRotationAngles(float a2, float a3, float a4, float a5, float a6, float a7, Entity a8) {
         tt a9;
-        super.func_78087_a(a2, a3, a4, a5, a6, a7, a8);
+        super.setRotationAngles(a2, a3, a4, a5, a6, a7, a8);
     }
 
     @Override

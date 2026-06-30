@@ -34,9 +34,9 @@ public class he
 extends RenderArrow {
     private km j = km.t;
 
-    public void func_76986_a(EntityArrow a2, double a3, double a4, double a5, float a6, float a7) {
+    public void doRender(EntityArrow a2, double a3, double a4, double a5, float a6, float a7) {
         he a8;
-        super.func_76986_a(a2, a3, a4, a5, a6, a7);
+        super.doRender(a2, a3, a4, a5, a6, a7);
     }
 
     public he(RenderManager a2) {
@@ -44,7 +44,7 @@ extends RenderArrow {
         he a3;
     }
 
-    public ResourceLocation func_110775_a(Entity a2) {
+    public ResourceLocation getEntityTexture(Entity a2) {
         return null;
     }
 
@@ -55,14 +55,14 @@ extends RenderArrow {
         GL11.glTranslatef((float)((float)a3), (float)((float)a4), (float)((float)a5));
         EntityArrow entityArrow = a22;
         EntityArrow entityArrow2 = a22;
-        GL11.glRotatef((float)(entityArrow.field_70126_B + (entityArrow2.field_70177_z - entityArrow2.field_70126_B) * a6 - 90.0f), (float)0.0f, (float)1.0f, (float)0.0f);
+        GL11.glRotatef((float)(entityArrow.prevRotationYaw + (entityArrow2.rotationYaw - entityArrow2.prevRotationYaw) * a6 - 90.0f), (float)0.0f, (float)1.0f, (float)0.0f);
         EntityArrow entityArrow3 = a22;
-        GL11.glRotatef((float)(entityArrow.field_70127_C + (entityArrow3.field_70125_A - entityArrow3.field_70127_C) * a6), (float)0.0f, (float)0.0f, (float)1.0f);
+        GL11.glRotatef((float)(entityArrow.prevRotationPitch + (entityArrow3.rotationPitch - entityArrow3.prevRotationPitch) * a6), (float)0.0f, (float)0.0f, (float)1.0f);
         GL11.glTranslatef((float)(2.5f * f3), (float)(0.5f * f3), (float)(0.5f * f3));
         float a22 = 0.05625f;
-        a22 = (float)entityArrow.field_70249_b - a6;
+        a22 = (float)entityArrow.arrowShake - a6;
         if (f2 > 0.0f) {
-            GL11.glRotatef((float)(-MathHelper.func_76126_a((float)(a22 * 3.0f)) * a22), (float)0.0f, (float)0.0f, (float)1.0f);
+            GL11.glRotatef((float)(-MathHelper.sin((float)(a22 * 3.0f)) * a22), (float)0.0f, (float)0.0f, (float)1.0f);
         }
         GL11.glRotatef((float)-90.0f, (float)0.0f, (float)1.0f, (float)0.0f);
         GL11.glScalef((float)-1.0f, (float)-1.0f, (float)1.0f);

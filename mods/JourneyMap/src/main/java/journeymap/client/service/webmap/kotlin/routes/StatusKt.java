@@ -36,7 +36,7 @@ public final class StatusKt {
         Intrinsics.checkParameterIsNotNull(handler, "handler");
         boolean bl = false;
         Map data = new LinkedHashMap();
-        if (Minecraft.func_71410_x().field_71441_e == null) {
+        if (Minecraft.getMinecraft().world == null) {
             webmapStatus = WebmapStatus.NO_WORLD;
         } else {
             JourneymapClient journeymapClient = Journeymap.getClient();

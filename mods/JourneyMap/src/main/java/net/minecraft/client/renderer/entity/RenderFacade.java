@@ -21,14 +21,14 @@ extends Render {
     }
 
     public static ResourceLocation getEntityTexture(Render render, Entity entity) {
-        return render.func_110775_a(entity);
+        return render.getEntityTexture(entity);
     }
 
-    protected ResourceLocation func_110775_a(Entity entity) {
+    protected ResourceLocation getEntityTexture(Entity entity) {
         return null;
     }
 
-    public void func_76986_a(Entity entity, double var2, double var4, double var6, float var8, float var9) {
+    public void doRender(Entity entity, double var2, double var4, double var6, float var8, float var9) {
     }
 }
 

@@ -32,9 +32,9 @@ public class ol {
         int a11 = a9 >> 8 & 0xFF;
         int a12 = a9 & 0xFF;
         if (a3 == null || a3.isEmpty()) {
-            FontRenderer a13 = Minecraft.func_71410_x().field_71466_p;
+            FontRenderer a13 = Minecraft.getMinecraft().fontRenderer;
             a9 = a10 | a11 << 8 | a12 << 16 | (int)(sd.ALLATORIxDEMO() * 255.0f) << 24;
-            a13.func_175065_a(a2, (float)((int)(a4 - (double)(a6 ? ol.ALLATORIxDEMO(a2, null, false) / 2 : 0))), (float)a5, a9, a7);
+            a13.drawString(a2, (float)((int)(a4 - (double)(a6 ? ol.ALLATORIxDEMO(a2, null, false) / 2 : 0))), (float)a5, a9, a7);
         } else {
             in a14 = fd.ALLATORIxDEMO(a3);
             a14.ALLATORIxDEMO((float)a10 / 255.0f, (float)a11 / 255.0f, (float)a12 / 255.0f, a14.o);
@@ -50,7 +50,7 @@ public class ol {
             a2 = a2.replace("&", "\u00a7");
         }
         if (a3 == null || a3.isEmpty()) {
-            return Minecraft.func_71410_x().field_71466_p.func_78262_a(a2, a4, false);
+            return Minecraft.getMinecraft().fontRenderer.trimStringToWidth(a2, a4, false);
         }
         return fd.ALLATORIxDEMO(a3).ALLATORIxDEMO(a2, a4, false);
     }
@@ -63,7 +63,7 @@ public class ol {
             a2 = a2.replace("&", "\u00a7");
         }
         if (a3 == null || a3.isEmpty()) {
-            return Minecraft.func_71410_x().field_71466_p.func_78256_a(a2);
+            return Minecraft.getMinecraft().fontRenderer.getStringWidth(a2);
         }
         return fd.ALLATORIxDEMO(a3).c(a2);
     }

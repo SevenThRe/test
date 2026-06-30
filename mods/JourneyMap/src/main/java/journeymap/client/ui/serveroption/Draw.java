@@ -30,7 +30,7 @@ public interface Draw {
             return checkBox;
         }
         CheckBox checkBox = new CheckBox("", true);
-        checkBox.field_146124_l = false;
+        checkBox.enabled = false;
         return checkBox;
     }
 

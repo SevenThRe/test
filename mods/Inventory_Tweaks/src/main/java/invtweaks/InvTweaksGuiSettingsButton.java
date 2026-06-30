@@ -29,22 +29,22 @@ extends InvTweaksGuiIconButton {
     }
 
     @Override
-    public void func_191745_a(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
-        super.func_191745_a(mc, mouseX, mouseY, partialTicks);
+    public void drawButton(@NotNull Minecraft mc, int mouseX, int mouseY, float partialTicks) {
+        super.drawButton(mc, mouseX, mouseY, partialTicks);
         InvTweaksObfuscation obf = new InvTweaksObfuscation(mc);
-        this.func_73732_a(obf.getFontRenderer(), this.field_146126_j, this.field_146128_h + 5, this.field_146129_i - 1, this.getTextColor(mouseX, mouseY));
+        this.drawCenteredString(obf.getFontRenderer(), this.displayString, this.x + 5, this.y - 1, this.getTextColor(mouseX, mouseY));
     }
 
-    public boolean func_146116_c(Minecraft minecraft, int i, int j) {
+    public boolean mousePressed(Minecraft minecraft, int i, int j) {
         InvTweaksObfuscation obf = new InvTweaksObfuscation(minecraft);
         InvTweaksConfig config = this.cfgManager.getConfig();
-        if (super.func_146116_c(minecraft, i, j)) {
+        if (super.mousePressed(minecraft, i, j)) {
             block4: {
                 try {
                     ContainerSectionManager containerMgr = new ContainerSectionManager(ContainerSection.INVENTORY);
-                    if (obf.getHeldStack().func_190926_b()) break block4;
+                    if (obf.getHeldStack().isEmpty()) break block4;
                     for (int k = containerMgr.getSize() - 1; k >= 0; --k) {
-                        if (!containerMgr.getItemStack(k).func_190926_b()) continue;
+                        if (!containerMgr.getItemStack(k).isEmpty()) continue;
                         containerMgr.leftClick(k);
                         break;
                     }

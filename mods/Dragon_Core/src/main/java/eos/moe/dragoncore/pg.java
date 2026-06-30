@@ -55,60 +55,60 @@ public class pg {
 
     @i(f={"\u6e38\u620f\u9009\u9879", "Minecraft_Options"}, c=true)
     public static void d() {
-        Minecraft a2 = Minecraft.func_71410_x();
-        a2.func_147108_a((GuiScreen)new GuiOptions(null, a2.field_71474_y));
+        Minecraft a2 = Minecraft.getMinecraft();
+        a2.displayGuiScreen((GuiScreen)new GuiOptions(null, a2.gameSettings));
     }
 
     @i(f={"\u9000\u51fa\u6e38\u620f", "Minecraft_Quit"}, c=true)
     public static void x() {
-        Minecraft a2 = Minecraft.func_71410_x();
-        boolean a3 = a2.func_71387_A();
-        boolean a4 = a2.func_181540_al();
-        a2.field_71441_e.func_72882_A();
-        a2.func_71403_a(null);
+        Minecraft a2 = Minecraft.getMinecraft();
+        boolean a3 = a2.isIntegratedServerRunning();
+        boolean a4 = a2.isConnectedToRealms();
+        a2.world.sendQuittingDisconnectingPacket();
+        a2.loadWorld(null);
         if (a3) {
-            a2.func_147108_a((GuiScreen)new GuiMainMenu());
+            a2.displayGuiScreen((GuiScreen)new GuiMainMenu());
         } else if (a4) {
             RealmsBridge a5 = new RealmsBridge();
             a5.switchToRealms((GuiScreen)new GuiMainMenu());
         } else {
-            a2.func_147108_a((GuiScreen)new GuiMultiplayer((GuiScreen)new GuiMainMenu()));
+            a2.displayGuiScreen((GuiScreen)new GuiMultiplayer((GuiScreen)new GuiMainMenu()));
         }
     }
 
     @i(f={"\u5173\u95ed\u6e38\u620f", "Minecraft_Shutdown"}, c=true)
     public static void f() {
-        Minecraft a2 = Minecraft.func_71410_x();
-        a2.func_71400_g();
+        Minecraft a2 = Minecraft.getMinecraft();
+        a2.shutdown();
     }
 
     @i(f={"\u6e38\u620f\u8fdb\u5ea6", "Minecraft_Advancements"}, c=true)
     public static void c() {
-        Minecraft a2 = Minecraft.func_71410_x();
-        a2.func_147108_a((GuiScreen)new GuiScreenAdvancements(a2.field_71439_g.field_71174_a.func_191982_f()));
+        Minecraft a2 = Minecraft.getMinecraft();
+        a2.displayGuiScreen((GuiScreen)new GuiScreenAdvancements(a2.player.connection.getAdvancementManager()));
     }
 
     @i(f={"\u6e38\u620f\u7edf\u8ba1", "Minecraft_Stat"}, c=true)
     public static void ALLATORIxDEMO() {
-        Minecraft a2 = Minecraft.func_71410_x();
-        a2.func_147108_a((GuiScreen)new GuiStats(null, a2.field_71439_g.func_146107_m()));
+        Minecraft a2 = Minecraft.getMinecraft();
+        a2.displayGuiScreen((GuiScreen)new GuiStats(null, a2.player.getStatFileWriter()));
     }
 
     @i(f={"\u8bbe\u7f6e\u754c\u9762\u5c3a\u5bf8", "Minecraft_Set_Gui_Scale"}, c=true)
     public static void ALLATORIxDEMO(int a2) {
-        Minecraft a3 = Minecraft.func_71410_x();
-        a3.field_71474_y.field_74335_Z = a2;
-        a3.field_71474_y.func_74303_b();
+        Minecraft a3 = Minecraft.getMinecraft();
+        a3.gameSettings.guiScale = a2;
+        a3.gameSettings.saveOptions();
     }
 
     @i(f={"\u53d6\u754c\u9762\u5c3a\u5bf8", "Minecraft_Get_Gui_Scale"})
     public static double ALLATORIxDEMO() {
-        return de.o.func_78325_e();
+        return de.o.getScaleFactor();
     }
 
     @i(f={"\u53d6\u5f53\u524d\u6e38\u620f\u754c\u9762\u540d", "Minecraft_Get_Screen_Name"})
     public static String ALLATORIxDEMO() {
-        GuiScreen a2 = Minecraft.func_71410_x().field_71462_r;
+        GuiScreen a2 = Minecraft.getMinecraft().currentScreen;
         if (a2 == null) {
             return "none";
         }
@@ -116,15 +116,15 @@ public class pg {
             return "dragoncore:" + ((ui)a2).fa;
         }
         if (a2 instanceof GuiChest) {
-            IInventory a3 = (IInventory)ReflectionHelper.getPrivateValue(GuiChest.class, (Object)((GuiChest)a2), (String[])new String[]{"field_147015_w", "lowerChestInventory"});
-            return "chest:" + (a3 != null && a3.func_145748_c_() != null ? a3.func_145748_c_().func_150260_c() : "");
+            IInventory a3 = (IInventory)ReflectionHelper.getPrivateValue(GuiChest.class, (Object)((GuiChest)a2), (String[])new String[]{"lowerChestInventory", "lowerChestInventory"});
+            return "chest:" + (a3 != null && a3.getDisplayName() != null ? a3.getDisplayName().getUnformattedText() : "");
         }
         return "minecraft:" + a2.getClass().getSimpleName();
     }
 
     @i(f={"\u53d6FPS", "Minecraft_Get_FPS"})
     public static int ALLATORIxDEMO() {
-        return Minecraft.func_175610_ah();
+        return Minecraft.getDebugFPS();
     }
 
     @i(f={"\u52a0\u8f7dJS", "JS_Load"})
@@ -143,11 +143,11 @@ public class pg {
 
     @i(f={"\u8bbe\u7f6e\u6750\u8d28\u5305"}, c=true)
     public static void ALLATORIxDEMO(String[] a2) {
-        Minecraft a3 = Minecraft.func_71410_x();
-        a3.field_71474_y.field_151453_l.clear();
-        a3.field_71474_y.field_151453_l.addAll(Arrays.asList(a2));
-        a3.field_71474_y.func_74303_b();
-        a3.func_175603_A();
+        Minecraft a3 = Minecraft.getMinecraft();
+        a3.gameSettings.resourcePacks.clear();
+        a3.gameSettings.resourcePacks.addAll(Arrays.asList(a2));
+        a3.gameSettings.saveOptions();
+        a3.scheduleResourcesRefresh();
     }
 
     @i(f={"\u6267\u884cJS", "JS_EXECUTE"})

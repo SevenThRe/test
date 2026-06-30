@@ -40,7 +40,7 @@ public enum FlowerBlockProxy implements IBlockColorProxy
     INSTANCE;
 
     boolean enabled = true;
-    private final BlockColors blockColors = FMLClientHandler.instance().getClient().func_184125_al();
+    private final BlockColors blockColors = FMLClientHandler.instance().getClient().getBlockColors();
 
     @Override
     public int deriveBlockColor(BlockMD blockMD, @Nullable ChunkMD chunkMD, @Nullable BlockPos blockPos) {
@@ -59,9 +59,9 @@ public enum FlowerBlockProxy implements IBlockColorProxy
         if (blockMD.getBlock() instanceof BlockFlowerPot && Journeymap.getClient().getCoreProperties().mapPlants.get().booleanValue()) {
             try {
                 IBlockState blockState = blockMD.getBlockState();
-                ItemStack stack = ((BlockFlowerPot)blockState.func_177230_c()).func_185473_a(chunkMD.getWorld(), blockPos, blockState);
+                ItemStack stack = ((BlockFlowerPot)blockState.getBlock()).getItem(chunkMD.getWorld(), blockPos, blockState);
                 if (stack != null) {
-                    IBlockState contentBlockState = Block.func_149634_a((Item)stack.func_77973_b()).func_176203_a(stack.func_77973_b().getDamage(stack));
+                    IBlockState contentBlockState = Block.getBlockFromItem((Item)stack.getItem()).getStateFromMeta(stack.getItem().getDamage(stack));
                     return BlockMD.get(contentBlockState).getTextureColor();
                 }
             }
@@ -74,9 +74,9 @@ public enum FlowerBlockProxy implements IBlockColorProxy
     }
 
     private Integer getFlowerColor(IBlockState blockState) {
-        if (blockState.func_177230_c() instanceof BlockFlower) {
-            IProperty typeProperty = ((BlockFlower)blockState.func_177230_c()).func_176494_l();
-            BlockFlower.EnumFlowerType flowerType = (BlockFlower.EnumFlowerType)blockState.func_177228_b().get((Object)typeProperty);
+        if (blockState.getBlock() instanceof BlockFlower) {
+            IProperty typeProperty = ((BlockFlower)blockState.getBlock()).getTypeProperty();
+            BlockFlower.EnumFlowerType flowerType = (BlockFlower.EnumFlowerType)blockState.getProperties().get((Object)typeProperty);
             if (flowerType != null) {
                 switch (flowerType) {
                     case POPPY: {

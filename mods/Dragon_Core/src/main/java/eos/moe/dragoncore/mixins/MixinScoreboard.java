@@ -25,12 +25,12 @@ public abstract class MixinScoreboard {
 
     @Shadow
     @Nullable
-    public abstract ScorePlayerTeam func_96509_i(String var1);
+    public abstract ScorePlayerTeam getPlayersTeam(String var1);
 
     @Inject(method={"removePlayerFromTeam"}, at={@At(value="HEAD")}, cancellable=true)
     private /* synthetic */ void mixin_fix_removePlayerFromTeam(String a2, ScorePlayerTeam a3, CallbackInfo a4) {
         MixinScoreboard a5;
-        if (a5.func_96509_i(a2) != a3) {
+        if (a5.getPlayersTeam(a2) != a3) {
             a4.cancel();
         }
     }

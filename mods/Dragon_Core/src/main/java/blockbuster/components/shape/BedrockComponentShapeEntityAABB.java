@@ -18,9 +18,9 @@ extends BedrockComponentShapeBase {
         float h2 = 0.0f;
         float d2 = 0.0f;
         if (emitter.target != null) {
-            w2 = emitter.target.field_70130_N;
-            h2 = emitter.target.field_70131_O;
-            d2 = emitter.target.field_70130_N;
+            w2 = emitter.target.width;
+            h2 = emitter.target.height;
+            d2 = emitter.target.width;
         }
         particle.position.x = centerX + ((float)Math.random() - 0.5f) * w2;
         particle.position.y = centerY + ((float)Math.random() - 0.5f) * h2;

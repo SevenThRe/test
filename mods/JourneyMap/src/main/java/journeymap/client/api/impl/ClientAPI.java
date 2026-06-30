@@ -173,7 +173,7 @@ public enum ClientAPI implements IClientAPI
     public void requestMapTile(String modId, int dimension, Context.MapType apiMapType, ChunkPos startChunk, ChunkPos endChunk, @Nullable Integer chunkY, int zoom, boolean showGrid, Consumer<BufferedImage> callback) {
         this.log("requestMapTile");
         boolean honorRequest = true;
-        File worldDir = FileHandler.getJMWorldDir(Minecraft.func_71410_x());
+        File worldDir = FileHandler.getJMWorldDir(Minecraft.getMinecraft());
         if (!Objects.equals("jmitems", modId)) {
             honorRequest = false;
             this.logError("requestMapTile not supported");
@@ -185,7 +185,7 @@ public enum ClientAPI implements IClientAPI
             if (honorRequest) {
                 Journeymap.getClient().queueOneOff(new ApiImageTask(modId, dimension, apiMapType, startChunk, endChunk, chunkY, zoom, showGrid, callback));
             } else {
-                Minecraft.func_71410_x().func_152344_a(() -> callback.accept(null));
+                Minecraft.getMinecraft().addScheduledTask(() -> callback.accept(null));
             }
         }
         catch (Exception e) {

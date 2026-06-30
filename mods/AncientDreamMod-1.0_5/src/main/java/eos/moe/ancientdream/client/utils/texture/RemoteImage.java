@@ -87,10 +87,10 @@ implements TextureProvider {
             LocalCache.markFileUsed(this.cachedFilePath.toPath());
             try {
                 DynamicTexture dynamicTexture;
-                TextureManager getTextureManager = Minecraft.func_71410_x().func_110434_K();
+                TextureManager getTextureManager = Minecraft.getMinecraft().getTextureManager();
                 String string = "ancientdream_remote_image" + this.id;
                 this.dynamicTexture = dynamicTexture = new DynamicTexture(this.bufferedImage.get());
-                this.resourceLocation = getTextureManager.func_110578_a(string, dynamicTexture);
+                this.resourceLocation = getTextureManager.getDynamicTextureLocation(string, dynamicTexture);
             }
             catch (Exception e) {
                 AncientDream.getLogger().error("Couldn't load remote image from url " + this.url.toString(), (Throwable)e);
@@ -130,7 +130,7 @@ implements TextureProvider {
     @Override
     public ResourceLocation getTexture(ResourceLocation loading) {
         ResourceLocation texture = this.getTexture();
-        if (texture == null || texture == TextureManager.field_194008_a) {
+        if (texture == null || texture == TextureManager.RESOURCE_LOCATION_EMPTY) {
             return loading;
         }
         return texture;

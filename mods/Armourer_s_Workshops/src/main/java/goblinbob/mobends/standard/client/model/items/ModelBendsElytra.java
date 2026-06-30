@@ -27,62 +27,62 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(value=Side.CLIENT)
 public class ModelBendsElytra
 extends ModelBase {
-    private ModelRenderer field_187060_a;
-    private ModelRenderer field_187061_b = new ModelRenderer((ModelBase)this, 22, 0);
+    private ModelRenderer rightWing;
+    private ModelRenderer leftWing = new ModelRenderer((ModelBase)this, 22, 0);
 
     public ModelBendsElytra() {
-        this.field_187061_b.func_78790_a(-10.0f, 0.0f, 0.0f, 10, 20, 2, 1.0f);
-        this.field_187060_a = new ModelRenderer((ModelBase)this, 22, 0);
-        this.field_187060_a.field_78809_i = true;
-        this.field_187060_a.func_78790_a(0.0f, 0.0f, 0.0f, 10, 20, 2, 1.0f);
+        this.leftWing.addBox(-10.0f, 0.0f, 0.0f, 10, 20, 2, 1.0f);
+        this.rightWing = new ModelRenderer((ModelBase)this, 22, 0);
+        this.rightWing.mirror = true;
+        this.rightWing.addBox(0.0f, 0.0f, 0.0f, 10, 20, 2, 1.0f);
     }
 
-    public void func_78088_a(Entity entityIn, float p_78088_2_, float limbSwing, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        GlStateManager.func_179101_C();
-        GlStateManager.func_179129_p();
-        this.field_187061_b.func_78785_a(scale);
-        this.field_187060_a.func_78785_a(scale);
+    public void render(Entity entityIn, float p_78088_2_, float limbSwing, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableCull();
+        this.leftWing.render(scale);
+        this.rightWing.render(scale);
     }
 
-    public void func_78087_a(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
-        super.func_78087_a(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
         float f2 = 0.2617994f;
         float f1 = -0.2617994f;
         float f22 = 0.0f;
         float f3 = 0.0f;
-        if (entityIn instanceof EntityLivingBase && ((EntityLivingBase)entityIn).func_184613_cA()) {
+        if (entityIn instanceof EntityLivingBase && ((EntityLivingBase)entityIn).isElytraFlying()) {
             float f4 = 1.0f;
-            if (entityIn.field_70181_x < 0.0) {
-                Vec3d vec3d = new Vec3d(entityIn.field_70159_w, entityIn.field_70181_x, entityIn.field_70179_y).func_72432_b();
-                f4 = 1.0f - (float)Math.pow(-vec3d.field_72448_b, 1.5);
+            if (entityIn.motionY < 0.0) {
+                Vec3d vec3d = new Vec3d(entityIn.motionX, entityIn.motionY, entityIn.motionZ).normalize();
+                f4 = 1.0f - (float)Math.pow(-vec3d.y, 1.5);
             }
             f2 = f4 * 0.34906584f + (1.0f - f4) * f2;
             f1 = f4 * -1.5707964f + (1.0f - f4) * f1;
         }
-        this.field_187061_b.field_78800_c = 5.0f;
-        this.field_187061_b.field_78797_d = f22;
+        this.leftWing.rotationPointX = 5.0f;
+        this.leftWing.rotationPointY = f22;
         if (entityIn instanceof AbstractClientPlayer) {
             AbstractClientPlayer abstractclientplayer = (AbstractClientPlayer)entityIn;
-            abstractclientplayer.field_184835_a = (float)((double)abstractclientplayer.field_184835_a + (double)(f2 - abstractclientplayer.field_184835_a) * 0.1);
-            abstractclientplayer.field_184836_b = (float)((double)abstractclientplayer.field_184836_b + (double)(f3 - abstractclientplayer.field_184836_b) * 0.1);
-            abstractclientplayer.field_184837_c = (float)((double)abstractclientplayer.field_184837_c + (double)(f1 - abstractclientplayer.field_184837_c) * 0.1);
-            this.field_187061_b.field_78795_f = abstractclientplayer.field_184835_a;
-            this.field_187061_b.field_78796_g = abstractclientplayer.field_184836_b;
-            this.field_187061_b.field_78808_h = abstractclientplayer.field_184837_c;
+            abstractclientplayer.rotateElytraX = (float)((double)abstractclientplayer.rotateElytraX + (double)(f2 - abstractclientplayer.rotateElytraX) * 0.1);
+            abstractclientplayer.rotateElytraY = (float)((double)abstractclientplayer.rotateElytraY + (double)(f3 - abstractclientplayer.rotateElytraY) * 0.1);
+            abstractclientplayer.rotateElytraZ = (float)((double)abstractclientplayer.rotateElytraZ + (double)(f1 - abstractclientplayer.rotateElytraZ) * 0.1);
+            this.leftWing.rotateAngleX = abstractclientplayer.rotateElytraX;
+            this.leftWing.rotateAngleY = abstractclientplayer.rotateElytraY;
+            this.leftWing.rotateAngleZ = abstractclientplayer.rotateElytraZ;
         } else {
-            this.field_187061_b.field_78795_f = f2;
-            this.field_187061_b.field_78808_h = f1;
-            this.field_187061_b.field_78796_g = f3;
+            this.leftWing.rotateAngleX = f2;
+            this.leftWing.rotateAngleZ = f1;
+            this.leftWing.rotateAngleY = f3;
         }
-        this.field_187060_a.field_78800_c = -this.field_187061_b.field_78800_c;
-        this.field_187060_a.field_78796_g = -this.field_187061_b.field_78796_g;
-        this.field_187060_a.field_78797_d = this.field_187061_b.field_78797_d;
-        this.field_187060_a.field_78795_f = this.field_187061_b.field_78795_f;
-        this.field_187060_a.field_78808_h = -this.field_187061_b.field_78808_h;
+        this.rightWing.rotationPointX = -this.leftWing.rotationPointX;
+        this.rightWing.rotateAngleY = -this.leftWing.rotateAngleY;
+        this.rightWing.rotationPointY = this.leftWing.rotationPointY;
+        this.rightWing.rotateAngleX = this.leftWing.rotateAngleX;
+        this.rightWing.rotateAngleZ = -this.leftWing.rotateAngleZ;
     }
 
-    public void func_78086_a(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime) {
-        super.func_78086_a(entitylivingbaseIn, p_78086_2_, p_78086_3_, partialTickTime);
+    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime) {
+        super.setLivingAnimations(entitylivingbaseIn, p_78086_2_, p_78086_3_, partialTickTime);
     }
 }
 

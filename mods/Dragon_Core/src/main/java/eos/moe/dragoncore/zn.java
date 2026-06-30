@@ -28,7 +28,7 @@ implements Comparator<ph<fi>> {
         String a7 = a3.ALLATORIxDEMO().ALLATORIxDEMO();
         if (a4 instanceof NBTTagCompound || a4 instanceof NBTTagList) {
             if (a5 instanceof NBTTagCompound || a5 instanceof NBTTagList) {
-                int a8 = a4.func_74732_a() - a5.func_74732_a();
+                int a8 = a4.getId() - a5.getId();
                 return a8 == 0 ? a6.compareTo(a7) : a8;
             }
             return 1;
@@ -36,7 +36,7 @@ implements Comparator<ph<fi>> {
         if (a5 instanceof NBTTagCompound || a5 instanceof NBTTagList) {
             return -1;
         }
-        int a9 = a4.func_74732_a() - a5.func_74732_a();
+        int a9 = a4.getId() - a5.getId();
         return a9 == 0 ? a6.compareTo(a7) : a9;
     }
 }

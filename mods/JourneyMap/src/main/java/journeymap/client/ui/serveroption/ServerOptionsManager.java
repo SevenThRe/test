@@ -64,7 +64,7 @@ extends JmUI {
     }
 
     @Override
-    public boolean func_73868_f() {
+    public boolean doesGuiPauseGame() {
         return false;
     }
 
@@ -105,16 +105,16 @@ extends JmUI {
     }
 
     @Override
-    public void func_73866_w_() {
+    public void initGui() {
         try {
             if (this.global != null) {
-                this.field_146292_n.clear();
+                this.buttonList.clear();
                 this.buttonNext = new Button(Constants.getString("jm.server.edit.label.button.next"));
                 this.buttonNext.setTooltip(ServerOptionsManager.formattedToolTipHeader("jm.server.edit.label.button.next.tooltip") + Constants.getString("jm.server.edit.label.button.next.tooltip"));
-                this.buttonNext.func_175211_a(40);
+                this.buttonNext.setWidth(40);
                 this.buttonPrevious = new Button(Constants.getString("jm.server.edit.label.button.previous"));
                 this.buttonPrevious.setTooltip(ServerOptionsManager.formattedToolTipHeader("jm.server.edit.label.button.previous.tooltip") + Constants.getString("jm.server.edit.label.button.previous.tooltip"));
-                this.buttonPrevious.func_175211_a(this.buttonNext.getWidth());
+                this.buttonPrevious.setWidth(this.buttonNext.getWidth());
                 if (this.global.get("world_id") != null) {
                     this.labelWorldId = new Label(304, "jm.server.edit.label.worldId", this.global.get("world_id").getAsString());
                     this.labelWorldId.setTooltip(ServerOptionsManager.formattedToolTipHeader("jm.server.edit.chkbox.world.id") + Constants.getString("jm.server.edit.label.worldId.tooltip"));
@@ -123,17 +123,17 @@ extends JmUI {
                     this.labelWorldId.setTooltip(ServerOptionsManager.formattedToolTipHeader("jm.server.edit.label.worldId.singleplayer") + Constants.getString("jm.server.edit.label.worldId.singleplayer.tooltip"));
                 }
                 this.labelWorldId.setHAlign(DrawUtil.HAlign.Center);
-                this.labelWorldId.func_175211_a(this.labelWorldId.getFitWidth(this.getFontRenderer()));
+                this.labelWorldId.setWidth(this.labelWorldId.getFitWidth(this.getFontRenderer()));
                 this.buttonSave = new Button(Constants.getString("jm.waypoint.save"));
                 this.buttonClose = new Button(Constants.getString("jm.server.edit.button.close"));
                 this.bottomButtons = new ButtonList(this.buttonClose, this.buttonSave);
                 this.bottomButtons.equalizeWidths(this.getFontRenderer());
-                this.configDisplay = new ConfigDisplay(this.activeProperty, this.field_146289_q);
+                this.configDisplay = new ConfigDisplay(this.activeProperty, this.fontRenderer);
                 this.topButtons = new ButtonList(this.buttonPrevious, this.labelSelector, this.buttonNext);
-                this.field_146292_n.add(this.labelWorldId);
-                this.field_146292_n.addAll(this.topButtons);
-                this.field_146292_n.addAll(this.configDisplay.getButtons());
-                this.field_146292_n.addAll(this.bottomButtons);
+                this.buttonList.add(this.labelWorldId);
+                this.buttonList.addAll(this.topButtons);
+                this.buttonList.addAll(this.configDisplay.getButtons());
+                this.buttonList.addAll(this.bottomButtons);
             }
         }
         catch (Throwable t) {
@@ -144,14 +144,14 @@ extends JmUI {
 
     @Override
     protected void layoutButtons() {
-        this.startY = Math.max(40, (this.field_146295_m - 230) / 2);
-        this.centerX = this.field_146294_l / 2;
+        this.startY = Math.max(40, (this.height - 230) / 2);
+        this.centerX = this.width / 2;
         this.topRowLeft = this.centerX - 50;
         this.tileY = this.startY + 12;
-        if (this.field_146292_n.isEmpty() && this.global != null) {
-            this.func_73866_w_();
+        if (this.buttonList.isEmpty() && this.global != null) {
+            this.initGui();
         }
-        if (this.global != null && !this.field_146292_n.isEmpty() && this.topButtons != null && !this.topButtons.isEmpty()) {
+        if (this.global != null && !this.buttonList.isEmpty() && this.topButtons != null && !this.topButtons.isEmpty()) {
             this.labelWorldId.setX(this.centerX - this.labelWorldId.getWidth() / 2);
             this.labelWorldId.setY(this.startY - 10);
             try {
@@ -161,13 +161,13 @@ extends JmUI {
                 System.out.println(this.topButtons.size());
             }
             this.configDisplay.draw(this.centerX, this.topButtons.getBottomY(), 6);
-            int bottomY = Math.min(this.tileY + 128 + 12, this.field_146295_m - 10 - this.buttonClose.getHeight());
+            int bottomY = Math.min(this.tileY + 128 + 12, this.height - 10 - this.buttonClose.getHeight());
             this.bottomButtons.equalizeWidths(this.getFontRenderer(), 6, this.centerX - this.topRowLeft);
             this.bottomButtons.layoutCenteredHorizontal(this.centerX, bottomY + 20, true, 6);
         }
     }
 
-    protected void func_146284_a(GuiButton guibutton) {
+    protected void actionPerformed(GuiButton guibutton) {
         try {
             if (guibutton == this.buttonSave) {
                 this.save();
@@ -213,26 +213,26 @@ extends JmUI {
             this.index = 0;
         }
         if (this.index == 0) {
-            this.labelSelector.field_146126_j = Constants.getString("jm.server.edit.label.selection.global");
+            this.labelSelector.displayString = Constants.getString("jm.server.edit.label.selection.global");
             this.labelSelector.setTooltip(ServerOptionsManager.formattedToolTipHeader("jm.server.edit.label.selection.global") + Constants.getString("jm.server.edit.label.selection.global.tooltip"));
             this.activeProperty = this.global;
         } else if (this.index == 1) {
-            this.labelSelector.field_146126_j = Constants.getString("jm.server.edit.label.selection.default");
+            this.labelSelector.displayString = Constants.getString("jm.server.edit.label.selection.default");
             this.labelSelector.setTooltip(ServerOptionsManager.formattedToolTipHeader("jm.server.edit.label.selection.default") + Constants.getString("jm.server.edit.label.selection.default.tooltip"));
             this.activeProperty = this.defaultDimension;
         } else {
             String dimName = this.dimensionMap.get(Integer.valueOf(this.dimIndexList.get(this.index))).get("dimName").getAsString();
-            this.labelSelector.field_146126_j = Constants.getString("jm.server.edit.label.selection.dimension", dimName, this.dimIndexList.get(this.index));
+            this.labelSelector.displayString = Constants.getString("jm.server.edit.label.selection.dimension", dimName, this.dimIndexList.get(this.index));
             this.labelSelector.setTooltip(ServerOptionsManager.formattedToolTipHeader("jm.theme.labelsource.dimension") + Constants.getString("jm.server.edit.label.selection.dimension.tooltip"));
             this.activeProperty = this.dimensionMap.get(Integer.valueOf(this.dimIndexList.get(this.index)));
         }
-        this.func_73866_w_();
+        this.initGui();
     }
 
     @Override
-    public void func_73863_a(int x, int y, float par3) {
+    public void drawScreen(int x, int y, float par3) {
         try {
-            super.func_73863_a(x, y, par3);
+            super.drawScreen(x, y, par3);
         }
         catch (Throwable t) {
             this.logger.error("Error in SeverEditor.drawScreen: " + LogFormatter.toString(t));
@@ -241,7 +241,7 @@ extends JmUI {
 
     @Override
     protected void closeAndReturn() {
-        this.field_146292_n.clear();
+        this.buttonList.clear();
         if (this.returnDisplay == null) {
             UIManager.INSTANCE.closeAll();
         } else {

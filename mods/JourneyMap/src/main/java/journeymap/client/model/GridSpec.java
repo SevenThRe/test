@@ -59,11 +59,11 @@ public class GridSpec {
     }
 
     public void beginTexture(int textureFilter, int textureWrap, float mapAlpha) {
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179120_a((int)770, (int)771, (int)1, (int)0);
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179144_i((int)this.getTexture().func_110552_b());
-        GlStateManager.func_179131_c((float)this.red, (float)this.green, (float)this.blue, (float)(this.alpha * mapAlpha));
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate((int)770, (int)771, (int)1, (int)0);
+        GlStateManager.enableTexture2D();
+        GlStateManager.bindTexture((int)this.getTexture().getGlTextureId());
+        GlStateManager.color((float)this.red, (float)this.green, (float)this.blue, (float)(this.alpha * mapAlpha));
         GL11.glTexParameteri((int)3553, (int)10241, (int)textureFilter);
         GL11.glTexParameteri((int)3553, (int)10240, (int)textureFilter);
         GL11.glTexParameteri((int)3553, (int)10242, (int)textureWrap);
@@ -82,8 +82,8 @@ public class GridSpec {
     }
 
     public void finishTexture() {
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179082_a((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.clearColor((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
     }
 
     public Integer getColor() {

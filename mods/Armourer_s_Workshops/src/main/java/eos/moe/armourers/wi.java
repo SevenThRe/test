@@ -55,35 +55,35 @@ extends pj {
         if (a2 instanceof EntityPlayer) {
             object = (EntityPlayer)a2;
             wi wi2 = a5;
-            wi2.field_78117_n = object.func_70093_af();
-            wi2.field_78093_q = object.func_184218_aH();
+            wi2.isSneak = object.isSneaking();
+            wi2.isRiding = object.isRiding();
         }
-        RenderHelper.func_74520_c();
+        RenderHelper.enableGUIStandardItemLighting();
         if (a3.r() & a4.h()) {
             object = rd.v.getTextureForSkin(a3, a4.r(), a4.r());
             ((ti)((Object)object)).bindTexture();
             GL11.glPushAttrib((int)8192);
             GL11.glDisable((int)2884);
             GL11.glEnable((int)3008);
-            a5.field_78116_c.func_78785_a(v);
+            a5.bipedHead.render(v);
             GL11.glPopAttrib();
         }
         if (a3.y().size() > 0) {
             GL11.glPushMatrix();
-            if (a5.field_78091_s) {
+            if (a5.isChild) {
                 float f2 = 2.0f;
                 GL11.glScalef((float)(1.5f / f2), (float)(1.5f / f2), (float)(1.5f / f2));
                 GL11.glTranslatef((float)0.0f, (float)(16.0f * v), (float)0.0f);
             }
-            if (a5.field_78117_n) {
-                GlStateManager.func_179109_b((float)0.0f, (float)0.2f, (float)0.0f);
-                GlStateManager.func_179109_b((float)0.0f, (float)(1.0f * v), (float)0.0f);
+            if (a5.isSneak) {
+                GlStateManager.translate((float)0.0f, (float)0.2f, (float)0.0f);
+                GlStateManager.translate((float)0.0f, (float)(1.0f * v), (float)0.0f);
             }
             GL11.glColor3f((float)1.0f, (float)1.0f, (float)1.0f);
             wi wi3 = a5;
-            GL11.glRotated((double)Math.toDegrees(wi3.field_78116_c.field_78808_h), (double)0.0, (double)0.0, (double)1.0);
-            GL11.glRotated((double)Math.toDegrees(wi3.field_78116_c.field_78796_g), (double)0.0, (double)1.0, (double)0.0);
-            GL11.glRotated((double)Math.toDegrees(wi3.field_78116_c.field_78795_f), (double)1.0, (double)0.0, (double)0.0);
+            GL11.glRotated((double)Math.toDegrees(wi3.bipedHead.rotateAngleZ), (double)0.0, (double)0.0, (double)1.0);
+            GL11.glRotated((double)Math.toDegrees(wi3.bipedHead.rotateAngleY), (double)0.0, (double)1.0, (double)0.0);
+            GL11.glRotated((double)Math.toDegrees(wi3.bipedHead.rotateAngleX), (double)1.0, (double)0.0, (double)0.0);
             wi wi4 = a5;
             wi3.r(new mk(a3.y().get(0), a4));
             GL11.glPopMatrix();

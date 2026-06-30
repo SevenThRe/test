@@ -35,7 +35,7 @@ public class PackManager {
     private final List<IBendsPack> appliedPacks = new LinkedList<IBendsPack>();
 
     public void initialize(CoreClientConfig config) {
-        this.localDirectory = new File(Minecraft.func_71410_x().field_71412_D, "bendspacks");
+        this.localDirectory = new File(Minecraft.getMinecraft().gameDir, "bendspacks");
         this.localDirectory.mkdir();
         this.cache = new PackCache(new File(this.localDirectory, "public_cache"));
         this.thumbnailProvider = new ThumbnailProvider(this.cache);

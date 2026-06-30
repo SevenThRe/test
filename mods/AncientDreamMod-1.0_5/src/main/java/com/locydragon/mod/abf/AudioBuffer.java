@@ -88,7 +88,7 @@ public class AudioBuffer {
 
     @SubscribeEvent
     public void onWorldChange(EntityJoinWorldEvent e) {
-        if (e.getEntity() == Minecraft.func_71410_x().field_71439_g) {
+        if (e.getEntity() == Minecraft.getMinecraft().player) {
             EXECUTOR.submit(AudioBuffer::Stop);
         }
     }
@@ -155,7 +155,7 @@ public class AudioBuffer {
             AudioBuffer.Stop();
             URL url1 = new URL(url);
             JavaSoundAudioDevice javaSoundAudioDevice = new JavaSoundAudioDevice();
-            javaSoundAudioDevice.setDefaultVolume(-88.0f + Minecraft.func_71410_x().field_71474_y.func_186711_a(SoundCategory.MUSIC) * 94.0f);
+            javaSoundAudioDevice.setDefaultVolume(-88.0f + Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.MUSIC) * 94.0f);
             nowPlaying = new MyPlayer(url1.openStream(), javaSoundAudioDevice);
             this.Play();
         }
@@ -170,7 +170,7 @@ public class AudioBuffer {
         try {
             AudioBuffer.Stop();
             JavaSoundAudioDevice javaSoundAudioDevice = new JavaSoundAudioDevice();
-            javaSoundAudioDevice.setDefaultVolume(-44.0f + Minecraft.func_71410_x().field_71474_y.func_186711_a(SoundCategory.MUSIC) * 50.0f);
+            javaSoundAudioDevice.setDefaultVolume(-44.0f + Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.MUSIC) * 50.0f);
             nowPlaying = new MyPlayer((InputStream)new FileInputStream(targetFile2), javaSoundAudioDevice);
             this.Play();
         }

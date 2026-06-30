@@ -106,55 +106,55 @@ public class sd {
     }
 
     public static void ALLATORIxDEMO(nk a2, double a3, double a4, double a5, double a6, double a7, double a8) {
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)ALLATORIxDEMO);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)ALLATORIxDEMO);
         float a9 = (float)(1.0 / a7);
         float a10 = (float)(1.0 / a8);
-        Tessellator a11 = Tessellator.func_178181_a();
-        BufferBuilder a12 = a11.func_178180_c();
-        a12.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        sd.ALLATORIxDEMO(a12, a2, 0.0, a6, 0.0).func_187315_a(a3 * (double)a9, (a4 + a6) * (double)a10).func_181675_d();
-        sd.ALLATORIxDEMO(a12, a2, a5, a6, 0.0).func_187315_a((a3 + a5) * (double)a9, (a4 + a6) * (double)a10).func_181675_d();
-        sd.ALLATORIxDEMO(a12, a2, a5, 0.0, 0.0).func_187315_a((a3 + a5) * (double)a9, a4 * (double)a10).func_181675_d();
-        sd.ALLATORIxDEMO(a12, a2, 0.0, 0.0, 0.0).func_187315_a(a3 * (double)a9, a4 * (double)a10).func_181675_d();
-        a11.func_78381_a();
+        Tessellator a11 = Tessellator.getInstance();
+        BufferBuilder a12 = a11.getBuffer();
+        a12.begin(7, DefaultVertexFormats.POSITION_TEX);
+        sd.ALLATORIxDEMO(a12, a2, 0.0, a6, 0.0).tex(a3 * (double)a9, (a4 + a6) * (double)a10).endVertex();
+        sd.ALLATORIxDEMO(a12, a2, a5, a6, 0.0).tex((a3 + a5) * (double)a9, (a4 + a6) * (double)a10).endVertex();
+        sd.ALLATORIxDEMO(a12, a2, a5, 0.0, 0.0).tex((a3 + a5) * (double)a9, a4 * (double)a10).endVertex();
+        sd.ALLATORIxDEMO(a12, a2, 0.0, 0.0, 0.0).tex(a3 * (double)a9, a4 * (double)a10).endVertex();
+        a11.draw();
     }
 
     public static BufferBuilder ALLATORIxDEMO(BufferBuilder a2, nk a3, double a4, double a5, double a6) {
         ll a7 = new ll((float)a4, (float)a5, (float)a6, 1.0f);
         a7.ALLATORIxDEMO(a3);
-        a2.func_181662_b((double)a7.x(), (double)a7.f(), (double)a7.c());
+        a2.pos((double)a7.x(), (double)a7.f(), (double)a7.c());
         return a2;
     }
 
     public static void ALLATORIxDEMO(double a2, double a3, double a4, double a5, double a6, double a7, double a8, double a9) {
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)ALLATORIxDEMO);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)ALLATORIxDEMO);
         float a10 = (float)(1.0 / a8);
         float a11 = (float)(1.0 / a9);
-        Tessellator a12 = Tessellator.func_178181_a();
-        BufferBuilder a13 = a12.func_178180_c();
-        a13.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        a13.func_181662_b(a2, a3 + a7, 0.0).func_187315_a(a4 * (double)a10, (a5 + a7) * (double)a11).func_181675_d();
-        a13.func_181662_b(a2 + a6, a3 + a7, 0.0).func_187315_a((a4 + a6) * (double)a10, (a5 + a7) * (double)a11).func_181675_d();
-        a13.func_181662_b(a2 + a6, a3, 0.0).func_187315_a((a4 + a6) * (double)a10, a5 * (double)a11).func_181675_d();
-        a13.func_181662_b(a2, a3, 0.0).func_187315_a(a4 * (double)a10, a5 * (double)a11).func_181675_d();
-        a12.func_78381_a();
+        Tessellator a12 = Tessellator.getInstance();
+        BufferBuilder a13 = a12.getBuffer();
+        a13.begin(7, DefaultVertexFormats.POSITION_TEX);
+        a13.pos(a2, a3 + a7, 0.0).tex(a4 * (double)a10, (a5 + a7) * (double)a11).endVertex();
+        a13.pos(a2 + a6, a3 + a7, 0.0).tex((a4 + a6) * (double)a10, (a5 + a7) * (double)a11).endVertex();
+        a13.pos(a2 + a6, a3, 0.0).tex((a4 + a6) * (double)a10, a5 * (double)a11).endVertex();
+        a13.pos(a2, a3, 0.0).tex(a4 * (double)a10, a5 * (double)a11).endVertex();
+        a12.draw();
     }
 
     public static void ALLATORIxDEMO(Color a2, double a3, double a4, double a5, double a6, double a7, double a8, double a9, double a10) {
         if (a2 == null) {
             a2 = Color.WHITE;
         }
-        GlStateManager.func_179131_c((float)((float)a2.getRed() / 255.0f), (float)((float)a2.getGreen() / 255.0f), (float)((float)a2.getBlue() / 255.0f), (float)((float)a2.getAlpha() / 255.0f * ALLATORIxDEMO));
+        GlStateManager.color((float)((float)a2.getRed() / 255.0f), (float)((float)a2.getGreen() / 255.0f), (float)((float)a2.getBlue() / 255.0f), (float)((float)a2.getAlpha() / 255.0f * ALLATORIxDEMO));
         float a11 = (float)(1.0 / a9);
         float a12 = (float)(1.0 / a10);
-        Tessellator a13 = Tessellator.func_178181_a();
-        BufferBuilder a14 = a13.func_178180_c();
-        a14.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        a14.func_181662_b(a3, a4 + a8, 0.0).func_187315_a(a5 * (double)a11, (a6 + a8) * (double)a12).func_181675_d();
-        a14.func_181662_b(a3 + a7, a4 + a8, 0.0).func_187315_a((a5 + a7) * (double)a11, (a6 + a8) * (double)a12).func_181675_d();
-        a14.func_181662_b(a3 + a7, a4, 0.0).func_187315_a((a5 + a7) * (double)a11, a6 * (double)a12).func_181675_d();
-        a14.func_181662_b(a3, a4, 0.0).func_187315_a(a5 * (double)a11, a6 * (double)a12).func_181675_d();
-        a13.func_78381_a();
+        Tessellator a13 = Tessellator.getInstance();
+        BufferBuilder a14 = a13.getBuffer();
+        a14.begin(7, DefaultVertexFormats.POSITION_TEX);
+        a14.pos(a3, a4 + a8, 0.0).tex(a5 * (double)a11, (a6 + a8) * (double)a12).endVertex();
+        a14.pos(a3 + a7, a4 + a8, 0.0).tex((a5 + a7) * (double)a11, (a6 + a8) * (double)a12).endVertex();
+        a14.pos(a3 + a7, a4, 0.0).tex((a5 + a7) * (double)a11, a6 * (double)a12).endVertex();
+        a14.pos(a3, a4, 0.0).tex(a5 * (double)a11, a6 * (double)a12).endVertex();
+        a13.draw();
     }
 
     public static void ALLATORIxDEMO(double a2, double a3, double a4, double a5, Color a6) {
@@ -168,20 +168,20 @@ public class sd {
         float a8 = (float)(a6 >> 16 & 0xFF) / 255.0f;
         float a9 = (float)(a6 >> 8 & 0xFF) / 255.0f;
         float a10 = (float)(a6 & 0xFF) / 255.0f;
-        Tessellator a11 = Tessellator.func_178181_a();
-        BufferBuilder a12 = a11.func_178180_c();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179090_x();
-        GlStateManager.func_187428_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
-        GlStateManager.func_179131_c((float)a8, (float)a9, (float)a10, (float)a7);
-        a12.func_181668_a(7, DefaultVertexFormats.field_181705_e);
-        a12.func_181662_b(a2, a3 + a5, 0.0).func_181675_d();
-        a12.func_181662_b(a2 + a4, a3 + a5, 0.0).func_181675_d();
-        a12.func_181662_b(a2 + a4, a3, 0.0).func_181675_d();
-        a12.func_181662_b(a2, a3, 0.0).func_181675_d();
-        a11.func_78381_a();
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179084_k();
+        Tessellator a11 = Tessellator.getInstance();
+        BufferBuilder a12 = a11.getBuffer();
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.tryBlendFuncSeparate((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, (GlStateManager.SourceFactor)GlStateManager.SourceFactor.ONE, (GlStateManager.DestFactor)GlStateManager.DestFactor.ZERO);
+        GlStateManager.color((float)a8, (float)a9, (float)a10, (float)a7);
+        a12.begin(7, DefaultVertexFormats.POSITION);
+        a12.pos(a2, a3 + a5, 0.0).endVertex();
+        a12.pos(a2 + a4, a3 + a5, 0.0).endVertex();
+        a12.pos(a2 + a4, a3, 0.0).endVertex();
+        a12.pos(a2, a3, 0.0).endVertex();
+        a11.draw();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
     }
 
     public static void ALLATORIxDEMO(double a2, double a3, double a4, double a5, double a6, Color a7) {
@@ -194,9 +194,9 @@ public class sd {
 
     public static void ALLATORIxDEMO(int a2, int a3, int a4, int a5) {
         int a6 = a3 + a5;
-        ScaledResolution a7 = new ScaledResolution(Minecraft.func_71410_x());
-        int a8 = a7.func_78325_e();
-        int a9 = a7.func_78328_b() - a6;
+        ScaledResolution a7 = new ScaledResolution(Minecraft.getMinecraft());
+        int a8 = a7.getScaleFactor();
+        int a9 = a7.getScaledHeight() - a6;
         GL11.glScissor((int)(a2 * a8), (int)(a9 * a8), (int)(a4 * a8), (int)(a5 * a8));
     }
 
@@ -221,13 +221,13 @@ public class sd {
             screenHeight = a7.getScreenHeight();
             maxTextWidth = a7.getMaxWidth();
             font = a7.getFontRenderer();
-            GlStateManager.func_179101_C();
-            RenderHelper.func_74518_a();
-            GlStateManager.func_179140_f();
-            GlStateManager.func_179097_i();
+            GlStateManager.disableRescaleNormal();
+            RenderHelper.disableStandardItemLighting();
+            GlStateManager.disableLighting();
+            GlStateManager.disableDepth();
             int a8 = 0;
             for (String a9 : textLines) {
-                a6 = font.func_78256_a(a9);
+                a6 = font.getStringWidth(a9);
                 if (a6 <= a8) continue;
                 a8 = a6;
             }
@@ -247,12 +247,12 @@ public class sd {
                 ArrayList<String> a12 = new ArrayList<String>();
                 for (a4 = 0; a4 < textLines.size(); ++a4) {
                     String a13 = textLines.get(a4);
-                    List a14 = font.func_78271_c(a13, a8);
+                    List a14 = font.listFormattedStringToWidth(a13, a8);
                     if (a4 == 0) {
                         a11 = a14.size();
                     }
                     for (String a32 : a14) {
-                        a2 = font.func_78256_a(a32);
+                        a2 = font.getStringWidth(a32);
                         if (a2 > a5) {
                             a5 = a2;
                         }
@@ -305,94 +305,94 @@ public class sd {
                 a5 += 10;
             }
             MinecraftForge.EVENT_BUS.post((Event)new RenderTooltipEvent.PostText(stack, textLines, a6, a2, font, a8, a15));
-            GlStateManager.func_179145_e();
-            GlStateManager.func_179126_j();
-            RenderHelper.func_74519_b();
-            GlStateManager.func_179091_B();
+            GlStateManager.enableLighting();
+            GlStateManager.enableDepth();
+            RenderHelper.enableStandardItemLighting();
+            GlStateManager.enableRescaleNormal();
         }
     }
 
     public static void ALLATORIxDEMO(@Nullable EntityLivingBase p_184391_1_, ItemStack p_184391_2_, int p_184391_3_, int p_184391_4_) {
-        RenderItem a2 = Minecraft.func_71410_x().func_175599_af();
-        if (!p_184391_2_.func_190926_b()) {
-            a2.field_77023_b += 50.0f;
+        RenderItem a2 = Minecraft.getMinecraft().getRenderItem();
+        if (!p_184391_2_.isEmpty()) {
+            a2.zLevel += 50.0f;
             try {
-                sd.ALLATORIxDEMO(p_184391_2_, p_184391_3_, p_184391_4_, a2.func_184393_a(p_184391_2_, null, p_184391_1_));
+                sd.ALLATORIxDEMO(p_184391_2_, p_184391_3_, p_184391_4_, a2.getItemModelWithOverrides(p_184391_2_, null, p_184391_1_));
             }
             catch (Throwable a3) {
-                CrashReport a4 = CrashReport.func_85055_a((Throwable)a3, (String)"Rendering item");
-                CrashReportCategory a5 = a4.func_85058_a("Item being rendered");
-                a5.func_189529_a("Item Type", (ICrashReportDetail)new io(p_184391_2_));
-                a5.func_189529_a("Registry Name", () -> String.valueOf(p_184391_2_.func_77973_b().getRegistryName()));
-                a5.func_189529_a("Item Aux", (ICrashReportDetail)new tj(p_184391_2_));
-                a5.func_189529_a("Item NBT", (ICrashReportDetail)new lm(p_184391_2_));
-                a5.func_189529_a("Item Foil", (ICrashReportDetail)new rm(p_184391_2_));
+                CrashReport a4 = CrashReport.makeCrashReport((Throwable)a3, (String)"Rendering item");
+                CrashReportCategory a5 = a4.makeCategory("Item being rendered");
+                a5.addDetail("Item Type", (ICrashReportDetail)new io(p_184391_2_));
+                a5.addDetail("Registry Name", () -> String.valueOf(p_184391_2_.getItem().getRegistryName()));
+                a5.addDetail("Item Aux", (ICrashReportDetail)new tj(p_184391_2_));
+                a5.addDetail("Item NBT", (ICrashReportDetail)new lm(p_184391_2_));
+                a5.addDetail("Item Foil", (ICrashReportDetail)new rm(p_184391_2_));
                 throw new ReportedException(a4);
             }
-            a2.field_77023_b -= 50.0f;
+            a2.zLevel -= 50.0f;
         }
     }
 
     public static void ALLATORIxDEMO(ItemStack a2, int a3, int a4, IBakedModel a5) {
-        RenderItem a6 = Minecraft.func_71410_x().func_175599_af();
-        TextureManager a7 = Minecraft.func_71410_x().func_110434_K();
-        GlStateManager.func_179094_E();
-        a7.func_110577_a(TextureMap.field_110575_b);
-        a7.func_110581_b(TextureMap.field_110575_b).func_174936_b(false, false);
-        GlStateManager.func_179091_B();
-        GlStateManager.func_179141_d();
-        GlStateManager.func_179092_a((int)516, (float)0.1f);
-        GlStateManager.func_179147_l();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        sd.ALLATORIxDEMO(a3, a4, a5.func_177556_c());
+        RenderItem a6 = Minecraft.getMinecraft().getRenderItem();
+        TextureManager a7 = Minecraft.getMinecraft().getTextureManager();
+        GlStateManager.pushMatrix();
+        a7.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        a7.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableAlpha();
+        GlStateManager.alphaFunc((int)516, (float)0.1f);
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        sd.ALLATORIxDEMO(a3, a4, a5.isGui3d());
         a5 = ForgeHooksClient.handleCameraTransforms((IBakedModel)a5, (ItemCameraTransforms.TransformType)ItemCameraTransforms.TransformType.GUI, (boolean)false);
         sd.renderItem(a2, a5);
-        GlStateManager.func_179118_c();
-        GlStateManager.func_179101_C();
-        GlStateManager.func_179140_f();
-        GlStateManager.func_179121_F();
-        a7.func_110577_a(TextureMap.field_110575_b);
-        a7.func_110581_b(TextureMap.field_110575_b).func_174935_a();
+        GlStateManager.disableAlpha();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableLighting();
+        GlStateManager.popMatrix();
+        a7.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        a7.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).restoreLastBlurMipmap();
     }
 
     public static void renderItem(ItemStack a2, IBakedModel a3) {
-        if (!a2.func_190926_b()) {
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)-0.5f, (float)-0.5f, (float)-0.5f);
-            if (a3.func_188618_c()) {
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-                GlStateManager.func_179091_B();
-                a2.func_77973_b().getTileEntityItemStackRenderer().func_179022_a(a2);
+        if (!a2.isEmpty()) {
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)-0.5f, (float)-0.5f, (float)-0.5f);
+            if (a3.isBuiltInRenderer()) {
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                GlStateManager.enableRescaleNormal();
+                a2.getItem().getTileEntityItemStackRenderer().renderByItem(a2);
             } else {
                 int a4 = 0xFFFFFF | (int)(Math.min(1.0f, Math.max(0.0f, ALLATORIxDEMO)) * 255.0f) << 24;
                 sd.ALLATORIxDEMO(a3, a4, a2);
             }
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
     private static /* synthetic */ void ALLATORIxDEMO(IBakedModel a2, int a3, ItemStack a4) {
-        Tessellator a5 = Tessellator.func_178181_a();
-        BufferBuilder a6 = a5.func_178180_c();
-        a6.func_181668_a(7, DefaultVertexFormats.field_176599_b);
+        Tessellator a5 = Tessellator.getInstance();
+        BufferBuilder a6 = a5.getBuffer();
+        a6.begin(7, DefaultVertexFormats.ITEM);
         for (EnumFacing a7 : EnumFacing.values()) {
-            sd.ALLATORIxDEMO(a6, a2.func_188616_a(null, a7, 0L), a3, a4);
+            sd.ALLATORIxDEMO(a6, a2.getQuads(null, a7, 0L), a3, a4);
         }
-        sd.ALLATORIxDEMO(a6, a2.func_188616_a(null, null, 0L), a3, a4);
-        a5.func_78381_a();
+        sd.ALLATORIxDEMO(a6, a2.getQuads(null, null, 0L), a3, a4);
+        a5.draw();
     }
 
     private static /* synthetic */ void ALLATORIxDEMO(BufferBuilder a2, List<BakedQuad> a3, int a4, ItemStack a5) {
-        boolean a6 = a4 == -1 && !a5.func_190926_b();
+        boolean a6 = a4 == -1 && !a5.isEmpty();
         int a7 = a3.size();
         for (int a8 = 0; a8 < a7; ++a8) {
             BakedQuad a9 = a3.get(a8);
             int a10 = a4;
-            if (a6 && a9.func_178212_b()) {
-                a10 = Minecraft.func_71410_x().getItemColors().func_186728_a(a5, a9.func_178211_c());
-                if (EntityRenderer.field_78517_a) {
-                    a10 = TextureUtil.func_177054_c((int)a10);
+            if (a6 && a9.hasTintIndex()) {
+                a10 = Minecraft.getMinecraft().getItemColors().colorMultiplier(a5, a9.getTintIndex());
+                if (EntityRenderer.anaglyphEnable) {
+                    a10 = TextureUtil.anaglyphColor((int)a10);
                 }
                 a10 |= 0xFF000000;
             }
@@ -401,15 +401,15 @@ public class sd {
     }
 
     private static /* synthetic */ void ALLATORIxDEMO(int a2, int a3, boolean a4) {
-        RenderItem a5 = Minecraft.func_71410_x().func_175599_af();
-        GlStateManager.func_179109_b((float)a2, (float)a3, (float)(100.0f + a5.field_77023_b));
-        GlStateManager.func_179109_b((float)8.0f, (float)8.0f, (float)0.0f);
-        GlStateManager.func_179152_a((float)1.0f, (float)-1.0f, (float)1.0f);
-        GlStateManager.func_179152_a((float)16.0f, (float)16.0f, (float)16.0f);
+        RenderItem a5 = Minecraft.getMinecraft().getRenderItem();
+        GlStateManager.translate((float)a2, (float)a3, (float)(100.0f + a5.zLevel));
+        GlStateManager.translate((float)8.0f, (float)8.0f, (float)0.0f);
+        GlStateManager.scale((float)1.0f, (float)-1.0f, (float)1.0f);
+        GlStateManager.scale((float)16.0f, (float)16.0f, (float)16.0f);
         if (a4) {
-            GlStateManager.func_179145_e();
+            GlStateManager.enableLighting();
         } else {
-            GlStateManager.func_179140_f();
+            GlStateManager.disableLighting();
         }
     }
 

@@ -23,14 +23,14 @@ public class efa {
 
     public iga ALLATORIxDEMO(ItemStack a2) {
         efa a3;
-        if (a2.func_190926_b()) {
+        if (a2.isEmpty()) {
             return null;
         }
         if (a3.ALLATORIxDEMO.size() == 0) {
             return null;
         }
-        String a4 = a2.func_77973_b().getRegistryName().func_110623_a().toLowerCase(Locale.ROOT);
-        int a5 = a2.func_77960_j();
+        String a4 = a2.getItem().getRegistryName().getPath().toLowerCase(Locale.ROOT);
+        int a5 = a2.getMetadata();
         a4 = a4 + ":" + a5;
         return a3.ALLATORIxDEMO.get(a4);
     }

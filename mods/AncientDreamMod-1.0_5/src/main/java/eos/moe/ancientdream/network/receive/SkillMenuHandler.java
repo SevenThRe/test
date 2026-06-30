@@ -22,7 +22,7 @@ public class SkillMenuHandler
 implements MessageHandler {
     @Override
     public void readBuffer(PacketBuffer buffer) {
-        String yamlStr = buffer.func_150789_c(32768);
+        String yamlStr = buffer.readString(32768);
         YamlConfiguration yaml = new YamlConfiguration();
         try {
             yaml.loadFromString(yamlStr);
@@ -50,12 +50,12 @@ implements MessageHandler {
         double y2 = yaml.getDouble("y2", 234.0);
         int maxDistance = yaml.getInt("maxDistance", 500);
         this.run(() -> {
-            Minecraft minecraft = Minecraft.func_71410_x();
-            if (minecraft.field_71462_r instanceof SkillMenuGui) {
-                ((SkillMenuGui)minecraft.field_71462_r).setSkills(list);
-                ((SkillMenuGui)minecraft.field_71462_r).setTexts(list1);
+            Minecraft minecraft = Minecraft.getMinecraft();
+            if (minecraft.currentScreen instanceof SkillMenuGui) {
+                ((SkillMenuGui)minecraft.currentScreen).setSkills(list);
+                ((SkillMenuGui)minecraft.currentScreen).setTexts(list1);
             } else {
-                minecraft.func_147108_a((GuiScreen)new SkillMenuGui(maxDistance, list1, list, new SkillMenuGui.SkillMenuData.ButtonData(x1, y1), new SkillMenuGui.SkillMenuData.ButtonData(x2, y2)));
+                minecraft.displayGuiScreen((GuiScreen)new SkillMenuGui(maxDistance, list1, list, new SkillMenuGui.SkillMenuData.ButtonData(x1, y1), new SkillMenuGui.SkillMenuData.ButtonData(x2, y2)));
             }
         });
     }

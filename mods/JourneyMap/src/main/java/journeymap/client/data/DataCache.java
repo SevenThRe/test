@@ -388,7 +388,7 @@ public enum DataCache {
     }
 
     public ChunkMD getChunkMD(BlockPos blockPos) {
-        return this.getChunkMD(new ChunkPos(blockPos.func_177958_n() >> 4, blockPos.func_177952_p() >> 4));
+        return this.getChunkMD(new ChunkPos(blockPos.getX() >> 4, blockPos.getZ() >> 4));
     }
 
     /*
@@ -403,7 +403,7 @@ public enum DataCache {
                 if (chunkMD != null && chunkMD.hasChunk()) {
                     return chunkMD;
                 }
-                chunkMD = ChunkLoader.getChunkMdFromMemory((World)FMLClientHandler.instance().getClient().field_71441_e, coord.field_77276_a, coord.field_77275_b);
+                chunkMD = ChunkLoader.getChunkMdFromMemory((World)FMLClientHandler.instance().getClient().world, coord.x, coord.z);
                 if (chunkMD != null && chunkMD.hasChunk()) {
                     this.chunkMetadata.put((Object)coord, (Object)chunkMD);
                     return chunkMD;

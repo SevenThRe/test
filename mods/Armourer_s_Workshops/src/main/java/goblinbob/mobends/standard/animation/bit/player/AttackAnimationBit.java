@@ -50,8 +50,8 @@ extends AnimationBit<PlayerData> {
     }
 
     public boolean shouldPerformAttack(AbstractClientPlayer player) {
-        ItemStack heldItemStack = player.func_184586_b(EnumHand.MAIN_HAND);
-        return heldItemStack.func_77973_b() != Items.field_190931_a;
+        ItemStack heldItemStack = player.getHeldItem(EnumHand.MAIN_HAND);
+        return heldItemStack.getItem() != Items.AIR;
     }
 
     @Override
@@ -76,7 +76,7 @@ extends AnimationBit<PlayerData> {
                     this.layerBase.clearAnimation();
                 }
             } else if (playerData.getTicksAfterAttack() < 60.0f && playerData.isOnGround()) {
-                if (player.func_70051_ag()) {
+                if (player.isSprinting()) {
                     this.layerBase.playOrContinueBit(this.bitAttackStanceSprint, playerData);
                 } else if (playerData.isStillHorizontally()) {
                     this.layerBase.playOrContinueBit(this.bitAttackStance, playerData);

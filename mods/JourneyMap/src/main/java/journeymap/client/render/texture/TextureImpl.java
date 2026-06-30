@@ -48,7 +48,7 @@ extends AbstractTexture {
     public TextureImpl(ResourceLocation resourceLocation) {
         this(null, TextureCache.resolveImage(resourceLocation), false, false);
         this.resourceLocation = resourceLocation;
-        this.setDescription(resourceLocation.func_110623_a());
+        this.setDescription(resourceLocation.getPath());
     }
 
     public TextureImpl(BufferedImage image) {
@@ -65,7 +65,7 @@ extends AbstractTexture {
 
     public TextureImpl(Integer glId, BufferedImage image, boolean retainImage, boolean bindImmediately) {
         if (glId != null) {
-            this.field_110553_a = glId;
+            this.glTextureId = glId;
         }
         this.retainImage = retainImage;
         if (image != null) {
@@ -130,12 +130,12 @@ extends AbstractTexture {
             return;
         }
         if (this.bufferLock.tryLock()) {
-            if (this.field_110553_a > -1) {
-                MapPlayerTask.addTempDebugMessage("tex" + this.field_110553_a, "Updating: " + this.getDescription());
+            if (this.glTextureId > -1) {
+                MapPlayerTask.addTempDebugMessage("tex" + this.glTextureId, "Updating: " + this.getDescription());
             }
             try {
                 int glErr;
-                GlStateManager.func_179144_i((int)super.func_110552_b());
+                GlStateManager.bindTexture((int)super.getGlTextureId());
                 GL11.glTexParameteri((int)3553, (int)10242, (int)10497);
                 GL11.glTexParameteri((int)3553, (int)10243, (int)10497);
                 GL11.glTexParameteri((int)3553, (int)10241, (int)9729);
@@ -165,7 +165,7 @@ extends AbstractTexture {
     }
 
     public boolean isBound() {
-        return this.field_110553_a != -1;
+        return this.glTextureId != -1;
     }
 
     public String getDescription() {
@@ -200,21 +200,21 @@ extends AbstractTexture {
     }
 
     public boolean isDefunct() {
-        return this.field_110553_a == -1 && this.image == null && this.buffer == null;
+        return this.glTextureId == -1 && this.image == null && this.buffer == null;
     }
 
-    public int func_110552_b() {
+    public int getGlTextureId() {
         if (this.bindNeeded) {
             this.bindTexture();
         }
-        return super.func_110552_b();
+        return super.getGlTextureId();
     }
 
     public int getGlTextureId(boolean forceBind) {
-        if (forceBind || this.field_110553_a == -1) {
-            return this.func_110552_b();
+        if (forceBind || this.glTextureId == -1) {
+            return this.getGlTextureId();
         }
-        return this.field_110553_a;
+        return this.glTextureId;
     }
 
     public void clear() {
@@ -225,7 +225,7 @@ extends AbstractTexture {
         this.bindNeeded = false;
         this.lastImageUpdate = 0L;
         this.lastBound = 0L;
-        this.field_110553_a = -1;
+        this.glTextureId = -1;
     }
 
     public void queueForDeletion() {
@@ -240,20 +240,20 @@ extends AbstractTexture {
         return this.lastBound;
     }
 
-    public void func_110551_a(IResourceManager par1ResourceManager) {
+    public void loadTexture(IResourceManager par1ResourceManager) {
         if (this.resourceLocation != null) {
             // empty if block
         }
     }
 
     public String toString() {
-        return MoreObjects.toStringHelper((Object)((Object)this)).add("glid", this.field_110553_a).add("description", (Object)this.description).add("lastImageUpdate", this.lastImageUpdate).add("lastBound", this.lastBound).toString();
+        return MoreObjects.toStringHelper((Object)((Object)this)).add("glid", this.glTextureId).add("description", (Object)this.description).add("lastImageUpdate", this.lastImageUpdate).add("lastBound", this.lastBound).toString();
     }
 
     public void finalize() {
         if (this.isBound()) {
             Journeymap.getLogger().warn("TextureImpl disposed without deleting texture glID: " + (Object)((Object)this));
-            ExpireTextureTask.queue(this.field_110553_a);
+            ExpireTextureTask.queue(this.glTextureId);
         }
     }
 

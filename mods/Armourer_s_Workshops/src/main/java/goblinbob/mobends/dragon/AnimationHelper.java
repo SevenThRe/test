@@ -47,7 +47,7 @@ public class AnimationHelper {
 
     public static boolean isOnPlayAnimation(Entity entity) {
         if (entity instanceof EntityPlayer) {
-            AnimationManager animationManager = CoreAPI.getAnimationManager((UUID)entity.func_110124_au());
+            AnimationManager animationManager = CoreAPI.getAnimationManager((UUID)entity.getUniqueID());
             return animationManager != null && animationManager.isOnPlayAnimation();
         }
         return false;
@@ -62,15 +62,15 @@ public class AnimationHelper {
         if (entityBender == null) {
             return;
         }
-        if (!(renderer.func_177087_b() instanceof ModelPlayer)) {
+        if (!(renderer.getMainModel() instanceof ModelPlayer)) {
             return;
         }
-        AnimationManager manager = CoreAPI.getAnimationManager((UUID)living.func_110124_au());
+        AnimationManager manager = CoreAPI.getAnimationManager((UUID)living.getUniqueID());
         if (manager == null) {
             return;
         }
-        ModelPlayer mainModel = (ModelPlayer)renderer.func_177087_b();
-        if (mainModel.field_78115_e instanceof ModelPart) {
+        ModelPlayer mainModel = (ModelPlayer)renderer.getMainModel();
+        if (mainModel.bipedBody instanceof ModelPart) {
             Item item;
             Object entityData = EntityDatabase.instance.get(living);
             if (entityData == null) {
@@ -100,7 +100,7 @@ public class AnimationHelper {
             } else if (needPlaySwordTrailMethod == 1) {
                 needPlaySwordTrail = manager.needPlaySwordTrail();
             }
-            if (needPlaySwordTrail && !onlyAnimation && ((item = living.func_184586_b(EnumHand.MAIN_HAND).func_77973_b()) instanceof ItemSword || item instanceof ItemAxe || item instanceof ItemHoe || item instanceof ItemSpade || item instanceof ItemPickaxe)) {
+            if (needPlaySwordTrail && !onlyAnimation && ((item = living.getHeldItem(EnumHand.MAIN_HAND).getItem()) instanceof ItemSword || item instanceof ItemAxe || item instanceof ItemHoe || item instanceof ItemSpade || item instanceof ItemPickaxe)) {
                 bipedData.swordTrail.add(bipedData);
             }
         }
@@ -111,16 +111,16 @@ public class AnimationHelper {
         if (entityBender == null) {
             return;
         }
-        if (!(renderer.func_177087_b() instanceof ModelPlayer)) {
+        if (!(renderer.getMainModel() instanceof ModelPlayer)) {
             return;
         }
-        ModelPlayer mainModel = (ModelPlayer)renderer.func_177087_b();
-        if (mainModel.field_78115_e instanceof ModelPart) {
+        ModelPlayer mainModel = (ModelPlayer)renderer.getMainModel();
+        if (mainModel.bipedBody instanceof ModelPart) {
             Object entityData = EntityDatabase.instance.get(living);
             if (entityData == null) {
                 return;
             }
-            AnimationManager manager = CoreAPI.getAnimationManager((UUID)living.func_110124_au());
+            AnimationManager manager = CoreAPI.getAnimationManager((UUID)living.getUniqueID());
             if (manager == null) {
                 return;
             }

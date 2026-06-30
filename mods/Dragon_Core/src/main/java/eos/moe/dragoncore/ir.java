@@ -34,29 +34,29 @@ extends CommandBase {
         ir a2;
     }
 
-    public String func_71517_b() {
+    public String getName() {
         return "nbtedit";
     }
 
-    public String func_71518_a(ICommandSender a2) {
+    public String getUsage(ICommandSender a2) {
         return "/nbtedit OR /nbtedit <EntityId> OR /nbtedit <TileX> <TileY> <TileZ>";
     }
 
-    public void func_184881_a(MinecraftServer a2, ICommandSender a3, String[] a4) throws CommandException {
+    public void execute(MinecraftServer a2, ICommandSender a3, String[] a4) throws CommandException {
         if (a3 instanceof EntityPlayerMP) {
             EntityPlayerMP a5 = (EntityPlayerMP)a3;
             if (a4.length == 3) {
-                int a6 = ir.func_175755_a((String)a4[0]);
-                int a7 = ir.func_175755_a((String)a4[1]);
-                int a8 = ir.func_175755_a((String)a4[2]);
-                ov.ALLATORIxDEMO(Level.TRACE, a3.func_70005_c_() + " issued command \"/nbtedit " + a6 + " " + a7 + " " + a8 + "\"");
+                int a6 = ir.parseInt((String)a4[0]);
+                int a7 = ir.parseInt((String)a4[1]);
+                int a8 = ir.parseInt((String)a4[2]);
+                ov.ALLATORIxDEMO(Level.TRACE, a3.getName() + " issued command \"/nbtedit " + a6 + " " + a7 + " " + a8 + "\"");
                 ov.v.ALLATORIxDEMO(a5, new BlockPos(a6, a7, a8));
             } else if (a4.length == 1) {
-                int a9 = a4[0].equalsIgnoreCase("me") ? a5.func_145782_y() : ir.func_180528_a((String)a4[0], (int)0);
-                ov.ALLATORIxDEMO(Level.TRACE, a3.func_70005_c_() + " issued command \"/nbtedit " + a9 + "\"");
+                int a9 = a4[0].equalsIgnoreCase("me") ? a5.getEntityId() : ir.parseInt((String)a4[0], (int)0);
+                ov.ALLATORIxDEMO(Level.TRACE, a3.getName() + " issued command \"/nbtedit " + a9 + "\"");
                 ov.v.ALLATORIxDEMO(a5, a9);
             } else if (a4.length == 0) {
-                ov.ALLATORIxDEMO(Level.TRACE, a3.func_70005_c_() + " issued command \"/nbtedit\"");
+                ov.ALLATORIxDEMO(Level.TRACE, a3.getName() + " issued command \"/nbtedit\"");
                 ov.v.k.sendTo((IMessage)new pj(), a5);
             } else {
                 String a10 = "";
@@ -65,13 +65,13 @@ extends CommandBase {
                     if (a11 == a4.length - 1) continue;
                     a10 = a10 + " ";
                 }
-                ov.ALLATORIxDEMO(Level.TRACE, a3.func_70005_c_() + " issued invalid command \"/nbtedit " + a10 + "\"");
+                ov.ALLATORIxDEMO(Level.TRACE, a3.getName() + " issued invalid command \"/nbtedit " + a10 + "\"");
                 throw new WrongUsageException("Pass 0, 1, or 3 integers -- ex. /nbtedit", new Object[0]);
             }
         }
     }
 
-    public boolean func_184882_a(MinecraftServer a2, ICommandSender a3) {
+    public boolean checkPermission(MinecraftServer a2, ICommandSender a3) {
         return a3 instanceof EntityPlayer && ov.y.ALLATORIxDEMO((EntityPlayer)a3);
     }
 }

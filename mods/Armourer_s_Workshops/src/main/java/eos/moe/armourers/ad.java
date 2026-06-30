@@ -14,11 +14,11 @@ public class ad {
     }
 
     public static String r(String a2) {
-        return I18n.func_135052_a((String)a2, (Object[])new Object[0]).replace("&", "\u00a7");
+        return I18n.format((String)a2, (Object[])new Object[0]).replace("&", "\u00a7");
     }
 
     public static String r(String a2, Object ... a3) {
-        return I18n.func_135052_a((String)a2, (Object[])a3).replace("&", "\u00a7");
+        return I18n.format((String)a2, (Object[])a3).replace("&", "\u00a7");
     }
 }
 

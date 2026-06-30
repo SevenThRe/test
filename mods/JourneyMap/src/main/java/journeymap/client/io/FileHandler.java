@@ -82,14 +82,14 @@ public class FileHandler {
     public static File getMinecraftDirectory() {
         Minecraft minecraft = FMLClientHandler.instance().getClient();
         if (minecraft != null) {
-            return minecraft.field_71412_D;
+            return minecraft.gameDir;
         }
         return new File(DEV_MINECRAFT_DIR);
     }
 
     public static File getMCWorldDir(Minecraft minecraft) {
-        if (minecraft.func_71387_A()) {
-            String lastMCFolderName = minecraft.func_71401_C().func_71270_I();
+        if (minecraft.isIntegratedServerRunning()) {
+            String lastMCFolderName = minecraft.getIntegratedServer().getFolderName();
             File lastMCWorldDir = new File(FileHandler.getMinecraftDirectory(), "saves" + File.separator + lastMCFolderName);
             return lastMCWorldDir;
         }
@@ -97,12 +97,12 @@ public class FileHandler {
     }
 
     public static File getWorldSaveDir(Minecraft minecraft) {
-        if (minecraft.func_71356_B()) {
+        if (minecraft.isSingleplayer()) {
             try {
                 File savesDir = new File(FileHandler.getMinecraftDirectory(), "saves");
-                File worldSaveDir = new File(savesDir, minecraft.func_71401_C().func_71270_I());
-                if (minecraft.field_71441_e.field_73011_w.getSaveFolder() != null) {
-                    File dir = new File(worldSaveDir, minecraft.field_71441_e.field_73011_w.getSaveFolder());
+                File worldSaveDir = new File(savesDir, minecraft.getIntegratedServer().getFolderName());
+                if (minecraft.world.provider.getSaveFolder() != null) {
+                    File dir = new File(worldSaveDir, minecraft.world.provider.getSaveFolder());
                     dir.mkdirs();
                     return dir;
                 }
@@ -161,14 +161,14 @@ public class FileHandler {
     }
 
     public static File getJMWorldDir(Minecraft minecraft) {
-        if (minecraft.field_71441_e == null) {
+        if (minecraft.world == null) {
             return null;
         }
         return FileHandler.getJMWorldDir(minecraft, Journeymap.getClient().getCurrentWorldId());
     }
 
     public static synchronized File getJMWorldDir(Minecraft minecraft, String worldId) {
-        if (minecraft.field_71441_e == null) {
+        if (minecraft.world == null) {
             theLastWorld = null;
             return null;
         }
@@ -186,12 +186,12 @@ public class FileHandler {
             Journeymap.getLogger().log(Level.ERROR, LogFormatter.toString(e));
             throw new RuntimeException(e);
         }
-        theLastWorld = minecraft.field_71441_e;
+        theLastWorld = minecraft.world;
         return worldDirectory;
     }
 
     public static File getJMWorldDirForWorldId(Minecraft minecraft, String worldId) {
-        if (minecraft == null || minecraft.field_71441_e == null) {
+        if (minecraft == null || minecraft.world == null) {
             return null;
         }
         File testWorldDirectory = null;
@@ -202,7 +202,7 @@ public class FileHandler {
                 worldId = worldId.replaceAll("\\W+", "~");
             }
             String string = suffix = worldId != null ? "_" + worldId : "";
-            testWorldDirectory = !minecraft.func_71356_B() ? new File(MinecraftDirectory, Constants.MP_DATA_DIR + worldName + suffix) : new File(MinecraftDirectory, Constants.SP_DATA_DIR + worldName + suffix);
+            testWorldDirectory = !minecraft.isSingleplayer() ? new File(MinecraftDirectory, Constants.MP_DATA_DIR + worldName + suffix) : new File(MinecraftDirectory, Constants.SP_DATA_DIR + worldName + suffix);
         }
         catch (Exception e) {
             Journeymap.getLogger().log(Level.ERROR, LogFormatter.toString(e));
@@ -251,7 +251,7 @@ public class FileHandler {
 
     public static <M> M getMessageModel(Class<M> model, String filePrefix) {
         try {
-            String lang = Minecraft.func_71410_x().func_135016_M().func_135041_c().func_135034_a();
+            String lang = Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode();
             InputStream is = FileHandler.getMessageModelInputStream(filePrefix, lang);
             if (is == null && !lang.equals("en_US")) {
                 is = FileHandler.getMessageModelInputStream(filePrefix, "en_US");
@@ -331,7 +331,7 @@ public class FileHandler {
 
     public static void open(File file) {
         String path = file.getAbsolutePath();
-        if (Util.func_110647_a() == Util.EnumOS.OSX) {
+        if (Util.getOSType() == Util.EnumOS.OSX) {
             try {
                 Runtime.getRuntime().exec(new String[]{"/usr/bin/open", path});
                 return;
@@ -339,7 +339,7 @@ public class FileHandler {
             catch (IOException e) {
                 Journeymap.getLogger().error("Could not open path with /usr/bin/open: " + path + " : " + LogFormatter.toString(e));
             }
-        } else if (Util.func_110647_a() == Util.EnumOS.WINDOWS) {
+        } else if (Util.getOSType() == Util.EnumOS.WINDOWS) {
             String cmd = String.format("cmd.exe /C start \"Open file\" \"%s\"", path);
             try {
                 Runtime.getRuntime().exec(cmd);
@@ -364,7 +364,7 @@ public class FileHandler {
         Object fromPath = null;
         Object toDir = null;
         try {
-            String domain = location.func_110624_b();
+            String domain = location.getNamespace();
             URL fileLocation = null;
             if (domain.equals("minecraft")) {
                 fileLocation = Minecraft.class.getProtectionDomain().getCodeSource().getLocation();
@@ -382,7 +382,7 @@ public class FileHandler {
                 }
             }
             if (fileLocation != null) {
-                String assetsPath = location.func_110623_a().startsWith("assets/") ? location.func_110623_a() : String.format("assets/%s/%s", domain, location.func_110623_a());
+                String assetsPath = location.getPath().startsWith("assets/") ? location.getPath() : String.format("assets/%s/%s", domain, location.getPath());
                 return FileHandler.copyResources(targetDirectory, fileLocation, assetsPath, setName, overwrite);
             }
         }
@@ -493,7 +493,7 @@ public class FileHandler {
         }
         Object[] cmd = null;
         String path = file.getAbsolutePath();
-        Util.EnumOS os = Util.func_110647_a();
+        Util.EnumOS os = Util.getOSType();
         switch (os) {
             case WINDOWS: {
                 cmd = new String[]{String.format("cmd.exe /C RD /S /Q \"%s\"", path)};

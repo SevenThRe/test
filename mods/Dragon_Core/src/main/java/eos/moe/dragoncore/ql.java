@@ -199,7 +199,7 @@ public class ql {
     @i(f={"toTellraw"})
     public static kn ALLATORIxDEMO(String a2) {
         try {
-            ITextComponent a3 = ITextComponent.Serializer.func_150699_a((String)a2);
+            ITextComponent a3 = ITextComponent.Serializer.jsonToComponent((String)a2);
             a3 = a3 == null ? new TextComponentString("") : a3;
             return new kn(a3);
         }

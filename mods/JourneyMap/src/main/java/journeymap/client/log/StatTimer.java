@@ -311,7 +311,7 @@ public class StatTimer {
     }
 
     public String getLogReportString() {
-        return TextFormatting.func_110646_a((String)this.getSimpleReportString());
+        return TextFormatting.getTextWithoutFormattingCodes((String)this.getSimpleReportString());
     }
 
     /*

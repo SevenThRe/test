@@ -29,7 +29,7 @@ extends ki {
         if (a11.s instanceof RenderZombie) {
             a2 = (RenderZombie)a11.s;
             boolean a42 = false;
-            a42 = a2.func_177087_b() instanceof ModelZombieVillager;
+            a42 = a2.getMainModel() instanceof ModelZombieVillager;
             if (a42 & a3 == vn.l) {
                 GL11.glTranslated((double)0.0, (double)(-2.0f * a10), (double)0.0);
             }

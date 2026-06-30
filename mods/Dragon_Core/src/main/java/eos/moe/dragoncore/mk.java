@@ -16,8 +16,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 public class mk {
-    public static Tessellator k = Tessellator.func_178181_a();
-    public static BufferBuilder ALLATORIxDEMO = k.func_178180_c();
+    public static Tessellator k = Tessellator.getInstance();
+    public static BufferBuilder ALLATORIxDEMO = k.getBuffer();
 
     public mk() {
         mk a2;
@@ -26,14 +26,14 @@ public class mk {
     public static void ALLATORIxDEMO(float a2, float a3, float a4, float a5, float a6, float a7, float a8, float a9) {
         float a10 = 1.0f / a8;
         float a11 = 1.0f / a9;
-        Tessellator a12 = Tessellator.func_178181_a();
-        BufferBuilder a13 = a12.func_178180_c();
-        a13.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        a13.func_181662_b((double)a2, (double)(a3 + a7), 0.0).func_187315_a((double)(a4 * a10), (double)((a5 + a7) * a11)).func_181675_d();
-        a13.func_181662_b((double)(a2 + a6), (double)(a3 + a7), 0.0).func_187315_a((double)((a4 + a6) * a10), (double)((a5 + a7) * a11)).func_181675_d();
-        a13.func_181662_b((double)(a2 + a6), (double)a3, 0.0).func_187315_a((double)((a4 + a6) * a10), (double)(a5 * a11)).func_181675_d();
-        a13.func_181662_b((double)a2, (double)a3, 0.0).func_187315_a((double)(a4 * a10), (double)(a5 * a11)).func_181675_d();
-        a12.func_78381_a();
+        Tessellator a12 = Tessellator.getInstance();
+        BufferBuilder a13 = a12.getBuffer();
+        a13.begin(7, DefaultVertexFormats.POSITION_TEX);
+        a13.pos((double)a2, (double)(a3 + a7), 0.0).tex((double)(a4 * a10), (double)((a5 + a7) * a11)).endVertex();
+        a13.pos((double)(a2 + a6), (double)(a3 + a7), 0.0).tex((double)((a4 + a6) * a10), (double)((a5 + a7) * a11)).endVertex();
+        a13.pos((double)(a2 + a6), (double)a3, 0.0).tex((double)((a4 + a6) * a10), (double)(a5 * a11)).endVertex();
+        a13.pos((double)a2, (double)a3, 0.0).tex((double)(a4 * a10), (double)(a5 * a11)).endVertex();
+        a12.draw();
     }
 
     public static void c(double a2, double a3, double a4, double a5, double a6, double a7, double a8, double a9) {
@@ -46,12 +46,12 @@ public class mk {
     }
 
     public static void ALLATORIxDEMO(double a2, double a3, double a4, double a5, double a6, double a7, double a8, double a9, double a10, double a11) {
-        ALLATORIxDEMO.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        ALLATORIxDEMO.func_181662_b(a2, a3, a6).func_187315_a(a7 * a11, a8 * a11).func_181675_d();
-        ALLATORIxDEMO.func_181662_b(a2, a3 + a5, a6).func_187315_a(a7 * a11, (a8 + a10) * a11).func_181675_d();
-        ALLATORIxDEMO.func_181662_b(a2 + a4, a3 + a5, a6).func_187315_a((a7 + a9) * a11, (a8 + a10) * a11).func_181675_d();
-        ALLATORIxDEMO.func_181662_b(a2 + a4, a3, a6).func_187315_a((a7 + a9) * a11, a8 * a11).func_181675_d();
-        k.func_78381_a();
+        ALLATORIxDEMO.begin(7, DefaultVertexFormats.POSITION_TEX);
+        ALLATORIxDEMO.pos(a2, a3, a6).tex(a7 * a11, a8 * a11).endVertex();
+        ALLATORIxDEMO.pos(a2, a3 + a5, a6).tex(a7 * a11, (a8 + a10) * a11).endVertex();
+        ALLATORIxDEMO.pos(a2 + a4, a3 + a5, a6).tex((a7 + a9) * a11, (a8 + a10) * a11).endVertex();
+        ALLATORIxDEMO.pos(a2 + a4, a3, a6).tex((a7 + a9) * a11, a8 * a11).endVertex();
+        k.draw();
     }
 
     public static void ALLATORIxDEMO(double a2, double a3, double a4, double a5, double a6, double a7, double a8, double a9) {
@@ -83,44 +83,44 @@ public class mk {
     }
 
     public static void ALLATORIxDEMO(double a2, double a3, double a4, double a5, double a6) {
-        ALLATORIxDEMO.func_181668_a(7, DefaultVertexFormats.field_181707_g);
-        ALLATORIxDEMO.func_181662_b(a2, a3, a6).func_187315_a(0.0, 0.0).func_181675_d();
-        ALLATORIxDEMO.func_181662_b(a2, a3 + a5, a6).func_187315_a(0.0, 1.0).func_181675_d();
-        ALLATORIxDEMO.func_181662_b(a2 + a4, a3 + a5, a6).func_187315_a(1.0, 1.0).func_181675_d();
-        ALLATORIxDEMO.func_181662_b(a2 + a4, a3, a6).func_187315_a(1.0, 0.0).func_181675_d();
-        k.func_78381_a();
+        ALLATORIxDEMO.begin(7, DefaultVertexFormats.POSITION_TEX);
+        ALLATORIxDEMO.pos(a2, a3, a6).tex(0.0, 0.0).endVertex();
+        ALLATORIxDEMO.pos(a2, a3 + a5, a6).tex(0.0, 1.0).endVertex();
+        ALLATORIxDEMO.pos(a2 + a4, a3 + a5, a6).tex(1.0, 1.0).endVertex();
+        ALLATORIxDEMO.pos(a2 + a4, a3, a6).tex(1.0, 0.0).endVertex();
+        k.draw();
     }
 
     public static void w(FontRenderer a2, String a3, float a4, float a5, int a6) {
-        a2.func_175065_a(a3, a4, a5, a6, false);
+        a2.drawString(a3, a4, a5, a6, false);
     }
 
     public static void z(FontRenderer a2, String a3, float a4, float a5, int a6) {
-        a2.func_175065_a(a3, a4, a5, a6, true);
+        a2.drawString(a3, a4, a5, a6, true);
     }
 
     public static void k(FontRenderer a2, String a3, float a4, float a5, int a6) {
-        mk.w(a2, a3, a4 - (float)a2.func_78256_a(a3) / 2.0f, a5, a6);
+        mk.w(a2, a3, a4 - (float)a2.getStringWidth(a3) / 2.0f, a5, a6);
     }
 
     public static void d(FontRenderer a2, String a3, float a4, float a5, int a6) {
-        mk.z(a2, a3, a4 - (float)a2.func_78256_a(a3) / 2.0f, a5, a6);
+        mk.z(a2, a3, a4 - (float)a2.getStringWidth(a3) / 2.0f, a5, a6);
     }
 
     public static void x(FontRenderer a2, String a3, float a4, float a5, int a6) {
-        mk.w(a2, a3, a4, a5 - (float)a2.field_78288_b / 2.0f, a6);
+        mk.w(a2, a3, a4, a5 - (float)a2.FONT_HEIGHT / 2.0f, a6);
     }
 
     public static void f(FontRenderer a2, String a3, float a4, float a5, int a6) {
-        mk.z(a2, a3, a4, a5 - (float)a2.field_78288_b / 2.0f, a6);
+        mk.z(a2, a3, a4, a5 - (float)a2.FONT_HEIGHT / 2.0f, a6);
     }
 
     public static void c(FontRenderer a2, String a3, float a4, float a5, int a6) {
-        mk.w(a2, a3, a4 - (float)a2.func_78256_a(a3) / 2.0f, a5 - (float)a2.field_78288_b / 2.0f, a6);
+        mk.w(a2, a3, a4 - (float)a2.getStringWidth(a3) / 2.0f, a5 - (float)a2.FONT_HEIGHT / 2.0f, a6);
     }
 
     public static void ALLATORIxDEMO(FontRenderer a2, String a3, float a4, float a5, int a6) {
-        mk.z(a2, a3, a4 - (float)a2.func_78256_a(a3) / 2.0f, a5 - (float)a2.field_78288_b / 2.0f, a6);
+        mk.z(a2, a3, a4 - (float)a2.getStringWidth(a3) / 2.0f, a5 - (float)a2.FONT_HEIGHT / 2.0f, a6);
     }
 }
 

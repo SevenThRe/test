@@ -22,7 +22,7 @@ extends AnimationBit<BipedEntityData<?>> {
     @Override
     public void perform(BipedEntityData<?> data) {
         Object living = data.getEntity();
-        EnumHandSide primaryHand = living.func_184591_cq();
+        EnumHandSide primaryHand = living.getPrimaryHand();
         boolean mainHandSwitch = primaryHand == EnumHandSide.RIGHT;
         float handDirMtp = mainHandSwitch ? 1.0f : -1.0f;
         data.globalOffset.slideY(-2.0f);

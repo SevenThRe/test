@@ -70,10 +70,10 @@ public class ModelData {
     }
 
     private static /* synthetic */ ListenableFuture<gg> loadModel(String a2) throws Exception {
-        return Minecraft.func_71410_x().func_152343_a(() -> {
+        return Minecraft.getMinecraft().addScheduledTask(() -> {
             IModel iModel;
             IModel iModel2 = iModel = ModelLoaderRegistry.getModel((ResourceLocation)new ResourceLocation("dragonarmourers", a2));
-            return new gg(iModel2.bake(iModel2.getDefaultState(), DefaultVertexFormats.field_176599_b, a2 -> null));
+            return new gg(iModel2.bake(iModel2.getDefaultState(), DefaultVertexFormats.ITEM, a2 -> null));
         });
     }
 
@@ -106,13 +106,13 @@ public class ModelData {
         JsonArray jsonArray;
         JsonObject jsonObject = new JsonObject();
         AnimationMetadataSection animationMetadataSection = a2;
-        jsonObject.addProperty("frametime", (Number)animationMetadataSection.func_110469_d());
-        if (animationMetadataSection.func_110473_c() > 0) {
+        jsonObject.addProperty("frametime", (Number)animationMetadataSection.getFrameTime());
+        if (animationMetadataSection.getFrameCount() > 0) {
             int n2;
             jsonArray = new JsonArray();
             int n3 = n2 = 0;
-            while (n3 < a2.func_110473_c()) {
-                int n4 = a2.func_110468_c(n2);
+            while (n3 < a2.getFrameCount()) {
+                int n4 = a2.getFrameIndex(n2);
                 jsonArray.add((JsonElement)new JsonPrimitive((Number)n4));
                 n3 = ++n2;
             }
@@ -261,7 +261,7 @@ public class ModelData {
                 }
                 if (!a.has("frame_order_type") || a.get("frame_order_type").isJsonNull()) break block24;
                 v1 = new PngSizeInfo((InputStream)new ByteArrayInputStream(a.data));
-                var2_2 = v1.field_188534_b / v1.field_188533_a;
+                var2_2 = v1.pngHeight / v1.pngWidth;
                 v2 = a;
                 var3_4 = v2.get("frame_order_type").getAsString();
                 var4_6 = v2.get("frame_time").getAsInt();

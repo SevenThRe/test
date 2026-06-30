@@ -63,16 +63,16 @@ extends TextureImpl {
         if (!this.bindNeeded) {
             return;
         }
-        if (this.field_110553_a == -1) {
-            this.field_110553_a = TextureUtil.func_110996_a();
+        if (this.glTextureId == -1) {
+            this.glTextureId = TextureUtil.glGenTextures();
         }
         if (this.lastBound == 0L || this.dirtyChunks.isEmpty()) {
             super.bindTexture();
             return;
         }
         if (this.bufferLock.tryLock()) {
-            MapPlayerTask.addTempDebugMessage("tex" + this.field_110553_a, "Updating " + this.dirtyChunks.size() + " chunks within: " + this.getDescription());
-            GlStateManager.func_179144_i((int)this.field_110553_a);
+            MapPlayerTask.addTempDebugMessage("tex" + this.glTextureId, "Updating " + this.dirtyChunks.size() + " chunks within: " + this.getDescription());
+            GlStateManager.bindTexture((int)this.glTextureId);
             GL11.glTexParameteri((int)3553, (int)10242, (int)10497);
             GL11.glTexParameteri((int)3553, (int)10243, (int)10497);
             GL11.glTexParameteri((int)3553, (int)10241, (int)9729);
@@ -82,9 +82,9 @@ extends TextureImpl {
                 ByteBuffer chunkBuffer = ByteBuffer.allocateDirect(1024);
                 for (ChunkPos pos : this.dirtyChunks) {
                     int err;
-                    BufferedImage chunkImage = this.getImage().getSubimage(pos.field_77276_a, pos.field_77275_b, 16, 16);
+                    BufferedImage chunkImage = this.getImage().getSubimage(pos.x, pos.z, 16, 16);
                     RegionTextureImpl.loadByteBuffer(chunkImage, chunkBuffer);
-                    GL11.glTexSubImage2D((int)3553, (int)0, (int)pos.field_77276_a, (int)pos.field_77275_b, (int)16, (int)16, (int)6408, (int)5121, (ByteBuffer)chunkBuffer);
+                    GL11.glTexSubImage2D((int)3553, (int)0, (int)pos.x, (int)pos.z, (int)16, (int)16, (int)6408, (int)5121, (ByteBuffer)chunkBuffer);
                     while ((err = GL11.glGetError()) != 0) {
                         glErrors = true;
                         Journeymap.getLogger().warn("GL Error in RegionTextureImpl after glTexSubImage2D: " + err + " for " + pos + " in " + (Object)((Object)this));

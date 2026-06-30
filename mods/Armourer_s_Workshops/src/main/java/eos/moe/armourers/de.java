@@ -27,14 +27,14 @@ public class de {
         EntityPlayerSP entityPlayerSP2 = a2;
         de de4 = a4;
         a4.j = a3;
-        de4.l = a2.field_70165_t;
-        de4.m = a2.field_70163_u;
-        a4.t = entityPlayerSP2.field_70161_v;
-        de3.w = entityPlayerSP2.field_70761_aq;
-        de3.r = a2.field_70177_z;
-        a4.s = entityPlayerSP.field_70125_A;
-        de2.v = entityPlayerSP.field_70758_at;
-        de2.c = a2.field_70759_as;
+        de4.l = a2.posX;
+        de4.m = a2.posY;
+        a4.t = entityPlayerSP2.posZ;
+        de3.w = entityPlayerSP2.renderYawOffset;
+        de3.r = a2.rotationYaw;
+        a4.s = entityPlayerSP.rotationPitch;
+        de2.v = entityPlayerSP.prevRotationYawHead;
+        de2.c = a2.rotationYawHead;
     }
 }
 

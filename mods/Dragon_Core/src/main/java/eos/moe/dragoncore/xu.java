@@ -81,7 +81,7 @@ implements Serializable {
         }
         if (a6) {
             for (jq a31 : a18) {
-                a31.func_78235_a();
+                a31.flipFace();
             }
         }
         a9.y = a18.toArray(new jq[0]);
@@ -156,7 +156,7 @@ implements Serializable {
         }
         if (a7) {
             for (jq a30 : a17) {
-                a30.func_78235_a();
+                a30.flipFace();
             }
         }
         a10.y = a17.toArray(new jq[0]);
@@ -165,7 +165,7 @@ implements Serializable {
     public void ALLATORIxDEMO(BufferBuilder a2, float a3) {
         xu a4;
         for (jq a5 : a4.y) {
-            a5.func_178765_a(a2, a3);
+            a5.draw(a2, a3);
         }
     }
 }

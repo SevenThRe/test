@@ -47,7 +47,7 @@ IMessageHandler<nf, IMessage> {
     public static SimpleNetworkWrapper j = NetworkRegistry.INSTANCE.newSimpleChannel(zh.m ? "armourers:main" : "armourers");
 
     public IMessage onMessage(nf a2, MessageContext a3) {
-        Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u00a7c[\u9f99\u4e4b\u65f6\u88c5] \u5f53\u524d\u5ba2\u6237\u7aefmod\u7248\u672c\u8fc7\u4f4e,\u8bf7\u66f4\u65b0mod\u7248\u672c"));
+        Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u00a7c[\u9f99\u4e4b\u65f6\u88c5] \u5f53\u524d\u5ba2\u6237\u7aefmod\u7248\u672c\u8fc7\u4f4e,\u8bf7\u66f4\u65b0mod\u7248\u672c"));
         return null;
     }
 
@@ -58,7 +58,7 @@ IMessageHandler<nf, IMessage> {
         ArrayList arrayList = Lists.newArrayList();
         int n4 = n2 = 0;
         while (n4 < n3) {
-            arrayList.add(packetBuffer.func_150789_c(32768));
+            arrayList.add(packetBuffer.readString(32768));
             n4 = ++n2;
         }
         return arrayList;
@@ -67,7 +67,7 @@ IMessageHandler<nf, IMessage> {
     public static void y(String a2) {
         j.sendToServer((IMessage)new kl(10, () -> {
             PacketBuffer packetBuffer = new PacketBuffer(Unpooled.buffer());
-            packetBuffer.func_180714_a(a2);
+            packetBuffer.writeString(a2);
             return packetBuffer;
         }));
     }
@@ -77,7 +77,7 @@ IMessageHandler<nf, IMessage> {
             PacketBuffer packetBuffer;
             PacketBuffer packetBuffer2 = packetBuffer = new PacketBuffer(Unpooled.buffer());
             packetBuffer.writeInt(a2);
-            packetBuffer2.func_180714_a(a3);
+            packetBuffer2.writeString(a3);
             return packetBuffer2;
         }));
     }
@@ -90,7 +90,7 @@ IMessageHandler<nf, IMessage> {
         while (object.hasNext()) {
             String string = (String)a3.next();
             object = a3;
-            packetBuffer.func_180714_a(string);
+            packetBuffer.writeString(string);
         }
         return packetBuffer;
     }
@@ -101,10 +101,10 @@ IMessageHandler<nf, IMessage> {
     public static void y(String a2, String a3, String a4) {
         j.sendToServer((IMessage)new kl(2, () -> {
             PacketBuffer packetBuffer = new PacketBuffer(Unpooled.buffer());
-            PacketBuffer packetBuffer2 = packetBuffer.func_180714_a(a2);
+            PacketBuffer packetBuffer2 = packetBuffer.writeString(a2);
             PacketBuffer packetBuffer3 = packetBuffer;
-            packetBuffer.func_180714_a(a3);
-            packetBuffer3.func_180714_a(a4);
+            packetBuffer.writeString(a3);
+            packetBuffer3.writeString(a4);
             return packetBuffer3;
         }));
     }
@@ -112,10 +112,10 @@ IMessageHandler<nf, IMessage> {
     public static void r(String a2, String a3, String a4) {
         j.sendToServer((IMessage)new kl(6, () -> {
             PacketBuffer packetBuffer = new PacketBuffer(Unpooled.buffer());
-            PacketBuffer packetBuffer2 = packetBuffer.func_180714_a(a2);
+            PacketBuffer packetBuffer2 = packetBuffer.writeString(a2);
             PacketBuffer packetBuffer3 = packetBuffer;
-            packetBuffer.func_180714_a(a3);
-            packetBuffer3.func_180714_a(a4);
+            packetBuffer.writeString(a3);
+            packetBuffer3.writeString(a4);
             return packetBuffer3;
         }));
     }
@@ -141,8 +141,8 @@ IMessageHandler<nf, IMessage> {
             Iterator iterator2 = iterator;
             while (iterator2.hasNext()) {
                 Map.Entry entry = iterator.next();
-                packetBuffer.func_180714_a((String)entry.getKey());
-                packetBuffer.func_180714_a((String)entry.getValue());
+                packetBuffer.writeString((String)entry.getKey());
+                packetBuffer.writeString((String)entry.getValue());
                 iterator2 = iterator;
             }
             return packetBuffer;
@@ -152,7 +152,7 @@ IMessageHandler<nf, IMessage> {
     public static void r(UUID a2) {
         j.sendToServer((IMessage)new kl(7, () -> {
             PacketBuffer packetBuffer = new PacketBuffer(Unpooled.buffer());
-            packetBuffer.func_179252_a(a2);
+            packetBuffer.writeUniqueId(a2);
             return packetBuffer;
         }));
     }
@@ -161,7 +161,7 @@ IMessageHandler<nf, IMessage> {
         j.sendToServer((IMessage)new kl(11, () -> {
             PacketBuffer packetBuffer;
             PacketBuffer packetBuffer2 = packetBuffer = new PacketBuffer(Unpooled.buffer());
-            packetBuffer.func_180714_a(a2);
+            packetBuffer.writeString(a2);
             packetBuffer2.writeInt(a3);
             return packetBuffer2;
         }));
@@ -170,7 +170,7 @@ IMessageHandler<nf, IMessage> {
     public static void r(String a2) {
         j.sendToServer((IMessage)new kl(1, () -> {
             PacketBuffer packetBuffer = new PacketBuffer(Unpooled.buffer());
-            packetBuffer.func_180714_a(a2);
+            packetBuffer.writeString(a2);
             return packetBuffer;
         }));
     }
@@ -179,7 +179,7 @@ IMessageHandler<nf, IMessage> {
         j.sendToServer((IMessage)new kl(5, () -> {
             PacketBuffer packetBuffer;
             PacketBuffer packetBuffer2 = packetBuffer = new PacketBuffer(Unpooled.buffer());
-            packetBuffer.func_179252_a(a2);
+            packetBuffer.writeUniqueId(a2);
             packetBuffer2.writeBoolean(a3);
             return nf.r((ByteBuf)packetBuffer2, a4);
         }));

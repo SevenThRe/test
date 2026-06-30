@@ -67,7 +67,7 @@ public class nfa {
 
     @SubscribeEvent
     public static void ALLATORIxDEMO(RenderWorldLastEvent a2) {
-        if (Minecraft.func_71410_x().func_175606_aa() == null) {
+        if (Minecraft.getMinecraft().getRenderViewEntity() == null) {
             return;
         }
         if (!wka.k) {
@@ -76,36 +76,36 @@ public class nfa {
         if (ALLATORIxDEMO.isEmpty()) {
             return;
         }
-        Entity a3 = Minecraft.func_71410_x().func_175606_aa();
+        Entity a3 = Minecraft.getMinecraft().getRenderViewEntity();
         float a4 = a2.getPartialTicks();
-        float a5 = ActiveRenderInfo.func_178808_b();
-        float a6 = ActiveRenderInfo.func_178803_d();
-        float a7 = ActiveRenderInfo.func_178805_e();
-        float a8 = ActiveRenderInfo.func_178807_f();
-        float a9 = ActiveRenderInfo.func_178809_c();
-        Particle.field_70556_an = a3.field_70142_S + (a3.field_70165_t - a3.field_70142_S) * (double)a4;
-        Particle.field_70554_ao = a3.field_70137_T + (a3.field_70163_u - a3.field_70137_T) * (double)a4;
-        Particle.field_70555_ap = a3.field_70136_U + (a3.field_70161_v - a3.field_70136_U) * (double)a4;
-        Particle.field_190016_K = a3.func_70676_i(a4);
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179097_i();
-        GlStateManager.func_179132_a((boolean)false);
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179092_a((int)516, (float)0.003921569f);
-        OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)240.0f);
+        float a5 = ActiveRenderInfo.getRotationX();
+        float a6 = ActiveRenderInfo.getRotationZ();
+        float a7 = ActiveRenderInfo.getRotationYZ();
+        float a8 = ActiveRenderInfo.getRotationXY();
+        float a9 = ActiveRenderInfo.getRotationXZ();
+        Particle.interpPosX = a3.lastTickPosX + (a3.posX - a3.lastTickPosX) * (double)a4;
+        Particle.interpPosY = a3.lastTickPosY + (a3.posY - a3.lastTickPosY) * (double)a4;
+        Particle.interpPosZ = a3.lastTickPosZ + (a3.posZ - a3.lastTickPosZ) * (double)a4;
+        Particle.cameraViewDir = a3.getLook(a4);
+        GlStateManager.enableBlend();
+        GlStateManager.disableDepth();
+        GlStateManager.depthMask((boolean)false);
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.alphaFunc((int)516, (float)0.003921569f);
+        OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)240.0f);
         ww.ALLATORIxDEMO("damagepic11.png");
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        Tessellator a10 = Tessellator.func_178181_a();
-        BufferBuilder a11 = a10.func_178180_c();
-        a11.func_181668_a(7, DefaultVertexFormats.field_181704_d);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        Tessellator a10 = Tessellator.getInstance();
+        BufferBuilder a11 = a10.getBuffer();
+        a11.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
         for (Particle a12 : ALLATORIxDEMO) {
-            a12.func_180434_a(a11, a3, a4, a5, a9, a6, a7, a8);
+            a12.renderParticle(a11, a3, a4, a5, a9, a6, a7, a8);
         }
-        a10.func_78381_a();
-        GlStateManager.func_179132_a((boolean)true);
-        GlStateManager.func_179126_j();
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179092_a((int)516, (float)0.1f);
+        a10.draw();
+        GlStateManager.depthMask((boolean)true);
+        GlStateManager.enableDepth();
+        GlStateManager.disableBlend();
+        GlStateManager.alphaFunc((int)516, (float)0.1f);
     }
 
     @SubscribeEvent
@@ -117,64 +117,64 @@ public class nfa {
             Iterator<Particle> a3 = ALLATORIxDEMO.iterator();
             while (a3.hasNext()) {
                 Particle a4 = a3.next();
-                a4.func_189213_a();
-                if (a4.func_187113_k()) continue;
+                a4.onUpdate();
+                if (a4.isAlive()) continue;
                 a3.remove();
             }
         }
     }
 
     public static Vec3d ALLATORIxDEMO(float a2, float a3) {
-        float a4 = MathHelper.func_76134_b((float)(-a3 * ((float)Math.PI / 180) - (float)Math.PI));
-        float a5 = MathHelper.func_76126_a((float)(-a3 * ((float)Math.PI / 180) - (float)Math.PI));
-        float a6 = -MathHelper.func_76134_b((float)(-a2 * ((float)Math.PI / 180)));
-        float a7 = MathHelper.func_76126_a((float)(-a2 * ((float)Math.PI / 180)));
+        float a4 = MathHelper.cos((float)(-a3 * ((float)Math.PI / 180) - (float)Math.PI));
+        float a5 = MathHelper.sin((float)(-a3 * ((float)Math.PI / 180) - (float)Math.PI));
+        float a6 = -MathHelper.cos((float)(-a2 * ((float)Math.PI / 180)));
+        float a7 = MathHelper.sin((float)(-a2 * ((float)Math.PI / 180)));
         return new Vec3d((double)(a5 * a6), (double)a7, (double)(a4 * a6));
     }
 
     public static Vec3d c(Entity a2) {
-        Entity a3 = Minecraft.func_71410_x().func_175598_ae().field_78734_h;
-        double a4 = a3.func_70032_d(a2) + 5.0f;
-        Vec3d a5 = a3.func_174824_e(1.0f);
-        Vec3d a6 = nfa.ALLATORIxDEMO(a3.field_70125_A, a3.field_70177_z);
+        Entity a3 = Minecraft.getMinecraft().getRenderManager().renderViewEntity;
+        double a4 = a3.getDistance(a2) + 5.0f;
+        Vec3d a5 = a3.getPositionEyes(1.0f);
+        Vec3d a6 = nfa.ALLATORIxDEMO(a3.rotationPitch, a3.rotationYaw);
         Map.Entry<Vec3d, Vec3d> a7 = nfa.ALLATORIxDEMO(a6, a4);
-        AxisAlignedBB a8 = a2.func_174813_aQ().func_186662_g((double)a2.func_70111_Y());
-        RayTraceResult a9 = a8.func_72327_a(a7.getKey(), a7.getValue());
-        if (a8.func_72318_a(a5)) {
-            return a9 == null ? a5 : a9.field_72307_f;
+        AxisAlignedBB a8 = a2.getEntityBoundingBox().grow((double)a2.getCollisionBorderSize());
+        RayTraceResult a9 = a8.calculateIntercept(a7.getKey(), a7.getValue());
+        if (a8.contains(a5)) {
+            return a9 == null ? a5 : a9.hitVec;
         }
         if (a9 != null) {
-            return a9.field_72307_f;
+            return a9.hitVec;
         }
         return null;
     }
 
     public static Vec3d ALLATORIxDEMO(Entity a2) {
-        Entity a3 = Minecraft.func_71410_x().func_175598_ae().field_78734_h;
-        Vec3d a4 = new Vec3d(a2.field_70165_t - a3.field_70165_t, 0.0, a2.field_70161_v - a3.field_70161_v);
-        float a5 = bca.ALLATORIxDEMO((Vec3d)a4.func_72432_b()).field_189983_j;
-        double a6 = a3.func_70032_d(a2) + 5.0f;
-        Vec3d a7 = a3.func_174824_e(1.0f);
-        Vec3d a8 = nfa.ALLATORIxDEMO(a3.field_70125_A, a5);
+        Entity a3 = Minecraft.getMinecraft().getRenderManager().renderViewEntity;
+        Vec3d a4 = new Vec3d(a2.posX - a3.posX, 0.0, a2.posZ - a3.posZ);
+        float a5 = bca.ALLATORIxDEMO((Vec3d)a4.normalize()).y;
+        double a6 = a3.getDistance(a2) + 5.0f;
+        Vec3d a7 = a3.getPositionEyes(1.0f);
+        Vec3d a8 = nfa.ALLATORIxDEMO(a3.rotationPitch, a5);
         Map.Entry<Vec3d, Vec3d> a9 = nfa.ALLATORIxDEMO(a8, a6);
-        AxisAlignedBB a10 = a2.func_174813_aQ().func_186662_g((double)a2.func_70111_Y());
-        RayTraceResult a11 = a10.func_72327_a(a9.getKey(), a9.getValue());
-        if (a10.func_72318_a(a7)) {
-            return a11 == null ? a7 : a11.field_72307_f;
+        AxisAlignedBB a10 = a2.getEntityBoundingBox().grow((double)a2.getCollisionBorderSize());
+        RayTraceResult a11 = a10.calculateIntercept(a9.getKey(), a9.getValue());
+        if (a10.contains(a7)) {
+            return a11 == null ? a7 : a11.hitVec;
         }
         if (a11 != null) {
-            return a11.field_72307_f;
+            return a11.hitVec;
         }
         return null;
     }
 
     public static Map.Entry<Vec3d, Vec3d> ALLATORIxDEMO(Vec3d a2, double a3) {
         if (ShoulderState.doShoulderSurfing() && !Config.CLIENT.getCrosshairType().isHoldingSpecialItem()) {
-            return ShoulderSurfingHelper.shoulderSurfingLook((Entity)Minecraft.func_71410_x().func_175606_aa(), (float)Minecraft.func_71410_x().func_184121_ak(), (double)(a3 * a3));
+            return ShoulderSurfingHelper.shoulderSurfingLook((Entity)Minecraft.getMinecraft().getRenderViewEntity(), (float)Minecraft.getMinecraft().getRenderPartialTicks(), (double)(a3 * a3));
         }
-        Entity a4 = Minecraft.func_71410_x().func_175606_aa();
-        Vec3d a5 = a4.func_174824_e(Minecraft.func_71410_x().func_184121_ak());
-        Vec3d a6 = a5.func_72441_c(a2.field_72450_a * a3, a2.field_72448_b * a3, a2.field_72449_c * a3);
+        Entity a4 = Minecraft.getMinecraft().getRenderViewEntity();
+        Vec3d a5 = a4.getPositionEyes(Minecraft.getMinecraft().getRenderPartialTicks());
+        Vec3d a6 = a5.add(a2.x * a3, a2.y * a3, a2.z * a3);
         return new AbstractMap.SimpleEntry<Vec3d, Vec3d>(a5, a6);
     }
 }

@@ -41,7 +41,7 @@ extends AnimationBit<PlayerData> {
             this.relax += DataUpdateHandler.ticksPerFrame * 0.1f;
             this.relax = Math.min(this.relax, 1.0f);
         }
-        float relaxAngle = MathHelper.func_76129_c((float)MathHelper.func_76129_c((float)this.relax));
+        float relaxAngle = MathHelper.sqrt((float)MathHelper.sqrt((float)this.relax));
         data.centerRotation.setSmoothness(0.3f).orientZero();
         data.globalOffset.slideToZero(0.5f);
         data.rightLeg.rotation.setSmoothness(0.8f).orientZ(5.0f);

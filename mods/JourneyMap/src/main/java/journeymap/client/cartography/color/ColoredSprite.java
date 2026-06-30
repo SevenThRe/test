@@ -36,12 +36,12 @@ public class ColoredSprite {
     }
 
     public ColoredSprite(BakedQuad quad) {
-        this.sprite = quad.func_187508_a();
+        this.sprite = quad.getSprite();
         this.color = null;
     }
 
     public String getIconName() {
-        return this.sprite.func_94215_i();
+        return this.sprite.getIconName();
     }
 
     @Nullable
@@ -57,7 +57,7 @@ public class ColoredSprite {
     public BufferedImage getColoredImage() {
         try {
             ResourceLocation resourceLocation = new ResourceLocation(this.getIconName());
-            if (resourceLocation.equals((Object)TextureMap.field_174945_f)) {
+            if (resourceLocation.equals((Object)TextureMap.LOCATION_MISSING_TEXTURE)) {
                 return null;
             }
             BufferedImage image = this.getFrameTextureData(this.sprite);
@@ -80,28 +80,28 @@ public class ColoredSprite {
     private BufferedImage getFrameTextureData(TextureAtlasSprite tas) {
         try {
             int[] rgb;
-            if (tas.func_110970_k() > 0 && (rgb = tas.func_147965_a(0)[0]).length > 0) {
-                int width = tas.func_94211_a();
-                int height = tas.func_94216_b();
+            if (tas.getFrameCount() > 0 && (rgb = tas.getFrameTextureData(0)[0]).length > 0) {
+                int width = tas.getIconWidth();
+                int height = tas.getIconHeight();
                 BufferedImage textureImg = new BufferedImage(width, height, 2);
                 textureImg.setRGB(0, 0, width, height, rgb, 0, width);
                 return textureImg;
             }
         }
         catch (Throwable t) {
-            logger.error(String.format("ColoredSprite: Unable to use frame data for %s: %s", tas.func_94215_i(), t.getMessage()));
+            logger.error(String.format("ColoredSprite: Unable to use frame data for %s: %s", tas.getIconName(), t.getMessage()));
         }
         return null;
     }
 
     private BufferedImage getImageResource(TextureAtlasSprite tas) {
         try {
-            ResourceLocation iconNameLoc = new ResourceLocation(tas.func_94215_i());
-            ResourceLocation fileLoc = new ResourceLocation(iconNameLoc.func_110624_b(), "textures/" + iconNameLoc.func_110623_a() + ".png");
+            ResourceLocation iconNameLoc = new ResourceLocation(tas.getIconName());
+            ResourceLocation fileLoc = new ResourceLocation(iconNameLoc.getNamespace(), "textures/" + iconNameLoc.getPath() + ".png");
             return TextureCache.resolveImage(fileLoc);
         }
         catch (Throwable t) {
-            logger.error(String.format("ColoredSprite: Unable to use texture file for %s: %s", tas.func_94215_i(), t.getMessage()));
+            logger.error(String.format("ColoredSprite: Unable to use texture file for %s: %s", tas.getIconName(), t.getMessage()));
             return null;
         }
     }

@@ -154,12 +154,12 @@ implements IThreadedFileIO {
             return false;
         }
         if (async) {
-            ThreadedFileIOBase.func_178779_a().func_75735_a((IThreadedFileIO)this);
+            ThreadedFileIOBase.getThreadedIOInstance().queueIO((IThreadedFileIO)this);
             return true;
         }
         boolean success = false;
         for (int tries = 0; tries < 5; ++tries) {
-            if (this.func_75814_c()) {
+            if (this.writeNextIO()) {
                 continue;
             }
             success = true;
@@ -171,7 +171,7 @@ implements IThreadedFileIO {
         return success;
     }
 
-    public boolean func_75814_c() {
+    public boolean writeNextIO() {
         if (this.texture == null || !this.texture.hasImage()) {
             return false;
         }

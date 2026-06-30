@@ -69,8 +69,8 @@ public class BlockMD
 implements Comparable<BlockMD> {
     public static final EnumSet<BlockFlag> FlagsPlantAndCrop = EnumSet.of(BlockFlag.Plant, BlockFlag.Crop);
     public static final EnumSet<BlockFlag> FlagsNormal = EnumSet.complementOf(EnumSet.of(BlockFlag.Error, BlockFlag.Ignore));
-    public static final BlockMD AIRBLOCK = new BlockMD(Blocks.field_150350_a.func_176223_P(), "minecraft:air", "0", "Air", Float.valueOf(0.0f), EnumSet.of(BlockFlag.Ignore), false);
-    public static final BlockMD VOIDBLOCK = new BlockMD(Blocks.field_150350_a.func_176223_P(), "journeymap:void", "0", "Void", Float.valueOf(0.0f), EnumSet.of(BlockFlag.Ignore), false);
+    public static final BlockMD AIRBLOCK = new BlockMD(Blocks.AIR.getDefaultState(), "minecraft:air", "0", "Air", Float.valueOf(0.0f), EnumSet.of(BlockFlag.Ignore), false);
+    public static final BlockMD VOIDBLOCK = new BlockMD(Blocks.AIR.getDefaultState(), "journeymap:void", "0", "Void", Float.valueOf(0.0f), EnumSet.of(BlockFlag.Ignore), false);
     private static Logger LOGGER = Journeymap.getLogger();
     private final IBlockState blockState;
     private final String blockId;
@@ -115,11 +115,11 @@ implements Comparable<BlockMD> {
     }
 
     public Set<BlockMD> getValidStateMDs() {
-        return this.getBlock().func_176194_O().func_177619_a().stream().map(BlockMD::get).collect(Collectors.toSet());
+        return this.getBlock().getBlockState().getValidStates().stream().map(BlockMD::get).collect(Collectors.toSet());
     }
 
     private void updateProperties() {
-        boolean bl = this.isIgnore = this.blockState == null || this.hasFlag(BlockFlag.Ignore) || this.blockState.func_177230_c() instanceof BlockAir || this.blockState.func_185901_i() == EnumBlockRenderType.INVISIBLE;
+        boolean bl = this.isIgnore = this.blockState == null || this.hasFlag(BlockFlag.Ignore) || this.blockState.getBlock() instanceof BlockAir || this.blockState.getRenderType() == EnumBlockRenderType.INVISIBLE;
         if (this.isIgnore) {
             this.color = -1;
             this.setAlpha(0.0f);
@@ -128,10 +128,10 @@ implements Comparable<BlockMD> {
             this.flags.add(BlockFlag.NoShadow);
         }
         if (this.blockState != null) {
-            Block block = this.blockState.func_177230_c();
-            this.isLava = block == Blocks.field_150353_l || block == Blocks.field_150356_k;
-            this.isIce = block == Blocks.field_150432_aD;
-            this.isFire = block == Blocks.field_150480_ab;
+            Block block = this.blockState.getBlock();
+            this.isLava = block == Blocks.LAVA || block == Blocks.FLOWING_LAVA;
+            this.isIce = block == Blocks.ICE;
+            this.isFire = block == Blocks.FIRE;
         }
         this.isFluid = this.hasFlag(BlockFlag.Fluid);
         this.isWater = this.hasFlag(BlockFlag.Water);
@@ -143,7 +143,7 @@ implements Comparable<BlockMD> {
     }
 
     public Block getBlock() {
-        return this.blockState.func_177230_c();
+        return this.blockState.getBlock();
     }
 
     public static void reset() {
@@ -159,7 +159,7 @@ implements Comparable<BlockMD> {
     }
 
     public static Set<BlockMD> getAllMinecraft() {
-        return StreamSupport.stream(GameData.getBlockStateIDMap().spliterator(), false).filter(blockState1 -> blockState1.func_177230_c().getRegistryName().func_110624_b().equals("minecraft")).map(BlockMD::get).collect(Collectors.toSet());
+        return StreamSupport.stream(GameData.getBlockStateIDMap().spliterator(), false).filter(blockState1 -> blockState1.getBlock().getRegistryName().getNamespace().equals("minecraft")).map(BlockMD::get).collect(Collectors.toSet());
     }
 
     public static BlockMD getBlockMDFromChunkLocal(ChunkMD chunkMd, int localX, int y, int localZ) {
@@ -168,14 +168,14 @@ implements Comparable<BlockMD> {
 
     public static BlockMD getBlockMD(ChunkMD chunkMd, BlockPos blockPos) {
         try {
-            if (blockPos.func_177956_o() >= 0) {
-                IBlockState blockState = chunkMd != null && chunkMd.hasChunk() ? chunkMd.getChunk().func_177435_g(blockPos) : JmBlockAccess.INSTANCE.func_180495_p(blockPos);
+            if (blockPos.getY() >= 0) {
+                IBlockState blockState = chunkMd != null && chunkMd.hasChunk() ? chunkMd.getChunk().getBlockState(blockPos) : JmBlockAccess.INSTANCE.getBlockState(blockPos);
                 return BlockMD.get(blockState);
             }
             return VOIDBLOCK;
         }
         catch (Exception e) {
-            LOGGER.error(String.format("Can't get blockId/meta for chunk %s,%s at %s : %s", chunkMd.getChunk().field_76635_g, chunkMd.getChunk().field_76647_h, blockPos, LogFormatter.toString(e)));
+            LOGGER.error(String.format("Can't get blockId/meta for chunk %s,%s at %s : %s", chunkMd.getChunk().x, chunkMd.getChunk().z, blockPos, LogFormatter.toString(e)));
             return AIRBLOCK;
         }
     }
@@ -189,7 +189,7 @@ implements Comparable<BlockMD> {
     }
 
     public static String getBlockId(IBlockState blockState) {
-        return ((ResourceLocation)Block.field_149771_c.func_177774_c((Object)blockState.func_177230_c())).toString();
+        return ((ResourceLocation)Block.REGISTRY.getNameForObject((Object)blockState.getBlock())).toString();
     }
 
     public static String getBlockStateId(BlockMD blockMD) {
@@ -197,9 +197,9 @@ implements Comparable<BlockMD> {
     }
 
     public static String getBlockStateId(IBlockState blockState) {
-        ImmutableCollection properties = blockState.func_177228_b().values();
+        ImmutableCollection properties = blockState.getProperties().values();
         if (properties.isEmpty()) {
-            return Integer.toString(blockState.func_177230_c().func_176201_c(blockState));
+            return Integer.toString(blockState.getBlock().getMetaFromState(blockState));
         }
         return Joiner.on((String)",").join((Iterable)properties);
     }
@@ -207,31 +207,31 @@ implements Comparable<BlockMD> {
     private static String getBlockName(IBlockState blockState) {
         String displayName = null;
         try {
-            Block block = blockState.func_177230_c();
-            Item item = Item.func_150898_a((Block)block);
+            Block block = blockState.getBlock();
+            Item item = Item.getItemFromBlock((Block)block);
             if (item != null) {
-                ItemStack idPicked = new ItemStack(item, 1, block.func_176201_c(blockState));
-                displayName = I18n.func_74838_a((String)(item.func_77667_c(idPicked) + ".name"));
+                ItemStack idPicked = new ItemStack(item, 1, block.getMetaFromState(blockState));
+                displayName = I18n.translateToLocal((String)(item.getTranslationKey(idPicked) + ".name"));
             }
             if (Strings.isNullOrEmpty(displayName)) {
-                displayName = block.func_149732_F();
+                displayName = block.getLocalizedName();
             }
         }
         catch (Exception e) {
             LOGGER.debug(String.format("Couldn't get display name for %s: %s ", blockState, e));
         }
         if (Strings.isNullOrEmpty((String)displayName) || displayName.contains("tile")) {
-            displayName = blockState.func_177230_c().getClass().getSimpleName().replaceAll("Block", "");
+            displayName = blockState.getBlock().getClass().getSimpleName().replaceAll("Block", "");
         }
         return displayName;
     }
 
     public static void setAllFlags(Block block, BlockFlag ... flags) {
-        BlockMD defaultBlockMD = BlockMD.get(block.func_176223_P());
+        BlockMD defaultBlockMD = BlockMD.get(block.getDefaultState());
         for (BlockMD blockMD : defaultBlockMD.getValidStateMDs()) {
             blockMD.addFlags(flags);
         }
-        LOGGER.debug(block.func_149739_a() + " flags set: " + flags);
+        LOGGER.debug(block.getTranslationKey() + " flags set: " + flags);
     }
 
     public boolean hasFlag(BlockFlag checkFlag) {
@@ -388,7 +388,7 @@ implements Comparable<BlockMD> {
     }
 
     public String getBlockDomain() {
-        return this.getBlock().getRegistryName().func_110624_b();
+        return this.getBlock().getRegistryName().getNamespace();
     }
 
     public EnumSet<BlockFlag> getFlags() {
@@ -432,10 +432,10 @@ implements Comparable<BlockMD> {
                 if (blockState instanceof IExtendedBlockState && (clean = ((IExtendedBlockState)blockState).getClean()) != null) {
                     blockState = clean;
                 }
-                if (blockState == null || blockState.func_185901_i() == EnumBlockRenderType.INVISIBLE) {
+                if (blockState == null || blockState.getRenderType() == EnumBlockRenderType.INVISIBLE) {
                     return AIRBLOCK;
                 }
-                if (blockState.func_177230_c().getRegistryName() == null) {
+                if (blockState.getBlock().getRegistryName() == null) {
                     LOGGER.warn("Unregistered block will be treated like air: " + blockState);
                     return AIRBLOCK;
                 }

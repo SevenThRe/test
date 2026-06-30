@@ -70,9 +70,9 @@ public class ReflectionUtils {
             field.setAccessible(true);
             List packs = (List)field.get(FMLClientHandler.instance());
             packs.add(pack);
-            IResourceManager manager = Minecraft.func_71410_x().func_110442_L();
+            IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
             if (manager instanceof SimpleReloadableResourceManager) {
-                ((SimpleReloadableResourceManager)manager).func_110545_a(pack);
+                ((SimpleReloadableResourceManager)manager).reloadResourcePack(pack);
             }
             return false;
         }

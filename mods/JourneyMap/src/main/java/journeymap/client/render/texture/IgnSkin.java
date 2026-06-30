@@ -48,16 +48,16 @@ public class IgnSkin {
         if (playerId == null) {
             playerId = IgnSkin.lookupPlayerId(username);
         }
-        GameProfile profile = TileEntitySkull.func_174884_b((GameProfile)new GameProfile(playerId, username));
+        GameProfile profile = TileEntitySkull.updateGameProfile((GameProfile)new GameProfile(playerId, username));
         try {
-            MinecraftSessionService mss = Minecraft.func_71410_x().func_152347_ac();
+            MinecraftSessionService mss = Minecraft.getMinecraft().getSessionService();
             Map map = mss.getTextures(profile, false);
             BufferedImage skinImage = null;
             if (map.containsKey(MinecraftProfileTexture.Type.SKIN)) {
                 MinecraftProfileTexture mpt = (MinecraftProfileTexture)map.get(MinecraftProfileTexture.Type.SKIN);
                 skinImage = IgnSkin.downloadImage(new URL(mpt.getUrl()));
             } else {
-                ResourceLocation resourceLocation = DefaultPlayerSkin.func_177334_a((UUID)playerId);
+                ResourceLocation resourceLocation = DefaultPlayerSkin.getDefaultSkin((UUID)playerId);
                 skinImage = TextureCache.getTexture(resourceLocation).getImage();
             }
             face = IgnSkin.cropToFace(skinImage);
@@ -77,7 +77,7 @@ public class IgnSkin {
         URL idLookupUrl = null;
         try {
             idLookupUrl = new URL(String.format(ID_LOOKUP_URL, username, Instant.now().getEpochSecond()));
-            HttpURLConnection conn = (HttpURLConnection)idLookupUrl.openConnection(Minecraft.func_71410_x().func_110437_J());
+            HttpURLConnection conn = (HttpURLConnection)idLookupUrl.openConnection(Minecraft.getMinecraft().getProxy());
             HttpURLConnection.setFollowRedirects(true);
             conn.setInstanceFollowRedirects(true);
             conn.setDoInput(true);
@@ -107,7 +107,7 @@ public class IgnSkin {
         BufferedImage img = null;
         HttpURLConnection conn = null;
         try {
-            conn = (HttpURLConnection)imageURL.openConnection(Minecraft.func_71410_x().func_110437_J());
+            conn = (HttpURLConnection)imageURL.openConnection(Minecraft.getMinecraft().getProxy());
             HttpURLConnection.setFollowRedirects(true);
             conn.setInstanceFollowRedirects(true);
             conn.setDoInput(true);

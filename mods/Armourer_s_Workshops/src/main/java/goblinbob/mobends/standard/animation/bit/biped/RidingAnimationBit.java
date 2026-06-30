@@ -43,14 +43,14 @@ extends AnimationBit<BipedEntityData<?>> {
         data.leftForeArm.rotation.orientX(-10.0f);
         data.rightArm.rotation.orientX(0.0f).rotateZ(10.0f);
         data.rightForeArm.rotation.orientX(-10.0f);
-        Entity ridden = living.func_184187_bx();
+        Entity ridden = living.getRidingEntity();
         if (ridden != null && ridden instanceof EntityLivingBase) {
             EntityLivingBase riddenLiving = (EntityLivingBase)ridden;
-            float relativeHeadYaw = MathHelper.func_76142_g((float)(((EntityLivingBase)living).field_70177_z - riddenLiving.field_70761_aq));
-            float relativeYaw = MathHelper.func_76142_g((float)(((EntityLivingBase)living).field_70177_z - ((Float)data.headYaw.get()).floatValue() - riddenLiving.field_70761_aq));
-            data.body.rotation.orientZ(MathHelper.func_76131_a((float)(-relativeHeadYaw * 0.25f), (float)-20.0f, (float)20.0f));
-            data.leftLeg.rotation.rotateX(-MathHelper.func_76126_a((float)(relativeYaw / 180.0f * (float)Math.PI * 1.5f)) * 45.0f);
-            data.rightLeg.rotation.rotateX(MathHelper.func_76126_a((float)(relativeYaw / 180.0f * (float)Math.PI * 1.5f)) * 45.0f);
+            float relativeHeadYaw = MathHelper.wrapDegrees((float)(((EntityLivingBase)living).rotationYaw - riddenLiving.renderYawOffset));
+            float relativeYaw = MathHelper.wrapDegrees((float)(((EntityLivingBase)living).rotationYaw - ((Float)data.headYaw.get()).floatValue() - riddenLiving.renderYawOffset));
+            data.body.rotation.orientZ(MathHelper.clamp((float)(-relativeHeadYaw * 0.25f), (float)-20.0f, (float)20.0f));
+            data.leftLeg.rotation.rotateX(-MathHelper.sin((float)(relativeYaw / 180.0f * (float)Math.PI * 1.5f)) * 45.0f);
+            data.rightLeg.rotation.rotateX(MathHelper.sin((float)(relativeYaw / 180.0f * (float)Math.PI * 1.5f)) * 45.0f);
         }
         if (!data.isStillHorizontally()) {
             data.body.rotation.orientX(25.0f);
@@ -58,15 +58,15 @@ extends AnimationBit<BipedEntityData<?>> {
             data.leftForeArm.rotation.orientX(-10.0f);
             data.rightArm.rotation.orientX(-45.0f).rotateZ(-10.0f);
             data.rightForeArm.rotation.orientX(-10.0f);
-            float motionMagnitude = (float)Math.sqrt(((EntityLivingBase)living).field_70159_w * ((EntityLivingBase)living).field_70159_w + ((EntityLivingBase)living).field_70179_y * ((EntityLivingBase)living).field_70179_y) * 100.0f;
+            float motionMagnitude = (float)Math.sqrt(((EntityLivingBase)living).motionX * ((EntityLivingBase)living).motionX + ((EntityLivingBase)living).motionZ * ((EntityLivingBase)living).motionZ) * 100.0f;
             if (motionMagnitude > 1.0f) {
                 float ticks = DataUpdateHandler.getTicks() * 0.5f;
-                float bodyRotation = 45.0f + MathHelper.func_76134_b((float)ticks) * 10.0f;
+                float bodyRotation = 45.0f + MathHelper.cos((float)ticks) * 10.0f;
                 data.body.rotation.orientX(bodyRotation);
                 data.head.rotation.rotateX(-bodyRotation);
                 data.leftArm.rotation.rotateX(-bodyRotation);
                 data.rightArm.rotation.rotateX(-bodyRotation);
-                data.globalOffset.slideY(MathHelper.func_76126_a((float)ticks) * 0.3f);
+                data.globalOffset.slideY(MathHelper.sin((float)ticks) * 0.3f);
             } else {
                 data.head.rotation.rotateX(-25.0f);
             }

@@ -58,37 +58,37 @@ implements LayerRenderer<AbstractClientPlayer> {
     private static /* synthetic */ void y() {
         s = OpenGlHelper.lastBrightnessX;
         m = OpenGlHelper.lastBrightnessY;
-        OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)m);
+        OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)m);
     }
 
     private static /* synthetic */ void r(String a2, ModelData.Texture a3) {
         ResourceLocation resourceLocation;
-        TextureManager textureManager = Minecraft.func_71410_x().func_110434_K();
-        Object object = textureManager.func_110581_b(resourceLocation = new ResourceLocation("dragonarmourers", new StringBuilder().insert(0, "models/player/").append(a2).append("/").append(a3.getName()).toString()));
+        TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
+        Object object = textureManager.getTexture(resourceLocation = new ResourceLocation("dragonarmourers", new StringBuilder().insert(0, "models/player/").append(a2).append("/").append(a3.getName()).toString()));
         if (object == null) {
             object = new zj(a3);
-            textureManager.func_110579_a(resourceLocation, object);
+            textureManager.loadTexture(resourceLocation, object);
         }
-        textureManager.func_110577_a(resourceLocation);
+        textureManager.bindTexture(resourceLocation);
     }
 
     public static void r(RenderPlayer a2, AbstractClientPlayer a3, float a4) {
         Object object = zg.r((Entity)a3);
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179108_z();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.enableNormalize();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         Object object2 = object = object.iterator();
         while (object2.hasNext()) {
             ModelData modelData = (ModelData)object.next();
             object2 = object;
             tg.y(a2, modelData, a3, a4);
         }
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179133_A();
+        GlStateManager.disableBlend();
+        GlStateManager.disableNormalize();
     }
 
-    public boolean func_177142_b() {
+    public boolean shouldCombineTextures() {
         return false;
     }
 
@@ -103,7 +103,7 @@ implements LayerRenderer<AbstractClientPlayer> {
         if ((a4 = (PlayerData)BenderHelper.getData(a4, (RenderLivingBase<? extends EntityLivingBase>)a2)) == null) {
             return;
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         ModelData modelData = a3;
         tg.r(modelData.getName(), a3.getTexture());
         tg.r(a2, iModel, (PlayerData)a4, a5, a3);
@@ -114,18 +114,18 @@ implements LayerRenderer<AbstractClientPlayer> {
             tg.r();
         }
         iModel.clearData();
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     private static /* synthetic */ void r() {
-        OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)s, (float)m);
+        OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)s, (float)m);
     }
 
     public void doRenderLayer(AbstractClientPlayer a2, float a3, float a42, float a5, float a6, float a7, float a8, float a9) {
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179108_z();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.enableNormalize();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         Iterator<ModelData> iterator = a3 = zg.r((Entity)a2).iterator();
         while (iterator.hasNext()) {
             tg a10;
@@ -133,8 +133,8 @@ implements LayerRenderer<AbstractClientPlayer> {
             iterator = a3;
             tg.r(a10.j, a42, a2, a9);
         }
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179133_A();
+        GlStateManager.disableBlend();
+        GlStateManager.disableNormalize();
     }
 
     /*
@@ -153,7 +153,7 @@ implements LayerRenderer<AbstractClientPlayer> {
                 }
                 iModelPiece = (IModelPiece)iterator.next();
                 String string = iModelPiece.getName().toLowerCase(Locale.ROOT);
-                GlStateManager.func_179094_E();
+                GlStateManager.pushMatrix();
                 int n3 = -1;
                 switch (string.hashCode()) {
                     case 3029410: {
@@ -211,62 +211,62 @@ implements LayerRenderer<AbstractClientPlayer> {
             switch (n2) {
                 case 0: {
                     a3.body.applyCharacterTransform(0.0625f);
-                    GlStateManager.func_179109_b((float)0.0f, (float)0.75f, (float)0.0f);
+                    GlStateManager.translate((float)0.0f, (float)0.75f, (float)0.0f);
                     iModelPiece.render(a4, !a5.getSetting("hideChest"));
                     break;
                 }
                 case 1: {
                     a3.head.applyCharacterTransform(0.0625f);
-                    GlStateManager.func_179109_b((float)0.0f, (float)1.5f, (float)0.0f);
+                    GlStateManager.translate((float)0.0f, (float)1.5f, (float)0.0f);
                     if (RenderPlayerDummy.renderFirstPerson) break;
                     iModelPiece.render(a4, !a5.getSetting("hideHead"));
                     break;
                 }
                 case 2: {
                     a3.leftArm.applyCharacterTransform(0.0625f);
-                    GlStateManager.func_179109_b((float)(-f2 * 0.0625f), (float)1.375f, (float)0.0f);
+                    GlStateManager.translate((float)(-f2 * 0.0625f), (float)1.375f, (float)0.0f);
                     iModelPiece.render(a4, !a5.getSetting("hideArmLeft"));
                     break;
                 }
                 case 3: {
                     a3.rightArm.applyCharacterTransform(0.0625f);
-                    GlStateManager.func_179109_b((float)(f2 * 0.0625f), (float)1.375f, (float)0.0f);
+                    GlStateManager.translate((float)(f2 * 0.0625f), (float)1.375f, (float)0.0f);
                     iModelPiece.render(a4, !a5.getSetting("hideArmRight"));
                     break;
                 }
                 case 4: {
                     a3.leftForeArm.applyCharacterTransform(0.0625f);
-                    GlStateManager.func_179109_b((float)(-f2 * 0.0625f), (float)1.125f, (float)-0.125f);
+                    GlStateManager.translate((float)(-f2 * 0.0625f), (float)1.125f, (float)-0.125f);
                     iModelPiece.render(a4, !a5.getSetting("hideArmLeft"));
                     break;
                 }
                 case 5: {
                     a3.rightForeArm.applyCharacterTransform(0.0625f);
-                    GlStateManager.func_179109_b((float)(f2 * 0.0625f), (float)1.125f, (float)-0.125f);
+                    GlStateManager.translate((float)(f2 * 0.0625f), (float)1.125f, (float)-0.125f);
                     iModelPiece.render(a4, !a5.getSetting("hideArmRight"));
                     break;
                 }
                 case 6: {
                     a3.leftLeg.applyCharacterTransform(0.0625f);
-                    GlStateManager.func_179137_b((double)-0.125, (double)0.75, (double)0.0);
+                    GlStateManager.translate((double)-0.125, (double)0.75, (double)0.0);
                     iModelPiece.render(a4, !a5.getSetting("hideLegLeft"));
                     break;
                 }
                 case 7: {
                     a3.rightLeg.applyCharacterTransform(0.0625f);
-                    GlStateManager.func_179137_b((double)0.125, (double)0.75, (double)0.0);
+                    GlStateManager.translate((double)0.125, (double)0.75, (double)0.0);
                     iModelPiece.render(a4, !a5.getSetting("hideLegRight"));
                     break;
                 }
                 case 8: {
                     a3.leftForeLeg.applyCharacterTransform(0.0625f);
-                    GlStateManager.func_179137_b((double)-0.125, (double)0.375, (double)0.125);
+                    GlStateManager.translate((double)-0.125, (double)0.375, (double)0.125);
                     iModelPiece.render(a4, !a5.getSetting("hideLegLeft"));
                     break;
                 }
                 case 9: {
                     a3.rightForeLeg.applyCharacterTransform(0.0625f);
-                    GlStateManager.func_179137_b((double)0.125, (double)0.375, (double)0.125);
+                    GlStateManager.translate((double)0.125, (double)0.375, (double)0.125);
                     iModelPiece.render(a4, !a5.getSetting("hideLegRight"));
                     break;
                 }
@@ -274,13 +274,13 @@ implements LayerRenderer<AbstractClientPlayer> {
                     iModelPiece.render(a4, false);
                 }
             }
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
             iterator2 = iterator;
         }
     }
 
     private static /* synthetic */ void r(RenderPlayer a2, ModelData a3, AbstractClientPlayer a4, float a5) {
-        if (!zh.g && a4 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a4 != Minecraft.getMinecraft().player) {
             return;
         }
         PlayerData playerData = (PlayerData)BenderHelper.getData(a4, (RenderLivingBase<? extends EntityLivingBase>)a2);
@@ -294,14 +294,14 @@ implements LayerRenderer<AbstractClientPlayer> {
         if (iModel.getModelPieces() == null) {
             return;
         }
-        if (Minecraft.func_71410_x().field_71474_y.field_74320_O == 0 && ModelPart.cancelRenderSkin) {
+        if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 0 && ModelPart.cancelRenderSkin) {
             return;
         }
         AbstractClientPlayer abstractClientPlayer = a4;
-        PlayerModelLoader.applyAnimation((UUID)abstractClientPlayer.func_110124_au(), (String)a3.getName(), (byte[])a3.getAnimationBytes(), (String)"idle", (boolean)true);
-        GlStateManager.func_179094_E();
-        if (abstractClientPlayer.func_70093_af()) {
-            GlStateManager.func_179137_b((double)0.0, (double)0.2, (double)0.0);
+        PlayerModelLoader.applyAnimation((UUID)abstractClientPlayer.getUniqueID(), (String)a3.getName(), (byte[])a3.getAnimationBytes(), (String)"idle", (boolean)true);
+        GlStateManager.pushMatrix();
+        if (abstractClientPlayer.isSneaking()) {
+            GlStateManager.translate((double)0.0, (double)0.2, (double)0.0);
         }
         tg.r(a3.getName(), a3.getTexture());
         tg.r(iModel, playerData, a5, a3);
@@ -312,7 +312,7 @@ implements LayerRenderer<AbstractClientPlayer> {
             tg.r();
         }
         iModel.clearData();
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     public tg(RenderPlayer a2) {
@@ -324,7 +324,7 @@ implements LayerRenderer<AbstractClientPlayer> {
      * Enabled aggressive block sorting
      */
     private static /* synthetic */ void r(RenderPlayer a2, IModel a3, PlayerData a4, float a5, ModelData a6) {
-        ModelRenderer modelRenderer = a2.func_177087_b().field_178723_h;
+        ModelRenderer modelRenderer = a2.getMainModel().bipedRightArm;
         a3 = a3.getModelPieces().iterator();
         Iterator iterator = a3;
         while (true) {
@@ -336,7 +336,7 @@ implements LayerRenderer<AbstractClientPlayer> {
                 }
                 iModelPiece = (IModelPiece)a3.next();
                 String string = iModelPiece.getName().toLowerCase(Locale.ROOT);
-                GlStateManager.func_179094_E();
+                GlStateManager.pushMatrix();
                 int n3 = -1;
                 switch (string.hashCode()) {
                     case -1436077376: {
@@ -357,9 +357,9 @@ implements LayerRenderer<AbstractClientPlayer> {
                     PlayerData playerData = a4;
                     playerData.rightArm.setApplyAnimation(true);
                     ModelRenderer modelRenderer2 = modelRenderer;
-                    playerData.rightArm.setRotateAngle(modelRenderer2.field_78795_f, modelRenderer2.field_78796_g, modelRenderer.field_78808_h);
+                    playerData.rightArm.setRotateAngle(modelRenderer2.rotateAngleX, modelRenderer2.rotateAngleY, modelRenderer.rotateAngleZ);
                     playerData.rightArm.applyLocalTransform(0.0625f);
-                    GlStateManager.func_179137_b((double)0.3125, (double)2.125, (double)0.0);
+                    GlStateManager.translate((double)0.3125, (double)2.125, (double)0.0);
                     iModelPiece.render(a5, !a6.getSetting("hideArmRight"));
                     PlayerData playerData2 = a4;
                     playerData2.rightArm.setApplyAnimation(false);
@@ -367,7 +367,7 @@ implements LayerRenderer<AbstractClientPlayer> {
                     break;
                 }
             }
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
             iterator = a3;
         }
     }
@@ -375,21 +375,21 @@ implements LayerRenderer<AbstractClientPlayer> {
     public static void r(ModelData a2, float a3) {
         IModelPiece iModelPiece;
         Iterator iterator;
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179108_z();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.func_179094_E();
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.enableNormalize();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.pushMatrix();
         ModelData modelData = a2;
         IModel iModel = PlayerModelLoader.getModel((String)a2.getName(), (byte[])modelData.getModelBytes());
         tg.r(modelData.getName(), a2.getTexture());
         Iterator iterator2 = iterator = iModel.getModelPieces().iterator();
         while (iterator2.hasNext()) {
             iModelPiece = (IModelPiece)iterator.next();
-            GlStateManager.func_179094_E();
+            GlStateManager.pushMatrix();
             iterator2 = iterator;
             iModelPiece.render(a3, false);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
         if (a2.getGlowTexture() != null) {
             tg.r(a2.getName(), a2.getGlowTexture());
@@ -398,15 +398,15 @@ implements LayerRenderer<AbstractClientPlayer> {
             Iterator iterator3 = iterator;
             while (iterator3.hasNext()) {
                 iModelPiece = (IModelPiece)iterator.next();
-                GlStateManager.func_179094_E();
+                GlStateManager.pushMatrix();
                 iterator3 = iterator;
                 iModelPiece.render(a3, false);
-                GlStateManager.func_179121_F();
+                GlStateManager.popMatrix();
             }
             tg.r();
         }
-        GlStateManager.func_179121_F();
-        GlStateManager.func_179133_A();
+        GlStateManager.popMatrix();
+        GlStateManager.disableNormalize();
     }
 }
 

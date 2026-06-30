@@ -68,7 +68,7 @@ implements pa {
     }
 
     private /* synthetic */ void ALLATORIxDEMO(float a2) {
-        GlStateManager.func_179152_a((float)a2, (float)a2, (float)a2);
+        GlStateManager.scale((float)a2, (float)a2, (float)a2);
     }
 }
 

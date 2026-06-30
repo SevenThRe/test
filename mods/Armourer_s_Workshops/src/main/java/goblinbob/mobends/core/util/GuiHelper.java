@@ -22,11 +22,11 @@ import net.minecraft.util.SoundEvent;
 
 public class GuiHelper {
     public static void closeGui() {
-        Minecraft.func_71410_x().func_147108_a(null);
+        Minecraft.getMinecraft().displayGuiScreen(null);
     }
 
     public static void playButtonSound(SoundHandler soundHandler) {
-        soundHandler.func_147682_a((ISound)PositionedSoundRecord.func_184371_a((SoundEvent)SoundEvents.field_187909_gi, (float)1.0f));
+        soundHandler.playSound((ISound)PositionedSoundRecord.getMasterRecord((SoundEvent)SoundEvents.UI_BUTTON_CLICK, (float)1.0f));
     }
 
     public static boolean openUrlInBrowser(String url) {

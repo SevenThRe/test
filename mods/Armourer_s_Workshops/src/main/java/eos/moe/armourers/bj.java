@@ -34,7 +34,7 @@ public class bj {
     public static float j = 0.0625f;
 
     public static void k(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -44,7 +44,7 @@ public class bj {
     }
 
     public static void p(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         Object object = new ArrayList<fk>();
@@ -80,7 +80,7 @@ public class bj {
     }
 
     public static void a(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -182,7 +182,7 @@ public class bj {
     }
 
     public static void f(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -192,7 +192,7 @@ public class bj {
     }
 
     public static void l(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -202,7 +202,7 @@ public class bj {
     }
 
     public static void n(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -212,7 +212,7 @@ public class bj {
     }
 
     public static void v(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -222,7 +222,7 @@ public class bj {
     }
 
     public static void w(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -232,7 +232,7 @@ public class bj {
     }
 
     public static void s(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -273,7 +273,7 @@ public class bj {
     }
 
     public static void x(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -283,7 +283,7 @@ public class bj {
     }
 
     public static void h(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -293,7 +293,7 @@ public class bj {
     }
 
     public static void z(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -303,7 +303,7 @@ public class bj {
     }
 
     public static void y(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();
@@ -313,7 +313,7 @@ public class bj {
     }
 
     public static void r(Entity a2) {
-        if (!zh.g && a2 != Minecraft.func_71410_x().field_71439_g) {
+        if (!zh.g && a2 != Minecraft.getMinecraft().player) {
             return;
         }
         ArrayList<fk> arrayList = new ArrayList<fk>();

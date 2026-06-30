@@ -37,42 +37,42 @@ extends Particle {
         hfa a12;
         a12.b = a2 * 25;
         a12.q = 25;
-        a12.field_187122_b = a4;
-        a12.field_190017_n = false;
-        a12.field_187129_i = -Math.random() * 0.2 + 0.1;
-        a12.field_187130_j = 0.1f;
-        a12.field_187131_k = -Math.random() * 0.2 + 0.1;
-        a12.field_70545_g = 0.1f;
-        a12.field_70544_f = 0.0f;
+        a12.world = a4;
+        a12.canCollide = false;
+        a12.motionX = -Math.random() * 0.2 + 0.1;
+        a12.motionY = 0.1f;
+        a12.motionZ = -Math.random() * 0.2 + 0.1;
+        a12.particleGravity = 0.1f;
+        a12.particleScale = 0.0f;
         a12.k = 0.0f;
-        a12.field_70547_e = (int)(Math.random() * 30.0 + 30.0);
-        a12.field_70547_e *= (int)a11;
+        a12.particleMaxAge = (int)(Math.random() * 30.0 + 30.0);
+        a12.particleMaxAge *= (int)a11;
         a12.ALLATORIxDEMO = String.valueOf(a3);
         for (int a13 = 0; a13 < a12.ALLATORIxDEMO.length(); ++a13) {
             a12.o += a12.ALLATORIxDEMO(a12.ALLATORIxDEMO.charAt(a13));
         }
-        a12.func_189213_a();
+        a12.onUpdate();
     }
 
-    public void func_189213_a() {
+    public void onUpdate() {
         hfa a2;
-        a2.field_187123_c = a2.field_187126_f;
-        a2.field_187124_d = a2.field_187127_g;
-        a2.field_187125_e = a2.field_187128_h;
-        if (a2.field_70546_d++ >= a2.field_70547_e) {
-            a2.func_187112_i();
+        a2.prevPosX = a2.posX;
+        a2.prevPosY = a2.posY;
+        a2.prevPosZ = a2.posZ;
+        if (a2.particleAge++ >= a2.particleMaxAge) {
+            a2.setExpired();
         }
-        if (a2.field_187122_b == null) {
+        if (a2.world == null) {
             return;
         }
-        a2.k = a2.field_70544_f;
-        if (a2.field_70546_d < a2.field_70547_e / 3) {
-            a2.field_70544_f = (float)a2.field_70546_d / ((float)a2.field_70547_e / 3.0f) * 0.325f;
+        a2.k = a2.particleScale;
+        if (a2.particleAge < a2.particleMaxAge / 3) {
+            a2.particleScale = (float)a2.particleAge / ((float)a2.particleMaxAge / 3.0f) * 0.325f;
         }
-        a2.field_187129_i *= 0.93;
-        a2.field_187130_j -= 0.04 * (double)a2.field_70545_g;
-        a2.field_187131_k *= 0.93;
-        a2.func_187110_a(a2.field_187129_i, a2.field_187130_j, a2.field_187131_k);
+        a2.motionX *= 0.93;
+        a2.motionY -= 0.04 * (double)a2.particleGravity;
+        a2.motionZ *= 0.93;
+        a2.move(a2.motionX, a2.motionY, a2.motionZ);
     }
 
     private /* synthetic */ int ALLATORIxDEMO(char a2) {
@@ -82,28 +82,28 @@ extends Particle {
         return 0;
     }
 
-    public int func_189214_a(float a2) {
+    public int getBrightnessForRender(float a2) {
         return 0xF00000;
     }
 
-    public boolean func_187111_c() {
+    public boolean shouldDisableDepth() {
         return true;
     }
 
-    public int func_70537_b() {
+    public int getFXLayer() {
         return 2;
     }
 
-    public void func_180434_a(BufferBuilder a2, Entity a3, float a4, float a5, float a6, float a7, float a8, float a9) {
+    public void renderParticle(BufferBuilder a2, Entity a3, float a4, float a5, float a6, float a7, float a8, float a9) {
         hfa a10;
-        if (a10.field_187122_b == null) {
+        if (a10.world == null) {
             return;
         }
-        float a11 = (float)(a10.field_187123_c + (a10.field_187126_f - a10.field_187123_c) * (double)a4 - Particle.field_70556_an);
-        float a12 = (float)(a10.field_187124_d + (a10.field_187127_g - a10.field_187124_d) * (double)a4 - Particle.field_70554_ao);
-        float a13 = (float)(a10.field_187125_e + (a10.field_187128_h - a10.field_187125_e) * (double)a4 - Particle.field_70555_ap);
-        float a14 = a10.field_70544_f + (a10.field_70544_f - a10.k) * a4;
-        int a15 = a10.func_189214_a(a4);
+        float a11 = (float)(a10.prevPosX + (a10.posX - a10.prevPosX) * (double)a4 - Particle.interpPosX);
+        float a12 = (float)(a10.prevPosY + (a10.posY - a10.prevPosY) * (double)a4 - Particle.interpPosY);
+        float a13 = (float)(a10.prevPosZ + (a10.posZ - a10.prevPosZ) * (double)a4 - Particle.interpPosZ);
+        float a14 = a10.particleScale + (a10.particleScale - a10.k) * a4;
+        int a15 = a10.getBrightnessForRender(a4);
         int a16 = a15 >> 16 & 0xFFFF;
         int a17 = a15 & 0xFFFF;
         float a18 = -((float)a10.o / (float)a10.q * a14 * 2.0f + (float)(a10.ALLATORIxDEMO.length() - 1) * a14 * -0.4f) / 2.0f;
@@ -127,10 +127,10 @@ extends Particle {
             float a29 = a28 + (float)a10.q / 256.0f;
             Vec3d[] a30 = new Vec3d[]{new Vec3d((double)(-a5 * a22 - a8 * a23), (double)(-a6 * a23), (double)(-a7 * a22 - a9 * a23)), new Vec3d((double)(-a5 * a22 + a8 * a23), (double)(a6 * a23), (double)(-a7 * a22 + a9 * a23)), new Vec3d((double)(a5 * a22 + a8 * a23), (double)(a6 * a23), (double)(a7 * a22 + a9 * a23)), new Vec3d((double)(a5 * a22 - a8 * a23), (double)(-a6 * a23), (double)(a7 * a22 - a9 * a23))};
             Vec3d a31 = new Vec3d((double)(-a5 * (a18 + a22) + a8 * a21), (double)(a6 * a21), (double)(-a7 * (a18 + a22) + a9 * a21));
-            a2.func_181662_b((double)a11 + a30[0].field_72450_a + a31.field_72450_a, (double)a12 + a30[0].field_72448_b + a31.field_72448_b, (double)a13 + a30[0].field_72449_c + a31.field_72449_c).func_187315_a((double)a27, (double)a29).func_181666_a(a10.field_70552_h, a10.field_70553_i, a10.field_70551_j, a10.field_82339_as).func_187314_a(a16, a17).func_181675_d();
-            a2.func_181662_b((double)a11 + a30[1].field_72450_a + a31.field_72450_a, (double)a12 + a30[1].field_72448_b + a31.field_72448_b, (double)a13 + a30[1].field_72449_c + a31.field_72449_c).func_187315_a((double)a27, (double)a28).func_181666_a(a10.field_70552_h, a10.field_70553_i, a10.field_70551_j, a10.field_82339_as).func_187314_a(a16, a17).func_181675_d();
-            a2.func_181662_b((double)a11 + a30[2].field_72450_a + a31.field_72450_a, (double)a12 + a30[2].field_72448_b + a31.field_72448_b, (double)a13 + a30[2].field_72449_c + a31.field_72449_c).func_187315_a((double)a26, (double)a28).func_181666_a(a10.field_70552_h, a10.field_70553_i, a10.field_70551_j, a10.field_82339_as).func_187314_a(a16, a17).func_181675_d();
-            a2.func_181662_b((double)a11 + a30[3].field_72450_a + a31.field_72450_a, (double)a12 + a30[3].field_72448_b + a31.field_72448_b, (double)a13 + a30[3].field_72449_c + a31.field_72449_c).func_187315_a((double)a26, (double)a29).func_181666_a(a10.field_70552_h, a10.field_70553_i, a10.field_70551_j, a10.field_82339_as).func_187314_a(a16, a17).func_181675_d();
+            a2.pos((double)a11 + a30[0].x + a31.x, (double)a12 + a30[0].y + a31.y, (double)a13 + a30[0].z + a31.z).tex((double)a27, (double)a29).color(a10.particleRed, a10.particleGreen, a10.particleBlue, a10.particleAlpha).lightmap(a16, a17).endVertex();
+            a2.pos((double)a11 + a30[1].x + a31.x, (double)a12 + a30[1].y + a31.y, (double)a13 + a30[1].z + a31.z).tex((double)a27, (double)a28).color(a10.particleRed, a10.particleGreen, a10.particleBlue, a10.particleAlpha).lightmap(a16, a17).endVertex();
+            a2.pos((double)a11 + a30[2].x + a31.x, (double)a12 + a30[2].y + a31.y, (double)a13 + a30[2].z + a31.z).tex((double)a26, (double)a28).color(a10.particleRed, a10.particleGreen, a10.particleBlue, a10.particleAlpha).lightmap(a16, a17).endVertex();
+            a2.pos((double)a11 + a30[3].x + a31.x, (double)a12 + a30[3].y + a31.y, (double)a13 + a30[3].z + a31.z).tex((double)a26, (double)a29).color(a10.particleRed, a10.particleGreen, a10.particleBlue, a10.particleAlpha).lightmap(a16, a17).endVertex();
             a18 += 2.0f * a22 + a14 * -0.4f;
         }
         if (!a19) {
@@ -138,13 +138,13 @@ extends Particle {
         }
     }
 
-    public void func_70536_a(int a2) {
+    public void setParticleTextureIndex(int a2) {
         hfa a3;
-        if (a3.func_70537_b() > 3) {
+        if (a3.getFXLayer() > 3) {
             throw new RuntimeException("Invalid call to Particle.setMiscTex");
         }
-        a3.field_94054_b = a2 % 16;
-        a3.field_94055_c = a2 / 16;
+        a3.particleTextureIndexX = a2 % 16;
+        a3.particleTextureIndexY = a2 / 16;
     }
 }
 

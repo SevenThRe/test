@@ -39,8 +39,8 @@ public class li {
         li a3;
         if (!a3.ALLATORIxDEMO.containsKey(a2)) {
             try {
-                IResource a4 = Minecraft.func_71410_x().func_110442_L().func_110536_a(new ResourceLocation("dragoncore", "models/particle/" + a2 + ".json"));
-                BedrockScheme a5 = a3.ALLATORIxDEMO(a4.func_110527_b());
+                IResource a4 = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation("dragoncore", "models/particle/" + a2 + ".json"));
+                BedrockScheme a5 = a3.ALLATORIxDEMO(a4.getInputStream());
                 a3.ALLATORIxDEMO.put(a2, a5);
             }
             catch (FileNotFoundException a6) {

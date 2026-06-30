@@ -41,7 +41,7 @@ extends ModelPart {
 
     @Override
     public void applyPostTransform(float scale) {
-        GlStateManager.func_179109_b((float)(this.postOffset.x * scale), (float)(this.postOffset.y * scale), (float)(this.postOffset.z * scale));
+        GlStateManager.translate((float)(this.postOffset.x * scale), (float)(this.postOffset.y * scale), (float)(this.postOffset.z * scale));
     }
 }
 

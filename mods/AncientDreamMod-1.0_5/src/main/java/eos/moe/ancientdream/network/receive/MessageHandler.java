@@ -14,7 +14,7 @@ public interface MessageHandler {
     public void readBuffer(PacketBuffer var1) throws Exception;
 
     default public void run(Runnable runnable) {
-        Minecraft.func_71410_x().func_152344_a(runnable);
+        Minecraft.getMinecraft().addScheduledTask(runnable);
     }
 }
 

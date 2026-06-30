@@ -40,7 +40,7 @@ Comparable<ButtonListSlot> {
     Integer colorToolbarBgEnd;
 
     public ButtonListSlot(CategorySlot parent) {
-        this.fontRenderer = FMLClientHandler.instance().getClient().field_71466_p;
+        this.fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
         this.buttons = new ButtonList();
         this.buttonOptionMetadata = new HashMap();
         this.lastPressed = null;
@@ -80,10 +80,10 @@ Comparable<ButtonListSlot> {
         return this.buttonOptionMetadata.values();
     }
 
-    public void func_192633_a(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_) {
+    public void updatePosition(int p_192633_1_, int p_192633_2_, int p_192633_3_, float p_192633_4_) {
     }
 
-    public void func_192634_a(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected, float partialTicks) {
+    public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected, float partialTicks) {
         int margin = 0;
         if (this.parent.getCurrentColumnWidth() > 0) {
             int cols = listWidth / this.parent.currentColumnWidth;
@@ -103,7 +103,7 @@ Comparable<ButtonListSlot> {
                 this.buttons.layoutHorizontal(x, y, true, hgap);
             }
             for (Button button : this.buttons) {
-                button.func_191745_a(this.mc, mouseX, mouseY, 0.0f);
+                button.drawButton(this.mc, mouseX, mouseY, 0.0f);
                 if (tooltipMetadata != null || !button.mouseOver(mouseX, mouseY)) continue;
                 tooltipMetadata = this.buttonOptionMetadata.get(button);
             }
@@ -111,10 +111,10 @@ Comparable<ButtonListSlot> {
         this.currentToolTip = tooltipMetadata;
     }
 
-    public boolean func_148278_a(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {
+    public boolean mousePressed(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {
         if (mouseEvent == 0) {
             for (Button button : this.buttons) {
-                if (!button.func_146116_c(this.mc, x, y)) continue;
+                if (!button.mousePressed(this.mc, x, y)) continue;
                 this.lastPressed = this.buttonOptionMetadata.get(button);
                 return true;
             }
@@ -131,16 +131,16 @@ Comparable<ButtonListSlot> {
         return new String[0];
     }
 
-    public void func_148277_b(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {
+    public void mouseReleased(int slotIndex, int x, int y, int mouseEvent, int relativeX, int relativeY) {
         for (Button button : this.buttons) {
-            button.func_146118_a(x, y);
+            button.mouseReleased(x, y);
         }
     }
 
     @Override
     public boolean keyTyped(char c, int i) {
         for (SlotMetadata slot : this.buttonOptionMetadata.values()) {
-            if (!slot.button.func_146115_a() || !slot.button.keyTyped(c, i)) continue;
+            if (!slot.button.isMouseOver() || !slot.button.keyTyped(c, i)) continue;
             this.lastPressed = slot;
             return true;
         }
@@ -182,7 +182,7 @@ Comparable<ButtonListSlot> {
 
     protected String getFirstButtonString() {
         if (this.buttons.size() > 0) {
-            return ((Button)this.buttons.get((int)0)).field_146126_j;
+            return ((Button)this.buttons.get((int)0)).displayString;
         }
         return null;
     }

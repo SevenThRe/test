@@ -69,12 +69,12 @@ extends GuiContainer {
     public Slot d;
     private Slot p;
     private boolean u;
-    private ItemStack w = ItemStack.field_190927_a;
+    private ItemStack w = ItemStack.EMPTY;
     private int a;
     private int e;
     private Slot n;
     private long j;
-    private ItemStack i = ItemStack.field_190927_a;
+    private ItemStack i = ItemStack.EMPTY;
     private Slot l;
     private long z;
     public final Set<Slot> s = Sets.newHashSet();
@@ -87,8 +87,8 @@ extends GuiContainer {
     private Slot c;
     private int q;
     private boolean b;
-    private ItemStack o = ItemStack.field_190927_a;
-    private ItemStack y = new ItemStack(Items.field_151034_e);
+    private ItemStack o = ItemStack.EMPTY;
+    private ItemStack y = new ItemStack(Items.APPLE);
     private jj k = null;
     private long ALLATORIxDEMO;
 
@@ -99,97 +99,97 @@ extends GuiContainer {
         a3.x = true;
     }
 
-    public void func_73866_w_() {
+    public void initGui() {
         af a2;
-        a2.field_146297_k = Minecraft.func_71410_x();
+        a2.mc = Minecraft.getMinecraft();
         Keyboard.enableRepeatEvents((boolean)true);
-        a2.field_146297_k.field_71439_g.field_71070_bA = a2.h;
-        a2.field_146289_q = a2.field_146297_k.field_71466_p;
-        a2.field_146296_j = a2.field_146297_k.func_175599_af();
+        a2.mc.player.openContainer = a2.h;
+        a2.fontRenderer = a2.mc.fontRenderer;
+        a2.itemRender = a2.mc.getRenderItem();
     }
 
-    public void func_73863_a(int a2, int a3, float a4) {
+    public void drawScreen(int a2, int a3, float a4) {
         int a5;
         ItemStack a6;
         af a7;
-        GlStateManager.func_179101_C();
-        RenderHelper.func_74518_a();
-        GlStateManager.func_179140_f();
-        GlStateManager.func_179126_j();
-        RenderHelper.func_74520_c();
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179091_B();
+        GlStateManager.disableRescaleNormal();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.disableLighting();
+        GlStateManager.enableDepth();
+        RenderHelper.enableGUIStandardItemLighting();
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.enableRescaleNormal();
         a7.f = a7.c(a2, a3);
         a7.d = a7.ALLATORIxDEMO(a2, a3);
-        OpenGlHelper.func_77475_a((int)OpenGlHelper.field_77476_b, (float)240.0f, (float)240.0f);
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        RenderHelper.func_74518_a();
-        RenderHelper.func_74520_c();
-        InventoryPlayer a8 = a7.field_146297_k.field_71439_g.field_71071_by;
-        ItemStack itemStack = a6 = a7.w.func_190926_b() ? a8.func_70445_o() : a7.w;
-        if (!a6.func_190926_b()) {
+        OpenGlHelper.setLightmapTextureCoords((int)OpenGlHelper.lightmapTexUnit, (float)240.0f, (float)240.0f);
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        RenderHelper.disableStandardItemLighting();
+        RenderHelper.enableGUIStandardItemLighting();
+        InventoryPlayer a8 = a7.mc.player.inventory;
+        ItemStack itemStack = a6 = a7.w.isEmpty() ? a8.getItemStack() : a7.w;
+        if (!a6.isEmpty()) {
             int a9 = 8;
-            a5 = a7.w.func_190926_b() ? 8 : 16;
+            a5 = a7.w.isEmpty() ? 8 : 16;
             String a10 = null;
-            if (!a7.w.func_190926_b() && a7.u) {
-                a6 = a6.func_77946_l();
-                a6.func_190920_e(MathHelper.func_76123_f((float)((float)a6.func_190916_E() / 2.0f)));
+            if (!a7.w.isEmpty() && a7.u) {
+                a6 = a6.copy();
+                a6.setCount(MathHelper.ceil((float)((float)a6.getCount() / 2.0f)));
             } else if (a7.g && a7.s.size() > 1) {
-                a6 = a6.func_77946_l();
-                a6.func_190920_e(a7.v);
-                if (a6.func_190926_b()) {
+                a6 = a6.copy();
+                a6.setCount(a7.v);
+                if (a6.isEmpty()) {
                     a10 = "" + TextFormatting.YELLOW + "0";
                 }
             }
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)(a2 - 8 + 8), (float)(a3 - a5 + 8), (float)0.0f);
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)(a2 - 8 + 8), (float)(a3 - a5 + 8), (float)0.0f);
             double a11 = a7.getCurrentItemScale().c() / 16.0;
-            GlStateManager.func_179139_a((double)a11, (double)a11, (double)1.0);
-            GlStateManager.func_179109_b((float)-8.0f, (float)-8.0f, (float)0.0f);
+            GlStateManager.scale((double)a11, (double)a11, (double)1.0);
+            GlStateManager.translate((float)-8.0f, (float)-8.0f, (float)0.0f);
             a7.ALLATORIxDEMO(a6, 0, 0, a10);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
-        if (!a7.i.func_190926_b()) {
-            float a12 = (float)(Minecraft.func_71386_F() - a7.j) / 100.0f;
+        if (!a7.i.isEmpty()) {
+            float a12 = (float)(Minecraft.getSystemTime() - a7.j) / 100.0f;
             if (a12 >= 1.0f) {
                 a12 = 1.0f;
-                a7.i = ItemStack.field_190927_a;
+                a7.i = ItemStack.EMPTY;
             }
-            a5 = a7.n.field_75223_e - a7.a;
-            int a13 = a7.n.field_75221_f - a7.e;
+            a5 = a7.n.xPos - a7.a;
+            int a13 = a7.n.yPos - a7.e;
             int a14 = a7.a + (int)((float)a5 * a12);
             int a15 = a7.e + (int)((float)a13 * a12);
             a7.ALLATORIxDEMO(a7.i, a14, a15, null);
         }
-        GlStateManager.func_179145_e();
-        GlStateManager.func_179126_j();
-        RenderHelper.func_74519_b();
+        GlStateManager.enableLighting();
+        GlStateManager.enableDepth();
+        RenderHelper.enableStandardItemLighting();
     }
 
     private /* synthetic */ void ALLATORIxDEMO(ItemStack a2, int a3, int a4, String a5) {
         af a6;
-        GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)32.0f);
-        a6.field_73735_i = 200.0f;
-        a6.field_146296_j.field_77023_b = 200.0f;
-        FontRenderer a7 = a2.func_77973_b().getFontRenderer(a2);
+        GlStateManager.translate((float)0.0f, (float)0.0f, (float)32.0f);
+        a6.zLevel = 200.0f;
+        a6.itemRender.zLevel = 200.0f;
+        FontRenderer a7 = a2.getItem().getFontRenderer(a2);
         if (a7 == null) {
-            a7 = a6.field_146289_q;
+            a7 = a6.fontRenderer;
         }
-        a6.field_146296_j.func_180450_b(a2, a3, a4);
-        a6.field_146296_j.func_180453_a(a7, a2, a3, a4 - (a6.w.func_190926_b() ? 0 : 8), a5);
-        a6.field_73735_i = 0.0f;
-        a6.field_146296_j.field_77023_b = 0.0f;
+        a6.itemRender.renderItemAndEffectIntoGUI(a2, a3, a4);
+        a6.itemRender.renderItemOverlayIntoGUI(a7, a2, a3, a4 - (a6.w.isEmpty() ? 0 : 8), a5);
+        a6.zLevel = 0.0f;
+        a6.itemRender.zLevel = 0.0f;
     }
 
-    public void func_146976_a(float a2, int a3, int a4) {
+    public void drawGuiContainerBackgroundLayer(float a2, int a3, int a4) {
     }
 
     public void drawHoverTip(float a3, int a4, int a5) {
         Object a6;
         jj a72;
         af a8;
-        if (a8.field_146297_k.field_71439_g.field_71071_by.func_70445_o().func_190926_b() && a8.f != null && a8.f.func_75216_d()) {
-            a8.func_146285_a(a8.f.func_75211_c(), a4, a5);
+        if (a8.mc.player.inventory.getItemStack().isEmpty() && a8.f != null && a8.f.getHasStack()) {
+            a8.renderToolTip(a8.f.getStack(), a4, a5);
             return;
         }
         jj a9 = a8.getHoveredComponent();
@@ -199,8 +199,8 @@ extends GuiContainer {
                 a9 = a72;
             }
         }
-        if (a8.field_146297_k.field_71439_g.field_71071_by.func_70445_o().func_190926_b() && a9 instanceof qn && !(a72 = wi.b.ALLATORIxDEMO(((nh)(a6 = ((qn)a9).y)).c(), a8.isHud()).c()).func_190926_b()) {
-            a8.func_146285_a(wi.b.ALLATORIxDEMO(((nh)a6).c(), a8.isHud()).c(), a4, a5);
+        if (a8.mc.player.inventory.getItemStack().isEmpty() && a9 instanceof qn && !(a72 = wi.b.ALLATORIxDEMO(((nh)(a6 = ((qn)a9).y)).c(), a8.isHud()).c()).isEmpty()) {
+            a8.renderToolTip(wi.b.ALLATORIxDEMO(((nh)a6).c(), a8.isHud()).c(), a4, a5);
             return;
         }
         if (a8.isThrough()) {
@@ -209,17 +209,17 @@ extends GuiContainer {
                 a9 = a72;
             }
         }
-        if (a8.field_146297_k.field_71439_g.field_71071_by.func_70445_o().func_190926_b() && a9 != null && a9.q.f() > 0) {
+        if (a8.mc.player.inventory.getItemStack().isEmpty() && a9 != null && a9.q.f() > 0) {
             a6 = de.o;
-            a8.field_146294_l = a6.func_78326_a();
-            a8.field_146295_m = a6.func_78328_b();
+            a8.width = a6.getScaledWidth();
+            a8.height = a6.getScaledHeight();
             if (a8.k != a9 || System.currentTimeMillis() - a8.ALLATORIxDEMO > 500L) {
-                a8.y = new ItemStack(Items.field_151034_e);
+                a8.y = new ItemStack(Items.APPLE);
                 a8.ALLATORIxDEMO = System.currentTimeMillis();
             }
             a8.k = a9;
-            a8.y.func_151001_c("DragonCore_ToolTip_" + a9.k.getName());
-            a72 = Minecraft.func_71410_x().field_71466_p;
+            a8.y.setStackDisplayName("DragonCore_ToolTip_" + a9.k.getName());
+            a72 = Minecraft.getMinecraft().fontRenderer;
             List<String> a10 = a9.getTipStringTexts();
             ArrayList<String> a11 = new ArrayList<String>();
             for (String a12 : a10) {
@@ -248,7 +248,7 @@ extends GuiContainer {
                 return;
             }
             dj.ALLATORIxDEMO(a8.y, a10);
-            sd.ALLATORIxDEMO(a8.y, a10, a4, a5, a8.field_146294_l, a8.field_146295_m, -1, (FontRenderer)a72);
+            sd.ALLATORIxDEMO(a8.y, a10, a4, a5, a8.width, a8.height, -1, (FontRenderer)a72);
         }
     }
 
@@ -262,29 +262,29 @@ extends GuiContainer {
 
     public qd<ItemStack, String> getSlotItemStack(Slot a2) {
         af a3;
-        if (!a2.func_111238_b()) {
-            return new qd<ItemStack, Object>(ItemStack.field_190927_a, null);
+        if (!a2.isEnabled()) {
+            return new qd<ItemStack, Object>(ItemStack.EMPTY, null);
         }
-        ItemStack a4 = a2.func_75211_c();
+        ItemStack a4 = a2.getStack();
         boolean a5 = false;
-        boolean a6 = a2 == a3.p && !a3.w.func_190926_b() && !a3.u;
-        ItemStack a7 = a3.field_146297_k.field_71439_g.field_71071_by.func_70445_o();
+        boolean a6 = a2 == a3.p && !a3.w.isEmpty() && !a3.u;
+        ItemStack a7 = a3.mc.player.inventory.getItemStack();
         String a8 = null;
-        if (a2 == a3.p && !a3.w.func_190926_b() && a3.u && !a4.func_190926_b()) {
-            a4 = a4.func_77946_l();
-            a4.func_190920_e(a4.func_190916_E() / 2);
-        } else if (a3.g && a3.s.contains(a2) && !a7.func_190926_b()) {
+        if (a2 == a3.p && !a3.w.isEmpty() && a3.u && !a4.isEmpty()) {
+            a4 = a4.copy();
+            a4.setCount(a4.getCount() / 2);
+        } else if (a3.g && a3.s.contains(a2) && !a7.isEmpty()) {
             if (a3.s.size() == 1) {
-                return new qd<ItemStack, Object>(ItemStack.field_190927_a, null);
+                return new qd<ItemStack, Object>(ItemStack.EMPTY, null);
             }
-            if (Container.func_94527_a((Slot)a2, (ItemStack)a7, (boolean)true) && a3.h.func_94531_b(a2)) {
-                a4 = a7.func_77946_l();
+            if (Container.canAddItemToSlot((Slot)a2, (ItemStack)a7, (boolean)true) && a3.h.canDragIntoSlot(a2)) {
+                a4 = a7.copy();
                 a5 = true;
-                Container.func_94525_a(a3.s, (int)a3.t, (ItemStack)a4, (int)(a2.func_75211_c().func_190926_b() ? 0 : a2.func_75211_c().func_190916_E()));
-                int a9 = Math.min(a4.func_77976_d(), a2.func_178170_b(a4));
-                if (a4.func_190916_E() > a9) {
+                Container.computeStackSize(a3.s, (int)a3.t, (ItemStack)a4, (int)(a2.getStack().isEmpty() ? 0 : a2.getStack().getCount()));
+                int a9 = Math.min(a4.getMaxStackSize(), a2.getItemStackLimit(a4));
+                if (a4.getCount() > a9) {
                     a8 = TextFormatting.YELLOW.toString() + a9;
-                    a4.func_190920_e(a9);
+                    a4.setCount(a9);
                 }
             } else {
                 a3.s.remove(a2);
@@ -292,11 +292,11 @@ extends GuiContainer {
             }
         }
         if (a6) {
-            return qd.ALLATORIxDEMO(ItemStack.field_190927_a, null);
+            return qd.ALLATORIxDEMO(ItemStack.EMPTY, null);
         }
         if (a5) {
             if (a8 == null) {
-                a8 = String.valueOf(a4.func_190916_E());
+                a8 = String.valueOf(a4.getCount());
             }
             a8 = a8 + "\u00a7c";
         }
@@ -305,22 +305,22 @@ extends GuiContainer {
 
     private /* synthetic */ void ALLATORIxDEMO() {
         af a2;
-        ItemStack a3 = a2.field_146297_k.field_71439_g.field_71071_by.func_70445_o();
-        if (!a3.func_190926_b() && a2.g) {
+        ItemStack a3 = a2.mc.player.inventory.getItemStack();
+        if (!a3.isEmpty() && a2.g) {
             if (a2.t == 2) {
-                a2.v = a3.func_77976_d();
+                a2.v = a3.getMaxStackSize();
             } else {
-                a2.v = a3.func_190916_E();
+                a2.v = a3.getCount();
                 for (Slot a4 : a2.s) {
-                    ItemStack a5 = a3.func_77946_l();
-                    ItemStack a6 = a4.func_75211_c();
-                    int a7 = a6.func_190926_b() ? 0 : a6.func_190916_E();
-                    Container.func_94525_a(a2.s, (int)a2.t, (ItemStack)a5, (int)a7);
-                    int a8 = Math.min(a5.func_77976_d(), a4.func_178170_b(a5));
-                    if (a5.func_190916_E() > a8) {
-                        a5.func_190920_e(a8);
+                    ItemStack a5 = a3.copy();
+                    ItemStack a6 = a4.getStack();
+                    int a7 = a6.isEmpty() ? 0 : a6.getCount();
+                    Container.computeStackSize(a2.s, (int)a2.t, (ItemStack)a5, (int)a7);
+                    int a8 = Math.min(a5.getMaxStackSize(), a4.getItemStackLimit(a5));
+                    if (a5.getCount() > a8) {
+                        a5.setCount(a8);
                     }
-                    a2.v -= a5.func_190916_E() - a7;
+                    a2.v -= a5.getCount() - a7;
                 }
             }
         }
@@ -333,7 +333,7 @@ extends GuiContainer {
         for (jj a7 : a5) {
             Slot a8;
             String a9;
-            if (!(a7 instanceof qn) || !(a9 = ((qn)a7).y.c()).startsWith("container_") && !a9.startsWith("player_") || (a8 = wi.b.ALLATORIxDEMO(a9, a4.h)) == null || !a8.func_111238_b()) continue;
+            if (!(a7 instanceof qn) || !(a9 = ((qn)a7).y.c()).startsWith("container_") && !a9.startsWith("player_") || (a8 = wi.b.ALLATORIxDEMO(a9, a4.h)) == null || !a8.isEnabled()) continue;
             a6 = a8;
         }
         return a6;
@@ -347,17 +347,17 @@ extends GuiContainer {
             Slot a8;
             if (!(a7 instanceof qn)) continue;
             String a9 = ((qn)a7).y.c();
-            if ((!a7.xa.c() || !a9.startsWith("container_")) && !a9.startsWith("player_") || (a8 = wi.b.ALLATORIxDEMO(a9, a4.h)) == null || !a8.func_111238_b()) continue;
+            if ((!a7.xa.c() || !a9.startsWith("container_")) && !a9.startsWith("player_") || (a8 = wi.b.ALLATORIxDEMO(a9, a4.h)) == null || !a8.isEnabled()) continue;
             a6 = a8;
         }
         return a6;
     }
 
-    public void func_73864_a(int a2, int a3, int a4) throws IOException {
+    public void mouseClicked(int a2, int a3, int a4) throws IOException {
         af a5;
-        boolean a6 = a5.field_146297_k.field_71474_y.field_74322_I.isActiveAndMatches(a4 - 100);
+        boolean a6 = a5.mc.gameSettings.keyBindPickBlock.isActiveAndMatches(a4 - 100);
         Slot a7 = a5.ALLATORIxDEMO(a2, a3);
-        long a8 = Minecraft.func_71386_F();
+        long a8 = Minecraft.getSystemTime();
         a5.b = a5.c == a7 && a8 - a5.m < 250L && a5.q == a4;
         a5.x = false;
         if (a4 == 0 || a4 == 1 || a6) {
@@ -367,38 +367,38 @@ extends GuiContainer {
             }
             int a10 = -1;
             if (a7 != null) {
-                a10 = a7.field_75222_d;
+                a10 = a7.slotNumber;
             }
             if (a9) {
                 a10 = -999;
             }
-            if (a5.field_146297_k.field_71474_y.field_85185_A && a9 && a5.field_146297_k.field_71439_g.field_71071_by.func_70445_o().func_190926_b()) {
-                a5.field_146297_k.func_147108_a(null);
+            if (a5.mc.gameSettings.touchscreen && a9 && a5.mc.player.inventory.getItemStack().isEmpty()) {
+                a5.mc.displayGuiScreen(null);
                 return;
             }
             if (a10 != -1) {
-                if (a5.field_146297_k.field_71474_y.field_85185_A) {
-                    if (a7 != null && a7.func_75216_d()) {
+                if (a5.mc.gameSettings.touchscreen) {
+                    if (a7 != null && a7.getHasStack()) {
                         a5.p = a7;
-                        a5.w = ItemStack.field_190927_a;
+                        a5.w = ItemStack.EMPTY;
                         a5.u = a4 == 1;
                     } else {
                         a5.p = null;
                     }
                 } else if (!a5.g) {
-                    if (a5.field_146297_k.field_71439_g.field_71071_by.func_70445_o().func_190926_b()) {
-                        if (a5.field_146297_k.field_71474_y.field_74322_I.isActiveAndMatches(a4 - 100)) {
-                            a5.func_184098_a(a7, a10, a4, ClickType.CLONE);
+                    if (a5.mc.player.inventory.getItemStack().isEmpty()) {
+                        if (a5.mc.gameSettings.keyBindPickBlock.isActiveAndMatches(a4 - 100)) {
+                            a5.handleMouseClick(a7, a10, a4, ClickType.CLONE);
                         } else {
                             boolean a11 = a10 != -999 && (Keyboard.isKeyDown((int)42) || Keyboard.isKeyDown((int)54));
                             ClickType a12 = ClickType.PICKUP;
                             if (a11) {
-                                a5.o = a7 != null && a7.func_75216_d() ? a7.func_75211_c().func_77946_l() : ItemStack.field_190927_a;
+                                a5.o = a7 != null && a7.getHasStack() ? a7.getStack().copy() : ItemStack.EMPTY;
                                 a12 = ClickType.QUICK_MOVE;
                             } else if (a10 == -999) {
                                 a12 = ClickType.THROW;
                             }
-                            a5.func_184098_a(a7, a10, a4, a12);
+                            a5.handleMouseClick(a7, a10, a4, a12);
                         }
                         a5.x = true;
                     } else {
@@ -409,7 +409,7 @@ extends GuiContainer {
                             a5.t = 0;
                         } else if (a4 == 1) {
                             a5.t = 1;
-                        } else if (a5.field_146297_k.field_71474_y.field_74322_I.isActiveAndMatches(a4 - 100)) {
+                        } else if (a5.mc.gameSettings.keyBindPickBlock.isActiveAndMatches(a4 - 100)) {
                             a5.t = 2;
                         }
                     }
@@ -429,25 +429,25 @@ extends GuiContainer {
         return a4.getHoveredComponent() == null;
     }
 
-    public void func_146273_a(int a2, int a3, int a4, long a5) {
+    public void mouseClickMove(int a2, int a3, int a4, long a5) {
         af a6;
         Slot a7 = a6.ALLATORIxDEMO(a2, a3);
-        ItemStack a8 = a6.field_146297_k.field_71439_g.field_71071_by.func_70445_o();
-        if (a6.p != null && a6.field_146297_k.field_71474_y.field_85185_A) {
+        ItemStack a8 = a6.mc.player.inventory.getItemStack();
+        if (a6.p != null && a6.mc.gameSettings.touchscreen) {
             if (a4 == 0 || a4 == 1) {
-                if (a6.w.func_190926_b()) {
-                    if (a7 != a6.p && !a6.p.func_75211_c().func_190926_b()) {
-                        a6.w = a6.p.func_75211_c().func_77946_l();
+                if (a6.w.isEmpty()) {
+                    if (a7 != a6.p && !a6.p.getStack().isEmpty()) {
+                        a6.w = a6.p.getStack().copy();
                     }
-                } else if (a6.w.func_190916_E() > 1 && a7 != null && Container.func_94527_a((Slot)a7, (ItemStack)a6.w, (boolean)false)) {
-                    long a9 = Minecraft.func_71386_F();
+                } else if (a6.w.getCount() > 1 && a7 != null && Container.canAddItemToSlot((Slot)a7, (ItemStack)a6.w, (boolean)false)) {
+                    long a9 = Minecraft.getSystemTime();
                     if (a6.l == a7) {
                         if (a9 - a6.z > 500L) {
-                            a6.func_184098_a(a6.p, a6.p.field_75222_d, 0, ClickType.PICKUP);
-                            a6.func_184098_a(a7, a7.field_75222_d, 1, ClickType.PICKUP);
-                            a6.func_184098_a(a6.p, a6.p.field_75222_d, 0, ClickType.PICKUP);
+                            a6.handleMouseClick(a6.p, a6.p.slotNumber, 0, ClickType.PICKUP);
+                            a6.handleMouseClick(a7, a7.slotNumber, 1, ClickType.PICKUP);
+                            a6.handleMouseClick(a6.p, a6.p.slotNumber, 0, ClickType.PICKUP);
                             a6.z = a9 + 750L;
-                            a6.w.func_190918_g(1);
+                            a6.w.shrink(1);
                         }
                     } else {
                         a6.l = a7;
@@ -455,13 +455,13 @@ extends GuiContainer {
                     }
                 }
             }
-        } else if (a6.g && a7 != null && !a8.func_190926_b() && (a8.func_190916_E() > a6.s.size() || a6.t == 2) && Container.func_94527_a((Slot)a7, (ItemStack)a8, (boolean)true) && a7.func_75214_a(a8) && a6.h.func_94531_b(a7)) {
+        } else if (a6.g && a7 != null && !a8.isEmpty() && (a8.getCount() > a6.s.size() || a6.t == 2) && Container.canAddItemToSlot((Slot)a7, (ItemStack)a8, (boolean)true) && a7.isItemValid(a8) && a6.h.canDragIntoSlot(a7)) {
             a6.s.add(a7);
             a6.ALLATORIxDEMO();
         }
     }
 
-    public void func_146286_b(int a2, int a3, int a4) {
+    public void mouseReleased(int a2, int a3, int a4) {
         af a5;
         Slot a6 = a5.ALLATORIxDEMO(a2, a3);
         boolean a7 = a5.hasClickedOutside(a2, a3);
@@ -470,21 +470,21 @@ extends GuiContainer {
         }
         int a8 = -1;
         if (a6 != null) {
-            a8 = a6.field_75222_d;
+            a8 = a6.slotNumber;
         }
         if (a7) {
             a8 = -999;
         }
-        if (a5.b && a6 != null && a4 == 0 && a5.h.func_94530_a(ItemStack.field_190927_a, a6)) {
-            if (af.func_146272_n()) {
-                if (!a5.o.func_190926_b()) {
-                    for (Slot a9 : a5.h.field_75151_b) {
-                        if (a9 == null || !a9.func_82869_a((EntityPlayer)a5.field_146297_k.field_71439_g) || !a9.func_75216_d() || !a9.isSameInventory(a6) || !Container.func_94527_a((Slot)a9, (ItemStack)a5.o, (boolean)true)) continue;
-                        a5.func_184098_a(a9, a9.field_75222_d, a4, ClickType.QUICK_MOVE);
+        if (a5.b && a6 != null && a4 == 0 && a5.h.canMergeSlot(ItemStack.EMPTY, a6)) {
+            if (af.isShiftKeyDown()) {
+                if (!a5.o.isEmpty()) {
+                    for (Slot a9 : a5.h.inventorySlots) {
+                        if (a9 == null || !a9.canTakeStack((EntityPlayer)a5.mc.player) || !a9.getHasStack() || !a9.isSameInventory(a6) || !Container.canAddItemToSlot((Slot)a9, (ItemStack)a5.o, (boolean)true)) continue;
+                        a5.handleMouseClick(a9, a9.slotNumber, a4, ClickType.QUICK_MOVE);
                     }
                 }
             } else {
-                a5.func_184098_a(a6, a8, a4, ClickType.PICKUP_ALL);
+                a5.handleMouseClick(a6, a8, a4, ClickType.PICKUP_ALL);
             }
             a5.b = false;
             a5.m = 0L;
@@ -499,112 +499,112 @@ extends GuiContainer {
                 a5.x = false;
                 return;
             }
-            if (a5.p != null && a5.field_146297_k.field_71474_y.field_85185_A) {
+            if (a5.p != null && a5.mc.gameSettings.touchscreen) {
                 if (a4 == 0 || a4 == 1) {
-                    if (a5.w.func_190926_b() && a6 != a5.p) {
-                        a5.w = a5.p.func_75211_c();
+                    if (a5.w.isEmpty() && a6 != a5.p) {
+                        a5.w = a5.p.getStack();
                     }
-                    boolean a10 = Container.func_94527_a((Slot)a6, (ItemStack)a5.w, (boolean)false);
-                    if (a8 != -1 && !a5.w.func_190926_b() && a10) {
-                        a5.func_184098_a(a5.p, a5.p.field_75222_d, a4, ClickType.PICKUP);
-                        a5.func_184098_a(a6, a8, 0, ClickType.PICKUP);
-                        if (a5.field_146297_k.field_71439_g.field_71071_by.func_70445_o().func_190926_b()) {
-                            a5.i = ItemStack.field_190927_a;
+                    boolean a10 = Container.canAddItemToSlot((Slot)a6, (ItemStack)a5.w, (boolean)false);
+                    if (a8 != -1 && !a5.w.isEmpty() && a10) {
+                        a5.handleMouseClick(a5.p, a5.p.slotNumber, a4, ClickType.PICKUP);
+                        a5.handleMouseClick(a6, a8, 0, ClickType.PICKUP);
+                        if (a5.mc.player.inventory.getItemStack().isEmpty()) {
+                            a5.i = ItemStack.EMPTY;
                         } else {
-                            a5.func_184098_a(a5.p, a5.p.field_75222_d, a4, ClickType.PICKUP);
+                            a5.handleMouseClick(a5.p, a5.p.slotNumber, a4, ClickType.PICKUP);
                             a5.a = a2;
                             a5.e = a3;
                             a5.n = a5.p;
                             a5.i = a5.w;
-                            a5.j = Minecraft.func_71386_F();
+                            a5.j = Minecraft.getSystemTime();
                         }
-                    } else if (!a5.w.func_190926_b()) {
+                    } else if (!a5.w.isEmpty()) {
                         a5.a = a2;
                         a5.e = a3;
                         a5.n = a5.p;
                         a5.i = a5.w;
-                        a5.j = Minecraft.func_71386_F();
+                        a5.j = Minecraft.getSystemTime();
                     }
-                    a5.w = ItemStack.field_190927_a;
+                    a5.w = ItemStack.EMPTY;
                     a5.p = null;
                 }
             } else if (a5.g && !a5.s.isEmpty()) {
-                a5.func_184098_a(null, -999, Container.func_94534_d((int)0, (int)a5.t), ClickType.QUICK_CRAFT);
+                a5.handleMouseClick(null, -999, Container.getQuickcraftMask((int)0, (int)a5.t), ClickType.QUICK_CRAFT);
                 for (Slot a11 : a5.s) {
-                    a5.func_184098_a(a11, a11.field_75222_d, Container.func_94534_d((int)1, (int)a5.t), ClickType.QUICK_CRAFT);
+                    a5.handleMouseClick(a11, a11.slotNumber, Container.getQuickcraftMask((int)1, (int)a5.t), ClickType.QUICK_CRAFT);
                 }
-                a5.func_184098_a(null, -999, Container.func_94534_d((int)2, (int)a5.t), ClickType.QUICK_CRAFT);
-            } else if (!a5.field_146297_k.field_71439_g.field_71071_by.func_70445_o().func_190926_b()) {
-                if (a5.field_146297_k.field_71474_y.field_74322_I.isActiveAndMatches(a4 - 100)) {
-                    a5.func_184098_a(a6, a8, a4, ClickType.CLONE);
+                a5.handleMouseClick(null, -999, Container.getQuickcraftMask((int)2, (int)a5.t), ClickType.QUICK_CRAFT);
+            } else if (!a5.mc.player.inventory.getItemStack().isEmpty()) {
+                if (a5.mc.gameSettings.keyBindPickBlock.isActiveAndMatches(a4 - 100)) {
+                    a5.handleMouseClick(a6, a8, a4, ClickType.CLONE);
                 } else {
                     boolean a12;
                     boolean bl2 = a12 = a8 != -999 && (Keyboard.isKeyDown((int)42) || Keyboard.isKeyDown((int)54));
                     if (a12) {
-                        a5.o = a6 != null && a6.func_75216_d() ? a6.func_75211_c().func_77946_l() : ItemStack.field_190927_a;
+                        a5.o = a6 != null && a6.getHasStack() ? a6.getStack().copy() : ItemStack.EMPTY;
                     }
-                    a5.func_184098_a(a6, a8, a4, a12 ? ClickType.QUICK_MOVE : ClickType.PICKUP);
+                    a5.handleMouseClick(a6, a8, a4, a12 ? ClickType.QUICK_MOVE : ClickType.PICKUP);
                 }
             }
         }
-        if (a5.field_146297_k.field_71439_g.field_71071_by.func_70445_o().func_190926_b()) {
+        if (a5.mc.player.inventory.getItemStack().isEmpty()) {
             a5.m = 0L;
         }
         a5.g = false;
     }
 
-    public void func_184098_a(Slot a2, int a3, int a4, ClickType a5) {
+    public void handleMouseClick(Slot a2, int a3, int a4, ClickType a5) {
         af a6;
         if (a2 != null) {
-            a3 = a2.field_75222_d;
+            a3 = a2.slotNumber;
         }
-        a6.field_146297_k.field_71442_b.func_187098_a(a6.h.field_75152_c, a3, a4, a5, (EntityPlayer)a6.field_146297_k.field_71439_g);
+        a6.mc.playerController.windowClick(a6.h.windowId, a3, a4, a5, (EntityPlayer)a6.mc.player);
     }
 
-    public void func_73869_a(char a2, int a3) throws IOException {
+    public void keyTyped(char a2, int a3) throws IOException {
         af a4;
         if (a4.f == a4.d) {
-            a4.func_146983_a(a3);
-            if (a4.f != null && a4.f.func_75216_d()) {
-                if (a4.field_146297_k.field_71474_y.field_74322_I.isActiveAndMatches(a3)) {
-                    a4.func_184098_a(a4.f, a4.f.field_75222_d, 0, ClickType.CLONE);
-                } else if (a4.field_146297_k.field_71474_y.field_74316_C.isActiveAndMatches(a3)) {
-                    a4.func_184098_a(a4.f, a4.f.field_75222_d, af.func_146271_m() ? 1 : 0, ClickType.THROW);
+            a4.checkHotbarKeys(a3);
+            if (a4.f != null && a4.f.getHasStack()) {
+                if (a4.mc.gameSettings.keyBindPickBlock.isActiveAndMatches(a3)) {
+                    a4.handleMouseClick(a4.f, a4.f.slotNumber, 0, ClickType.CLONE);
+                } else if (a4.mc.gameSettings.keyBindDrop.isActiveAndMatches(a3)) {
+                    a4.handleMouseClick(a4.f, a4.f.slotNumber, af.isCtrlKeyDown() ? 1 : 0, ClickType.THROW);
                 }
             }
         }
     }
 
-    public boolean func_146983_a(int a2) {
+    public boolean checkHotbarKeys(int a2) {
         af a3;
-        if (a3.field_146297_k.field_71439_g.field_71071_by.func_70445_o().func_190926_b() && a3.f != null) {
+        if (a3.mc.player.inventory.getItemStack().isEmpty() && a3.f != null) {
             for (int a4 = 0; a4 < 9; ++a4) {
-                if (!a3.field_146297_k.field_71474_y.field_151456_ac[a4].isActiveAndMatches(a2)) continue;
-                a3.func_184098_a(a3.f, a3.f.field_75222_d, a4, ClickType.SWAP);
+                if (!a3.mc.gameSettings.keyBindsHotbar[a4].isActiveAndMatches(a2)) continue;
+                a3.handleMouseClick(a3.f, a3.f.slotNumber, a4, ClickType.SWAP);
                 return true;
             }
         }
         return false;
     }
 
-    public void func_146281_b() {
+    public void onGuiClosed() {
         af a2;
-        if (a2.field_146297_k.field_71439_g != null) {
-            a2.h.func_75134_a((EntityPlayer)a2.field_146297_k.field_71439_g);
+        if (a2.mc.player != null) {
+            a2.h.onContainerClosed((EntityPlayer)a2.mc.player);
         }
     }
 
-    public boolean func_73868_f() {
+    public boolean doesGuiPauseGame() {
         return false;
     }
 
-    public void func_73876_c() {
+    public void updateScreen() {
         af a2;
         if (a2.getMatch().equals("GuiGameOver")) {
             return;
         }
-        if (!a2.field_146297_k.field_71439_g.func_70089_S() || a2.field_146297_k.field_71439_g.field_70128_L) {
-            a2.field_146297_k.field_71439_g.func_71053_j();
+        if (!a2.mc.player.isEntityAlive() || a2.mc.player.isDead) {
+            a2.mc.player.closeScreen();
         }
     }
 

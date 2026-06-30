@@ -17,7 +17,7 @@ extends xf {
     private final ITextComponent ALLATORIxDEMO;
 
     public kn(ITextComponent a2) {
-        super(a2.func_150254_d());
+        super(a2.getFormattedText());
         kn a3;
         a3.ALLATORIxDEMO = a2;
     }

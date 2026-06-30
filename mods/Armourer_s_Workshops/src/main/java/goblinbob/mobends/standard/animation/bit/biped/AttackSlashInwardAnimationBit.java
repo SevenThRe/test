@@ -39,7 +39,7 @@ extends AnimationBit<BipedEntityData<?>> {
         SmoothOrientation mainItemRotation;
         data.localOffset.slideToZero(0.3f);
         Object living = data.getEntity();
-        EnumHandSide primaryHand = living.func_184591_cq();
+        EnumHandSide primaryHand = living.getPrimaryHand();
         boolean mainHandSwitch = primaryHand == EnumHandSide.RIGHT;
         float handDirMtp = mainHandSwitch ? 1.0f : -1.0f;
         ModelPartTransform mainArm = mainHandSwitch ? data.rightArm : data.leftArm;
@@ -47,7 +47,7 @@ extends AnimationBit<BipedEntityData<?>> {
         ModelPartTransform mainForeArm = mainHandSwitch ? data.rightForeArm : data.leftForeArm;
         ModelPartTransform offForeArm = mainHandSwitch ? data.leftForeArm : data.rightForeArm;
         SmoothOrientation smoothOrientation = mainItemRotation = mainHandSwitch ? data.renderRightItemRotation : data.renderLeftItemRotation;
-        if (data.getTicksAfterAttack() < 4.0f && living.func_184586_b(EnumHand.MAIN_HAND).func_77973_b() instanceof ItemSword) {
+        if (data.getTicksAfterAttack() < 4.0f && living.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemSword) {
             data.swordTrail.add(data);
         }
         float attackState = data.getTicksAfterAttack() / 10.0f;
@@ -57,12 +57,12 @@ extends AnimationBit<BipedEntityData<?>> {
         bodyRot.x = 20.0f - armSwing * 20.0f;
         bodyRot.y = -70.0f * armSwing * handDirMtp;
         data.body.rotation.setSmoothness(0.9f).orientX(bodyRot.x).orientY(bodyRot.y);
-        data.head.rotation.setSmoothness(0.9f).orientX(MathHelper.func_76142_g((float)((Float)data.headPitch.get()).floatValue()) - bodyRot.x).rotateY(MathHelper.func_76142_g((float)((Float)data.headYaw.get()).floatValue()) - bodyRot.y);
+        data.head.rotation.setSmoothness(0.9f).orientX(MathHelper.wrapDegrees((float)((Float)data.headPitch.get()).floatValue()) - bodyRot.x).rotateY(MathHelper.wrapDegrees((float)((Float)data.headYaw.get()).floatValue()) - bodyRot.y);
         mainArm.getRotation().setSmoothness(0.9f).orientZ(90.0f * handDirMtp).rotateY((60.0f - armSwing * 180.0f) * handDirMtp);
         offArm.getRotation().setSmoothness(0.3f).orientZ(-20.0f * handDirMtp);
         mainForeArm.getRotation().setSmoothness(0.3f).orientX(-10.0f);
         offForeArm.getRotation().setSmoothness(0.3f).orientX(-60.0f);
-        if (data.isStillHorizontally() && !living.func_184218_aH()) {
+        if (data.isStillHorizontally() && !living.isRiding()) {
             data.rightLeg.rotation.orientZ(5.0f).rotateY(15.0f).rotateX(-20.0f);
             data.leftLeg.rotation.orientZ(-5.0f).rotateY(-15.0f).rotateX(-20.0f);
             data.rightForeLeg.rotation.orientX(25.0f);

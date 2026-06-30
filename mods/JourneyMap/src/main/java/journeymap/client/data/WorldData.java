@@ -112,12 +112,12 @@ extends CacheLoader<Class, WorldData> {
             block9: {
                 serverName = null;
                 mc = FMLClientHandler.instance().getClient();
-                if (!mc.func_71356_B()) {
+                if (!mc.isSingleplayer()) {
                     try {
                         RealmsScreen realmsScreen;
-                        NetHandlerPlayClient netHandler = mc.func_147114_u();
-                        GuiScreen netHandlerGui = (GuiScreen)ReflectionHelper.getPrivateValue(NetHandlerPlayClient.class, (Object)netHandler, (String[])new String[]{"field_147307_j", "guiScreenServer"});
-                        if (!(netHandlerGui instanceof GuiScreenRealmsProxy) || !((realmsScreen = ((GuiScreenRealmsProxy)netHandlerGui).func_154321_a()) instanceof RealmsMainScreen)) break block9;
+                        NetHandlerPlayClient netHandler = mc.getConnection();
+                        GuiScreen netHandlerGui = (GuiScreen)ReflectionHelper.getPrivateValue(NetHandlerPlayClient.class, (Object)netHandler, (String[])new String[]{"guiScreenServer", "guiScreenServer"});
+                        if (!(netHandlerGui instanceof GuiScreenRealmsProxy) || !((realmsScreen = ((GuiScreenRealmsProxy)netHandlerGui).getProxy()) instanceof RealmsMainScreen)) break block9;
                         RealmsMainScreen mainScreen = (RealmsMainScreen)realmsScreen;
                         long selectedServerId = (Long)ReflectionHelper.getPrivateValue(RealmsMainScreen.class, (Object)mainScreen, (String[])new String[]{"selectedServerId"});
                         List mcoServers = (List)ReflectionHelper.getPrivateValue(RealmsMainScreen.class, (Object)mainScreen, (String[])new String[]{"mcoServers"});
@@ -136,10 +136,10 @@ extends CacheLoader<Class, WorldData> {
                 return serverName;
             }
             mc = FMLClientHandler.instance().getClient();
-            ServerData serverData = mc.func_147104_D();
-            if (serverData != null && (serverName = serverData.field_78847_a) != null) {
+            ServerData serverData = mc.getCurrentServerData();
+            if (serverData != null && (serverName = serverData.serverName) != null) {
                 if (Strings.isNullOrEmpty((String)(serverName = serverName.replaceAll("\\W+", "~").trim()).replaceAll("~", ""))) {
-                    serverName = serverData.field_78845_b;
+                    serverName = serverData.serverIP;
                 }
                 return serverName;
             }
@@ -155,7 +155,7 @@ extends CacheLoader<Class, WorldData> {
         try {
             SocketAddress socketAddress;
             NetworkManager netManager = FMLClientHandler.instance().getClientToServerNetworkManager();
-            if (netManager != null && (socketAddress = netManager.func_74430_c()) != null && socketAddress instanceof InetSocketAddress) {
+            if (netManager != null && (socketAddress = netManager.getRemoteAddress()) != null && socketAddress instanceof InetSocketAddress) {
                 InetSocketAddress inetAddr = (InetSocketAddress)socketAddress;
                 return inetAddr.getHostName();
             }
@@ -172,11 +172,11 @@ extends CacheLoader<Class, WorldData> {
      */
     public static String getWorldName(Minecraft mc, boolean useLegacyName) {
         String worldName = null;
-        if (mc.func_71356_B()) {
-            if (!useLegacyName) return mc.func_71401_C().func_71270_I();
-            worldName = mc.func_71401_C().func_71221_J();
+        if (mc.isSingleplayer()) {
+            if (!useLegacyName) return mc.getIntegratedServer().getFolderName();
+            worldName = mc.getIntegratedServer().getWorldName();
         } else {
-            worldName = mc.field_71441_e.func_72912_H().func_76065_j();
+            worldName = mc.world.getWorldInfo().getWorldName();
             String serverName = WorldData.getServerName();
             if (serverName == null) {
                 return "offline";
@@ -210,8 +210,8 @@ extends CacheLoader<Class, WorldData> {
             Journeymap.getLogger().log(logLevel, String.format("DimensionManager has static dims: %s", Arrays.asList(dims)));
             requiredDims.addAll(Arrays.asList(dims));
             Minecraft mc = FMLClientHandler.instance().getClient();
-            WorldProvider playerProvider = mc.field_71439_g.field_70170_p.field_73011_w;
-            int dimId = mc.field_71439_g.field_71093_bK;
+            WorldProvider playerProvider = mc.player.world.provider;
+            int dimId = mc.player.dimension;
             WrappedProvider playerDimProvider = new WrappedProvider(playerProvider);
             dimProviders.put(dimId, playerDimProvider);
             requiredDims.remove(dimId);
@@ -222,7 +222,7 @@ extends CacheLoader<Class, WorldData> {
                 if (DimensionManager.getWorld((int)dim) != null) {
                     try {
                         WorldProvider worldProvider = DimensionManager.getProvider((int)dim);
-                        worldProvider.func_186058_p().func_186065_b();
+                        worldProvider.getDimensionType().getName();
                         dimProvider = new WrappedProvider(worldProvider);
                         dimProviders.put(dim, dimProvider);
                         Journeymap.getLogger().log(logLevel, String.format("DimensionManager.getProvider(%s): %s", dim, WorldData.getSafeDimensionName(dimProvider)));
@@ -234,7 +234,7 @@ extends CacheLoader<Class, WorldData> {
                 }
                 try {
                     WorldProvider provider = DimensionManager.createProviderFor((int)dim);
-                    provider.func_186058_p().func_186065_b();
+                    provider.getDimensionType().getName();
                     provider.setDimension(dim);
                     dimProvider = new WrappedProvider(provider);
                     dimProviders.put(dim, dimProvider);
@@ -275,58 +275,58 @@ extends CacheLoader<Class, WorldData> {
         }
         catch (Exception e) {
             Minecraft mc = FMLClientHandler.instance().getClient();
-            return Constants.getString("jm.common.dimension", mc.field_71441_e.field_73011_w.getDimension());
+            return Constants.getString("jm.common.dimension", mc.world.provider.getDimension());
         }
     }
 
     public static String getDimension() {
-        int dimId = Minecraft.func_71410_x().field_71439_g.field_71093_bK;
-        String dimName = WorldData.getSafeDimensionName(new WrappedProvider(FMLClientHandler.instance().getClient().field_71439_g.field_70170_p.field_73011_w));
+        int dimId = Minecraft.getMinecraft().player.dimension;
+        String dimName = WorldData.getSafeDimensionName(new WrappedProvider(FMLClientHandler.instance().getClient().player.world.provider));
         return dimName + " (" + dimId + ")";
     }
 
     public WorldData load(Class aClass) throws Exception {
         Minecraft mc = FMLClientHandler.instance().getClient();
-        WorldInfo worldInfo = mc.field_71441_e.func_72912_H();
-        IntegratedServer server = mc.func_71401_C();
-        boolean multiplayer = server == null || server.func_71344_c();
+        WorldInfo worldInfo = mc.world.getWorldInfo();
+        IntegratedServer server = mc.getIntegratedServer();
+        boolean multiplayer = server == null || server.getPublic();
         this.name = WorldData.getWorldName(mc, false);
-        this.dimension = mc.field_71441_e.field_73011_w.getDimension();
-        this.hardcore = worldInfo.func_76093_s();
+        this.dimension = mc.world.provider.getDimension();
+        this.hardcore = worldInfo.isHardcoreModeEnabled();
         this.singlePlayer = !multiplayer;
-        this.time = mc.field_71441_e.func_72820_D() % 24000L;
+        this.time = mc.world.getWorldTime() % 24000L;
         this.features = FeatureManager.getAllowedFeatures();
         this.mod_name = JourneymapClient.MOD_NAME;
         this.jm_version = Journeymap.JM_VERSION.toString();
         this.latest_journeymap_version = VersionCheck.getVersionAvailable();
-        this.mc_version = (String)ResourcePackRepository.func_190115_a().get("X-Minecraft-Version");
+        this.mc_version = (String)ResourcePackRepository.getDownloadHeaders().get("X-Minecraft-Version");
         this.browser_poll = Math.max(1000, Journeymap.getClient().getCoreProperties().browserPoll.get());
         return this;
     }
 
     public static String getLightLevel() {
-        BlockPos blockpos = Minecraft.func_71410_x().field_71439_g.func_180425_c();
-        WorldClient world = Minecraft.func_71410_x().field_71441_e;
-        Chunk chunk = world.func_175726_f(blockpos);
-        int light = chunk.func_177443_a(blockpos, 0);
-        int lightSky = chunk.func_177413_a(EnumSkyBlock.SKY, blockpos);
-        int lightBlock = chunk.func_177413_a(EnumSkyBlock.BLOCK, blockpos);
+        BlockPos blockpos = Minecraft.getMinecraft().player.getPosition();
+        WorldClient world = Minecraft.getMinecraft().world;
+        Chunk chunk = world.getChunk(blockpos);
+        int light = chunk.getLightSubtracted(blockpos, 0);
+        int lightSky = chunk.getLightFor(EnumSkyBlock.SKY, blockpos);
+        int lightBlock = chunk.getLightFor(EnumSkyBlock.BLOCK, blockpos);
         String lightLevels = String.format("Light: %s (%s sky, %s block)", light, lightSky, lightBlock);
         return lightLevels;
     }
 
     public static String getRegion() {
-        BlockPos blockpos = Minecraft.func_71410_x().field_71439_g.func_180425_c();
-        Chunk chunk = Minecraft.func_71410_x().field_71441_e.func_175726_f(blockpos);
-        RegionCoord regionCoord = RegionCoord.fromChunkPos(null, MapType.none(), chunk.field_76635_g, chunk.field_76647_h);
+        BlockPos blockpos = Minecraft.getMinecraft().player.getPosition();
+        Chunk chunk = Minecraft.getMinecraft().world.getChunk(blockpos);
+        RegionCoord regionCoord = RegionCoord.fromChunkPos(null, MapType.none(), chunk.x, chunk.z);
         return "Region: x:" + regionCoord.regionX + " z:" + regionCoord.regionZ;
     }
 
     public static String getRealGameTime() {
         String format = Journeymap.getClient().getActiveMiniMapProperties().gameTimeRealFormat.get();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
-        Minecraft minecraft = Minecraft.func_71410_x();
-        long time = minecraft.field_71441_e.func_72820_D();
+        Minecraft minecraft = Minecraft.getMinecraft();
+        long time = minecraft.world.getWorldTime();
         long hour = (time / 1000L + 6L) % 24L;
         long minute = time % 1000L * 60L / 1000L;
         double ticks = (double)time - Math.floor((double)time / 16.666666666666668) * 16.666666666666668;
@@ -341,7 +341,7 @@ extends CacheLoader<Class, WorldData> {
     }
 
     public static String getGameTime() {
-        long worldTime = FMLClientHandler.instance().getClient().field_71441_e.func_72820_D() % 24000L;
+        long worldTime = FMLClientHandler.instance().getClient().world.getWorldTime() % 24000L;
         String label = worldTime < 12000L ? DAYTIME : (worldTime < 13800L ? SUNSET : (worldTime < 22200L ? NIGHT : SUNRISE));
         long allSecs = worldTime / 20L;
         return String.format("%02d:%02d %s", (long)Math.floor(allSecs / 60L), (long)Math.ceil(allSecs % 60L), label);
@@ -393,7 +393,7 @@ extends CacheLoader<Class, WorldData> {
 
         @Override
         public String getName() {
-            return this.worldProvider.func_186058_p().func_186065_b();
+            return this.worldProvider.getDimensionType().getName();
         }
     }
 

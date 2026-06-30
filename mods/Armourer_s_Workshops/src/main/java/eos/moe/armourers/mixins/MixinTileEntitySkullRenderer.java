@@ -34,27 +34,27 @@ public class MixinTileEntitySkullRenderer {
 
     @Inject(method={"render(Lnet/minecraft/tileentity/TileEntitySkull;DDDFIF)V"}, at={@At(value="HEAD")}, cancellable=true)
     public void mixin_render(TileEntitySkull a2, double a3, double a4, double a5, float a62, int a72, float a8, CallbackInfo a9) {
-        Object object = a62 = a2.func_152108_a() != null && a2.func_152108_a().getName() != null && a2.func_152108_a().getName().startsWith("skin-") ? a2.func_152108_a().getName().substring(5) : null;
+        Object object = a62 = a2.getPlayerProfile() != null && a2.getPlayerProfile().getName() != null && a2.getPlayerProfile().getName().startsWith("skin-") ? a2.getPlayerProfile().getName().substring(5) : null;
         if (a62 != null) {
             Object a62 = ((String)a62).split("\\|~\\|")[0];
             if ((a62 = kd.j.getSkin((String)a62)) != null) {
                 a9.cancel();
-                GlStateManager.func_179094_E();
-                GlStateManager.func_179123_a();
-                GlStateManager.func_179137_b((double)(a3 + 0.5), (double)(a4 + 0.5), (double)(a5 + 0.5));
-                GlStateManager.func_179147_l();
-                GlStateManager.func_187401_a((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-                GlStateManager.func_179114_b((float)((float)(22.5 * (double)a2.func_145906_b())), (float)0.0f, (float)1.0f, (float)0.0f);
-                GlStateManager.func_179152_a((float)-1.0f, (float)-1.0f, (float)1.0f);
+                GlStateManager.pushMatrix();
+                GlStateManager.pushAttrib();
+                GlStateManager.translate((double)(a3 + 0.5), (double)(a4 + 0.5), (double)(a5 + 0.5));
+                GlStateManager.enableBlend();
+                GlStateManager.blendFunc((GlStateManager.SourceFactor)GlStateManager.SourceFactor.SRC_ALPHA, (GlStateManager.DestFactor)GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+                GlStateManager.rotate((float)((float)(22.5 * (double)a2.getSkullRotation())), (float)0.0f, (float)1.0f, (float)0.0f);
+                GlStateManager.scale((float)-1.0f, (float)-1.0f, (float)1.0f);
                 int n2 = a2 = 0;
                 while (n2 < ((yl)a62).y().size()) {
                     kf a72 = ((yl)a62).y().get(a2);
                     rk.j.renderPart(new mk(a72, SCALE, new mn(), null, 0.0, true, true, true, null));
                     n2 = ++a2;
                 }
-                GlStateManager.func_179084_k();
-                GlStateManager.func_179099_b();
-                GlStateManager.func_179121_F();
+                GlStateManager.disableBlend();
+                GlStateManager.popAttrib();
+                GlStateManager.popMatrix();
             }
         }
     }

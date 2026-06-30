@@ -84,14 +84,14 @@ extends PacketBuffer {
         return a3;
     }
 
-    public byte[] func_179251_a() {
+    public byte[] readByteArray() {
         va a2;
-        return a2.func_189425_b(a2.readableBytes());
+        return a2.readByteArray(a2.readableBytes());
     }
 
-    public byte[] func_189425_b(int a2) {
+    public byte[] readByteArray(int a2) {
         va a3;
-        int a4 = a3.func_150792_a();
+        int a4 = a3.readVarInt();
         if (a4 > a2) {
             throw new DecoderException("ByteArray with size " + a4 + " is bigger than allowed " + a2);
         }
@@ -109,20 +109,20 @@ extends PacketBuffer {
         return a3;
     }
 
-    public int[] func_186863_b() {
+    public int[] readVarIntArray() {
         va a2;
-        return a2.func_189424_c(a2.readableBytes());
+        return a2.readVarIntArray(a2.readableBytes());
     }
 
-    public int[] func_189424_c(int a2) {
+    public int[] readVarIntArray(int a2) {
         va a3;
-        int a4 = a3.func_150792_a();
+        int a4 = a3.readVarInt();
         if (a4 > a2) {
             throw new DecoderException("VarIntArray with size " + a4 + " is bigger than allowed " + a2);
         }
         int[] a5 = new int[a4];
         for (int a6 = 0; a6 < a5.length; ++a6) {
-            a5[a6] = a3.func_150792_a();
+            a5[a6] = a3.readVarInt();
         }
         return a5;
     }
@@ -137,13 +137,13 @@ extends PacketBuffer {
     }
 
     @SideOnly(value=Side.CLIENT)
-    public long[] func_186873_b(@Nullable long[] a2) {
-        return this.func_189423_a(a2, this.readableBytes() / 8);
+    public long[] readLongArray(@Nullable long[] a2) {
+        return this.readLongArray(a2, this.readableBytes() / 8);
     }
 
     @SideOnly(value=Side.CLIENT)
-    public long[] func_189423_a(@Nullable long[] array, int a2) {
-        int a3 = this.func_150792_a();
+    public long[] readLongArray(@Nullable long[] array, int a2) {
+        int a3 = this.readVarInt();
         if (array == null || array.length != a3) {
             if (a3 > a2) {
                 throw new DecoderException("LongArray with size " + a3 + " is bigger than allowed " + a2);
@@ -156,30 +156,30 @@ extends PacketBuffer {
         return array;
     }
 
-    public BlockPos func_179259_c() {
+    public BlockPos readBlockPos() {
         va a2;
-        return BlockPos.func_177969_a((long)a2.readLong());
+        return BlockPos.fromLong((long)a2.readLong());
     }
 
     public va writeBlockPos(BlockPos a2) {
         va a3;
-        a3.writeLong(a2.func_177986_g());
+        a3.writeLong(a2.toLong());
         return a3;
     }
 
-    public ITextComponent func_179258_d() throws IOException {
+    public ITextComponent readTextComponent() throws IOException {
         va a2;
-        return ITextComponent.Serializer.func_150699_a((String)a2.func_150789_c(Short.MAX_VALUE));
+        return ITextComponent.Serializer.jsonToComponent((String)a2.readString(Short.MAX_VALUE));
     }
 
     public va writeTextComponent(ITextComponent a2) {
         va a3;
-        return a3.writeString(ITextComponent.Serializer.func_150696_a((ITextComponent)a2));
+        return a3.writeString(ITextComponent.Serializer.componentToJson((ITextComponent)a2));
     }
 
-    public <T extends Enum<T>> T func_179257_a(Class<T> a2) {
+    public <T extends Enum<T>> T readEnumValue(Class<T> a2) {
         va a3;
-        return (T)((Enum[])a2.getEnumConstants())[a3.func_150792_a()];
+        return (T)((Enum[])a2.getEnumConstants())[a3.readVarInt()];
     }
 
     public va writeEnumValue(Enum<?> a2) {
@@ -187,7 +187,7 @@ extends PacketBuffer {
         return a3.writeVarInt(a2.ordinal());
     }
 
-    public int func_150792_a() {
+    public int readVarInt() {
         byte a2;
         int a3 = 0;
         int a4 = 0;
@@ -201,7 +201,7 @@ extends PacketBuffer {
         return a3;
     }
 
-    public long func_179260_f() {
+    public long readVarLong() {
         byte a2;
         long a3 = 0L;
         int a4 = 0;
@@ -222,7 +222,7 @@ extends PacketBuffer {
         return a3;
     }
 
-    public UUID func_179253_g() {
+    public UUID readUniqueId() {
         va a2;
         return new UUID(a2.readLong(), a2.readLong());
     }
@@ -252,7 +252,7 @@ extends PacketBuffer {
             this.writeByte(0);
         } else {
             try {
-                CompressedStreamTools.func_74800_a((NBTTagCompound)a2, (DataOutput)new ByteBufOutputStream((ByteBuf)this));
+                CompressedStreamTools.write((NBTTagCompound)a2, (DataOutput)new ByteBufOutputStream((ByteBuf)this));
             }
             catch (IOException a3) {
                 throw new EncoderException((Throwable)a3);
@@ -262,7 +262,7 @@ extends PacketBuffer {
     }
 
     @Nullable
-    public NBTTagCompound func_150793_b() throws IOException {
+    public NBTTagCompound readCompoundTag() throws IOException {
         va a2;
         int a3 = a2.readerIndex();
         byte a4 = a2.readByte();
@@ -271,7 +271,7 @@ extends PacketBuffer {
         }
         a2.readerIndex(a3);
         try {
-            return CompressedStreamTools.func_152456_a((DataInput)new ByteBufInputStream((ByteBuf)a2), (NBTSizeTracker)new NBTSizeTracker(0x200000L));
+            return CompressedStreamTools.read((DataInput)new ByteBufInputStream((ByteBuf)a2), (NBTSizeTracker)new NBTSizeTracker(0x200000L));
         }
         catch (IOException a5) {
             throw new EncoderException((Throwable)a5);
@@ -280,35 +280,35 @@ extends PacketBuffer {
 
     public va writeItemStack(ItemStack a2) {
         va a3;
-        if (a2.func_190926_b()) {
+        if (a2.isEmpty()) {
             a3.writeShort(-1);
         } else {
-            a3.writeShort(Item.func_150891_b((Item)a2.func_77973_b()));
-            a3.writeByte(a2.func_190916_E());
-            a3.writeShort(a2.func_77960_j());
+            a3.writeShort(Item.getIdFromItem((Item)a2.getItem()));
+            a3.writeByte(a2.getCount());
+            a3.writeShort(a2.getMetadata());
             NBTTagCompound a4 = null;
-            if (a2.func_77973_b().func_77645_m() || a2.func_77973_b().func_77651_p()) {
-                a4 = a2.func_77973_b().getNBTShareTag(a2);
+            if (a2.getItem().isDamageable() || a2.getItem().getShareTag()) {
+                a4 = a2.getItem().getNBTShareTag(a2);
             }
             a3.writeCompoundTag(a4);
         }
         return a3;
     }
 
-    public ItemStack func_150791_c() throws IOException {
+    public ItemStack readItemStack() throws IOException {
         va a2;
         short a3 = a2.readShort();
         if (a3 < 0) {
-            return ItemStack.field_190927_a;
+            return ItemStack.EMPTY;
         }
         byte a4 = a2.readByte();
         short a5 = a2.readShort();
-        ItemStack a6 = new ItemStack(Item.func_150899_d((int)a3), (int)a4, (int)a5);
-        a6.func_77973_b().readNBTShareTag(a6, a2.func_150793_b());
+        ItemStack a6 = new ItemStack(Item.getItemById((int)a3), (int)a4, (int)a5);
+        a6.getItem().readNBTShareTag(a6, a2.readCompoundTag());
         return a6;
     }
 
-    public String func_150789_c(int a2) {
+    public String readString(int a2) {
         va a3;
         return a3.readString();
     }
@@ -335,9 +335,9 @@ extends PacketBuffer {
         return a3;
     }
 
-    public ResourceLocation func_192575_l() {
+    public ResourceLocation readResourceLocation() {
         va a2;
-        return new ResourceLocation(a2.func_150789_c(Short.MAX_VALUE));
+        return new ResourceLocation(a2.readString(Short.MAX_VALUE));
     }
 
     public va writeResourceLocation(ResourceLocation a2) {
@@ -346,7 +346,7 @@ extends PacketBuffer {
         return a3;
     }
 
-    public Date func_192573_m() {
+    public Date readTime() {
         va a2;
         return new Date(a2.readLong());
     }

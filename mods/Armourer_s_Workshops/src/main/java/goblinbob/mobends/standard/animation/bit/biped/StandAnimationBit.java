@@ -55,9 +55,9 @@ extends AnimationBit<T> {
         ((BipedEntityData)data).head.rotation.orientX(((Float)((BipedEntityData)data).headPitch.get()).floatValue()).rotateY(((Float)((BipedEntityData)data).headYaw.get()).floatValue());
         float PI = (float)Math.PI;
         float phase = DataUpdateHandler.getTicks() / 10.0f;
-        ((BipedEntityData)data).body.rotation.setSmoothness(1.0f).orientX((MathHelper.func_76134_b((float)phase) - 1.0f) / 2.0f * -3.0f);
-        ((BipedEntityData)data).rightArm.rotation.setSmoothness(0.4f).orientX(0.0f).rotateZ(MathHelper.func_76134_b((float)(phase + 1.5707964f)) * -2.5f + 2.5f);
-        ((BipedEntityData)data).leftArm.rotation.setSmoothness(0.4f).orientX(0.0f).rotateZ(MathHelper.func_76134_b((float)(phase + 1.5707964f)) * 2.5f - 2.5f);
+        ((BipedEntityData)data).body.rotation.setSmoothness(1.0f).orientX((MathHelper.cos((float)phase) - 1.0f) / 2.0f * -3.0f);
+        ((BipedEntityData)data).rightArm.rotation.setSmoothness(0.4f).orientX(0.0f).rotateZ(MathHelper.cos((float)(phase + 1.5707964f)) * -2.5f + 2.5f);
+        ((BipedEntityData)data).leftArm.rotation.setSmoothness(0.4f).orientX(0.0f).rotateZ(MathHelper.cos((float)(phase + 1.5707964f)) * 2.5f - 2.5f);
         float touchdown = Math.min(((LivingEntityData)data).getTicksAfterTouchdown() * 0.15f, 1.0f);
         if (touchdown < 1.0f) {
             ((BipedEntityData)data).body.rotation.setSmoothness(1.0f);

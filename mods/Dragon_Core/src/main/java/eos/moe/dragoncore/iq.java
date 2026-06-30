@@ -30,7 +30,7 @@ public abstract class iq {
     }
 
     public static Vec3d ALLATORIxDEMO(Vec3d a2, Vec3d a3) {
-        return a2.func_72441_c(a3.field_72450_a, a3.field_72448_b, a3.field_72449_c);
+        return a2.add(a3.x, a3.y, a3.z);
     }
 
     public static double[] ALLATORIxDEMO(double a2, double a3, double a4) {
@@ -49,9 +49,9 @@ public abstract class iq {
     }
 
     public static void ALLATORIxDEMO(Vec3d a2) {
-        System.out.println("Vector x = " + a2.field_72450_a);
-        System.out.println("Vector y = " + a2.field_72448_b);
-        System.out.println("Vector z = " + a2.field_72449_c);
+        System.out.println("Vector x = " + a2.x);
+        System.out.println("Vector y = " + a2.y);
+        System.out.println("Vector z = " + a2.z);
     }
 
     public static void ALLATORIxDEMO(Object a2) {

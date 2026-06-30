@@ -90,49 +90,49 @@ extends JmUI {
     public WaypointManagerRight(Waypoint focusWaypoint, JmUI returnDisplay) {
         super(Constants.getString("jm.waypoint.manage_title"), returnDisplay);
         this.focusWaypoint = focusWaypoint;
-        this.nameField = new GuiTextField(0, Minecraft.func_71410_x().field_71466_p, this.field_146294_l - 69, 25, 48, 12);
-        this.nameField.func_146193_g(-1);
-        this.nameField.func_146204_h(-1);
-        this.nameField.func_146185_a(true);
-        this.nameField.func_146203_f(35);
+        this.nameField = new GuiTextField(0, Minecraft.getMinecraft().fontRenderer, this.width - 69, 25, 48, 12);
+        this.nameField.setTextColor(-1);
+        this.nameField.setDisabledTextColour(-1);
+        this.nameField.setEnableBackgroundDrawing(true);
+        this.nameField.setMaxStringLength(35);
     }
 
     @Override
-    public void func_73866_w_() {
+    public void initGui() {
         Keyboard.enableRepeatEvents((boolean)true);
         try {
-            this.field_146292_n.clear();
-            this.canUserTeleport = CmdTeleportWaypoint.isPermitted(this.field_146297_k);
+            this.buttonList.clear();
+            this.canUserTeleport = CmdTeleportWaypoint.isPermitted(this.mc);
             FontRenderer fr = this.getFontRenderer();
             if (this.buttonSortDistance == null) {
-                WaypointManagerItemRight.DistanceComparator distanceSort = new WaypointManagerItemRight.DistanceComparator((EntityPlayer)FMLClientHandler.instance().getClient().field_71439_g, true);
+                WaypointManagerItemRight.DistanceComparator distanceSort = new WaypointManagerItemRight.DistanceComparator((EntityPlayer)FMLClientHandler.instance().getClient().player, true);
                 String distanceLabel = Constants.getString("jm.waypoint.distance");
                 this.buttonSortDistance = new SortButtonRight(distanceLabel, distanceSort);
                 this.buttonSortDistance.setTextOnly(fr);
             }
-            this.field_146292_n.add(this.buttonSortDistance);
+            this.buttonList.add(this.buttonSortDistance);
             if (this.buttonSortName == null) {
                 WaypointManagerItemRight.NameComparator nameSort = new WaypointManagerItemRight.NameComparator(true);
                 this.buttonSortName = new SortButtonRight(Constants.getString("jm.waypoint.name"), nameSort);
                 this.buttonSortName.setTextOnly(fr);
             }
-            this.field_146292_n.add(this.buttonSortName);
+            this.buttonList.add(this.buttonSortName);
             if (this.buttonToggleAll == null) {
                 String enableOn = Constants.getString("jm.waypoint.enable_all", "", this.on);
                 String enableOff = Constants.getString("jm.waypoint.enable_all", "", this.off);
                 this.buttonToggleAll = new OnOffButtonCopy(enableOff, enableOn, true);
-                this.buttonToggleAll.func_175211_a(150);
+                this.buttonToggleAll.setWidth(150);
                 this.buttonToggleAll.setDefaultStyle(false);
                 this.buttonToggleAll.setDrawBackground(false);
             }
-            this.field_146292_n.add(this.buttonToggleAll);
+            this.buttonList.add(this.buttonToggleAll);
             if (this.buttonDimensions == null) {
                 this.buttonDimensions = new DimensionsButton();
             }
             if (this.buttonAdd == null) {
                 this.buttonAdd = new Button(Constants.getString("jm.waypoint.new"));
                 this.buttonAdd.fitWidth(this.getFontRenderer());
-                this.buttonAdd.func_175211_a(this.buttonAdd.getWidth() * 2);
+                this.buttonAdd.setWidth(this.buttonAdd.getWidth() * 2);
             }
             if (this.buttonOptions == null) {
                 this.buttonOptions = new Button(Constants.getString("jm.common.options_button"));
@@ -158,9 +158,9 @@ extends JmUI {
                 }
             }
             if (this.itemScrollPane == null) {
-                this.itemScrollPane = new ScrollListPaneRight(this, this.field_146297_k, this.field_146294_l, this.field_146295_m, 35, this.field_146295_m - 30, 20);
+                this.itemScrollPane = new ScrollListPaneRight(this, this.mc, this.width, this.height, 35, this.height - 30, 20);
             } else {
-                this.itemScrollPane.func_148122_a(this.field_146294_l, this.field_146295_m, 35, this.field_146295_m - 30);
+                this.itemScrollPane.setDimensions(this.width, this.height, 35, this.height - 30);
                 this.itemScrollPane.updateSlots();
             }
             this.itemScrollPane.setSlots(this.items);
@@ -175,49 +175,49 @@ extends JmUI {
 
     @Override
     protected void layoutButtons() {
-        if (this.field_146292_n.isEmpty() || this.itemScrollPane == null) {
-            this.func_73866_w_();
+        if (this.buttonList.isEmpty() || this.itemScrollPane == null) {
+            this.initGui();
         }
         this.buttonToggleAll.setDrawButton(true);
         this.buttonSortDistance.setDrawButton(true);
         this.buttonSortName.setDrawButton(true);
         this.bottomButtons.equalizeWidths(this.getFontRenderer());
-        int bottomButtonWidth = Math.min(this.bottomButtons.getWidth(3) + 25, this.itemScrollPane.func_148139_c());
+        int bottomButtonWidth = Math.min(this.bottomButtons.getWidth(3) + 25, this.itemScrollPane.getListWidth());
         this.bottomButtons.equalizeWidths(this.getFontRenderer(), 3, bottomButtonWidth);
-        this.bottomButtons.layoutCenteredHorizontal(this.field_146294_l / 2, this.field_146295_m - 25, true, 4);
+        this.bottomButtons.layoutCenteredHorizontal(this.width / 2, this.height - 25, true, 4);
     }
 
     @Override
-    public void func_73863_a(int x, int y, float par3) {
-        if (this.field_146297_k == null) {
+    public void drawScreen(int x, int y, float par3) {
+        if (this.mc == null) {
             return;
         }
-        if (this.field_146292_n.isEmpty() || this.itemScrollPane == null) {
-            this.func_73866_w_();
+        if (this.buttonList.isEmpty() || this.itemScrollPane == null) {
+            this.initGui();
         }
         try {
-            this.itemScrollPane.func_148122_a(this.field_146294_l, this.field_146295_m, 35, this.field_146295_m - 30);
+            this.itemScrollPane.setDimensions(this.width, this.height, 35, this.height - 30);
             Object[] lastTooltip = this.itemScrollPane.lastTooltip;
             long lastTooltipTime = this.itemScrollPane.lastTooltipTime;
             this.itemScrollPane.lastTooltip = null;
-            this.itemScrollPane.func_148128_a(x, y, par3);
+            this.itemScrollPane.drawScreen(x, y, par3);
             this.layoutButtons();
-            for (GuiButton guibutton : this.field_146292_n) {
-                guibutton.func_191745_a(this.field_146297_k, x, y, 0.0f);
+            for (GuiButton guibutton : this.buttonList) {
+                guibutton.drawButton(this.mc, x, y, 0.0f);
             }
             Color c = new Color(128, 128, 128, 255);
             int c1 = c.getBlue() | c.getGreen() << 8 | c.getRed() << 16 | c.getAlpha() << 24;
-            this.nameField.field_146209_f = this.field_146294_l - 69;
-            this.nameField.func_146194_f();
-            if (this.nameField.func_146179_b().isEmpty()) {
-                this.func_73731_b(this.field_146289_q, "\u641c\u7d22...", this.field_146294_l - 66, 27, c1);
+            this.nameField.x = this.width - 69;
+            this.nameField.drawTextBox();
+            if (this.nameField.getText().isEmpty()) {
+                this.drawString(this.fontRenderer, "\u641c\u7d22...", this.width - 66, 27, c1);
             }
-            int headerY = 35 - this.getFontRenderer().field_78288_b;
+            int headerY = 35 - this.getFontRenderer().FONT_HEIGHT;
             WaypointManagerItemRight firstRow = this.items.get(0);
             if (firstRow.y > headerY + 16) {
                 headerY = firstRow.y - 16;
             }
-            this.buttonToggleAll.leftOf(firstRow.getLocationLeftX() + 130).setY(this.field_146295_m - 25);
+            this.buttonToggleAll.leftOf(firstRow.getLocationLeftX() + 130).setY(this.height - 25);
             this.buttonSortDistance.centerHorizontalOn(firstRow.getLocationLeftX()).setY(headerY);
             this.colName = this.buttonSortDistance.getRightX() + 10;
             this.buttonSortName.setPosition(this.colName - 5, headerY);
@@ -241,32 +241,32 @@ extends JmUI {
     }
 
     @Override
-    public void func_146278_c(int layer) {
+    public void drawBackground(int layer) {
     }
 
-    protected void func_73864_a(int mouseX, int mouseY, int mouseEvent) throws IOException {
+    protected void mouseClicked(int mouseX, int mouseY, int mouseEvent) throws IOException {
         boolean pressed;
-        super.func_73864_a(mouseX, mouseY, mouseEvent);
-        this.nameField.func_146192_a(mouseX, mouseY, mouseEvent);
-        if (mouseEvent == 0 && (pressed = this.itemScrollPane.func_148179_a(mouseX, mouseY, mouseEvent))) {
+        super.mouseClicked(mouseX, mouseY, mouseEvent);
+        this.nameField.mouseClicked(mouseX, mouseY, mouseEvent);
+        if (mouseEvent == 0 && (pressed = this.itemScrollPane.mouseClicked(mouseX, mouseY, mouseEvent))) {
             this.checkPressedButton();
         }
     }
 
     @Override
-    protected void func_146286_b(int mouseX, int mouseY, int state) {
-        super.func_146286_b(mouseX, mouseY, state);
-        this.itemScrollPane.func_148181_b(mouseX, mouseY, state);
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+        super.mouseReleased(mouseX, mouseY, state);
+        this.itemScrollPane.mouseReleased(mouseX, mouseY, state);
     }
 
-    protected void func_146273_a(int mouseX, int mouseY, int lastButtonClicked, long timeSinceMouseClick) {
-        super.func_146273_a(mouseX, mouseY, lastButtonClicked, timeSinceMouseClick);
+    protected void mouseClickMove(int mouseX, int mouseY, int lastButtonClicked, long timeSinceMouseClick) {
+        super.mouseClickMove(mouseX, mouseY, lastButtonClicked, timeSinceMouseClick);
         this.checkPressedButton();
     }
 
-    public void func_146274_d() throws IOException {
-        super.func_146274_d();
-        this.itemScrollPane.func_178039_p();
+    public void handleMouseInput() throws IOException {
+        super.handleMouseInput();
+        this.itemScrollPane.handleMouseInput();
     }
 
     protected void checkPressedButton() {
@@ -280,7 +280,7 @@ extends JmUI {
         }
     }
 
-    protected void func_146284_a(GuiButton guibutton) {
+    protected void actionPerformed(GuiButton guibutton) {
         if (guibutton == this.buttonClose) {
             this.refreshAndClose();
             return;
@@ -296,11 +296,11 @@ extends JmUI {
         if (guibutton == this.buttonDimensions) {
             this.buttonDimensions.nextValue();
             this.updateItems();
-            this.field_146292_n.clear();
+            this.buttonList.clear();
             return;
         }
         if (guibutton == this.buttonAdd) {
-            Waypoint waypoint = Waypoint.of((EntityPlayer)this.field_146297_k.field_71439_g);
+            Waypoint waypoint = Waypoint.of((EntityPlayer)this.mc.player);
             UIManager.INSTANCE.openWaypointEditor(waypoint, true, this);
             return;
         }
@@ -308,7 +308,7 @@ extends JmUI {
             boolean state = this.buttonToggleAll.getToggled();
             state = this.toggleItems(state);
             this.buttonToggleAll.setToggled(state);
-            this.field_146292_n.clear();
+            this.buttonList.clear();
             return;
         }
         if (guibutton == this.buttonOptions) {
@@ -317,14 +317,14 @@ extends JmUI {
     }
 
     @Override
-    protected void func_73869_a(char c, int i) {
+    protected void keyTyped(char c, int i) {
         boolean keyUsed;
         if (i == 1) {
             this.closeAndReturn();
         }
-        String oldText = this.nameField.func_146179_b();
-        this.nameField.func_146201_a(c, i);
-        String newText = this.nameField.func_146179_b();
+        String oldText = this.nameField.getText();
+        this.nameField.textboxKeyTyped(c, i);
+        String newText = this.nameField.getText();
         if (!oldText.equals(newText)) {
             this.filterName = newText;
             this.updateItems();
@@ -333,22 +333,22 @@ extends JmUI {
             return;
         }
         if (i == 200) {
-            this.itemScrollPane.func_148145_f(-this.rowHeight);
+            this.itemScrollPane.scrollBy(-this.rowHeight);
         }
         if (i == 208) {
-            this.itemScrollPane.func_148145_f(this.rowHeight);
+            this.itemScrollPane.scrollBy(this.rowHeight);
         }
         if (i == 201) {
-            this.itemScrollPane.func_148145_f(-this.itemScrollPane.field_148158_l);
+            this.itemScrollPane.scrollBy(-this.itemScrollPane.height);
         }
         if (i == 209) {
-            this.itemScrollPane.func_148145_f(this.itemScrollPane.field_148158_l);
+            this.itemScrollPane.scrollBy(this.itemScrollPane.height);
         }
         if (i == 199) {
-            this.itemScrollPane.func_148145_f(-this.itemScrollPane.func_148148_g());
+            this.itemScrollPane.scrollBy(-this.itemScrollPane.getAmountScrolled());
         }
         if (i == 207) {
-            this.itemScrollPane.func_148145_f(this.itemScrollPane.func_148148_g());
+            this.itemScrollPane.scrollBy(this.itemScrollPane.getAmountScrolled());
         }
     }
 
@@ -383,7 +383,7 @@ extends JmUI {
         boolean allOn = true;
         for (Waypoint waypoint : waypoints) {
             WaypointManagerItemRight item = new WaypointManagerItemRight(waypoint, fr, this);
-            item.getDistanceTo((EntityPlayer)this.field_146297_k.field_71439_g);
+            item.getDistanceTo((EntityPlayer)this.mc.player);
             if (currentDim != null && !item.waypoint.getDimensions().contains(currentDim) || !waypoint.getName().contains(this.filterName)) continue;
             this.items.add(item);
             if (!allOn) continue;
@@ -398,7 +398,7 @@ extends JmUI {
     }
 
     protected void updateSort(SortButtonRight sortButton) {
-        for (GuiButton button : this.field_146292_n) {
+        for (GuiButton button : this.buttonList) {
             if (!(button instanceof SortButtonRight)) continue;
             if (button == sortButton) {
                 if (sortButton.sort.equals(currentSort)) {
@@ -427,7 +427,7 @@ extends JmUI {
     }
 
     protected boolean isSelected(WaypointManagerItemRight item) {
-        return this.itemScrollPane.func_148131_a(item.getSlotIndex());
+        return this.itemScrollPane.isSelected(item.getSlotIndex());
     }
 
     protected int getMargin() {

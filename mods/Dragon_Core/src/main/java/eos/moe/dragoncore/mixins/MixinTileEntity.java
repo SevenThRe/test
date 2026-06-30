@@ -37,51 +37,51 @@ public abstract class MixinTileEntity {
     @Final
     public static AxisAlignedBB INFINITE_EXTENT_AABB;
     @Shadow
-    protected World field_145850_b;
+    protected World world;
 
     public MixinTileEntity() {
         MixinTileEntity a2;
     }
 
     @Shadow
-    public abstract Block func_145838_q();
+    public abstract Block getBlockType();
 
     @Shadow
-    public abstract BlockPos func_174877_v();
+    public abstract BlockPos getPos();
 
     @Inject(method={"getRenderBoundingBox"}, at={@At(value="HEAD")}, cancellable=true, remap=false)
     private /* synthetic */ void mixin_getRenderBoundingBox(CallbackInfoReturnable<AxisAlignedBB> a2) {
         MixinTileEntity a3;
-        Block a4 = a3.func_145838_q();
-        BlockPos a5 = a3.func_174877_v();
+        Block a4 = a3.getBlockType();
+        BlockPos a5 = a3.getPos();
         TileEntity a6 = (TileEntity)a3;
-        if (a4 == Blocks.field_150465_bP) {
+        if (a4 == Blocks.SKULL) {
             gq a7 = cy.q.ALLATORIxDEMO(a6);
             if (a7 != null) {
-                a2.setReturnValue(new AxisAlignedBB(-5.0, -5.0, -5.0, 5.0, 5.0, 5.0).func_186670_a(a5));
+                a2.setReturnValue(new AxisAlignedBB(-5.0, -5.0, -5.0, 5.0, 5.0, 5.0).offset(a5));
                 return;
             }
             er a8 = vu.ALLATORIxDEMO(a6);
             if (a8 != null) {
-                a2.setReturnValue(new AxisAlignedBB(-5.0, -5.0, -5.0, 5.0, 5.0, 5.0).func_186670_a(a5));
+                a2.setReturnValue(new AxisAlignedBB(-5.0, -5.0, -5.0, 5.0, 5.0, 5.0).offset(a5));
                 return;
             }
         } else if (a6 instanceof TileEntitySign) {
             TileEntitySign a9 = (TileEntitySign)a6;
-            if (a9.field_145915_a.length <= 1) {
+            if (a9.signText.length <= 1) {
                 return;
             }
-            if (a9.field_145915_a[1] == null) {
+            if (a9.signText[1] == null) {
                 return;
             }
-            String a10 = FormatCacheTextComponentBase.of(a9.field_145915_a[1]).toStringCache();
+            String a10 = FormatCacheTextComponentBase.of(a9.signText[1]).toStringCache();
             if (a10.startsWith("{")) {
-                a2.setReturnValue(new AxisAlignedBB(-1.0, -1.0, -1.0, 2.0, 2.0, 2.0).func_186670_a(a5));
+                a2.setReturnValue(new AxisAlignedBB(-1.0, -1.0, -1.0, 2.0, 2.0, 2.0).offset(a5));
                 return;
             }
         }
-        if (a4 == Blocks.field_180394_cL || a4 == Blocks.field_180393_cK || a4 == Blocks.field_150472_an || a4 == Blocks.field_150444_as) {
-            a2.setReturnValue(new AxisAlignedBB(a3.func_174877_v().func_177982_a(-1, 0, -1), a3.func_174877_v().func_177982_a(2, 2, 2)));
+        if (a4 == Blocks.WALL_BANNER || a4 == Blocks.STANDING_BANNER || a4 == Blocks.STANDING_SIGN || a4 == Blocks.WALL_SIGN) {
+            a2.setReturnValue(new AxisAlignedBB(a3.getPos().add(-1, 0, -1), a3.getPos().add(2, 2, 2)));
             return;
         }
     }

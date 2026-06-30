@@ -31,9 +31,9 @@ public class tja {
     @SubscribeEvent
     public static void ALLATORIxDEMO(GuiScreenEvent.KeyboardInputEvent.Post a2) {
         GuiTextField a3;
-        if (a2.getGui().getClass() == GuiChat.class && !(a3 = (GuiTextField)ReflectionHelper.getPrivateValue(GuiChat.class, (Object)((GuiChat)a2.getGui()), (String[])new String[]{"inputField", "field_146415_a"})).func_146179_b().equals(ALLATORIxDEMO)) {
-            nw.ALLATORIxDEMO(ALLATORIxDEMO, a3.func_146179_b());
-            ALLATORIxDEMO = a3.func_146179_b();
+        if (a2.getGui().getClass() == GuiChat.class && !(a3 = (GuiTextField)ReflectionHelper.getPrivateValue(GuiChat.class, (Object)((GuiChat)a2.getGui()), (String[])new String[]{"inputField", "inputField"})).getText().equals(ALLATORIxDEMO)) {
+            nw.ALLATORIxDEMO(ALLATORIxDEMO, a3.getText());
+            ALLATORIxDEMO = a3.getText();
         }
     }
 

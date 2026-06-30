@@ -129,7 +129,7 @@ implements r {
         a10.wa = a5;
         a10.fa = a6.getFileName();
         a10.ma = a9;
-        a10.field_146287_f = -1;
+        a10.eventButton = -1;
         a10.u = System.currentTimeMillis();
         a10.oa = new qv(a10, a4);
         a10.oa.ALLATORIxDEMO("\u65b9\u6cd5", "func", ie.ALLATORIxDEMO(a10));
@@ -137,8 +137,8 @@ implements r {
         a10.a = new ConcurrentHashMap<String, nh>();
         a10.i = new CopyOnWriteArrayList<Future<v>>();
         a10.r = Collections.synchronizedMap(new jk());
-        a10.field_146294_l = de.o.func_78326_a();
-        a10.field_146295_m = de.o.func_78326_a();
+        a10.width = de.o.getScaledWidth();
+        a10.height = de.o.getScaledWidth();
         LinkedHashMap<String, YamlConfiguration> a11 = new LinkedHashMap<String, YamlConfiguration>();
         a11.put(a6.getFileName(), a6.reloadFromString());
         a11.putAll(a6.getStringList("import").stream().map(a3 -> (YamlConfiguration)a7.get(a3.toLowerCase(Locale.ROOT))).filter(Objects::nonNull).collect(Collectors.toMap(MemorySection::getFileName, a2 -> a2)));
@@ -168,9 +168,9 @@ implements r {
         return a2.w;
     }
 
-    public void func_146280_a(Minecraft a2, int a3, int a4) {
+    public void setWorldAndResolution(Minecraft a2, int a3, int a4) {
         ui a5;
-        super.func_146280_a(a2, a3, a4);
+        super.setWorldAndResolution(a2, a3, a4);
         if (!a5.v.getBoolean("enableJei", false)) {
             an.c();
         }
@@ -267,11 +267,11 @@ implements r {
     }
 
     @Override
-    public void func_73863_a(int a3, int a4, float a5) {
+    public void drawScreen(int a3, int a4, float a5) {
         ui a6;
-        GuiScreen a7 = Minecraft.func_71410_x().field_71462_r;
-        a6.field_146294_l = de.o.func_78326_a();
-        a6.field_146295_m = de.o.func_78328_b();
+        GuiScreen a7 = Minecraft.getMinecraft().currentScreen;
+        a6.width = de.o.getScaledWidth();
+        a6.height = de.o.getScaledHeight();
         if (a6.z || wq.k == null) {
             a6.p.clear();
             a6.d = null;
@@ -307,35 +307,35 @@ implements r {
             int a15 = (int)a6.y.c();
             boolean bl2 = a11 = a12 != 1.0 || a13 != 0.0 || a14 != 0.0 || a15 != 0;
             if (a11) {
-                GlStateManager.func_179094_E();
-                GlStateManager.func_179137_b((double)a13, (double)a14, (double)0.0);
+                GlStateManager.pushMatrix();
+                GlStateManager.translate((double)a13, (double)a14, (double)0.0);
                 if (a12 != 1.0 || a15 != 0) {
-                    GlStateManager.func_179109_b((float)((float)a6.field_146294_l / 2.0f), (float)((float)a6.field_146295_m / 2.0f), (float)0.0f);
+                    GlStateManager.translate((float)((float)a6.width / 2.0f), (float)((float)a6.height / 2.0f), (float)0.0f);
                     if (a12 != 1.0) {
-                        GlStateManager.func_179139_a((double)a12, (double)a12, (double)1.0);
+                        GlStateManager.scale((double)a12, (double)a12, (double)1.0);
                     }
                     if (a15 != 0) {
-                        GlStateManager.func_179114_b((float)a15, (float)0.0f, (float)0.0f, (float)1.0f);
+                        GlStateManager.rotate((float)a15, (float)0.0f, (float)0.0f, (float)1.0f);
                     }
-                    GlStateManager.func_179109_b((float)(-((float)a6.field_146294_l) / 2.0f), (float)(-((float)a6.field_146295_m) / 2.0f), (float)0.0f);
+                    GlStateManager.translate((float)(-((float)a6.width) / 2.0f), (float)(-((float)a6.height) / 2.0f), (float)0.0f);
                 }
             }
             for (jj a16 : a9) {
                 a16.draw(a3, a4, a6.ua);
             }
             if (a11) {
-                GlStateManager.func_179121_F();
+                GlStateManager.popMatrix();
             }
         }
-        GlStateManager.func_179126_j();
-        GlStateManager.func_179084_k();
-        GlStateManager.func_179140_f();
+        GlStateManager.enableDepth();
+        GlStateManager.disableBlend();
+        GlStateManager.disableLighting();
         ui a17 = wi.b.ALLATORIxDEMO();
         if (a17 != null && a6.ma == od.q) {
-            a17.func_73863_a(a3, a4, a5);
+            a17.drawScreen(a3, a4, a5);
         }
         if ((a17 == null && a6.ma == od.q || a6.ma == od.y) && a8) {
-            super.func_73863_a(a3, a4, a5);
+            super.drawScreen(a3, a4, a5);
         }
         if (a7 != null && a17 == null && a8) {
             super.drawHoverTip(a5, a3, a4);
@@ -345,7 +345,7 @@ implements r {
             super.drawHoverTip(a5, a3, a4);
             a6.drawHoverITextComponent(a3, a4);
         }
-        GlStateManager.func_179140_f();
+        GlStateManager.disableLighting();
         a6.runGuiAction(nj.l);
     }
 
@@ -353,13 +353,13 @@ implements r {
         ke a4;
         ITextComponent a5;
         ui a6;
-        if (a6.d != null && a6.d instanceof ke && (a5 = (a4 = (ke)a6.d).getTextComponent(a2, a3)) != null && a5.func_150256_b().func_150210_i() != null) {
-            a6.func_175272_a(a5, a2, a3);
+        if (a6.d != null && a6.d instanceof ke && (a5 = (a4 = (ke)a6.d).getTextComponent(a2, a3)) != null && a5.getStyle().getHoverEvent() != null) {
+            a6.handleComponentHover(a5, a2, a3);
         }
     }
 
     @Override
-    public void func_73864_a(int a3, int a4, int a5) throws IOException {
+    public void mouseClicked(int a3, int a4, int a5) throws IOException {
         ui a6;
         if (a6.z) {
             return;
@@ -395,7 +395,7 @@ implements r {
         if (a7) {
             return;
         }
-        super.func_73864_a(a3, a4, a5);
+        super.mouseClicked(a3, a4, a5);
         ArrayList<jj> a8 = new ArrayList<jj>(a6.r.values());
         a8.sort(Comparator.comparingDouble(a2 -> a2.d.c()));
         if (a6.isThrough()) {
@@ -423,13 +423,13 @@ implements r {
         }
         if (a6.j) {
             for (ui ui2 : de.c.values()) {
-                ui2.func_73864_a(a3, a4, a5);
+                ui2.mouseClicked(a3, a4, a5);
             }
         }
     }
 
     @Override
-    public void func_146286_b(int a2, int a3, int a4) {
+    public void mouseReleased(int a2, int a3, int a4) {
         ui a5;
         if (a5.z) {
             return;
@@ -451,7 +451,7 @@ implements r {
         if (a6) {
             return;
         }
-        super.func_146286_b(a2, a3, a4);
+        super.mouseReleased(a2, a3, a4);
         ArrayList<jj> a7 = new ArrayList<jj>(a5.r.values());
         for (jj jj2 : a7) {
             if (jj2.ALLATORIxDEMO.remove(a4) == null) continue;
@@ -459,16 +459,16 @@ implements r {
         }
         if (a5.j) {
             for (ui ui2 : de.c.values()) {
-                ui2.func_146286_b(a2, a3, a4);
+                ui2.mouseReleased(a2, a3, a4);
             }
         }
     }
 
-    public void func_146282_l() throws IOException {
+    public void handleKeyboardInput() throws IOException {
         ui a3;
         ui a4 = wi.b.ALLATORIxDEMO();
         if (a4 != null && a3.ma == od.q) {
-            a4.func_146282_l();
+            a4.handleKeyboardInput();
             return;
         }
         boolean a5 = a3.k.c();
@@ -478,7 +478,7 @@ implements r {
         }
         new ArrayList<jj>(a3.r.values()).stream().filter(a2 -> a2 instanceof zg).map(a2 -> (zg)a2).filter(a2 -> a2.k != null).filter(a2 -> !a2.k.w).filter(a2 -> a2.isVisible() && a2.isEnable()).forEach(a2 -> {
             try {
-                a2.k.func_146274_d();
+                a2.k.handleMouseInput();
             }
             catch (IOException a3) {
                 throw new RuntimeException(a3);
@@ -486,7 +486,7 @@ implements r {
         });
         char a7 = Keyboard.getEventCharacter();
         if (Keyboard.getEventKey() == 0 && a7 >= ' ' || Keyboard.getEventKeyState()) {
-            a3.func_73869_a(a7, Keyboard.getEventKey());
+            a3.keyTyped(a7, Keyboard.getEventKey());
         } else {
             if (a3.z) {
                 return;
@@ -507,20 +507,20 @@ implements r {
                 }
             }
         }
-        a3.field_146297_k.func_152348_aa();
+        a3.mc.dispatchKeypresses();
     }
 
     @Override
-    public void func_146273_a(int a2, int a3, int a4, long a5) {
+    public void mouseClickMove(int a2, int a3, int a4, long a5) {
         ui a6;
         if (a6.z) {
             return;
         }
-        super.func_146273_a(a2, a3, a4, a5);
+        super.mouseClickMove(a2, a3, a4, a5);
     }
 
     @Override
-    public void func_73869_a(char a2, int a3) throws IOException {
+    public void keyTyped(char a2, int a3) throws IOException {
         ui a4;
         a4.keyTyped_(a2, a3);
     }
@@ -543,30 +543,30 @@ implements r {
         }
         if (a3 == 1 && a4.t.c()) {
             if (a4.ma == od.q) {
-                a4.field_146297_k.field_71439_g.func_71053_j();
+                a4.mc.player.closeScreen();
             } else if (a4.ma == od.y) {
                 wi.b.f();
             }
         }
         ArrayList<jj> a7 = new ArrayList<jj>(a4.r.values());
-        super.func_73869_a(a2, a3);
+        super.keyTyped(a2, a3);
         for (jj jj2 : a7) {
             if (!jj2.ta.c() || !jj2.xa.c()) continue;
             a5 = a5 || jj2.keyTyped(a2, a3);
         }
         if (a4.j) {
             for (ui ui2 : de.c.values()) {
-                ui2.func_73869_a(a2, a3);
+                ui2.keyTyped(a2, a3);
             }
         }
         return a5;
     }
 
-    public void func_146274_d() throws IOException {
+    public void handleMouseInput() throws IOException {
         ui a3;
         ui a4 = wi.b.ALLATORIxDEMO();
         if (a4 != null && a3.ma == od.q) {
-            a4.func_146274_d();
+            a4.handleMouseInput();
             return;
         }
         boolean a5 = a3.k.c();
@@ -576,7 +576,7 @@ implements r {
         }
         new ArrayList<jj>(a3.r.values()).stream().filter(a2 -> a2 instanceof zg).map(a2 -> (zg)a2).filter(a2 -> a2.k != null).filter(a2 -> !a2.k.w).filter(a2 -> a2.isVisible() && a2.isEnable()).forEach(a2 -> {
             try {
-                a2.k.func_146274_d();
+                a2.k.handleMouseInput();
             }
             catch (IOException a3) {
                 throw new RuntimeException(a3);
@@ -590,28 +590,28 @@ implements r {
         if (a2.z) {
             return false;
         }
-        int a3 = Mouse.getEventX() * a2.field_146294_l / a2.field_146297_k.field_71443_c;
-        int a4 = a2.field_146295_m - Mouse.getEventY() * a2.field_146295_m / a2.field_146297_k.field_71440_d - 1;
+        int a3 = Mouse.getEventX() * a2.width / a2.mc.displayWidth;
+        int a4 = a2.height - Mouse.getEventY() * a2.height / a2.mc.displayHeight - 1;
         int a5 = Mouse.getEventButton();
         if (Mouse.getEventButtonState()) {
-            if (a2.field_146297_k.field_71474_y.field_85185_A && a2.field_146298_h++ > 0) {
+            if (a2.mc.gameSettings.touchscreen && a2.touchValue++ > 0) {
                 return false;
             }
-            a2.field_146287_f = a5;
-            a2.field_146288_g = Minecraft.func_71386_F();
-            a2.func_73864_a(a3, a4, a2.field_146287_f);
+            a2.eventButton = a5;
+            a2.lastMouseEvent = Minecraft.getSystemTime();
+            a2.mouseClicked(a3, a4, a2.eventButton);
         } else if (a5 != -1) {
-            if (a2.field_146297_k.field_71474_y.field_85185_A && --a2.field_146298_h > 0) {
+            if (a2.mc.gameSettings.touchscreen && --a2.touchValue > 0) {
                 return false;
             }
-            a2.field_146287_f = -1;
-            a2.func_146286_b(a3, a4, a5);
+            a2.eventButton = -1;
+            a2.mouseReleased(a3, a4, a5);
         } else {
             a2.runGuiAction(nj.c);
             a2.runGuiAction(nj.q);
-            if (a2.field_146287_f != -1 && a2.field_146288_g > 0L) {
-                long a6 = Minecraft.func_71386_F() - a2.field_146288_g;
-                a2.func_146273_a(a3, a4, a2.field_146287_f, a6);
+            if (a2.eventButton != -1 && a2.lastMouseEvent > 0L) {
+                long a6 = Minecraft.getSystemTime() - a2.lastMouseEvent;
+                a2.mouseClickMove(a3, a4, a2.eventButton, a6);
             }
         }
         if (Mouse.getEventDWheel() != 0) {
@@ -804,11 +804,11 @@ implements r {
     }
 
     @Override
-    public void func_146281_b() {
+    public void onGuiClosed() {
         ui a2;
         an.ALLATORIxDEMO();
         a2.onGuiClosed1();
-        super.func_146281_b();
+        super.onGuiClosed();
     }
 
     public void ignoreNextClose() {
@@ -834,19 +834,19 @@ implements r {
 
     public void initGui_() {
         ui a2;
-        a2.field_146297_k = Minecraft.func_71410_x();
+        a2.mc = Minecraft.getMinecraft();
         Keyboard.enableRepeatEvents((boolean)true);
-        a2.field_146289_q = a2.field_146297_k.field_71466_p;
-        a2.field_146296_j = a2.field_146297_k.func_175599_af();
+        a2.fontRenderer = a2.mc.fontRenderer;
+        a2.itemRender = a2.mc.getRenderItem();
     }
 
     @Override
-    public void func_184098_a(Slot a2, int a3, int a4, ClickType a5) {
+    public void handleMouseClick(Slot a2, int a3, int a4, ClickType a5) {
         ui a6;
         if (a2 == null && a3 == -999 && a6.runGuiAction(nj.y)) {
             return;
         }
-        super.func_184098_a(a2, a3, a4, a5);
+        super.handleMouseClick(a2, a3, a4, a5);
     }
 
     public List<ui> getGuiManagerComponents() {

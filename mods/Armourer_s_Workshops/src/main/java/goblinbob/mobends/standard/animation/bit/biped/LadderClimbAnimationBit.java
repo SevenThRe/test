@@ -40,7 +40,7 @@ extends AnimationBit<BipedEntityData<?>> {
         float legSwingLeft2 = (float)Math.sin((double)(progress + (float)Math.PI) + Math.PI + (double)0.3f) * 0.5f + 0.5f;
         float armOrientX = -45.0f;
         float climbingRotation = data.getClimbingRotation();
-        float renderRotationY = MathHelper.func_76142_g((float)(((EntityLivingBase)living).field_70177_z - ((Float)data.headYaw.get()).floatValue() - climbingRotation));
+        float renderRotationY = MathHelper.wrapDegrees((float)(((EntityLivingBase)living).rotationYaw - ((Float)data.headYaw.get()).floatValue() - climbingRotation));
         data.renderRotation.setSmoothness(0.6f).orientY(renderRotationY);
         data.localOffset.slideZ(armSwingDouble2, 0.6f);
         data.body.rotation.setSmoothness(0.5f).orientX(armSwingDouble * 10.0f);
@@ -52,7 +52,7 @@ extends AnimationBit<BipedEntityData<?>> {
         data.leftLeg.rotation.setSmoothness(0.5f).orientX(-45.0f - legSwingLeft * 50.0f);
         data.rightForeLeg.rotation.setSmoothness(0.5f).orientX(20.0f + legSwingRight2 * 90.0f);
         data.leftForeLeg.rotation.setSmoothness(0.5f).orientX(20.0f + legSwingLeft2 * 90.0f);
-        data.head.rotation.orientX(((Float)data.headPitch.get()).floatValue()).rotateY(GUtil.clamp(MathHelper.func_76142_g((float)(((Float)data.headYaw.get()).floatValue() + renderRotationY)), -90.0f, 90.0f));
+        data.head.rotation.orientX(((Float)data.headPitch.get()).floatValue()).rotateY(GUtil.clamp(MathHelper.wrapDegrees((float)(((Float)data.headYaw.get()).floatValue() + renderRotationY)), -90.0f, 90.0f));
         float ledgeClimbStart = 0.6f;
         if (data.getLedgeHeight() >= 0.6f) {
             float armRotX = data.getLedgeHeight() - 0.6f;

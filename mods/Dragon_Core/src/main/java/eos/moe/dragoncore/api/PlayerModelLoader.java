@@ -61,7 +61,7 @@ public class PlayerModelLoader {
                 }
                 catch (Exception a5) {
                     a5.printStackTrace();
-                    Minecraft.func_71410_x().field_71439_g.func_145747_a((ITextComponent)new TextComponentString("\u00a7c\u65e0\u6cd5\u52a0\u8f7d\u73a9\u5bb6\u65f6\u88c5\u6a21\u578b:" + a2));
+                    Minecraft.getMinecraft().player.sendMessage((ITextComponent)new TextComponentString("\u00a7c\u65e0\u6cd5\u52a0\u8f7d\u73a9\u5bb6\u65f6\u88c5\u6a21\u578b:" + a2));
                 }
             });
             models.put(a2, ms.ALLATORIxDEMO());
@@ -77,24 +77,24 @@ public class PlayerModelLoader {
 
     public static void bindTexture(String a2, byte[] a3) {
         ResourceLocation a4;
-        TextureManager a5 = Minecraft.func_71410_x().func_110434_K();
-        Object a6 = a5.func_110581_b(a4 = new ResourceLocation("dragoncore", "models/player/" + a2 + "/texture.png"));
+        TextureManager a5 = Minecraft.getMinecraft().getTextureManager();
+        Object a6 = a5.getTexture(a4 = new ResourceLocation("dragoncore", "models/player/" + a2 + "/texture.png"));
         if (a6 == null) {
             a6 = new eq(a3);
-            a5.func_110579_a(a4, a6);
+            a5.loadTexture(a4, a6);
         }
-        a5.func_110577_a(a4);
+        a5.bindTexture(a4);
     }
 
     public static void bindGlowTexture(String a2, byte[] a3) {
         ResourceLocation a4;
-        TextureManager a5 = Minecraft.func_71410_x().func_110434_K();
-        Object a6 = a5.func_110581_b(a4 = new ResourceLocation("dragoncore", "models/player/" + a2 + "/glow_texture.png"));
+        TextureManager a5 = Minecraft.getMinecraft().getTextureManager();
+        Object a6 = a5.getTexture(a4 = new ResourceLocation("dragoncore", "models/player/" + a2 + "/glow_texture.png"));
         if (a6 == null) {
             a6 = new eq(a3);
-            a5.func_110579_a(a4, a6);
+            a5.loadTexture(a4, a6);
         }
-        a5.func_110577_a(a4);
+        a5.bindTexture(a4);
     }
 
     public static boolean hasGlowTexture(byte[] a2) {

@@ -36,18 +36,18 @@ extends CommandBase {
     Map<String, ICommand> commandMap = new HashMap<String, ICommand>();
 
     public ClientCommandInvoker register(ICommand command) {
-        this.commandMap.put(command.func_71517_b().toLowerCase(), command);
+        this.commandMap.put(command.getName().toLowerCase(), command);
         return this;
     }
 
-    public String func_71517_b() {
+    public String getName() {
         return "jm";
     }
 
-    public String func_71518_a(ICommandSender sender) {
+    public String getUsage(ICommandSender sender) {
         StringBuffer sb = new StringBuffer();
         for (ICommand command : this.commandMap.values()) {
-            String usage = command.func_71518_a(sender);
+            String usage = command.getUsage(sender);
             if (Strings.isEmpty((CharSequence)usage)) continue;
             if (sb.length() > 0) {
                 sb.append("\n");
@@ -57,20 +57,20 @@ extends CommandBase {
         return sb.toString();
     }
 
-    public List<String> func_71514_a() {
+    public List<String> getAliases() {
         return Collections.emptyList();
     }
 
-    public void func_184881_a(MinecraftServer server, ICommandSender sender, String[] args2) throws CommandException {
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args2) throws CommandException {
         try {
             if (args2.length > 0) {
                 ICommand command = this.getSubCommand(args2);
                 if (command != null) {
                     String[] subArgs = Arrays.copyOfRange(args2, 1, args2.length);
-                    command.func_184881_a(server, sender, subArgs);
+                    command.execute(server, sender, subArgs);
                 }
             } else {
-                sender.func_145747_a((ITextComponent)new TextComponentString(this.func_71518_a(sender)));
+                sender.sendMessage((ITextComponent)new TextComponentString(this.getUsage(sender)));
             }
         }
         catch (Throwable t) {
@@ -79,12 +79,12 @@ extends CommandBase {
         }
     }
 
-    public boolean func_184882_a(MinecraftServer server, ICommandSender sender) {
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
         return true;
     }
 
-    public List<String> func_184883_a(MinecraftServer server, ICommandSender sender, String[] args2, BlockPos pos) {
-        return ClientCommandInvoker.func_71530_a((String[])args2, (String[])new String[]{"~"});
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args2, BlockPos pos) {
+        return ClientCommandInvoker.getListOfStringsMatchingLastWord((String[])args2, (String[])new String[]{"~"});
     }
 
     public ICommand getSubCommand(String[] args2) {
@@ -95,7 +95,7 @@ extends CommandBase {
         return null;
     }
 
-    public boolean func_82358_a(String[] args2, int index) {
+    public boolean isUsernameIndex(String[] args2, int index) {
         return false;
     }
 

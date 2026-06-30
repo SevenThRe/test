@@ -199,7 +199,7 @@ public class GUtil {
                 leftoverToNextSpace = leftover;
                 endOfString = true;
             }
-            int currentWidth = fontRenderer.func_78256_a(line + leftoverToNextSpace);
+            int currentWidth = fontRenderer.getStringWidth(line + leftoverToNextSpace);
             if (currentWidth > maxWidth) {
                 lines.add(line.trim());
                 line = leftoverToNextSpace + " ";

@@ -31,12 +31,12 @@ public class ChunkLoader {
 
     public static ChunkMD getChunkMD(AnvilChunkLoader loader, Minecraft mc, ChunkPos coord, boolean forceRetain) {
         try {
-            if (RegionLoader.getRegionFile(mc, coord.field_77276_a, coord.field_77275_b).exists()) {
-                if (loader.func_191063_a(coord.field_77276_a, coord.field_77275_b)) {
-                    Chunk chunk = loader.func_75815_a((World)mc.field_71441_e, coord.field_77276_a, coord.field_77275_b);
+            if (RegionLoader.getRegionFile(mc, coord.x, coord.z).exists()) {
+                if (loader.isChunkGeneratedAt(coord.x, coord.z)) {
+                    Chunk chunk = loader.loadChunk((World)mc.world, coord.x, coord.z);
                     if (chunk != null) {
-                        if (!chunk.func_177410_o()) {
-                            chunk.func_177417_c(true);
+                        if (!chunk.isLoaded()) {
+                            chunk.markLoaded(true);
                         }
                         return new ChunkMD(chunk, forceRetain);
                     }
@@ -55,7 +55,7 @@ public class ChunkLoader {
     public static ChunkMD getChunkMdFromMemory(World world, int chunkX, int chunkZ) {
         Chunk theChunk;
         IChunkProvider provider;
-        if (world != null && (provider = world.func_72863_F()) != null && (theChunk = provider.func_186026_b(chunkX, chunkZ)) != null && theChunk.func_177410_o() && !(theChunk instanceof EmptyChunk)) {
+        if (world != null && (provider = world.getChunkProvider()) != null && (theChunk = provider.getLoadedChunk(chunkX, chunkZ)) != null && theChunk.isLoaded() && !(theChunk instanceof EmptyChunk)) {
             return new ChunkMD(theChunk);
         }
         return null;

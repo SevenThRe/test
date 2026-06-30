@@ -120,7 +120,7 @@ public class qt {
     }
 
     public static void ALLATORIxDEMO(Random a2, World a3, int a4, int a5) {
-        long a6 = a3 == null ? 0L : a3.func_72905_C();
+        long a6 = a3 == null ? 0L : a3.getSeed();
         a6 *= a6 * 6364136223846793005L + 1442695040888963407L;
         a6 += (long)a4;
         a6 *= a6 * 6364136223846793005L + 1442695040888963407L;

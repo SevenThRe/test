@@ -19,17 +19,17 @@ import net.minecraft.client.resources.SimpleReloadableResourceManager;
 
 public class ng
 implements IResourceManagerReloadListener {
-    public void func_110549_a(IResourceManager a2) {
+    public void onResourceManagerReload(IResourceManager a2) {
         if (a2 instanceof SimpleReloadableResourceManager) {
-            ((SimpleReloadableResourceManager)a2).func_110545_a((IResourcePack)new uk());
+            ((SimpleReloadableResourceManager)a2).reloadResourcePack((IResourcePack)new uk());
         }
     }
 
     public ng() {
         ng a2;
-        IResourceManager iResourceManager = Minecraft.func_71410_x().func_110442_L();
+        IResourceManager iResourceManager = Minecraft.getMinecraft().getResourceManager();
         if (iResourceManager instanceof SimpleReloadableResourceManager) {
-            ((SimpleReloadableResourceManager)iResourceManager).func_110542_a((IResourceManagerReloadListener)a2);
+            ((SimpleReloadableResourceManager)iResourceManager).registerReloadListener((IResourceManagerReloadListener)a2);
         }
     }
 }

@@ -34,7 +34,7 @@ public abstract class MixinBlockSkull {
 
     @Inject(method={"getBoundingBox"}, at={@At(value="HEAD")}, cancellable=true)
     private /* synthetic */ void mixin_getBoundingBox(IBlockState a2, IBlockAccess a3, BlockPos a4, CallbackInfoReturnable<AxisAlignedBB> a5) {
-        TileEntity a6 = a3.func_175625_s(a4);
+        TileEntity a6 = a3.getTileEntity(a4);
         gq a7 = cy.q.ALLATORIxDEMO(a6);
         if (a7 != null) {
             a5.setReturnValue(a7.ALLATORIxDEMO());
@@ -52,7 +52,7 @@ public abstract class MixinBlockSkull {
     }
 
     public int getLightValue(IBlockState a2, IBlockAccess a3, BlockPos a4) {
-        TileEntity a5 = a3.func_175625_s(a4);
+        TileEntity a5 = a3.getTileEntity(a4);
         if (a5 != null) {
             gq a6 = cy.q.ALLATORIxDEMO(a5);
             if (a6 != null) {
@@ -63,7 +63,7 @@ public abstract class MixinBlockSkull {
                 return a7;
             }
         }
-        return a2.func_185906_d();
+        return a2.getLightValue();
     }
 }
 

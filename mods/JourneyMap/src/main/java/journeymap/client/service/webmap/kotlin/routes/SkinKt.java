@@ -27,10 +27,10 @@ public final class SkinKt {
         BufferedImage bufferedImage;
         Intrinsics.checkParameterIsNotNull(handler, "handler");
         UUID uuid = UUID.fromString(handler.params("uuid"));
-        Minecraft minecraft = Minecraft.func_71410_x();
+        Minecraft minecraft = Minecraft.getMinecraft();
         Intrinsics.checkExpressionValueIsNotNull(minecraft, "Minecraft.getMinecraft()");
-        NetHandlerPlayClient netHandlerPlayClient = minecraft.func_147114_u();
-        String username = netHandlerPlayClient != null && (netHandlerPlayClient = netHandlerPlayClient.func_175102_a(uuid)) != null && (netHandlerPlayClient = netHandlerPlayClient.func_178845_a()) != null ? netHandlerPlayClient.getName() : null;
+        NetHandlerPlayClient netHandlerPlayClient = minecraft.getConnection();
+        String username = netHandlerPlayClient != null && (netHandlerPlayClient = netHandlerPlayClient.getPlayerInfo(uuid)) != null && (netHandlerPlayClient = netHandlerPlayClient.getGameProfile()) != null ? netHandlerPlayClient.getName() : null;
         BufferedImage img = null;
         if (username == null) {
             bufferedImage = new BufferedImage(24, 24, 2);

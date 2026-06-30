@@ -328,14 +328,14 @@ lbl23:
 
     private /* synthetic */ void y() {
         ae a2;
-        TextureManager textureManager = Minecraft.func_71410_x().field_71446_o;
+        TextureManager textureManager = Minecraft.getMinecraft().renderEngine;
         if (a2.t != null) {
-            textureManager.func_147645_c(a2.t);
+            textureManager.deleteTexture(a2.t);
         }
         ae ae2 = a2;
         ji ji2 = new ji(ae2, ae2.w);
         a2.t = new ResourceLocation("armourers_workshops".toLowerCase(), String.valueOf(a2.w.hashCode()));
-        textureManager.func_110579_a(a2.t, (ITextureObject)ji2);
+        textureManager.loadTexture(a2.t, (ITextureObject)ji2);
     }
 
     public ResourceLocation r() {
@@ -382,9 +382,9 @@ lbl23:
 
     public void finalize() throws Throwable {
         ae a2;
-        TextureManager textureManager = Minecraft.func_71410_x().field_71446_o;
+        TextureManager textureManager = Minecraft.getMinecraft().renderEngine;
         if (a2.t != null) {
-            textureManager.func_147645_c(a2.t);
+            textureManager.deleteTexture(a2.t);
         }
         super.finalize();
     }
@@ -407,8 +407,8 @@ lbl23:
         if (a3.b == null) {
             ae ae4;
             boolean bl;
-            a3.s = DefaultPlayerSkin.func_177335_a().hashCode();
-            a3.b = bh.r(DefaultPlayerSkin.func_177335_a());
+            a3.s = DefaultPlayerSkin.getDefaultSkinLegacy().hashCode();
+            a3.b = bh.r(DefaultPlayerSkin.getDefaultSkinLegacy());
             if (a3.b != null) {
                 bl = true;
                 ae4 = a3;

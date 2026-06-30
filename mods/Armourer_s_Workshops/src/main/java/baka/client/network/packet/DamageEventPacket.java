@@ -37,10 +37,10 @@ IMessageHandler<DamageEventPacket, IMessage> {
 
     public void toBytes(ByteBuf byteBuf) {
         PacketBuffer packetBuffer = new PacketBuffer(byteBuf);
-        packetBuffer.func_180714_a(this.actionName);
+        packetBuffer.writeString(this.actionName);
         packetBuffer.writeInt(this.entity.size());
         for (UUID uuid : this.entity) {
-            packetBuffer.func_179252_a(uuid);
+            packetBuffer.writeUniqueId(uuid);
         }
     }
 

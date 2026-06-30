@@ -38,8 +38,8 @@ public class sw {
     public static ut ALLATORIxDEMO(ResourceLocation a2) throws to {
         try {
             Throwable throwable = null;
-            try (IResource a3 = Minecraft.func_71410_x().func_110442_L().func_110536_a(a2);){
-                InputStream a4 = a3.func_110527_b();
+            try (IResource a3 = Minecraft.getMinecraft().getResourceManager().getResource(a2);){
+                InputStream a4 = a3.getInputStream();
                 ut ut2 = sw.ALLATORIxDEMO(a4);
                 return ut2;
             }

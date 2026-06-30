@@ -76,7 +76,7 @@ public enum ThemeLabelSource implements KeyedEnum
     }
 
     private static String getFps() {
-        return Minecraft.func_175610_ah() + " fps";
+        return Minecraft.getDebugFPS() + " fps";
     }
 
     private static String getGameTime() {

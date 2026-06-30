@@ -40,27 +40,27 @@ implements IMainThreadTask {
             if (!jm.isInitialized().booleanValue()) {
                 return this;
             }
-            boolean bl = isDead = mc.field_71462_r != null && mc.field_71462_r instanceof GuiGameOver;
-            if (mc.field_71441_e == null) {
+            boolean bl = isDead = mc.currentScreen != null && mc.currentScreen instanceof GuiGameOver;
+            if (mc.world == null) {
                 GuiScreen guiScreen;
                 if (jm.isMapping().booleanValue()) {
                     jm.stopMapping();
                 }
-                if (((guiScreen = mc.field_71462_r) instanceof GuiMainMenu || guiScreen instanceof GuiWorldSelection || guiScreen instanceof GuiMultiplayer) && jm.getCurrentWorldId() != null) {
+                if (((guiScreen = mc.currentScreen) instanceof GuiMainMenu || guiScreen instanceof GuiWorldSelection || guiScreen instanceof GuiMultiplayer) && jm.getCurrentWorldId() != null) {
                     this.logger.info("World ID has been reset.");
                     jm.setCurrentWorldId(null);
                 }
                 return this;
             }
-            if (this.lastDimension != mc.field_71439_g.field_71093_bK) {
-                this.lastDimension = mc.field_71439_g.field_71093_bK;
+            if (this.lastDimension != mc.player.dimension) {
+                this.lastDimension = mc.player.dimension;
                 if (jm.isMapping().booleanValue()) {
                     jm.stopMapping();
                 }
             } else if (!jm.isMapping().booleanValue() && !isDead && Journeymap.getClient().getCoreProperties().mappingEnabled.get().booleanValue()) {
                 jm.startMapping();
             }
-            boolean bl2 = isGamePaused = mc.field_71462_r != null && !(mc.field_71462_r instanceof Fullscreen);
+            boolean bl2 = isGamePaused = mc.currentScreen != null && !(mc.currentScreen instanceof Fullscreen);
             if (isGamePaused && !jm.isMapping().booleanValue()) {
                 return this;
             }

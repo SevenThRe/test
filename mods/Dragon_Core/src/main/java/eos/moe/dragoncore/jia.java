@@ -35,12 +35,12 @@ public class jia {
             fia a8 = a6.getKey();
             int a9 = 0;
             if (!fia.f(a8).isEmpty()) {
-                a7 = (ResourceLocation)Item.field_150901_e.func_177774_c((Object)a4.func_77973_b());
-                if (a7 != null && !fia.f(a8).toUpperCase().equals(a7.func_110623_a().toUpperCase())) continue;
+                a7 = (ResourceLocation)Item.REGISTRY.getNameForObject((Object)a4.getItem());
+                if (a7 != null && !fia.f(a8).toUpperCase().equals(a7.getPath().toUpperCase())) continue;
                 ++a9;
             }
             if (!fia.c(a8).isEmpty()) {
-                if (!fia.c(a8).equals(a4.func_82833_r())) continue;
+                if (!fia.c(a8).equals(a4.getDisplayName())) continue;
                 ++a9;
             }
             if (!fia.ALLATORIxDEMO(a8).isEmpty()) {
@@ -50,7 +50,7 @@ public class jia {
                 ++a9;
             }
             if (!fia.ALLATORIxDEMO(a8).isEmpty()) {
-                a7 = a4.func_77978_p();
+                a7 = a4.getTagCompound();
                 if (a7 == null) continue;
                 boolean a11 = false;
                 for (Map.Entry a12 : fia.ALLATORIxDEMO(a8).entrySet()) {
@@ -75,9 +75,9 @@ public class jia {
         String[] a4 = a3.split("\\.");
         NBTTagCompound a5 = a2;
         for (int a6 = 0; a6 < a4.length - 1; ++a6) {
-            a5 = a5.func_74775_l(a4[a6]);
+            a5 = a5.getCompoundTag(a4[a6]);
         }
-        return a5.func_74779_i(a4[a4.length - 1]);
+        return a5.getString(a4[a4.length - 1]);
     }
 }
 

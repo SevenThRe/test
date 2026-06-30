@@ -58,13 +58,13 @@ extends AnimationBit<T> {
             float PI = (float)Math.PI;
             float limbSwing = ((Float)((BipedEntityData)data).limbSwing.get()).floatValue() * 0.6662f;
             float limbSwingAmount = 0.7f * ((Float)((BipedEntityData)data).limbSwingAmount.get()).floatValue() / (float)Math.PI * 180.0f;
-            ((BipedEntityData)data).rightLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.func_76134_b((float)limbSwing) * limbSwingAmount);
-            ((BipedEntityData)data).leftLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.func_76134_b((float)(limbSwing + (float)Math.PI)) * limbSwingAmount);
+            ((BipedEntityData)data).rightLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.cos((float)limbSwing) * limbSwingAmount);
+            ((BipedEntityData)data).leftLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.cos((float)(limbSwing + (float)Math.PI)) * limbSwingAmount);
             float var = limbSwing / (float)Math.PI % 2.0f;
             ((BipedEntityData)data).leftForeLeg.rotation.setSmoothness(0.3f).orientX(var > 1.0f ? 45 : 0);
             ((BipedEntityData)data).rightForeLeg.rotation.setSmoothness(0.3f).orientX(var > 1.0f ? 0 : 45);
-            ((BipedEntityData)data).leftForeArm.rotation.setSmoothness(0.3f).orientX((MathHelper.func_76134_b((float)(limbSwing + 1.5707964f)) / 2.0f + 0.5f) * -20.0f);
-            ((BipedEntityData)data).rightForeArm.rotation.setSmoothness(0.3f).orientX((MathHelper.func_76134_b((float)limbSwing) / 2.0f + 0.5f) * -20.0f);
+            ((BipedEntityData)data).leftForeArm.rotation.setSmoothness(0.3f).orientX((MathHelper.cos((float)(limbSwing + 1.5707964f)) / 2.0f + 0.5f) * -20.0f);
+            ((BipedEntityData)data).rightForeArm.rotation.setSmoothness(0.3f).orientX((MathHelper.cos((float)limbSwing) / 2.0f + 0.5f) * -20.0f);
         } else {
             ((BipedEntityData)data).rightLeg.rotation.setSmoothness(0.1f).orientZ(10.0f);
             ((BipedEntityData)data).rightLeg.rotation.setSmoothness(0.3f).rotateX(-45.0f);

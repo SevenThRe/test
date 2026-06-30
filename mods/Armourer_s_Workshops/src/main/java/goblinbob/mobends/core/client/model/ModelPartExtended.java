@@ -42,21 +42,21 @@ extends ModelPart {
         if (!this.isShowing()) {
             return;
         }
-        if (!this.field_78812_q) {
-            this.func_78788_d(scale);
+        if (!this.compiled) {
+            this.compileDisplayList(scale);
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         this.applyCharacterTransform(scale);
-        GlStateManager.func_179148_o((int)this.field_78811_r);
+        GlStateManager.callList((int)this.displayList);
         if (this.extension != null) {
             this.extension.renderJustPart(scale);
         }
-        if (this.field_78805_m != null) {
-            for (ModelRenderer childModel : this.field_78805_m) {
-                childModel.func_78785_a(scale);
+        if (this.childModels != null) {
+            for (ModelRenderer childModel : this.childModels) {
+                childModel.render(scale);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @Override
@@ -64,63 +64,63 @@ extends ModelPart {
         if (!this.isShowing()) {
             return;
         }
-        if (!this.field_78812_q) {
-            this.func_78788_d(scale);
+        if (!this.compiled) {
+            this.compileDisplayList(scale);
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         this.applyLocalTransform(scale);
-        GlStateManager.func_179148_o((int)this.field_78811_r);
+        GlStateManager.callList((int)this.displayList);
         if (this.extension != null) {
             this.extension.renderJustPart(scale);
         }
-        if (this.field_78805_m != null) {
-            for (ModelRenderer childModel : this.field_78805_m) {
-                childModel.func_78785_a(scale);
+        if (this.childModels != null) {
+            for (ModelRenderer childModel : this.childModels) {
+                childModel.render(scale);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @Override
     public void renderPartSkin(float scale) {
-        if (!this.field_78812_q) {
-            this.func_78788_d(scale);
+        if (!this.compiled) {
+            this.compileDisplayList(scale);
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         this.applyCharacterTransform(scale);
         this.drawSkin(scale);
         if (this.extension != null) {
             this.extension.renderJustPartSkin(scale);
         }
-        if (this.field_78805_m != null) {
-            for (ModelRenderer childModel : this.field_78805_m) {
+        if (this.childModels != null) {
+            for (ModelRenderer childModel : this.childModels) {
                 if (!(childModel instanceof IModelPart)) continue;
                 IModelPart model = (IModelPart)childModel;
                 model.renderPartSkin(scale);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @Override
     public void renderJustPartSkin(float scale) {
-        if (!this.field_78812_q) {
-            this.func_78788_d(scale);
+        if (!this.compiled) {
+            this.compileDisplayList(scale);
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         this.applyLocalTransform(scale);
         this.drawSkin(scale);
         if (this.extension != null) {
             this.extension.renderJustPartSkin(scale);
         }
-        if (this.field_78805_m != null) {
-            for (ModelRenderer childModel : this.field_78805_m) {
+        if (this.childModels != null) {
+            for (ModelRenderer childModel : this.childModels) {
                 if (!(childModel instanceof IModelPart)) continue;
                 IModelPart model = (IModelPart)childModel;
                 model.renderPartSkin(scale);
             }
         }
-        GlStateManager.func_179121_F();
+        GlStateManager.popMatrix();
     }
 
     @Override

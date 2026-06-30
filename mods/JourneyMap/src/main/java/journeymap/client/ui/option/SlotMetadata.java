@@ -146,8 +146,8 @@ implements Comparable<SlotMetadata> {
 
     public String[] getTooltip() {
         String bidiColor;
-        FontRenderer fontRenderer = FMLClientHandler.instance().getClient().field_71466_p;
-        String string = bidiColor = fontRenderer.func_78260_a() ? "%2$s%1$s" : "%1$s%2$s";
+        FontRenderer fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
+        String string = bidiColor = fontRenderer.getBidiFlag() ? "%2$s%1$s" : "%1$s%2$s";
         if (this.tooltipLines == null) {
             ArrayList<TextComponentTranslation> lines = new ArrayList<TextComponentTranslation>(4);
             if (this.tooltip != null || this.range != null || this.defaultValue != null || this.advanced) {
@@ -166,7 +166,7 @@ implements Comparable<SlotMetadata> {
             if (!lines.isEmpty()) {
                 ArrayList<String> stringLines = new ArrayList<String>();
                 for (TextComponentTranslation line : lines) {
-                    stringLines.add(line.func_150260_c().trim());
+                    stringLines.add(line.getUnformattedText().trim());
                 }
                 this.tooltipLines = stringLines.toArray(new String[stringLines.size()]);
             }
@@ -175,10 +175,10 @@ implements Comparable<SlotMetadata> {
     }
 
     protected List<TextComponentTranslation> getWordWrappedLines(String color, String original) {
-        FontRenderer fontRenderer = FMLClientHandler.instance().getClient().field_71466_p;
+        FontRenderer fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
         ArrayList<TextComponentTranslation> list = new ArrayList<TextComponentTranslation>();
-        int max = fontRenderer.func_78260_a() ? 170 : 250;
-        for (Object line : fontRenderer.func_78271_c(original, max)) {
+        int max = fontRenderer.getBidiFlag() ? 170 : 250;
+        for (Object line : fontRenderer.listFormattedStringToWidth(original, max)) {
             list.add(new TextComponentTranslation("jm.config.tooltip_format", new Object[]{color, line}));
         }
         return list;

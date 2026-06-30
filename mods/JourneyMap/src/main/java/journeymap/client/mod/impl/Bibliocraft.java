@@ -56,7 +56,7 @@ IBlockSpritesProxy {
         if (!Strings.isNullOrEmpty((String)textureString)) {
             try {
                 ResourceLocation loc = new ResourceLocation(textureString);
-                TextureAtlasSprite tas = FMLClientHandler.instance().getClient().func_147117_R().func_110572_b(loc.toString());
+                TextureAtlasSprite tas = FMLClientHandler.instance().getClient().getTextureMapBlocks().getAtlasSprite(loc.toString());
                 return Collections.singletonList(new ColoredSprite(tas, null));
             }
             catch (Exception e) {

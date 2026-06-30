@@ -27,9 +27,9 @@ public class NetworkConfiguration {
     }
 
     public void onWorldJoin() {
-        this.modelScalingAllowed.setValue(Minecraft.func_71410_x().func_71356_B());
+        this.modelScalingAllowed.setValue(Minecraft.getMinecraft().isSingleplayer());
         this.bendsPacksAllowed.setValue(true);
-        this.movementLimited.setValue(!Minecraft.func_71410_x().func_71356_B());
+        this.movementLimited.setValue(!Minecraft.getMinecraft().isSingleplayer());
     }
 
     public SharedConfig getSharedConfig() {

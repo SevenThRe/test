@@ -18,11 +18,11 @@ extends BipedPreviewer<PlayerData> {
     private static boolean previewInProgress;
 
     public static void createPreviewData() {
-        if (Minecraft.func_71410_x().field_71439_g == null) {
+        if (Minecraft.getMinecraft().player == null) {
             PREVIEW_DATA = null;
             return;
         }
-        PREVIEW_DATA = new PlayerData((AbstractClientPlayer)Minecraft.func_71410_x().field_71439_g);
+        PREVIEW_DATA = new PlayerData((AbstractClientPlayer)Minecraft.getMinecraft().player);
     }
 
     public static void deletePreviewData() {

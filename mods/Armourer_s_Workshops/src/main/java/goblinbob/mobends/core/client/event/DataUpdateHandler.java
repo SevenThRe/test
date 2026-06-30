@@ -31,16 +31,16 @@ public class DataUpdateHandler {
         if (event.phase == TickEvent.Phase.END) {
             return;
         }
-        if (Minecraft.func_71410_x().field_71441_e == null || Minecraft.func_71410_x().field_71439_g == null) {
+        if (Minecraft.getMinecraft().world == null || Minecraft.getMinecraft().player == null) {
             return;
         }
-        if (!Minecraft.func_71410_x().func_147113_T()) {
+        if (!Minecraft.getMinecraft().isGamePaused()) {
             partialTicks = event.renderTickTime;
         }
-        if (ticks > (newTicks = (float)Minecraft.func_71410_x().field_71439_g.field_70173_aa + event.renderTickTime)) {
+        if (ticks > (newTicks = (float)Minecraft.getMinecraft().player.ticksExisted + event.renderTickTime)) {
             DataUpdateHandler.onTicksRestart();
         }
-        if (!Minecraft.func_71410_x().field_71441_e.field_72995_K || !Minecraft.func_71410_x().func_147113_T()) {
+        if (!Minecraft.getMinecraft().world.isRemote || !Minecraft.getMinecraft().isGamePaused()) {
             ticksPerFrame = Math.min(Math.max(0.0f, newTicks - ticks), 1.0f);
             ticks = newTicks;
             EntityDatabase.instance.updateRender(event.renderTickTime);
@@ -56,7 +56,7 @@ public class DataUpdateHandler {
 
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase == TickEvent.Phase.END || Minecraft.func_71410_x().field_71439_g == null || Minecraft.func_71410_x().func_147113_T()) {
+        if (event.phase == TickEvent.Phase.END || Minecraft.getMinecraft().player == null || Minecraft.getMinecraft().isGamePaused()) {
             return;
         }
         EntityDatabase.instance.updateClient();

@@ -38,9 +38,9 @@ implements Serializable {
         gv a4;
         a4.o.set(a4.o.getX() - a3.a.getX(), -(a4.o.getY() + a4.z.getY() - a3.a.getY()), a4.o.getZ() - a3.a.getZ());
         if (a4.c == null) {
-            return new xu(a4.o, a4.z, a4.f, a3.f, a3.e, a2.field_78090_t, a2.field_78089_u);
+            return new xu(a4.o, a4.z, a4.f, a3.f, a3.e, a2.textureWidth, a2.textureHeight);
         }
-        return new xu(a2, a4.o, a4.z, a4.c, a3.f, a3.e, a2.field_78090_t, a2.field_78089_u);
+        return new xu(a2, a4.o, a4.z, a4.c, a3.f, a3.e, a2.textureWidth, a2.textureHeight);
     }
 }
 

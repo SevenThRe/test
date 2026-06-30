@@ -29,14 +29,14 @@ extends AnimationBit<BipedEntityData<?>> {
         ModelPartTransform offForeArm;
         data.localOffset.slideToZero(0.3f);
         Object living = data.getEntity();
-        EnumHandSide primaryHand = living.func_184591_cq();
+        EnumHandSide primaryHand = living.getPrimaryHand();
         boolean mainHandSwitch = primaryHand == EnumHandSide.RIGHT;
         float handDirMtp = mainHandSwitch ? 1.0f : -1.0f;
         ModelPartTransform mainArm = mainHandSwitch ? data.rightArm : data.leftArm;
         ModelPartTransform offArm = mainHandSwitch ? data.leftArm : data.rightArm;
         ModelPartTransform mainForeArm = mainHandSwitch ? data.rightForeArm : data.leftForeArm;
         ModelPartTransform modelPartTransform = offForeArm = mainHandSwitch ? data.leftForeArm : data.rightForeArm;
-        if (living.func_184586_b(EnumHand.MAIN_HAND).func_77973_b() instanceof ItemSword) {
+        if (living.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemSword) {
             data.swordTrail.add(data, 0.0f, 0.0f, -10.0f);
         }
         data.body.rotation.rotateY(20.0f * handDirMtp);

@@ -23,23 +23,23 @@ import net.minecraft.server.MinecraftServer;
 @Deprecated
 public class CommandJTP
 extends CommandBase {
-    public boolean func_184882_a(MinecraftServer server, ICommandSender sender) {
+    public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
         return true;
     }
 
-    public String func_71517_b() {
+    public String getName() {
         return "jtp";
     }
 
-    public String func_71518_a(ICommandSender sender) {
+    public String getUsage(ICommandSender sender) {
         return "/jtp <x y z dim>";
     }
 
-    public void func_184881_a(MinecraftServer server, ICommandSender sender, String[] args2) throws CommandException {
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args2) throws CommandException {
         if (args2.length < 4) {
-            throw new CommandException(this.func_71518_a(sender), new Object[0]);
+            throw new CommandException(this.getUsage(sender), new Object[0]);
         }
-        EntityPlayerMP player = CommandJTP.func_71521_c((ICommandSender)sender);
+        EntityPlayerMP player = CommandJTP.getCommandSenderAsPlayer((ICommandSender)sender);
         try {
             double x = Double.parseDouble(args2[0]);
             double y = Double.parseDouble(args2[1]);
@@ -49,10 +49,10 @@ extends CommandBase {
             JourneyMapTeleport.instance().attemptTeleport((Entity)player, location);
         }
         catch (NumberFormatException nfe) {
-            throw new CommandException("Numbers only! Usage: " + this.func_71518_a(sender) + nfe, new Object[0]);
+            throw new CommandException("Numbers only! Usage: " + this.getUsage(sender) + nfe, new Object[0]);
         }
         catch (Exception e) {
-            throw new CommandException("/jtp failed Usage: " + this.func_71518_a(sender), new Object[0]);
+            throw new CommandException("/jtp failed Usage: " + this.getUsage(sender), new Object[0]);
         }
     }
 }

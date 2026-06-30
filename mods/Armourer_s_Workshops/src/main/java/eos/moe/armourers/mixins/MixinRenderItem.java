@@ -45,69 +45,69 @@ public class MixinRenderItem {
     private static /* synthetic */ void renderByItem2(ItemStack a2, fk a3, IBakedModel a4) {
         if (a4 instanceof gg) {
             gg gg2 = (gg)a4;
-            GlStateManager.func_179094_E();
-            GlStateManager.func_179109_b((float)0.0f, (float)0.01f, (float)0.0f);
-            GlStateManager.func_179137_b((double)0.5, (double)0.5, (double)0.5);
-            GlStateManager.func_179152_a((float)-1.0f, (float)-1.0f, (float)1.0f);
+            GlStateManager.pushMatrix();
+            GlStateManager.translate((float)0.0f, (float)0.01f, (float)0.0f);
+            GlStateManager.translate((double)0.5, (double)0.5, (double)0.5);
+            GlStateManager.scale((float)-1.0f, (float)-1.0f, (float)1.0f);
             tg.r(a3.r(), 0.0625f);
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
             return;
         }
-        Minecraft minecraft = Minecraft.func_71410_x();
+        Minecraft minecraft = Minecraft.getMinecraft();
         GL11.glPushMatrix();
         GL11.glScalef((float)-1.0f, (float)-1.0f, (float)1.0f);
         GL11.glRotatef((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
         Minecraft minecraft2 = minecraft;
-        minecraft2.field_71424_I.func_76320_a("armourersItemSkin");
+        minecraft2.profiler.startSection("armourersItemSkin");
         GL11.glPushAttrib((int)8192);
         xd.z();
         GL11.glEnable((int)2884);
-        GlStateManager.func_179109_b((float)0.5f, (float)-0.125f, (float)0.0f);
-        GlStateManager.func_179152_a((float)0.4f, (float)0.4f, (float)0.4f);
+        GlStateManager.translate((float)0.5f, (float)-0.125f, (float)0.0f);
+        GlStateManager.scale((float)0.4f, (float)0.4f, (float)0.4f);
         fk fk2 = a3;
         double d2 = fk2.r().getScale();
         double d3 = fk2.r().getTrans();
         double d4 = d2;
-        GlStateManager.func_179139_a((double)d4, (double)d4, (double)d4);
-        GlStateManager.func_179137_b((double)0.0, (double)d3, (double)0.0);
+        GlStateManager.scale((double)d4, (double)d4, (double)d4);
+        GlStateManager.translate((double)0.0, (double)d3, (double)0.0);
         zh.c = 4.0f;
         tg.r(a3.r(), 0.0625f);
         GL11.glPopAttrib();
-        minecraft2.field_71424_I.func_76319_b();
+        minecraft2.profiler.endSection();
         GL11.glPopMatrix();
     }
 
     @Inject(method={"renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/renderer/block/model/IBakedModel;)V"}, at={@At(value="HEAD")}, cancellable=true)
     private /* synthetic */ void mixin_renderItem(ItemStack a2, IBakedModel a3, CallbackInfo a4) {
-        if (a2.func_190926_b()) {
+        if (a2.isEmpty()) {
             return;
         }
         if (zh.l) {
             fk fk2 = fk.r(a2);
             if (fk2 != null && fk2.r() != null) {
                 a4.cancel();
-                GlStateManager.func_179094_E();
-                GlStateManager.func_179109_b((float)-0.5f, (float)-0.5f, (float)-0.5f);
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-                GlStateManager.func_179091_B();
+                GlStateManager.pushMatrix();
+                GlStateManager.translate((float)-0.5f, (float)-0.5f, (float)-0.5f);
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                GlStateManager.enableRescaleNormal();
                 MixinRenderItem.renderByItem(a2, Thread.currentThread().getStackTrace()[3].getClassName());
-                GlStateManager.func_179121_F();
+                GlStateManager.popMatrix();
             }
             if (fk2 != null && fk2.r() != null) {
                 a4.cancel();
-                GlStateManager.func_179094_E();
-                GlStateManager.func_179109_b((float)-0.5f, (float)-0.5f, (float)-0.5f);
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-                GlStateManager.func_179091_B();
+                GlStateManager.pushMatrix();
+                GlStateManager.translate((float)-0.5f, (float)-0.5f, (float)-0.5f);
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                GlStateManager.enableRescaleNormal();
                 MixinRenderItem.renderByItem2(a2, fk2, a3);
-                GlStateManager.func_179121_F();
+                GlStateManager.popMatrix();
             }
         }
     }
 
     @Inject(method={"getItemModelWithOverrides"}, at={@At(value="HEAD")}, cancellable=true)
     private /* synthetic */ void mixin_getItemModelWithOverrides(ItemStack a2, World a3, EntityLivingBase a4, CallbackInfoReturnable<IBakedModel> a5) {
-        if (a2.func_190926_b() || !zh.l) {
+        if (a2.isEmpty() || !zh.l) {
             return;
         }
         if ((a2 = fk.r((ItemStack)a2)) != null && ((fk)a2).r() != null && ((fk)a2).r().getTransformBakedModel() != null) {
@@ -117,30 +117,30 @@ public class MixinRenderItem {
 
     private static /* synthetic */ void renderByItem(ItemStack a2, String a3) {
         ItemStack itemStack;
-        Minecraft minecraft = Minecraft.func_71410_x();
+        Minecraft minecraft = Minecraft.getMinecraft();
         GL11.glPushMatrix();
         GL11.glScalef((float)-1.0f, (float)-1.0f, (float)1.0f);
         GL11.glRotatef((float)180.0f, (float)0.0f, (float)1.0f, (float)0.0f);
-        minecraft.field_71424_I.func_76320_a("armourersItemSkin");
+        minecraft.profiler.startSection("armourersItemSkin");
         GL11.glPushAttrib((int)8192);
         xd.z();
         GL11.glEnable((int)2884);
-        GlStateManager.func_179109_b((float)0.5f, (float)-0.5f, (float)0.0f);
-        GlStateManager.func_179152_a((float)0.8f, (float)0.8f, (float)0.8f);
+        GlStateManager.translate((float)0.5f, (float)-0.5f, (float)0.0f);
+        GlStateManager.scale((float)0.8f, (float)0.8f, (float)0.8f);
         zh.c = 4.0f;
         if (!"net.minecraft.client.renderer.entity.RenderEntityItem".equals(a3)) {
-            GlStateManager.func_179114_b((float)30.0f, (float)1.0f, (float)0.0f, (float)0.0f);
-            GlStateManager.func_179114_b((float)45.0f, (float)0.0f, (float)1.0f, (float)0.0f);
+            GlStateManager.rotate((float)30.0f, (float)1.0f, (float)0.0f, (float)0.0f);
+            GlStateManager.rotate((float)45.0f, (float)0.0f, (float)1.0f, (float)0.0f);
             itemStack = a2;
         } else {
-            GlStateManager.func_179109_b((float)-0.1f, (float)0.0f, (float)-0.7f);
-            GlStateManager.func_179109_b((float)0.0f, (float)-1.0f, (float)0.0f);
-            GlStateManager.func_179152_a((float)2.0f, (float)2.0f, (float)2.0f);
+            GlStateManager.translate((float)-0.1f, (float)0.0f, (float)-0.7f);
+            GlStateManager.translate((float)0.0f, (float)-1.0f, (float)0.0f);
+            GlStateManager.scale((float)2.0f, (float)2.0f, (float)2.0f);
             itemStack = a2;
         }
         ih.r(itemStack, true, 16.0f, 16.0f);
         GL11.glPopAttrib();
-        minecraft.field_71424_I.func_76319_b();
+        minecraft.profiler.endSection();
         GL11.glPopMatrix();
     }
 }

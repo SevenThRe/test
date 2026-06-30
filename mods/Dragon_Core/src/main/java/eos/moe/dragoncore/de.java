@@ -96,7 +96,7 @@ import org.yaml.snakeyamla.configuration.file.YamlConfiguration;
 @Mod.EventBusSubscriber(modid="dragoncore")
 public class de {
     public static final Map<String, ui> c = new ConcurrentHashMap<String, ui>();
-    public static final Minecraft q = Minecraft.func_71410_x();
+    public static final Minecraft q = Minecraft.getMinecraft();
     private static final Set<String> b = new HashSet<String>();
     public static ScaledResolution o = new ScaledResolution(q);
     public static ITextComponent y = new TextComponentString("");
@@ -116,14 +116,14 @@ public class de {
             rj.ALLATORIxDEMO().ALLATORIxDEMO();
         }
         if (a2.phase == TickEvent.Phase.END) {
-            sj.y = de.q.field_71417_B.field_74377_a;
-            sj.k = de.q.field_71417_B.field_74375_b;
+            sj.y = de.q.mouseHelper.deltaX;
+            sj.k = de.q.mouseHelper.deltaY;
         }
     }
 
     @SubscribeEvent
     public static void ALLATORIxDEMO(InputUpdateEvent a2) {
-        GuiScreen a3 = Minecraft.func_71410_x().field_71462_r;
+        GuiScreen a3 = Minecraft.getMinecraft().currentScreen;
         if (a3 instanceof ui && ((ui)a3).ta) {
             tg.ALLATORIxDEMO(a2.getMovementInput());
         }
@@ -135,32 +135,32 @@ public class de {
         if (a3.phase == TickEvent.Phase.END) {
             return;
         }
-        if (de.q.field_71439_g == null) {
+        if (de.q.player == null) {
             return;
         }
         wi.b.ALLATORIxDEMO("tickEnd", new v[0]);
         Map<String, v> a4 = qv.b.ALLATORIxDEMO();
         a4.entrySet().removeIf(a2 -> ((String)a2.getKey()).startsWith("buff_"));
         int a5 = 1;
-        for (PotionEffect a6 : de.q.field_71439_g.func_70651_bq()) {
-            Potion a7 = a6.func_188419_a();
-            String a8 = a6.func_76453_d();
-            String a9 = I18n.func_135052_a((String)a7.func_76393_a(), (Object[])new Object[0]);
-            if (a6.func_76458_c() == 1) {
-                a9 = a9 + " " + I18n.func_135052_a((String)"enchantment.level.2", (Object[])new Object[0]);
-            } else if (a6.func_76458_c() == 2) {
-                a9 = a9 + " " + I18n.func_135052_a((String)"enchantment.level.3", (Object[])new Object[0]);
-            } else if (a6.func_76458_c() == 3) {
-                a9 = a9 + " " + I18n.func_135052_a((String)"enchantment.level.4", (Object[])new Object[0]);
+        for (PotionEffect a6 : de.q.player.getActivePotionEffects()) {
+            Potion a7 = a6.getPotion();
+            String a8 = a6.getEffectName();
+            String a9 = I18n.format((String)a7.getName(), (Object[])new Object[0]);
+            if (a6.getAmplifier() == 1) {
+                a9 = a9 + " " + I18n.format((String)"enchantment.level.2", (Object[])new Object[0]);
+            } else if (a6.getAmplifier() == 2) {
+                a9 = a9 + " " + I18n.format((String)"enchantment.level.3", (Object[])new Object[0]);
+            } else if (a6.getAmplifier() == 3) {
+                a9 = a9 + " " + I18n.format((String)"enchantment.level.4", (Object[])new Object[0]);
             }
-            String a10 = Potion.func_188410_a((PotionEffect)a6, (float)1.0f);
-            int a11 = (int)((float)a6.func_76459_b() / 20.0f);
+            String a10 = Potion.getPotionDurationString((PotionEffect)a6, (float)1.0f);
+            int a11 = (int)((float)a6.getDuration() / 20.0f);
             hl a12 = new hl();
             a12.ALLATORIxDEMO().put("name", xf.ALLATORIxDEMO(a8));
             a12.ALLATORIxDEMO().put("displayname", xf.ALLATORIxDEMO(a9));
             a12.ALLATORIxDEMO().put("duration", xf.ALLATORIxDEMO(a10));
             a12.ALLATORIxDEMO().put("second", pf.ALLATORIxDEMO(a11));
-            a12.ALLATORIxDEMO().put("level", pf.ALLATORIxDEMO(a6.func_76458_c()));
+            a12.ALLATORIxDEMO().put("level", pf.ALLATORIxDEMO(a6.getAmplifier()));
             a4.put("buff_" + a5, a12);
             ++a5;
         }
@@ -171,7 +171,7 @@ public class de {
         if (a2.getType() == ChatType.GAME_INFO) {
             return;
         }
-        String a3 = a2.getMessage().func_150254_d();
+        String a3 = a2.getMessage().getFormattedText();
         if (!a3.isEmpty()) {
             boolean a4 = false;
             for (ui a5 : wi.b.ALLATORIxDEMO()) {
@@ -188,13 +188,13 @@ public class de {
 
     @SubscribeEvent
     public static void ALLATORIxDEMO(GuiScreenEvent.DrawScreenEvent.Post a2) {
-        if (Minecraft.func_71410_x().field_71439_g == null) {
+        if (Minecraft.getMinecraft().player == null) {
             return;
         }
         for (int a3 = 0; a3 < 5; ++a3) {
             for (Map.Entry<String, ui> a4 : c.entrySet()) {
                 if (b.contains(a4.getKey()) || a4.getValue().e != a3 || !a4.getValue().l.equalsIgnoreCase("hud_post")) continue;
-                a4.getValue().func_73863_a(a2.getMouseX(), a2.getMouseY(), q.func_193989_ak());
+                a4.getValue().drawScreen(a2.getMouseX(), a2.getMouseY(), q.getTickLength());
             }
         }
     }
@@ -211,17 +211,17 @@ public class de {
             for (ui a4 : c.values()) {
                 b.addAll(a4.aa);
             }
-            if (de.q.field_71462_r instanceof ui) {
-                b.addAll(((ui)de.q.field_71462_r).aa);
+            if (de.q.currentScreen instanceof ui) {
+                b.addAll(((ui)de.q.currentScreen).aa);
             }
-            if (!(de.q.field_71462_r instanceof GuiChat || de.q.field_71462_r instanceof ui && ((ui)de.q.field_71462_r).j)) {
+            if (!(de.q.currentScreen instanceof GuiChat || de.q.currentScreen instanceof ui && ((ui)de.q.currentScreen).j)) {
                 a3.x = -9999;
             }
             for (int a5 = 0; a5 < 5; ++a5) {
                 for (Map.Entry<String, ui> a6 : c.entrySet()) {
                     String a7;
-                    if (b.contains(a6.getKey()) || a6.getValue().e != a5 || (a7 = a6.getValue().l).equalsIgnoreCase("hud_post") && de.q.field_71462_r != null) continue;
-                    a6.getValue().func_73863_a(a3.x, a3.y, q.func_193989_ak());
+                    if (b.contains(a6.getKey()) || a6.getValue().e != a5 || (a7 = a6.getValue().l).equalsIgnoreCase("hud_post") && de.q.currentScreen != null) continue;
+                    a6.getValue().drawScreen(a3.x, a3.y, q.getTickLength());
                 }
             }
         } else if (b.contains(a2.getType().name())) {
@@ -232,15 +232,15 @@ public class de {
     @SubscribeEvent
     public static void ALLATORIxDEMO(InputEvent.KeyInputEvent a2) {
         String a3;
-        if (Minecraft.func_71410_x().field_71462_r != null) {
+        if (Minecraft.getMinecraft().currentScreen != null) {
             return;
         }
         for (KeyBinding a4 : ca.ALLATORIxDEMO) {
-            if (a4.func_151470_d()) {
+            if (a4.isKeyDown()) {
                 if (ALLATORIxDEMO.contains(a4)) continue;
                 ALLATORIxDEMO.add(a4);
                 for (ui a5 : c.values()) {
-                    a5.ba = a4.func_151464_g();
+                    a5.ba = a4.getKeyDescription();
                     a5.runGuiAction(nj.d);
                     a5.ba = "";
                 }
@@ -249,7 +249,7 @@ public class de {
             if (!ALLATORIxDEMO.contains(a4)) continue;
             ALLATORIxDEMO.remove(a4);
             for (ui a5 : c.values()) {
-                a5.ba = a4.func_151464_g();
+                a5.ba = a4.getKeyDescription();
                 a5.runGuiAction(nj.p);
                 a5.ba = "";
             }
@@ -273,7 +273,7 @@ public class de {
 
     @SubscribeEvent(priority=EventPriority.LOW)
     public static void ALLATORIxDEMO(GuiOpenEvent a2) {
-        Minecraft a3 = Minecraft.func_71410_x();
+        Minecraft a3 = Minecraft.getMinecraft();
         if (a2.getGui() != null) {
             Object a4;
             Container a5;
@@ -288,31 +288,31 @@ public class de {
                 return;
             }
             String a7 = null;
-            Container container = a5 = a3.field_71439_g == null ? null : Minecraft.func_71410_x().field_71439_g.field_71069_bz;
+            Container container = a5 = a3.player == null ? null : Minecraft.getMinecraft().player.inventoryContainer;
             if (a2.getGui() instanceof GuiChat && !(a2.getGui() instanceof GuiSleepMP)) {
                 if (ca.x && a2.getGui().getClass() == GuiChat.class) {
                     return;
                 }
                 a4 = (GuiChat)a2.getGui();
-                qv.b.ALLATORIxDEMO("guichatopen", new xf(((GuiChat)a4).field_146409_v));
-                Minecraft.func_71410_x().func_152344_a(() -> {
+                qv.b.ALLATORIxDEMO("guichatopen", new xf(((GuiChat)a4).defaultInputFieldText));
+                Minecraft.getMinecraft().addScheduledTask(() -> {
                     for (ui a2 : c.values()) {
                         a2.runGuiAction(nj.a);
                     }
                 });
             }
             if (a2.getGui().getClass() == GuiInventory.class) {
-                if (!de.q.field_71442_b.func_78758_h()) {
+                if (!de.q.playerController.isInCreativeMode()) {
                     a7 = "GuiInventory";
                 }
-                a5 = ((GuiInventory)a2.getGui()).field_147002_h;
+                a5 = ((GuiInventory)a2.getGui()).inventorySlots;
             } else if (a2.getGui() instanceof GuiChest) {
-                a4 = (IInventory)ReflectionHelper.getPrivateValue(GuiChest.class, (Object)((GuiChest)a2.getGui()), (String[])new String[]{"field_147015_w", "lowerChestInventory"});
-                a7 = a4 != null && a4.func_145748_c_() != null ? a4.func_145748_c_().func_150260_c() : null;
-                a5 = ((GuiChest)a2.getGui()).field_147002_h;
+                a4 = (IInventory)ReflectionHelper.getPrivateValue(GuiChest.class, (Object)((GuiChest)a2.getGui()), (String[])new String[]{"lowerChestInventory", "lowerChestInventory"});
+                a7 = a4 != null && a4.getDisplayName() != null ? a4.getDisplayName().getUnformattedText() : null;
+                a5 = ((GuiChest)a2.getGui()).inventorySlots;
             } else {
                 if (a2.getGui() instanceof GuiContainer) {
-                    a5 = ((GuiContainer)a2.getGui()).field_147002_h;
+                    a5 = ((GuiContainer)a2.getGui()).inventorySlots;
                 }
                 a7 = a2.getGui().getClass().getSimpleName();
             }
@@ -332,17 +332,17 @@ public class de {
     }
 
     public static void c(String a2, YamlConfiguration a3) {
-        ui a4 = new ui(a2, a3, wi.b.ALLATORIxDEMO(), Minecraft.func_71410_x().field_71439_g.field_71069_bz, od.q);
+        ui a4 = new ui(a2, a3, wi.b.ALLATORIxDEMO(), Minecraft.getMinecraft().player.inventoryContainer, od.q);
         a4.open();
-        Minecraft.func_71410_x().func_147108_a((GuiScreen)a4);
+        Minecraft.getMinecraft().displayGuiScreen((GuiScreen)a4);
     }
 
     public static void ALLATORIxDEMO(String a2, YamlConfiguration a3) {
         ui a4 = c.remove(a2.toLowerCase(Locale.ROOT));
         if (a4 != null) {
-            a4.func_146281_b();
+            a4.onGuiClosed();
         }
-        ui a5 = new ui(a2, a3, wi.b.ALLATORIxDEMO(), Minecraft.func_71410_x().field_71439_g.field_71069_bz, od.b);
+        ui a5 = new ui(a2, a3, wi.b.ALLATORIxDEMO(), Minecraft.getMinecraft().player.inventoryContainer, od.b);
         a5.initGui_();
         a5.open();
         c.put(a2.toLowerCase(Locale.ROOT), a5);
@@ -360,14 +360,14 @@ public class de {
         ArrayList<ui> a2 = new ArrayList<ui>(c.values());
         c.clear();
         for (ui a3 : a2) {
-            a3.func_146281_b();
+            a3.onGuiClosed();
         }
     }
 
     public static void ALLATORIxDEMO(String a2) {
         ui a3 = c.remove(a2.toLowerCase(Locale.ROOT));
         if (a3 != null) {
-            a3.func_146281_b();
+            a3.onGuiClosed();
         }
     }
 

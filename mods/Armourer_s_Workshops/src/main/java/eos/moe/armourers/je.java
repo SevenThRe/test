@@ -49,30 +49,30 @@ extends ge {
             }
             if (a8.l == a2) {
                 n2 = a2;
-                Gui.func_73734_a((int)(a8.f + 1), (int)(a4 - 1), (int)a8.s, (int)(a4 + 11), (int)-120);
+                Gui.drawRect((int)(a8.f + 1), (int)(a4 - 1), (int)a8.s, (int)(a4 + 11), (int)-120);
             } else {
                 if (a6) {
-                    Gui.func_73734_a((int)(a8.f + 1), (int)(a4 - 1), (int)a8.s, (int)(a4 + 11), (int)-3355444);
+                    Gui.drawRect((int)(a8.f + 1), (int)(a4 - 1), (int)a8.s, (int)(a4 + 11), (int)-3355444);
                 }
                 n2 = a2;
             }
             if (af.r(n2)) {
                 ql.r("armour-library.png");
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
                 GuiUtils.drawTexturedModalRect((int)(a8.f + 1), (int)(a4 + 1), (int)162, (int)0, (int)18, (int)10, (float)0.0f);
                 String a52 = af.l.get(a2).substring(4);
                 if (a2 == 0 && !af.r.isEmpty()) {
                     a52 = new StringBuilder().insert(0, a52).append("  \u5f53\u524d\u8def\u5f84:").append(af.r.substring(1)).toString();
                 }
-                a8.r.field_71466_p.func_78276_b(a52, a8.f + 20, a4 + 1, -13697238);
+                a8.r.fontRenderer.drawString(a52, a8.f + 20, a4 + 1, -13697238);
                 list = a32;
             } else {
                 th.r(a8.f + 8, a4 + 5, 16.0f, 16.0f, af.l.get(a2));
                 if (a8.l == a2) {
-                    a8.r.field_71466_p.func_78276_b(af.l.get(a2), a8.f + 14, a4 + 1, -16777216);
+                    a8.r.fontRenderer.drawString(af.l.get(a2), a8.f + 14, a4 + 1, -16777216);
                     list = a32;
                 } else {
-                    a8.r.field_71466_p.func_78276_b(af.l.get(a2), a8.f + 14, a4 + 1, 0xFFFFFF);
+                    a8.r.fontRenderer.drawString(af.l.get(a2), a8.f + 14, a4 + 1, 0xFFFFFF);
                     list = a32;
                 }
             }
@@ -161,9 +161,9 @@ extends ge {
         je je2 = a10;
         int n2 = a3;
         int n3 = a5;
-        super(Minecraft.func_71410_x(), a4, n3, n2, n2 + n3, a2, a6, a7, a8);
+        super(Minecraft.getMinecraft(), a4, n3, n2, n2 + n3, a2, a6, a7, a8);
         je2.l = -1;
-        je2.r = Minecraft.func_71410_x();
+        je2.r = Minecraft.getMinecraft();
         je2.w = a9;
     }
 

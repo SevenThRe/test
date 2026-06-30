@@ -16,7 +16,7 @@ public class BetonQuestHandler
 implements MessageHandler {
     @Override
     public void readBuffer(PacketBuffer buffer) throws Exception {
-        String string = buffer.func_150789_c(32768);
+        String string = buffer.readString(32768);
         if (string.isEmpty()) {
             Utils.runSync(() -> {
                 BetonQuestGui screen = Utils.getScreen(BetonQuestGui.class);

@@ -52,8 +52,8 @@ implements Draw {
             list.add(dimTeleportCheckBox);
         } else {
             list.add(this.checkBox("jm.server.edit.chkbox.teleport", "can_teleport", this.properties));
-            if (!FMLClientHandler.instance().getClient().func_71356_B() || Minecraft.func_71410_x().func_71401_C() != null && Minecraft.func_71410_x().func_71401_C().func_71344_c()) {
-                if (!FMLClientHandler.instance().getClient().func_71356_B()) {
+            if (!FMLClientHandler.instance().getClient().isSingleplayer() || Minecraft.getMinecraft().getIntegratedServer() != null && Minecraft.getMinecraft().getIntegratedServer().getPublic()) {
+                if (!FMLClientHandler.instance().getClient().isSingleplayer()) {
                     CheckBox worldIdCheckBox = this.checkBox("jm.server.edit.chkbox.world.id", "useWorldId", this.properties);
                     worldIdCheckBox.setTooltip(ServerOptionsManager.formattedToolTipHeader("jm.server.edit.chkbox.world.id") + Constants.getString("jm.server.edit.chkbox.world.id.tooltip") + "\n\n" + Constants.getString("jm.server.edit.chkbox.world.id.tooltip2") + "\n\n" + Constants.getString("jm.server.edit.chkbox.world.id.tooltip3"));
                     list.add(worldIdCheckBox);
@@ -62,7 +62,7 @@ implements Draw {
                 sliderFieldValue.set(this.properties.get("tracking_time").getAsInt());
                 IntSliderButton trackingUpdateSlider = new IntSliderButton(sliderFieldValue, Constants.getString("jm.server.edit.slider.update.pre"), Constants.getString("jm.server.edit.slider.update.post"));
                 trackingUpdateSlider.setTooltip(ServerOptionsManager.formattedToolTipHeader("jm.server.edit.tracking.update.label") + Constants.getString("jm.server.edit.slider.update.tooltip"));
-                trackingUpdateSlider.field_146125_m = false;
+                trackingUpdateSlider.visible = false;
                 ServerOption option = new ServerOption("can_track", this.properties);
                 ListPropertyButton<ServerOption.Option> tracking = new ListPropertyButton<ServerOption.Option>(EnumSet.allOf(ServerOption.Option.class), Constants.getString("jm.server.edit.tracking.label"), new EnumField<ServerOption.Option>(Category.Hidden, "", option.getOption()));
                 tracking.addClickListener(button -> {
@@ -77,7 +77,7 @@ implements Draw {
                     this.properties.addProperty("tracking_time", (Number)trackingUpdateSlider.getValue());
                     return true;
                 });
-                trackingUpdateSlider.func_175211_a(this.fontRenderer.func_78256_a(Constants.getString("jm.server.edit.slider.update.pre") + journeymap.common.network.Constants.TRACKING_MAX + Constants.getString("jm.server.edit.slider.update.post")) + 10);
+                trackingUpdateSlider.setWidth(this.fontRenderer.getStringWidth(Constants.getString("jm.server.edit.slider.update.pre") + journeymap.common.network.Constants.TRACKING_MAX + Constants.getString("jm.server.edit.slider.update.post")) + 10);
                 this.resetTrackingSlider(tracking.getField().get(), tracking, trackingUpdateSlider);
                 list.add(tracking);
                 list.add(trackingUpdateSlider);
@@ -92,7 +92,7 @@ implements Draw {
         } else {
             trackingUpdateSlider.setVisible(true);
         }
-        tracking.func_175211_a(this.fontRenderer.func_78256_a(Constants.getString("jm.server.edit.tracking.label") + " : * " + options2.displayName() + " * ") + 10);
+        tracking.setWidth(this.fontRenderer.getStringWidth(Constants.getString("jm.server.edit.tracking.label") + " : * " + options2.displayName() + " * ") + 10);
     }
 
     @Override

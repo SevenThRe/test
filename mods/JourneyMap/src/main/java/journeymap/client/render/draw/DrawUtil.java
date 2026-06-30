@@ -28,8 +28,8 @@ import org.lwjgl.opengl.GL11;
 
 public class DrawUtil {
     public static double zLevel = 0.0;
-    static Tessellator tessellator = Tessellator.func_178181_a();
-    static BufferBuilder worldrenderer = tessellator.func_178180_c();
+    static Tessellator tessellator = Tessellator.getInstance();
+    static BufferBuilder worldrenderer = tessellator.getBuffer();
 
     public static void drawCenteredLabel(String text, double x, double y, Integer bgColor, float bgAlpha, Integer color, float alpha, double fontScale) {
         DrawUtil.drawLabel(text, x, y, HAlign.Center, VAlign.Middle, bgColor, bgAlpha, color, alpha, fontScale, true, 0.0);
@@ -55,14 +55,14 @@ public class DrawUtil {
             DrawUtil.drawLabel(lines[0], x, y, hAlign, vAlign, bgColor, bgAlpha, color, alpha, fontScale, fontShadow, rotation);
             return;
         }
-        FontRenderer fontRenderer = FMLClientHandler.instance().getClient().field_71466_p;
-        double vpad = fontRenderer.func_82883_a() ? 0.0 : (fontShadow ? 6.0 : 4.0);
-        double lineHeight = (double)fontRenderer.field_78288_b * fontScale;
+        FontRenderer fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
+        double vpad = fontRenderer.getUnicodeFlag() ? 0.0 : (fontShadow ? 6.0 : 4.0);
+        double lineHeight = (double)fontRenderer.FONT_HEIGHT * fontScale;
         double bgHeight = lineHeight * (double)lines.length + vpad;
         double bgWidth = 0.0;
         if (bgColor != null && bgAlpha > 0.0f) {
             for (String line : lines) {
-                bgWidth = Math.max(bgWidth, (double)fontRenderer.func_78256_a(line) * fontScale);
+                bgWidth = Math.max(bgWidth, (double)fontRenderer.getStringWidth(line) * fontScale);
             }
             if (bgWidth % 2.0 == 0.0) {
                 bgWidth += 1.0;
@@ -96,8 +96,8 @@ public class DrawUtil {
         double bgWidth = 0.0;
         double bgHeight = 0.0;
         if (bgColor != null && bgAlpha > 0.0f) {
-            FontRenderer fontRenderer = FMLClientHandler.instance().getClient().field_71466_p;
-            bgWidth = fontRenderer.func_78256_a(text);
+            FontRenderer fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
+            bgWidth = fontRenderer.getStringWidth(text);
             bgHeight = DrawUtil.getLabelHeight(fontRenderer, fontShadow);
         }
         DrawUtil.drawLabel(text, x, y, hAlign, vAlign, bgColor, bgAlpha, bgWidth, bgHeight, color, alpha, fontScale, fontShadow, rotation);
@@ -111,19 +111,19 @@ public class DrawUtil {
         if (text == null || text.length() == 0) {
             return;
         }
-        FontRenderer fontRenderer = FMLClientHandler.instance().getClient().field_71466_p;
+        FontRenderer fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
         boolean drawRect = bgColor != null && bgAlpha > 0.0f;
-        double width = fontRenderer.func_78256_a(text);
-        int n = height = drawRect ? DrawUtil.getLabelHeight(fontRenderer, fontShadow) : fontRenderer.field_78288_b;
-        if (!drawRect && fontRenderer.func_82883_a()) {
+        double width = fontRenderer.getStringWidth(text);
+        int n = height = drawRect ? DrawUtil.getLabelHeight(fontRenderer, fontShadow) : fontRenderer.FONT_HEIGHT;
+        if (!drawRect && fontRenderer.getUnicodeFlag()) {
             --height;
         }
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         try {
             if (fontScale != 1.0) {
                 x /= fontScale;
                 y /= fontScale;
-                GlStateManager.func_179139_a((double)fontScale, (double)fontScale, (double)0.0);
+                GlStateManager.scale((double)fontScale, (double)fontScale, (double)0.0);
             }
             float textX = (float)x;
             float textY = (float)y;
@@ -145,11 +145,11 @@ public class DrawUtil {
                     rectX = (float)x;
                 }
             }
-            double vpad = drawRect ? (double)(height - fontRenderer.field_78288_b) / 2.0 : 0.0;
+            double vpad = drawRect ? (double)(height - fontRenderer.FONT_HEIGHT) / 2.0 : 0.0;
             switch (vAlign) {
                 case Above: {
                     rectY = y - (double)height;
-                    textY = (float)(rectY + vpad + (double)(!fontRenderer.func_82883_a() ? 1 : 0));
+                    textY = (float)(rectY + vpad + (double)(!fontRenderer.getUnicodeFlag() ? 1 : 0));
                     break;
                 }
                 case Middle: {
@@ -163,9 +163,9 @@ public class DrawUtil {
                 }
             }
             if (rotation != 0.0) {
-                GlStateManager.func_179137_b((double)x, (double)y, (double)0.0);
-                GlStateManager.func_179114_b((float)((float)(-rotation)), (float)0.0f, (float)0.0f, (float)1.0f);
-                GlStateManager.func_179137_b((double)(-x), (double)(-y), (double)0.0);
+                GlStateManager.translate((double)x, (double)y, (double)0.0);
+                GlStateManager.rotate((float)((float)(-rotation)), (float)0.0f, (float)0.0f, (float)1.0f);
+                GlStateManager.translate((double)(-x), (double)(-y), (double)0.0);
             }
             if (drawRect) {
                 int hpad = 2;
@@ -174,17 +174,17 @@ public class DrawUtil {
             if (alpha < 1.0f) {
                 color = RGB.toArbg(color, alpha);
             }
-            GlStateManager.func_179137_b((double)((double)textX - Math.floor(textX)), (double)((double)textY - Math.floor(textY)), (double)0.0);
-            fontRenderer.func_175065_a(text, textX, textY, color.intValue(), fontShadow);
+            GlStateManager.translate((double)((double)textX - Math.floor(textX)), (double)((double)textY - Math.floor(textY)), (double)0.0);
+            fontRenderer.drawString(text, textX, textY, color.intValue(), fontShadow);
         }
         finally {
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
     public static int getLabelHeight(FontRenderer fr, boolean fontShadow) {
-        int vpad = fr.func_82883_a() ? 0 : (fontShadow ? 6 : 4);
-        return fr.field_78288_b + vpad;
+        int vpad = fr.getUnicodeFlag() ? 0 : (fontShadow ? 6 : 4);
+        return fr.FONT_HEIGHT + vpad;
     }
 
     public static void drawImage(TextureImpl texture, double x, double y, boolean flip, float scale, double rotation) {
@@ -237,22 +237,22 @@ public class DrawUtil {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     public static void drawQuad(TextureImpl texture, int color, float alpha, double x, double y, double width, double height, double minU, double minV, double maxU, double maxV, double rotation, boolean flip, boolean blend, int glBlendSfactor, int glBlendDFactor, boolean clampTexture) {
-        GlStateManager.func_179094_E();
+        GlStateManager.pushMatrix();
         try {
             if (blend) {
-                GlStateManager.func_179147_l();
-                GlStateManager.func_179120_a((int)glBlendSfactor, (int)glBlendDFactor, (int)1, (int)0);
+                GlStateManager.enableBlend();
+                GlStateManager.tryBlendFuncSeparate((int)glBlendSfactor, (int)glBlendDFactor, (int)1, (int)0);
             }
-            GlStateManager.func_179098_w();
-            GlStateManager.func_179144_i((int)texture.func_110552_b());
+            GlStateManager.enableTexture2D();
+            GlStateManager.bindTexture((int)texture.getGlTextureId());
             if (alpha > 1.0f) {
                 alpha /= 255.0f;
             }
             if (blend) {
                 float[] c = RGB.floats(color);
-                GlStateManager.func_179131_c((float)c[0], (float)c[1], (float)c[2], (float)alpha);
+                GlStateManager.color((float)c[0], (float)c[1], (float)c[2], (float)alpha);
             } else {
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)alpha);
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)alpha);
             }
             GL11.glTexParameteri((int)3553, (int)10241, (int)9729);
             GL11.glTexParameteri((int)3553, (int)10240, (int)9729);
@@ -262,9 +262,9 @@ public class DrawUtil {
             if (rotation != 0.0) {
                 double transX = x + width / 2.0;
                 double transY = y + height / 2.0;
-                GlStateManager.func_179137_b((double)transX, (double)transY, (double)0.0);
-                GlStateManager.func_179114_b((float)((float)rotation), (float)0.0f, (float)0.0f, (float)1.0f);
-                GlStateManager.func_179137_b((double)(-transX), (double)(-transY), (double)0.0);
+                GlStateManager.translate((double)transX, (double)transY, (double)0.0);
+                GlStateManager.rotate((float)((float)rotation), (float)0.0f, (float)0.0f, (float)1.0f);
+                GlStateManager.translate((double)(-transX), (double)(-transY), (double)0.0);
             }
             double direction = flip ? -maxU : maxU;
             DrawUtil.startDrawingQuads(false);
@@ -274,23 +274,23 @@ public class DrawUtil {
             DrawUtil.addVertexWithUV(x, y, zLevel, minU, minV);
             DrawUtil.draw();
             if (blend) {
-                GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+                GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
                 if (glBlendSfactor != 770 || glBlendDFactor != 771) {
-                    GlStateManager.func_179147_l();
-                    GlStateManager.func_179120_a((int)770, (int)771, (int)1, (int)0);
+                    GlStateManager.enableBlend();
+                    GlStateManager.tryBlendFuncSeparate((int)770, (int)771, (int)1, (int)0);
                 }
             }
         }
         finally {
-            GlStateManager.func_179121_F();
+            GlStateManager.popMatrix();
         }
     }
 
     public static void drawRectangle(double x, double y, double width, double height, int color, float alpha) {
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179090_x();
-        GlStateManager.func_179118_c();
-        GlStateManager.func_179120_a((int)770, (int)771, (int)1, (int)0);
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate((int)770, (int)771, (int)1, (int)0);
         int[] rgba = RGB.ints(color, alpha);
         DrawUtil.startDrawingQuads(true);
         DrawUtil.addVertex(x, height + y, zLevel, rgba);
@@ -298,21 +298,21 @@ public class DrawUtil {
         DrawUtil.addVertex(x + width, y, zLevel, rgba);
         DrawUtil.addVertex(x, y, zLevel, rgba);
         DrawUtil.draw();
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179141_d();
-        GlStateManager.func_179084_k();
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.enableTexture2D();
+        GlStateManager.enableAlpha();
+        GlStateManager.disableBlend();
     }
 
     public static void drawPolygon(double xOffset, double yOffset, List<Point2D.Double> screenPoints, ShapeProperties shapeProperties) {
         float[] rgba;
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179090_x();
-        GlStateManager.func_179141_d();
-        GlStateManager.func_179120_a((int)770, (int)771, (int)1, (int)0);
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableAlpha();
+        GlStateManager.tryBlendFuncSeparate((int)770, (int)771, (int)1, (int)0);
         if (shapeProperties.getFillOpacity() >= 0.01f) {
             rgba = RGB.floats(shapeProperties.getFillColor(), shapeProperties.getFillOpacity());
-            GlStateManager.func_179131_c((float)rgba[0], (float)rgba[1], (float)rgba[2], (float)rgba[3]);
+            GlStateManager.color((float)rgba[0], (float)rgba[1], (float)rgba[2], (float)rgba[3]);
             int lastIndex = screenPoints.size() - 1;
             GL11.glBegin((int)9);
             for (int i = 0; i <= lastIndex; ++i) {
@@ -326,7 +326,7 @@ public class DrawUtil {
         }
         if (shapeProperties.getStrokeOpacity() >= 0.01f && shapeProperties.getStrokeWidth() > 0.0f) {
             rgba = RGB.floats(shapeProperties.getStrokeColor(), shapeProperties.getFillOpacity());
-            GlStateManager.func_179131_c((float)rgba[0], (float)rgba[1], (float)rgba[2], (float)rgba[3]);
+            GlStateManager.color((float)rgba[0], (float)rgba[1], (float)rgba[2], (float)rgba[3]);
             float stroke = shapeProperties.getStrokeWidth();
             GL11.glLineWidth((float)stroke);
             int lastIndex = screenPoints.size() - 1;
@@ -340,10 +340,10 @@ public class DrawUtil {
             }
             GL11.glEnd();
         }
-        GlStateManager.func_179131_c((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179141_d();
-        GlStateManager.func_179084_k();
+        GlStateManager.color((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+        GlStateManager.enableTexture2D();
+        GlStateManager.enableAlpha();
+        GlStateManager.disableBlend();
     }
 
     public static void drawGradientRect(double x, double y, double width, double height, int startColor, float startAlpha, int endColor, float endAlpha) {
@@ -355,21 +355,21 @@ public class DrawUtil {
         }
         int[] rgbaStart = RGB.ints(startColor, startAlpha);
         int[] rgbaEnd = RGB.ints(endColor, endAlpha);
-        GlStateManager.func_179090_x();
-        GlStateManager.func_179147_l();
-        GlStateManager.func_179118_c();
-        GlStateManager.func_179120_a((int)770, (int)771, (int)1, (int)0);
-        GlStateManager.func_179103_j((int)7425);
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate((int)770, (int)771, (int)1, (int)0);
+        GlStateManager.shadeModel((int)7425);
         DrawUtil.startDrawingQuads(true);
         DrawUtil.addVertexWithUV(x, height + y, zLevel, 0.0, 1.0, rgbaEnd);
         DrawUtil.addVertexWithUV(x + width, height + y, zLevel, 1.0, 1.0, rgbaEnd);
         DrawUtil.addVertexWithUV(x + width, y, zLevel, 1.0, 0.0, rgbaStart);
         DrawUtil.addVertexWithUV(x, y, zLevel, 0.0, 0.0, rgbaStart);
         DrawUtil.draw();
-        GlStateManager.func_179103_j((int)7424);
-        GlStateManager.func_179098_w();
-        GlStateManager.func_179141_d();
-        GlStateManager.func_179147_l();
+        GlStateManager.shadeModel((int)7424);
+        GlStateManager.enableTexture2D();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableBlend();
     }
 
     public static void drawBoundTexture(double startU, double startV, double startX, double startY, double z, double endU, double endV, double endX, double endY) {
@@ -402,37 +402,37 @@ public class DrawUtil {
     }
 
     public static void sizeDisplay(double width, double height) {
-        GlStateManager.func_179086_m((int)256);
-        GlStateManager.func_179128_n((int)5889);
-        GlStateManager.func_179096_D();
-        GlStateManager.func_179130_a((double)0.0, (double)width, (double)height, (double)0.0, (double)100.0, (double)3000.0);
-        GlStateManager.func_179128_n((int)5888);
-        GlStateManager.func_179096_D();
-        GlStateManager.func_179109_b((float)0.0f, (float)0.0f, (float)-2000.0f);
+        GlStateManager.clear((int)256);
+        GlStateManager.matrixMode((int)5889);
+        GlStateManager.loadIdentity();
+        GlStateManager.ortho((double)0.0, (double)width, (double)height, (double)0.0, (double)100.0, (double)3000.0);
+        GlStateManager.matrixMode((int)5888);
+        GlStateManager.loadIdentity();
+        GlStateManager.translate((float)0.0f, (float)0.0f, (float)-2000.0f);
     }
 
     public static void draw() {
-        tessellator.func_78381_a();
+        tessellator.draw();
     }
 
     public static void startDrawingQuads(boolean useColor) {
         if (useColor) {
-            worldrenderer.func_181668_a(7, DefaultVertexFormats.field_181709_i);
+            worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
         } else {
-            worldrenderer.func_181668_a(7, DefaultVertexFormats.field_181707_g);
+            worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         }
     }
 
     public static void addVertexWithUV(double x, double y, double z, double u, double v) {
-        worldrenderer.func_181662_b(x, y, z).func_187315_a(u, v).func_181675_d();
+        worldrenderer.pos(x, y, z).tex(u, v).endVertex();
     }
 
     public static void addVertex(double x, double y, double z, int[] rgba) {
-        worldrenderer.func_181662_b(x, y, z).func_187315_a(1.0, 1.0).func_181669_b(rgba[0], rgba[1], rgba[2], rgba[3]).func_181675_d();
+        worldrenderer.pos(x, y, z).tex(1.0, 1.0).color(rgba[0], rgba[1], rgba[2], rgba[3]).endVertex();
     }
 
     public static void addVertexWithUV(double x, double y, double z, double u, double v, int[] rgba) {
-        worldrenderer.func_181662_b(x, y, z).func_187315_a(u, v).func_181669_b(rgba[0], rgba[1], rgba[2], rgba[3]).func_181675_d();
+        worldrenderer.pos(x, y, z).tex(u, v).color(rgba[0], rgba[1], rgba[2], rgba[3]).endVertex();
     }
 
     public static enum VAlign {

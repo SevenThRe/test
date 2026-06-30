@@ -88,29 +88,29 @@ public class InvTweaksObfuscation {
     }
 
     public static int getDisplayWidth() {
-        return FMLClientHandler.instance().getClient().field_71443_c;
+        return FMLClientHandler.instance().getClient().displayWidth;
     }
 
     public static int getDisplayHeight() {
-        return FMLClientHandler.instance().getClient().field_71440_d;
+        return FMLClientHandler.instance().getClient().displayHeight;
     }
 
     public static boolean areItemStacksEqual(@NotNull ItemStack itemStack1, @NotNull ItemStack itemStack2) {
-        return itemStack1.func_77969_a(itemStack2) && itemStack1.func_190916_E() == itemStack2.func_190916_E();
+        return itemStack1.isItemEqual(itemStack2) && itemStack1.getCount() == itemStack2.getCount();
     }
 
     @NotNull
     public static ItemStack getSlotStack(@NotNull Container container, int i) {
-        Slot slot = (Slot)container.field_75151_b.get(i);
-        return slot == null ? ItemStack.field_190927_a : slot.func_75211_c();
+        Slot slot = (Slot)container.inventorySlots.get(i);
+        return slot == null ? ItemStack.EMPTY : slot.getStack();
     }
 
     public static int getSlotNumber(Slot slot) {
         try {
             if (slot instanceof GuiContainerCreative.CreativeSlot) {
-                Slot underlyingSlot = ((GuiContainerCreative.CreativeSlot)slot).field_148332_b;
+                Slot underlyingSlot = ((GuiContainerCreative.CreativeSlot)slot).slot;
                 if (underlyingSlot != null) {
-                    return underlyingSlot.field_75222_d;
+                    return underlyingSlot.slotNumber;
                 }
                 log.warn("Creative inventory: Failed to get real slot");
             }
@@ -118,18 +118,18 @@ public class InvTweaksObfuscation {
         catch (Exception e) {
             log.warn("Failed to access creative slot number");
         }
-        return slot.field_75222_d;
+        return slot.slotNumber;
     }
 
     @SideOnly(value=Side.CLIENT)
     @Nullable
     public static Slot getSlotAtMousePosition(@Nullable GuiContainer guiContainer) {
         if (guiContainer != null) {
-            Container container = guiContainer.field_147002_h;
+            Container container = guiContainer.inventorySlots;
             int x = InvTweaksObfuscation.getMouseX(guiContainer);
             int y = InvTweaksObfuscation.getMouseY(guiContainer);
-            for (int k = 0; k < container.field_75151_b.size(); ++k) {
-                Slot slot = (Slot)container.field_75151_b.get(k);
+            for (int k = 0; k < container.inventorySlots.size(); ++k) {
+                Slot slot = (Slot)container.inventorySlots.get(k);
                 if (!InvTweaksObfuscation.getIsMouseOverSlot(guiContainer, slot, x, y)) continue;
                 return slot;
             }
@@ -141,19 +141,19 @@ public class InvTweaksObfuscation {
     @SideOnly(value=Side.CLIENT)
     private static boolean getIsMouseOverSlot(@Nullable GuiContainer guiContainer, @NotNull Slot slot, int x, int y) {
         if (guiContainer != null) {
-            return (x -= guiContainer.field_147003_i) >= slot.field_75223_e - 1 && x < slot.field_75223_e + 16 + 1 && (y -= guiContainer.field_147009_r) >= slot.field_75221_f - 1 && y < slot.field_75221_f + 16 + 1;
+            return (x -= guiContainer.guiLeft) >= slot.xPos - 1 && x < slot.xPos + 16 + 1 && (y -= guiContainer.guiTop) >= slot.yPos - 1 && y < slot.yPos + 16 + 1;
         }
         return false;
     }
 
     @SideOnly(value=Side.CLIENT)
     private static int getMouseX(@NotNull GuiContainer guiContainer) {
-        return Mouse.getEventX() * guiContainer.field_146294_l / InvTweaksObfuscation.getDisplayWidth();
+        return Mouse.getEventX() * guiContainer.width / InvTweaksObfuscation.getDisplayWidth();
     }
 
     @SideOnly(value=Side.CLIENT)
     private static int getMouseY(@NotNull GuiContainer guiContainer) {
-        return guiContainer.field_146295_m - Mouse.getEventY() * guiContainer.field_146295_m / InvTweaksObfuscation.getDisplayHeight() - 1;
+        return guiContainer.height - Mouse.getEventY() * guiContainer.height / InvTweaksObfuscation.getDisplayHeight() - 1;
     }
 
     @Contract(value="!null->_")
@@ -216,85 +216,85 @@ public class InvTweaksObfuscation {
 
     public static Container getCurrentContainer() {
         Minecraft mc = FMLClientHandler.instance().getClient();
-        Container currentContainer = mc.field_71439_g.field_71069_bz;
-        if (InvTweaksObfuscation.isGuiContainer(mc.field_71462_r)) {
-            currentContainer = ((GuiContainer)mc.field_71462_r).field_147002_h;
+        Container currentContainer = mc.player.inventoryContainer;
+        if (InvTweaksObfuscation.isGuiContainer(mc.currentScreen)) {
+            currentContainer = ((GuiContainer)mc.currentScreen).inventorySlots;
         }
         return currentContainer;
     }
 
     public static boolean areSameItemType(@NotNull ItemStack itemStack1, @NotNull ItemStack itemStack2) {
-        return !itemStack1.func_190926_b() && !itemStack2.func_190926_b() && (itemStack1.func_77969_a(itemStack2) || itemStack1.func_77984_f() && itemStack1.func_77973_b() == itemStack2.func_77973_b());
+        return !itemStack1.isEmpty() && !itemStack2.isEmpty() && (itemStack1.isItemEqual(itemStack2) || itemStack1.isItemStackDamageable() && itemStack1.getItem() == itemStack2.getItem());
     }
 
     public static boolean areItemsStackable(@NotNull ItemStack itemStack1, @NotNull ItemStack itemStack2) {
-        return !itemStack1.func_190926_b() && !itemStack2.func_190926_b() && itemStack1.func_77969_a(itemStack2) && itemStack1.func_77985_e() && (!itemStack1.func_77981_g() || itemStack1.func_77952_i() == itemStack2.func_77952_i()) && ItemStack.func_77970_a((ItemStack)itemStack1, (ItemStack)itemStack2);
+        return !itemStack1.isEmpty() && !itemStack2.isEmpty() && itemStack1.isItemEqual(itemStack2) && itemStack1.isStackable() && (!itemStack1.getHasSubtypes() || itemStack1.getItemDamage() == itemStack2.getItemDamage()) && ItemStack.areItemStackTagsEqual((ItemStack)itemStack1, (ItemStack)itemStack2);
     }
 
     public void addChatMessage(@NotNull String message) {
-        if (this.mc.field_71456_v != null) {
-            this.mc.field_71456_v.func_146158_b().func_146227_a((ITextComponent)new TextComponentString(message));
+        if (this.mc.ingameGUI != null) {
+            this.mc.ingameGUI.getChatGUI().printChatMessage((ITextComponent)new TextComponentString(message));
         }
     }
 
     public EntityPlayer getThePlayer() {
-        return this.mc.field_71439_g;
+        return this.mc.player;
     }
 
     public PlayerControllerMP getPlayerController() {
-        return this.mc.field_71442_b;
+        return this.mc.playerController;
     }
 
     @Nullable
     public GuiScreen getCurrentScreen() {
-        return this.mc.field_71462_r;
+        return this.mc.currentScreen;
     }
 
     public FontRenderer getFontRenderer() {
-        return this.mc.field_71466_p;
+        return this.mc.fontRenderer;
     }
 
     public void displayGuiScreen(GuiScreen parentScreen) {
-        this.mc.func_147108_a(parentScreen);
+        this.mc.displayGuiScreen(parentScreen);
     }
 
     public GameSettings getGameSettings() {
-        return this.mc.field_71474_y;
+        return this.mc.gameSettings;
     }
 
     public int getKeyBindingForwardKeyCode() {
-        return this.getGameSettings().field_74351_w.field_74512_d;
+        return this.getGameSettings().keyBindForward.keyCode;
     }
 
     public int getKeyBindingBackKeyCode() {
-        return this.getGameSettings().field_74368_y.field_74512_d;
+        return this.getGameSettings().keyBindBack.keyCode;
     }
 
     public InventoryPlayer getInventoryPlayer() {
-        return this.getThePlayer().field_71071_by;
+        return this.getThePlayer().inventory;
     }
 
     public NonNullList<ItemStack> getMainInventory() {
-        return this.getInventoryPlayer().field_70462_a;
+        return this.getInventoryPlayer().mainInventory;
     }
 
     @NotNull
     public ItemStack getHeldStack() {
-        return this.getInventoryPlayer().func_70445_o();
+        return this.getInventoryPlayer().getItemStack();
     }
 
     @NotNull
     public ItemStack getFocusedStack() {
-        return this.getInventoryPlayer().func_70448_g();
+        return this.getInventoryPlayer().getCurrentItem();
     }
 
     public int getFocusedSlot() {
-        return this.getInventoryPlayer().field_70461_c;
+        return this.getInventoryPlayer().currentItem;
     }
 
     public boolean hasTexture(@NotNull ResourceLocation texture) {
         try {
-            this.mc.func_110442_L().func_110536_a(texture);
+            this.mc.getResourceManager().getResource(texture);
         }
         catch (IOException e) {
             return false;
@@ -304,7 +304,7 @@ public class InvTweaksObfuscation {
 
     @NotNull
     public ItemStack getOffhandStack() {
-        return (ItemStack)this.getInventoryPlayer().field_184439_c.get(0);
+        return (ItemStack)this.getInventoryPlayer().offHandInventory.get(0);
     }
 }
 

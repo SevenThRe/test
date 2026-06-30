@@ -146,7 +146,7 @@ extends AnimationBit<PlayerData> {
                 this.currentInstruct.perform(data);
                 if (this.currentInstruct.isFinish()) {
                     this.perform(data);
-                } else if (isStart && (waitTime = this.currentInstruct.getWaitTime(data)) > 0L && data.getEntity() == Minecraft.func_71410_x().field_71439_g) {
+                } else if (isStart && (waitTime = this.currentInstruct.getWaitTime(data)) > 0L && data.getEntity() == Minecraft.getMinecraft().player) {
                     executor.schedule(new WaitTask(data, this.currentInstruct), waitTime, TimeUnit.MILLISECONDS);
                 }
             }
@@ -209,7 +209,7 @@ extends AnimationBit<PlayerData> {
          */
         @Override
         public void run() {
-            if (Minecraft.func_71410_x().field_71439_g == null) {
+            if (Minecraft.getMinecraft().player == null) {
                 return;
             }
             if (this.now == AnimationPipeline.this.currentInstruct) {

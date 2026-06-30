@@ -43,52 +43,52 @@ implements p {
 
     public void setRotation(ModelRenderer a2, float a3, float a4, float a5) {
         ModelRenderer modelRenderer = a2;
-        a2.field_78795_f = a3;
-        modelRenderer.field_78796_g = a4;
-        modelRenderer.field_78808_h = a5;
+        a2.rotateAngleX = a3;
+        modelRenderer.rotateAngleY = a4;
+        modelRenderer.rotateAngleZ = a5;
     }
 
     public void setRotation(ModelRenderer a2, ModelRenderer a3) {
         ModelRenderer modelRenderer = a2;
         ModelRenderer modelRenderer2 = a3;
-        a2.field_78795_f = modelRenderer2.field_78795_f;
-        modelRenderer.field_78796_g = modelRenderer2.field_78796_g;
-        modelRenderer.field_78808_h = a3.field_78808_h;
+        a2.rotateAngleX = modelRenderer2.rotateAngleX;
+        modelRenderer.rotateAngleY = modelRenderer2.rotateAngleY;
+        modelRenderer.rotateAngleZ = a3.rotateAngleZ;
     }
 
     public void setRotationFromModelBiped(ModelBiped a2, boolean a3) {
         pj a4;
         pj pj2 = a4;
-        a4.field_78093_q = false;
-        pj2.field_78117_n = false;
+        a4.isRiding = false;
+        pj2.isSneak = false;
         pj2.s = false;
         if (a2 == null) {
             pj pj3 = a4;
             pj pj4 = a4;
-            pj4.setRotation(pj4.field_78116_c, 0.0f, 0.0f, 0.0f);
-            pj4.setRotation(pj4.field_78115_e, 0.0f, 0.0f, 0.0f);
-            pj4.setRotation(pj4.field_178724_i, 0.0f, 0.0f, 0.0f);
-            pj4.setRotation(pj4.field_178723_h, 0.0f, 0.0f, 0.0f);
-            pj4.setRotation(pj4.field_178722_k, 0.0f, 0.0f, 0.0f);
-            pj3.setRotation(pj3.field_178721_j, 0.0f, 0.0f, 0.0f);
-            pj3.field_78091_s = false;
+            pj4.setRotation(pj4.bipedHead, 0.0f, 0.0f, 0.0f);
+            pj4.setRotation(pj4.bipedBody, 0.0f, 0.0f, 0.0f);
+            pj4.setRotation(pj4.bipedLeftArm, 0.0f, 0.0f, 0.0f);
+            pj4.setRotation(pj4.bipedRightArm, 0.0f, 0.0f, 0.0f);
+            pj4.setRotation(pj4.bipedLeftLeg, 0.0f, 0.0f, 0.0f);
+            pj3.setRotation(pj3.bipedRightLeg, 0.0f, 0.0f, 0.0f);
+            pj3.isChild = false;
             return;
         }
         if (a2 instanceof ModelPlayer) {
             ModelPlayer modelPlayer = (ModelPlayer)a2;
-            a4.s = modelPlayer.field_178724_i.field_78797_d == 2.5f;
+            a4.s = modelPlayer.bipedLeftArm.rotationPointY == 2.5f;
         }
         pj pj5 = a4;
-        pj5.setRotation(pj5.field_78116_c, a2.field_78116_c);
-        pj5.setRotation(pj5.field_78115_e, a2.field_78115_e);
-        pj5.setRotation(pj5.field_178724_i, a2.field_178724_i);
-        pj5.setRotation(pj5.field_178723_h, a2.field_178723_h);
-        pj5.setRotation(pj5.field_178722_k, a2.field_178722_k);
+        pj5.setRotation(pj5.bipedHead, a2.bipedHead);
+        pj5.setRotation(pj5.bipedBody, a2.bipedBody);
+        pj5.setRotation(pj5.bipedLeftArm, a2.bipedLeftArm);
+        pj5.setRotation(pj5.bipedRightArm, a2.bipedRightArm);
+        pj5.setRotation(pj5.bipedLeftLeg, a2.bipedLeftLeg);
         ModelBiped modelBiped = a2;
-        pj5.setRotation(pj5.field_178721_j, modelBiped.field_178721_j);
-        pj5.field_78091_s = modelBiped.field_78091_s;
+        pj5.setRotation(pj5.bipedRightLeg, modelBiped.bipedRightLeg);
+        pj5.isChild = modelBiped.isChild;
         if (a3) {
-            a4.field_78091_s = false;
+            a4.isChild = false;
         }
     }
 
@@ -100,32 +100,32 @@ implements p {
         pj2.render(a2, a3, a5);
     }
 
-    public void func_78088_a(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
+    public void render(Entity a2, float a3, float a4, float a5, float a6, float a7, float a8) {
         pj a9;
         if (a9.j != null) {
             pj pj2 = a9;
             pj pj3 = a9;
-            pj3.field_78093_q = false;
-            pj3.field_78117_n = false;
-            pj2.field_78091_s = false;
+            pj3.isRiding = false;
+            pj3.isSneak = false;
+            pj2.isChild = false;
             pj2.s = false;
             if (a2 instanceof EntityLivingBase) {
-                if (((EntityLivingBase)a2).func_184218_aH()) {
-                    a9.field_78093_q = true;
+                if (((EntityLivingBase)a2).isRiding()) {
+                    a9.isRiding = true;
                 }
-                if (((EntityLivingBase)a2).func_70093_af()) {
-                    a9.field_78117_n = true;
+                if (((EntityLivingBase)a2).isSneaking()) {
+                    a9.isSneak = true;
                 }
-                if (((EntityLivingBase)a2).func_70631_g_()) {
-                    a9.field_78091_s = true;
+                if (((EntityLivingBase)a2).isChild()) {
+                    a9.isChild = true;
                 }
             }
             pj pj4 = a9;
-            pj4.field_178722_k.field_78808_h = 0.0f;
-            pj4.field_178721_j.field_78808_h = 0.0f;
-            a9.field_78116_c.field_78808_h = 0.0f;
-            a9.field_178720_f.field_78808_h = 0.0f;
-            super.func_78087_a(a3, a4, a5, a6, a7, a8, a2);
+            pj4.bipedLeftLeg.rotateAngleZ = 0.0f;
+            pj4.bipedRightLeg.rotateAngleZ = 0.0f;
+            a9.bipedHead.rotateAngleZ = 0.0f;
+            a9.bipedHeadwear.rotateAngleZ = 0.0f;
+            super.setRotationAngles(a3, a4, a5, a6, a7, a8, a2);
             GL11.glPushAttrib((int)8192);
             GL11.glEnable((int)2884);
             xd.z();
@@ -143,7 +143,7 @@ implements p {
     public void render(Entity a2, yl a3, float a4, float a5, float a6, float a7, float a8) {
         pj a9;
         pj pj2 = a9;
-        pj2.func_78087_a(a4, a5, a6, a7, a8, v, a2);
+        pj2.setRotationAngles(a4, a5, a6, a7, a8, v, a2);
         GL11.glPushAttrib((int)8192);
         GL11.glEnable((int)2884);
         xd.z();
@@ -183,20 +183,20 @@ implements p {
 
     public abstract void render(Entity var1, yl var2, boolean var3, n var4, oh var5, boolean var6, double var7, boolean var9);
 
-    public void func_78087_a(float a2, float a3, float a4, float a5, float a6, float a7, Entity a8) {
+    public void setRotationAngles(float a2, float a3, float a4, float a5, float a6, float a7, Entity a8) {
         pj a9;
         pj pj2 = a9;
         pj pj3 = a9;
         pj pj4 = a9;
-        super.func_78087_a(a2, a3, a4, a5, a6, a7, a8);
-        pj4.field_78093_q = false;
-        pj4.field_78117_n = false;
-        pj3.field_78091_s = false;
+        super.setRotationAngles(a2, a3, a4, a5, a6, a7, a8);
+        pj4.isRiding = false;
+        pj4.isSneak = false;
+        pj3.isChild = false;
         pj2.s = false;
-        pj3.field_178722_k.field_78808_h = 0.0f;
-        pj2.field_178721_j.field_78808_h = 0.0f;
-        pj2.field_78116_c.field_78808_h = 0.0f;
-        pj2.field_178720_f.field_78808_h = 0.0f;
+        pj3.bipedLeftLeg.rotateAngleZ = 0.0f;
+        pj2.bipedRightLeg.rotateAngleZ = 0.0f;
+        pj2.bipedHead.rotateAngleZ = 0.0f;
+        pj2.bipedHeadwear.rotateAngleZ = 0.0f;
     }
 
     @Override

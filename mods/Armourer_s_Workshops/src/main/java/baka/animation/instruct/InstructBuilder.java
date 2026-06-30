@@ -33,13 +33,13 @@ public abstract class InstructBuilder {
         PacketBuffer packetBuffer = new PacketBuffer(buf);
         switch (type) {
             case 0: {
-                return new DamageInstruct(packetBuffer.func_150789_c(4096), packetBuffer.readFloat(), packetBuffer.readFloat());
+                return new DamageInstruct(packetBuffer.readString(4096), packetBuffer.readFloat(), packetBuffer.readFloat());
             }
             case 1: {
                 return new DelayInstruct(buf.readLong());
             }
             case 2: {
-                return new FinishInstruct(packetBuffer.func_150789_c(4096));
+                return new FinishInstruct(packetBuffer.readString(4096));
             }
             case 3: {
                 float x2 = buf.readFloat();
@@ -52,7 +52,7 @@ public abstract class InstructBuilder {
                 int size = buffer.readInt();
                 HashMap<String, RotateEntry> rotateEntryMap = new HashMap<String, RotateEntry>(size);
                 for (int i2 = 0; i2 < size; ++i2) {
-                    String part = buffer.func_150789_c(4096);
+                    String part = buffer.readString(4096);
                     float x3 = buffer.readFloat();
                     float y3 = buffer.readFloat();
                     float z3 = buffer.readFloat();
@@ -76,7 +76,7 @@ public abstract class InstructBuilder {
                 int size = buffer.readInt();
                 HashMap<String, ScaleEntry> scaleEntryMap = new HashMap<String, ScaleEntry>(size);
                 for (int i3 = 0; i3 < size; ++i3) {
-                    String part = buffer.func_150789_c(4096);
+                    String part = buffer.readString(4096);
                     float x4 = buffer.readFloat();
                     float y4 = buffer.readFloat();
                     float z4 = buffer.readFloat();
@@ -94,7 +94,7 @@ public abstract class InstructBuilder {
                 int size = buffer.readInt();
                 HashMap<String, RotateEntry> rotateEntryMap = new HashMap<String, RotateEntry>(size);
                 for (int i4 = 0; i4 < size; ++i4) {
-                    String part = buffer.func_150789_c(4096);
+                    String part = buffer.readString(4096);
                     float x5 = buffer.readFloat();
                     float y5 = buffer.readFloat();
                     float z5 = buffer.readFloat();
@@ -106,11 +106,11 @@ public abstract class InstructBuilder {
             }
             case 20: {
                 PacketBuffer buffer = new PacketBuffer(buf);
-                return new SoundInstruct(buffer.func_150789_c(4096), buffer.func_150789_c(4096));
+                return new SoundInstruct(buffer.readString(4096), buffer.readString(4096));
             }
             case 21: {
                 PacketBuffer buffer = new PacketBuffer(buf);
-                return new SkillInstruct(buffer.func_150789_c(4096), buffer.func_150789_c(4096));
+                return new SkillInstruct(buffer.readString(4096), buffer.readString(4096));
             }
         }
         return null;

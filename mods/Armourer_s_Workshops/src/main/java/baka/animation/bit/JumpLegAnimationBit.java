@@ -41,8 +41,8 @@ extends AnimationBit<PlayerData> {
             float PI = (float)Math.PI;
             float limbSwing = ((Float)data.limbSwing.get()).floatValue() * 0.6662f;
             float limbSwingAmount = 0.7f * ((Float)data.limbSwingAmount.get()).floatValue() / (float)Math.PI * 180.0f;
-            data.rightLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.func_76134_b((float)limbSwing) * limbSwingAmount);
-            data.leftLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.func_76134_b((float)(limbSwing + (float)Math.PI)) * limbSwingAmount);
+            data.rightLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.cos((float)limbSwing) * limbSwingAmount);
+            data.leftLeg.rotation.setSmoothness(1.0f).orientX(-5.0f + MathHelper.cos((float)(limbSwing + (float)Math.PI)) * limbSwingAmount);
             float var = limbSwing / (float)Math.PI % 2.0f;
             data.leftForeLeg.rotation.setSmoothness(0.3f).orientX(var > 1.0f ? 45 : 0);
             data.rightForeLeg.rotation.setSmoothness(0.3f).orientX(var > 1.0f ? 0 : 45);
