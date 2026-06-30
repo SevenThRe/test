@@ -1,0 +1,72 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  awd
+ *  bpw
+ *  bqf
+ *  brs
+ *  bwx
+ *  bwy
+ *  bxg
+ */
+package net.optifine.entity.model;
+
+import net.optifine.entity.model.IEntityRenderer;
+import net.optifine.entity.model.ModelAdapter;
+import net.optifine.reflect.Reflector;
+
+public class ModelAdapterHeadHumanoid
+extends ModelAdapter {
+    public ModelAdapterHeadHumanoid() {
+        super(awd.class, "head_humanoid", 0.0f);
+    }
+
+    @Override
+    public bqf makeModel() {
+        return new bpw();
+    }
+
+    @Override
+    public brs getModelRenderer(bqf model, String modelPart) {
+        if (!(model instanceof bpw)) {
+            return null;
+        }
+        bpw modelHumanoidHead = (bpw)model;
+        if (modelPart.equals("head")) {
+            return modelHumanoidHead.a;
+        }
+        if (modelPart.equals("head2")) {
+            if (!Reflector.ModelHumanoidHead_head.exists()) {
+                return null;
+            }
+            return (brs)Reflector.getFieldValue(modelHumanoidHead, Reflector.ModelHumanoidHead_head);
+        }
+        return null;
+    }
+
+    @Override
+    public String[] getModelRendererNames() {
+        return new String[]{"head"};
+    }
+
+    @Override
+    public IEntityRenderer makeEntityRender(bqf modelBase, float shadowSize) {
+        bwx dispatcher = bwx.a;
+        bwy renderer = dispatcher.a(awd.class);
+        if (!(renderer instanceof bxg)) {
+            return null;
+        }
+        if (renderer.getEntityClass() == null) {
+            renderer = new bxg();
+            renderer.a(dispatcher);
+        }
+        if (!Reflector.TileEntitySkullRenderer_humanoidHead.exists()) {
+            Config.warn("Field not found: TileEntitySkullRenderer.humanoidHead");
+            return null;
+        }
+        Reflector.setFieldValue(renderer, Reflector.TileEntitySkullRenderer_humanoidHead, modelBase);
+        return renderer;
+    }
+}
+

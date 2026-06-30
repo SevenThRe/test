@@ -1,0 +1,20 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package info.journeymap.shaded.kotlin.kotlin.io;
+
+import info.journeymap.shaded.kotlin.kotlin.Metadata;
+import info.journeymap.shaded.kotlin.kotlin.io.FileSystemException;
+import info.journeymap.shaded.kotlin.kotlin.jvm.internal.Intrinsics;
+import info.journeymap.shaded.org.jetbrains.annotations.NotNull;
+import java.io.File;
+
+@Metadata(mv={1, 1, 15}, bv={1, 0, 3}, k=1, d1={"\u0000\u0012\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\b\u0002\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u00a2\u0006\u0002\u0010\u0004\u00a8\u0006\u0005"}, d2={"Linfo/journeymap/shaded/kotlin/kotlin/io/TerminateException;", "Linfo/journeymap/shaded/kotlin/kotlin/io/FileSystemException;", "file", "Ljava/io/File;", "(Ljava/io/File;)V", "info.journeymap.shaded.kotlin.kotlin-stdlib"})
+final class TerminateException
+extends FileSystemException {
+    public TerminateException(@NotNull File file) {
+        Intrinsics.checkParameterIsNotNull(file, "file");
+        super(file, null, null, 6, null);
+    }
+}
+

@@ -1,0 +1,23 @@
+Summary for F:\Program Files\tx\重生II客户端正式启动2026628\重生II客户端正式启动2026628\.minecraft\mods\[Mod]DragonCore-2.6.3.2(2).jar
+Decompiled with CFR 0.152
+
+
+org.bytedeco.javacpp.Loader
+----------------------------
+
+loadProperties(java.lang.String java.lang.String )
+  Loose catch block
+
+
+org.spongepowered.asm.mixin.refmap.ReferenceMapper
+----------------------------
+
+read(java.lang.String )
+  Loose catch block
+
+
+eos.moe.dragoncore.vw
+----------------------------
+
+ALLATORIxDEMO(net.minecraft.client.renderer.texture.Stitcher net.minecraft.client.resources.IResourceManager net.minecraft.util.ResourceLocation net.minecraft.client.renderer.texture.TextureAtlasSprite net.minecraftforge.fml.common.ProgressManager$ProgressBar int int )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once

@@ -1,0 +1,8 @@
+{
+    "vertex": "dragoncore:fast_blit",
+    "fragment": "dragoncore:fast_blit",
+    "attributes": [ "Position" ],
+    "samplers": [
+        { "name": "DiffuseSampler" }
+    ]
+}

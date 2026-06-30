@@ -1,0 +1,65 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package blockbuster.math;
+
+import blockbuster.math.Constant;
+import blockbuster.math.IValue;
+import blockbuster.math.Operation;
+
+public class Ternary
+implements IValue {
+    public IValue condition;
+    public IValue ifTrue;
+    public IValue ifFalse;
+    private IValue result = new Constant(0.0);
+
+    public Ternary(IValue condition, IValue ifTrue, IValue ifFalse) {
+        this.condition = condition;
+        this.ifTrue = ifTrue;
+        this.ifFalse = ifFalse;
+    }
+
+    @Override
+    public IValue get() {
+        if (this.isNumber()) {
+            this.result.set(this.doubleValue());
+        } else {
+            this.result.set(this.stringValue());
+        }
+        return this.result;
+    }
+
+    @Override
+    public boolean isNumber() {
+        return this.ifFalse.isNumber() || this.ifTrue.isNumber();
+    }
+
+    @Override
+    public void set(double value) {
+    }
+
+    @Override
+    public void set(String value) {
+    }
+
+    @Override
+    public double doubleValue() {
+        return Operation.isTrue(this.condition.doubleValue()) ? this.ifTrue.doubleValue() : this.ifFalse.doubleValue();
+    }
+
+    @Override
+    public boolean booleanValue() {
+        return Operation.isTrue(this.doubleValue());
+    }
+
+    @Override
+    public String stringValue() {
+        return Operation.isTrue(this.condition.doubleValue()) ? this.ifTrue.stringValue() : this.ifFalse.stringValue();
+    }
+
+    public String toString() {
+        return this.condition.toString() + " ? " + this.ifTrue.toString() + " : " + this.ifFalse.toString();
+    }
+}
+

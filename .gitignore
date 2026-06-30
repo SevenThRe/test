@@ -1,0 +1,10 @@
+/tools/
+/logs/*.log
+/.tmp/
+*.jar
+*.class
+*.zip
+*.rar
+*.7z
+Thumbs.db
+.DS_Store

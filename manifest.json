@@ -1,0 +1,98 @@
+[
+  {
+    "folder": "mods/Dragon_Core",
+    "originalJar": "[Mod]DragonCore-2.6.3.2(2).jar",
+    "displayName": "Dragon Core",
+    "modid": "dragoncore",
+    "version": "1.12.2-2.6.3.2",
+    "sha256": "28C70B29967163F0387F85AFC1EE833A6183B9EECDF78FFBDAA9D41A2D809E6B",
+    "classFiles": 2915,
+    "javaFiles": 1843,
+    "resourceFiles": 251,
+    "log": "logs/Dragon_Core.cfr.log"
+  },
+  {
+    "folder": "mods/AncientDreamMod-1.0_5",
+    "originalJar": "AncientDreamMod-1.0(5).jar",
+    "displayName": "AncientDreamMod-1.0(5)",
+    "modid": "",
+    "version": "",
+    "sha256": "88DC5FFC78B0782DF7E79A63E4985C0CBF5EE6FE14700C5286B364AE5604CA72",
+    "classFiles": 913,
+    "javaFiles": 574,
+    "resourceFiles": 258,
+    "log": "logs/AncientDreamMod-1.0_5.cfr.log"
+  },
+  {
+    "folder": "mods/Inventory_Tweaks",
+    "originalJar": "InventoryTweaks-1.63.jar",
+    "displayName": "Inventory Tweaks",
+    "modid": "inventorytweaks",
+    "version": "1.63+release.109.220f184",
+    "sha256": "EF2FDCB59F9A766EE5C3C4C514C78F0A9E35B3D6BF02C17051B7DD4E94EFDF7A",
+    "classFiles": 74,
+    "javaFiles": 63,
+    "resourceFiles": 35,
+    "log": "logs/Inventory_Tweaks.cfr.log"
+  },
+  {
+    "folder": "mods/JourneyMap",
+    "originalJar": "journeymap-1.12.2-5.7.0(1)(2).jar",
+    "displayName": "JourneyMap",
+    "modid": "journeymap",
+    "version": "1.12.2-5.7.0",
+    "sha256": "0A1F2E8879F2B088F6C4061C0509671DBFBB83FE131BB566576DE5EFC406144E",
+    "classFiles": 2198,
+    "javaFiles": 1320,
+    "resourceFiles": 630,
+    "log": "logs/JourneyMap.cfr.log"
+  },
+  {
+    "folder": "mods/Armourer_s_Workshops",
+    "originalJar": "Mod-DragonArmourers(4).jar",
+    "displayName": "Armourer's Workshops",
+    "modid": "armourers_workshops",
+    "version": "${version}",
+    "sha256": "3385C670A05052B22784702A15A148FC1F709F8F6095A13AF9428966548E42F2",
+    "classFiles": 1217,
+    "javaFiles": 945,
+    "resourceFiles": 48,
+    "log": "logs/Armourer_s_Workshops.cfr.log"
+  },
+  {
+    "folder": "mods/龙之导航QQ448780139",
+    "originalJar": "Mod-DragonGPS.jar",
+    "displayName": "龙之导航QQ448780139",
+    "modid": "dragongps",
+    "version": "1.12.2",
+    "sha256": "70B363044B5652F971866F89275C436285BC287050372DA82B770251DF47EF99",
+    "classFiles": 22,
+    "javaFiles": 18,
+    "resourceFiles": 8,
+    "log": "logs/龙之导航QQ448780139.cfr.log"
+  },
+  {
+    "folder": "mods/OptiFine_1.12.2_HD_U_F5",
+    "originalJar": "OptiFine_1.12.2_HD_U_F5.jar",
+    "displayName": "OptiFine_1.12.2_HD_U_F5",
+    "modid": "",
+    "version": "",
+    "sha256": "FC70DB439793B257228AD50DBB497DD50E33C3E08F7D0D6B2BBA3A7D7C349619",
+    "classFiles": 487,
+    "javaFiles": 436,
+    "resourceFiles": 2235,
+    "log": "logs/OptiFine_1.12.2_HD_U_F5.cfr.log"
+  },
+  {
+    "folder": "mods/Shoulder_Surfing",
+    "originalJar": "ShoulderSurfing-冰炮测试5.jar",
+    "displayName": "Shoulder Surfing",
+    "modid": "shouldersurfing",
+    "version": "2.2.2",
+    "sha256": "AA183E5B8D752A3B75539126E309747291A0603AB2166D732E92B5B03B726434",
+    "classFiles": 38,
+    "javaFiles": 27,
+    "resourceFiles": 5,
+    "log": "logs/Shoulder_Surfing.cfr.log"
+  }
+]

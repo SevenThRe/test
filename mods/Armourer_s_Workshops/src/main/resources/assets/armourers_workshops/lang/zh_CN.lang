@@ -1,0 +1,698 @@
+# Notes for translators.
+#
+# Thank you for considering localising Armourer's Workshop.
+# Before you start consider getting the newest localisation file from GitHub development branch.
+# https://github.com/RiskyKen/Armourers-Workshop/tree/develop/src/main/resources/assets/armourers_workshop/lang
+# This file will often have localisations for the next version of the mod.
+#
+# When the localisation file is done send it to me in whatever way you feel comfortable with.
+# Email:   riskyken.web@gmail.com
+# Twitter: @RiskyKen
+# GitHub:  https://github.com/RiskyKen please send pull request to the development branch.
+#
+# Please also send your Minecraft username/uuid so I can add you to the credits.
+#
+# The following color codes can be added to the start of text to colur it.
+# &0 Black
+# &1 Dark Blue
+# &2 Dark Green
+# &3 Dark Aqua
+# &4 Dark Red
+# &5 Dark Purple
+# &6 Gold
+# &7 Gray
+# &8 Dark Gray
+# &9 Blue
+# &a Green
+# &b Aqua
+# &c Red
+# &d Light Purple
+# &e Yellow
+# &f White
+#
+# A new line can be inserted with %n. Please add/remove new lines to fit the localisations you are writing.
+#
+# The text %s will be replace with text. Example: "Author: %s" could become "Author: RiskyKen".  
+# The text %d will be replace with a number. Example: "Radius: %d*%d*%d" could become "Radius: 3*3*3"
+#
+# That's all have "fun" translating!
+key.dragon.showskin=显示他人时装
+key.categories.dragon=龙之时装
+
+# Block names
+tile.armourers_workshop:armourer.name=时装制作台
+tile.armourers_workshop:miniArmourer.name=迷你制作台 - (还未完成)
+tile.armourers_workshop:skin-library.0.name=资源库
+tile.armourers_workshop:skin-library.1.name=资源库 - (创造模式)
+tile.armourers_workshop:global-skin-library.name=全球资源库
+tile.armourers_workshop:skin-cube.name=造型方块
+tile.armourers_workshop:skin-cube-glowing.name=造型方块 (发光的)
+tile.armourers_workshop:skin-cube-glass.name=玻璃造型方块
+tile.armourers_workshop:skin-cube-glass-glowing.name=玻璃造型方块 (发光的)
+tile.armourers_workshop:colour-mixer.name=调色器
+tile.armourers_workshop:mannequin.name=模特
+tile.armourers_workshop:doll.name=小模特
+tile.armourers_workshop:skinning-table.name=幻化工作台
+tile.armourers_workshop:dye-table.name=染色工作台
+tile.armourers_workshop:skinnable.name=时装方块
+tile.armourers_workshop:hologram-projector.name=全息投影仪
+tile.armourers_workshop:outfit-maker.name=套装工作台
+
+
+# Block flavour text
+tile.armourers_workshop:armourer.flavour=制造时装从这里开始.
+tile.armourers_workshop:mini-armourer.flavour=未完成的.
+tile.armourers_workshop:skin-library.0.flavour=保存时装到文件或读取时装文件到游戏.
+tile.armourers_workshop:skin-library.1.flavour=保存时装到文件或读取时装文件到游戏,仅限创造模式
+tile.armourers_workshop:skin-cube.flavour=构造时装用的基本方块.%n(可以涂色)
+tile.armourers_workshop:skin-cube-glowing.flavour=发光的构造用方块!%n(可以涂色)
+tile.armourers_workshop:skin-cube-glass.flavour=半透明的构造用方块.%n(可以涂色)
+tile.armourers_workshop:skin-cube-glass-glowing.flavour=发光的半透明构造用方块%n(可以涂色)
+tile.armourers_workshop:colour-mixer.flavour=调色用.%nshift+右键可快速拾色
+tile.armourers_workshop:mannequin.flavour=呆萌的时装展示模特!%n你可以通过手持命名牌来给模特换2D皮肤.
+tile.armourers_workshop:doll.flavour=超小模特!
+tile.armourers_workshop:skinning-table.flavour=给装备幻化或者解除幻化的功能.
+tile.armourers_workshop:outfit-maker.flavour=把多个时装拼装成一个套装.
+
+
+# Item names
+# Skins
+item.armourers_workshop:skin-template.name=时装保存卡
+item.armourers_workshop:skin.name=时装
+
+# Painting tools
+item.armourers_workshop:paintbrush.name=笔刷
+item.armourers_workshop:paint-roller.name=滚筒
+item.armourers_workshop:colour-picker.name=拾色器
+item.armourers_workshop:burn-tool.name=加深工具
+item.armourers_workshop:dodge-tool.name=减淡工具
+item.armourers_workshop:colour-noise-tool.name=彩色噪点工具
+item.armourers_workshop:shade-noise-tool.name=噪点工具
+item.armourers_workshop:hue-tool.name=多功能工具
+item.armourers_workshop:block-marker.name=标记工具
+item.armourers_workshop:blending-tool.name=混色工具 - (未完成)
+item.armourers_workshop:paintball-gun.name=彩弹枪
+item.armourers_workshop:palette.name=调色板
+
+# Other
+item.armourers_workshop:mannequin-tool.name=模特工具
+item.armourers_workshop:wand-of-style.name=生物魔杖
+item.armourers_workshop:soap.name=肥皂
+item.armourers_workshop:dye-bottle.name=染色瓶
+item.armourers_workshop:guide-book.name=时装工坊指南
+item.armourers_workshop:armourers-hammer.name=时装方块锤
+item.armourers_workshop:debug-tool.name=调试工具
+item.armourers_workshop:skin-unlock.0.name=头部槽位解锁卡片
+item.armourers_workshop:skin-unlock.1.name=上身槽位解锁卡片
+item.armourers_workshop:skin-unlock.2.name=腿部槽位解锁卡片
+item.armourers_workshop:skin-unlock.3.name=脚部槽位解锁卡片
+item.armourers_workshop:skin-unlock.4.name=翅膀槽位解锁卡片
+item.armourers_workshop:skin-unlock.5.name=套装槽位解锁卡片
+item.armourers_workshop:linking-tool.name=链接工具
+item.armourers_workshop:gift-sack.name=礼品袋
+item.armourers_workshop:armour-container.name=幻化网格(空)
+item.armourers_workshop:armour-container-head.name=幻化网格(头)
+item.armourers_workshop:armour-container-chest.name=幻化网格(身)
+item.armourers_workshop:armour-container-legs.name=幻化网格(腿)
+item.armourers_workshop:armour-container-feet.name=幻化网格(脚)
+
+
+# Item flavour text
+item.armourers_workshop:gift-sack.flavour=RiskyKen(mod作者)送你的小礼品
+item.armourers_workshop:paintbrush.flavour=给一个块/面上色.
+item.armourers_workshop:paint-roller.flavour=给一个区域的块/面上色.
+item.armourers_workshop:colour-picker.flavour=拾取造型方块上的颜色.
+item.armourers_workshop:burn-tool.flavour=使颜色加深.
+item.armourers_workshop:dodge-tool.flavour=使颜色变浅.
+item.armourers_workshop:colour-noise-tool.flavour=增加随机颜色噪点.
+item.armourers_workshop:shade-noise-tool.flavour=增加随机噪点.
+item.armourers_workshop:mannequin-tool.flavour=保存/读取模特的动作状态.%n右键读取.%nshift+右键保存.
+item.armourers_workshop:guide-book.flavour=时装工坊mod使用说明.
+item.armourers_workshop:armour-container.flavour=为地图创作者提供使用(限创造模式).%n可以幻化后穿在NPC的身上.%n在幻化工作台中进行操作.
+item.armourers_workshop:wand-of-style.flavour=可以把时装直接穿在动物/NPC身上.
+item.armourers_workshop:soap.flavour=清除装备中的幻化时装(时装会直接消失).
+item.armourers_workshop:hue-tool.flavour=可以直接更改造型方块的色相%n而不影响黑白灰对比.
+item.armourers_workshop:block-marker.flavour=在造型方块上增加一个标记.%n标记用于弓(需要3个),翅膀(需要2个),椅子(需要1个)的制作
+item.armourers_workshop:dye-bottle.flavour=通过不同颜色数据类型替换时装的颜色.
+item.armourers_workshop:armourers-hammer.flavour=旋转时装方块用.
+item.armourers_workshop:skin-unlock.0.flavour=解锁一个头部时装槽.
+item.armourers_workshop:skin-unlock.1.flavour=解锁一个上身时装槽.
+item.armourers_workshop:skin-unlock.2.flavour=解锁一个腿部时装槽.
+item.armourers_workshop:skin-unlock.3.flavour=解锁一个脚部时装槽.
+item.armourers_workshop:skin-unlock.4.flavour=解锁一个翅膀时装槽.
+item.armourers_workshop:skin-unlock.5.flavour=解锁一个套装时装槽.
+item.armourers_workshop:linking-tool.flavour=用来把一个时装方块连接到带功能的其他方块上.%n先右键点击功能方块%n再点击一下时装方块即可链接.
+
+
+# Rollover Text
+item.armourers_workshop:rollover.intensity=&6强度:&7 %s
+item.armourers_workshop:rollover.colour=&6颜色:&7 %s
+item.armourers_workshop:rollover.hex=&6十六进制:&7 %s
+item.armourers_workshop:rollover.paintType=&6颜色类型:&7 %s
+item.armourers_workshop:rollover.area=&6范围:&7 %d*%d*%d
+item.armourers_workshop:rollover.nopaint=&6空的.
+item.armourers_workshop:rollover.settingsSaved=&6设置已保存.
+item.armourers_workshop:rollover.noSettingsSaved=&c未保存任何设置.
+item.armourers_workshop:rollover.user=&6用户:&7 %s
+item.armourers_workshop:rollover.url=&6链接地址:&7 %s
+item.armourers_workshop:rollover.empty=&6空的.
+item.armourers_workshop:rollover.openSettings=shift+右键打开设置.
+
+item.armourers_workshop:rollover.hasSkin=&6幻化了时装
+item.armourers_workshop:rollover.skinName=&6时装名字:&7 %s
+item.armourers_workshop:rollover.skinAuthor=&6时装作者:&7 %s
+item.armourers_workshop:rollover.skinType=&6类型:&7 %s
+item.armourers_workshop:rollover.skinHoldShiftForInfo=按住 &ashift&7 查看更多信息.
+item.armourers_workshop:rollover.skinIdentifier=&e时装识别码:
+item.armourers_workshop:rollover.skinId=时装 ID: %s
+item.armourers_workshop:rollover.skinLibraryFile=资源库文件: %s
+item.armourers_workshop:rollover.skinGlobalId=全球 ID: %s
+item.armourers_workshop:rollover.skinTotalCubes=&e方块总数:&7 %s
+item.armourers_workshop:rollover.skinNumCubes=&e造型方块:&7 %s
+item.armourers_workshop:rollover.skinNumCubesGlowing=&e发光造型方块:&7 %s
+item.armourers_workshop:rollover.skinNumCubesGlass=&e玻璃造型方块:&7 %s
+item.armourers_workshop:rollover.skinNumCubesGlassGlowing=&e发光玻璃造型方块:&7 %s
+item.armourers_workshop:rollover.skinPaintData=&e包含染色数据:&7 %s
+item.armourers_workshop:rollover.skinMarkerCount=&e标记数:&7 %d
+item.armourers_workshop:rollover.skinDyeCount=&e染色数:&7 %d/8
+item.armourers_workshop:rollover.skindownloading=下载时装 ID: %d
+item.armourers_workshop:rollover.skinOpenWardrobe=按 &a%s&7 键打开 &a衣柜
+item.armourers_workshop:rollover.skinOldType=&c旧的时装文件, 请在时装制作台中重新保存.
+item.armourers_workshop:rollover.skinInvalidItem=&c错误: 无效的时装, 删了吧.
+item.armourers_workshop:rollover.skinIdError1=&c警告:这个时装使用的是旧文件格式.
+item.armourers_workshop:rollover.skinIdError2=&c请保存并从资源库中重新加载以解决此问题.
+item.armourers_workshop:rollover.skinIdError3=&c调试 - 旧 ID: %s 新 ID: %s
+item.armourers_workshop:rollover.skinProperties=&e时装属性:
+item.armourers_workshop:rollover.flavour=&5&o%s
+
+
+# Tool Options
+tooloption.armourers_workshop:fullBlockMode=块模式
+tooloption.armourers_workshop:changeHue=改变色相
+tooloption.armourers_workshop:changeSaturation=改变饱和度
+tooloption.armourers_workshop:changeBrightness=改变亮度
+tooloption.armourers_workshop:changePaintType=改变颜色数据类型
+tooloption.armourers_workshop:intensity=强度
+tooloption.armourers_workshop:radius=半径
+tooloption.armourers_workshop:radius.sample=取样半径
+tooloption.armourers_workshop:radius.effect=影响半径
+tooloption.armourers_workshop:planeRestrict=限制平面
+
+
+# Paint Types
+paintType.armourers_workshop:normal.name=普通
+paintType.armourers_workshop:dye_1.name=染色槽 1
+paintType.armourers_workshop:dye_2.name=染色槽 2
+paintType.armourers_workshop:dye_3.name=染色槽 3
+paintType.armourers_workshop:dye_4.name=染色槽 4
+paintType.armourers_workshop:dye_5.name=染色槽 5
+paintType.armourers_workshop:dye_6.name=染色槽 6
+paintType.armourers_workshop:dye_7.name=染色槽 7
+paintType.armourers_workshop:dye_8.name=染色槽 8
+paintType.armourers_workshop:texture.name=材质
+paintType.armourers_workshop:rainbow.name=彩虹
+paintType.armourers_workshop:pulse_1.name=脉冲 1
+paintType.armourers_workshop:pulse_2.name=脉冲 2
+paintType.armourers_workshop:flicker_1.name=闪烁 1
+paintType.armourers_workshop:flicker_2.name=闪烁 2
+paintType.armourers_workshop:none.name=隐藏
+paintType.armourers_workshop:skin.name=皮肤
+paintType.armourers_workshop:hair.name=头发
+paintType.armourers_workshop:eye.name=眼睛
+paintType.armourers_workshop:misc.name=其他
+
+
+# Colour Families
+colourFamily.armourers_workshop:minecraft.name=我的世界
+colourFamily.armourers_workshop:shades.name=素描
+
+
+# Skin Types
+skinType.armourers:head.name=头部
+skinType.armourers:chest.name=上身
+skinType.armourers:legs.name=腿部
+skinType.armourers:skirt.name=裙子
+skinType.armourers:feet.name=脚部
+skinType.armourers:wings.name=翅膀
+
+skinType.armourers:sword.name=剑
+skinType.armourers:shield.name=盾
+skinType.armourers:bow.name=弓
+
+skinType.armourers:pickaxe.name=镐
+skinType.armourers:axe.name=斧
+skinType.armourers:shovel.name=铲
+skinType.armourers:hoe.name=锄
+skinType.armourers:item.name=物品
+
+skinType.armourers:block.name=方块
+skinType.armourers:multiblock.name=大方块
+skinType.armourers:horse.name=马
+skinType.armourers:advanced.name=高级材料
+skinType.armourers:outfit.name=套装
+
+
+# Skin Part Types
+skinPartType.armourers:head.base.name=头部
+
+skinPartType.armourers:chest.base.name=上身
+skinPartType.armourers:chest.leftArm.name=左臂
+skinPartType.armourers:chest.rightArm.name=右臂
+
+skinPartType.armourers:legs.leftLeg.name=左腿
+skinPartType.armourers:legs.rightLeg.name=右腿
+skinPartType.armourers:legs.skirt.name=裙子
+
+skinPartType.armourers:skirt.base.name=胯部
+
+skinPartType.armourers:feet.leftFoot.name=左脚
+skinPartType.armourers:feet.rightFoot.name=右脚
+
+skinPartType.armourers:sword.base.name=剑
+
+skinPartType.armourers:bow.frame1.name=帧 1
+skinPartType.armourers:bow.frame2.name=帧 2
+skinPartType.armourers:bow.frame3.name=帧 3
+skinPartType.armourers:arrow.base.name=箭
+
+skinPartType.armourers:block.base.name=方块
+skinPartType.armourers:block.multiblock.name=大方块
+
+skinPartType.armourers:wings.leftWing.name=左翼
+skinPartType.armourers:wings.rightWing.name=右翼
+
+
+# Movement types
+movmentType.armourers_workshop:ease=煽动
+movmentType.armourers_workshop:linear=线性
+
+
+# Inventory names
+inventory.armourers_workshop:colour-mixer.name=调色器
+inventory.armourers_workshop:armourer.name=时装制作台
+inventory.armourers_workshop:skin-library0.name=资源库
+inventory.armourers_workshop:skin-library1.name=资源库 - (创造模式)
+inventory.armourers_workshop:global-skin-library.name=全球资源库
+inventory.armourers_workshop:wardrobe.name=衣柜
+inventory.armourers_workshop:mannequin.name=模特
+inventory.armourers_workshop:doll.name=小模特
+inventory.armourers_workshop:miniArmourer.name=迷你制作台 - (未完成)
+inventory.armourers_workshop:skinning-table.name=幻化工作台
+inventory.armourers_workshop:dye-table.name=染色工作台
+inventory.armourers_workshop:skinnable.name=时装方块
+inventory.armourers_workshop:hologram-projector.name=全息投影仪
+inventory.armourers_workshop:outfit-maker.name=套装工作台
+
+
+# Inventory Controls
+# Skin Library
+inventory.armourers_workshop:skin-library.label.search=搜索:
+inventory.armourers_workshop:skin-library.label.filename=文件名:
+inventory.armourers_workshop:skin-library.label.files=文件:
+inventory.armourers_workshop:skin-library.error.noFileName=&7必须输入文件名才能保存时装.
+inventory.armourers_workshop:skin-library.error.noFileSelected=&7必须从列表中选择要加载的时装.
+inventory.armourers_workshop:skin-library.save=保存
+inventory.armourers_workshop:skin-library.load=读取
+inventory.armourers_workshop:skin-library.openFolder=打开文件夹...
+inventory.armourers_workshop:skin-library.trackFile=跟踪文件?
+inventory.armourers_workshop:skin-library.rollover.localFiles=查看本机时装文件
+inventory.armourers_workshop:skin-library.rollover.remotePublicFiles=查看服务器上的公共文件
+inventory.armourers_workshop:skin-library.rollover.remotePrivateFiles=查看服务器上的私人文件
+inventory.armourers_workshop:skin-library.rollover.notOnServer=必须连接到服务器才能使用此功能
+inventory.armourers_workshop:skin-library.rollover.openLibraryFolder=打开本机上的资源库文件夹
+inventory.armourers_workshop:skin-library.rollover.deleteSkin=删除时装
+inventory.armourers_workshop:skin-library.rollover.deleteSkinSelect=删除
+inventory.armourers_workshop:skin-library.rollover.refresh=刷新资源库
+inventory.armourers_workshop:skin-library.rollover.newFolder=新建文件夹
+inventory.armourers_workshop:skin-library.rollover.back=上一级文件夹
+inventory.armourers_workshop:skin-library.label.enterFileName=输入文件名
+inventory.armourers_workshop:skin-library.label.typeToSearch=输入要查找的文件名...
+inventory.armourers_workshop:skin-library.dialog.newFolder.title=新建文件夹
+inventory.armourers_workshop:skin-library.dialog.newFolder.enterFolderName=输入文件夹名称...
+inventory.armourers_workshop:skin-library.dialog.newFolder.close=关闭
+inventory.armourers_workshop:skin-library.dialog.newFolder.create=创建
+inventory.armourers_workshop:skin-library.dialog.newFolder.invalidFolderName=文件夹名包含无效字符.
+inventory.armourers_workshop:skin-library.dialog.delete.title=删除
+inventory.armourers_workshop:skin-library.dialog.delete.close=关闭
+inventory.armourers_workshop:skin-library.dialog.delete.delete=删除
+inventory.armourers_workshop:skin-library.dialog.delete.deleteFolder=是否要删除文件夹 "%s" 和其中包含的所有文件?
+inventory.armourers_workshop:skin-library.dialog.delete.deleteFile=是否要删除文件 "%s"?
+inventory.armourers_workshop:skin-library.dialog.overwrite.title=覆盖文件
+inventory.armourers_workshop:skin-library.dialog.overwrite.close=关闭
+inventory.armourers_workshop:skin-library.dialog.overwrite.ok=确定
+inventory.armourers_workshop:skin-library.dialog.overwrite.overwriteFile=覆盖已有文件 "%s"?
+
+# Outfit Maker
+inventory.armourers_workshop:outfit-maker.save=保存套装
+inventory.armourers_workshop:outfit-maker.load=读取套装
+inventory.armourers_workshop:outfit-maker.skinName=时装名字
+inventory.armourers_workshop:outfit-maker.skinFlavour=简介
+
+# Armourer
+inventory.armourers_workshop:armourer.label.itemName=物品名:
+inventory.armourers_workshop:armourer.label.flavour=简介:
+inventory.armourers_workshop:armourer.label.skinType=时装类型:
+inventory.armourers_workshop:armourer.label.username=用户名:
+inventory.armourers_workshop:armourer.label.url=链接地址:
+inventory.armourers_workshop:armourer.label.idleSpeed=平时速度:
+inventory.armourers_workshop:armourer.label.flyingSpeed=飞行速度:
+inventory.armourers_workshop:armourer.label.minAngle=最小角度:
+inventory.armourers_workshop:armourer.label.maxAngle=最大角度:
+inventory.armourers_workshop:armourer.label.clone=克隆:
+inventory.armourers_workshop:armourer.label.inventorySize=箱子尺寸:
+inventory.armourers_workshop:armourer.label.inventorySlots=Slots:%d 宽度:%d Height:%d
+inventory.armourers_workshop:armourer.showGuide=显示网格辅助?
+inventory.armourers_workshop:armourer.showOverlay=显示双层皮肤?
+inventory.armourers_workshop:armourer.showHelper=显示辅助模型?
+inventory.armourers_workshop:armourer.save=保存
+inventory.armourers_workshop:armourer.load=加载
+inventory.armourers_workshop:armourer.dropdown.user=用户名
+inventory.armourers_workshop:armourer.dropdown.url=链接地址
+inventory.armourers_workshop:armourer.set=设置
+inventory.armourers_workshop:armourer.clear=清除
+inventory.armourers_workshop:armourer.copy=复制
+inventory.armourers_workshop:armourer.glowing=会发光吗?
+inventory.armourers_workshop:armourer.ladder=是梯子吗?
+inventory.armourers_workshop:armourer.noCollision=无碰撞吗?
+inventory.armourers_workshop:armourer.seat=能坐上吗?
+inventory.armourers_workshop:armourer.multiblock=是大方块吗?
+inventory.armourers_workshop:armourer.bed=是床吗?
+inventory.armourers_workshop:armourer.inventory=是箱子吗?
+inventory.armourers_workshop:armourer.enderInventory=是末影箱吗?
+
+inventory.armourers_workshop:armourer.modelOverrideHead=隐藏头部辅助模型?
+inventory.armourers_workshop:armourer.modelOverrideChest=隐藏上身辅助模型?
+inventory.armourers_workshop:armourer.modelOverrideArmLeft=隐藏左臂辅助模型?
+inventory.armourers_workshop:armourer.modelOverrideArmRight=隐藏右臂辅助模型?
+inventory.armourers_workshop:armourer.modelOverrideLegLeft=隐藏左腿辅助模型?
+inventory.armourers_workshop:armourer.modelOverrideLegRight=隐藏右腿辅助模型?
+
+inventory.armourers_workshop:armourer.hideOverlayHead=时装覆盖头部皮肤层?
+inventory.armourers_workshop:armourer.hideOverlayChest=时装覆盖上身皮肤层?
+inventory.armourers_workshop:armourer.hideOverlayArmLeft=时装覆盖左臂皮肤层?
+inventory.armourers_workshop:armourer.hideOverlayArmRight=时装覆盖右臂皮肤层?
+inventory.armourers_workshop:armourer.hideOverlayLegLeft=时装覆盖左腿皮肤层?
+inventory.armourers_workshop:armourer.hideOverlayLegRight=时装覆盖右腿皮肤层?
+
+inventory.armourers_workshop:armourer.limitLimbs=限制抬腿高度?
+inventory.armourers_workshop:armourer.tab.main=主菜单
+inventory.armourers_workshop:armourer.tab.displaySettings=显示设定
+inventory.armourers_workshop:armourer.tab.skinSettings=时装设定
+inventory.armourers_workshop:armourer.tab.blockUtils=辅助类工具
+inventory.armourers_workshop:armourer.dialog.clear.title=清除
+inventory.armourers_workshop:armourer.dialog.clear.close=关闭
+inventory.armourers_workshop:armourer.dialog.clear.clear=清除
+inventory.armourers_workshop:armourer.dialog.clear.clearBlocks=清除造型方块?
+inventory.armourers_workshop:armourer.dialog.clear.clearPaint=清除皮肤绘画?
+inventory.armourers_workshop:armourer.dialog.clear.clearMarkers=清除标记?
+inventory.armourers_workshop:armourer.dialog.copy.title=复制
+inventory.armourers_workshop:armourer.dialog.copy.close=关闭
+inventory.armourers_workshop:armourer.dialog.copy.copy=复制
+inventory.armourers_workshop:armourer.dialog.copy.srcPart=源部位:
+inventory.armourers_workshop:armourer.dialog.copy.desPart=目标部位:
+inventory.armourers_workshop:armourer.dialog.copy.mirror=水平镜像?
+
+inventory.armourers_workshop:armourer.main.help.skinType=选择皮肤类型
+inventory.armourers_workshop:armourer.main.help.save=把造型方块保存为时装(左侧放入保存卡)
+inventory.armourers_workshop:armourer.main.help.load=把时装物品生成为造型方块
+inventory.armourers_workshop:armourer.main.help.itemName=给这个时装起个名字
+inventory.armourers_workshop:armourer.main.help.itemFlavour=给时装增加一条简介
+
+
+# Color Mixer
+inventory.armourers_workshop:colour-mixer.label.hue=色相
+inventory.armourers_workshop:colour-mixer.label.saturation=饱和度
+inventory.armourers_workshop:colour-mixer.label.brightness=明度
+inventory.armourers_workshop:colour-mixer.label.hex=十六进制
+inventory.armourers_workshop:colour-mixer.label.presets=预设
+inventory.armourers_workshop:colour-mixer.label.paintType=颜色类型
+
+
+# Wardrobe
+inventory.armourers_workshop:wardrobe.tab.skins=时装栏
+inventory.armourers_workshop:wardrobe.tab.outfits=套装栏
+inventory.armourers_workshop:wardrobe.tab.displaySettings=显示设置
+inventory.armourers_workshop:wardrobe.tab.colourSettings=颜色设置
+inventory.armourers_workshop:wardrobe.tab.dyes=染色设置
+
+inventory.armourers_workshop:wardrobe.label.skinColour=肤色
+inventory.armourers_workshop:wardrobe.label.hairColour=发色
+inventory.armourers_workshop:wardrobe.label.eyeColour=瞳色
+inventory.armourers_workshop:wardrobe.label.miscColour=其他颜色
+
+inventory.armourers_workshop:wardrobe.selectSkin=选择肤色
+inventory.armourers_workshop:wardrobe.autoSkin=自动肤色
+inventory.armourers_workshop:wardrobe.selectHair=选择发色
+inventory.armourers_workshop:wardrobe.autoHair=自动发色
+inventory.armourers_workshop:wardrobe.selectEye=选择瞳色
+inventory.armourers_workshop:wardrobe.autoEye=自动瞳色
+inventory.armourers_workshop:wardrobe.selectAcc=选择附件颜色
+
+inventory.armourers_workshop:wardrobe.label.skinOverride=时装覆盖
+inventory.armourers_workshop:wardrobe.renderHeadArmour=显示头部装备?
+inventory.armourers_workshop:wardrobe.renderChestArmour=显示上身装备?
+inventory.armourers_workshop:wardrobe.renderLegArmour=显示腿部装备?
+inventory.armourers_workshop:wardrobe.renderFootArmour=显示脚部装备?
+
+
+# Mannequin
+inventory.armourers_workshop:mannequin.label.headRotation=头部旋转
+inventory.armourers_workshop:mannequin.label.leftArmRotation=左臂旋转
+inventory.armourers_workshop:mannequin.label.rightArmRotation=右臂旋转
+inventory.armourers_workshop:mannequin.label.leftLegRotation=左腿旋转
+inventory.armourers_workshop:mannequin.label.rightLegRotation=右腿旋转
+inventory.armourers_workshop:mannequin.label.isChild=缩小?
+inventory.armourers_workshop:mannequin.label.isExtraRenders=额外的?
+inventory.armourers_workshop:mannequin.label.isFlying=处于飞行?
+inventory.armourers_workshop:mannequin.label.isVisible=可见的?
+inventory.armourers_workshop:mannequin.label.noclip=碰撞?
+inventory.armourers_workshop:mannequin.random=随机
+inventory.armourers_workshop:mannequin.reset=重置
+inventory.armourers_workshop:mannequin.dropdown.user=用户名
+inventory.armourers_workshop:mannequin.dropdown.url=链接地址
+inventory.armourers_workshop:mannequin.set=设置
+inventory.armourers_workshop:mannequin.selectSkin=选择肤色
+inventory.armourers_workshop:mannequin.selectHair=选择发色
+inventory.armourers_workshop:mannequin.autoSkin=自动皮肤
+inventory.armourers_workshop:mannequin.autoHair=自动发色
+inventory.armourers_workshop:mannequin.tab.inventory=物品栏
+inventory.armourers_workshop:mannequin.tab.rotations=旋转
+inventory.armourers_workshop:mannequin.tab.offset=位置
+inventory.armourers_workshop:mannequin.tab.skinAndHair=肤色&发色
+inventory.armourers_workshop:mannequin.tab.name=名字
+inventory.armourers_workshop:mannequin.tab.extraRenders=其他
+
+
+# Global Skin Library
+inventory.armourers_workshop:global-skin-library.invalidJava=[Java版本 %d 已升级至 %d] 当前版本太旧了. 请升级到 [Java 8 Update 101] 或更高.
+
+
+# Global Skin Library (Header)
+inventory.armourers_workshop:global-skin-library.header.home=主页
+inventory.armourers_workshop:global-skin-library.header.favourites=喜欢
+inventory.armourers_workshop:global-skin-library.header.myFiles=我的文件
+inventory.armourers_workshop:global-skin-library.header.uploadSkin=上传时装
+inventory.armourers_workshop:global-skin-library.header.uploadSkinBan=你被禁止上传时装
+inventory.armourers_workshop:global-skin-library.header.joinBeta=进入测试版
+
+
+# Global Skin Library (Search Box)
+inventory.armourers_workshop:global-skin-library.searchBox.typeToSearch=输入要搜索的内容...
+inventory.armourers_workshop:global-skin-library.searchBox.search=搜索
+
+
+# Global Skin Library (Home)
+inventory.armourers_workshop:global-skin-library.home.showAllSkins=显示所有
+inventory.armourers_workshop:global-skin-library.home.recentlyUploaded=最新上传
+inventory.armourers_workshop:global-skin-library.home.mostDownloaded=最多下载
+inventory.armourers_workshop:global-skin-library.home.mostLikes=最多喜欢
+
+
+# Global Skin Library (Search Results)
+inventory.armourers_workshop:global-skin-library.searchResults.results=搜索结果: 第 %d / %d 页- 共 %d 个结果.
+inventory.armourers_workshop:global-skin-library.searchResults.small=小
+inventory.armourers_workshop:global-skin-library.searchResults.medium=中
+inventory.armourers_workshop:global-skin-library.searchResults.large=大
+inventory.armourers_workshop:global-skin-library.searchResults.label.searching=搜索中...
+
+
+# Global Skin Library (Skin Info)
+inventory.armourers_workshop:global-skin-library.skinInfo.back=返回
+inventory.armourers_workshop:global-skin-library.skinInfo.downloadSkin=下载
+inventory.armourers_workshop:global-skin-library.skinInfo.editSkin=编辑信息
+inventory.armourers_workshop:global-skin-library.skinInfo.like=喜欢
+inventory.armourers_workshop:global-skin-library.skinInfo.unlike=不同意!
+inventory.armourers_workshop:global-skin-library.skinInfo.uploader=上传者: %s
+inventory.armourers_workshop:global-skin-library.skinInfo.title=时装信息
+inventory.armourers_workshop:global-skin-library.skinInfo.name=名称:
+inventory.armourers_workshop:global-skin-library.skinInfo.downloads=下载次数: %d
+inventory.armourers_workshop:global-skin-library.skinInfo.likes=喜欢: %d
+inventory.armourers_workshop:global-skin-library.skinInfo.author=作者:
+inventory.armourers_workshop:global-skin-library.skinInfo.description=简介:
+
+
+# Global Skin Library (Upload)
+inventory.armourers_workshop:global-skin-library.upload.name=上传时装
+inventory.armourers_workshop:global-skin-library.upload.skinName=名称:
+inventory.armourers_workshop:global-skin-library.upload.enterName=输入名称
+inventory.armourers_workshop:global-skin-library.upload.skinTags=标签:
+inventory.armourers_workshop:global-skin-library.upload.enterTags=增加标签
+inventory.armourers_workshop:global-skin-library.upload.skinDescription=简介:
+inventory.armourers_workshop:global-skin-library.upload.enterDescription=输入简介
+inventory.armourers_workshop:global-skin-library.upload.buttonUpload=上传
+
+
+# Global Skin Library (Beta - Will be removed later).
+inventory.armourers_workshop:global-skin-library.joinBeta.name=进入测试版
+inventory.armourers_workshop:global-skin-library.joinBeta.enterBetaCode=输入邀请码
+inventory.armourers_workshop:global-skin-library.joinBeta.closedBeta=上传到全球资源库功能目前处于封闭测试阶段.如果你有邀请码，请输入邀请码.
+inventory.armourers_workshop:global-skin-library.joinBeta.buttonJoinBeta=进入测试版
+inventory.armourers_workshop:global-skin-library.joinBeta.betaCode=邀请码:
+inventory.armourers_workshop:global-skin-library.joinBeta.checkCode=检测邀请码.
+inventory.armourers_workshop:global-skin-library.joinBeta.codeInvalid=无效的邀请码.
+inventory.armourers_workshop:global-skin-library.joinBeta.joiningBeta=进入测试版.
+inventory.armourers_workshop:global-skin-library.joinBeta.joinedFailed=无法加入测试版.
+inventory.armourers_workshop:global-skin-library.joinBeta.joinedBeta=成功登录.
+inventory.armourers_workshop:global-skin-library.upload.closedBetaWarning=警告测试结束时，所有在内测期间上传的时装都将被删除.
+
+
+# Global Skin Library (User Skins)
+inventory.armourers_workshop:global-skin-library.userSkins.results=时装上传者 %s: 第 %d / %d 页- 共 %d 个结果.
+
+
+# Global Skin Library (Edit Skin)
+inventory.armourers_workshop:global-skin-library.edit.name=编辑时装信息
+inventory.armourers_workshop:global-skin-library.edit.skinName=名称:
+inventory.armourers_workshop:global-skin-library.edit.enterName=输入名称
+inventory.armourers_workshop:global-skin-library.edit.skinTags=标签:
+inventory.armourers_workshop:global-skin-library.edit.enterTags=输入标签
+inventory.armourers_workshop:global-skin-library.edit.skinDescription=简介:
+inventory.armourers_workshop:global-skin-library.edit.enterDescription=输入简介
+inventory.armourers_workshop:global-skin-library.edit.buttonUpdate=上传
+inventory.armourers_workshop:global-skin-library.edit.buttonDelete=删除
+inventory.armourers_workshop:global-skin-library.edit.dialog.delete.title=删除
+inventory.armourers_workshop:global-skin-library.edit.dialog.delete.ok=确定
+inventory.armourers_workshop:global-skin-library.edit.dialog.delete.cancel=取消
+
+
+# Hologram Projector
+inventory.armourers_workshop:hologram-projector.tab.inventory=物品栏
+inventory.armourers_workshop:hologram-projector.tab.offset=位置
+inventory.armourers_workshop:hologram-projector.tab.angle=角度
+inventory.armourers_workshop:hologram-projector.tab.rotationOffset=旋转偏移量
+inventory.armourers_workshop:hologram-projector.tab.rotationSpeed=旋转速度
+inventory.armourers_workshop:hologram-projector.tab.extra=其他
+inventory.armourers_workshop:hologram-projector.showRotationPoint=显示中心点?
+inventory.armourers_workshop:hologram-projector.glowing=发光?
+inventory.armourers_workshop:hologram-projector.label.powerMode=红石模式:
+inventory.armourers_workshop:hologram-projector.powerMode.ignored=忽略
+inventory.armourers_workshop:hologram-projector.powerMode.high=高
+inventory.armourers_workshop:hologram-projector.powerMode.low=低
+
+
+# Admin Panel
+inventory.armourers_workshop:admin-panel.recover_skins=恢复时装
+inventory.armourers_workshop:admin-panel.reload_library=重载资源库
+inventory.armourers_workshop:admin-panel.update_skins=更新时装
+inventory.armourers_workshop:admin-panel.clear_cache=清空缓存
+
+
+# Chat Messages
+chat.armourers_workshop:undo.outOfUndos=0
+chat.armourers_workshop:undo.undoing=1
+chat.armourers_workshop:inventoryFull=2
+chat.armourers_workshop:inventoryGiftFail=3
+chat.armourers_workshop:updateAvailable=4
+chat.armourers_workshop:updateDownload=5
+chat.armourers_workshop:updateDownloadRollover=6
+chat.armourers_workshop:invalidJar=7
+chat.armourers_workshop:invalidJarDownload=8
+chat.armourers_workshop:invalidJarDownloadTooltip=9
+chat.armourers_workshop:invalidJarStopModReposts=10
+chat.armourers_workshop:invalidJarStopModRepostsTooltip=11
+chat.armourers_workshop:devWarning=12
+chat.armourers_workshop:slotUnlocked=13
+chat.armourers_workshop:slotUnlockedFailed=14
+chat.armourers_workshop:linkingTool.start=15
+chat.armourers_workshop:linkingTool.finish=16
+chat.armourers_workshop:linkingTool.fail=17
+chat.armourers_workshop:linkingTool.linkedToSkinnable=18
+
+
+# Death Messages
+death.attack.victorious=%1$s 被维克的王冠刺死了.
+
+
+# Commands
+commands.armourers.usage=/armourers <adminPanel | clearModelCache | clearSkins | exportSkin | giveSkin | resyncWardrobe | setItemSkinnable | setSkin | setUnlockedWardrobeSlots | setWardrobeOption>
+commands.armourers.clearModelCache.usage=/armourers clearModelCache <player>
+commands.armourers.clearSkins.usage=/armourers clearSkins <player>
+commands.armourers.exportSkin.usage=/armourers exportSkin <file format> "<file name>" [scale]
+commands.armourers.giveSkin.usage=/armourers giveSkin <player> "<skin name>" [<dyeIndex-R,G,B[-paintType]> | <dyeIndex-0xRRGGBB[-paintType>]]
+commands.armourers.resyncWardrobe.usage=/armourers resyncWardrobe <player>
+commands.armourers.setItemSkinnable.usage=/armourers setItemSkinnable <skintype> <add|remove>
+commands.armourers.setSkin.usage=/armourers setSkin <player> <slot id> "<skin name> [<dyeIndex-R,G,B[-paintType]> | <dyeIndex-0xRRGGBB[-paintType>]]
+commands.armourers.setUnlockedWardrobeSlots.usage=/armourers setUnlockedWardrobeSlots <player> <skin type> <amount 1-8>
+commands.armourers.setWardrobeOption.usage=/armourers setWardrobeOption <player> <showHeadArmour | showChestArmour | showLegArmour | showFootArmour | showHeadOverlay> <true | false>
+commands.armourers.fileNotFound=The file %1$s was not found.
+commands.armourers.invalidDyeFormat=%1$s is not a valid dye format.
+
+
+# Creative tab
+itemGroup.armourers_workshop=时装工坊
+
+
+# Keybindings
+keys.armourers_workshop:category=时装工坊
+keys.armourers_workshop.open-wardrobe=打开衣柜
+keys.armourers_workshop.undo=撤销
+
+
+# Notes to translators.
+# The guide book will be rewritten before release so you don't need to waste time translating it.
+# Well unless you are really bored. :(
+
+
+# Guide Book
+# Chapter 1
+book.armourers_workshop:guideBook.contents.name=Contents
+
+# Chapter 2
+book.armourers_workshop:guideBook.introduction.name=Introduction
+book.armourers_workshop:guideBook.introduction.paragraph1=Note: 未完成的说明书(几乎没有内容暂不翻译).&p非常高兴你能喜欢这个mod.&p如有使用的疑问请在mcbbs的帖子留言或直接联系作者.
+book.armourers_workshop:guideBook.introduction.paragraph2=Armourer's Workshop will let you build your own equipment skins for armour and weapons to replace their look!
+
+# Chapter 3
+book.armourers_workshop:guideBook.armourer.name=Armorer
+book.armourers_workshop:guideBook.armourer.paragraph1=The first thing you will need to get started building your custom armor is the armorer.&pAfter placing the block down right click it to open the GUI. Down the left side you will see all the types of equipment that can be build.
+book.armourers_workshop:guideBook.armorer.paragraph2=Select the type of equipment that you would like to crate then start building your equipment using Equipment Cubes.&pAfter you have finished place an equipment template into the armorer type in a name and press save.
+
+# Chapter 4
+book.armourers_workshop:guideBook.equipmentTemplates.name=Equipment Templates
+book.armourers_workshop:guideBook.equipmentTemplates.paragraph1=Equipment templates are what equipment skins are saved on simply place the equipment skin into the wardrobe to apply the skin.
+
+# Chapter 5
+book.armourers_workshop:guideBook.paintingTools.name=Painting Tools
+book.armourers_workshop:guideBook.paintingTools.paragraph1=A number of painting tool have been provided to help with your creative endeavour!&pColour Mixer&nAllows you to mix up any color you like.&pPaintbrush&nPaints a single Equipment Cube.
+book.armourers_workshop:guideBook.paintingTools.paragraph2=Color Picker&nLets you pick a color from an Equipment Cube and set a Color Mixer to that color.&pPaint Roller&nPaints Equipment Cube's in a 3*3*1 area.
+book.armourers_workshop:guideBook.paintingTools.paragraph3=Burn Tool&nMakes an Equipment Cube darker.&pDodge Tool&nMakes an Equipment Cube lighter.&pColour Noise Tool&nApplies random color noise to an Equipment Cube.
+book.armourers_workshop:guideBook.paintingTools.paragraph4=Shade Noise Tool&nApplies random shading to am Armour Cube.&pSome tools can be configured by sneaking and pressing right click.
+
+# Chapter 6
+book.armourers_workshop:guideBook.equipment-wardrobe.name=Wardrobe
+book.armourers_workshop:guideBook.equipment-wardrobe.paragraph1=WIP
+book.armourers_workshop:guideBook.equipment-wardrobe.paragraph2=WIP
+
+# Chapter 7
+book.armourers_workshop:guideBook.recipes.name=Recipes
+
+# Chapter 8
+book.armourers_workshop:guideBook.credits.name=Credits
+book.armourers_workshop:guideBook.credits.programing=Programing
+book.armourers_workshop:guideBook.credits.premade Skins=Premade Skins
+book.armourers_workshop:guideBook.credits.textures=Textures
+book.armourers_workshop:guideBook.credits.sound=Sound
+book.armourers_workshop:guideBook.credits.localisations=Localizations
+
+# Temp
+inventory.armourers_workshop:mannequin.unfinished=模特功能在此版本中尚未完成,请先用展示架代替.

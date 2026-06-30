@@ -1,0 +1,55 @@
+{
+  "mappings": {
+    "eos/moe/ancientdream/mixins/MixinRenderItem": {
+      "renderItemModelIntoGUI": "Lnet/minecraft/client/renderer/RenderItem;func_191962_a(Lnet/minecraft/item/ItemStack;IILnet/minecraft/client/renderer/block/model/IBakedModel;)V"
+    },
+    "eos/moe/ancientdream/mixins/MixinPlayerSP": {
+      "onLivingUpdate": "Lnet/minecraft/client/entity/EntityPlayerSP;func_70636_d()V",
+      "Lnet/minecraft/client/entity/EntityPlayerSP;isRiding()Z": "Lnet/minecraft/client/entity/EntityPlayerSP;func_184218_aH()Z",
+      "Lnet/minecraft/client/tutorial/Tutorial;handleMovement(Lnet/minecraft/util/MovementInput;)V": "Lnet/minecraft/client/tutorial/Tutorial;func_193293_a(Lnet/minecraft/util/MovementInput;)V",
+      "Lnet/minecraft/client/entity/EntityPlayerSP;isHandActive()Z": "Lnet/minecraft/client/entity/EntityPlayerSP;func_184587_cr()Z"
+    },
+    "eos/moe/ancientdream/mixins/MixinGameSettings": {
+      "setSoundLevel": "Lnet/minecraft/client/settings/GameSettings;func_186712_a(Lnet/minecraft/util/SoundCategory;F)V"
+    },
+    "eos/moe/ancientdream/mixins/MixinMusicTicker": {
+      "update": "Lnet/minecraft/client/audio/MusicTicker;func_73660_a()V"
+    }
+  },
+  "data": {
+    "notch": {
+      "eos/moe/ancientdream/mixins/MixinRenderItem": {
+        "renderItemModelIntoGUI": "Lbzw;a(Laip;IILcfy;)V"
+      },
+      "eos/moe/ancientdream/mixins/MixinPlayerSP": {
+        "onLivingUpdate": "Lbud;n()V",
+        "Lnet/minecraft/client/entity/EntityPlayerSP;isRiding()Z": "Lbud;aS()Z",
+        "Lnet/minecraft/client/tutorial/Tutorial;handleMovement(Lnet/minecraft/util/MovementInput;)V": "Lchz;a(Lbub;)V",
+        "Lnet/minecraft/client/entity/EntityPlayerSP;isHandActive()Z": "Lbud;cG()Z"
+      },
+      "eos/moe/ancientdream/mixins/MixinGameSettings": {
+        "setSoundLevel": "Lbid;a(Lqg;F)V"
+      },
+      "eos/moe/ancientdream/mixins/MixinMusicTicker": {
+        "update": "Lchl;e()V"
+      }
+    },
+    "searge": {
+      "eos/moe/ancientdream/mixins/MixinRenderItem": {
+        "renderItemModelIntoGUI": "Lnet/minecraft/client/renderer/RenderItem;func_191962_a(Lnet/minecraft/item/ItemStack;IILnet/minecraft/client/renderer/block/model/IBakedModel;)V"
+      },
+      "eos/moe/ancientdream/mixins/MixinPlayerSP": {
+        "onLivingUpdate": "Lnet/minecraft/client/entity/EntityPlayerSP;func_70636_d()V",
+        "Lnet/minecraft/client/entity/EntityPlayerSP;isRiding()Z": "Lnet/minecraft/client/entity/EntityPlayerSP;func_184218_aH()Z",
+        "Lnet/minecraft/client/tutorial/Tutorial;handleMovement(Lnet/minecraft/util/MovementInput;)V": "Lnet/minecraft/client/tutorial/Tutorial;func_193293_a(Lnet/minecraft/util/MovementInput;)V",
+        "Lnet/minecraft/client/entity/EntityPlayerSP;isHandActive()Z": "Lnet/minecraft/client/entity/EntityPlayerSP;func_184587_cr()Z"
+      },
+      "eos/moe/ancientdream/mixins/MixinGameSettings": {
+        "setSoundLevel": "Lnet/minecraft/client/settings/GameSettings;func_186712_a(Lnet/minecraft/util/SoundCategory;F)V"
+      },
+      "eos/moe/ancientdream/mixins/MixinMusicTicker": {
+        "update": "Lnet/minecraft/client/audio/MusicTicker;func_73660_a()V"
+      }
+    }
+  }
+}

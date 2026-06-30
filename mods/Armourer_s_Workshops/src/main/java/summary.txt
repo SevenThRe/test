@@ -1,0 +1,184 @@
+Summary for F:\Program Files\tx\重生II客户端正式启动2026628\重生II客户端正式启动2026628\.minecraft\mods\Mod-DragonArmourers(4).jar
+Decompiled with CFR 0.152
+
+
+org.spongepowered.asm.mixin.refmap.ReferenceMapper
+----------------------------
+
+read(java.lang.String )
+  Loose catch block
+
+
+eos.moe.armourers.ya
+----------------------------
+
+r(java.io.RandomAccessFile java.io.OutputStream long long eos.moe.armourers.rb )
+  Unable to fully structure code
+
+
+eos.moe.armourers.xa
+----------------------------
+
+r(java.io.File eos.moe.armourers.rb )
+  Unable to fully structure code
+
+
+eos.moe.armourers.ia
+----------------------------
+
+r(eos.moe.armourers.ea eos.moe.armourers.rb )
+  Loose catch block
+
+
+eos.moe.armourers.va
+----------------------------
+
+r(eos.moe.armourers.ma eos.moe.armourers.rb )
+  Unable to fully structure code
+
+
+eos.moe.armourers.la
+----------------------------
+
+r(eos.moe.armourers.sa eos.moe.armourers.rb )
+  Unable to fully structure code
+
+
+eos.moe.armourers.ja
+----------------------------
+
+r(eos.moe.armourers.ka eos.moe.armourers.rb )
+  Unable to fully structure code
+
+
+eos.moe.armourers.na
+----------------------------
+
+r(eos.moe.armourers.aa eos.moe.armourers.rb )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once
+
+
+eos.moe.armourers.ha
+----------------------------
+
+r(eos.moe.armourers.za eos.moe.armourers.rb )
+  Loose catch block
+
+
+eos.moe.armourers.ua
+----------------------------
+
+r(eos.moe.armourers.ba eos.moe.armourers.rb )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once
+
+
+eos.moe.armourers.da
+----------------------------
+
+r(eos.moe.armourers.oc eos.moe.armourers.pb java.io.File eos.moe.armourers.rb )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Tried to end blocks [7[CATCHBLOCK], 2[TRYBLOCK]], but top level block is 4[TRYBLOCK]
+
+
+eos.moe.armourers.ta
+----------------------------
+
+r(java.util.List<java.io.File> eos.moe.armourers.rb eos.moe.armourers.zb java.nio.charset.Charset )
+  Loose catch block
+
+
+eos.moe.armourers.vl
+----------------------------
+
+r(eos.moe.armourers.kb eos.moe.armourers.nb java.io.OutputStream java.nio.charset.Charset )
+  Loose catch block
+r(eos.moe.armourers.nb java.io.OutputStream )
+  Loose catch block
+r(eos.moe.armourers.kb java.io.OutputStream java.nio.charset.Charset )
+  Loose catch block
+
+
+eos.moe.armourers.hl
+----------------------------
+
+r(java.io.RandomAccessFile java.nio.charset.Charset )
+  Unable to fully structure code
+r(java.io.RandomAccessFile eos.moe.armourers.ra java.nio.charset.Charset )
+  Unable to fully structure code
+
+
+eos.moe.armourers.ue
+----------------------------
+
+r(boolean eos.moe.armourers.zb )
+  Unable to fully structure code
+
+
+eos.moe.armourers.tj
+----------------------------
+
+y(java.io.InputStream )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 3 blocks at once
+r(java.io.InputStream )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 3 blocks at once
+r(java.io.File )
+  Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 4 blocks at once
+
+
+eos.moe.armourers.vg
+----------------------------
+
+r(java.io.BufferedInputStream )
+  Unable to fully structure code
+x()
+  Unable to fully structure code
+r(java.io.InputStream )
+  Unable to fully structure code
+
+
+eos.moe.armourers.ge
+----------------------------
+
+r(int int float )
+  Unable to fully structure code
+
+
+eos.moe.armourers.ee
+----------------------------
+
+func_191745_a(net.minecraft.client.Minecraft int int float )
+  Unable to fully structure code
+
+
+eos.moe.armourers.wg
+----------------------------
+
+y(eos.moe.armourers.qf int java.io.DataInputStream int eos.moe.armourers.y )
+  Unable to fully structure code
+
+
+eos.moe.armourers.rk
+----------------------------
+
+renderPart(eos.moe.armourers.mk )
+  Unable to fully structure code
+
+
+eos.moe.armourers.ae
+----------------------------
+
+r(java.awt.image.BufferedImage int int int )
+  Unable to fully structure code
+
+
+eos.moe.armourers.ModelData
+----------------------------
+
+<init>(com.google.gson.JsonObject )
+  Unable to fully structure code
+
+
+eos.moe.armourers.mixins.MixinEntityRenderer
+----------------------------
+
+mixin_doRender_HEAD(T double double double float float org.spongepowered.asm.mixin.injection.callback.CallbackInfo )
+  Unable to fully structure code

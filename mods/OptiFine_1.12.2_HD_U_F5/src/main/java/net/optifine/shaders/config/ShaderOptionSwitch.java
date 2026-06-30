@@ -1,0 +1,93 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package net.optifine.shaders.config;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import net.optifine.Lang;
+import net.optifine.shaders.config.ShaderOption;
+import net.optifine.util.StrUtils;
+
+public class ShaderOptionSwitch
+extends ShaderOption {
+    private static final Pattern PATTERN_DEFINE = Pattern.compile("^\\s*(//)?\\s*#define\\s+([A-Za-z0-9_]+)\\s*(//.*)?$");
+    private static final Pattern PATTERN_IFDEF = Pattern.compile("^\\s*#if(n)?def\\s+([A-Za-z0-9_]+)(\\s*)?$");
+
+    public ShaderOptionSwitch(String name, String description, String value, String path) {
+        super(name, description, value, new String[]{"false", "true"}, value, path);
+    }
+
+    @Override
+    public String getSourceLine() {
+        if (ShaderOptionSwitch.isTrue(this.getValue())) {
+            return "#define " + this.getName() + " // Shader option ON";
+        }
+        return "//#define " + this.getName() + " // Shader option OFF";
+    }
+
+    @Override
+    public String getValueText(String val) {
+        String valTextRes = super.getValueText(val);
+        if (valTextRes != val) {
+            return valTextRes;
+        }
+        if (ShaderOptionSwitch.isTrue(val)) {
+            return Lang.getOn();
+        }
+        return Lang.getOff();
+    }
+
+    @Override
+    public String getValueColor(String val) {
+        if (ShaderOptionSwitch.isTrue(val)) {
+            return "\u00a7a";
+        }
+        return "\u00a7c";
+    }
+
+    public static ShaderOption parseOption(String line, String path) {
+        Matcher m2 = PATTERN_DEFINE.matcher(line);
+        if (!m2.matches()) {
+            return null;
+        }
+        String comment = m2.group(1);
+        String name = m2.group(2);
+        String description = m2.group(3);
+        if (name == null || name.length() <= 0) {
+            return null;
+        }
+        boolean commented = Config.equals(comment, "//");
+        boolean enabled = !commented;
+        path = StrUtils.removePrefix(path, "/shaders/");
+        ShaderOptionSwitch so = new ShaderOptionSwitch(name, description, String.valueOf(enabled), path);
+        return so;
+    }
+
+    @Override
+    public boolean matchesLine(String line) {
+        Matcher m2 = PATTERN_DEFINE.matcher(line);
+        if (!m2.matches()) {
+            return false;
+        }
+        String defName = m2.group(2);
+        return defName.matches(this.getName());
+    }
+
+    @Override
+    public boolean checkUsed() {
+        return true;
+    }
+
+    @Override
+    public boolean isUsedInLine(String line) {
+        String name;
+        Matcher mif = PATTERN_IFDEF.matcher(line);
+        return mif.matches() && (name = mif.group(2)).equals(this.getName());
+    }
+
+    public static boolean isTrue(String val) {
+        return Boolean.valueOf(val);
+    }
+}
+

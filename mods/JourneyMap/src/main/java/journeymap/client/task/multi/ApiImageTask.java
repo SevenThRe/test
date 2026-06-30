@@ -1,0 +1,64 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.util.math.ChunkPos
+ *  net.minecraftforge.fml.client.FMLClientHandler
+ */
+package journeymap.client.task.multi;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.function.Consumer;
+import journeymap.client.api.display.Context;
+import journeymap.client.io.FileHandler;
+import journeymap.client.io.RegionImageHandler;
+import journeymap.client.model.MapType;
+import journeymap.common.Journeymap;
+import journeymap.common.log.LogFormatter;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraftforge.fml.client.FMLClientHandler;
+
+public class ApiImageTask
+implements Runnable {
+    final String modId;
+    final int dimension;
+    final MapType mapType;
+    final ChunkPos startChunk;
+    final ChunkPos endChunk;
+    final Integer vSlice;
+    final int zoom;
+    final boolean showGrid;
+    final File jmWorldDir;
+    final Consumer<BufferedImage> callback;
+
+    public ApiImageTask(String modId, int dimension, Context.MapType apiMapType, ChunkPos startChunk, ChunkPos endChunk, Integer vSlice, int zoom, boolean showGrid, Consumer<BufferedImage> callback) {
+        this.modId = modId;
+        this.dimension = dimension;
+        this.startChunk = startChunk;
+        this.endChunk = endChunk;
+        this.zoom = zoom;
+        this.showGrid = showGrid;
+        this.callback = callback;
+        this.vSlice = vSlice;
+        this.mapType = MapType.fromApiContextMapType(apiMapType, vSlice, dimension);
+        this.jmWorldDir = FileHandler.getJMWorldDir(FMLClientHandler.instance().getClient());
+    }
+
+    @Override
+    public void run() {
+        BufferedImage image = null;
+        try {
+            int scale = (int)Math.pow(2.0, this.zoom);
+            image = RegionImageHandler.getMergedChunks(this.jmWorldDir, this.startChunk, this.endChunk, this.mapType, scale, this.showGrid);
+        }
+        catch (Throwable t) {
+            Journeymap.getLogger().error("Error in ApiImageTask: " + t, (Object)LogFormatter.toString(t));
+        }
+        BufferedImage finalImage = image;
+        Minecraft.func_71410_x().func_152344_a(() -> this.callback.accept(finalImage));
+    }
+}
+

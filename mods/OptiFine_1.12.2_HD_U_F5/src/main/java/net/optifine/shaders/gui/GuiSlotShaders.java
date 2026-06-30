@@ -1,0 +1,146 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  bjr
+ *  bkp
+ *  bkq
+ *  blk
+ *  cey
+ */
+package net.optifine.shaders.gui;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Properties;
+import net.optifine.Lang;
+import net.optifine.shaders.IShaderPack;
+import net.optifine.shaders.Shaders;
+import net.optifine.shaders.gui.GuiShaders;
+import net.optifine.util.ResUtils;
+
+class GuiSlotShaders
+extends bjr {
+    private ArrayList shaderslist;
+    private int selectedIndex;
+    private long lastClickedCached = 0L;
+    final GuiShaders shadersGui;
+
+    public GuiSlotShaders(GuiShaders par1GuiShaders, int width, int height, int top, int bottom, int slotHeight) {
+        super(par1GuiShaders.getMc(), width, height, top, bottom, slotHeight);
+        this.shadersGui = par1GuiShaders;
+        this.updateList();
+        this.n = 0.0f;
+        int posYSelected = this.selectedIndex * slotHeight;
+        int wMid = (bottom - top) / 2;
+        if (posYSelected > wMid) {
+            this.h(posYSelected - wMid);
+        }
+    }
+
+    public int c() {
+        return this.b - 20;
+    }
+
+    public void updateList() {
+        this.shaderslist = Shaders.listOfShaders();
+        this.selectedIndex = 0;
+        int n = this.shaderslist.size();
+        for (int i = 0; i < n; ++i) {
+            if (!((String)this.shaderslist.get(i)).equals(Shaders.currentShaderName)) continue;
+            this.selectedIndex = i;
+            break;
+        }
+    }
+
+    protected int b() {
+        return this.shaderslist.size();
+    }
+
+    protected void a(int index, boolean doubleClicked, int mouseX, int mouseY) {
+        if (index == this.selectedIndex && this.p == this.lastClickedCached) {
+            return;
+        }
+        String name = (String)this.shaderslist.get(index);
+        IShaderPack sp = Shaders.getShaderPack(name);
+        if (!this.checkCompatible(sp, index)) {
+            return;
+        }
+        this.selectIndex(index);
+    }
+
+    private void selectIndex(int index) {
+        this.selectedIndex = index;
+        this.lastClickedCached = this.p;
+        Shaders.setShaderPack((String)this.shaderslist.get(index));
+        Shaders.uninit();
+        this.shadersGui.updateButtons();
+    }
+
+    private boolean checkCompatible(IShaderPack sp, int index) {
+        if (sp == null) {
+            return true;
+        }
+        InputStream in = sp.getResourceAsStream("/shaders/shaders.properties");
+        Properties props = ResUtils.readProperties(in, "Shaders");
+        if (props == null) {
+            return true;
+        }
+        String keyVer = "version.1.12.2";
+        String relMin = props.getProperty(keyVer);
+        if (relMin == null) {
+            return true;
+        }
+        String rel = "F5";
+        int res = Config.compareRelease(rel, relMin = relMin.trim());
+        if (res >= 0) {
+            return true;
+        }
+        String verMin = ("HD_U_" + relMin).replace('_', ' ');
+        String msg1 = cey.a((String)"of.message.shaders.nv1", (Object[])new Object[]{verMin});
+        String msg2 = cey.a((String)"of.message.shaders.nv2", (Object[])new Object[0]);
+        final int theIndex = index;
+        bkp callback = new bkp(){
+
+            public void a(boolean result, int id) {
+                if (result) {
+                    GuiSlotShaders.this.selectIndex(theIndex);
+                }
+                GuiSlotShaders.this.a.a((blk)GuiSlotShaders.this.shadersGui);
+            }
+        };
+        bkq guiYesNo = new bkq(callback, msg1, msg2, 0);
+        this.a.a((blk)guiYesNo);
+        return false;
+    }
+
+    protected boolean a(int index) {
+        return index == this.selectedIndex;
+    }
+
+    protected int d() {
+        return this.b - 6;
+    }
+
+    protected int k() {
+        return this.b() * 18;
+    }
+
+    protected void a() {
+    }
+
+    protected void a(int index, int posX, int posY, int contentY, int mouseX, int mouseY, float partialTicks) {
+        String label = (String)this.shaderslist.get(index);
+        if (label.equals("OFF")) {
+            label = Lang.get("of.options.shaders.packNone");
+        } else if (label.equals("(internal)")) {
+            label = Lang.get("of.options.shaders.packDefault");
+        }
+        this.shadersGui.drawCenteredString(label, this.b / 2, posY + 1, 0xE0E0E0);
+    }
+
+    public int getSelectedIndex() {
+        return this.selectedIndex;
+    }
+}
+

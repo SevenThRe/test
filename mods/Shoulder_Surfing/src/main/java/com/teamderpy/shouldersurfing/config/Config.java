@@ -1,0 +1,461 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.google.common.collect.Lists
+ *  net.minecraft.init.Items
+ *  net.minecraftforge.common.config.Configuration
+ *  net.minecraftforge.common.config.Property
+ *  net.minecraftforge.fml.client.event.ConfigChangedEvent$OnConfigChangedEvent
+ *  net.minecraftforge.fml.common.eventhandler.SubscribeEvent
+ *  net.minecraftforge.fml.relauncher.Side
+ *  net.minecraftforge.fml.relauncher.SideOnly
+ */
+package com.teamderpy.shouldersurfing.config;
+
+import com.google.common.collect.Lists;
+import com.teamderpy.shouldersurfing.config.CrosshairType;
+import com.teamderpy.shouldersurfing.config.CrosshairVisibility;
+import com.teamderpy.shouldersurfing.config.Perspective;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import net.minecraft.init.Items;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+public class Config {
+    public static ClientConfig CLIENT;
+
+    protected static <T> void set(ConfigValue<T> configValue, T value) {
+        if (value != null && !value.equals(configValue.get())) {
+            configValue.set(value);
+            if (CLIENT.getConfig().hasChanged()) {
+                CLIENT.getConfig().save();
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (CLIENT.doRememberLastPerspective()) {
+            CLIENT.setDefaultPerspective(Perspective.current());
+        }
+    }
+
+    private static interface ConfigValue<T> {
+        public void set(T var1);
+
+        public T get();
+    }
+
+    private static class ListValue
+    implements ConfigValue<List<String>> {
+        private Property property;
+        private List<String> value;
+
+        public ListValue(Property property) {
+            this.property = property;
+            this.value = Lists.newArrayList((Object[])property.getStringList());
+        }
+
+        @Override
+        public void set(List<String> value) {
+            this.value = value;
+            this.property.set(this.toArray(value));
+        }
+
+        @Override
+        public List<String> get() {
+            return this.value;
+        }
+
+        private String[] toArray(List<String> list) {
+            String[] array = new String[list.size()];
+            list.toArray(array);
+            return array;
+        }
+    }
+
+    private static class DoubleValue
+    implements ConfigValue<Double> {
+        private Property property;
+        private double value;
+
+        public DoubleValue(Property property) {
+            this.property = property;
+            this.value = property.getDouble();
+        }
+
+        @Override
+        public void set(Double value) {
+            this.value = value;
+            this.property.set(this.value);
+        }
+
+        @Override
+        public Double get() {
+            return this.value;
+        }
+    }
+
+    private static class BooleanValue
+    implements ConfigValue<Boolean> {
+        private Property property;
+        private boolean value;
+
+        public BooleanValue(Property property) {
+            this.property = property;
+            this.value = property.getBoolean();
+        }
+
+        @Override
+        public void set(Boolean value) {
+            this.value = value;
+            this.property.set(this.value);
+        }
+
+        @Override
+        public Boolean get() {
+            return this.value;
+        }
+    }
+
+    private static class EnumValue<T extends Enum<T>>
+    implements ConfigValue<T> {
+        private Property property;
+        private T value;
+
+        public EnumValue(Property property, Class<T> klass) {
+            this.property = property;
+            this.value = this.valueOf(klass, property.getString());
+        }
+
+        @Override
+        public void set(T value) {
+            this.value = value;
+            this.property.set(((Enum)this.value).toString());
+        }
+
+        @Override
+        public T get() {
+            return this.value;
+        }
+
+        private T valueOf(Class<T> klass, String value) {
+            try {
+                return Enum.valueOf(klass, value);
+            }
+            catch (Exception e) {
+                return Enum.valueOf(klass, this.property.getDefault());
+            }
+        }
+    }
+
+    @SideOnly(value=Side.CLIENT)
+    public static class ClientConfig {
+        private DoubleValue offsetX;
+        private DoubleValue offsetY;
+        private DoubleValue offsetZ;
+        private DoubleValue minOffsetX;
+        private DoubleValue minOffsetY;
+        private DoubleValue minOffsetZ;
+        private DoubleValue maxOffsetX;
+        private DoubleValue maxOffsetY;
+        private DoubleValue maxOffsetZ;
+        private BooleanValue unlimitedOffsetX;
+        private BooleanValue unlimitedOffsetY;
+        private BooleanValue unlimitedOffsetZ;
+        private BooleanValue keepCameraOutOfHead;
+        private BooleanValue replaceDefaultPerspective;
+        private BooleanValue rememberLastPerspective;
+        private BooleanValue limitPlayerReach;
+        private DoubleValue cameraStepSize;
+        private ConfigValue<Perspective> defaultPerspective;
+        private ConfigValue<CrosshairType> crosshairType;
+        private DoubleValue customRaytraceDistance;
+        private BooleanValue useCustomRaytraceDistance;
+        private ConfigValue<List<String>> adaptiveCrosshairItems;
+        private final Map<Perspective, ConfigValue<CrosshairVisibility>> crosshairVisibility = new HashMap<Perspective, ConfigValue<CrosshairVisibility>>();
+        private final Configuration config;
+
+        public ClientConfig(Configuration config) {
+            this.config = config;
+            this.config.load();
+            this.sync();
+        }
+
+        public double getOffsetX() {
+            return this.offsetX.get();
+        }
+
+        public void setOffsetX(double offsetX) {
+            Config.set(this.offsetX, offsetX);
+        }
+
+        public double getOffsetY() {
+            return this.offsetY.get();
+        }
+
+        public void setOffsetY(double offsetY) {
+            Config.set(this.offsetY, offsetY);
+        }
+
+        public double getOffsetZ() {
+            return this.offsetZ.get();
+        }
+
+        public void setOffsetZ(double offsetZ) {
+            Config.set(this.offsetZ, offsetZ);
+        }
+
+        public double getMinOffsetX() {
+            return this.minOffsetX.get();
+        }
+
+        public void setMinOffsetX(double minOffsetX) {
+            Config.set(this.minOffsetX, minOffsetX);
+        }
+
+        public double getMinOffsetY() {
+            return this.minOffsetY.get();
+        }
+
+        public void setMinOffsetY(double minOffsetY) {
+            Config.set(this.minOffsetY, minOffsetY);
+        }
+
+        public double getMinOffsetZ() {
+            return this.minOffsetZ.get();
+        }
+
+        public void setMinOffsetZ(double minOffsetZ) {
+            Config.set(this.minOffsetZ, minOffsetZ);
+        }
+
+        public double getMaxOffsetX() {
+            return this.maxOffsetX.get();
+        }
+
+        public void setMaxOffsetX(double maxOffsetX) {
+            Config.set(this.maxOffsetX, maxOffsetX);
+        }
+
+        public double getMaxOffsetY() {
+            return this.maxOffsetY.get();
+        }
+
+        public void setMaxOffsetY(double maxOffsetY) {
+            Config.set(this.maxOffsetY, maxOffsetY);
+        }
+
+        public double getMaxOffsetZ() {
+            return this.maxOffsetZ.get();
+        }
+
+        public void setMaxOffsetZ(double maxOffsetZ) {
+            Config.set(this.maxOffsetZ, maxOffsetZ);
+        }
+
+        public boolean isUnlimitedOffsetX() {
+            return this.unlimitedOffsetX.get();
+        }
+
+        public void setUnlimitedOffsetX(boolean unlimitedOffsetX) {
+            Config.set(this.unlimitedOffsetX, unlimitedOffsetX);
+        }
+
+        public boolean isUnlimitedOffsetY() {
+            return this.unlimitedOffsetY.get();
+        }
+
+        public void setUnlimitedOffsetY(boolean unlimitedOffsetY) {
+            Config.set(this.unlimitedOffsetY, unlimitedOffsetY);
+        }
+
+        public boolean isUnlimitedOffsetZ() {
+            return this.unlimitedOffsetZ.get();
+        }
+
+        public void setUnlimitedOffsetZ(boolean unlimitedOffsetZ) {
+            Config.set(this.unlimitedOffsetZ, unlimitedOffsetZ);
+        }
+
+        public CrosshairVisibility getCrosshairVisibility(Perspective perspective) {
+            return this.crosshairVisibility.get((Object)perspective).get();
+        }
+
+        public void setCrosshairVisibility(Perspective perspective, CrosshairVisibility visibility) {
+            Config.set(this.crosshairVisibility.get((Object)perspective), visibility);
+        }
+
+        public boolean useCustomRaytraceDistance() {
+            return this.useCustomRaytraceDistance.get();
+        }
+
+        public void setUseCustomRaytraceDistance(boolean useCustomRaytraceDistance) {
+            Config.set(this.useCustomRaytraceDistance, useCustomRaytraceDistance);
+        }
+
+        public boolean keepCameraOutOfHead() {
+            return this.keepCameraOutOfHead.get();
+        }
+
+        public void setKeepCameraOutOfHead(boolean enabled) {
+            Config.set(this.keepCameraOutOfHead, enabled);
+        }
+
+        public boolean replaceDefaultPerspective() {
+            return this.replaceDefaultPerspective.get();
+        }
+
+        public void setReplaceDefaultPerspective(boolean enabled) {
+            Config.set(this.replaceDefaultPerspective, enabled);
+        }
+
+        public Perspective getDefaultPerspective() {
+            return this.defaultPerspective.get();
+        }
+
+        public void setDefaultPerspective(Perspective perspective) {
+            Config.set(this.defaultPerspective, perspective);
+        }
+
+        public CrosshairType getCrosshairType() {
+            return this.crosshairType.get();
+        }
+
+        public void setCrosshairType(CrosshairType type) {
+            Config.set(this.crosshairType, type);
+        }
+
+        public boolean doRememberLastPerspective() {
+            return this.rememberLastPerspective.get();
+        }
+
+        public void setRememberLastPerspective(boolean enabled) {
+            Config.set(this.rememberLastPerspective, enabled);
+        }
+
+        public double getCameraStepSize() {
+            return this.cameraStepSize.get();
+        }
+
+        public void setCameraStepSize(double cameraStepSize) {
+            Config.set(this.cameraStepSize, cameraStepSize);
+        }
+
+        public double getCustomRaytraceDistance() {
+            return this.customRaytraceDistance.get();
+        }
+
+        public void setCustomRaytraceDistance(double raytraceDistance) {
+            Config.set(this.customRaytraceDistance, raytraceDistance);
+        }
+
+        public boolean limitPlayerReach() {
+            return this.limitPlayerReach.get();
+        }
+
+        public void setLimitPlayerReach(boolean limitPlayerReach) {
+            Config.set(this.limitPlayerReach, limitPlayerReach);
+        }
+
+        public List<String> getAdaptiveCrosshairItems() {
+            return this.adaptiveCrosshairItems.get();
+        }
+
+        public void adjustCameraLeft() {
+            this.setOffsetX(this.addStep(this.getOffsetX(), this.getMaxOffsetX(), this.isUnlimitedOffsetX()));
+        }
+
+        public void adjustCameraRight() {
+            this.setOffsetX(this.subStep(this.getOffsetX(), this.getMinOffsetX(), this.isUnlimitedOffsetX()));
+        }
+
+        public void adjustCameraUp() {
+            this.setOffsetY(this.addStep(this.getOffsetY(), this.getMaxOffsetY(), this.isUnlimitedOffsetY()));
+        }
+
+        public void adjustCameraDown() {
+            this.setOffsetY(this.subStep(this.getOffsetY(), this.getMinOffsetY(), this.isUnlimitedOffsetY()));
+        }
+
+        public void adjustCameraIn() {
+            this.setOffsetZ(this.subStep(this.getOffsetZ(), this.getMinOffsetZ(), this.isUnlimitedOffsetZ()));
+        }
+
+        public void adjustCameraOut() {
+            this.setOffsetZ(this.addStep(this.getOffsetZ(), this.getMaxOffsetZ(), this.isUnlimitedOffsetZ()));
+        }
+
+        private double addStep(double value, double max, boolean unlimited) {
+            double next = value + this.getCameraStepSize();
+            if (unlimited) {
+                return next;
+            }
+            return Math.min(next, max);
+        }
+
+        private double subStep(double value, double min, boolean unlimited) {
+            double next = value - this.getCameraStepSize();
+            if (unlimited) {
+                return next;
+            }
+            return Math.max(next, min);
+        }
+
+        public void swapShoulder() {
+            this.setOffsetX(-this.getOffsetX());
+        }
+
+        private static String[] toStringArray(Enum<?>[] enums) {
+            String[] stringArray = new String[enums.length];
+            for (int x = 0; x < enums.length; ++x) {
+                stringArray[x] = enums[x].toString();
+            }
+            return stringArray;
+        }
+
+        public Configuration getConfig() {
+            return this.config;
+        }
+
+        public void sync() {
+            this.offsetX = new DoubleValue(this.config.get("general", "x-offset", -0.75, "Third person camera x-offset", -1.7976931348623157E308, Double.MAX_VALUE));
+            this.offsetY = new DoubleValue(this.config.get("general", "y-offset", 0.0, "Third person camera y-offset", -1.7976931348623157E308, Double.MAX_VALUE));
+            this.offsetZ = new DoubleValue(this.config.get("general", "z-offset", 3.0, "Third person camera z-offset", -1.7976931348623157E308, Double.MAX_VALUE));
+            this.minOffsetX = new DoubleValue(this.config.get("general", "Minimum x-offset", -3.0, "If x-offset is limited this is the minimum amount", -1.7976931348623157E308, Double.MAX_VALUE));
+            this.minOffsetY = new DoubleValue(this.config.get("general", "Minimum y-offset", -1.0, "If y-offset is limited this is the minimum amount", -1.7976931348623157E308, Double.MAX_VALUE));
+            this.minOffsetZ = new DoubleValue(this.config.get("general", "Minimum z-offset", -3.0, "If z-offset is limited this is the minimum amount", -1.7976931348623157E308, Double.MAX_VALUE));
+            this.maxOffsetX = new DoubleValue(this.config.get("general", "Maximum x-offset", 3.0, "If x-offset is limited this is the maximum amount", -1.7976931348623157E308, Double.MAX_VALUE));
+            this.maxOffsetY = new DoubleValue(this.config.get("general", "Maximum y-offset", 1.5, "If y-offset is limited this is the maximum amount", -1.7976931348623157E308, Double.MAX_VALUE));
+            this.maxOffsetZ = new DoubleValue(this.config.get("general", "Maximum z-offset", 5.0, "If z-offset is limited this is the maximum amount", -1.7976931348623157E308, Double.MAX_VALUE));
+            this.unlimitedOffsetX = new BooleanValue(this.config.get("general", "Unlimited x-offset", false, "Whether or not x-offset adjustment has limits"));
+            this.unlimitedOffsetY = new BooleanValue(this.config.get("general", "Unlimited y-offset", false, "Whether or not y-offset adjustment has limits"));
+            this.unlimitedOffsetZ = new BooleanValue(this.config.get("general", "Unlimited z-Offset", false, "Whether or not z-offset adjustment has limits"));
+            this.keepCameraOutOfHead = new BooleanValue(this.config.get("general", "Keep Camera Out Of Head", true, "Whether or not to hide the player model if the camera gets too close to it"));
+            this.defaultPerspective = new EnumValue<Perspective>(this.config.get("general", "Default Perspective", Perspective.SHOULDER_SURFING.toString(), "The default perspective when you load the game", ClientConfig.toStringArray(Perspective.values())), Perspective.class);
+            this.rememberLastPerspective = new BooleanValue(this.config.get("general", "Remember Last Perspective", true, "Whether or not to remember the last perspective used"));
+            this.replaceDefaultPerspective = new BooleanValue(this.config.get("general", "Replace Default Perspective", false, "Whether or not to replace the default third person perspective"));
+            this.limitPlayerReach = new BooleanValue(this.config.get("general", "Limit player reach", true, "Whether or not to limit the player reach depending on the crosshair location (perspective offset)"));
+            this.cameraStepSize = new DoubleValue(this.config.get("general", "Camera step size", 0.025, "Size of the camera adjustment per step", -1.7976931348623157E308, Double.MAX_VALUE));
+            this.crosshairType = new EnumValue<CrosshairType>(this.config.get("general", "Crosshair type", CrosshairType.ADAPTIVE.toString(), "Crosshair type to use for shoulder surfing", ClientConfig.toStringArray(CrosshairType.values())), CrosshairType.class);
+            this.customRaytraceDistance = new DoubleValue(this.config.get("general", "Custom Raytrace Distance", 400.0, "The raytrace distance used for the dynamic crosshair", 0.0, Double.MAX_VALUE));
+            this.useCustomRaytraceDistance = new BooleanValue(this.config.get("general", "Use Custom Raytrace Distance", true, "Whether or not to use the custom raytrace distance used for the dynamic crosshair"));
+            this.adaptiveCrosshairItems = new ListValue(this.config.get("general", "Adaptive Crosshair Items", new String[]{Items.field_151126_ay.getRegistryName().toString(), Items.field_151110_aK.getRegistryName().toString(), Items.field_151062_by.getRegistryName().toString(), Items.field_151079_bi.getRegistryName().toString(), Items.field_185155_bH.getRegistryName().toString(), Items.field_151112_aM.getRegistryName().toString(), Items.field_185156_bI.getRegistryName().toString()}));
+            String[] visibilities = ClientConfig.toStringArray(CrosshairVisibility.values());
+            for (Perspective perspective : Perspective.values()) {
+                this.crosshairVisibility.put(perspective, new EnumValue<CrosshairVisibility>(this.config.get("general", perspective.toString() + " Crosshair Visibility", perspective.getDefaultCrosshairVisibility().toString(), "Crosshair visibility for " + perspective.toString(), visibilities), CrosshairVisibility.class));
+            }
+            if (this.config.hasChanged()) {
+                this.config.save();
+            }
+        }
+    }
+}
+

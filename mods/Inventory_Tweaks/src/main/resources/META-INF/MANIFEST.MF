@@ -1,0 +1,433 @@
+Manifest-Version: 1.0
+FMLCorePluginContainsFMLMod: true
+FMLCorePlugin: invtweaks.forge.asm.FMLPlugin
+
+Name: invtweaks/InvTweaksShortcutType.class
+SHA-512-Digest: d9XjAqhRBE/Ejo1A7GiB/JU8AdOdi2mj0f+uryuVGuJ4Vtot8gKLb0
+ wxbuzKcSGp5iZ7JGLYTN2XOHTmaiSuTQ==
+
+Name: invtweaks/container/IContainerManager.class
+SHA-512-Digest: gGg3tnoJSkQkbP0ZdBzqfZeHop/I01o5y4WTe/B/14kPVPK//Yog8B
+ lBz/dSANWESltj3dv+9b794dZ/hezctg==
+
+Name: invtweaks/network/ITPacketHandlerServer.class
+SHA-512-Digest: obz9sJuahD3p5X+C9Rw+KR+rr9W5R1Ab0MK5wTIBJI4IGU52QD3Ajq
+ kshn2XfCyoy0whv2Avn1ecRyyAPFP0Og==
+
+Name: assets/inventorytweaks/lang/da_DK.lang
+SHA-512-Digest: jOU4CSS4k6swNLeo90W9lThr8GiDr2BeswtsVz4V0F2FtVi8Cq+dx7
+ jwOUzTApSbDywr2CAOriSFiuyAlb9JFw==
+
+Name: invtweaks/forge/ModGuiFactory.class
+SHA-512-Digest: 7aA2R+fUHvKRd6iU6e95s2oihlFpDmpQEhAhiivXHMBwT+ixpNwgsS
+ +vbv96JKruHfuIBtlnXwuvSprp6AfYRw==
+
+Name: invtweaks/network/packets/ITPacketSortComplete.class
+SHA-512-Digest: JWIkGuX4c+yVQOTgSKdm4ru5u3eFobRD0D5UY5BnUojjuGqnPHcxIu
+ UC0Ezq4lEXxJDKq95DTTTrH0ySgocALw==
+
+Name: assets/inventorytweaks/lang/tr_TR.lang
+SHA-512-Digest: OBFwnPXOcfu4LuFQ1rr+gKMyQqskEItgivb7eJ8aXJDJW4661A7aPM
+ Fkt2C3eiKp54DF+Y6YTLt/3THgE/Xyjw==
+
+Name: invtweaks/forge/ClientProxy.class
+SHA-512-Digest: ucbZLrooQEKeeLREvgDMLqEGS5Hy4aYCgsK31bstWkK6TTWj+YI4jx
+ Llg/Ez5X48SJPWRBEpPLqGgOkqQ+K75g==
+
+Name: assets/inventorytweaks/lang/nl_NL.lang
+SHA-512-Digest: YDXdSHnJhocwEV8QmZfMt4tzNS8pHOtWnm60jHqApPZkr5Pf9/AEHv
+ idl/RyR0tff4jpaOKG55qkxEBe395uGg==
+
+Name: assets/inventorytweaks/lang/zh_CN.lang
+SHA-512-Digest: pWbTlZNr4qAi+w07EV124TcHJnahjpBAYyGdzY/k6M7k8kmeIoNPk5
+ VcXzusUi1SKA9ZWuFly/Ixo3mm84eHdw==
+
+Name: invtweaks/InvTweaksConfigSortingRuleType.class
+SHA-512-Digest: 57OiI2/qwxkC/Uag6z1Vq9Evneic7C0l/ivkiU5K/F0K9eYbmp7E2Z
+ bNMAfXx6xQu+k7kbQzDqs0YaWATOjU9A==
+
+Name: invtweaks/InvTweaksGuiShortcutsHelp.class
+SHA-512-Digest: opaLA8c/e6PvfgMdxCS4EhOHoQfhIGJoeiDRrF++2EiLECXwyJZhMO
+ ghNL9XK/wuOY+SbB6aY7PWV7hRswE1QQ==
+
+Name: assets/inventorytweaks/lang/no_NO.lang
+SHA-512-Digest: XoJUn0G58Q1wpuXerOdgmD0/44e8qRf/Me39eCoXvly3e4pODSb4Bv
+ vCBSdyrIB96N3t4Dxe5S5v0kGEx+Y4oA==
+
+Name: invtweaks/InvTweaksItemTree.class
+SHA-512-Digest: BiXCcR9unZyH0FlXf4ijMMNvbio/xBieTsyBXomjVvxB1Q5uHxfiBW
+ 8pe2AHcnO2XsSEgscBivj1WAGS38ekig==
+
+Name: invtweaks/forge/InvTweaksMod.class
+SHA-512-Digest: ocWsTGy/Jp6BG7rbBv9R/9opStOEJ56glVBl7IuMMK/FXbwq+wPJ/J
+ 7pG69uH7r6ePQqOQ+bejpGHyYFkywMJA==
+
+Name: invtweaks/forge/asm/ContainerTransformer.class
+SHA-512-Digest: hOkK8zCtemkN1EWvrqsXUz8NlVuPZg1cMwbdUpA8zOTELDMYzfTMhH
+ C0o4ocG1WzEDYtpYXjJZyonNcTewmn8g==
+
+Name: assets/inventorytweaks/lang/sl_SI.lang
+SHA-512-Digest: vmiIOMqGhuXJBom/KrWFzvETfJmbSMcLkvZ6XDTcFWl7XRHJgu1tcb
+ 4eHn97TgcziEqpfD96M5qO0DV3z3S+CQ==
+
+Name: invtweaks/container/VanillaSlotMaps.class
+SHA-512-Digest: Qs+kEDTU0/9p6psPLy0V/KA75S00ZwsRSXo2gAzA9TFarA4M4vDoa4
+ p0WicoHouh8Y7Gs/zZ3zTbErZ7VJrTIQ==
+
+Name: assets/inventorytweaks/lang/zh_TW.lang
+SHA-512-Digest: KKVqu9T/g8pO5TgE5VaMZoFxmfF2r3NhH1q3OXwNGLbya1yfbGbAcN
+ Uo8vrpy4zo+FwmXZeJ6Iy4orAhU96O/g==
+
+Name: invtweaks/api/IItemTreeCategory.class
+SHA-512-Digest: LYL08IIj/SO4IQ+hMAAP+U7RS3hTUVHVQ82AICAzzXQw9vHy5XuRSR
+ P1j4BCDkBcyl5ckDl3q7XhpBRFX4WE+g==
+
+Name: invtweaks/ShortcutSpecification$Target.class
+SHA-512-Digest: bXj2ZEendmSJ5KkK85rd+rAjHbam0FdIgE9oP8ZyaH/6HefYwNehrH
+ BxJkvQ1HkAfZU6nLAcSpJ5rO+CTnyqiw==
+
+Name: invtweaks/InvTweaksGuiSettings.class
+SHA-512-Digest: WhCbp1XRGX/ne+JhEYe7CFhnPtWo7fHj8PTho8x3LsxsmSSlhh69Io
+ DUyWoJZPBk2NSyKs20fjzAfb/EuLkZeg==
+
+Name: invtweaks/ShortcutSpecification$Action.class
+SHA-512-Digest: Pk8gKsw259yCZOzsfrsi+UBDNC2Uz/Xb+GXPXbf9uFKmuVFOabp8s4
+ ROTaYsPCe19KPda+1XpTCQdJIKM531xA==
+
+Name: invtweaks/InvTweaksItemTreeCategory.class
+SHA-512-Digest: LjNLfPO1Dmbuw61KKLmIOzWaUUMNseXy6Oj27X1YuUxl2mRLF6SgHz
+ JH48LljDAfUf1MeLDv9KAPxw/852bTPQ==
+
+Name: invtweaks/InvTweaksShortcutMapping.class
+SHA-512-Digest: cCSqjSHp/brtk3AvQ9hNt2JfybUxEYt35MSf5B+pPTRo2IrilpXPjD
+ Syrw837fVQ9Ro47FxykjfTq+DyyILaZQ==
+
+Name: invtweaks/forge/asm/compatibility/CompatibilityConfigLoader.clas
+ s
+SHA-512-Digest: aFhMQ4CNs2tRf3rSOyORAhWQLz2Ter4r7bqw/f9oSOyBI2y6vN+5Sg
+ wy3Jd0/Om32k873aXiA+hzI/65IbtsJw==
+
+Name: invtweaks/api/SortingMethod.class
+SHA-512-Digest: gT3Zf5/V2dKvFTExnYD+l7/Ut+LjcnS/Ptxr89CkgyeccR/179Ulo8
+ /ErbGfCKHw2zy46n5wirVCE5ppkgKMGg==
+
+Name: invtweaks/forge/asm/ASMHelper.class
+SHA-512-Digest: R+mdnKj3wN6N4dmknX87mfo2U1XjFC2ssZOJSiuRhQSfnyewTTqpqY
+ 4DvBgCM4q0tTSIVPmf0RRkahGxLVdeiQ==
+
+Name: invtweaks/api/container/InventoryContainer.class
+SHA-512-Digest: JZTsPRZT3dKOb1d1cywHiio3bYmWAewa2S5R66aqcnMgc5GzQ0wqdE
+ xPzYvdlsZu3g6yXZlZ3WCW4zbBXOVU3A==
+
+Name: invtweaks/InvTweaksConfig.class
+SHA-512-Digest: lfVUrT9BHT+3V6qCtA79HU6PZkeiFme1DP+6fBoqavOPZEkQBSfcqq
+ NI0bxdnZ+lHtwWyxrWhYpKuDccI6PnWA==
+
+Name: invtweaks/InvTweaksHandlerShortcuts$ShortcutConfig.class
+SHA-512-Digest: zSY6wXU/5PeVZsvaUYSNstNxFMflxxloGx76WGTTg6YZ6IjOSqZelU
+ lIgZVPrWjjx/Lutt/bl3y40vZpGAA9MA==
+
+Name: invtweaks/forge/asm/ITAccessTransformer.class
+SHA-512-Digest: qtlAA2M5eTSotSx2dGoB1AJ0492CNGDtq/nTFVt7WDZZoEyzyIiJej
+ swEbFrw6sK8SxJS1q27vh0upDumZOdLA==
+
+Name: assets/inventorytweaks/lang/pt_BR.lang
+SHA-512-Digest: Vntt3KjRuLZANnLzUqs8gBp27vn+L7MV8C+50jxBA+eBjcpR3vKKe1
+ uOqs+pvv+sfqGYwVzTPxfqJHLPtdKSwA==
+
+Name: invtweaks/network/ITMessageToMessageCodec.class
+SHA-512-Digest: FMv0bf3TqBYSrHpocspZU18vOV5jcp//1r8A8plqi8PSbUPay34Ost
+ P8aTcvayJ1dq8qYEBjwPGCs0CFXL9X7w==
+
+Name: invtweaks/api/container/IgnoreContainer.class
+SHA-512-Digest: R3uv3W3vWNkrJkZLu0xxm4tbenorhI/DMB3iNwf65aIeiN9PNwaE+M
+ c62QhUCGnjwHFRktX+1mr8FJ2mcs/mhA==
+
+Name: assets/inventorytweaks/lang/ja_JP.lang
+SHA-512-Digest: OJ/SE9EnVZOPR2ZclzEpHsfwvNIvda94Ib0lpMWmB4lKq/5NrciRN1
+ OH8AeFdvoNAOSLJlZ996OjPAMQCozO3w==
+
+Name: assets/inventorytweaks/lang/fr_CA.lang
+SHA-512-Digest: dyY3I1rpARTWmOYBdNL84IdCuTy0NU/29/OmMmzY3pC83qQxEJ/TRV
+ NVQuYv3ksVtEGdpEscjX66DMUVVSjz2w==
+
+Name: invtweaks/InvTweaksItemTreeLoader$1.class
+SHA-512-Digest: ldf6Ge12v3YzOdt2WR2COxVM/4uVfclvtNwBDC5Y7EY/Nmc/LfXryj
+ WNjNv8zgdhZ9MqQLvFfx3GmEcuxgGvcg==
+
+Name: invtweaks/InvTweaksGuiTooltipButton.class
+SHA-512-Digest: PIg234m/rcKm1XhGuv7sK6U1mVTyNS3Ax8qxX0vztFV0unbO0dxZgu
+ 8G4xgguSrb1mc7PdxaX2RqyLWmimuvbg==
+
+Name: assets/inventorytweaks/lang/cs_CZ.lang
+SHA-512-Digest: Uk1KhDiQjChUwkpOeOpSJMdRofTX86ACOUl7AJzHiBqfwneLNR0yj2
+ L7xvMeROIA+1LMt9yjM3L0yoLZP4a8pw==
+
+Name: invtweaks/InvTweaksGuiSettingsAbstract.class
+SHA-512-Digest: GWal6rTovHSg1bfBc3ROZ0scAWxp03ACbLooIED8LVfeT3GvBDDpqf
+ ud+mSGOXfn8FtqPO5+kp0UTCfK2mW/lA==
+
+Name: assets/inventorytweaks/lang/it_IT.lang
+SHA-512-Digest: +N8P818G0fVZyir8xXnKInzEpYUSTyAY3mAJhWDXZ7bwFvvpoqxpcv
+ PqmBtZrimHnLZTc4oPxl2GePgom+dB8A==
+
+Name: assets/inventorytweaks/lang/en_US.lang
+SHA-512-Digest: +LRIBpL4aEc02qurxvvVnab4sEwqhocep3DSezB6l2LzLCrby6S9Zl
+ CNIrH9KpgqFyaeE3ntEouf2x20TzbGYw==
+
+Name: assets/inventorytweaks/lang/hu_HU.lang
+SHA-512-Digest: Aio3uK0jaUZwtwXdv2s4KzzRGBfExgLi/NxgoL1cPrXvzQeafMz3mR
+ 7Mp8YK+qswClq4ZeqcPn/ObWlHQ0uKWQ==
+
+Name: invtweaks/network/packets/ITPacketLogin.class
+SHA-512-Digest: ez9BJwUVEon1/qKkyf59WePOuYQWQUVDQworiZXpKFc+zvoxLEuldk
+ 6d1rrvSNJOSEY5YkHMdHmSZ+A98LuZYg==
+
+Name: invtweaks/network/ITPacketHandlerClient.class
+SHA-512-Digest: tMTt0cUEoRApX7HBsg9eF4ump21OxONmzvMS8RBtmS94mqiuw20qWo
+ G7a8HJBrhVAP5U0Oo48RXQtKgNRLvPCQ==
+
+Name: assets/inventorytweaks/itemtree.xml
+SHA-512-Digest: Prf6CVhYXOIKUnTs1vbtXUrutoZzD+mpM3/IsrBK8mABiPz9Ozp+eC
+ dgBISj2nB0KBslH8qJ/gnqRo5E9cPE2g==
+
+Name: invtweaks/InvTweaksItemTreeItem.class
+SHA-512-Digest: hFaQH/xcKjRdimrmYTGTc5xxv3eJph9lrI3qs6uXH6+sqZSkn6ZXUQ
+ 9uMreNmra8LH0t3c4GHSvE82oqOKzJtQ==
+
+Name: invtweaks/api/IItemTreeListener.class
+SHA-512-Digest: gLw5UVYQ2u/cFat/BORtw/1ejD4oCr2J3DYnVi46jpHGqpv8YxiNcq
+ cGiX3KV1GOMlaHORkXSLZBxXxp8GyvPg==
+
+Name: assets/inventorytweaks/lang/sv_SE.lang
+SHA-512-Digest: o1w/RK65eEI3Y3+in8QTCGPYvJBEF+u51gFwTtvH9aurVC+R5DxVtq
+ ToKjOzzYgZ52LrRyvFOCy6HfdpoO44cg==
+
+Name: invtweaks/InvTweaksHandlerAutoRefill$1.class
+SHA-512-Digest: nH91Q2oEHy9jQ1psNImr1LDR+ry4YCohjxa8zbkUoloNehojA14179
+ L1oEaiIkLShbQAdQ3WcfPcya1cXLGf4Q==
+
+Name: pack.mcmeta
+SHA-512-Digest: W+U2lpI4Op8O54GOnpyn+8xKRAmsXOIfNO1cHz5d9RdZrtEKZ7Jqpe
+ uKgYID5yGlkMQeqykK4WxG3MwwAtWp2w==
+
+Name: invtweaks/api/container/ChestContainer$IsLargeCallback.class
+SHA-512-Digest: jhfeplcM1ceObKgZzPA0EWnGuscCDrsLXdmpGEeyD+RujlhqtnQvW4
+ XrbYLM+npzhtoy+GL995PGYZIP03trFg==
+
+Name: assets/inventorytweaks/lang/pl_PL.lang
+SHA-512-Digest: LSGS87zcGxp2QyQCpxo+pHJH+da0b72/PfBmNcHzkIwh8Yrs1obekK
+ VrpHJy3FhiRHUb1gITX/klcmFZNqPBtA==
+
+Name: assets/inventorytweaks/lang/ko_KR.lang
+SHA-512-Digest: 16Cx6YOWrVZd0y/BuVKhgmiq3NVWksha5NnwkvCCIlCsyHWyTLpwar
+ VAFQG1xdSk7hp8IvEaQi+fTXKGXctHnQ==
+
+Name: invtweaks/InvTweaksHandlerShortcuts$1.class
+SHA-512-Digest: Skg62nWpaJgdJ3Lp+BR86JdFFuvNNUJEt0NyuEjS86nPbAmkWW/1Uk
+ CVvkU6FQl+Wurhg1OzDbVz5QEpqgD5Yw==
+
+Name: invtweaks/InvTweaksGuiSettingsAdvanced.class
+SHA-512-Digest: gtm3XXf9ZhQD5td+KKRAwMd5n+qPWcowbXH173kLTDn/pc/JGKz4fd
+ LOpZz0o8mCjDHWX+nF8UHxAQRCxye+FQ==
+
+Name: invtweaks/InvTweaksHandlerSorting.class
+SHA-512-Digest: UQscsl1Qa4eltROj5o+iRtd5lVi7Cq9JwFM1/ll/MI9uwoUFCFmMMp
+ JmoElrEcTXraKIqThEqny0zI3Yr5RRfA==
+
+Name: assets/inventorytweaks/lang/fr_FR.lang
+SHA-512-Digest: uYZ2OtYCz3N2Ku4rps6zNtWTpMeqzjB2jaJMnLAAAL5/xyVVJ9YVWL
+ T7AbzWa/uzKSrUb6/OoEX/RTKx+I6Aig==
+
+Name: invtweaks/api/InvTweaksAPI.class
+SHA-512-Digest: FlA4XabYvVHUVB11VP7ese+0jKa7sYUP5/QxNYC1ZcchAcOmN5DA6O
+ aaNkLuEQH/UEVp8EQ7gSa6uClq+1rVjw==
+
+Name: invtweaks/InvTweaksConfigProperties.class
+SHA-512-Digest: 6n+UsCEIcViKWVYr0tFWqYooaON+HVWKvoExVF5lDiOVngblccBhgm
+ LgeYsS32WVXRqwNvMyJC1eI10V143O6w==
+
+Name: invtweaks/InvTweaksHandlerShortcuts.class
+SHA-512-Digest: c3buSDMn0eoAybUvbjKmUBpn94kjYJykDacc4Bphzoc5ooQVhdn/z+
+ GIpYOGYfPhpzZm1gnnzJNny0iZCJ+8mg==
+
+Name: assets/inventorytweaks/lang/es_ES.lang
+SHA-512-Digest: 0Nf+OFif+3XQYgK3YH6rAYivvuqXCmGSZ3giFN7QEtA4UPdwGVXXK4
+ sc1s/0tY1Key0taxz6FoRfzBLyL8r2Og==
+
+Name: mcmod.info
+SHA-512-Digest: vmvBgs3XVQFNZYfX+dY5kDRQscoHaXEOXA1RpmSwaI0LqvEDXUO4MS
+ Qr8frNRc2E9CLps5wChPBF8VTNZD9L6g==
+
+Name: invtweaks/InvTweaksGuiSettingsButton.class
+SHA-512-Digest: sBnsVVSFoxTxYTRT/YzmTV47ebUnbGRvySA8vVMQS+VZzCqy8yauBS
+ 9Zc/JrXDKYd+XRHlTSxGxX0AXy/2OaMA==
+
+Name: invtweaks/api/IItemTree.class
+SHA-512-Digest: XMNnpLy5mEDTi8IqO4R/6kPsPzIiIUNF/KYQJiQ74Ovt+NVSvL4FMk
+ yff2fGhnYfSn8iljFOXw3ai1/TB/zCDw==
+
+Name: invtweaks/InvTweaksGuiSortingButton.class
+SHA-512-Digest: 0zuinZlA71W1dAi/sNZSFPKekUbz/t2JcuIIbXCIwLUZtMN+sg77Md
+ I+TsmDloE29QIyI7b9v5TIUm7tOnSKcw==
+
+Name: assets/inventorytweaks/lang/pt_PT.lang
+SHA-512-Digest: RP+T3c9ZG8U1lWP1tH4h/jIeg56IilTzYwJIJuoozDEVQjUM1JzU8M
+ GUJR+EhGukhjpcW11W3C9l5i3+XCmcQw==
+
+Name: invtweaks/api/container/ChestContainer.class
+SHA-512-Digest: j3Rt67m0mr8B5egEpInw+qrK5yGtDwCmSv+K8ANiINz44EJbswkOfB
+ 7AUoJWImNHgq/Xh3mJJq0IJKlKMLIvcA==
+
+Name: assets/inventorytweaks/lang/uk_UA.lang
+SHA-512-Digest: PleHAUjvrVYt0kcgjsXMML1vyCu76vUW4Iponu/F4Bxx7cU+VhLhMv
+ wlMvUWU5MDqwN8H6CTo/vs1m2LhWNoQQ==
+
+Name: invtweaks/InvTweaksHandlerAutoRefill.class
+SHA-512-Digest: LpmgUng/Y2URlI9FBWcTwlRONYjXygzvFWmL6E0u3oSqNy6SBVKDQO
+ ZWVfvg1sAlgmi1XRun3UmFDHJlOSbt1w==
+
+Name: assets/inventorytweaks/lang/de_DE.lang
+SHA-512-Digest: ItaM0IBPVUafV0B50nsIBT1M/fLPy/QY09z1jup/AWm9f32anxqIt+
+ xQufkz0B8ZAQomP8TTCsYnAZIw8bF4QQ==
+
+Name: assets/inventorytweaks/defaultconfig.dat
+SHA-512-Digest: VOtfJY6qMdok7g64FXZuB5S4YhVxeOd2oceY1GM68ngt5PakFDCrI3
+ XUy8UrGZNjWJEUKopADniV0OnPwRMZWQ==
+
+Name: invtweaks_at.cfg
+SHA-512-Digest: IS+Ym4s6zmBitS+bgVZQJg2PHUuPkgAJl34rB5aH2+R4gLTbzm8Y25
+ f6PUfKVowg774Y1Jox+RPsT/OeW0kgPw==
+
+Name: invtweaks/container/DirectContainerManager.class
+SHA-512-Digest: g90ghEhUe1gPlHimZo+Wq9TOnzp5w89XqIjZKrkbNH2gbJcriZtsaF
+ zHkhiL5oo5ri5x1SfQu3YBLuyMPlqDbg==
+
+Name: invtweaks/InvTweaksItemTreeLoader.class
+SHA-512-Digest: d7qi0PDfCM5cfkBQlGpbViADqyQIXXcNcQStV1bnALxJXM0q0/DH4Y
+ sAk2Lvdkbh3WSZQO1cBlUqpLALx0ijYA==
+
+Name: invtweaks/InvTweaks.class
+SHA-512-Digest: kWjdmzBHVyhU43vktWkTToP9nyYtlmfYcvCauqKjeekShZu3IeAT4v
+ QXmOG6XDVl1BeP7kDDPIRZqKJUMuG9YQ==
+
+Name: invtweaks/forge/CommonProxy.class
+SHA-512-Digest: mBPKOiDJROCA1k7G3H8akHaRRg1ArmQqI7raVmaTHhcvJxG5JNQqA6
+ Wcva4Xry3FKVBtbuP3CwFLpSz+EMtAYw==
+
+Name: invtweaks/InvTweaksConfigSortingRule.class
+SHA-512-Digest: ndqS1dx6eJVx/idR+EDsZT9irMDV4yprKoRFKkI2gGbaj2wQ2NzGks
+ Yq/ARHcI6fWjWuiPxM6AFnVqvXuk94TA==
+
+Name: invtweaks/InvTweaksConst.class
+SHA-512-Digest: q0P9ePdnXDqGf+tSuzxBAQFGHaPcJJclj3f3ARjXUCZtTA4tHvCXfo
+ IhSKEwNXl3NcnMYOsiGQ/49GKqpcc4FA==
+
+Name: invtweaks/integration/ItemListChecker.class
+SHA-512-Digest: yd7O/8g7ly2Ef+IcRn8Ttu9mCY2sDcCmiw5j9twdWPEEuO3oomT/ua
+ iKFtO7dN6/norKNvN7n9QxBjUxYkPAVg==
+
+Name: invtweaks/InvTweaksGuiIconButton.class
+SHA-512-Digest: Lu9DrJPU0cEapHQrdRb8AORDsI62woqvkPEF8uWKLdu4HtrRRGp4GR
+ wTi97RzaX8+HZgWpvIezgvBznLpK6B7w==
+
+Name: invtweaks/api/container/ContainerSectionCallback.class
+SHA-512-Digest: fMMk+FlAvPMQDb5/YUl6uvMfVpJx+dqitO+JMvUTigGd5qPeXRqWDr
+ cAKsYzmBQahC4WKfsuDhrtIpE1MgNA/w==
+
+Name: invtweaks/InvTweaksItemTree$OreDictInfo.class
+SHA-512-Digest: Wxsoq7XeQDnKAD8f19NhhNs9E7P6qUscN933RXhCIm5LELzd7i9YAB
+ 3ABc7CXXtldyHdeMogugHMEdTyKdD5Yw==
+
+Name: invtweaks/api/container/ChestContainer$RowSizeCallback.class
+SHA-512-Digest: rYGCL1y9U7jD8irq1+hNI85bsLEm1Rgr3QOdEx1GCYsrB5D1nrPyWn
+ Fd8dPyo2UTuVir0XJPBYyddyi8KI6jYA==
+
+Name: invtweaks/InvTweaksConfigInventoryRuleset.class
+SHA-512-Digest: CeGwT5bgInkh1RuZsnLjlnC2Vjb6qf61eJ3dlXoAKCLqu2SvTSSVNQ
+ TsgU6OtIPe0vSnJCq6pwFg8tRVekzrBg==
+
+Name: invtweaks/container/MirroredContainerManager.class
+SHA-512-Digest: fIYduyXs/io0zZOTrsxYgOljX1sp70W4pC9IGrrOmOBVuxL0KGHS5n
+ L6CtuOixwWTThGaXSeqEqUjORJqAwXKw==
+
+Name: invtweaks/api/container/ContainerSection.class
+SHA-512-Digest: Kvb1150/Cn1fHBzorE7vM2DHgU05ckBE+IaQS7M5RxYvAfNDkSYuKL
+ QotPND59ueUzqJlwFdsDUt3wpFBD2fdA==
+
+Name: assets/inventorytweaks/lang/_README.txt
+SHA-512-Digest: 6yn0pHlhXZqRRUc7QQ2q7G9kBD47KTtbBwqiFXjFHE4zZRKJ+P4ovD
+ IEq76Aeksr2tWWvT5W8ZNtOsGi5puV+w==
+
+Name: invtweaks/forge/asm/compatibility/MethodInfo.class
+SHA-512-Digest: yKhroOIq8e4k1ITwNhumep1hZq24/e957W96hnKxfYjVgd09ajeJ1l
+ BLFYr6+t3t6FiS9zxSr26sHLIkFU2TjA==
+
+Name: version.properties
+SHA-512-Digest: zpmAIMJ0rm1OcZurpX+z/0jl2O3mbCOILjUJZ+9VlcSj9DxJ1LDl1H
+ wZt3sC/h5AnGCuitTLt7aAgtd6fb1BNg==
+
+Name: invtweaks/container/ContainerSectionManager.class
+SHA-512-Digest: Elc2eaI+ZrDLmpflYeMXD/GiL3/ULbgX1n3U6bxxDtuAXMzYE8zem7
+ 3xBhuYucrOAsdAm/BJ4xXwyxrYp7mozg==
+
+Name: invtweaks/api/IItemTreeItem.class
+SHA-512-Digest: 5moV+MYO3lLA5/1IDHJ3m6J8k3tneJpelgcnL0ZhbBpi4TSvY8+bIA
+ +TiDlr2lVovf4m/Kta7CFU2LLmOYzbuQ==
+
+Name: assets/inventorytweaks/lang/lt_LT.lang
+SHA-512-Digest: dgRxKUn5uqu796x6ldJApucKDa3jou8MxJJWnmAgwRAnfyfbA1MXEK
+ IbEjya1xrEwlCQ9uCuShNYek4XavBsfA==
+
+Name: invtweaks/forge/asm/compatibility/ContainerInfo.class
+SHA-512-Digest: qqGTeXpFm4mTfWOfHvq78zS3NHKpJ4fDOJ52JMsYLfthfX50YWcXZF
+ y5Y8pPphryVYfjTLq0tBvAwnoSdii9HQ==
+
+Name: assets/inventorytweaks/lang/et_EE.lang
+SHA-512-Digest: WPEQYWjcPAO8ywSlHbMbjtdeydrSX7pCvx3hQLXHuNp36/4MjoLzbp
+ Sa5ns68jTI19Y+JGtwVQgvu+3q2Mwb1w==
+
+Name: invtweaks/InvTweaksConfigManager.class
+SHA-512-Digest: 3CA/ja0FtTSjPVf4zDtmU5ym4gkfXHugBYCfD6JmuzWg0XrBN0XJel
+ /hpee9oW+7HklGAQ3JVT02Ko5lJHnd5A==
+
+Name: invtweaks/ShortcutSpecification.class
+SHA-512-Digest: XS9VvLLUEHdBOOKesjtoIyQFiPDlddDSzshkSSU/QpmmkCjwd+sj5U
+ bpBxq6fD1vK4lvRUO3oQV8YBhRMNTx4Q==
+
+Name: invtweaks.png
+SHA-512-Digest: IQDXS1rYEpI5ilq8KL9I1uicKqJXxDgKd2af1wBXs6LLvnjF1sNxX+
+ hEynYKAsQpGpiTuC3jvVO3QImwKzEErQ==
+
+Name: invtweaks/InvTweaksObfuscation.class
+SHA-512-Digest: NGN5auqSTGAFoRI7Jf1TCcyMpGjrNDcHlnkpptbLaUEqfSxqK5PGov
+ 77qCwy+nFAHjRq8DHypdqOSpouT72bOQ==
+
+Name: invtweaks/network/packets/ITPacketClick.class
+SHA-512-Digest: doSYT1JRewLykGrsFuT96Z428zWaKhmcoG0Tb1c9C2IsjXq02TPwjW
+ 96020al1qyzDuSssjIhF4aFJFjmhrKlQ==
+
+Name: invtweaks/InvTweaksGuiModNotWorking.class
+SHA-512-Digest: ySHWJusDOxRTY1X1At2AboPQimqoNSc+1cX5xaJLa6npnotWHDBrQa
+ 38VEh5v6ct8xhBIbHvpUsUCdQVwdWVUw==
+
+Name: invtweaks/InvTweaksItemTreeLoader$VersionLoader.class
+SHA-512-Digest: 8RPCj8VKewNWkMEbWitZN7q+0Oh8N5u+LMoC/9gqUufxGsF+0KQLKW
+ 58cwP9aUZSqqQvkx3MRpm+PMS/e0MFYg==
+
+Name: invtweaks/ShortcutSpecification$Scope.class
+SHA-512-Digest: NQwBmfTzQh7iNFoQWD7prT2YUt/FBM+XlUpWC6wXPRHc6v/nZtPvbA
+ EbE58GFNrPYBmJ99NnQ4Qn7Hbe9L+yYw==
+
+Name: invtweaks/forge/asm/FMLPlugin.class
+SHA-512-Digest: uUWrlJyfEmsp5zcB79lFDfdqMqVSAFVG3LGtg74YehgqE0AsmdK6HB
+ taFS2vKiDifrhcc9hX+HwTeIWSDq89WA==
+
+Name: invtweaks/network/packets/ITPacket.class
+SHA-512-Digest: x4fQOZ1evbqORtxyl1A2H1MDKROzwPAUKZFVl6slDpn2jfrddg4hJQ
+ 3qli/9Oqe5WqPoAcVXBuAxSkrDUyApIQ==
+
+Name: assets/inventorytweaks/lang/ru_RU.lang
+SHA-512-Digest: iUgUae2sKkc9YNDq7awLuRjLeLXpbi2AUEp0N1RTmsHIfxo46o6aZo
+ K1kvpgL+YrIvQzcYZPrLSDhdp7OfOWsg==
+

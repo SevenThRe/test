@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Specification-Title: shouldersurfing
+Specification-Vendor: Exopandora
+Specification-Version: 1
+Implementation-Title: ShoulderSurfing
+Implementation-Version: 1.12.2-2.2.2
+Implementation-Vendor: Exopandora
+Implementation-Timestamp: 2022-03-26T16:12:35+0100
+FMLAT: shouldersurfing_at.cfg
+FMLCorePlugin: com.teamderpy.shouldersurfing.asm.ShoulderPlugin
+FMLCorePluginContainsFMLMod: false

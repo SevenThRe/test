@@ -1,0 +1,18 @@
+[
+{
+  "modid": "dragoncore",
+  "name": "Dragon Core",
+  "description": "",
+  "version": "1.12.2-2.6.3.2",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [
+    "qq448780139",
+	"smd_model_qq1738964540"
+  ],
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
