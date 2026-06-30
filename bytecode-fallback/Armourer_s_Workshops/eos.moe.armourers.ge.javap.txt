@@ -1,0 +1,2169 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/Mod-DragonArmourers(4).jar!/eos/moe/armourers/ge.class
+  Last modified 09-����-24; size 8790 bytes
+  SHA-256 checksum 1f515934f2061059c444cc9151623a73289a5f61752bf239230f7c238c0f1c83
+  Compiled from "ti"
+public abstract class eos.moe.armourers.ge
+  minor version: 0
+  major version: 52
+  flags: (0x0421) ACC_PUBLIC, ACC_SUPER, ACC_ABSTRACT
+  this_class: #2                          // eos/moe/armourers/ge
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 23, methods: 26, attributes: 1
+Constant pool:
+    #1 = Utf8               eos/moe/armourers/ge
+    #2 = Class              #1            // eos/moe/armourers/ge
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               ti
+    #6 = Utf8               i
+    #7 = Utf8               F
+    #8 = Utf8               k
+    #9 = Utf8               p
+   #10 = Utf8               Z
+   #11 = Utf8               n
+   #12 = Utf8               I
+   #13 = Utf8               q
+   #14 = Utf8               f
+   #15 = Utf8               u
+   #16 = Utf8               d
+   #17 = Utf8               h
+   #18 = Utf8               a
+   #19 = Utf8               e
+   #20 = Utf8               b
+   #21 = Utf8               g
+   #22 = Utf8               z
+   #23 = Utf8               J
+   #24 = Utf8               t
+   #25 = Utf8               w
+   #26 = Utf8               r
+   #27 = Utf8               l
+   #28 = Utf8               c
+   #29 = Utf8               v
+   #30 = Utf8               s
+   #31 = Utf8               m
+   #32 = Utf8               j
+   #33 = Utf8               Lnet/minecraft/client/Minecraft;
+   #34 = Utf8               (IZ)V
+   #35 = Utf8               <init>
+   #36 = Utf8               (Lnet/minecraft/client/Minecraft;IIIIIIII)V
+   #37 = Float              -2.0f
+   #38 = Utf8               ()V
+   #39 = NameAndType        #35:#38       // "<init>":()V
+   #40 = Methodref          #4.#39        // java/lang/Object."<init>":()V
+   #41 = NameAndType        #16:#7        // d:F
+   #42 = Fieldref           #2.#41        // eos/moe/armourers/ge.d:F
+   #43 = NameAndType        #29:#12       // v:I
+   #44 = Fieldref           #2.#43        // eos/moe/armourers/ge.v:I
+   #45 = NameAndType        #22:#23       // z:J
+   #46 = Fieldref           #2.#45        // eos/moe/armourers/ge.z:J
+   #47 = NameAndType        #9:#10        // p:Z
+   #48 = Fieldref           #2.#47        // eos/moe/armourers/ge.p:Z
+   #49 = NameAndType        #25:#10       // w:Z
+   #50 = Fieldref           #2.#49        // eos/moe/armourers/ge.w:Z
+   #51 = NameAndType        #32:#33       // j:Lnet/minecraft/client/Minecraft;
+   #52 = Fieldref           #2.#51        // eos/moe/armourers/ge.j:Lnet/minecraft/client/Minecraft;
+   #53 = NameAndType        #31:#12       // m:I
+   #54 = Fieldref           #2.#53        // eos/moe/armourers/ge.m:I
+   #55 = NameAndType        #24:#12       // t:I
+   #56 = Fieldref           #2.#55        // eos/moe/armourers/ge.t:I
+   #57 = NameAndType        #15:#12       // u:I
+   #58 = Fieldref           #2.#57        // eos/moe/armourers/ge.u:I
+   #59 = NameAndType        #21:#12       // g:I
+   #60 = Fieldref           #2.#59        // eos/moe/armourers/ge.g:I
+   #61 = NameAndType        #28:#12       // c:I
+   #62 = Fieldref           #2.#61        // eos/moe/armourers/ge.c:I
+   #63 = NameAndType        #14:#12       // f:I
+   #64 = Fieldref           #2.#63        // eos/moe/armourers/ge.f:I
+   #65 = NameAndType        #30:#12       // s:I
+   #66 = Fieldref           #2.#65        // eos/moe/armourers/ge.s:I
+   #67 = NameAndType        #11:#12       // n:I
+   #68 = Fieldref           #2.#67        // eos/moe/armourers/ge.n:I
+   #69 = NameAndType        #26:#12       // r:I
+   #70 = Fieldref           #2.#69        // eos/moe/armourers/ge.r:I
+   #71 = Utf8               Leos/moe/armourers/ge;
+   #72 = Utf8               x
+   #73 = Utf8               (II)V
+   #74 = Utf8               Ljava/lang/Deprecated;
+   #75 = Utf8               (II)Z
+   #76 = Utf8               java/lang/Throwable
+   #77 = Class              #76           // java/lang/Throwable
+   #78 = Utf8               (II)I
+   #79 = NameAndType        #27:#12       // l:I
+   #80 = Fieldref           #2.#79        // eos/moe/armourers/ge.l:I
+   #81 = NameAndType        #8:#7         // k:F
+   #82 = Fieldref           #2.#81        // eos/moe/armourers/ge.k:F
+   #83 = Utf8               y
+   #84 = Utf8               ()I
+   #85 = NameAndType        #83:#84       // y:()I
+   #86 = Methodref          #2.#85        // eos/moe/armourers/ge.y:()I
+   #87 = Utf8               (IIIIIII)V
+   #88 = Utf8               net/minecraft/client/Minecraft
+   #89 = Class              #88           // net/minecraft/client/Minecraft
+   #90 = Utf8               func_71410_x
+   #91 = Utf8               ()Lnet/minecraft/client/Minecraft;
+   #92 = NameAndType        #90:#91       // func_71410_x:()Lnet/minecraft/client/Minecraft;
+   #93 = Methodref          #89.#92       // net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+   #94 = NameAndType        #35:#36       // "<init>":(Lnet/minecraft/client/Minecraft;IIIIIIII)V
+   #95 = Methodref          #2.#94        // eos/moe/armourers/ge."<init>":(Lnet/minecraft/client/Minecraft;IIIIIIII)V
+   #96 = Utf8               (IIF)V
+   #97 = NameAndType        #19:#12       // e:I
+   #98 = Fieldref           #2.#97        // eos/moe/armourers/ge.e:I
+   #99 = NameAndType        #18:#12       // a:I
+  #100 = Fieldref           #2.#99        // eos/moe/armourers/ge.a:I
+  #101 = NameAndType        #26:#38       // r:()V
+  #102 = Methodref          #2.#101       // eos/moe/armourers/ge.r:()V
+  #103 = Utf8               org/lwjgl/input/Mouse
+  #104 = Class              #103          // org/lwjgl/input/Mouse
+  #105 = Utf8               isButtonDown
+  #106 = Utf8               (I)Z
+  #107 = NameAndType        #105:#106     // isButtonDown:(I)Z
+  #108 = Methodref          #104.#107     // org/lwjgl/input/Mouse.isButtonDown:(I)Z
+  #109 = Float              -1.0f
+  #110 = Utf8               java/lang/System
+  #111 = Class              #110          // java/lang/System
+  #112 = Utf8               currentTimeMillis
+  #113 = Utf8               ()J
+  #114 = NameAndType        #112:#113     // currentTimeMillis:()J
+  #115 = Methodref          #111.#114     // java/lang/System.currentTimeMillis:()J
+  #116 = Long               250l
+  #118 = NameAndType        #26:#34       // r:(IZ)V
+  #119 = Methodref          #2.#118       // eos/moe/armourers/ge.r:(IZ)V
+  #120 = NameAndType        #22:#73       // z:(II)V
+  #121 = Methodref          #2.#120       // eos/moe/armourers/ge.z:(II)V
+  #122 = NameAndType        #6:#7         // i:F
+  #123 = Fieldref           #2.#122       // eos/moe/armourers/ge.i:F
+  #124 = NameAndType        #26:#84       // r:()I
+  #125 = Methodref          #2.#124       // eos/moe/armourers/ge.r:()I
+  #126 = NameAndType        #83:#38       // y:()V
+  #127 = Methodref          #2.#126       // eos/moe/armourers/ge.y:()V
+  #128 = Utf8               net/minecraft/client/renderer/Tessellator
+  #129 = Class              #128          // net/minecraft/client/renderer/Tessellator
+  #130 = Utf8               func_178181_a
+  #131 = Utf8               ()Lnet/minecraft/client/renderer/Tessellator;
+  #132 = NameAndType        #130:#131     // func_178181_a:()Lnet/minecraft/client/renderer/Tessellator;
+  #133 = Methodref          #129.#132     // net/minecraft/client/renderer/Tessellator.func_178181_a:()Lnet/minecraft/client/renderer/Tessellator;
+  #134 = Utf8               func_178180_c
+  #135 = Utf8               ()Lnet/minecraft/client/renderer/BufferBuilder;
+  #136 = NameAndType        #134:#135     // func_178180_c:()Lnet/minecraft/client/renderer/BufferBuilder;
+  #137 = Methodref          #129.#136     // net/minecraft/client/renderer/Tessellator.func_178180_c:()Lnet/minecraft/client/renderer/BufferBuilder;
+  #138 = Utf8               net/minecraft/client/gui/ScaledResolution
+  #139 = Class              #138          // net/minecraft/client/gui/ScaledResolution
+  #140 = Utf8               (Lnet/minecraft/client/Minecraft;)V
+  #141 = NameAndType        #35:#140      // "<init>":(Lnet/minecraft/client/Minecraft;)V
+  #142 = Methodref          #139.#141     // net/minecraft/client/gui/ScaledResolution."<init>":(Lnet/minecraft/client/Minecraft;)V
+  #143 = Utf8               field_71443_c
+  #144 = NameAndType        #143:#12      // field_71443_c:I
+  #145 = Fieldref           #89.#144      // net/minecraft/client/Minecraft.field_71443_c:I
+  #146 = Utf8               func_78327_c
+  #147 = Utf8               ()D
+  #148 = NameAndType        #146:#147     // func_78327_c:()D
+  #149 = Methodref          #139.#148     // net/minecraft/client/gui/ScaledResolution.func_78327_c:()D
+  #150 = Utf8               field_71440_d
+  #151 = NameAndType        #150:#12      // field_71440_d:I
+  #152 = Fieldref           #89.#151      // net/minecraft/client/Minecraft.field_71440_d:I
+  #153 = Utf8               func_78324_d
+  #154 = NameAndType        #153:#147     // func_78324_d:()D
+  #155 = Methodref          #139.#154     // net/minecraft/client/gui/ScaledResolution.func_78324_d:()D
+  #156 = Utf8               org/lwjgl/opengl/GL11
+  #157 = Class              #156          // org/lwjgl/opengl/GL11
+  #158 = Utf8               glEnable
+  #159 = Utf8               (I)V
+  #160 = NameAndType        #158:#159     // glEnable:(I)V
+  #161 = Methodref          #157.#160     // org/lwjgl/opengl/GL11.glEnable:(I)V
+  #162 = Utf8               glScissor
+  #163 = Utf8               (IIII)V
+  #164 = NameAndType        #162:#163     // glScissor:(IIII)V
+  #165 = Methodref          #157.#164     // org/lwjgl/opengl/GL11.glScissor:(IIII)V
+  #166 = Utf8               field_71441_e
+  #167 = Utf8               Lnet/minecraft/client/multiplayer/WorldClient;
+  #168 = NameAndType        #166:#167     // field_71441_e:Lnet/minecraft/client/multiplayer/WorldClient;
+  #169 = Fieldref           #89.#168      // net/minecraft/client/Minecraft.field_71441_e:Lnet/minecraft/client/multiplayer/WorldClient;
+  #170 = Utf8               net/minecraft/client/renderer/GlStateManager
+  #171 = Class              #170          // net/minecraft/client/renderer/GlStateManager
+  #172 = Utf8               func_179140_f
+  #173 = NameAndType        #172:#38      // func_179140_f:()V
+  #174 = Methodref          #171.#173     // net/minecraft/client/renderer/GlStateManager.func_179140_f:()V
+  #175 = Utf8               func_179106_n
+  #176 = NameAndType        #175:#38      // func_179106_n:()V
+  #177 = Methodref          #171.#176     // net/minecraft/client/renderer/GlStateManager.func_179106_n:()V
+  #178 = Utf8               field_71446_o
+  #179 = Utf8               Lnet/minecraft/client/renderer/texture/TextureManager;
+  #180 = NameAndType        #178:#179     // field_71446_o:Lnet/minecraft/client/renderer/texture/TextureManager;
+  #181 = Fieldref           #89.#180      // net/minecraft/client/Minecraft.field_71446_o:Lnet/minecraft/client/renderer/texture/TextureManager;
+  #182 = Utf8               net/minecraft/client/gui/Gui
+  #183 = Class              #182          // net/minecraft/client/gui/Gui
+  #184 = Utf8               field_110325_k
+  #185 = Utf8               Lnet/minecraft/util/ResourceLocation;
+  #186 = NameAndType        #184:#185     // field_110325_k:Lnet/minecraft/util/ResourceLocation;
+  #187 = Fieldref           #183.#186     // net/minecraft/client/gui/Gui.field_110325_k:Lnet/minecraft/util/ResourceLocation;
+  #188 = Utf8               net/minecraft/client/renderer/texture/TextureManager
+  #189 = Class              #188          // net/minecraft/client/renderer/texture/TextureManager
+  #190 = Utf8               func_110577_a
+  #191 = Utf8               (Lnet/minecraft/util/ResourceLocation;)V
+  #192 = NameAndType        #190:#191     // func_110577_a:(Lnet/minecraft/util/ResourceLocation;)V
+  #193 = Methodref          #189.#192     // net/minecraft/client/renderer/texture/TextureManager.func_110577_a:(Lnet/minecraft/util/ResourceLocation;)V
+  #194 = Utf8               func_179131_c
+  #195 = Utf8               (FFFF)V
+  #196 = NameAndType        #194:#195     // func_179131_c:(FFFF)V
+  #197 = Methodref          #171.#196     // net/minecraft/client/renderer/GlStateManager.func_179131_c:(FFFF)V
+  #198 = Float              32.0f
+  #199 = Utf8               net/minecraft/client/renderer/vertex/DefaultVertexFormats
+  #200 = Class              #199          // net/minecraft/client/renderer/vertex/DefaultVertexFormats
+  #201 = Utf8               field_181709_i
+  #202 = Utf8               Lnet/minecraft/client/renderer/vertex/VertexFormat;
+  #203 = NameAndType        #201:#202     // field_181709_i:Lnet/minecraft/client/renderer/vertex/VertexFormat;
+  #204 = Fieldref           #200.#203     // net/minecraft/client/renderer/vertex/DefaultVertexFormats.field_181709_i:Lnet/minecraft/client/renderer/vertex/VertexFormat;
+  #205 = Utf8               net/minecraft/client/renderer/BufferBuilder
+  #206 = Class              #205          // net/minecraft/client/renderer/BufferBuilder
+  #207 = Utf8               func_181668_a
+  #208 = Utf8               (ILnet/minecraft/client/renderer/vertex/VertexFormat;)V
+  #209 = NameAndType        #207:#208     // func_181668_a:(ILnet/minecraft/client/renderer/vertex/VertexFormat;)V
+  #210 = Methodref          #206.#209     // net/minecraft/client/renderer/BufferBuilder.func_181668_a:(ILnet/minecraft/client/renderer/vertex/VertexFormat;)V
+  #211 = Utf8               func_181662_b
+  #212 = Utf8               (DDD)Lnet/minecraft/client/renderer/BufferBuilder;
+  #213 = NameAndType        #211:#212     // func_181662_b:(DDD)Lnet/minecraft/client/renderer/BufferBuilder;
+  #214 = Methodref          #206.#213     // net/minecraft/client/renderer/BufferBuilder.func_181662_b:(DDD)Lnet/minecraft/client/renderer/BufferBuilder;
+  #215 = Utf8               func_187315_a
+  #216 = Utf8               (DD)Lnet/minecraft/client/renderer/BufferBuilder;
+  #217 = NameAndType        #215:#216     // func_187315_a:(DD)Lnet/minecraft/client/renderer/BufferBuilder;
+  #218 = Methodref          #206.#217     // net/minecraft/client/renderer/BufferBuilder.func_187315_a:(DD)Lnet/minecraft/client/renderer/BufferBuilder;
+  #219 = Utf8               func_181669_b
+  #220 = Utf8               (IIII)Lnet/minecraft/client/renderer/BufferBuilder;
+  #221 = NameAndType        #219:#220     // func_181669_b:(IIII)Lnet/minecraft/client/renderer/BufferBuilder;
+  #222 = Methodref          #206.#221     // net/minecraft/client/renderer/BufferBuilder.func_181669_b:(IIII)Lnet/minecraft/client/renderer/BufferBuilder;
+  #223 = Utf8               func_181675_d
+  #224 = NameAndType        #223:#38      // func_181675_d:()V
+  #225 = Methodref          #206.#224     // net/minecraft/client/renderer/BufferBuilder.func_181675_d:()V
+  #226 = Utf8               func_78381_a
+  #227 = NameAndType        #226:#38      // func_78381_a:()V
+  #228 = Methodref          #129.#227     // net/minecraft/client/renderer/Tessellator.func_78381_a:()V
+  #229 = NameAndType        #13:#10       // q:Z
+  #230 = Fieldref           #2.#229       // eos/moe/armourers/ge.q:Z
+  #231 = Utf8               (IILnet/minecraft/client/renderer/Tessellator;)V
+  #232 = NameAndType        #83:#231      // y:(IILnet/minecraft/client/renderer/Tessellator;)V
+  #233 = Methodref          #2.#232       // eos/moe/armourers/ge.y:(IILnet/minecraft/client/renderer/Tessellator;)V
+  #234 = Utf8               (IIIIZLnet/minecraft/client/renderer/Tessellator;)V
+  #235 = NameAndType        #26:#234      // r:(IIIIZLnet/minecraft/client/renderer/Tessellator;)V
+  #236 = Methodref          #2.#235       // eos/moe/armourers/ge.r:(IIIIZLnet/minecraft/client/renderer/Tessellator;)V
+  #237 = Utf8               func_179097_i
+  #238 = NameAndType        #237:#38      // func_179097_i:()V
+  #239 = Methodref          #171.#238     // net/minecraft/client/renderer/GlStateManager.func_179097_i:()V
+  #240 = Utf8               (III)V
+  #241 = NameAndType        #26:#240      // r:(III)V
+  #242 = Methodref          #2.#241       // eos/moe/armourers/ge.r:(III)V
+  #243 = NameAndType        #26:#73       // r:(II)V
+  #244 = Methodref          #2.#243       // eos/moe/armourers/ge.r:(II)V
+  #245 = Utf8               func_179098_w
+  #246 = NameAndType        #245:#38      // func_179098_w:()V
+  #247 = Methodref          #171.#246     // net/minecraft/client/renderer/GlStateManager.func_179098_w:()V
+  #248 = Utf8               func_179103_j
+  #249 = NameAndType        #248:#159     // func_179103_j:(I)V
+  #250 = Methodref          #171.#249     // net/minecraft/client/renderer/GlStateManager.func_179103_j:(I)V
+  #251 = Utf8               func_179141_d
+  #252 = NameAndType        #251:#38      // func_179141_d:()V
+  #253 = Methodref          #171.#252     // net/minecraft/client/renderer/GlStateManager.func_179141_d:()V
+  #254 = Utf8               func_179084_k
+  #255 = NameAndType        #254:#38      // func_179084_k:()V
+  #256 = Methodref          #171.#255     // net/minecraft/client/renderer/GlStateManager.func_179084_k:()V
+  #257 = Utf8               glDisable
+  #258 = NameAndType        #257:#159     // glDisable:(I)V
+  #259 = Methodref          #157.#258     // org/lwjgl/opengl/GL11.glDisable:(I)V
+  #260 = Utf8               (IIIIII)V
+  #261 = Utf8               net/minecraftforge/fml/client/config/GuiUtils
+  #262 = Class              #261          // net/minecraftforge/fml/client/config/GuiUtils
+  #263 = Utf8               drawGradientRect
+  #264 = NameAndType        #263:#87      // drawGradientRect:(IIIIIII)V
+  #265 = Methodref          #262.#264     // net/minecraftforge/fml/client/config/GuiUtils.drawGradientRect:(IIIIIII)V
+  #266 = Integer            -13158601
+  #267 = Utf8               func_73734_a
+  #268 = Utf8               (IIIII)V
+  #269 = NameAndType        #267:#268     // func_73734_a:(IIIII)V
+  #270 = Methodref          #183.#269     // net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+  #271 = Integer            -16777216
+  #272 = NameAndType        #17:#73       // h:(II)V
+  #273 = Methodref          #2.#272       // eos/moe/armourers/ge.h:(II)V
+  #274 = Integer            -7631989
+  #275 = Utf8               (Lnet/minecraft/client/gui/GuiButton;)V
+  #276 = Utf8               net/minecraft/client/gui/GuiButton
+  #277 = Class              #276          // net/minecraft/client/gui/GuiButton
+  #278 = Utf8               field_146124_l
+  #279 = NameAndType        #278:#10      // field_146124_l:Z
+  #280 = Fieldref           #277.#279     // net/minecraft/client/gui/GuiButton.field_146124_l:Z
+  #281 = Utf8               field_146127_k
+  #282 = NameAndType        #281:#12      // field_146127_k:I
+  #283 = Fieldref           #277.#282     // net/minecraft/client/gui/GuiButton.field_146127_k:I
+  #284 = NameAndType        #17:#12       // h:I
+  #285 = Fieldref           #2.#284       // eos/moe/armourers/ge.h:I
+  #286 = NameAndType        #20:#12       // b:I
+  #287 = Fieldref           #2.#286       // eos/moe/armourers/ge.b:I
+  #288 = Utf8               Lnet/minecraft/client/gui/GuiButton;
+  #289 = Utf8               (Z)V
+  #290 = NameAndType        #26:#231      // r:(IILnet/minecraft/client/renderer/Tessellator;)V
+  #291 = Methodref          #2.#290       // eos/moe/armourers/ge.r:(IILnet/minecraft/client/renderer/Tessellator;)V
+  #292 = Utf8               Lnet/minecraft/client/renderer/Tessellator;
+  #293 = Utf8               (ZI)V
+  #294 = NameAndType        #83:#293      // y:(ZI)V
+  #295 = Methodref          #2.#294       // eos/moe/armourers/ge.y:(ZI)V
+  #296 = Utf8               java/io/IOException
+  #297 = Class              #296          // java/io/IOException
+  #298 = Utf8               getEventDWheel
+  #299 = NameAndType        #298:#84      // getEventDWheel:()I
+  #300 = Methodref          #104.#299     // org/lwjgl/input/Mouse.getEventDWheel:()I
+  #301 = Float              120.0f
+  #302 = Utf8               (Ljava/util/List;II)V
+  #303 = Utf8               Ljava/util/List;
+  #304 = NameAndType        #72:#73       // x:(II)V
+  #305 = Methodref          #2.#304       // eos/moe/armourers/ge.x:(II)V
+  #306 = Utf8               Code
+  #307 = Utf8               LocalVariableTable
+  #308 = Utf8               LineNumberTable
+  #309 = Utf8               Deprecated
+  #310 = Utf8               RuntimeVisibleAnnotations
+  #311 = Utf8               StackMapTable
+  #312 = Utf8               Exceptions
+  #313 = Utf8               Signature
+  #314 = Utf8               (Ljava/util/List<Lnet/minecraft/client/gui/GuiButton;>;II)V
+  #315 = Utf8               SourceFile
+{
+  private float i;
+    descriptor: F
+    flags: (0x0002) ACC_PRIVATE
+
+  private float k;
+    descriptor: F
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean p;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  public final int n;
+    descriptor: I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+
+  private boolean q;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  public final int f;
+    descriptor: I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+
+  public final int u;
+    descriptor: I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+
+  private float d;
+    descriptor: F
+    flags: (0x0002) ACC_PRIVATE
+
+  private int h;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  public int a;
+    descriptor: I
+    flags: (0x0001) ACC_PUBLIC
+
+  public int e;
+    descriptor: I
+    flags: (0x0001) ACC_PUBLIC
+
+  private int b;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  public final int g;
+    descriptor: I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+
+  private long z;
+    descriptor: J
+    flags: (0x0002) ACC_PRIVATE
+
+  public final int t;
+    descriptor: I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+
+  public boolean w;
+    descriptor: Z
+    flags: (0x0001) ACC_PUBLIC
+
+  public final int r;
+    descriptor: I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+
+  private int l;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  public final int c;
+    descriptor: I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+
+  public int v;
+    descriptor: I
+    flags: (0x0001) ACC_PUBLIC
+
+  public final int s;
+    descriptor: I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+
+  public final int m;
+    descriptor: I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+
+  private final net.minecraft.client.Minecraft j;
+    descriptor: Lnet/minecraft/client/Minecraft;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  public abstract void r(int, boolean);
+    descriptor: (IZ)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public eos.moe.armourers.ge(net.minecraft.client.Minecraft, int, int, int, int, int, int, int, int);
+    descriptor: (Lnet/minecraft/client/Minecraft;IIIIIIII)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=31, locals=10, args_size=10
+         0: iload         9
+         2: aload_0
+         3: dup_x1
+         4: iload         8
+         6: iload_2
+         7: iload         6
+         9: aload_0
+        10: dup_x1
+        11: iload         7
+        13: iload         5
+        15: aload_0
+        16: dup_x1
+        17: iload         4
+        19: iload_3
+        20: aload_0
+        21: dup_x1
+        22: iload_2
+        23: aload_1
+        24: aload_0
+        25: dup_x1
+        26: iconst_1
+        27: dup
+        28: aload_0
+        29: dup_x1
+        30: lconst_0
+        31: iconst_m1
+        32: aload_0
+        33: dup_x1
+        34: ldc           #37                 // float -2.0f
+        36: aload_0
+        37: invokespecial #40                 // Method java/lang/Object."<init>":()V
+        40: putfield      #42                 // Field d:F
+        43: putfield      #44                 // Field v:I
+        46: putfield      #46                 // Field z:J
+        49: putfield      #48                 // Field p:Z
+        52: putfield      #50                 // Field w:Z
+        55: putfield      #52                 // Field j:Lnet/minecraft/client/Minecraft;
+        58: putfield      #54                 // Field m:I
+        61: putfield      #56                 // Field t:I
+        64: putfield      #58                 // Field u:I
+        67: putfield      #60                 // Field g:I
+        70: putfield      #62                 // Field c:I
+        73: putfield      #64                 // Field f:I
+        76: aload_0
+        77: dup_x1
+        78: getfield      #64                 // Field f:I
+        81: iadd
+        82: putfield      #66                 // Field s:I
+        85: putfield      #68                 // Field n:I
+        88: putfield      #70                 // Field r:I
+        91: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      92     0     a   Leos/moe/armourers/ge;
+            0      92     1     a   Lnet/minecraft/client/Minecraft;
+            0      92     2     a   I
+            0      92     3     a   I
+            0      92     4     a   I
+            0      92     5     a   I
+            0      92     6     a   I
+            0      92     7     a   I
+            0      92     8     a   I
+            0      92     9     a   I
+      LineNumberTable:
+        line 158: 0
+        line 7: 40
+        line 63: 43
+        line 186: 46
+        line 11: 49
+        line 171: 52
+        line 18: 55
+        line 92: 58
+        line 227: 61
+        line 54: 64
+        line 94: 67
+        line 226: 70
+        line 194: 73
+        line 157: 76
+        line 71: 85
+        line 167: 88
+        line 149: 91
+
+  public void x(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=3, args_size=3
+         0: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       0     0     a   Leos/moe/armourers/ge;
+            0       0     1     a   I
+            0       0     2     a   I
+      LineNumberTable:
+        line 99: 0
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #74()
+        java.lang.Deprecated
+
+  public boolean r(int, int);
+    descriptor: (II)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: iload_1
+         1: aload_0
+         2: getfield      #64                 // Field f:I
+         5: if_icmplt     35
+         8: iload_1
+         9: aload_0
+        10: getfield      #66                 // Field s:I
+        13: if_icmpgt     35
+        16: iload_2
+        17: aload_0
+        18: getfield      #58                 // Field u:I
+        21: if_icmplt     35
+        24: iload_2
+        25: aload_0
+        26: getfield      #60                 // Field g:I
+        29: if_icmpgt     35
+        32: iconst_1
+        33: ireturn
+        34: athrow
+        35: iconst_0
+        36: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      37     0     a   Leos/moe/armourers/ge;
+            0      37     1     a   I
+            0      37     2     a   I
+      LineNumberTable:
+        line 47: 0
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 34
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ge, int, int ]
+
+  public int r(int, int);
+    descriptor: (II)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=6, args_size=3
+         0: aload_0
+         1: dup
+         2: getfield      #64                 // Field f:I
+         5: iconst_1
+         6: iadd
+         7: istore_3
+         8: getfield      #64                 // Field f:I
+        11: aload_0
+        12: getfield      #54                 // Field m:I
+        15: iadd
+        16: bipush        7
+        18: isub
+        19: istore        4
+        21: iload_2
+        22: aload_0
+        23: getfield      #58                 // Field u:I
+        26: isub
+        27: aload_0
+        28: getfield      #80                 // Field l:I
+        31: isub
+        32: aload_0
+        33: getfield      #82                 // Field k:F
+        36: f2i
+        37: iadd
+        38: iconst_4
+        39: isub
+        40: dup
+        41: istore_2
+        42: aload_0
+        43: getfield      #62                 // Field c:I
+        46: idiv
+        47: istore        5
+        49: iload_1
+        50: iload_3
+        51: if_icmplt     82
+        54: iload_1
+        55: iload         4
+        57: if_icmpgt     82
+        60: iload         5
+        62: iflt          82
+        65: iload_2
+        66: iflt          82
+        69: iload         5
+        71: aload_0
+        72: invokevirtual #86                 // Method y:()I
+        75: if_icmpge     82
+        78: iload         5
+        80: ireturn
+        81: athrow
+        82: iconst_m1
+        83: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      84     0     a   Leos/moe/armourers/ge;
+            0      84     1     a   I
+            0      84     2     a   I
+      LineNumberTable:
+        line 25: 0
+        line 132: 8
+        line 72: 21
+        line 153: 42
+        line 135: 49
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 81
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ge, int, int, int, int, int ]
+          stack = []
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #74()
+        java.lang.Deprecated
+
+  public eos.moe.armourers.ge(int, int, int, int, int, int, int);
+    descriptor: (IIIIIII)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=10, locals=8, args_size=8
+         0: aload_0
+         1: invokestatic  #93                 // Method net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+         4: iload_3
+         5: iload_2
+         6: dup
+         7: iload         4
+         9: dup_x2
+        10: iadd
+        11: iload_1
+        12: iload         5
+        14: iload         6
+        16: iload         7
+        18: invokespecial #95                 // Method "<init>":(Lnet/minecraft/client/Minecraft;IIIIIIII)V
+        21: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0     a   Leos/moe/armourers/ge;
+            0      22     1     a   I
+            0      22     2     a   I
+            0      22     3     a   I
+            0      22     4     a   I
+            0      22     5     a   I
+            0      22     6     a   I
+            0      22     7     a   I
+      LineNumberTable:
+        line 44: 0
+        line 36: 21
+
+  public void r(int, int, float);
+    descriptor: (IIF)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=14, locals=18, args_size=4
+         0: iload_1
+         1: iload_2
+         2: aload_0
+         3: dup_x1
+         4: dup_x2
+         5: iload_1
+         6: putfield      #98                 // Field e:I
+         9: putfield      #100                // Field a:I
+        12: invokevirtual #102                // Method r:()V
+        15: aload_0
+        16: getfield      #64                 // Field f:I
+        19: if_icmplt     57
+        22: iload_1
+        23: aload_0
+        24: dup
+        25: getfield      #64                 // Field f:I
+        28: swap
+        29: getfield      #54                 // Field m:I
+        32: iadd
+        33: if_icmpgt     57
+        36: iload_2
+        37: aload_0
+        38: getfield      #58                 // Field u:I
+        41: if_icmplt     57
+        44: iload_2
+        45: aload_0
+        46: getfield      #60                 // Field g:I
+        49: if_icmpgt     57
+        52: iconst_1
+        53: goto          58
+        56: athrow
+        57: iconst_0
+        58: istore_3
+        59: aload_0
+        60: dup
+        61: dup_x1
+        62: invokevirtual #86                 // Method y:()I
+        65: istore        4
+        67: bipush        10
+        69: istore        5
+        71: getfield      #64                 // Field f:I
+        74: aload_0
+        75: dup_x1
+        76: getfield      #54                 // Field m:I
+        79: iadd
+        80: dup
+        81: istore        6
+        83: iload         5
+        85: isub
+        86: istore        5
+        88: getfield      #64                 // Field f:I
+        91: istore        7
+        93: iload         5
+        95: iconst_1
+        96: isub
+        97: istore        8
+        99: getfield      #60                 // Field g:I
+       102: aload_0
+       103: getfield      #58                 // Field u:I
+       106: isub
+       107: istore        9
+       109: iconst_4
+       110: istore        10
+       112: iconst_0
+       113: invokestatic  #108                // Method org/lwjgl/input/Mouse.isButtonDown:(I)Z
+       116: ifeq          455
+       119: aload_0
+       120: getfield      #42                 // Field d:F
+       123: ldc           #109                // float -1.0f
+       125: fcmpl
+       126: ifne          415
+       129: iload_3
+       130: ifeq          405
+       133: iload_2
+       134: aload_0
+       135: getfield      #58                 // Field u:I
+       138: isub
+       139: aload_0
+       140: getfield      #80                 // Field l:I
+       143: isub
+       144: aload_0
+       145: getfield      #82                 // Field k:F
+       148: f2i
+       149: iadd
+       150: iload         10
+       152: isub
+       153: dup
+       154: istore        11
+       156: aload_0
+       157: getfield      #62                 // Field c:I
+       160: idiv
+       161: istore        12
+       163: iload_1
+       164: iload         7
+       166: if_icmplt     244
+       169: iload_1
+       170: iload         8
+       172: if_icmpgt     244
+       175: iload         12
+       177: iflt          244
+       180: iload         11
+       182: iflt          244
+       185: iload         12
+       187: iload         4
+       189: if_icmpge     244
+       192: iload         12
+       194: dup
+       195: aload_0
+       196: dup_x2
+       197: getfield      #44                 // Field v:I
+       200: if_icmpne     223
+       203: invokestatic  #115                // Method java/lang/System.currentTimeMillis:()J
+       206: aload_0
+       207: getfield      #46                 // Field z:J
+       210: lsub
+       211: ldc2_w        #116                // long 250l
+       214: lcmp
+       215: ifge          223
+       218: iconst_1
+       219: goto          224
+       222: athrow
+       223: iconst_0
+       224: invokevirtual #119                // Method r:(IZ)V
+       227: iload_1
+       228: aload_0
+       229: dup
+       230: iload         12
+       232: putfield      #44                 // Field v:I
+       235: invokestatic  #115                // Method java/lang/System.currentTimeMillis:()J
+       238: putfield      #46                 // Field z:J
+       241: goto          285
+       244: iload_1
+       245: iload         7
+       247: if_icmplt     284
+       250: iload_1
+       251: iload         8
+       253: if_icmpgt     284
+       256: iload         11
+       258: ifge          284
+       261: iload_1
+       262: iload         7
+       264: isub
+       265: iload_2
+       266: aload_0
+       267: dup_x2
+       268: getfield      #58                 // Field u:I
+       271: isub
+       272: aload_0
+       273: getfield      #82                 // Field k:F
+       276: f2i
+       277: iadd
+       278: iload         10
+       280: isub
+       281: invokevirtual #121                // Method z:(II)V
+       284: iload_1
+       285: iload         5
+       287: if_icmplt     390
+       290: iload_1
+       291: iload         6
+       293: if_icmpgt     390
+       296: aload_0
+       297: dup
+       298: ldc           #109                // float -1.0f
+       300: putfield      #123                // Field i:F
+       303: invokevirtual #125                // Method r:()I
+       306: iload         9
+       308: isub
+       309: iload         10
+       311: isub
+       312: dup
+       313: istore        13
+       315: iconst_1
+       316: if_icmpge     322
+       319: iconst_1
+       320: istore        13
+       322: iload         9
+       324: dup
+       325: imul
+       326: i2f
+       327: aload_0
+       328: invokevirtual #125                // Method r:()I
+       331: i2f
+       332: fdiv
+       333: f2i
+       334: dup
+       335: istore        14
+       337: bipush        32
+       339: if_icmpge     346
+       342: bipush        32
+       344: istore        14
+       346: iload         14
+       348: iload         9
+       350: iload         10
+       352: iconst_2
+       353: imul
+       354: isub
+       355: if_icmple     367
+       358: iload         9
+       360: iload         10
+       362: iconst_2
+       363: imul
+       364: isub
+       365: istore        14
+       367: aload_0
+       368: dup
+       369: dup
+       370: getfield      #123                // Field i:F
+       373: iload         9
+       375: iload         14
+       377: isub
+       378: i2f
+       379: iload         13
+       381: i2f
+       382: fdiv
+       383: fdiv
+       384: putfield      #123                // Field i:F
+       387: goto          396
+       390: aload_0
+       391: dup
+       392: fconst_1
+       393: putfield      #123                // Field i:F
+       396: iload_2
+       397: i2f
+       398: putfield      #42                 // Field d:F
+       401: aload_0
+       402: goto          462
+       405: aload_0
+       406: dup
+       407: ldc           #37                 // float -2.0f
+       409: putfield      #42                 // Field d:F
+       412: goto          462
+       415: aload_0
+       416: getfield      #42                 // Field d:F
+       419: fconst_0
+       420: fcmpl
+       421: iflt          461
+       424: iload_2
+       425: aload_0
+       426: dup_x1
+       427: dup_x2
+       428: dup
+       429: getfield      #82                 // Field k:F
+       432: iload_2
+       433: i2f
+       434: aload_0
+       435: getfield      #42                 // Field d:F
+       438: fsub
+       439: aload_0
+       440: getfield      #123                // Field i:F
+       443: fmul
+       444: fsub
+       445: putfield      #82                 // Field k:F
+       448: i2f
+       449: putfield      #42                 // Field d:F
+       452: goto          462
+       455: aload_0
+       456: ldc           #109                // float -1.0f
+       458: putfield      #42                 // Field d:F
+       461: aload_0
+       462: invokespecial #127                // Method y:()V
+       465: invokestatic  #133                // Method net/minecraft/client/renderer/Tessellator.func_178181_a:()Lnet/minecraft/client/renderer/Tessellator;
+       468: dup
+       469: astore        11
+       471: invokevirtual #137                // Method net/minecraft/client/renderer/Tessellator.func_178180_c:()Lnet/minecraft/client/renderer/BufferBuilder;
+       474: astore        12
+       476: new           #139                // class net/minecraft/client/gui/ScaledResolution
+       479: dup
+       480: aload_0
+       481: getfield      #52                 // Field j:Lnet/minecraft/client/Minecraft;
+       484: invokespecial #142                // Method net/minecraft/client/gui/ScaledResolution."<init>":(Lnet/minecraft/client/Minecraft;)V
+       487: astore        13
+       489: aload_0
+       490: dup
+       491: dup2
+       492: getfield      #52                 // Field j:Lnet/minecraft/client/Minecraft;
+       495: getfield      #145                // Field net/minecraft/client/Minecraft.field_71443_c:I
+       498: i2d
+       499: aload         13
+       501: invokevirtual #149                // Method net/minecraft/client/gui/ScaledResolution.func_78327_c:()D
+       504: ddiv
+       505: dstore        14
+       507: getfield      #52                 // Field j:Lnet/minecraft/client/Minecraft;
+       510: getfield      #152                // Field net/minecraft/client/Minecraft.field_71440_d:I
+       513: i2d
+       514: aload         13
+       516: invokevirtual #155                // Method net/minecraft/client/gui/ScaledResolution.func_78324_d:()D
+       519: ddiv
+       520: dstore        16
+       522: sipush        3089
+       525: invokestatic  #161                // Method org/lwjgl/opengl/GL11.glEnable:(I)V
+       528: getfield      #64                 // Field f:I
+       531: i2d
+       532: dload         14
+       534: dmul
+       535: d2i
+       536: aload_0
+       537: getfield      #52                 // Field j:Lnet/minecraft/client/Minecraft;
+       540: getfield      #152                // Field net/minecraft/client/Minecraft.field_71440_d:I
+       543: i2d
+       544: aload_0
+       545: getfield      #60                 // Field g:I
+       548: i2d
+       549: dload         16
+       551: dmul
+       552: dsub
+       553: d2i
+       554: aload_0
+       555: getfield      #54                 // Field m:I
+       558: i2d
+       559: dload         14
+       561: dmul
+       562: d2i
+       563: iload         9
+       565: i2d
+       566: dload         16
+       568: dmul
+       569: d2i
+       570: invokestatic  #165                // Method org/lwjgl/opengl/GL11.glScissor:(IIII)V
+       573: getfield      #52                 // Field j:Lnet/minecraft/client/Minecraft;
+       576: getfield      #169                // Field net/minecraft/client/Minecraft.field_71441_e:Lnet/minecraft/client/multiplayer/WorldClient;
+       579: ifnull        586
+       582: aload_0
+       583: goto          857
+       586: invokestatic  #174                // Method net/minecraft/client/renderer/GlStateManager.func_179140_f:()V
+       589: invokestatic  #177                // Method net/minecraft/client/renderer/GlStateManager.func_179106_n:()V
+       592: aload         11
+       594: aload         12
+       596: aload_0
+       597: getfield      #52                 // Field j:Lnet/minecraft/client/Minecraft;
+       600: getfield      #181                // Field net/minecraft/client/Minecraft.field_71446_o:Lnet/minecraft/client/renderer/texture/TextureManager;
+       603: getstatic     #187                // Field net/minecraft/client/gui/Gui.field_110325_k:Lnet/minecraft/util/ResourceLocation;
+       606: invokevirtual #193                // Method net/minecraft/client/renderer/texture/TextureManager.func_110577_a:(Lnet/minecraft/util/ResourceLocation;)V
+       609: fconst_1
+       610: dup
+       611: dup_x1
+       612: dup_x2
+       613: invokestatic  #197                // Method net/minecraft/client/renderer/GlStateManager.func_179131_c:(FFFF)V
+       616: ldc           #198                // float 32.0f
+       618: fstore_3
+       619: aload_0
+       620: dup_x2
+       621: aload_0
+       622: aload         12
+       624: dup_x1
+       625: aload_0
+       626: aload         12
+       628: dup_x1
+       629: bipush        7
+       631: getstatic     #204                // Field net/minecraft/client/renderer/vertex/DefaultVertexFormats.field_181709_i:Lnet/minecraft/client/renderer/vertex/VertexFormat;
+       634: invokevirtual #210                // Method net/minecraft/client/renderer/BufferBuilder.func_181668_a:(ILnet/minecraft/client/renderer/vertex/VertexFormat;)V
+       637: getfield      #64                 // Field f:I
+       640: i2d
+       641: aload_0
+       642: getfield      #60                 // Field g:I
+       645: i2d
+       646: dconst_0
+       647: invokevirtual #214                // Method net/minecraft/client/renderer/BufferBuilder.func_181662_b:(DDD)Lnet/minecraft/client/renderer/BufferBuilder;
+       650: aload_0
+       651: dup_x1
+       652: getfield      #64                 // Field f:I
+       655: i2f
+       656: ldc           #198                // float 32.0f
+       658: fdiv
+       659: f2d
+       660: aload_0
+       661: dup
+       662: getfield      #60                 // Field g:I
+       665: swap
+       666: getfield      #82                 // Field k:F
+       669: f2i
+       670: iadd
+       671: i2f
+       672: ldc           #198                // float 32.0f
+       674: fdiv
+       675: f2d
+       676: invokevirtual #218                // Method net/minecraft/client/renderer/BufferBuilder.func_187315_a:(DD)Lnet/minecraft/client/renderer/BufferBuilder;
+       679: bipush        32
+       681: dup
+       682: dup_x1
+       683: sipush        255
+       686: invokevirtual #222                // Method net/minecraft/client/renderer/BufferBuilder.func_181669_b:(IIII)Lnet/minecraft/client/renderer/BufferBuilder;
+       689: invokevirtual #225                // Method net/minecraft/client/renderer/BufferBuilder.func_181675_d:()V
+       692: getfield      #66                 // Field s:I
+       695: i2d
+       696: aload_0
+       697: getfield      #60                 // Field g:I
+       700: i2d
+       701: dconst_0
+       702: invokevirtual #214                // Method net/minecraft/client/renderer/BufferBuilder.func_181662_b:(DDD)Lnet/minecraft/client/renderer/BufferBuilder;
+       705: aload_0
+       706: getfield      #66                 // Field s:I
+       709: i2f
+       710: ldc           #198                // float 32.0f
+       712: fdiv
+       713: f2d
+       714: aload_0
+       715: dup
+       716: getfield      #60                 // Field g:I
+       719: swap
+       720: getfield      #82                 // Field k:F
+       723: f2i
+       724: iadd
+       725: i2f
+       726: ldc           #198                // float 32.0f
+       728: fdiv
+       729: f2d
+       730: invokevirtual #218                // Method net/minecraft/client/renderer/BufferBuilder.func_187315_a:(DD)Lnet/minecraft/client/renderer/BufferBuilder;
+       733: bipush        32
+       735: dup
+       736: dup_x1
+       737: sipush        255
+       740: invokevirtual #222                // Method net/minecraft/client/renderer/BufferBuilder.func_181669_b:(IIII)Lnet/minecraft/client/renderer/BufferBuilder;
+       743: invokevirtual #225                // Method net/minecraft/client/renderer/BufferBuilder.func_181675_d:()V
+       746: getfield      #66                 // Field s:I
+       749: i2d
+       750: aload_0
+       751: getfield      #58                 // Field u:I
+       754: i2d
+       755: dconst_0
+       756: invokevirtual #214                // Method net/minecraft/client/renderer/BufferBuilder.func_181662_b:(DDD)Lnet/minecraft/client/renderer/BufferBuilder;
+       759: aload_0
+       760: getfield      #66                 // Field s:I
+       763: i2f
+       764: ldc           #198                // float 32.0f
+       766: fdiv
+       767: f2d
+       768: aload_0
+       769: dup
+       770: getfield      #58                 // Field u:I
+       773: swap
+       774: getfield      #82                 // Field k:F
+       777: f2i
+       778: iadd
+       779: i2f
+       780: ldc           #198                // float 32.0f
+       782: fdiv
+       783: f2d
+       784: invokevirtual #218                // Method net/minecraft/client/renderer/BufferBuilder.func_187315_a:(DD)Lnet/minecraft/client/renderer/BufferBuilder;
+       787: bipush        32
+       789: dup
+       790: dup_x1
+       791: sipush        255
+       794: invokevirtual #222                // Method net/minecraft/client/renderer/BufferBuilder.func_181669_b:(IIII)Lnet/minecraft/client/renderer/BufferBuilder;
+       797: invokevirtual #225                // Method net/minecraft/client/renderer/BufferBuilder.func_181675_d:()V
+       800: getfield      #64                 // Field f:I
+       803: i2d
+       804: aload_0
+       805: getfield      #58                 // Field u:I
+       808: i2d
+       809: dconst_0
+       810: invokevirtual #214                // Method net/minecraft/client/renderer/BufferBuilder.func_181662_b:(DDD)Lnet/minecraft/client/renderer/BufferBuilder;
+       813: aload_0
+       814: getfield      #64                 // Field f:I
+       817: i2f
+       818: ldc           #198                // float 32.0f
+       820: fdiv
+       821: f2d
+       822: aload_0
+       823: dup
+       824: getfield      #58                 // Field u:I
+       827: swap
+       828: getfield      #82                 // Field k:F
+       831: f2i
+       832: iadd
+       833: i2f
+       834: ldc           #198                // float 32.0f
+       836: fdiv
+       837: f2d
+       838: invokevirtual #218                // Method net/minecraft/client/renderer/BufferBuilder.func_187315_a:(DD)Lnet/minecraft/client/renderer/BufferBuilder;
+       841: bipush        32
+       843: dup
+       844: dup_x1
+       845: sipush        255
+       848: invokevirtual #222                // Method net/minecraft/client/renderer/BufferBuilder.func_181669_b:(IIII)Lnet/minecraft/client/renderer/BufferBuilder;
+       851: invokevirtual #225                // Method net/minecraft/client/renderer/BufferBuilder.func_181675_d:()V
+       854: invokevirtual #228                // Method net/minecraft/client/renderer/Tessellator.func_78381_a:()V
+       857: getfield      #58                 // Field u:I
+       860: iload         10
+       862: iadd
+       863: aload_0
+       864: getfield      #82                 // Field k:F
+       867: f2i
+       868: isub
+       869: istore_3
+       870: aload_0
+       871: getfield      #230                // Field q:Z
+       874: ifeq          886
+       877: aload_0
+       878: iload         8
+       880: iload_3
+       881: aload         11
+       883: invokevirtual #233                // Method y:(IILnet/minecraft/client/renderer/Tessellator;)V
+       886: iconst_0
+       887: dup
+       888: istore        6
+       890: iload         4
+       892: if_icmpge     1020
+       895: iload_3
+       896: iload         6
+       898: aload_0
+       899: getfield      #62                 // Field c:I
+       902: imul
+       903: iadd
+       904: aload_0
+       905: getfield      #80                 // Field l:I
+       908: iadd
+       909: istore        7
+       911: aload_0
+       912: getfield      #62                 // Field c:I
+       915: iload         10
+       917: isub
+       918: istore        12
+       920: iload         7
+       922: aload_0
+       923: getfield      #60                 // Field g:I
+       926: if_icmpgt     1012
+       929: iload         7
+       931: iload         12
+       933: iadd
+       934: aload_0
+       935: getfield      #58                 // Field u:I
+       938: if_icmplt     1012
+       941: iload_1
+       942: aload_0
+       943: getfield      #64                 // Field f:I
+       946: iconst_1
+       947: iadd
+       948: if_icmplt     993
+       951: iload_1
+       952: aload_0
+       953: dup
+       954: getfield      #64                 // Field f:I
+       957: swap
+       958: getfield      #54                 // Field m:I
+       961: iadd
+       962: bipush        12
+       964: isub
+       965: if_icmpgt     993
+       968: iload_2
+       969: iload         7
+       971: iconst_1
+       972: isub
+       973: if_icmplt     993
+       976: iload_2
+       977: iload         7
+       979: aload_0
+       980: getfield      #62                 // Field c:I
+       983: iadd
+       984: iconst_3
+       985: isub
+       986: if_icmpgt     993
+       989: iconst_1
+       990: goto          994
+       993: iconst_0
+       994: istore        13
+       996: aload_0
+       997: iload         6
+       999: iload         8
+      1001: iload         7
+      1003: iload         12
+      1005: iload         13
+      1007: aload         11
+      1009: invokevirtual #236                // Method r:(IIIIZLnet/minecraft/client/renderer/Tessellator;)V
+      1012: iinc          6, 1
+      1015: iload         6
+      1017: goto          890
+      1020: invokestatic  #239                // Method net/minecraft/client/renderer/GlStateManager.func_179097_i:()V
+      1023: aload_0
+      1024: invokevirtual #125                // Method r:()I
+      1027: iload         10
+      1029: iadd
+      1030: iload         9
+      1032: isub
+      1033: dup
+      1034: istore        6
+      1036: ifle          1126
+      1039: iload         9
+      1041: dup
+      1042: imul
+      1043: aload_0
+      1044: invokevirtual #125                // Method r:()I
+      1047: idiv
+      1048: dup
+      1049: istore        7
+      1051: bipush        32
+      1053: if_icmpge     1060
+      1056: bipush        32
+      1058: istore        7
+      1060: iload         7
+      1062: iload         9
+      1064: iload         10
+      1066: iconst_2
+      1067: imul
+      1068: isub
+      1069: if_icmple     1081
+      1072: iload         9
+      1074: iload         10
+      1076: iconst_2
+      1077: imul
+      1078: isub
+      1079: istore        7
+      1081: aload_0
+      1082: getfield      #82                 // Field k:F
+      1085: f2i
+      1086: iload         9
+      1088: iload         7
+      1090: isub
+      1091: imul
+      1092: iload         6
+      1094: idiv
+      1095: aload_0
+      1096: getfield      #58                 // Field u:I
+      1099: iadd
+      1100: dup
+      1101: istore        12
+      1103: aload_0
+      1104: getfield      #58                 // Field u:I
+      1107: if_icmpge     1116
+      1110: aload_0
+      1111: getfield      #58                 // Field u:I
+      1114: istore        12
+      1116: aload_0
+      1117: iload         5
+      1119: iload         12
+      1121: iload         7
+      1123: invokevirtual #242                // Method r:(III)V
+      1126: aload_0
+      1127: iload_1
+      1128: iload_2
+      1129: invokevirtual #244                // Method r:(II)V
+      1132: invokestatic  #247                // Method net/minecraft/client/renderer/GlStateManager.func_179098_w:()V
+      1135: sipush        7424
+      1138: invokestatic  #250                // Method net/minecraft/client/renderer/GlStateManager.func_179103_j:(I)V
+      1141: invokestatic  #253                // Method net/minecraft/client/renderer/GlStateManager.func_179141_d:()V
+      1144: invokestatic  #256                // Method net/minecraft/client/renderer/GlStateManager.func_179084_k:()V
+      1147: sipush        3089
+      1150: invokestatic  #259                // Method org/lwjgl/opengl/GL11.glDisable:(I)V
+      1153: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0    1154     0     a   Leos/moe/armourers/ge;
+            0    1154     1     a   I
+            0    1154     2     a   I
+            0    1154     3     a   F
+      LineNumberTable:
+        line 188: 9
+        line 40: 12
+        line 211: 15
+        line 147: 59
+        line 209: 67
+        line 12: 71
+        line 219: 83
+        line 77: 88
+        line 42: 93
+        line 189: 99
+        line 37: 109
+        line 106: 112
+        line 125: 119
+        line 78: 129
+        line 205: 133
+        line 103: 156
+        line 89: 163
+        line 97: 192
+        line 198: 228
+        line 108: 235
+        line 48: 244
+        line 93: 261
+        line 69: 284
+        line 87: 296
+        line 120: 303
+        line 88: 315
+        line 185: 322
+        line 199: 337
+        line 128: 346
+        line 144: 358
+        line 136: 367
+        line 162: 387
+        line 161: 390
+        line 524: 396
+        line 269: 402
+        line 274: 405
+        line 393: 415
+        line 381: 424
+        line 413: 448
+        line 386: 455
+        line 585: 461
+        line 419: 465
+        line 620: 471
+        line 259: 476
+        line 362: 489
+        line 508: 507
+        line 265: 522
+        line 295: 528
+        line 441: 573
+        line 609: 586
+        line 302: 589
+        line 348: 592
+        line 322: 609
+        line 309: 616
+        line 336: 621
+        line 347: 637
+        line 301: 692
+        line 261: 746
+        line 537: 800
+        line 310: 854
+        line 417: 857
+        line 576: 870
+        line 475: 877
+        line 495: 886
+        line 311: 895
+        line 394: 911
+        line 436: 920
+        line 279: 941
+        line 253: 996
+        line 495: 1012
+        line 596: 1020
+        line 547: 1023
+        line 383: 1036
+        line 445: 1039
+        line 330: 1051
+        line 565: 1060
+        line 534: 1072
+        line 255: 1081
+        line 583: 1103
+        line 593: 1110
+        line 425: 1116
+        line 353: 1126
+        line 427: 1132
+        line 605: 1135
+        line 483: 1141
+        line 529: 1144
+        line 610: 1147
+        line 539: 1153
+      StackMapTable: number_of_entries = 31
+        frame_type = 255 /* full_frame */
+          offset_delta = 56
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ge, int, int, float ]
+          stack = []
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 163
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ge, int, int, int, int, int, int, int, int, int, int, int, int ]
+          stack = [ class eos/moe/armourers/ge, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ge, int, int, int, int, int, int, int, int, int, int, int, int ]
+          stack = [ class eos/moe/armourers/ge, int, int ]
+        frame_type = 19 /* same */
+        frame_type = 39 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 36
+          locals = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 23
+          locals = [ int ]
+        frame_type = 20 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 22
+        frame_type = 69 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/ge ]
+        frame_type = 249 /* chop */
+          offset_delta = 8
+        frame_type = 9 /* same */
+        frame_type = 39 /* same */
+        frame_type = 5 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/ge ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 123
+          locals = [ class eos/moe/armourers/ge, int, int, int, int, int, int, int, int, int, int, class net/minecraft/client/renderer/Tessellator, class net/minecraft/client/renderer/BufferBuilder, class net/minecraft/client/gui/ScaledResolution, double, double ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 270
+          locals = [ class eos/moe/armourers/ge, int, int, top, int, int, int, int, int, int, int, class net/minecraft/client/renderer/Tessellator, class net/minecraft/client/renderer/BufferBuilder, class net/minecraft/client/gui/ScaledResolution, double, double ]
+          stack = [ class eos/moe/armourers/ge ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 28
+          locals = [ class eos/moe/armourers/ge, int, int, int, int, int, int, int, int, int, int, class net/minecraft/client/renderer/Tessellator, class net/minecraft/client/renderer/BufferBuilder, class net/minecraft/client/gui/ScaledResolution, double, double ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 3
+          locals = [ class eos/moe/armourers/ge, int, int, int, int, int, int, int, int, int, int, class net/minecraft/client/renderer/Tessellator, top, top, double, double ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 102
+          locals = [ class eos/moe/armourers/ge, int, int, int, int, int, int, int, int, int, int, class net/minecraft/client/renderer/Tessellator, int, top, double, double ]
+          stack = []
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 17 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ class eos/moe/armourers/ge, int, int, int, int, int, int, int, int, int, int, class net/minecraft/client/renderer/Tessellator, top, top, double, double ]
+          stack = []
+        frame_type = 39 /* same */
+        frame_type = 20 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 34
+          locals = [ class eos/moe/armourers/ge, int, int, int, int, int, int, int, int, int, int, class net/minecraft/client/renderer/Tessellator, int, top, double, double ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class eos/moe/armourers/ge, int, int, int, int, int, int, int, int, int, int, class net/minecraft/client/renderer/Tessellator, top, top, double, double ]
+          stack = []
+
+  private void y();
+    descriptor: ()V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=2, args_size=1
+         0: aload_0
+         1: invokevirtual #125                // Method r:()I
+         4: aload_0
+         5: dup
+         6: getfield      #60                 // Field g:I
+         9: swap
+        10: getfield      #58                 // Field u:I
+        13: isub
+        14: iconst_4
+        15: isub
+        16: isub
+        17: dup
+        18: istore_1
+        19: ifge          26
+        22: iload_1
+        23: iconst_2
+        24: idiv
+        25: istore_1
+        26: aload_0
+        27: getfield      #82                 // Field k:F
+        30: iload_1
+        31: i2f
+        32: fcmpl
+        33: ifle          42
+        36: aload_0
+        37: iload_1
+        38: i2f
+        39: putfield      #82                 // Field k:F
+        42: aload_0
+        43: getfield      #82                 // Field k:F
+        46: fconst_0
+        47: fcmpg
+        48: ifge          56
+        51: aload_0
+        52: fconst_0
+        53: putfield      #82                 // Field k:F
+        56: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      57     0     a   Leos/moe/armourers/ge;
+      LineNumberTable:
+        line 134: 0
+        line 214: 19
+        line 81: 22
+        line 164: 26
+        line 100: 36
+        line 30: 42
+        line 229: 51
+        line 20: 56
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 26
+          locals = [ int ]
+        frame_type = 15 /* same */
+        frame_type = 13 /* same */
+
+  public void r(int, int, int, int, int, int);
+    descriptor: (IIIIII)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=7, args_size=7
+         0: iconst_0
+         1: iload_1
+         2: iload_2
+         3: iload_3
+         4: iload         4
+         6: iload         5
+         8: iload         6
+        10: invokestatic  #265                // Method net/minecraftforge/fml/client/config/GuiUtils.drawGradientRect:(IIIIIII)V
+        13: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0     a   Leos/moe/armourers/ge;
+            0      14     1     a   I
+            0      14     2     a   I
+            0      14     3     a   I
+            0      14     4     a   I
+            0      14     5     a   I
+            0      14     6     a   I
+      LineNumberTable:
+        line 245: 0
+        line 556: 13
+
+  public void r();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #64                 // Field f:I
+         4: iconst_1
+         5: isub
+         6: aload_0
+         7: getfield      #58                 // Field u:I
+        10: iconst_1
+        11: isub
+        12: aload_0
+        13: dup_x2
+        14: getfield      #66                 // Field s:I
+        17: iconst_1
+        18: iadd
+        19: aload_0
+        20: getfield      #60                 // Field g:I
+        23: iconst_1
+        24: iadd
+        25: ldc_w         #266                // int -13158601
+        28: invokestatic  #270                // Method net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+        31: getfield      #64                 // Field f:I
+        34: aload_0
+        35: dup
+        36: getfield      #58                 // Field u:I
+        39: swap
+        40: getfield      #66                 // Field s:I
+        43: aload_0
+        44: getfield      #60                 // Field g:I
+        47: ldc_w         #271                // int -16777216
+        50: invokestatic  #270                // Method net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+        53: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      54     0     a   Leos/moe/armourers/ge;
+      LineNumberTable:
+        line 26: 0
+        line 62: 31
+        line 17: 53
+
+  public void h(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=3, args_size=3
+         0: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       0     0     a   Leos/moe/armourers/ge;
+            0       0     1     a   I
+            0       0     2     a   I
+      LineNumberTable:
+        line 83: 0
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #74()
+        java.lang.Deprecated
+
+  public abstract void r(int, int, int, int, boolean, net.minecraft.client.renderer.Tessellator);
+    descriptor: (IIIIZLnet/minecraft/client/renderer/Tessellator;)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public void z(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokevirtual #273                // Method h:(II)V
+         6: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0     a   Leos/moe/armourers/ge;
+            0       7     1     a   I
+            0       7     2     a   I
+      LineNumberTable:
+        line 206: 0
+        line 180: 6
+
+  public void r(int, int, int);
+    descriptor: (III)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=4
+         0: aload_0
+         1: getfield      #58                 // Field u:I
+         4: iload_1
+         5: dup_x1
+         6: bipush        10
+         8: iadd
+         9: aload_0
+        10: getfield      #60                 // Field g:I
+        13: iconst_m1
+        14: invokestatic  #270                // Method net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+        17: iload_1
+        18: iconst_1
+        19: iadd
+        20: aload_0
+        21: getfield      #58                 // Field u:I
+        24: iconst_1
+        25: iadd
+        26: iload_1
+        27: bipush        9
+        29: iadd
+        30: aload_0
+        31: getfield      #60                 // Field g:I
+        34: iconst_1
+        35: isub
+        36: ldc_w         #266                // int -13158601
+        39: invokestatic  #270                // Method net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+        42: iload_1
+        43: iconst_2
+        44: iadd
+        45: aload_0
+        46: getfield      #58                 // Field u:I
+        49: iconst_2
+        50: iadd
+        51: iload_1
+        52: bipush        9
+        54: iadd
+        55: aload_0
+        56: getfield      #60                 // Field g:I
+        59: iconst_2
+        60: isub
+        61: ldc_w         #274                // int -7631989
+        64: invokestatic  #270                // Method net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+        67: iload_1
+        68: iconst_1
+        69: iadd
+        70: iload_1
+        71: bipush        10
+        73: iadd
+        74: iload_2
+        75: dup_x1
+        76: iload_3
+        77: iadd
+        78: iconst_m1
+        79: invokestatic  #270                // Method net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+        82: iload_1
+        83: iconst_2
+        84: iadd
+        85: iload_2
+        86: iconst_1
+        87: iadd
+        88: iload_1
+        89: bipush        10
+        91: iadd
+        92: iload_2
+        93: iload_3
+        94: iadd
+        95: ldc_w         #266                // int -13158601
+        98: invokestatic  #270                // Method net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+       101: iload_1
+       102: iconst_2
+       103: iadd
+       104: iload_2
+       105: iconst_1
+       106: iadd
+       107: iload_1
+       108: bipush        9
+       110: iadd
+       111: iload_2
+       112: iload_3
+       113: iadd
+       114: iconst_1
+       115: isub
+       116: ldc_w         #274                // int -7631989
+       119: invokestatic  #270                // Method net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+       122: iload_1
+       123: bipush        10
+       125: iadd
+       126: iload_1
+       127: bipush        10
+       129: iadd
+       130: iload_2
+       131: dup_x1
+       132: iconst_1
+       133: iadd
+       134: ldc_w         #274                // int -7631989
+       137: invokestatic  #270                // Method net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+       140: iload_1
+       141: iconst_1
+       142: iadd
+       143: iload_2
+       144: iload_3
+       145: iadd
+       146: iconst_1
+       147: isub
+       148: iload_1
+       149: iconst_1
+       150: iadd
+       151: iload_2
+       152: iload_3
+       153: iadd
+       154: ldc_w         #274                // int -7631989
+       157: invokestatic  #270                // Method net/minecraft/client/gui/Gui.func_73734_a:(IIIII)V
+       160: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     161     0     a   Leos/moe/armourers/ge;
+            0     161     1     a   I
+            0     161     2     a   I
+            0     161     3     a   I
+      LineNumberTable:
+        line 444: 0
+        line 592: 17
+        line 352: 42
+        line 546: 67
+        line 551: 82
+        line 378: 101
+        line 247: 122
+        line 485: 140
+        line 628: 160
+
+  public void r(net.minecraft.client.gui.GuiButton);
+    descriptor: (Lnet/minecraft/client/gui/GuiButton;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=2, args_size=2
+         0: aload_1
+         1: getfield      #280                // Field net/minecraft/client/gui/GuiButton.field_146124_l:Z
+         4: ifeq          87
+         7: aload_1
+         8: getfield      #283                // Field net/minecraft/client/gui/GuiButton.field_146127_k:I
+        11: aload_0
+        12: getfield      #285                // Field h:I
+        15: if_icmpne     48
+        18: ldc           #37                 // float -2.0f
+        20: aload_0
+        21: dup_x1
+        22: dup_x2
+        23: dup
+        24: getfield      #82                 // Field k:F
+        27: aload_0
+        28: getfield      #62                 // Field c:I
+        31: iconst_2
+        32: imul
+        33: iconst_3
+        34: idiv
+        35: i2f
+        36: fsub
+        37: putfield      #82                 // Field k:F
+        40: putfield      #42                 // Field d:F
+        43: invokespecial #127                // Method y:()V
+        46: return
+        47: athrow
+        48: aload_1
+        49: getfield      #283                // Field net/minecraft/client/gui/GuiButton.field_146127_k:I
+        52: aload_0
+        53: getfield      #287                // Field b:I
+        56: if_icmpne     87
+        59: ldc           #37                 // float -2.0f
+        61: aload_0
+        62: dup_x1
+        63: dup_x2
+        64: dup
+        65: getfield      #82                 // Field k:F
+        68: aload_0
+        69: getfield      #62                 // Field c:I
+        72: iconst_2
+        73: imul
+        74: iconst_3
+        75: idiv
+        76: i2f
+        77: fadd
+        78: putfield      #82                 // Field k:F
+        81: putfield      #42                 // Field d:F
+        84: invokespecial #127                // Method y:()V
+        87: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      88     0     a   Leos/moe/armourers/ge;
+            0      88     1     a   Lnet/minecraft/client/gui/GuiButton;
+      LineNumberTable:
+        line 230: 0
+        line 195: 7
+        line 46: 18
+        line 114: 40
+        line 23: 43
+        line 156: 48
+        line 204: 59
+        line 117: 81
+        line 225: 84
+        line 115: 87
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 47
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 253 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ge, class net/minecraft/client/gui/GuiButton ]
+        frame_type = 38 /* same */
+
+  public abstract int y();
+    descriptor: ()I
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public void r(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #48                 // Field p:Z
+         5: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0     a   Leos/moe/armourers/ge;
+            0       6     1     a   I
+      LineNumberTable:
+        line 65: 0
+        line 165: 5
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #74()
+        java.lang.Deprecated
+
+  public void y(int, int, net.minecraft.client.renderer.Tessellator);
+    descriptor: (IILnet/minecraft/client/renderer/Tessellator;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: aload_3
+         4: invokevirtual #291                // Method r:(IILnet/minecraft/client/renderer/Tessellator;)V
+         7: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0     a   Leos/moe/armourers/ge;
+            0       8     1     a   I
+            0       8     2     a   I
+            0       8     3     a   Lnet/minecraft/client/renderer/Tessellator;
+      LineNumberTable:
+        line 190: 0
+        line 91: 7
+
+  public int r();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #86                 // Method y:()I
+         4: aload_0
+         5: getfield      #62                 // Field c:I
+         8: imul
+         9: aload_0
+        10: getfield      #80                 // Field l:I
+        13: iadd
+        14: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0     a   Leos/moe/armourers/ge;
+      LineNumberTable:
+        line 107: 0
+
+  public void y(boolean, int);
+    descriptor: (ZI)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=3, args_size=3
+         0: iload_1
+         1: iload_2
+         2: aload_0
+         3: dup_x1
+         4: iload_1
+         5: putfield      #230                // Field q:Z
+         8: putfield      #80                 // Field l:I
+        11: ifne          19
+        14: aload_0
+        15: iconst_0
+        16: putfield      #80                 // Field l:I
+        19: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0     a   Leos/moe/armourers/ge;
+            0      20     1     a   I
+            0      20     2     a   I
+      LineNumberTable:
+        line 223: 1
+        line 95: 8
+        line 29: 11
+        line 137: 19
+      StackMapTable: number_of_entries = 1
+        frame_type = 19 /* same */
+
+  public void r(boolean, int);
+    descriptor: (ZI)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokevirtual #295                // Method y:(ZI)V
+         6: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0     a   Leos/moe/armourers/ge;
+            0       7     1     a   I
+            0       7     2     a   I
+      LineNumberTable:
+        line 57: 0
+        line 1: 6
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #74()
+        java.lang.Deprecated
+
+  public abstract boolean r(int);
+    descriptor: (I)Z
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public void y(int, int) throws java.io.IOException;
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=3
+         0: iload_1
+         1: aload_0
+         2: getfield      #64                 // Field f:I
+         5: if_icmplt     43
+         8: iload_1
+         9: aload_0
+        10: dup
+        11: getfield      #64                 // Field f:I
+        14: swap
+        15: getfield      #54                 // Field m:I
+        18: iadd
+        19: if_icmpgt     43
+        22: iload_2
+        23: aload_0
+        24: getfield      #58                 // Field u:I
+        27: if_icmplt     43
+        30: iload_2
+        31: aload_0
+        32: getfield      #60                 // Field g:I
+        35: if_icmpgt     43
+        38: iconst_1
+        39: goto          44
+        42: athrow
+        43: iconst_0
+        44: istore_3
+        45: iload_3
+        46: ifne          51
+        49: return
+        50: athrow
+        51: invokestatic  #300                // Method org/lwjgl/input/Mouse.getEventDWheel:()I
+        54: dup
+        55: istore_1
+        56: ifeq          84
+        59: aload_0
+        60: dup
+        61: getfield      #82                 // Field k:F
+        64: iconst_m1
+        65: iload_1
+        66: imul
+        67: i2f
+        68: ldc_w         #301                // float 120.0f
+        71: fdiv
+        72: aload_0
+        73: getfield      #62                 // Field c:I
+        76: i2f
+        77: fmul
+        78: fconst_2
+        79: fdiv
+        80: fadd
+        81: putfield      #82                 // Field k:F
+        84: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      85     0     a   Leos/moe/armourers/ge;
+            0      85     1     a   I
+            0      85     2     a   I
+      LineNumberTable:
+        line 176: 0
+        line 3: 45
+        line 10: 49
+        line 60: 51
+        line 116: 56
+        line 52: 59
+        line 68: 84
+      StackMapTable: number_of_entries = 6
+        frame_type = 255 /* full_frame */
+          offset_delta = 42
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ge, int, int ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 5
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ge, int, int, int ]
+          stack = []
+        frame_type = 32 /* same */
+    Exceptions:
+      throws java.io.IOException
+
+  public void r(java.util.List<net.minecraft.client.gui.GuiButton>, int, int);
+    descriptor: (Ljava/util/List;II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=4
+         0: iload_3
+         1: aload_0
+         2: dup_x1
+         3: iload_2
+         4: putfield      #285                // Field h:I
+         7: putfield      #287                // Field b:I
+        10: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0     a   Leos/moe/armourers/ge;
+            0      11     1     a   Ljava/util/List;
+            0      11     2     a   I
+            0      11     3     a   I
+      LineNumberTable:
+        line 22: 0
+        line 84: 7
+        line 141: 10
+    Signature: #314                         // (Ljava/util/List<Lnet/minecraft/client/gui/GuiButton;>;II)V
+
+  public void r(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokevirtual #305                // Method x:(II)V
+         6: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0     a   Leos/moe/armourers/ge;
+            0       7     1     a   I
+            0       7     2     a   I
+      LineNumberTable:
+        line 76: 0
+        line 32: 6
+
+  public void r(int, int, net.minecraft.client.renderer.Tessellator);
+    descriptor: (IILnet/minecraft/client/renderer/Tessellator;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=4, args_size=4
+         0: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       0     0     a   Leos/moe/armourers/ge;
+            0       0     1     a   I
+            0       0     2     a   I
+            0       0     3     a   Lnet/minecraft/client/renderer/Tessellator;
+      LineNumberTable:
+        line 210: 0
+    Deprecated: true
+    RuntimeVisibleAnnotations:
+      0: #74()
+        java.lang.Deprecated
+}
+SourceFile: "ti"

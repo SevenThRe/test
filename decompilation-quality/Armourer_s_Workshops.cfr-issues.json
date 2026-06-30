@@ -1,0 +1,157 @@
+[
+  {
+    "class": "org.spongepowered.asm.mixin.refmap.ReferenceMapper",
+    "method": "read(java.lang.String )",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "eos.moe.armourers.ya",
+    "method": "r(java.io.RandomAccessFile java.io.OutputStream long long eos.moe.armourers.rb )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.xa",
+    "method": "r(java.io.File eos.moe.armourers.rb )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.ia",
+    "method": "r(eos.moe.armourers.ea eos.moe.armourers.rb )",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "eos.moe.armourers.va",
+    "method": "r(eos.moe.armourers.ma eos.moe.armourers.rb )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.la",
+    "method": "r(eos.moe.armourers.sa eos.moe.armourers.rb )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.ja",
+    "method": "r(eos.moe.armourers.ka eos.moe.armourers.rb )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.na",
+    "method": "r(eos.moe.armourers.aa eos.moe.armourers.rb )",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once"
+  },
+  {
+    "class": "eos.moe.armourers.ha",
+    "method": "r(eos.moe.armourers.za eos.moe.armourers.rb )",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "eos.moe.armourers.ua",
+    "method": "r(eos.moe.armourers.ba eos.moe.armourers.rb )",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once"
+  },
+  {
+    "class": "eos.moe.armourers.da",
+    "method": "r(eos.moe.armourers.oc eos.moe.armourers.pb java.io.File eos.moe.armourers.rb )",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Tried to end blocks [7[CATCHBLOCK], 2[TRYBLOCK]], but top level block is 4[TRYBLOCK]"
+  },
+  {
+    "class": "eos.moe.armourers.ta",
+    "method": "r(java.util.List<java.io.File> eos.moe.armourers.rb eos.moe.armourers.zb java.nio.charset.Charset )",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "eos.moe.armourers.vl",
+    "method": "r(eos.moe.armourers.kb eos.moe.armourers.nb java.io.OutputStream java.nio.charset.Charset )",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "eos.moe.armourers.vl",
+    "method": "r(eos.moe.armourers.nb java.io.OutputStream )",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "eos.moe.armourers.vl",
+    "method": "r(eos.moe.armourers.kb java.io.OutputStream java.nio.charset.Charset )",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "eos.moe.armourers.hl",
+    "method": "r(java.io.RandomAccessFile java.nio.charset.Charset )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.hl",
+    "method": "r(java.io.RandomAccessFile eos.moe.armourers.ra java.nio.charset.Charset )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.ue",
+    "method": "r(boolean eos.moe.armourers.zb )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.tj",
+    "method": "y(java.io.InputStream )",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 3 blocks at once"
+  },
+  {
+    "class": "eos.moe.armourers.tj",
+    "method": "r(java.io.InputStream )",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 3 blocks at once"
+  },
+  {
+    "class": "eos.moe.armourers.tj",
+    "method": "r(java.io.File )",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 4 blocks at once"
+  },
+  {
+    "class": "eos.moe.armourers.vg",
+    "method": "r(java.io.BufferedInputStream )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.vg",
+    "method": "x()",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.vg",
+    "method": "r(java.io.InputStream )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.ge",
+    "method": "r(int int float )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.ee",
+    "method": "func_191745_a(net.minecraft.client.Minecraft int int float )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.wg",
+    "method": "y(eos.moe.armourers.qf int java.io.DataInputStream int eos.moe.armourers.y )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.rk",
+    "method": "renderPart(eos.moe.armourers.mk )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.ae",
+    "method": "r(java.awt.image.BufferedImage int int int )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.ModelData",
+    "method": "<init>(com.google.gson.JsonObject )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "eos.moe.armourers.mixins.MixinEntityRenderer",
+    "method": "mixin_doRender_HEAD(T double double double float float org.spongepowered.asm.mixin.injection.callback.CallbackInfo )",
+    "issue": "Unable to fully structure code"
+  }
+]

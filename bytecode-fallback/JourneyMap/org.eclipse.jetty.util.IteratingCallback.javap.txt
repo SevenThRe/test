@@ -1,0 +1,1906 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/journeymap-1.12.2-5.7.0(1)(2).jar!/org/eclipse/jetty/util/IteratingCallback.class
+  Last modified 25-����-20; size 7299 bytes
+  SHA-256 checksum a407fe4092293d0ad02f1f3b95991b63230db53a4b844684ca5073e0cb948ea7
+  Compiled from "IteratingCallback.java"
+public abstract class org.eclipse.jetty.util.IteratingCallback implements org.eclipse.jetty.util.Callback
+  minor version: 0
+  major version: 52
+  flags: (0x0421) ACC_PUBLIC, ACC_SUPER, ACC_ABSTRACT
+  this_class: #2                          // org/eclipse/jetty/util/IteratingCallback
+  super_class: #4                         // java/lang/Object
+  interfaces: 1, fields: 3, methods: 16, attributes: 2
+Constant pool:
+    #1 = Utf8               org/eclipse/jetty/util/IteratingCallback
+    #2 = Class              #1            // org/eclipse/jetty/util/IteratingCallback
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               org/eclipse/jetty/util/Callback
+    #6 = Class              #5            // org/eclipse/jetty/util/Callback
+    #7 = Utf8               IteratingCallback.java
+    #8 = Utf8               org/eclipse/jetty/util/IteratingCallback$1
+    #9 = Class              #8            // org/eclipse/jetty/util/IteratingCallback$1
+   #10 = Utf8               org/eclipse/jetty/util/IteratingCallback$Action
+   #11 = Class              #10           // org/eclipse/jetty/util/IteratingCallback$Action
+   #12 = Utf8               Action
+   #13 = Utf8               org/eclipse/jetty/util/IteratingCallback$State
+   #14 = Class              #13           // org/eclipse/jetty/util/IteratingCallback$State
+   #15 = Utf8               State
+   #16 = Utf8               org/eclipse/jetty/util/thread/Locker$Lock
+   #17 = Class              #16           // org/eclipse/jetty/util/thread/Locker$Lock
+   #18 = Utf8               org/eclipse/jetty/util/thread/Locker
+   #19 = Class              #18           // org/eclipse/jetty/util/thread/Locker
+   #20 = Utf8               Lock
+   #21 = Utf8               _locker
+   #22 = Utf8               Lorg/eclipse/jetty/util/thread/Locker;
+   #23 = Utf8               _state
+   #24 = Utf8               Lorg/eclipse/jetty/util/IteratingCallback$State;
+   #25 = Utf8               _iterate
+   #26 = Utf8               Z
+   #27 = Utf8               <init>
+   #28 = Utf8               ()V
+   #29 = NameAndType        #27:#28       // "<init>":()V
+   #30 = Methodref          #4.#29        // java/lang/Object."<init>":()V
+   #31 = Methodref          #19.#29       // org/eclipse/jetty/util/thread/Locker."<init>":()V
+   #32 = NameAndType        #21:#22       // _locker:Lorg/eclipse/jetty/util/thread/Locker;
+   #33 = Fieldref           #2.#32        // org/eclipse/jetty/util/IteratingCallback._locker:Lorg/eclipse/jetty/util/thread/Locker;
+   #34 = Utf8               IDLE
+   #35 = NameAndType        #34:#24       // IDLE:Lorg/eclipse/jetty/util/IteratingCallback$State;
+   #36 = Fieldref           #14.#35       // org/eclipse/jetty/util/IteratingCallback$State.IDLE:Lorg/eclipse/jetty/util/IteratingCallback$State;
+   #37 = NameAndType        #23:#24       // _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+   #38 = Fieldref           #2.#37        // org/eclipse/jetty/util/IteratingCallback._state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+   #39 = Utf8               this
+   #40 = Utf8               Lorg/eclipse/jetty/util/IteratingCallback;
+   #41 = Utf8               (Z)V
+   #42 = Utf8               SUCCEEDED
+   #43 = NameAndType        #42:#24       // SUCCEEDED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+   #44 = Fieldref           #14.#43       // org/eclipse/jetty/util/IteratingCallback$State.SUCCEEDED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+   #45 = Utf8               needReset
+   #46 = Utf8               process
+   #47 = Utf8               ()Lorg/eclipse/jetty/util/IteratingCallback$Action;
+   #48 = Utf8               java/lang/Throwable
+   #49 = Class              #48           // java/lang/Throwable
+   #50 = Utf8               onCompleteSuccess
+   #51 = Utf8               onCompleteFailure
+   #52 = Utf8               (Ljava/lang/Throwable;)V
+   #53 = Utf8               cause
+   #54 = Utf8               Ljava/lang/Throwable;
+   #55 = Utf8               iterate
+   #56 = Utf8               lock
+   #57 = Utf8               ()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+   #58 = NameAndType        #56:#57       // lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+   #59 = Methodref          #19.#58       // org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+   #60 = Utf8               $SwitchMap$org$eclipse$jetty$util$IteratingCallback$State
+   #61 = Utf8               [I
+   #62 = NameAndType        #60:#61       // $SwitchMap$org$eclipse$jetty$util$IteratingCallback$State:[I
+   #63 = Fieldref           #9.#62        // org/eclipse/jetty/util/IteratingCallback$1.$SwitchMap$org$eclipse$jetty$util$IteratingCallback$State:[I
+   #64 = Utf8               ordinal
+   #65 = Utf8               ()I
+   #66 = NameAndType        #64:#65       // ordinal:()I
+   #67 = Methodref          #14.#66       // org/eclipse/jetty/util/IteratingCallback$State.ordinal:()I
+   #68 = Utf8               close
+   #69 = NameAndType        #68:#28       // close:()V
+   #70 = Methodref          #17.#69       // org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+   #71 = Utf8               addSuppressed
+   #72 = NameAndType        #71:#52       // addSuppressed:(Ljava/lang/Throwable;)V
+   #73 = Methodref          #49.#72       // java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+   #74 = Utf8               PROCESSING
+   #75 = NameAndType        #74:#24       // PROCESSING:Lorg/eclipse/jetty/util/IteratingCallback$State;
+   #76 = Fieldref           #14.#75       // org/eclipse/jetty/util/IteratingCallback$State.PROCESSING:Lorg/eclipse/jetty/util/IteratingCallback$State;
+   #77 = NameAndType        #25:#26       // _iterate:Z
+   #78 = Fieldref           #2.#77        // org/eclipse/jetty/util/IteratingCallback._iterate:Z
+   #79 = Utf8               java/lang/IllegalStateException
+   #80 = Class              #79           // java/lang/IllegalStateException
+   #81 = Utf8               toString
+   #82 = Utf8               ()Ljava/lang/String;
+   #83 = NameAndType        #81:#82       // toString:()Ljava/lang/String;
+   #84 = Methodref          #2.#83        // org/eclipse/jetty/util/IteratingCallback.toString:()Ljava/lang/String;
+   #85 = Utf8               (Ljava/lang/String;)V
+   #86 = NameAndType        #27:#85       // "<init>":(Ljava/lang/String;)V
+   #87 = Methodref          #80.#86       // java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+   #88 = Utf8               processing
+   #89 = NameAndType        #88:#28       // processing:()V
+   #90 = Methodref          #2.#89        // org/eclipse/jetty/util/IteratingCallback.processing:()V
+   #91 = Utf8               Lorg/eclipse/jetty/util/thread/Locker$Lock;
+   #92 = NameAndType        #46:#47       // process:()Lorg/eclipse/jetty/util/IteratingCallback$Action;
+   #93 = Methodref          #2.#92        // org/eclipse/jetty/util/IteratingCallback.process:()Lorg/eclipse/jetty/util/IteratingCallback$Action;
+   #94 = Utf8               failed
+   #95 = NameAndType        #94:#52       // failed:(Ljava/lang/Throwable;)V
+   #96 = Methodref          #2.#95        // org/eclipse/jetty/util/IteratingCallback.failed:(Ljava/lang/Throwable;)V
+   #97 = Utf8               $SwitchMap$org$eclipse$jetty$util$IteratingCallback$Action
+   #98 = NameAndType        #97:#61       // $SwitchMap$org$eclipse$jetty$util$IteratingCallback$Action:[I
+   #99 = Fieldref           #9.#98        // org/eclipse/jetty/util/IteratingCallback$1.$SwitchMap$org$eclipse$jetty$util$IteratingCallback$Action:[I
+  #100 = Methodref          #11.#66       // org/eclipse/jetty/util/IteratingCallback$Action.ordinal:()I
+  #101 = Utf8               PENDING
+  #102 = NameAndType        #101:#24      // PENDING:Lorg/eclipse/jetty/util/IteratingCallback$State;
+  #103 = Fieldref           #14.#102      // org/eclipse/jetty/util/IteratingCallback$State.PENDING:Lorg/eclipse/jetty/util/IteratingCallback$State;
+  #104 = Utf8               %s[action=%s]
+  #105 = String             #104          // %s[action=%s]
+  #106 = Utf8               java/lang/String
+  #107 = Class              #106          // java/lang/String
+  #108 = Utf8               format
+  #109 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #110 = NameAndType        #108:#109     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #111 = Methodref          #107.#110     // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #112 = NameAndType        #50:#28       // onCompleteSuccess:()V
+  #113 = Methodref          #2.#112       // org/eclipse/jetty/util/IteratingCallback.onCompleteSuccess:()V
+  #114 = Utf8               action
+  #115 = Utf8               Lorg/eclipse/jetty/util/IteratingCallback$Action;
+  #116 = Utf8               x
+  #117 = Utf8               on_complete_success
+  #118 = Utf8               succeeded
+  #119 = Utf8               CALLED
+  #120 = NameAndType        #119:#24      // CALLED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+  #121 = Fieldref           #14.#120      // org/eclipse/jetty/util/IteratingCallback$State.CALLED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+  #122 = Utf8               FAILED
+  #123 = NameAndType        #122:#24      // FAILED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+  #124 = Fieldref           #14.#123      // org/eclipse/jetty/util/IteratingCallback$State.FAILED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+  #125 = NameAndType        #51:#52       // onCompleteFailure:(Ljava/lang/Throwable;)V
+  #126 = Methodref          #2.#125       // org/eclipse/jetty/util/IteratingCallback.onCompleteFailure:(Ljava/lang/Throwable;)V
+  #127 = Utf8               failure
+  #128 = Utf8               CLOSED
+  #129 = NameAndType        #128:#24      // CLOSED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+  #130 = Fieldref           #14.#129      // org/eclipse/jetty/util/IteratingCallback$State.CLOSED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+  #131 = Utf8               java/nio/channels/ClosedChannelException
+  #132 = Class              #131          // java/nio/channels/ClosedChannelException
+  #133 = Methodref          #132.#29      // java/nio/channels/ClosedChannelException."<init>":()V
+  #134 = Utf8               isIdle
+  #135 = Utf8               ()Z
+  #136 = Utf8               isClosed
+  #137 = Utf8               isFailed
+  #138 = Utf8               isSucceeded
+  #139 = Utf8               reset
+  #140 = Utf8               %s[%s]
+  #141 = String             #140          // %s[%s]
+  #142 = Methodref          #4.#83        // java/lang/Object.toString:()Ljava/lang/String;
+  #143 = Utf8               Code
+  #144 = Utf8               LocalVariableTable
+  #145 = Utf8               LineNumberTable
+  #146 = Utf8               StackMapTable
+  #147 = Utf8               Exceptions
+  #148 = Utf8               SourceFile
+  #149 = Utf8               InnerClasses
+{
+  private org.eclipse.jetty.util.thread.Locker _locker;
+    descriptor: Lorg/eclipse/jetty/util/thread/Locker;
+    flags: (0x0002) ACC_PRIVATE
+
+  private org.eclipse.jetty.util.IteratingCallback$State _state;
+    descriptor: Lorg/eclipse/jetty/util/IteratingCallback$State;
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean _iterate;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  protected org.eclipse.jetty.util.IteratingCallback();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #30                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #19                 // class org/eclipse/jetty/util/thread/Locker
+         8: dup
+         9: invokespecial #31                 // Method org/eclipse/jetty/util/thread/Locker."<init>":()V
+        12: putfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+        15: aload_0
+        16: getstatic     #36                 // Field org/eclipse/jetty/util/IteratingCallback$State.IDLE:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        19: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        22: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      23     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+      LineNumberTable:
+        line 134: 0
+        line 128: 4
+        line 135: 15
+        line 136: 22
+
+  protected org.eclipse.jetty.util.IteratingCallback(boolean);
+    descriptor: (Z)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #30                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #19                 // class org/eclipse/jetty/util/thread/Locker
+         8: dup
+         9: invokespecial #31                 // Method org/eclipse/jetty/util/thread/Locker."<init>":()V
+        12: putfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+        15: aload_0
+        16: iload_1
+        17: ifeq          26
+        20: getstatic     #44                 // Field org/eclipse/jetty/util/IteratingCallback$State.SUCCEEDED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        23: goto          29
+        26: getstatic     #36                 // Field org/eclipse/jetty/util/IteratingCallback$State.IDLE:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        29: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        32: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      33     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+            0      33     1 needReset   Z
+      LineNumberTable:
+        line 139: 0
+        line 128: 4
+        line 140: 15
+        line 141: 32
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 26
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, int ]
+          stack = [ class org/eclipse/jetty/util/IteratingCallback ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, int ]
+          stack = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/IteratingCallback$State ]
+
+  protected abstract org.eclipse.jetty.util.IteratingCallback$Action process() throws java.lang.Throwable;
+    descriptor: ()Lorg/eclipse/jetty/util/IteratingCallback$Action;
+    flags: (0x0404) ACC_PROTECTED, ACC_ABSTRACT
+    Exceptions:
+      throws java.lang.Throwable
+
+  protected void onCompleteSuccess();
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+      LineNumberTable:
+        line 170: 0
+
+  protected void onCompleteFailure(java.lang.Throwable);
+    descriptor: (Ljava/lang/Throwable;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=0, locals=2, args_size=2
+         0: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+            0       1     1 cause   Ljava/lang/Throwable;
+      LineNumberTable:
+        line 180: 0
+
+  public void iterate();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=7, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: aload_0
+         3: getfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+         6: invokevirtual #59                 // Method org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+         9: astore_2
+        10: aconst_null
+        11: astore_3
+        12: getstatic     #63                 // Field org/eclipse/jetty/util/IteratingCallback$1.$SwitchMap$org$eclipse$jetty$util$IteratingCallback$State:[I
+        15: aload_0
+        16: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        19: invokevirtual #67                 // Method org/eclipse/jetty/util/IteratingCallback$State.ordinal:()I
+        22: iaload
+        23: tableswitch   { // 1 to 7
+
+                       1: 64
+
+                       2: 64
+
+                       3: 97
+
+                       4: 139
+
+                       5: 177
+
+                       6: 177
+
+                       7: 210
+                 default: 210
+            }
+        64: aload_2
+        65: ifnull        265
+        68: aload_3
+        69: ifnull        90
+        72: aload_2
+        73: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        76: goto          265
+        79: astore        4
+        81: aload_3
+        82: aload         4
+        84: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        87: goto          265
+        90: aload_2
+        91: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        94: goto          265
+        97: aload_0
+        98: getstatic     #76                 // Field org/eclipse/jetty/util/IteratingCallback$State.PROCESSING:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       101: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       104: iconst_1
+       105: istore_1
+       106: aload_2
+       107: ifnull        265
+       110: aload_3
+       111: ifnull        132
+       114: aload_2
+       115: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       118: goto          265
+       121: astore        4
+       123: aload_3
+       124: aload         4
+       126: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       129: goto          265
+       132: aload_2
+       133: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       136: goto          265
+       139: aload_0
+       140: iconst_1
+       141: putfield      #78                 // Field _iterate:Z
+       144: aload_2
+       145: ifnull        265
+       148: aload_3
+       149: ifnull        170
+       152: aload_2
+       153: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       156: goto          265
+       159: astore        4
+       161: aload_3
+       162: aload         4
+       164: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       167: goto          265
+       170: aload_2
+       171: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       174: goto          265
+       177: aload_2
+       178: ifnull        265
+       181: aload_3
+       182: ifnull        203
+       185: aload_2
+       186: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       189: goto          265
+       192: astore        4
+       194: aload_3
+       195: aload         4
+       197: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       200: goto          265
+       203: aload_2
+       204: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       207: goto          265
+       210: new           #80                 // class java/lang/IllegalStateException
+       213: dup
+       214: aload_0
+       215: invokevirtual #84                 // Method toString:()Ljava/lang/String;
+       218: invokespecial #87                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       221: athrow
+       222: astore        4
+       224: aload         4
+       226: astore_3
+       227: aload         4
+       229: athrow
+       230: astore        5
+       232: aload_2
+       233: ifnull        262
+       236: aload_3
+       237: ifnull        258
+       240: aload_2
+       241: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       244: goto          262
+       247: astore        6
+       249: aload_3
+       250: aload         6
+       252: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       255: goto          262
+       258: aload_2
+       259: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       262: aload         5
+       264: athrow
+       265: iload_1
+       266: ifeq          273
+       269: aload_0
+       270: invokespecial #90                 // Method processing:()V
+       273: return
+      Exception table:
+         from    to  target type
+            72    76    79   Class java/lang/Throwable
+           114   118   121   Class java/lang/Throwable
+           152   156   159   Class java/lang/Throwable
+           185   189   192   Class java/lang/Throwable
+            12    64   222   Class java/lang/Throwable
+            97   106   222   Class java/lang/Throwable
+           139   144   222   Class java/lang/Throwable
+           210   222   222   Class java/lang/Throwable
+            12    64   230   any
+            97   106   230   any
+           139   144   230   any
+           240   244   247   Class java/lang/Throwable
+           210   232   230   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           10     255     2  lock   Lorg/eclipse/jetty/util/thread/Locker$Lock;
+            0     274     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+            2     272     1 process   Z
+      LineNumberTable:
+        line 191: 0
+        line 195: 2
+        line 197: 12
+        line 221: 64
+        line 205: 97
+        line 206: 104
+        line 221: 106
+        line 210: 139
+        line 221: 144
+        line 219: 210
+        line 195: 222
+        line 221: 230
+        line 223: 265
+        line 224: 269
+        line 225: 273
+      StackMapTable: number_of_entries = 21
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ int ]
+        frame_type = 253 /* append */
+          offset_delta = 61
+          locals = [ class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+        frame_type = 78 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 6 /* same */
+        frame_type = 87 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 6 /* same */
+        frame_type = 83 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 6 /* same */
+        frame_type = 78 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 6 /* same */
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 71 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, int, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, int ]
+          stack = []
+        frame_type = 7 /* same */
+
+  private void processing();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=7, locals=8, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: aload_0
+         3: invokevirtual #93                 // Method process:()Lorg/eclipse/jetty/util/IteratingCallback$Action;
+         6: astore_2
+         7: goto          19
+        10: astore_3
+        11: aload_0
+        12: aload_3
+        13: invokevirtual #96                 // Method failed:(Ljava/lang/Throwable;)V
+        16: goto          533
+        19: aload_0
+        20: getfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+        23: invokevirtual #59                 // Method org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+        26: astore_3
+        27: aconst_null
+        28: astore        4
+        30: getstatic     #63                 // Field org/eclipse/jetty/util/IteratingCallback$1.$SwitchMap$org$eclipse$jetty$util$IteratingCallback$State:[I
+        33: aload_0
+        34: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        37: invokevirtual #67                 // Method org/eclipse/jetty/util/IteratingCallback$State.ordinal:()I
+        40: iaload
+        41: tableswitch   { // 1 to 7
+
+                       1: 462
+
+                       2: 332
+
+                       3: 462
+
+                       4: 84
+
+                       5: 427
+
+                       6: 427
+
+                       7: 427
+                 default: 462
+            }
+        84: getstatic     #99                 // Field org/eclipse/jetty/util/IteratingCallback$1.$SwitchMap$org$eclipse$jetty$util$IteratingCallback$Action:[I
+        87: aload_2
+        88: invokevirtual #100                // Method org/eclipse/jetty/util/IteratingCallback$Action.ordinal:()I
+        91: iaload
+        92: tableswitch   { // 1 to 3
+
+                       1: 120
+
+                       2: 216
+
+                       3: 258
+                 default: 307
+            }
+       120: aload_0
+       121: getfield      #78                 // Field _iterate:Z
+       124: ifeq          174
+       127: aload_0
+       128: iconst_0
+       129: putfield      #78                 // Field _iterate:Z
+       132: aload_0
+       133: getstatic     #76                 // Field org/eclipse/jetty/util/IteratingCallback$State.PROCESSING:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       136: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       139: aload_3
+       140: ifnull        2
+       143: aload         4
+       145: ifnull        167
+       148: aload_3
+       149: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       152: goto          2
+       155: astore        5
+       157: aload         4
+       159: aload         5
+       161: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       164: goto          2
+       167: aload_3
+       168: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       171: goto          2
+       174: aload_0
+       175: getstatic     #36                 // Field org/eclipse/jetty/util/IteratingCallback$State.IDLE:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       178: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       181: aload_3
+       182: ifnull        533
+       185: aload         4
+       187: ifnull        209
+       190: aload_3
+       191: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       194: goto          533
+       197: astore        5
+       199: aload         4
+       201: aload         5
+       203: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       206: goto          533
+       209: aload_3
+       210: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       213: goto          533
+       216: aload_0
+       217: getstatic     #103                // Field org/eclipse/jetty/util/IteratingCallback$State.PENDING:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       220: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       223: aload_3
+       224: ifnull        533
+       227: aload         4
+       229: ifnull        251
+       232: aload_3
+       233: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       236: goto          533
+       239: astore        5
+       241: aload         4
+       243: aload         5
+       245: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       248: goto          533
+       251: aload_3
+       252: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       255: goto          533
+       258: aload_0
+       259: iconst_0
+       260: putfield      #78                 // Field _iterate:Z
+       263: aload_0
+       264: getstatic     #44                 // Field org/eclipse/jetty/util/IteratingCallback$State.SUCCEEDED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       267: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       270: iconst_1
+       271: istore_1
+       272: aload_3
+       273: ifnull        533
+       276: aload         4
+       278: ifnull        300
+       281: aload_3
+       282: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       285: goto          533
+       288: astore        5
+       290: aload         4
+       292: aload         5
+       294: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       297: goto          533
+       300: aload_3
+       301: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       304: goto          533
+       307: new           #80                 // class java/lang/IllegalStateException
+       310: dup
+       311: ldc           #105                // String %s[action=%s]
+       313: iconst_2
+       314: anewarray     #4                  // class java/lang/Object
+       317: dup
+       318: iconst_0
+       319: aload_0
+       320: aastore
+       321: dup
+       322: iconst_1
+       323: aload_2
+       324: aastore
+       325: invokestatic  #111                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       328: invokespecial #87                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       331: athrow
+       332: getstatic     #99                 // Field org/eclipse/jetty/util/IteratingCallback$1.$SwitchMap$org$eclipse$jetty$util$IteratingCallback$Action:[I
+       335: aload_2
+       336: invokevirtual #100                // Method org/eclipse/jetty/util/IteratingCallback$Action.ordinal:()I
+       339: iaload
+       340: lookupswitch  { // 1
+
+                       2: 360
+                 default: 402
+            }
+       360: aload_0
+       361: getstatic     #76                 // Field org/eclipse/jetty/util/IteratingCallback$State.PROCESSING:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       364: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+       367: aload_3
+       368: ifnull        2
+       371: aload         4
+       373: ifnull        395
+       376: aload_3
+       377: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       380: goto          2
+       383: astore        5
+       385: aload         4
+       387: aload         5
+       389: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       392: goto          2
+       395: aload_3
+       396: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       399: goto          2
+       402: new           #80                 // class java/lang/IllegalStateException
+       405: dup
+       406: ldc           #105                // String %s[action=%s]
+       408: iconst_2
+       409: anewarray     #4                  // class java/lang/Object
+       412: dup
+       413: iconst_0
+       414: aload_0
+       415: aastore
+       416: dup
+       417: iconst_1
+       418: aload_2
+       419: aastore
+       420: invokestatic  #111                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       423: invokespecial #87                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       426: athrow
+       427: aload_3
+       428: ifnull        533
+       431: aload         4
+       433: ifnull        455
+       436: aload_3
+       437: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       440: goto          533
+       443: astore        5
+       445: aload         4
+       447: aload         5
+       449: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       452: goto          533
+       455: aload_3
+       456: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       459: goto          533
+       462: new           #80                 // class java/lang/IllegalStateException
+       465: dup
+       466: ldc           #105                // String %s[action=%s]
+       468: iconst_2
+       469: anewarray     #4                  // class java/lang/Object
+       472: dup
+       473: iconst_0
+       474: aload_0
+       475: aastore
+       476: dup
+       477: iconst_1
+       478: aload_2
+       479: aastore
+       480: invokestatic  #111                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       483: invokespecial #87                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       486: athrow
+       487: astore        5
+       489: aload         5
+       491: astore        4
+       493: aload         5
+       495: athrow
+       496: astore        6
+       498: aload_3
+       499: ifnull        530
+       502: aload         4
+       504: ifnull        526
+       507: aload_3
+       508: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       511: goto          530
+       514: astore        7
+       516: aload         4
+       518: aload         7
+       520: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       523: goto          530
+       526: aload_3
+       527: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       530: aload         6
+       532: athrow
+       533: iload_1
+       534: ifeq          541
+       537: aload_0
+       538: invokevirtual #113                // Method onCompleteSuccess:()V
+       541: return
+      Exception table:
+         from    to  target type
+             2     7    10   Class java/lang/Throwable
+           148   152   155   Class java/lang/Throwable
+           190   194   197   Class java/lang/Throwable
+           232   236   239   Class java/lang/Throwable
+           281   285   288   Class java/lang/Throwable
+           376   380   383   Class java/lang/Throwable
+           436   440   443   Class java/lang/Throwable
+            30   139   487   Class java/lang/Throwable
+           174   181   487   Class java/lang/Throwable
+           216   223   487   Class java/lang/Throwable
+           258   272   487   Class java/lang/Throwable
+           307   367   487   Class java/lang/Throwable
+           402   427   487   Class java/lang/Throwable
+           462   487   487   Class java/lang/Throwable
+            30   139   496   any
+           174   181   496   any
+           216   223   496   any
+           258   272   496   any
+           307   367   496   any
+           402   427   496   any
+           507   511   514   Class java/lang/Throwable
+           462   498   496   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            7       3     2 action   Lorg/eclipse/jetty/util/IteratingCallback$Action;
+           11       8     3     x   Ljava/lang/Throwable;
+           27     506     3  lock   Lorg/eclipse/jetty/util/thread/Locker$Lock;
+           19     514     2 action   Lorg/eclipse/jetty/util/IteratingCallback$Action;
+            0     542     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+            2     540     1 on_complete_success   Z
+      LineNumberTable:
+        line 232: 0
+        line 241: 2
+        line 247: 7
+        line 243: 10
+        line 245: 11
+        line 246: 16
+        line 250: 19
+        line 252: 30
+        line 256: 84
+        line 261: 120
+        line 264: 127
+        line 265: 132
+        line 321: 139
+        line 270: 174
+        line 321: 181
+        line 277: 216
+        line 321: 223
+        line 284: 258
+        line 285: 263
+        line 286: 270
+        line 321: 272
+        line 291: 307
+        line 297: 332
+        line 302: 360
+        line 321: 367
+        line 307: 402
+        line 321: 427
+        line 319: 462
+        line 250: 487
+        line 321: 496
+        line 324: 533
+        line 325: 537
+        line 326: 541
+      StackMapTable: number_of_entries = 33
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ int ]
+        frame_type = 71 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 252 /* append */
+          offset_delta = 8
+          locals = [ class org/eclipse/jetty/util/IteratingCallback$Action ]
+        frame_type = 253 /* append */
+          offset_delta = 64
+          locals = [ class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+        frame_type = 35 /* same */
+        frame_type = 98 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 6 /* same */
+        frame_type = 86 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 6 /* same */
+        frame_type = 86 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 6 /* same */
+        frame_type = 93 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 6 /* same */
+        frame_type = 24 /* same */
+        frame_type = 27 /* same */
+        frame_type = 86 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 6 /* same */
+        frame_type = 24 /* same */
+        frame_type = 79 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 6 /* same */
+        frame_type = 88 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 72 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 17
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, int, class org/eclipse/jetty/util/IteratingCallback$Action, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, int ]
+          stack = []
+        frame_type = 7 /* same */
+
+  public void succeeded();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=7, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: aload_0
+         3: getfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+         6: invokevirtual #59                 // Method org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+         9: astore_2
+        10: aconst_null
+        11: astore_3
+        12: getstatic     #63                 // Field org/eclipse/jetty/util/IteratingCallback$1.$SwitchMap$org$eclipse$jetty$util$IteratingCallback$State:[I
+        15: aload_0
+        16: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        19: invokevirtual #67                 // Method org/eclipse/jetty/util/IteratingCallback$State.ordinal:()I
+        22: iaload
+        23: tableswitch   { // 1 to 7
+
+                       1: 74
+
+                       2: 89
+
+                       3: 89
+
+                       4: 64
+
+                       5: 86
+
+                       6: 89
+
+                       7: 86
+                 default: 89
+            }
+        64: aload_0
+        65: getstatic     #121                // Field org/eclipse/jetty/util/IteratingCallback$State.CALLED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        68: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        71: goto          101
+        74: aload_0
+        75: getstatic     #76                 // Field org/eclipse/jetty/util/IteratingCallback$State.PROCESSING:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        78: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        81: iconst_1
+        82: istore_1
+        83: goto          101
+        86: goto          101
+        89: new           #80                 // class java/lang/IllegalStateException
+        92: dup
+        93: aload_0
+        94: invokevirtual #84                 // Method toString:()Ljava/lang/String;
+        97: invokespecial #87                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       100: athrow
+       101: aload_2
+       102: ifnull        177
+       105: aload_3
+       106: ifnull        127
+       109: aload_2
+       110: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       113: goto          177
+       116: astore        4
+       118: aload_3
+       119: aload         4
+       121: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       124: goto          177
+       127: aload_2
+       128: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       131: goto          177
+       134: astore        4
+       136: aload         4
+       138: astore_3
+       139: aload         4
+       141: athrow
+       142: astore        5
+       144: aload_2
+       145: ifnull        174
+       148: aload_3
+       149: ifnull        170
+       152: aload_2
+       153: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       156: goto          174
+       159: astore        6
+       161: aload_3
+       162: aload         6
+       164: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       167: goto          174
+       170: aload_2
+       171: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       174: aload         5
+       176: athrow
+       177: iload_1
+       178: ifeq          185
+       181: aload_0
+       182: invokespecial #90                 // Method processing:()V
+       185: return
+      Exception table:
+         from    to  target type
+           109   113   116   Class java/lang/Throwable
+            12   101   134   Class java/lang/Throwable
+            12   101   142   any
+           152   156   159   Class java/lang/Throwable
+           134   144   142   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           10     167     2  lock   Lorg/eclipse/jetty/util/thread/Locker$Lock;
+            0     186     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+            2     184     1 process   Z
+      LineNumberTable:
+        line 336: 0
+        line 337: 2
+        line 339: 12
+        line 343: 64
+        line 344: 71
+        line 348: 74
+        line 349: 81
+        line 350: 83
+        line 356: 86
+        line 360: 89
+        line 363: 101
+        line 337: 134
+        line 363: 142
+        line 364: 177
+        line 365: 181
+        line 366: 185
+      StackMapTable: number_of_entries = 14
+        frame_type = 254 /* append */
+          offset_delta = 64
+          locals = [ int, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+        frame_type = 9 /* same */
+        frame_type = 11 /* same */
+        frame_type = 2 /* same */
+        frame_type = 11 /* same */
+        frame_type = 78 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 71 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, int, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, int ]
+          stack = []
+        frame_type = 7 /* same */
+
+  public void failed(java.lang.Throwable);
+    descriptor: (Ljava/lang/Throwable;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=8, args_size=2
+         0: iconst_0
+         1: istore_2
+         2: aload_0
+         3: getfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+         6: invokevirtual #59                 // Method org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+         9: astore_3
+        10: aconst_null
+        11: astore        4
+        13: getstatic     #63                 // Field org/eclipse/jetty/util/IteratingCallback$1.$SwitchMap$org$eclipse$jetty$util$IteratingCallback$State:[I
+        16: aload_0
+        17: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        20: invokevirtual #67                 // Method org/eclipse/jetty/util/IteratingCallback$State.ordinal:()I
+        23: iaload
+        24: tableswitch   { // 1 to 7
+
+                       1: 71
+
+                       2: 68
+
+                       3: 68
+
+                       4: 71
+
+                       5: 68
+
+                       6: 68
+
+                       7: 68
+                 default: 83
+            }
+        68: goto          95
+        71: aload_0
+        72: getstatic     #124                // Field org/eclipse/jetty/util/IteratingCallback$State.FAILED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        75: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        78: iconst_1
+        79: istore_2
+        80: goto          95
+        83: new           #80                 // class java/lang/IllegalStateException
+        86: dup
+        87: aload_0
+        88: invokevirtual #84                 // Method toString:()Ljava/lang/String;
+        91: invokespecial #87                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        94: athrow
+        95: aload_3
+        96: ifnull        176
+        99: aload         4
+       101: ifnull        123
+       104: aload_3
+       105: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       108: goto          176
+       111: astore        5
+       113: aload         4
+       115: aload         5
+       117: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       120: goto          176
+       123: aload_3
+       124: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       127: goto          176
+       130: astore        5
+       132: aload         5
+       134: astore        4
+       136: aload         5
+       138: athrow
+       139: astore        6
+       141: aload_3
+       142: ifnull        173
+       145: aload         4
+       147: ifnull        169
+       150: aload_3
+       151: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       154: goto          173
+       157: astore        7
+       159: aload         4
+       161: aload         7
+       163: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       166: goto          173
+       169: aload_3
+       170: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       173: aload         6
+       175: athrow
+       176: iload_2
+       177: ifeq          185
+       180: aload_0
+       181: aload_1
+       182: invokevirtual #126                // Method onCompleteFailure:(Ljava/lang/Throwable;)V
+       185: return
+      Exception table:
+         from    to  target type
+           104   108   111   Class java/lang/Throwable
+            13    95   130   Class java/lang/Throwable
+            13    95   139   any
+           150   154   157   Class java/lang/Throwable
+           130   141   139   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           10     166     3  lock   Lorg/eclipse/jetty/util/thread/Locker$Lock;
+            0     186     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+            0     186     1     x   Ljava/lang/Throwable;
+            2     184     2 failure   Z
+      LineNumberTable:
+        line 376: 0
+        line 377: 2
+        line 379: 13
+        line 387: 68
+        line 392: 71
+        line 393: 78
+        line 394: 80
+        line 397: 83
+        line 399: 95
+        line 377: 130
+        line 399: 139
+        line 400: 176
+        line 401: 180
+        line 402: 185
+      StackMapTable: number_of_entries = 13
+        frame_type = 254 /* append */
+          offset_delta = 68
+          locals = [ int, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+        frame_type = 2 /* same */
+        frame_type = 11 /* same */
+        frame_type = 11 /* same */
+        frame_type = 79 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 72 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 17
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class java/lang/Throwable, int, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class java/lang/Throwable, int ]
+          stack = []
+        frame_type = 8 /* same */
+
+  public void close();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=7, args_size=1
+         0: iconst_0
+         1: istore_1
+         2: aload_0
+         3: getfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+         6: invokevirtual #59                 // Method org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+         9: astore_2
+        10: aconst_null
+        11: astore_3
+        12: getstatic     #63                 // Field org/eclipse/jetty/util/IteratingCallback$1.$SwitchMap$org$eclipse$jetty$util$IteratingCallback$State:[I
+        15: aload_0
+        16: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        19: invokevirtual #67                 // Method org/eclipse/jetty/util/IteratingCallback$State.ordinal:()I
+        22: iaload
+        23: tableswitch   { // 3 to 7
+
+                       3: 56
+
+                       4: 69
+
+                       5: 56
+
+                       6: 56
+
+                       7: 66
+                 default: 69
+            }
+        56: aload_0
+        57: getstatic     #130                // Field org/eclipse/jetty/util/IteratingCallback$State.CLOSED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        60: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        63: goto          78
+        66: goto          78
+        69: aload_0
+        70: getstatic     #130                // Field org/eclipse/jetty/util/IteratingCallback$State.CLOSED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        73: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        76: iconst_1
+        77: istore_1
+        78: aload_2
+        79: ifnull        154
+        82: aload_3
+        83: ifnull        104
+        86: aload_2
+        87: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        90: goto          154
+        93: astore        4
+        95: aload_3
+        96: aload         4
+        98: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       101: goto          154
+       104: aload_2
+       105: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       108: goto          154
+       111: astore        4
+       113: aload         4
+       115: astore_3
+       116: aload         4
+       118: athrow
+       119: astore        5
+       121: aload_2
+       122: ifnull        151
+       125: aload_3
+       126: ifnull        147
+       129: aload_2
+       130: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       133: goto          151
+       136: astore        6
+       138: aload_3
+       139: aload         6
+       141: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       144: goto          151
+       147: aload_2
+       148: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       151: aload         5
+       153: athrow
+       154: iload_1
+       155: ifeq          169
+       158: aload_0
+       159: new           #132                // class java/nio/channels/ClosedChannelException
+       162: dup
+       163: invokespecial #133                // Method java/nio/channels/ClosedChannelException."<init>":()V
+       166: invokevirtual #126                // Method onCompleteFailure:(Ljava/lang/Throwable;)V
+       169: return
+      Exception table:
+         from    to  target type
+            86    90    93   Class java/lang/Throwable
+            12    78   111   Class java/lang/Throwable
+            12    78   119   any
+           129   133   136   Class java/lang/Throwable
+           111   121   119   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           10     144     2  lock   Lorg/eclipse/jetty/util/thread/Locker$Lock;
+            0     170     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+            2     168     1 failure   Z
+      LineNumberTable:
+        line 406: 0
+        line 407: 2
+        line 409: 12
+        line 414: 56
+        line 415: 63
+        line 418: 66
+        line 421: 69
+        line 422: 76
+        line 424: 78
+        line 407: 111
+        line 424: 119
+        line 426: 154
+        line 427: 158
+        line 428: 169
+      StackMapTable: number_of_entries = 13
+        frame_type = 254 /* append */
+          offset_delta = 56
+          locals = [ int, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+        frame_type = 9 /* same */
+        frame_type = 2 /* same */
+        frame_type = 8 /* same */
+        frame_type = 78 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 70 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 71 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, int, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, int ]
+          stack = []
+        frame_type = 14 /* same */
+
+  boolean isIdle();
+    descriptor: ()Z
+    flags: (0x0000)
+    Code:
+      stack=2, locals=7, args_size=1
+         0: aload_0
+         1: getfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+         4: invokevirtual #59                 // Method org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+         7: astore_1
+         8: aconst_null
+         9: astore_2
+        10: aload_0
+        11: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        14: getstatic     #36                 // Field org/eclipse/jetty/util/IteratingCallback$State.IDLE:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        17: if_acmpne     24
+        20: iconst_1
+        21: goto          25
+        24: iconst_0
+        25: istore_3
+        26: aload_1
+        27: ifnull        56
+        30: aload_2
+        31: ifnull        52
+        34: aload_1
+        35: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        38: goto          56
+        41: astore        4
+        43: aload_2
+        44: aload         4
+        46: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        49: goto          56
+        52: aload_1
+        53: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        56: iload_3
+        57: ireturn
+        58: astore_3
+        59: aload_3
+        60: astore_2
+        61: aload_3
+        62: athrow
+        63: astore        5
+        65: aload_1
+        66: ifnull        95
+        69: aload_2
+        70: ifnull        91
+        73: aload_1
+        74: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        77: goto          95
+        80: astore        6
+        82: aload_2
+        83: aload         6
+        85: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        88: goto          95
+        91: aload_1
+        92: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        95: aload         5
+        97: athrow
+      Exception table:
+         from    to  target type
+            34    38    41   Class java/lang/Throwable
+            10    26    58   Class java/lang/Throwable
+            10    26    63   any
+            73    77    80   Class java/lang/Throwable
+            58    65    63   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            8      90     1  lock   Lorg/eclipse/jetty/util/thread/Locker$Lock;
+            0      98     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+      LineNumberTable:
+        line 436: 0
+        line 438: 10
+        line 439: 26
+        line 438: 56
+        line 436: 58
+        line 439: 63
+      StackMapTable: number_of_entries = 10
+        frame_type = 253 /* append */
+          offset_delta = 24
+          locals = [ class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 15
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+
+  public boolean isClosed();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=7, args_size=1
+         0: aload_0
+         1: getfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+         4: invokevirtual #59                 // Method org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+         7: astore_1
+         8: aconst_null
+         9: astore_2
+        10: aload_0
+        11: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        14: getstatic     #130                // Field org/eclipse/jetty/util/IteratingCallback$State.CLOSED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        17: if_acmpne     24
+        20: iconst_1
+        21: goto          25
+        24: iconst_0
+        25: istore_3
+        26: aload_1
+        27: ifnull        56
+        30: aload_2
+        31: ifnull        52
+        34: aload_1
+        35: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        38: goto          56
+        41: astore        4
+        43: aload_2
+        44: aload         4
+        46: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        49: goto          56
+        52: aload_1
+        53: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        56: iload_3
+        57: ireturn
+        58: astore_3
+        59: aload_3
+        60: astore_2
+        61: aload_3
+        62: athrow
+        63: astore        5
+        65: aload_1
+        66: ifnull        95
+        69: aload_2
+        70: ifnull        91
+        73: aload_1
+        74: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        77: goto          95
+        80: astore        6
+        82: aload_2
+        83: aload         6
+        85: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        88: goto          95
+        91: aload_1
+        92: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        95: aload         5
+        97: athrow
+      Exception table:
+         from    to  target type
+            34    38    41   Class java/lang/Throwable
+            10    26    58   Class java/lang/Throwable
+            10    26    63   any
+            73    77    80   Class java/lang/Throwable
+            58    65    63   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            8      90     1  lock   Lorg/eclipse/jetty/util/thread/Locker$Lock;
+            0      98     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+      LineNumberTable:
+        line 444: 0
+        line 446: 10
+        line 447: 26
+        line 446: 56
+        line 444: 58
+        line 447: 63
+      StackMapTable: number_of_entries = 10
+        frame_type = 253 /* append */
+          offset_delta = 24
+          locals = [ class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 15
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+
+  public boolean isFailed();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=7, args_size=1
+         0: aload_0
+         1: getfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+         4: invokevirtual #59                 // Method org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+         7: astore_1
+         8: aconst_null
+         9: astore_2
+        10: aload_0
+        11: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        14: getstatic     #124                // Field org/eclipse/jetty/util/IteratingCallback$State.FAILED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        17: if_acmpne     24
+        20: iconst_1
+        21: goto          25
+        24: iconst_0
+        25: istore_3
+        26: aload_1
+        27: ifnull        56
+        30: aload_2
+        31: ifnull        52
+        34: aload_1
+        35: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        38: goto          56
+        41: astore        4
+        43: aload_2
+        44: aload         4
+        46: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        49: goto          56
+        52: aload_1
+        53: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        56: iload_3
+        57: ireturn
+        58: astore_3
+        59: aload_3
+        60: astore_2
+        61: aload_3
+        62: athrow
+        63: astore        5
+        65: aload_1
+        66: ifnull        95
+        69: aload_2
+        70: ifnull        91
+        73: aload_1
+        74: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        77: goto          95
+        80: astore        6
+        82: aload_2
+        83: aload         6
+        85: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        88: goto          95
+        91: aload_1
+        92: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        95: aload         5
+        97: athrow
+      Exception table:
+         from    to  target type
+            34    38    41   Class java/lang/Throwable
+            10    26    58   Class java/lang/Throwable
+            10    26    63   any
+            73    77    80   Class java/lang/Throwable
+            58    65    63   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            8      90     1  lock   Lorg/eclipse/jetty/util/thread/Locker$Lock;
+            0      98     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+      LineNumberTable:
+        line 455: 0
+        line 457: 10
+        line 458: 26
+        line 457: 56
+        line 455: 58
+        line 458: 63
+      StackMapTable: number_of_entries = 10
+        frame_type = 253 /* append */
+          offset_delta = 24
+          locals = [ class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 15
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+
+  public boolean isSucceeded();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=7, args_size=1
+         0: aload_0
+         1: getfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+         4: invokevirtual #59                 // Method org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+         7: astore_1
+         8: aconst_null
+         9: astore_2
+        10: aload_0
+        11: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        14: getstatic     #44                 // Field org/eclipse/jetty/util/IteratingCallback$State.SUCCEEDED:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        17: if_acmpne     24
+        20: iconst_1
+        21: goto          25
+        24: iconst_0
+        25: istore_3
+        26: aload_1
+        27: ifnull        56
+        30: aload_2
+        31: ifnull        52
+        34: aload_1
+        35: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        38: goto          56
+        41: astore        4
+        43: aload_2
+        44: aload         4
+        46: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        49: goto          56
+        52: aload_1
+        53: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        56: iload_3
+        57: ireturn
+        58: astore_3
+        59: aload_3
+        60: astore_2
+        61: aload_3
+        62: athrow
+        63: astore        5
+        65: aload_1
+        66: ifnull        95
+        69: aload_2
+        70: ifnull        91
+        73: aload_1
+        74: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        77: goto          95
+        80: astore        6
+        82: aload_2
+        83: aload         6
+        85: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        88: goto          95
+        91: aload_1
+        92: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        95: aload         5
+        97: athrow
+      Exception table:
+         from    to  target type
+            34    38    41   Class java/lang/Throwable
+            10    26    58   Class java/lang/Throwable
+            10    26    63   any
+            73    77    80   Class java/lang/Throwable
+            58    65    63   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            8      90     1  lock   Lorg/eclipse/jetty/util/thread/Locker$Lock;
+            0      98     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+      LineNumberTable:
+        line 466: 0
+        line 468: 10
+        line 469: 26
+        line 468: 56
+        line 466: 58
+        line 469: 63
+      StackMapTable: number_of_entries = 10
+        frame_type = 253 /* append */
+          offset_delta = 24
+          locals = [ class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 15
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+
+  public boolean reset();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=7, args_size=1
+         0: aload_0
+         1: getfield      #33                 // Field _locker:Lorg/eclipse/jetty/util/thread/Locker;
+         4: invokevirtual #59                 // Method org/eclipse/jetty/util/thread/Locker.lock:()Lorg/eclipse/jetty/util/thread/Locker$Lock;
+         7: astore_1
+         8: aconst_null
+         9: astore_2
+        10: getstatic     #63                 // Field org/eclipse/jetty/util/IteratingCallback$1.$SwitchMap$org$eclipse$jetty$util$IteratingCallback$State:[I
+        13: aload_0
+        14: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        17: invokevirtual #67                 // Method org/eclipse/jetty/util/IteratingCallback$State.ordinal:()I
+        20: iaload
+        21: tableswitch   { // 3 to 6
+
+                       3: 52
+
+                       4: 132
+
+                       5: 86
+
+                       6: 86
+                 default: 132
+            }
+        52: iconst_1
+        53: istore_3
+        54: aload_1
+        55: ifnull        84
+        58: aload_2
+        59: ifnull        80
+        62: aload_1
+        63: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        66: goto          84
+        69: astore        4
+        71: aload_2
+        72: aload         4
+        74: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        77: goto          84
+        80: aload_1
+        81: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+        84: iload_3
+        85: ireturn
+        86: aload_0
+        87: iconst_0
+        88: putfield      #78                 // Field _iterate:Z
+        91: aload_0
+        92: getstatic     #36                 // Field org/eclipse/jetty/util/IteratingCallback$State.IDLE:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        95: putfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        98: iconst_1
+        99: istore_3
+       100: aload_1
+       101: ifnull        130
+       104: aload_2
+       105: ifnull        126
+       108: aload_1
+       109: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       112: goto          130
+       115: astore        4
+       117: aload_2
+       118: aload         4
+       120: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       123: goto          130
+       126: aload_1
+       127: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       130: iload_3
+       131: ireturn
+       132: iconst_0
+       133: istore_3
+       134: aload_1
+       135: ifnull        164
+       138: aload_2
+       139: ifnull        160
+       142: aload_1
+       143: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       146: goto          164
+       149: astore        4
+       151: aload_2
+       152: aload         4
+       154: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       157: goto          164
+       160: aload_1
+       161: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       164: iload_3
+       165: ireturn
+       166: astore_3
+       167: aload_3
+       168: astore_2
+       169: aload_3
+       170: athrow
+       171: astore        5
+       173: aload_1
+       174: ifnull        203
+       177: aload_2
+       178: ifnull        199
+       181: aload_1
+       182: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       185: goto          203
+       188: astore        6
+       190: aload_2
+       191: aload         6
+       193: invokevirtual #73                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       196: goto          203
+       199: aload_1
+       200: invokevirtual #70                 // Method org/eclipse/jetty/util/thread/Locker$Lock.close:()V
+       203: aload         5
+       205: athrow
+      Exception table:
+         from    to  target type
+            62    66    69   Class java/lang/Throwable
+           108   112   115   Class java/lang/Throwable
+           142   146   149   Class java/lang/Throwable
+            10    54   166   Class java/lang/Throwable
+            86   100   166   Class java/lang/Throwable
+           132   134   166   Class java/lang/Throwable
+            10    54   171   any
+            86   100   171   any
+           132   134   171   any
+           181   185   188   Class java/lang/Throwable
+           166   173   171   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            8     198     1  lock   Lorg/eclipse/jetty/util/thread/Locker$Lock;
+            0     206     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+      LineNumberTable:
+        line 483: 0
+        line 485: 10
+        line 488: 52
+        line 499: 54
+        line 488: 84
+        line 492: 86
+        line 493: 91
+        line 494: 98
+        line 499: 100
+        line 494: 130
+        line 497: 132
+        line 499: 134
+        line 497: 164
+        line 483: 166
+        line 499: 171
+      StackMapTable: number_of_entries = 17
+        frame_type = 253 /* append */
+          offset_delta = 52
+          locals = [ class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 28
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = [ class org/eclipse/jetty/util/IteratingCallback, class org/eclipse/jetty/util/thread/Locker$Lock, class java/lang/Throwable, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 10 /* same */
+        frame_type = 3 /* same */
+
+  public java.lang.String toString();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=1, args_size=1
+         0: ldc           #141                // String %s[%s]
+         2: iconst_2
+         3: anewarray     #4                  // class java/lang/Object
+         6: dup
+         7: iconst_0
+         8: aload_0
+         9: invokespecial #142                // Method java/lang/Object.toString:()Ljava/lang/String;
+        12: aastore
+        13: dup
+        14: iconst_1
+        15: aload_0
+        16: getfield      #38                 // Field _state:Lorg/eclipse/jetty/util/IteratingCallback$State;
+        19: aastore
+        20: invokestatic  #111                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        23: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/eclipse/jetty/util/IteratingCallback;
+      LineNumberTable:
+        line 505: 0
+}
+SourceFile: "IteratingCallback.java"
+InnerClasses:
+  static #9;                              // class org/eclipse/jetty/util/IteratingCallback$1
+  protected static final #12= #11 of #2;  // Action=class org/eclipse/jetty/util/IteratingCallback$Action of class org/eclipse/jetty/util/IteratingCallback
+  private static final #15= #14 of #2;    // State=class org/eclipse/jetty/util/IteratingCallback$State of class org/eclipse/jetty/util/IteratingCallback
+  public static #20= #17 of #19;          // Lock=class org/eclipse/jetty/util/thread/Locker$Lock of class org/eclipse/jetty/util/thread/Locker

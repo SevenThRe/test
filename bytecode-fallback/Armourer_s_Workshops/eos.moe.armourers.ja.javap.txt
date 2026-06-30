@@ -1,0 +1,1275 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/Mod-DragonArmourers(4).jar!/eos/moe/armourers/ja.class
+  Last modified 09-����-24; size 7069 bytes
+  SHA-256 checksum 0c0282f9e565b6d652bf0ff4825d5c30a25d3b7d2dfdd42c0e3a64a73236b8d5
+  Compiled from "wa"
+public class eos.moe.armourers.ja extends eos.moe.armourers.oa<eos.moe.armourers.ka>
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // eos/moe/armourers/ja
+  super_class: #5                         // eos/moe/armourers/oa
+  interfaces: 0, fields: 2, methods: 14, attributes: 3
+Constant pool:
+    #1 = Utf8               eos/moe/armourers/ja
+    #2 = Class              #1            // eos/moe/armourers/ja
+    #3 = Utf8               Leos/moe/armourers/oa<Leos/moe/armourers/ka;>;
+    #4 = Utf8               eos/moe/armourers/oa
+    #5 = Class              #4            // eos/moe/armourers/oa
+    #6 = Utf8               wa
+    #7 = Utf8               eos/moe/armourers/ka
+    #8 = Class              #7            // eos/moe/armourers/ka
+    #9 = Utf8               eos/moe/armourers/ca
+   #10 = Class              #9            // eos/moe/armourers/ca
+   #11 = Utf8               eos/moe/armourers/ob
+   #12 = Class              #11           // eos/moe/armourers/ob
+   #13 = Utf8               eos/moe/armourers/rb
+   #14 = Class              #13           // eos/moe/armourers/rb
+   #15 = Utf8               m
+   #16 = Utf8               Leos/moe/armourers/kb;
+   #17 = Utf8               j
+   #18 = Utf8               Leos/moe/armourers/ra;
+   #19 = Utf8               <init>
+   #20 = Utf8               (Leos/moe/armourers/kb;Leos/moe/armourers/ca;)V
+   #21 = Utf8               (Leos/moe/armourers/ca;)V
+   #22 = NameAndType        #19:#21       // "<init>":(Leos/moe/armourers/ca;)V
+   #23 = Methodref          #5.#22        // eos/moe/armourers/oa."<init>":(Leos/moe/armourers/ca;)V
+   #24 = Utf8               eos/moe/armourers/ra
+   #25 = Class              #24           // eos/moe/armourers/ra
+   #26 = Utf8               ()V
+   #27 = NameAndType        #19:#26       // "<init>":()V
+   #28 = Methodref          #25.#27       // eos/moe/armourers/ra."<init>":()V
+   #29 = NameAndType        #17:#18       // j:Leos/moe/armourers/ra;
+   #30 = Fieldref           #2.#29        // eos/moe/armourers/ja.j:Leos/moe/armourers/ra;
+   #31 = NameAndType        #15:#16       // m:Leos/moe/armourers/kb;
+   #32 = Fieldref           #2.#31        // eos/moe/armourers/ja.m:Leos/moe/armourers/kb;
+   #33 = Utf8               a
+   #34 = Utf8               Leos/moe/armourers/ja;
+   #35 = Utf8               Leos/moe/armourers/ca;
+   #36 = Utf8               r
+   #37 = Utf8               (Leos/moe/armourers/kb;)V
+   #38 = Utf8               eos/moe/armourers/kb
+   #39 = Class              #38           // eos/moe/armourers/kb
+   #40 = Utf8               ()Leos/moe/armourers/yc;
+   #41 = NameAndType        #36:#40       // r:()Leos/moe/armourers/yc;
+   #42 = Methodref          #39.#41       // eos/moe/armourers/kb.r:()Leos/moe/armourers/yc;
+   #43 = Utf8               eos/moe/armourers/yc
+   #44 = Class              #43           // eos/moe/armourers/yc
+   #45 = Utf8               ()Ljava/util/List;
+   #46 = NameAndType        #36:#45       // r:()Ljava/util/List;
+   #47 = Methodref          #44.#46       // eos/moe/armourers/yc.r:()Ljava/util/List;
+   #48 = Utf8               java/util/List
+   #49 = Class              #48           // java/util/List
+   #50 = Utf8               size
+   #51 = Utf8               ()I
+   #52 = NameAndType        #50:#51       // size:()I
+   #53 = InterfaceMethodref #49.#52       // java/util/List.size:()I
+   #54 = Utf8               ()Leos/moe/armourers/gb;
+   #55 = NameAndType        #36:#54       // r:()Leos/moe/armourers/gb;
+   #56 = Methodref          #39.#55       // eos/moe/armourers/kb.r:()Leos/moe/armourers/gb;
+   #57 = Utf8               eos/moe/armourers/gb
+   #58 = Class              #57           // eos/moe/armourers/gb
+   #59 = Utf8               z
+   #60 = Utf8               (I)V
+   #61 = NameAndType        #59:#60       // z:(I)V
+   #62 = Methodref          #58.#61       // eos/moe/armourers/gb.z:(I)V
+   #63 = Utf8               y
+   #64 = NameAndType        #63:#60       // y:(I)V
+   #65 = Methodref          #58.#64       // eos/moe/armourers/gb.y:(I)V
+   #66 = Utf8               x
+   #67 = NameAndType        #66:#60       // x:(I)V
+   #68 = Methodref          #58.#67       // eos/moe/armourers/gb.x:(I)V
+   #69 = NameAndType        #36:#60       // r:(I)V
+   #70 = Methodref          #58.#69       // eos/moe/armourers/gb.r:(I)V
+   #71 = Utf8               (Ljava/util/List;JII)V
+   #72 = Utf8               iterator
+   #73 = Utf8               ()Ljava/util/Iterator;
+   #74 = NameAndType        #72:#73       // iterator:()Ljava/util/Iterator;
+   #75 = InterfaceMethodref #49.#74       // java/util/List.iterator:()Ljava/util/Iterator;
+   #76 = Utf8               java/util/Iterator
+   #77 = Class              #76           // java/util/Iterator
+   #78 = Utf8               hasNext
+   #79 = Utf8               ()Z
+   #80 = NameAndType        #78:#79       // hasNext:()Z
+   #81 = InterfaceMethodref #77.#80       // java/util/Iterator.hasNext:()Z
+   #82 = Utf8               next
+   #83 = Utf8               ()Ljava/lang/Object;
+   #84 = NameAndType        #82:#83       // next:()Ljava/lang/Object;
+   #85 = InterfaceMethodref #77.#84       // java/util/Iterator.next:()Ljava/lang/Object;
+   #86 = Utf8               eos/moe/armourers/pb
+   #87 = Class              #86           // eos/moe/armourers/pb
+   #88 = Utf8               s
+   #89 = NameAndType        #88:#51       // s:()I
+   #90 = Methodref          #87.#89       // eos/moe/armourers/pb.s:()I
+   #91 = Utf8               ()J
+   #92 = NameAndType        #88:#91       // s:()J
+   #93 = Methodref          #87.#92       // eos/moe/armourers/pb.s:()J
+   #94 = Utf8               (J)V
+   #95 = NameAndType        #66:#94       // x:(J)V
+   #96 = Methodref          #87.#95       // eos/moe/armourers/pb.x:(J)V
+   #97 = NameAndType        #88:#60       // s:(I)V
+   #98 = Methodref          #87.#97       // eos/moe/armourers/pb.s:(I)V
+   #99 = Utf8               Ljava/util/List;
+  #100 = Utf8               J
+  #101 = Utf8               I
+  #102 = Utf8               java/lang/Throwable
+  #103 = Class              #102          // java/lang/Throwable
+  #104 = Utf8               (Leos/moe/armourers/kb;J)V
+  #105 = Utf8               (Z)V
+  #106 = NameAndType        #63:#105      // y:(Z)V
+  #107 = Methodref          #39.#106      // eos/moe/armourers/kb.y:(Z)V
+  #108 = NameAndType        #36:#37       // r:(Leos/moe/armourers/kb;)V
+  #109 = Methodref          #2.#108       // eos/moe/armourers/ja.r:(Leos/moe/armourers/kb;)V
+  #110 = NameAndType        #36:#79       // r:()Z
+  #111 = Methodref          #39.#110      // eos/moe/armourers/kb.r:()Z
+  #112 = NameAndType        #36:#104      // r:(Leos/moe/armourers/kb;J)V
+  #113 = Methodref          #2.#112       // eos/moe/armourers/ja.r:(Leos/moe/armourers/kb;J)V
+  #114 = NameAndType        #63:#104      // y:(Leos/moe/armourers/kb;J)V
+  #115 = Methodref          #2.#114       // eos/moe/armourers/ja.y:(Leos/moe/armourers/kb;J)V
+  #116 = Utf8               ()Leos/moe/armourers/db;
+  #117 = NameAndType        #36:#116      // r:()Leos/moe/armourers/db;
+  #118 = Methodref          #39.#117      // eos/moe/armourers/kb.r:()Leos/moe/armourers/db;
+  #119 = Utf8               eos/moe/armourers/db
+  #120 = Class              #119          // eos/moe/armourers/db
+  #121 = Utf8               h
+  #122 = NameAndType        #121:#60      // h:(I)V
+  #123 = Methodref          #120.#122     // eos/moe/armourers/db.h:(I)V
+  #124 = Methodref          #120.#69      // eos/moe/armourers/db.r:(I)V
+  #125 = NameAndType        #36:#51       // r:()I
+  #126 = Methodref          #58.#125      // eos/moe/armourers/gb.r:()I
+  #127 = Methodref          #120.#95      // eos/moe/armourers/db.x:(J)V
+  #128 = NameAndType        #66:#91       // x:()J
+  #129 = Methodref          #120.#128     // eos/moe/armourers/db.x:()J
+  #130 = NameAndType        #121:#94      // h:(J)V
+  #131 = Methodref          #120.#130     // eos/moe/armourers/db.h:(J)V
+  #132 = Utf8               ()Leos/moe/armourers/fb;
+  #133 = NameAndType        #36:#132      // r:()Leos/moe/armourers/fb;
+  #134 = Methodref          #39.#133      // eos/moe/armourers/kb.r:()Leos/moe/armourers/fb;
+  #135 = Utf8               eos/moe/armourers/fb
+  #136 = Class              #135          // eos/moe/armourers/fb
+  #137 = Methodref          #136.#69      // eos/moe/armourers/fb.r:(I)V
+  #138 = NameAndType        #36:#91       // r:()J
+  #139 = Methodref          #136.#138     // eos/moe/armourers/fb.r:()J
+  #140 = NameAndType        #36:#94       // r:(J)V
+  #141 = Methodref          #136.#140     // eos/moe/armourers/fb.r:(J)V
+  #142 = Methodref          #136.#64      // eos/moe/armourers/fb.y:(I)V
+  #143 = Utf8               (Ljava/lang/Object;)J
+  #144 = Utf8               eos/moe/armourers/ph
+  #145 = Class              #144          // eos/moe/armourers/ph
+  #146 = Utf8               (Leos/moe/armourers/ka;)J
+  #147 = NameAndType        #36:#146      // r:(Leos/moe/armourers/ka;)J
+  #148 = Methodref          #2.#147       // eos/moe/armourers/ja.r:(Leos/moe/armourers/ka;)J
+  #149 = Utf8               ()Leos/moe/armourers/ob;
+  #150 = Utf8               t
+  #151 = Utf8               Leos/moe/armourers/ob;
+  #152 = NameAndType        #150:#151     // t:Leos/moe/armourers/ob;
+  #153 = Fieldref           #12.#152      // eos/moe/armourers/ob.t:Leos/moe/armourers/ob;
+  #154 = Utf8               (Leos/moe/armourers/kb;JLjava/io/OutputStream;Ljava/nio/charset/Charset;)V
+  #155 = Utf8               java/io/IOException
+  #156 = Class              #155          // java/io/IOException
+  #157 = Utf8               java/lang/CloneNotSupportedException
+  #158 = Class              #157          // java/lang/CloneNotSupportedException
+  #159 = Utf8               clone
+  #160 = NameAndType        #159:#83      // clone:()Ljava/lang/Object;
+  #161 = Methodref          #39.#160      // eos/moe/armourers/kb.clone:()Ljava/lang/Object;
+  #162 = Methodref          #58.#140      // eos/moe/armourers/gb.r:(J)V
+  #163 = NameAndType        #59:#104      // z:(Leos/moe/armourers/kb;J)V
+  #164 = Methodref          #2.#163       // eos/moe/armourers/ja.z:(Leos/moe/armourers/kb;J)V
+  #165 = Utf8               eos/moe/armourers/vl
+  #166 = Class              #165          // eos/moe/armourers/vl
+  #167 = Methodref          #166.#27      // eos/moe/armourers/vl."<init>":()V
+  #168 = Utf8               (Leos/moe/armourers/kb;Ljava/io/OutputStream;Ljava/nio/charset/Charset;)V
+  #169 = NameAndType        #63:#168      // y:(Leos/moe/armourers/kb;Ljava/io/OutputStream;Ljava/nio/charset/Charset;)V
+  #170 = Methodref          #166.#169     // eos/moe/armourers/vl.y:(Leos/moe/armourers/kb;Ljava/io/OutputStream;Ljava/nio/charset/Charset;)V
+  #171 = Utf8               Ljava/io/OutputStream;
+  #172 = Utf8               Ljava/nio/charset/Charset;
+  #173 = Utf8               (Ljava/lang/Object;Leos/moe/armourers/rb;)V
+  #174 = Utf8               (Leos/moe/armourers/ka;Leos/moe/armourers/rb;)V
+  #175 = NameAndType        #36:#174      // r:(Leos/moe/armourers/ka;Leos/moe/armourers/rb;)V
+  #176 = Methodref          #2.#175       // eos/moe/armourers/ja.r:(Leos/moe/armourers/ka;Leos/moe/armourers/rb;)V
+  #177 = Utf8               (Leos/moe/armourers/kb;I)Ljava/io/File;
+  #178 = NameAndType        #59:#51       // z:()I
+  #179 = Methodref          #58.#178      // eos/moe/armourers/gb.z:()I
+  #180 = Utf8               ()Ljava/io/File;
+  #181 = NameAndType        #36:#180      // r:()Ljava/io/File;
+  #182 = Methodref          #39.#181      // eos/moe/armourers/kb.r:()Ljava/io/File;
+  #183 = Utf8               .z0
+  #184 = String             #183          // .z0
+  #185 = Utf8               .z
+  #186 = String             #185          // .z
+  #187 = Utf8               java/io/File
+  #188 = Class              #187          // java/io/File
+  #189 = Utf8               getPath
+  #190 = Utf8               ()Ljava/lang/String;
+  #191 = NameAndType        #189:#190     // getPath:()Ljava/lang/String;
+  #192 = Methodref          #188.#191     // java/io/File.getPath:()Ljava/lang/String;
+  #193 = Utf8               java/lang/StringBuilder
+  #194 = Class              #193          // java/lang/StringBuilder
+  #195 = Methodref          #194.#27      // java/lang/StringBuilder."<init>":()V
+  #196 = Utf8               .
+  #197 = String             #196          // .
+  #198 = Utf8               java/lang/String
+  #199 = Class              #198          // java/lang/String
+  #200 = Utf8               lastIndexOf
+  #201 = Utf8               (Ljava/lang/String;)I
+  #202 = NameAndType        #200:#201     // lastIndexOf:(Ljava/lang/String;)I
+  #203 = Methodref          #199.#202     // java/lang/String.lastIndexOf:(Ljava/lang/String;)I
+  #204 = Utf8               substring
+  #205 = Utf8               (II)Ljava/lang/String;
+  #206 = NameAndType        #204:#205     // substring:(II)Ljava/lang/String;
+  #207 = Methodref          #199.#206     // java/lang/String.substring:(II)Ljava/lang/String;
+  #208 = Utf8               insert
+  #209 = Utf8               (ILjava/lang/String;)Ljava/lang/StringBuilder;
+  #210 = NameAndType        #208:#209     // insert:(ILjava/lang/String;)Ljava/lang/StringBuilder;
+  #211 = Methodref          #194.#210     // java/lang/StringBuilder.insert:(ILjava/lang/String;)Ljava/lang/StringBuilder;
+  #212 = Utf8               append
+  #213 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #214 = NameAndType        #212:#213     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #215 = Methodref          #194.#214     // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #216 = Utf8               (I)Ljava/lang/StringBuilder;
+  #217 = NameAndType        #212:#216     // append:(I)Ljava/lang/StringBuilder;
+  #218 = Methodref          #194.#217     // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+  #219 = Utf8               toString
+  #220 = NameAndType        #219:#190     // toString:()Ljava/lang/String;
+  #221 = Methodref          #194.#220     // java/lang/StringBuilder.toString:()Ljava/lang/String;
+  #222 = Utf8               (Ljava/lang/String;)V
+  #223 = NameAndType        #19:#222      // "<init>":(Ljava/lang/String;)V
+  #224 = Methodref          #188.#223     // java/io/File."<init>":(Ljava/lang/String;)V
+  #225 = Utf8               (Leos/moe/armourers/kb;I)Ljava/io/RandomAccessFile;
+  #226 = Utf8               java/io/FileNotFoundException
+  #227 = Class              #226          // java/io/FileNotFoundException
+  #228 = NameAndType        #36:#177      // r:(Leos/moe/armourers/kb;I)Ljava/io/File;
+  #229 = Methodref          #2.#228       // eos/moe/armourers/ja.r:(Leos/moe/armourers/kb;I)Ljava/io/File;
+  #230 = Utf8               java/io/RandomAccessFile
+  #231 = Class              #230          // java/io/RandomAccessFile
+  #232 = Utf8               eos/moe/armourers/sb
+  #233 = Class              #232          // eos/moe/armourers/sb
+  #234 = Utf8               Leos/moe/armourers/sb;
+  #235 = NameAndType        #88:#234      // s:Leos/moe/armourers/sb;
+  #236 = Fieldref           #233.#235     // eos/moe/armourers/sb.s:Leos/moe/armourers/sb;
+  #237 = NameAndType        #36:#190      // r:()Ljava/lang/String;
+  #238 = Methodref          #233.#237     // eos/moe/armourers/sb.r:()Ljava/lang/String;
+  #239 = Utf8               (Ljava/io/File;Ljava/lang/String;)V
+  #240 = NameAndType        #19:#239      // "<init>":(Ljava/io/File;Ljava/lang/String;)V
+  #241 = Methodref          #231.#240     // java/io/RandomAccessFile."<init>":(Ljava/io/File;Ljava/lang/String;)V
+  #242 = NameAndType        #59:#79       // z:()Z
+  #243 = Methodref          #39.#242      // eos/moe/armourers/kb.z:()Z
+  #244 = Utf8               length
+  #245 = NameAndType        #244:#91      // length:()J
+  #246 = Methodref          #188.#245     // java/io/File.length:()J
+  #247 = Utf8               Leos/moe/armourers/ka;
+  #248 = Utf8               archive not a split zip file
+  #249 = String             #248          // archive not a split zip file
+  #250 = Methodref          #145.#223     // eos/moe/armourers/ph."<init>":(Ljava/lang/String;)V
+  #251 = Utf8               (Ljava/lang/Exception;)V
+  #252 = NameAndType        #63:#251      // y:(Ljava/lang/Exception;)V
+  #253 = Methodref          #14.#252      // eos/moe/armourers/rb.y:(Ljava/lang/Exception;)V
+  #254 = Utf8               java/io/FileOutputStream
+  #255 = Class              #254          // java/io/FileOutputStream
+  #256 = Utf8               (Leos/moe/armourers/ka;)Ljava/io/File;
+  #257 = NameAndType        #36:#256      // r:(Leos/moe/armourers/ka;)Ljava/io/File;
+  #258 = Methodref          #8.#257       // eos/moe/armourers/ka.r:(Leos/moe/armourers/ka;)Ljava/io/File;
+  #259 = Utf8               (Ljava/io/File;)V
+  #260 = NameAndType        #19:#259      // "<init>":(Ljava/io/File;)V
+  #261 = Methodref          #255.#260     // java/io/FileOutputStream."<init>":(Ljava/io/File;)V
+  #262 = Utf8               zip archive not a split zip file
+  #263 = String             #262          // zip archive not a split zip file
+  #264 = NameAndType        #36:#225      // r:(Leos/moe/armourers/kb;I)Ljava/io/RandomAccessFile;
+  #265 = Methodref          #2.#264       // eos/moe/armourers/ja.r:(Leos/moe/armourers/kb;I)Ljava/io/RandomAccessFile;
+  #266 = Methodref          #231.#245     // java/io/RandomAccessFile.length:()J
+  #267 = Utf8               (Ljava/io/RandomAccessFile;)I
+  #268 = NameAndType        #63:#267      // y:(Ljava/io/RandomAccessFile;)I
+  #269 = Methodref          #25.#268      // eos/moe/armourers/ra.y:(Ljava/io/RandomAccessFile;)I
+  #270 = Utf8               eos/moe/armourers/wm
+  #271 = Class              #270          // eos/moe/armourers/wm
+  #272 = Utf8               l
+  #273 = Utf8               Leos/moe/armourers/wm;
+  #274 = NameAndType        #272:#273     // l:Leos/moe/armourers/wm;
+  #275 = Fieldref           #271.#274     // eos/moe/armourers/wm.l:Leos/moe/armourers/wm;
+  #276 = Methodref          #271.#138     // eos/moe/armourers/wm.r:()J
+  #277 = Utf8               seek
+  #278 = NameAndType        #277:#94      // seek:(J)V
+  #279 = Methodref          #231.#278     // java/io/RandomAccessFile.seek:(J)V
+  #280 = Methodref          #58.#138      // eos/moe/armourers/gb.r:()J
+  #281 = Utf8               eos/moe/armourers/ya
+  #282 = Class              #281          // eos/moe/armourers/ya
+  #283 = Utf8               (Ljava/io/RandomAccessFile;Ljava/io/OutputStream;JJLeos/moe/armourers/rb;)V
+  #284 = NameAndType        #36:#283      // r:(Ljava/io/RandomAccessFile;Ljava/io/OutputStream;JJLeos/moe/armourers/rb;)V
+  #285 = Methodref          #282.#284     // eos/moe/armourers/ya.r:(Ljava/io/RandomAccessFile;Ljava/io/OutputStream;JJLeos/moe/armourers/rb;)V
+  #286 = NameAndType        #36:#71       // r:(Ljava/util/List;JII)V
+  #287 = Methodref          #2.#286       // eos/moe/armourers/ja.r:(Ljava/util/List;JII)V
+  #288 = NameAndType        #36:#26       // r:()V
+  #289 = Methodref          #2.#288       // eos/moe/armourers/ja.r:()V
+  #290 = Utf8               close
+  #291 = NameAndType        #290:#26      // close:()V
+  #292 = Methodref          #231.#291     // java/io/RandomAccessFile.close:()V
+  #293 = Utf8               addSuppressed
+  #294 = Utf8               (Ljava/lang/Throwable;)V
+  #295 = NameAndType        #293:#294     // addSuppressed:(Ljava/lang/Throwable;)V
+  #296 = Methodref          #103.#295     // java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+  #297 = NameAndType        #17:#172      // j:Ljava/nio/charset/Charset;
+  #298 = Fieldref           #8.#297       // eos/moe/armourers/ka.j:Ljava/nio/charset/Charset;
+  #299 = NameAndType        #36:#154      // r:(Leos/moe/armourers/kb;JLjava/io/OutputStream;Ljava/nio/charset/Charset;)V
+  #300 = Methodref          #2.#299       // eos/moe/armourers/ja.r:(Leos/moe/armourers/kb;JLjava/io/OutputStream;Ljava/nio/charset/Charset;)V
+  #301 = Methodref          #14.#288      // eos/moe/armourers/rb.r:()V
+  #302 = Utf8               java/io/OutputStream
+  #303 = Class              #302          // java/io/OutputStream
+  #304 = Methodref          #303.#291     // java/io/OutputStream.close:()V
+  #305 = NameAndType        #19:#251      // "<init>":(Ljava/lang/Exception;)V
+  #306 = Methodref          #145.#305     // eos/moe/armourers/ph."<init>":(Ljava/lang/Exception;)V
+  #307 = Utf8               Leos/moe/armourers/rb;
+  #308 = Utf8               java/lang/Object
+  #309 = Class              #308          // java/lang/Object
+  #310 = Utf8               Code
+  #311 = Utf8               LocalVariableTable
+  #312 = Utf8               LineNumberTable
+  #313 = Utf8               StackMapTable
+  #314 = Utf8               Signature
+  #315 = Utf8               (Ljava/util/List<Leos/moe/armourers/pb;>;JII)V
+  #316 = Utf8               Exceptions
+  #317 = Utf8               SourceFile
+  #318 = Utf8               InnerClasses
+{
+  private eos.moe.armourers.kb m;
+    descriptor: Leos/moe/armourers/kb;
+    flags: (0x0002) ACC_PRIVATE
+
+  private eos.moe.armourers.ra j;
+    descriptor: Leos/moe/armourers/ra;
+    flags: (0x0002) ACC_PRIVATE
+
+  public eos.moe.armourers.ja(eos.moe.armourers.kb, eos.moe.armourers.ca);
+    descriptor: (Leos/moe/armourers/kb;Leos/moe/armourers/ca;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=3, args_size=3
+         0: aload_1
+         1: aload_0
+         2: dup
+         3: dup_x2
+         4: aload_2
+         5: invokespecial #23                 // Method eos/moe/armourers/oa."<init>":(Leos/moe/armourers/ca;)V
+         8: new           #25                 // class eos/moe/armourers/ra
+        11: aload_0
+        12: dup
+        13: pop2
+        14: dup
+        15: invokespecial #28                 // Method eos/moe/armourers/ra."<init>":()V
+        18: putfield      #30                 // Field j:Leos/moe/armourers/ra;
+        21: putfield      #32                 // Field m:Leos/moe/armourers/kb;
+        24: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      25     0     a   Leos/moe/armourers/ja;
+            0      25     1     a   Leos/moe/armourers/kb;
+            0      25     2     a   Leos/moe/armourers/ca;
+      LineNumberTable:
+        line 146: 0
+        line 234: 8
+        line 55: 21
+        line 7: 24
+
+  private void r(eos.moe.armourers.kb);
+    descriptor: (Leos/moe/armourers/kb;)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=8, locals=3, args_size=2
+         0: aload_1
+         1: dup
+         2: invokevirtual #42                 // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/yc;
+         5: invokevirtual #47                 // Method eos/moe/armourers/yc.r:()Ljava/util/List;
+         8: invokeinterface #53,  1           // InterfaceMethod java/util/List.size:()I
+        13: istore_1
+        14: invokevirtual #56                 // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/gb;
+        17: astore_2
+        18: iload_1
+        19: aload_2
+        20: dup_x1
+        21: iload_1
+        22: iconst_0
+        23: aload_2
+        24: dup_x1
+        25: iconst_0
+        26: invokevirtual #62                 // Method eos/moe/armourers/gb.z:(I)V
+        29: invokevirtual #65                 // Method eos/moe/armourers/gb.y:(I)V
+        32: invokevirtual #68                 // Method eos/moe/armourers/gb.x:(I)V
+        35: invokevirtual #70                 // Method eos/moe/armourers/gb.r:(I)V
+        38: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      39     0     a   Leos/moe/armourers/ja;
+            0      39     1     a   Leos/moe/armourers/kb;
+      LineNumberTable:
+        line 70: 0
+        line 134: 14
+        line 231: 18
+        line 214: 29
+        line 81: 32
+        line 98: 35
+        line 102: 38
+
+  private void r(java.util.List<eos.moe.armourers.pb>, long, int, int);
+    descriptor: (Ljava/util/List;JII)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=7, locals=7, args_size=5
+         0: aload_1
+         1: invokeinterface #75,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+         6: astore_1
+         7: aload_1
+         8: invokeinterface #81,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        13: ifeq          60
+        16: aload_1
+        17: invokeinterface #85,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        22: checkcast     #87                 // class eos/moe/armourers/pb
+        25: dup
+        26: astore        6
+        28: invokevirtual #90                 // Method eos/moe/armourers/pb.s:()I
+        31: iload         4
+        33: if_icmpne     7
+        36: iconst_0
+        37: aload         6
+        39: dup
+        40: dup_x2
+        41: invokevirtual #93                 // Method eos/moe/armourers/pb.s:()J
+        44: lload_2
+        45: ladd
+        46: iload         5
+        48: i2l
+        49: lsub
+        50: invokevirtual #96                 // Method eos/moe/armourers/pb.x:(J)V
+        53: invokevirtual #98                 // Method eos/moe/armourers/pb.s:(I)V
+        56: goto          7
+        59: athrow
+        60: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      61     0     a   Leos/moe/armourers/ja;
+            0      61     1     a   Ljava/util/List;
+            0      61     2     a   J
+            0      61     4     a   I
+            0      61     5     a   I
+      LineNumberTable:
+        line 197: 0
+        line 121: 28
+        line 207: 36
+        line 49: 53
+        line 187: 56
+        line 169: 60
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ class eos/moe/armourers/ja, class java/util/Iterator, long, int, int ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 51
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ja, class java/util/Iterator, long, int, int ]
+          stack = []
+    Signature: #315                         // (Ljava/util/List<Leos/moe/armourers/pb;>;JII)V
+
+  private void z(eos.moe.armourers.kb, long);
+    descriptor: (Leos/moe/armourers/kb;J)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=8, locals=4, args_size=3
+         0: aload_0
+         1: aload_1
+         2: dup
+         3: dup_x2
+         4: iconst_0
+         5: invokevirtual #107                // Method eos/moe/armourers/kb.y:(Z)V
+         8: invokespecial #109                // Method r:(Leos/moe/armourers/kb;)V
+        11: invokevirtual #111                // Method eos/moe/armourers/kb.r:()Z
+        14: ifeq          29
+        17: aload_1
+        18: aload_0
+        19: dup_x1
+        20: aload_1
+        21: lload_2
+        22: dup2_x2
+        23: invokespecial #113                // Method r:(Leos/moe/armourers/kb;J)V
+        26: invokespecial #115                // Method y:(Leos/moe/armourers/kb;J)V
+        29: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      30     0     a   Leos/moe/armourers/ja;
+            0      30     1     a   Leos/moe/armourers/kb;
+            0      30     2     a   J
+      LineNumberTable:
+        line 153: 0
+        line 135: 8
+        line 67: 11
+        line 184: 17
+        line 4: 26
+        line 84: 29
+      StackMapTable: number_of_entries = 1
+        frame_type = 29 /* same */
+
+  private void y(eos.moe.armourers.kb, long);
+    descriptor: (Leos/moe/armourers/kb;J)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=8, locals=5, args_size=3
+         0: aload_1
+         1: invokevirtual #118                // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/db;
+         4: ifnonnull     9
+         7: return
+         8: athrow
+         9: aload_1
+        10: invokevirtual #118                // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/db;
+        13: dup
+        14: astore        4
+        16: dup
+        17: aload_1
+        18: aload         4
+        20: dup_x2
+        21: aload         4
+        23: iconst_0
+        24: dup_x1
+        25: invokevirtual #123                // Method eos/moe/armourers/db.h:(I)V
+        28: invokevirtual #124                // Method eos/moe/armourers/db.r:(I)V
+        31: invokevirtual #56                 // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/gb;
+        34: invokevirtual #126                // Method eos/moe/armourers/gb.r:()I
+        37: i2l
+        38: invokevirtual #127                // Method eos/moe/armourers/db.x:(J)V
+        41: invokevirtual #129                // Method eos/moe/armourers/db.x:()J
+        44: lload_2
+        45: ladd
+        46: invokevirtual #131                // Method eos/moe/armourers/db.h:(J)V
+        49: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      50     0     a   Leos/moe/armourers/ja;
+            0      50     1     a   Leos/moe/armourers/kb;
+            0      50     2     a   J
+      LineNumberTable:
+        line 204: 0
+        line 117: 7
+        line 61: 9
+        line 115: 16
+        line 5: 17
+        line 21: 28
+        line 142: 31
+        line 5: 38
+        line 178: 41
+        line 176: 46
+        line 3: 49
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 8
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/kb, long ]
+
+  private void r(eos.moe.armourers.kb, long);
+    descriptor: (Leos/moe/armourers/kb;J)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=7, locals=4, args_size=3
+         0: aload_1
+         1: invokevirtual #134                // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/fb;
+         4: ifnonnull     9
+         7: return
+         8: athrow
+         9: aload_1
+        10: invokevirtual #134                // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/fb;
+        13: astore_1
+        14: iconst_1
+        15: aload_1
+        16: dup
+        17: dup_x2
+        18: aload_1
+        19: iconst_0
+        20: invokevirtual #137                // Method eos/moe/armourers/fb.r:(I)V
+        23: invokevirtual #139                // Method eos/moe/armourers/fb.r:()J
+        26: lload_2
+        27: ladd
+        28: invokevirtual #141                // Method eos/moe/armourers/fb.r:(J)V
+        31: invokevirtual #142                // Method eos/moe/armourers/fb.y:(I)V
+        34: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      35     0     a   Leos/moe/armourers/ja;
+            0      35     1     a   Leos/moe/armourers/kb;
+            0      35     2     a   J
+      LineNumberTable:
+        line 212: 0
+        line 30: 7
+        line 20: 9
+        line 208: 10
+        line 33: 14
+        line 230: 18
+        line 195: 23
+        line 230: 28
+        line 46: 31
+        line 114: 34
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 8
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/kb, long ]
+
+  public long r(java.lang.Object) throws eos.moe.armourers.ph;
+    descriptor: (Ljava/lang/Object;)J
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: checkcast     #8                  // class eos/moe/armourers/ka
+         5: invokevirtual #148                // Method r:(Leos/moe/armourers/ka;)J
+         8: lreturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0     a   Leos/moe/armourers/ja;
+      LineNumberTable:
+        line 126: 0
+    Exceptions:
+      throws eos.moe.armourers.ph
+
+  public eos.moe.armourers.ob r();
+    descriptor: ()Leos/moe/armourers/ob;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: getstatic     #153                // Field eos/moe/armourers/ob.t:Leos/moe/armourers/ob;
+         3: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0     a   Leos/moe/armourers/ja;
+      LineNumberTable:
+        line 116: 0
+
+  private void r(eos.moe.armourers.kb, long, java.io.OutputStream, java.nio.charset.Charset) throws java.io.IOException, java.lang.CloneNotSupportedException;
+    descriptor: (Leos/moe/armourers/kb;JLjava/io/OutputStream;Ljava/nio/charset/Charset;)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=5, locals=6, args_size=5
+         0: aload_1
+         1: invokevirtual #161                // Method eos/moe/armourers/kb.clone:()Ljava/lang/Object;
+         4: checkcast     #39                 // class eos/moe/armourers/kb
+         7: astore_1
+         8: aload_0
+         9: aload_1
+        10: dup
+        11: invokevirtual #56                 // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/gb;
+        14: lload_2
+        15: invokevirtual #162                // Method eos/moe/armourers/gb.r:(J)V
+        18: lload_2
+        19: invokespecial #164                // Method z:(Leos/moe/armourers/kb;J)V
+        22: new           #166                // class eos/moe/armourers/vl
+        25: dup
+        26: invokespecial #167                // Method eos/moe/armourers/vl."<init>":()V
+        29: aload_1
+        30: aload         4
+        32: aload         5
+        34: invokevirtual #170                // Method eos/moe/armourers/vl.y:(Leos/moe/armourers/kb;Ljava/io/OutputStream;Ljava/nio/charset/Charset;)V
+        37: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      38     0     a   Leos/moe/armourers/ja;
+            0      38     1     a   Leos/moe/armourers/kb;
+            0      38     2     a   J
+            0      38     4     a   Ljava/io/OutputStream;
+            0      38     5     a   Ljava/nio/charset/Charset;
+      LineNumberTable:
+        line 143: 0
+        line 215: 9
+        line 32: 18
+        line 127: 22
+        line 233: 29
+        line 25: 37
+    Exceptions:
+      throws java.io.IOException, java.lang.CloneNotSupportedException
+
+  public void y(java.lang.Object, eos.moe.armourers.rb) throws java.io.IOException;
+    descriptor: (Ljava/lang/Object;Leos/moe/armourers/rb;)V
+    flags: (0x1041) ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: checkcast     #8                  // class eos/moe/armourers/ka
+         5: aload_2
+         6: invokevirtual #176                // Method r:(Leos/moe/armourers/ka;Leos/moe/armourers/rb;)V
+         9: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0     a   Leos/moe/armourers/ja;
+      LineNumberTable:
+        line 126: 0
+    Exceptions:
+      throws java.io.IOException
+
+  private java.io.File r(eos.moe.armourers.kb, int);
+    descriptor: (Leos/moe/armourers/kb;I)Ljava/io/File;
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=6, locals=5, args_size=3
+         0: iload_2
+         1: aload_1
+         2: invokevirtual #56                 // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/gb;
+         5: invokevirtual #179                // Method eos/moe/armourers/gb.z:()I
+         8: if_icmpne     17
+        11: aload_1
+        12: invokevirtual #182                // Method eos/moe/armourers/kb.r:()Ljava/io/File;
+        15: areturn
+        16: athrow
+        17: ldc           #184                // String .z0
+        19: astore_3
+        20: iload_2
+        21: bipush        9
+        23: if_icmplt     29
+        26: ldc           #186                // String .z
+        28: astore_3
+        29: aload_1
+        30: invokevirtual #182                // Method eos/moe/armourers/kb.r:()Ljava/io/File;
+        33: invokevirtual #192                // Method java/io/File.getPath:()Ljava/lang/String;
+        36: astore        4
+        38: new           #194                // class java/lang/StringBuilder
+        41: dup
+        42: invokespecial #195                // Method java/lang/StringBuilder."<init>":()V
+        45: aload_1
+        46: invokevirtual #182                // Method eos/moe/armourers/kb.r:()Ljava/io/File;
+        49: invokevirtual #192                // Method java/io/File.getPath:()Ljava/lang/String;
+        52: iconst_0
+        53: dup_x1
+        54: aload         4
+        56: ldc           #197                // String .
+        58: invokevirtual #203                // Method java/lang/String.lastIndexOf:(Ljava/lang/String;)I
+        61: invokevirtual #207                // Method java/lang/String.substring:(II)Ljava/lang/String;
+        64: invokevirtual #211                // Method java/lang/StringBuilder.insert:(ILjava/lang/String;)Ljava/lang/StringBuilder;
+        67: aload_3
+        68: invokevirtual #215                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        71: iload_2
+        72: iconst_1
+        73: iadd
+        74: invokevirtual #218                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        77: invokevirtual #221                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        80: astore_1
+        81: new           #188                // class java/io/File
+        84: dup
+        85: aload_1
+        86: invokespecial #224                // Method java/io/File."<init>":(Ljava/lang/String;)V
+        89: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      90     0     a   Leos/moe/armourers/ja;
+            0      90     1     a   Leos/moe/armourers/kb;
+            0      90     2     a   I
+      LineNumberTable:
+        line 96: 0
+        line 191: 11
+        line 104: 17
+        line 190: 20
+        line 91: 26
+        line 170: 29
+        line 80: 38
+        line 159: 81
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/kb, int ]
+        frame_type = 252 /* append */
+          offset_delta = 11
+          locals = [ class java/lang/String ]
+
+  private java.io.RandomAccessFile r(eos.moe.armourers.kb, int) throws java.io.FileNotFoundException;
+    descriptor: (Leos/moe/armourers/kb;I)Ljava/io/RandomAccessFile;
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: invokespecial #229                // Method r:(Leos/moe/armourers/kb;I)Ljava/io/File;
+         6: astore_1
+         7: new           #231                // class java/io/RandomAccessFile
+        10: dup
+        11: aload_1
+        12: getstatic     #236                // Field eos/moe/armourers/sb.s:Leos/moe/armourers/sb;
+        15: invokevirtual #238                // Method eos/moe/armourers/sb.r:()Ljava/lang/String;
+        18: invokespecial #241                // Method java/io/RandomAccessFile."<init>":(Ljava/io/File;Ljava/lang/String;)V
+        21: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0     a   Leos/moe/armourers/ja;
+            0      22     1     a   Leos/moe/armourers/kb;
+            0      22     2     a   I
+      LineNumberTable:
+        line 133: 0
+        line 196: 7
+    Exceptions:
+      throws java.io.FileNotFoundException
+
+  public long r(eos.moe.armourers.ka);
+    descriptor: (Leos/moe/armourers/ka;)J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=2
+         0: aload_0
+         1: getfield      #32                 // Field m:Leos/moe/armourers/kb;
+         4: invokevirtual #243                // Method eos/moe/armourers/kb.z:()Z
+         7: ifne          13
+        10: lconst_0
+        11: lreturn
+        12: athrow
+        13: lconst_0
+        14: lstore_2
+        15: iconst_0
+        16: dup
+        17: istore_1
+        18: aload_0
+        19: getfield      #32                 // Field m:Leos/moe/armourers/kb;
+        22: invokevirtual #56                 // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/gb;
+        25: invokevirtual #179                // Method eos/moe/armourers/gb.z:()I
+        28: if_icmpgt     54
+        31: lload_2
+        32: aload_0
+        33: dup
+        34: getfield      #32                 // Field m:Leos/moe/armourers/kb;
+        37: iload_1
+        38: invokespecial #229                // Method r:(Leos/moe/armourers/kb;I)Ljava/io/File;
+        41: iinc          1, 1
+        44: invokevirtual #246                // Method java/io/File.length:()J
+        47: ladd
+        48: lstore_2
+        49: iload_1
+        50: goto          18
+        53: athrow
+        54: lload_2
+        55: lreturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      56     0     a   Leos/moe/armourers/ja;
+            0      56     1     a   Leos/moe/armourers/ka;
+      LineNumberTable:
+        line 39: 0
+        line 217: 10
+        line 53: 13
+        line 236: 15
+        line 56: 31
+        line 236: 49
+        line 62: 54
+      StackMapTable: number_of_entries = 5
+        frame_type = 255 /* full_frame */
+          offset_delta = 12
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 253 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 4
+          locals = [ class eos/moe/armourers/ja, int, long ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 34
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ja, int, long ]
+
+  public void r(eos.moe.armourers.ka, eos.moe.armourers.rb) throws java.io.IOException;
+    descriptor: (Leos/moe/armourers/ka;Leos/moe/armourers/rb;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=17, args_size=3
+         0: aload_0
+         1: getfield      #32                 // Field m:Leos/moe/armourers/kb;
+         4: invokevirtual #243                // Method eos/moe/armourers/kb.z:()Z
+         7: ifne          27
+        10: new           #145                // class eos/moe/armourers/ph
+        13: dup
+        14: ldc           #249                // String archive not a split zip file
+        16: invokespecial #250                // Method eos/moe/armourers/ph."<init>":(Ljava/lang/String;)V
+        19: astore_3
+        20: aload_2
+        21: aload_3
+        22: dup_x1
+        23: invokevirtual #253                // Method eos/moe/armourers/rb.y:(Ljava/lang/Exception;)V
+        26: athrow
+        27: new           #255                // class java/io/FileOutputStream
+        30: dup
+        31: aload_1
+        32: invokestatic  #258                // Method eos/moe/armourers/ka.r:(Leos/moe/armourers/ka;)Ljava/io/File;
+        35: invokespecial #261                // Method java/io/FileOutputStream."<init>":(Ljava/io/File;)V
+        38: astore_3
+        39: aconst_null
+        40: astore        4
+        42: lconst_0
+        43: lstore        5
+        45: aload_0
+        46: getfield      #32                 // Field m:Leos/moe/armourers/kb;
+        49: invokevirtual #56                 // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/gb;
+        52: invokevirtual #179                // Method eos/moe/armourers/gb.z:()I
+        55: dup
+        56: istore        7
+        58: ifgt          72
+        61: new           #145                // class eos/moe/armourers/ph
+        64: dup
+        65: ldc_w         #263                // String zip archive not a split zip file
+        68: invokespecial #250                // Method eos/moe/armourers/ph."<init>":(Ljava/lang/String;)V
+        71: athrow
+        72: iconst_0
+        73: istore        8
+        75: iconst_0
+        76: dup
+        77: istore        9
+        79: iload         7
+        81: if_icmpgt     328
+        84: aload_0
+        85: dup
+        86: getfield      #32                 // Field m:Leos/moe/armourers/kb;
+        89: iload         9
+        91: invokespecial #265                // Method r:(Leos/moe/armourers/kb;I)Ljava/io/RandomAccessFile;
+        94: astore        10
+        96: aconst_null
+        97: astore        11
+        99: iconst_0
+       100: istore        12
+       102: aload         10
+       104: invokevirtual #266                // Method java/io/RandomAccessFile.length:()J
+       107: lstore        13
+       109: iload         9
+       111: ifne          152
+       114: aload_0
+       115: getfield      #30                 // Field j:Leos/moe/armourers/ra;
+       118: aload         10
+       120: invokevirtual #269                // Method eos/moe/armourers/ra.y:(Ljava/io/RandomAccessFile;)I
+       123: i2l
+       124: getstatic     #275                // Field eos/moe/armourers/wm.l:Leos/moe/armourers/wm;
+       127: invokevirtual #276                // Method eos/moe/armourers/wm.r:()J
+       130: lcmp
+       131: ifne          146
+       134: iconst_4
+       135: istore        8
+       137: iconst_4
+       138: istore        12
+       140: iload         9
+       142: goto          154
+       145: athrow
+       146: aload         10
+       148: lconst_0
+       149: invokevirtual #279                // Method java/io/RandomAccessFile.seek:(J)V
+       152: iload         9
+       154: iload         7
+       156: if_icmpne     171
+       159: aload_0
+       160: getfield      #32                 // Field m:Leos/moe/armourers/kb;
+       163: invokevirtual #56                 // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/gb;
+       166: invokevirtual #280                // Method eos/moe/armourers/gb.r:()J
+       169: lstore        13
+       171: aload         10
+       173: aload_3
+       174: iload         12
+       176: i2l
+       177: lload         13
+       179: aload_2
+       180: invokestatic  #285                // Method eos/moe/armourers/ya.r:(Ljava/io/RandomAccessFile;Ljava/io/OutputStream;JJLeos/moe/armourers/rb;)V
+       183: lload         5
+       185: lload         13
+       187: iload         12
+       189: i2l
+       190: lsub
+       191: ladd
+       192: lstore        5
+       194: aload_0
+       195: dup
+       196: getfield      #32                 // Field m:Leos/moe/armourers/kb;
+       199: invokevirtual #42                 // Method eos/moe/armourers/kb.r:()Leos/moe/armourers/yc;
+       202: invokevirtual #47                 // Method eos/moe/armourers/yc.r:()Ljava/util/List;
+       205: iload         9
+       207: ifne          217
+       210: lconst_0
+       211: iload         9
+       213: goto          221
+       216: athrow
+       217: lload         5
+       219: iload         9
+       221: iload         8
+       223: invokespecial #287                // Method r:(Ljava/util/List;JII)V
+       226: aload_0
+       227: invokevirtual #289                // Method r:()V
+       230: aload         10
+       232: ifnull        320
+       235: aload         11
+       237: ifnull        260
+       240: aload         10
+       242: invokevirtual #292                // Method java/io/RandomAccessFile.close:()V
+       245: goto          320
+       248: astore        12
+       250: aload         11
+       252: aload         12
+       254: invokevirtual #296                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       257: goto          320
+       260: aload         10
+       262: invokevirtual #292                // Method java/io/RandomAccessFile.close:()V
+       265: goto          320
+       268: astore        12
+       270: aload         12
+       272: dup
+       273: astore        11
+       275: athrow
+       276: astore        15
+       278: aload         10
+       280: ifnull        317
+       283: aload         11
+       285: ifnull        312
+       288: aload         10
+       290: invokevirtual #292                // Method java/io/RandomAccessFile.close:()V
+       293: aload         15
+       295: goto          319
+       298: astore        12
+       300: aload         15
+       302: aload         11
+       304: aload         12
+       306: invokevirtual #296                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       309: goto          319
+       312: aload         10
+       314: invokevirtual #292                // Method java/io/RandomAccessFile.close:()V
+       317: aload         15
+       319: athrow
+       320: iinc          9, 1
+       323: iload         9
+       325: goto          79
+       328: aload_0
+       329: dup
+       330: getfield      #32                 // Field m:Leos/moe/armourers/kb;
+       333: lload         5
+       335: aload_3
+       336: aload_1
+       337: getfield      #298                // Field eos/moe/armourers/ka.j:Ljava/nio/charset/Charset;
+       340: invokespecial #300                // Method r:(Leos/moe/armourers/kb;JLjava/io/OutputStream;Ljava/nio/charset/Charset;)V
+       343: aload_2
+       344: invokevirtual #301                // Method eos/moe/armourers/rb.r:()V
+       347: aload_3
+       348: ifnull        434
+       351: aload         4
+       353: ifnull        371
+       356: aload_3
+       357: invokevirtual #304                // Method java/io/OutputStream.close:()V
+       360: return
+       361: astore        5
+       363: aload         4
+       365: aload         5
+       367: invokevirtual #296                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       370: return
+       371: aload_3
+       372: invokevirtual #304                // Method java/io/OutputStream.close:()V
+       375: return
+       376: astore        5
+       378: aload         5
+       380: dup
+       381: astore        4
+       383: athrow
+       384: astore        16
+       386: aload_3
+       387: ifnull        420
+       390: aload         4
+       392: ifnull        416
+       395: aload_3
+       396: invokevirtual #304                // Method java/io/OutputStream.close:()V
+       399: aload         16
+       401: goto          422
+       404: astore_1
+       405: aload         16
+       407: aload         4
+       409: aload_1
+       410: invokevirtual #296                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       413: goto          422
+       416: aload_3
+       417: invokevirtual #304                // Method java/io/OutputStream.close:()V
+       420: aload         16
+       422: athrow
+       423: athrow
+       424: astore_3
+       425: new           #145                // class eos/moe/armourers/ph
+       428: dup
+       429: aload_3
+       430: invokespecial #306                // Method eos/moe/armourers/ph."<init>":(Ljava/lang/Exception;)V
+       433: athrow
+       434: return
+      Exception table:
+         from    to  target type
+           240   245   248   Class java/lang/Throwable
+            99   145   268   Class java/lang/Throwable
+           146   216   268   Class java/lang/Throwable
+           217   230   268   Class java/lang/Throwable
+            99   145   276   any
+           146   216   276   any
+           217   230   276   any
+           288   293   298   Class java/lang/Throwable
+           268   278   276   any
+           356   360   361   Class java/lang/Throwable
+            42   145   376   Class java/lang/Throwable
+           146   216   376   Class java/lang/Throwable
+           217   347   376   Class java/lang/Throwable
+            42   145   384   any
+           146   216   384   any
+           217   347   384   any
+           395   399   404   Class java/lang/Throwable
+           376   386   384   any
+            27   145   424   Class java/lang/CloneNotSupportedException
+           146   216   424   Class java/lang/CloneNotSupportedException
+           217   423   424   Class java/lang/CloneNotSupportedException
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     435     0     a   Leos/moe/armourers/ja;
+            0     435     1     a   Leos/moe/armourers/ka;
+            0     435     2     a   Leos/moe/armourers/rb;
+      LineNumberTable:
+        line 186: 0
+        line 11: 10
+        line 119: 20
+        line 216: 26
+        line 166: 27
+        line 110: 42
+        line 44: 45
+        line 36: 58
+        line 203: 61
+        line 92: 72
+        line 227: 75
+        line 54: 84
+        line 94: 99
+        line 226: 102
+        line 157: 109
+        line 71: 114
+        line 167: 134
+        line 149: 137
+        line 168: 146
+        line 124: 152
+        line 75: 159
+        line 1: 171
+        line 105: 183
+        line 192: 194
+        line 95: 226
+        line 29: 230
+        line 54: 268
+        line 29: 276
+        line 227: 320
+        line 118: 328
+        line 13: 343
+        line 47: 347
+        line 166: 376
+        line 47: 384
+        line 85: 423
+        line 47: 424
+        line 66: 425
+        line 64: 434
+      StackMapTable: number_of_entries = 32
+        frame_type = 27 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 44
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 6
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int, int, int ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 65
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int, int, int, class java/io/RandomAccessFile, null, int, long ]
+          stack = []
+        frame_type = 5 /* same */
+        frame_type = 65 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 16 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 44
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int, int, int, class java/io/RandomAccessFile, null, int, long ]
+          stack = [ class eos/moe/armourers/ja, class java/util/List ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 3
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int, int, int, class java/io/RandomAccessFile, null, int, long ]
+          stack = [ class eos/moe/armourers/ja, class java/util/List, long, int ]
+        frame_type = 90 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int, int, int, class java/io/RandomAccessFile, null ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int, int, int, class java/io/RandomAccessFile, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 21
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int, int, int, class java/io/RandomAccessFile, class java/lang/Throwable, top, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 13 /* same */
+        frame_type = 4 /* same */
+        frame_type = 65 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int, int, int, class java/io/RandomAccessFile, null, top, long ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int, int, int ]
+          stack = []
+        frame_type = 96 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 9 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 4
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 19
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, class java/lang/Throwable, top, top, top, top, top, top, top, top, top, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 3 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class eos/moe/armourers/ja, class java/lang/Object, class eos/moe/armourers/rb, class java/io/FileOutputStream, class java/lang/Throwable, top, top, top, top, top, top, top, top, top, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ja, class java/lang/Object, class eos/moe/armourers/rb ]
+          stack = [ class java/lang/CloneNotSupportedException ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class eos/moe/armourers/ja, class eos/moe/armourers/ka, class eos/moe/armourers/rb, class java/io/FileOutputStream, null, long, int, int, int ]
+          stack = []
+    Exceptions:
+      throws java.io.IOException
+}
+Signature: #3                           // Leos/moe/armourers/oa<Leos/moe/armourers/ka;>;
+SourceFile: "wa"
+InnerClasses:
+  public static #8 of #2;                 // class eos/moe/armourers/ka of class eos/moe/armourers/ja
+  public static #10 of #5;                // class eos/moe/armourers/ca of class eos/moe/armourers/oa
+  public static final #12 of #14;         // class eos/moe/armourers/ob of class eos/moe/armourers/rb

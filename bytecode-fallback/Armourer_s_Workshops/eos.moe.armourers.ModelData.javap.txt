@@ -1,0 +1,1182 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/Mod-DragonArmourers(4).jar!/eos/moe/armourers/ModelData.class
+  Last modified 09-����-24; size 8595 bytes
+  SHA-256 checksum 66bf01fb19772700fa999583479c5298eb16cd29b120c86d4cba8a7ac196de14
+  Compiled from "mo"
+public class eos.moe.armourers.ModelData
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // eos/moe/armourers/ModelData
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 11, methods: 17, attributes: 3
+Constant pool:
+    #1 = Utf8               eos/moe/armourers/ModelData
+    #2 = Class              #1            // eos/moe/armourers/ModelData
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               mo
+    #6 = Utf8               eos/moe/armourers/ModelData$Texture
+    #7 = Class              #6            // eos/moe/armourers/ModelData$Texture
+    #8 = Utf8               Texture
+    #9 = Utf8               java/util/Map$Entry
+   #10 = Class              #9            // java/util/Map$Entry
+   #11 = Utf8               java/util/Map
+   #12 = Class              #11           // java/util/Map
+   #13 = Utf8               Entry
+   #14 = Utf8               java/util/Base64$Decoder
+   #15 = Class              #14           // java/util/Base64$Decoder
+   #16 = Utf8               java/util/Base64
+   #17 = Class              #16           // java/util/Base64
+   #18 = Utf8               Decoder
+   #19 = Utf8               java/lang/invoke/MethodHandles$Lookup
+   #20 = Class              #19           // java/lang/invoke/MethodHandles$Lookup
+   #21 = Utf8               java/lang/invoke/MethodHandles
+   #22 = Class              #21           // java/lang/invoke/MethodHandles
+   #23 = Utf8               Lookup
+   #24 = Utf8               animationBytes
+   #25 = Utf8               [B
+   #26 = Utf8               scale
+   #27 = Utf8               D
+   #28 = Utf8               name
+   #29 = Utf8               Ljava/lang/String;
+   #30 = Utf8               transformBakedModel
+   #31 = Utf8               Leos/moe/armourers/gg;
+   #32 = Utf8               textureBytes
+   #33 = Utf8               Leos/moe/armourers/ModelData$Texture;
+   #34 = Utf8               setting
+   #35 = Utf8               Ljava/util/Map;
+   #36 = Utf8               Ljava/util/Map<Ljava/lang/String;Ljava/lang/Boolean;>;
+   #37 = Utf8               modelBytes
+   #38 = Utf8               glowTextureBytes
+   #39 = Utf8               skinType
+   #40 = Utf8               gson
+   #41 = Utf8               Lcom/google/gson/Gson;
+   #42 = Utf8               trans
+   #43 = Utf8               getModelBytes
+   #44 = Utf8               ()[B
+   #45 = NameAndType        #37:#25       // modelBytes:[B
+   #46 = Fieldref           #2.#45        // eos/moe/armourers/ModelData.modelBytes:[B
+   #47 = Utf8               a
+   #48 = Utf8               Leos/moe/armourers/ModelData;
+   #49 = Utf8               getName
+   #50 = Utf8               ()Ljava/lang/String;
+   #51 = NameAndType        #28:#29       // name:Ljava/lang/String;
+   #52 = Fieldref           #2.#51        // eos/moe/armourers/ModelData.name:Ljava/lang/String;
+   #53 = Utf8               loadModel
+   #54 = Utf8               (Ljava/lang/String;)Lcom/google/common/util/concurrent/ListenableFuture;
+   #55 = Utf8               java/lang/Exception
+   #56 = Class              #55           // java/lang/Exception
+   #57 = Utf8               net/minecraft/client/Minecraft
+   #58 = Class              #57           // net/minecraft/client/Minecraft
+   #59 = Utf8               func_71410_x
+   #60 = Utf8               ()Lnet/minecraft/client/Minecraft;
+   #61 = NameAndType        #59:#60       // func_71410_x:()Lnet/minecraft/client/Minecraft;
+   #62 = Methodref          #58.#61       // net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+   #63 = Utf8               java/lang/invoke/LambdaMetafactory
+   #64 = Class              #63           // java/lang/invoke/LambdaMetafactory
+   #65 = Utf8               metafactory
+   #66 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #67 = NameAndType        #65:#66       // metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #68 = Methodref          #64.#67       // java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #69 = MethodHandle       6:#68         // REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #70 = Utf8               ()Ljava/lang/Object;
+   #71 = MethodType         #70           //  ()Ljava/lang/Object;
+   #72 = Utf8               lambda$loadModel$1
+   #73 = Utf8               (Ljava/lang/String;)Leos/moe/armourers/gg;
+   #74 = NameAndType        #72:#73       // lambda$loadModel$1:(Ljava/lang/String;)Leos/moe/armourers/gg;
+   #75 = Methodref          #2.#74        // eos/moe/armourers/ModelData.lambda$loadModel$1:(Ljava/lang/String;)Leos/moe/armourers/gg;
+   #76 = MethodHandle       6:#75         // REF_invokeStatic eos/moe/armourers/ModelData.lambda$loadModel$1:(Ljava/lang/String;)Leos/moe/armourers/gg;
+   #77 = Utf8               ()Leos/moe/armourers/gg;
+   #78 = MethodType         #77           //  ()Leos/moe/armourers/gg;
+   #79 = Utf8               call
+   #80 = Utf8               (Ljava/lang/String;)Ljava/util/concurrent/Callable;
+   #81 = NameAndType        #79:#80       // call:(Ljava/lang/String;)Ljava/util/concurrent/Callable;
+   #82 = InvokeDynamic      #0:#81        // #0:call:(Ljava/lang/String;)Ljava/util/concurrent/Callable;
+   #83 = Utf8               func_152343_a
+   #84 = Utf8               (Ljava/util/concurrent/Callable;)Lcom/google/common/util/concurrent/ListenableFuture;
+   #85 = NameAndType        #83:#84       // func_152343_a:(Ljava/util/concurrent/Callable;)Lcom/google/common/util/concurrent/ListenableFuture;
+   #86 = Methodref          #58.#85       // net/minecraft/client/Minecraft.func_152343_a:(Ljava/util/concurrent/Callable;)Lcom/google/common/util/concurrent/ListenableFuture;
+   #87 = Utf8               <clinit>
+   #88 = Utf8               ()V
+   #89 = Utf8               com/google/gson/Gson
+   #90 = Class              #89           // com/google/gson/Gson
+   #91 = Utf8               <init>
+   #92 = NameAndType        #91:#88       // "<init>":()V
+   #93 = Methodref          #90.#92       // com/google/gson/Gson."<init>":()V
+   #94 = NameAndType        #40:#41       // gson:Lcom/google/gson/Gson;
+   #95 = Fieldref           #2.#94        // eos/moe/armourers/ModelData.gson:Lcom/google/gson/Gson;
+   #96 = Utf8               getTransformBakedModel
+   #97 = NameAndType        #30:#31       // transformBakedModel:Leos/moe/armourers/gg;
+   #98 = Fieldref           #2.#97        // eos/moe/armourers/ModelData.transformBakedModel:Leos/moe/armourers/gg;
+   #99 = Utf8               getSetting
+  #100 = Utf8               ()Ljava/util/Map;
+  #101 = NameAndType        #34:#35       // setting:Ljava/util/Map;
+  #102 = Fieldref           #2.#101       // eos/moe/armourers/ModelData.setting:Ljava/util/Map;
+  #103 = Utf8               getSkinType
+  #104 = NameAndType        #39:#29       // skinType:Ljava/lang/String;
+  #105 = Fieldref           #2.#104       // eos/moe/armourers/ModelData.skinType:Ljava/lang/String;
+  #106 = Utf8               getTrans
+  #107 = Utf8               ()D
+  #108 = NameAndType        #42:#27       // trans:D
+  #109 = Fieldref           #2.#108       // eos/moe/armourers/ModelData.trans:D
+  #110 = Utf8               getTexture
+  #111 = Utf8               ()Leos/moe/armourers/ModelData$Texture;
+  #112 = NameAndType        #32:#33       // textureBytes:Leos/moe/armourers/ModelData$Texture;
+  #113 = Fieldref           #2.#112       // eos/moe/armourers/ModelData.textureBytes:Leos/moe/armourers/ModelData$Texture;
+  #114 = Utf8               serialize
+  #115 = Utf8               (Lnet/minecraft/client/resources/data/AnimationMetadataSection;)Ljava/lang/String;
+  #116 = Utf8               com/google/gson/JsonObject
+  #117 = Class              #116          // com/google/gson/JsonObject
+  #118 = Methodref          #117.#92      // com/google/gson/JsonObject."<init>":()V
+  #119 = Utf8               frametime
+  #120 = String             #119          // frametime
+  #121 = Utf8               net/minecraft/client/resources/data/AnimationMetadataSection
+  #122 = Class              #121          // net/minecraft/client/resources/data/AnimationMetadataSection
+  #123 = Utf8               func_110469_d
+  #124 = Utf8               ()I
+  #125 = NameAndType        #123:#124     // func_110469_d:()I
+  #126 = Methodref          #122.#125     // net/minecraft/client/resources/data/AnimationMetadataSection.func_110469_d:()I
+  #127 = Utf8               java/lang/Integer
+  #128 = Class              #127          // java/lang/Integer
+  #129 = Utf8               valueOf
+  #130 = Utf8               (I)Ljava/lang/Integer;
+  #131 = NameAndType        #129:#130     // valueOf:(I)Ljava/lang/Integer;
+  #132 = Methodref          #128.#131     // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+  #133 = Utf8               addProperty
+  #134 = Utf8               (Ljava/lang/String;Ljava/lang/Number;)V
+  #135 = NameAndType        #133:#134     // addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+  #136 = Methodref          #117.#135     // com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+  #137 = Utf8               func_110473_c
+  #138 = NameAndType        #137:#124     // func_110473_c:()I
+  #139 = Methodref          #122.#138     // net/minecraft/client/resources/data/AnimationMetadataSection.func_110473_c:()I
+  #140 = Utf8               com/google/gson/JsonArray
+  #141 = Class              #140          // com/google/gson/JsonArray
+  #142 = Methodref          #141.#92      // com/google/gson/JsonArray."<init>":()V
+  #143 = Utf8               com/google/gson/JsonPrimitive
+  #144 = Class              #143          // com/google/gson/JsonPrimitive
+  #145 = Utf8               func_110468_c
+  #146 = Utf8               (I)I
+  #147 = NameAndType        #145:#146     // func_110468_c:(I)I
+  #148 = Methodref          #122.#147     // net/minecraft/client/resources/data/AnimationMetadataSection.func_110468_c:(I)I
+  #149 = Utf8               (Ljava/lang/Number;)V
+  #150 = NameAndType        #91:#149      // "<init>":(Ljava/lang/Number;)V
+  #151 = Methodref          #144.#150     // com/google/gson/JsonPrimitive."<init>":(Ljava/lang/Number;)V
+  #152 = Utf8               add
+  #153 = Utf8               (Lcom/google/gson/JsonElement;)V
+  #154 = NameAndType        #152:#153     // add:(Lcom/google/gson/JsonElement;)V
+  #155 = Methodref          #141.#154     // com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+  #156 = Utf8               frames
+  #157 = String             #156          // frames
+  #158 = Utf8               (Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+  #159 = NameAndType        #152:#158     // add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+  #160 = Methodref          #117.#159     // com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+  #161 = Utf8               animation
+  #162 = String             #161          // animation
+  #163 = Utf8               toString
+  #164 = NameAndType        #163:#50      // toString:()Ljava/lang/String;
+  #165 = Methodref          #117.#164     // com/google/gson/JsonObject.toString:()Ljava/lang/String;
+  #166 = Utf8               Lnet/minecraft/client/resources/data/AnimationMetadataSection;
+  #167 = Utf8               java/lang/Throwable
+  #168 = Class              #167          // java/lang/Throwable
+  #169 = Utf8               lambda$null$0
+  #170 = Utf8               (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #171 = Utf8               Lnet/minecraft/util/ResourceLocation;
+  #172 = Utf8               (Ljava/lang/String;[B)V
+  #173 = Utf8               java/lang/NumberFormatException
+  #174 = Class              #173          // java/lang/NumberFormatException
+  #175 = Methodref          #4.#92        // java/lang/Object."<init>":()V
+  #176 = NameAndType        #26:#27       // scale:D
+  #177 = Fieldref           #2.#176       // eos/moe/armourers/ModelData.scale:D
+  #178 = Utf8               java/util/HashMap
+  #179 = Class              #178          // java/util/HashMap
+  #180 = Methodref          #179.#92      // java/util/HashMap."<init>":()V
+  #181 = Utf8               java/lang/String
+  #182 = Class              #181          // java/lang/String
+  #183 = Utf8               java/nio/charset/StandardCharsets
+  #184 = Class              #183          // java/nio/charset/StandardCharsets
+  #185 = Utf8               UTF_8
+  #186 = Utf8               Ljava/nio/charset/Charset;
+  #187 = NameAndType        #185:#186     // UTF_8:Ljava/nio/charset/Charset;
+  #188 = Fieldref           #184.#187     // java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+  #189 = Utf8               ([BLjava/nio/charset/Charset;)V
+  #190 = NameAndType        #91:#189      // "<init>":([BLjava/nio/charset/Charset;)V
+  #191 = Methodref          #182.#190     // java/lang/String."<init>":([BLjava/nio/charset/Charset;)V
+  #192 = Utf8               fromJson
+  #193 = Utf8               (Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+  #194 = NameAndType        #192:#193     // fromJson:(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+  #195 = Methodref          #90.#194      // com/google/gson/Gson.fromJson:(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+  #196 = String             #34           // setting
+  #197 = Utf8               has
+  #198 = Utf8               (Ljava/lang/String;)Z
+  #199 = NameAndType        #197:#198     // has:(Ljava/lang/String;)Z
+  #200 = Methodref          #117.#199     // com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+  #201 = Utf8               getAsJsonObject
+  #202 = Utf8               (Ljava/lang/String;)Lcom/google/gson/JsonObject;
+  #203 = NameAndType        #201:#202     // getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+  #204 = Methodref          #117.#203     // com/google/gson/JsonObject.getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+  #205 = Utf8               entrySet
+  #206 = Utf8               ()Ljava/util/Set;
+  #207 = NameAndType        #205:#206     // entrySet:()Ljava/util/Set;
+  #208 = Methodref          #117.#207     // com/google/gson/JsonObject.entrySet:()Ljava/util/Set;
+  #209 = Utf8               java/util/Set
+  #210 = Class              #209          // java/util/Set
+  #211 = Utf8               iterator
+  #212 = Utf8               ()Ljava/util/Iterator;
+  #213 = NameAndType        #211:#212     // iterator:()Ljava/util/Iterator;
+  #214 = InterfaceMethodref #210.#213     // java/util/Set.iterator:()Ljava/util/Iterator;
+  #215 = Utf8               java/util/Iterator
+  #216 = Class              #215          // java/util/Iterator
+  #217 = Utf8               hasNext
+  #218 = Utf8               ()Z
+  #219 = NameAndType        #217:#218     // hasNext:()Z
+  #220 = InterfaceMethodref #216.#219     // java/util/Iterator.hasNext:()Z
+  #221 = Utf8               next
+  #222 = NameAndType        #221:#70      // next:()Ljava/lang/Object;
+  #223 = InterfaceMethodref #216.#222     // java/util/Iterator.next:()Ljava/lang/Object;
+  #224 = Utf8               getValue
+  #225 = NameAndType        #224:#70      // getValue:()Ljava/lang/Object;
+  #226 = InterfaceMethodref #10.#225      // java/util/Map$Entry.getValue:()Ljava/lang/Object;
+  #227 = Utf8               com/google/gson/JsonElement
+  #228 = Class              #227          // com/google/gson/JsonElement
+  #229 = Utf8               isJsonPrimitive
+  #230 = NameAndType        #229:#218     // isJsonPrimitive:()Z
+  #231 = Methodref          #228.#230     // com/google/gson/JsonElement.isJsonPrimitive:()Z
+  #232 = Utf8               getKey
+  #233 = NameAndType        #232:#70      // getKey:()Ljava/lang/Object;
+  #234 = InterfaceMethodref #10.#233      // java/util/Map$Entry.getKey:()Ljava/lang/Object;
+  #235 = Utf8               getAsBoolean
+  #236 = NameAndType        #235:#218     // getAsBoolean:()Z
+  #237 = Methodref          #228.#236     // com/google/gson/JsonElement.getAsBoolean:()Z
+  #238 = Utf8               java/lang/Boolean
+  #239 = Class              #238          // java/lang/Boolean
+  #240 = Utf8               (Z)Ljava/lang/Boolean;
+  #241 = NameAndType        #129:#240     // valueOf:(Z)Ljava/lang/Boolean;
+  #242 = Methodref          #239.#241     // java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+  #243 = Utf8               put
+  #244 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #245 = NameAndType        #243:#244     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #246 = InterfaceMethodref #12.#245      // java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #247 = Utf8               type
+  #248 = String             #247          // type
+  #249 = Utf8               get
+  #250 = Utf8               (Ljava/lang/String;)Lcom/google/gson/JsonElement;
+  #251 = NameAndType        #249:#250     // get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+  #252 = Methodref          #117.#251     // com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+  #253 = Utf8               getAsString
+  #254 = NameAndType        #253:#50      // getAsString:()Ljava/lang/String;
+  #255 = Methodref          #228.#254     // com/google/gson/JsonElement.getAsString:()Ljava/lang/String;
+  #256 = String             #26           // scale
+  #257 = Utf8               getAsDouble
+  #258 = NameAndType        #257:#107     // getAsDouble:()D
+  #259 = Methodref          #228.#258     // com/google/gson/JsonElement.getAsDouble:()D
+  #260 = Utf8               offset
+  #261 = String             #260          // offset
+  #262 = Utf8               outfit
+  #263 = String             #262          // outfit
+  #264 = Utf8               display
+  #265 = String             #264          // display
+  #266 = Utf8               parent
+  #267 = String             #266          // parent
+  #268 = Utf8               builtin/entity
+  #269 = String             #268          // builtin/entity
+  #270 = Utf8               (Ljava/lang/String;)V
+  #271 = NameAndType        #91:#270      // "<init>":(Ljava/lang/String;)V
+  #272 = Methodref          #144.#271     // com/google/gson/JsonPrimitive."<init>":(Ljava/lang/String;)V
+  #273 = Utf8               eos/moe/armourers/uk
+  #274 = Class              #273          // eos/moe/armourers/uk
+  #275 = Utf8               j
+  #276 = NameAndType        #275:#35      // j:Ljava/util/Map;
+  #277 = Fieldref           #274.#276     // eos/moe/armourers/uk.j:Ljava/util/Map;
+  #278 = Utf8               java/lang/StringBuilder
+  #279 = Class              #278          // java/lang/StringBuilder
+  #280 = Methodref          #279.#92      // java/lang/StringBuilder."<init>":()V
+  #281 = Utf8               models/
+  #282 = String             #281          // models/
+  #283 = Utf8               insert
+  #284 = Utf8               (ILjava/lang/String;)Ljava/lang/StringBuilder;
+  #285 = NameAndType        #283:#284     // insert:(ILjava/lang/String;)Ljava/lang/StringBuilder;
+  #286 = Methodref          #279.#285     // java/lang/StringBuilder.insert:(ILjava/lang/String;)Ljava/lang/StringBuilder;
+  #287 = Utf8               append
+  #288 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #289 = NameAndType        #287:#288     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #290 = Methodref          #279.#289     // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #291 = Utf8               .json
+  #292 = String             #291          // .json
+  #293 = Methodref          #279.#164     // java/lang/StringBuilder.toString:()Ljava/lang/String;
+  #294 = Utf8               getBytes
+  #295 = Utf8               (Ljava/nio/charset/Charset;)[B
+  #296 = NameAndType        #294:#295     // getBytes:(Ljava/nio/charset/Charset;)[B
+  #297 = Methodref          #182.#296     // java/lang/String.getBytes:(Ljava/nio/charset/Charset;)[B
+  #298 = NameAndType        #53:#54       // loadModel:(Ljava/lang/String;)Lcom/google/common/util/concurrent/ListenableFuture;
+  #299 = Methodref          #2.#298       // eos/moe/armourers/ModelData.loadModel:(Ljava/lang/String;)Lcom/google/common/util/concurrent/ListenableFuture;
+  #300 = Utf8               com/google/common/util/concurrent/ListenableFuture
+  #301 = Class              #300          // com/google/common/util/concurrent/ListenableFuture
+  #302 = NameAndType        #249:#70      // get:()Ljava/lang/Object;
+  #303 = InterfaceMethodref #301.#302     // com/google/common/util/concurrent/ListenableFuture.get:()Ljava/lang/Object;
+  #304 = Utf8               eos/moe/armourers/gg
+  #305 = Class              #304          // eos/moe/armourers/gg
+  #306 = Utf8               printStackTrace
+  #307 = NameAndType        #306:#88      // printStackTrace:()V
+  #308 = Methodref          #56.#307      // java/lang/Exception.printStackTrace:()V
+  #309 = Utf8               model
+  #310 = String             #309          // model
+  #311 = Utf8               getDecoder
+  #312 = Utf8               ()Ljava/util/Base64$Decoder;
+  #313 = NameAndType        #311:#312     // getDecoder:()Ljava/util/Base64$Decoder;
+  #314 = Methodref          #17.#313      // java/util/Base64.getDecoder:()Ljava/util/Base64$Decoder;
+  #315 = Utf8               decode
+  #316 = Utf8               (Ljava/lang/String;)[B
+  #317 = NameAndType        #315:#316     // decode:(Ljava/lang/String;)[B
+  #318 = Methodref          #15.#317      // java/util/Base64$Decoder.decode:(Ljava/lang/String;)[B
+  #319 = NameAndType        #24:#25       // animationBytes:[B
+  #320 = Fieldref           #2.#319       // eos/moe/armourers/ModelData.animationBytes:[B
+  #321 = Utf8               textures
+  #322 = String             #321          // textures
+  #323 = Utf8               getAsJsonArray
+  #324 = Utf8               (Ljava/lang/String;)Lcom/google/gson/JsonArray;
+  #325 = NameAndType        #323:#324     // getAsJsonArray:(Ljava/lang/String;)Lcom/google/gson/JsonArray;
+  #326 = Methodref          #117.#325     // com/google/gson/JsonObject.getAsJsonArray:(Ljava/lang/String;)Lcom/google/gson/JsonArray;
+  #327 = Methodref          #141.#213     // com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+  #328 = String             #28           // name
+  #329 = Utf8               _e
+  #330 = String             #329          // _e
+  #331 = Utf8               contains
+  #332 = Utf8               (Ljava/lang/CharSequence;)Z
+  #333 = NameAndType        #331:#332     // contains:(Ljava/lang/CharSequence;)Z
+  #334 = Methodref          #182.#333     // java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+  #335 = Utf8               glow
+  #336 = String             #335          // glow
+  #337 = Utf8               (Lcom/google/gson/JsonObject;)V
+  #338 = NameAndType        #91:#337      // "<init>":(Lcom/google/gson/JsonObject;)V
+  #339 = Methodref          #7.#338       // eos/moe/armourers/ModelData$Texture."<init>":(Lcom/google/gson/JsonObject;)V
+  #340 = NameAndType        #38:#33       // glowTextureBytes:Leos/moe/armourers/ModelData$Texture;
+  #341 = Fieldref           #2.#340       // eos/moe/armourers/ModelData.glowTextureBytes:Leos/moe/armourers/ModelData$Texture;
+  #342 = Utf8               getGlowTexture
+  #343 = Utf8               FALSE
+  #344 = Utf8               Ljava/lang/Boolean;
+  #345 = NameAndType        #343:#344     // FALSE:Ljava/lang/Boolean;
+  #346 = Fieldref           #239.#345     // java/lang/Boolean.FALSE:Ljava/lang/Boolean;
+  #347 = Utf8               getOrDefault
+  #348 = NameAndType        #347:#244     // getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #349 = InterfaceMethodref #12.#348      // java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #350 = Utf8               booleanValue
+  #351 = NameAndType        #350:#218     // booleanValue:()Z
+  #352 = Methodref          #239.#351     // java/lang/Boolean.booleanValue:()Z
+  #353 = Utf8               getAnimationBytes
+  #354 = Utf8               net/minecraft/util/ResourceLocation
+  #355 = Class              #354          // net/minecraft/util/ResourceLocation
+  #356 = Utf8               dragonarmourers
+  #357 = String             #356          // dragonarmourers
+  #358 = Utf8               (Ljava/lang/String;Ljava/lang/String;)V
+  #359 = NameAndType        #91:#358      // "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+  #360 = Methodref          #355.#359     // net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+  #361 = Utf8               net/minecraftforge/client/model/ModelLoaderRegistry
+  #362 = Class              #361          // net/minecraftforge/client/model/ModelLoaderRegistry
+  #363 = Utf8               getModel
+  #364 = Utf8               (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraftforge/client/model/IModel;
+  #365 = NameAndType        #363:#364     // getModel:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraftforge/client/model/IModel;
+  #366 = Methodref          #362.#365     // net/minecraftforge/client/model/ModelLoaderRegistry.getModel:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraftforge/client/model/IModel;
+  #367 = Utf8               net/minecraftforge/client/model/IModel
+  #368 = Class              #367          // net/minecraftforge/client/model/IModel
+  #369 = Utf8               getDefaultState
+  #370 = Utf8               ()Lnet/minecraftforge/common/model/IModelState;
+  #371 = NameAndType        #369:#370     // getDefaultState:()Lnet/minecraftforge/common/model/IModelState;
+  #372 = InterfaceMethodref #368.#371     // net/minecraftforge/client/model/IModel.getDefaultState:()Lnet/minecraftforge/common/model/IModelState;
+  #373 = Utf8               net/minecraft/client/renderer/vertex/DefaultVertexFormats
+  #374 = Class              #373          // net/minecraft/client/renderer/vertex/DefaultVertexFormats
+  #375 = Utf8               field_176599_b
+  #376 = Utf8               Lnet/minecraft/client/renderer/vertex/VertexFormat;
+  #377 = NameAndType        #375:#376     // field_176599_b:Lnet/minecraft/client/renderer/vertex/VertexFormat;
+  #378 = Fieldref           #374.#377     // net/minecraft/client/renderer/vertex/DefaultVertexFormats.field_176599_b:Lnet/minecraft/client/renderer/vertex/VertexFormat;
+  #379 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #380 = MethodType         #379          //  (Ljava/lang/Object;)Ljava/lang/Object;
+  #381 = NameAndType        #169:#170     // lambda$null$0:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #382 = Methodref          #2.#381       // eos/moe/armourers/ModelData.lambda$null$0:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #383 = MethodHandle       6:#382        // REF_invokeStatic eos/moe/armourers/ModelData.lambda$null$0:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #384 = MethodType         #170          //  (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #385 = Utf8               apply
+  #386 = Utf8               ()Ljava/util/function/Function;
+  #387 = NameAndType        #385:#386     // apply:()Ljava/util/function/Function;
+  #388 = InvokeDynamic      #1:#387       // #1:apply:()Ljava/util/function/Function;
+  #389 = Utf8               bake
+  #390 = Utf8               (Lnet/minecraftforge/common/model/IModelState;Lnet/minecraft/client/renderer/vertex/VertexFormat;Ljava/util/function/Function;)Lnet/minecraft/client/renderer/block/model/IBakedModel;
+  #391 = NameAndType        #389:#390     // bake:(Lnet/minecraftforge/common/model/IModelState;Lnet/minecraft/client/renderer/vertex/VertexFormat;Ljava/util/function/Function;)Lnet/minecraft/client/renderer/block/model/IBakedModel;
+  #392 = InterfaceMethodref #368.#391     // net/minecraftforge/client/model/IModel.bake:(Lnet/minecraftforge/common/model/IModelState;Lnet/minecraft/client/renderer/vertex/VertexFormat;Ljava/util/function/Function;)Lnet/minecraft/client/renderer/block/model/IBakedModel;
+  #393 = Utf8               (Lnet/minecraft/client/renderer/block/model/IBakedModel;)V
+  #394 = NameAndType        #91:#393      // "<init>":(Lnet/minecraft/client/renderer/block/model/IBakedModel;)V
+  #395 = Methodref          #305.#394     // eos/moe/armourers/gg."<init>":(Lnet/minecraft/client/renderer/block/model/IBakedModel;)V
+  #396 = Utf8               getScale
+  #397 = Utf8               Signature
+  #398 = Utf8               Code
+  #399 = Utf8               LocalVariableTable
+  #400 = Utf8               LineNumberTable
+  #401 = Utf8               Exceptions
+  #402 = Utf8               (Ljava/lang/String;)Lcom/google/common/util/concurrent/ListenableFuture<Leos/moe/armourers/gg;>;
+  #403 = Utf8               ()Ljava/util/Map<Ljava/lang/String;Ljava/lang/Boolean;>;
+  #404 = Utf8               StackMapTable
+  #405 = Utf8               BootstrapMethods
+  #406 = Utf8               SourceFile
+  #407 = Utf8               InnerClasses
+{
+  private byte[] animationBytes;
+    descriptor: [B
+    flags: (0x0002) ACC_PRIVATE
+
+  private double scale;
+    descriptor: D
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String name;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private eos.moe.armourers.gg transformBakedModel;
+    descriptor: Leos/moe/armourers/gg;
+    flags: (0x0002) ACC_PRIVATE
+
+  private eos.moe.armourers.ModelData$Texture textureBytes;
+    descriptor: Leos/moe/armourers/ModelData$Texture;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.util.Map<java.lang.String, java.lang.Boolean> setting;
+    descriptor: Ljava/util/Map;
+    flags: (0x0002) ACC_PRIVATE
+    Signature: #36                          // Ljava/util/Map<Ljava/lang/String;Ljava/lang/Boolean;>;
+
+  private byte[] modelBytes;
+    descriptor: [B
+    flags: (0x0002) ACC_PRIVATE
+
+  private eos.moe.armourers.ModelData$Texture glowTextureBytes;
+    descriptor: Leos/moe/armourers/ModelData$Texture;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String skinType;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private static com.google.gson.Gson gson;
+    descriptor: Lcom/google/gson/Gson;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+
+  private double trans;
+    descriptor: D
+    flags: (0x0002) ACC_PRIVATE
+
+  public byte[] getModelBytes();
+    descriptor: ()[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #46                 // Field modelBytes:[B
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ModelData;
+      LineNumberTable:
+        line 180: 0
+
+  public java.lang.String getName();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #52                 // Field name:Ljava/lang/String;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ModelData;
+      LineNumberTable:
+        line 38: 0
+
+  private static com.google.common.util.concurrent.ListenableFuture<eos.moe.armourers.gg> loadModel(java.lang.String) throws java.lang.Exception;
+    descriptor: (Ljava/lang/String;)Lcom/google/common/util/concurrent/ListenableFuture;
+    flags: (0x100a) ACC_PRIVATE, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: invokestatic  #62                 // Method net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+         3: aload_0
+         4: invokedynamic #82,  0             // InvokeDynamic #0:call:(Ljava/lang/String;)Ljava/util/concurrent/Callable;
+         9: invokevirtual #86                 // Method net/minecraft/client/Minecraft.func_152343_a:(Ljava/util/concurrent/Callable;)Lcom/google/common/util/concurrent/ListenableFuture;
+        12: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0     a   Ljava/lang/String;
+      LineNumberTable:
+        line 224: 0
+    Exceptions:
+      throws java.lang.Exception
+    Signature: #402                         // (Ljava/lang/String;)Lcom/google/common/util/concurrent/ListenableFuture<Leos/moe/armourers/gg;>;
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: new           #90                 // class com/google/gson/Gson
+         3: dup
+         4: invokespecial #93                 // Method com/google/gson/Gson."<init>":()V
+         7: putstatic     #95                 // Field gson:Lcom/google/gson/Gson;
+        10: return
+      LineNumberTable:
+        line 175: 0
+
+  public eos.moe.armourers.gg getTransformBakedModel();
+    descriptor: ()Leos/moe/armourers/gg;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #98                 // Field transformBakedModel:Leos/moe/armourers/gg;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ModelData;
+      LineNumberTable:
+        line 100: 0
+
+  public java.util.Map<java.lang.String, java.lang.Boolean> getSetting();
+    descriptor: ()Ljava/util/Map;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #102                // Field setting:Ljava/util/Map;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ModelData;
+      LineNumberTable:
+        line 22: 0
+    Signature: #403                         // ()Ljava/util/Map<Ljava/lang/String;Ljava/lang/Boolean;>;
+
+  public java.lang.String getSkinType();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #105                // Field skinType:Ljava/lang/String;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ModelData;
+      LineNumberTable:
+        line 99: 0
+
+  public double getTrans();
+    descriptor: ()D
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #109                // Field trans:D
+         4: dreturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ModelData;
+      LineNumberTable:
+        line 81: 0
+
+  public eos.moe.armourers.ModelData$Texture getTexture();
+    descriptor: ()Leos/moe/armourers/ModelData$Texture;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #113                // Field textureBytes:Leos/moe/armourers/ModelData$Texture;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ModelData;
+      LineNumberTable:
+        line 132: 0
+
+  public static java.lang.String serialize(net.minecraft.client.resources.data.AnimationMetadataSection);
+    descriptor: (Lnet/minecraft/client/resources/data/AnimationMetadataSection;)Ljava/lang/String;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=4, args_size=1
+         0: new           #117                // class com/google/gson/JsonObject
+         3: dup
+         4: invokespecial #118                // Method com/google/gson/JsonObject."<init>":()V
+         7: dup
+         8: astore_1
+         9: ldc           #120                // String frametime
+        11: aload_0
+        12: dup_x2
+        13: invokevirtual #126                // Method net/minecraft/client/resources/data/AnimationMetadataSection.func_110469_d:()I
+        16: invokestatic  #132                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        19: invokevirtual #136                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+        22: invokevirtual #139                // Method net/minecraft/client/resources/data/AnimationMetadataSection.func_110473_c:()I
+        25: ifle          83
+        28: new           #141                // class com/google/gson/JsonArray
+        31: dup
+        32: invokespecial #142                // Method com/google/gson/JsonArray."<init>":()V
+        35: astore_2
+        36: iconst_0
+        37: dup
+        38: istore_3
+        39: aload_0
+        40: invokevirtual #139                // Method net/minecraft/client/resources/data/AnimationMetadataSection.func_110473_c:()I
+        43: if_icmpge     76
+        46: new           #144                // class com/google/gson/JsonPrimitive
+        49: aload_2
+        50: dup_x1
+        51: dup
+        52: pop2
+        53: dup
+        54: aload_0
+        55: iload_3
+        56: invokevirtual #148                // Method net/minecraft/client/resources/data/AnimationMetadataSection.func_110468_c:(I)I
+        59: iinc          3, 1
+        62: invokestatic  #132                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        65: invokespecial #151                // Method com/google/gson/JsonPrimitive."<init>":(Ljava/lang/Number;)V
+        68: invokevirtual #155                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+        71: iload_3
+        72: goto          39
+        75: athrow
+        76: aload_1
+        77: ldc           #157                // String frames
+        79: aload_2
+        80: invokevirtual #160                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+        83: new           #117                // class com/google/gson/JsonObject
+        86: dup
+        87: invokespecial #118                // Method com/google/gson/JsonObject."<init>":()V
+        90: dup
+        91: astore_2
+        92: dup
+        93: ldc           #162                // String animation
+        95: aload_1
+        96: invokevirtual #160                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+        99: invokevirtual #165                // Method com/google/gson/JsonObject.toString:()Ljava/lang/String;
+       102: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     103     0     a   Lnet/minecraft/client/resources/data/AnimationMetadataSection;
+      LineNumberTable:
+        line 162: 0
+        line 161: 9
+        line 524: 22
+        line 269: 28
+        line 410: 36
+        line 393: 46
+        line 410: 71
+        line 246: 76
+        line 349: 83
+        line 286: 92
+        line 585: 99
+      StackMapTable: number_of_entries = 4
+        frame_type = 255 /* full_frame */
+          offset_delta = 39
+          locals = [ class net/minecraft/client/resources/data/AnimationMetadataSection, class com/google/gson/JsonObject, class com/google/gson/JsonArray, int ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 35
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class net/minecraft/client/resources/data/AnimationMetadataSection, class com/google/gson/JsonObject, class com/google/gson/JsonArray, int ]
+          stack = []
+        frame_type = 249 /* chop */
+          offset_delta = 6
+
+  private static net.minecraft.client.renderer.texture.TextureAtlasSprite lambda$null$0(net.minecraft.util.ResourceLocation);
+    descriptor: (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+    flags: (0x100a) ACC_PRIVATE, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aconst_null
+         1: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0     a   Lnet/minecraft/util/ResourceLocation;
+      LineNumberTable:
+        line 190: 0
+
+  public eos.moe.armourers.ModelData(java.lang.String, byte[]) throws java.lang.Exception;
+    descriptor: (Ljava/lang/String;[B)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=10, locals=6, args_size=3
+         0: aload_1
+         1: aload_0
+         2: dup
+         3: dup_x2
+         4: dconst_0
+         5: dconst_1
+         6: aload_0
+         7: dup_x2
+         8: invokespecial #175                // Method java/lang/Object."<init>":()V
+        11: putfield      #177                // Field scale:D
+        14: putfield      #109                // Field trans:D
+        17: new           #179                // class java/util/HashMap
+        20: aload_0
+        21: dup
+        22: pop2
+        23: dup
+        24: invokespecial #180                // Method java/util/HashMap."<init>":()V
+        27: putfield      #102                // Field setting:Ljava/util/Map;
+        30: putfield      #52                 // Field name:Ljava/lang/String;
+        33: getstatic     #95                 // Field gson:Lcom/google/gson/Gson;
+        36: new           #182                // class java/lang/String
+        39: dup
+        40: aload_2
+        41: getstatic     #188                // Field java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+        44: invokespecial #191                // Method java/lang/String."<init>":([BLjava/nio/charset/Charset;)V
+        47: ldc           #117                // class com/google/gson/JsonObject
+        49: invokevirtual #195                // Method com/google/gson/Gson.fromJson:(Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+        52: checkcast     #117                // class com/google/gson/JsonObject
+        55: dup
+        56: astore_2
+        57: ldc           #196                // String setting
+        59: invokevirtual #200                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+        62: ifeq          240
+        65: aload_2
+        66: ldc           #196                // String setting
+        68: invokevirtual #204                // Method com/google/gson/JsonObject.getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+        71: dup
+        72: astore_3
+        73: invokevirtual #208                // Method com/google/gson/JsonObject.entrySet:()Ljava/util/Set;
+        76: invokeinterface #214,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        81: astore        4
+        83: aload         4
+        85: invokeinterface #220,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        90: ifeq          157
+        93: aload         4
+        95: invokeinterface #223,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       100: checkcast     #10                 // class java/util/Map$Entry
+       103: dup
+       104: astore        5
+       106: invokeinterface #226,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       111: checkcast     #228                // class com/google/gson/JsonElement
+       114: invokevirtual #231                // Method com/google/gson/JsonElement.isJsonPrimitive:()Z
+       117: ifeq          83
+       120: aload_0
+       121: getfield      #102                // Field setting:Ljava/util/Map;
+       124: aload         5
+       126: invokeinterface #234,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+       131: aload         5
+       133: invokeinterface #226,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       138: checkcast     #228                // class com/google/gson/JsonElement
+       141: invokevirtual #237                // Method com/google/gson/JsonElement.getAsBoolean:()Z
+       144: invokestatic  #242                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+       147: invokeinterface #246,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       152: pop
+       153: goto          83
+       156: athrow
+       157: aload_3
+       158: ldc           #248                // String type
+       160: invokevirtual #200                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+       163: ifeq          179
+       166: aload_0
+       167: aload_3
+       168: ldc           #248                // String type
+       170: invokevirtual #252                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+       173: invokevirtual #255                // Method com/google/gson/JsonElement.getAsString:()Ljava/lang/String;
+       176: putfield      #105                // Field skinType:Ljava/lang/String;
+       179: aload_3
+       180: ldc_w         #256                // String scale
+       183: invokevirtual #200                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+       186: ifeq          210
+       189: aload_0
+       190: aload_3
+       191: ldc_w         #256                // String scale
+       194: invokevirtual #252                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+       197: invokevirtual #259                // Method com/google/gson/JsonElement.getAsDouble:()D
+       200: putfield      #177                // Field scale:D
+       203: aload_3
+       204: goto          211
+       207: athrow
+       208: astore        4
+       210: aload_3
+       211: ldc_w         #261                // String offset
+       214: invokevirtual #200                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+       217: ifeq          240
+       220: aload_0
+       221: aload_3
+       222: ldc_w         #261                // String offset
+       225: invokevirtual #252                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+       228: invokevirtual #259                // Method com/google/gson/JsonElement.getAsDouble:()D
+       231: putfield      #109                // Field trans:D
+       234: aload_0
+       235: goto          241
+       238: astore        4
+       240: aload_0
+       241: getfield      #105                // Field skinType:Ljava/lang/String;
+       244: ifnonnull     254
+       247: aload_0
+       248: ldc_w         #263                // String outfit
+       251: putfield      #105                // Field skinType:Ljava/lang/String;
+       254: aload_2
+       255: ldc_w         #265                // String display
+       258: invokevirtual #200                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+       261: ifeq          376
+       264: new           #117                // class com/google/gson/JsonObject
+       267: dup
+       268: invokespecial #118                // Method com/google/gson/JsonObject."<init>":()V
+       271: astore_3
+       272: ldc_w         #265                // String display
+       275: aload_3
+       276: dup_x1
+       277: ldc_w         #267                // String parent
+       280: new           #144                // class com/google/gson/JsonPrimitive
+       283: dup
+       284: ldc_w         #269                // String builtin/entity
+       287: invokespecial #272                // Method com/google/gson/JsonPrimitive."<init>":(Ljava/lang/String;)V
+       290: invokevirtual #160                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+       293: aload_2
+       294: ldc_w         #265                // String display
+       297: invokevirtual #252                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+       300: invokevirtual #160                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+       303: getstatic     #277                // Field eos/moe/armourers/uk.j:Ljava/util/Map;
+       306: new           #279                // class java/lang/StringBuilder
+       309: dup
+       310: invokespecial #280                // Method java/lang/StringBuilder."<init>":()V
+       313: iconst_0
+       314: ldc_w         #282                // String models/
+       317: invokevirtual #286                // Method java/lang/StringBuilder.insert:(ILjava/lang/String;)Ljava/lang/StringBuilder;
+       320: aload_1
+       321: invokevirtual #290                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       324: ldc_w         #292                // String .json
+       327: invokevirtual #290                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       330: invokevirtual #293                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       333: aload_3
+       334: invokevirtual #165                // Method com/google/gson/JsonObject.toString:()Ljava/lang/String;
+       337: getstatic     #188                // Field java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+       340: invokevirtual #297                // Method java/lang/String.getBytes:(Ljava/nio/charset/Charset;)[B
+       343: invokeinterface #246,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       348: pop
+       349: aload_0
+       350: aload_1
+       351: invokestatic  #299                // Method loadModel:(Ljava/lang/String;)Lcom/google/common/util/concurrent/ListenableFuture;
+       354: invokeinterface #303,  1          // InterfaceMethod com/google/common/util/concurrent/ListenableFuture.get:()Ljava/lang/Object;
+       359: checkcast     #305                // class eos/moe/armourers/gg
+       362: putfield      #98                 // Field transformBakedModel:Leos/moe/armourers/gg;
+       365: aload_2
+       366: goto          377
+       369: astore        4
+       371: aload         4
+       373: invokevirtual #308                // Method java/lang/Exception.printStackTrace:()V
+       376: aload_2
+       377: ldc_w         #310                // String model
+       380: invokevirtual #200                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+       383: aload_0
+       384: swap
+       385: ifeq          411
+       388: invokestatic  #314                // Method java/util/Base64.getDecoder:()Ljava/util/Base64$Decoder;
+       391: aload_2
+       392: ldc_w         #310                // String model
+       395: invokevirtual #252                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+       398: invokevirtual #255                // Method com/google/gson/JsonElement.getAsString:()Ljava/lang/String;
+       401: invokevirtual #318                // Method java/util/Base64$Decoder.decode:(Ljava/lang/String;)[B
+       404: putfield      #46                 // Field modelBytes:[B
+       407: aload_2
+       408: goto          421
+       411: iconst_0
+       412: newarray       byte
+       414: iconst_1
+       415: dup
+       416: pop2
+       417: putfield      #46                 // Field modelBytes:[B
+       420: aload_2
+       421: ldc           #162                // String animation
+       423: invokevirtual #200                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+       426: ifeq          448
+       429: aload_0
+       430: invokestatic  #314                // Method java/util/Base64.getDecoder:()Ljava/util/Base64$Decoder;
+       433: aload_2
+       434: ldc           #162                // String animation
+       436: invokevirtual #252                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+       439: invokevirtual #255                // Method com/google/gson/JsonElement.getAsString:()Ljava/lang/String;
+       442: invokevirtual #318                // Method java/util/Base64$Decoder.decode:(Ljava/lang/String;)[B
+       445: putfield      #320                // Field animationBytes:[B
+       448: aload_2
+       449: ldc_w         #322                // String textures
+       452: invokevirtual #200                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+       455: ifeq          568
+       458: aload_2
+       459: ldc_w         #322                // String textures
+       462: invokevirtual #326                // Method com/google/gson/JsonObject.getAsJsonArray:(Ljava/lang/String;)Lcom/google/gson/JsonArray;
+       465: dup
+       466: astore_3
+       467: invokevirtual #327                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+       470: astore        4
+       472: aload         4
+       474: invokeinterface #220,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       479: ifeq          568
+       482: aload         4
+       484: invokeinterface #223,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       489: checkcast     #228                // class com/google/gson/JsonElement
+       492: dup
+       493: astore        5
+       495: instanceof    #117                // class com/google/gson/JsonObject
+       498: ifeq          472
+       501: aload         5
+       503: checkcast     #117                // class com/google/gson/JsonObject
+       506: dup
+       507: astore_1
+       508: ldc_w         #328                // String name
+       511: invokevirtual #252                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+       514: invokevirtual #255                // Method com/google/gson/JsonElement.getAsString:()Ljava/lang/String;
+       517: dup
+       518: astore_2
+       519: ldc_w         #330                // String _e
+       522: invokevirtual #334                // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+       525: ifne          538
+       528: aload_2
+       529: ldc_w         #336                // String glow
+       532: invokevirtual #334                // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+       535: ifeq          553
+       538: aload_0
+       539: new           #7                  // class eos/moe/armourers/ModelData$Texture
+       542: dup
+       543: aload_1
+       544: invokespecial #339                // Method eos/moe/armourers/ModelData$Texture."<init>":(Lcom/google/gson/JsonObject;)V
+       547: putfield      #341                // Field glowTextureBytes:Leos/moe/armourers/ModelData$Texture;
+       550: goto          472
+       553: aload_0
+       554: new           #7                  // class eos/moe/armourers/ModelData$Texture
+       557: dup
+       558: aload_1
+       559: invokespecial #339                // Method eos/moe/armourers/ModelData$Texture."<init>":(Lcom/google/gson/JsonObject;)V
+       562: putfield      #113                // Field textureBytes:Leos/moe/armourers/ModelData$Texture;
+       565: goto          472
+       568: return
+      Exception table:
+         from    to  target type
+           189   203   208   Class java/lang/NumberFormatException
+           220   234   238   Class java/lang/NumberFormatException
+           349   365   369   Class java/lang/Exception
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     569     0     a   Leos/moe/armourers/ModelData;
+            0     569     1     a   Ljava/lang/String;
+            0     569     2     a   [B
+      LineNumberTable:
+        line 11: 0
+        line 234: 11
+        line 148: 14
+        line 113: 17
+        line 119: 30
+        line 216: 33
+        line 166: 57
+        line 110: 65
+        line 44: 73
+        line 36: 106
+        line 203: 120
+        line 18: 153
+        line 92: 157
+        line 227: 166
+        line 94: 179
+        line 194: 189
+        line 167: 204
+        line 157: 208
+        line 181: 210
+        line 14: 220
+        line 124: 235
+        line 65: 238
+        line 57: 240
+        line 1: 247
+        line 192: 254
+        line 223: 264
+        line 95: 272
+        line 29: 293
+        line 118: 303
+        line 47: 349
+        line 64: 366
+        line 66: 369
+        line 85: 371
+        line 6: 376
+        line 39: 388
+        line 16: 411
+        line 53: 420
+        line 236: 429
+        line 26: 448
+        line 62: 458
+        line 17: 467
+        line 24: 495
+        line 145: 501
+        line 122: 508
+        line 197: 519
+        line 121: 538
+        line 49: 553
+        line 169: 565
+        line 96: 568
+      StackMapTable: number_of_entries = 22
+        frame_type = 255 /* full_frame */
+          offset_delta = 83
+          locals = [ class eos/moe/armourers/ModelData, class java/lang/String, class com/google/gson/JsonObject, class com/google/gson/JsonObject, class java/util/Iterator ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 72
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ModelData, class java/lang/String, class com/google/gson/JsonObject, class com/google/gson/JsonObject, class java/util/Iterator ]
+          stack = []
+        frame_type = 21 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 27
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ModelData, class java/lang/String, class com/google/gson/JsonObject, class com/google/gson/JsonObject, class java/util/Iterator ]
+          stack = [ class java/lang/NumberFormatException ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class eos/moe/armourers/ModelData, class java/lang/String, class com/google/gson/JsonObject, class com/google/gson/JsonObject, class java/lang/Object ]
+          stack = []
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class com/google/gson/JsonObject ]
+        frame_type = 90 /* same_locals_1_stack_item */
+          stack = [ class java/lang/NumberFormatException ]
+        frame_type = 249 /* chop */
+          offset_delta = 1
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/ModelData ]
+        frame_type = 12 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 114
+          locals = [ class eos/moe/armourers/ModelData, class java/lang/String, class com/google/gson/JsonObject, class com/google/gson/JsonObject ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 250 /* chop */
+          offset_delta = 6
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class com/google/gson/JsonObject ]
+        frame_type = 97 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/ModelData ]
+        frame_type = 73 /* same_locals_1_stack_item */
+          stack = [ class com/google/gson/JsonObject ]
+        frame_type = 26 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 23
+          locals = [ class eos/moe/armourers/ModelData, class java/lang/Object, class java/lang/Object, class com/google/gson/JsonArray, class java/util/Iterator ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 65
+          locals = [ class eos/moe/armourers/ModelData, class com/google/gson/JsonObject, class java/lang/String, class com/google/gson/JsonArray, class java/util/Iterator, class com/google/gson/JsonElement ]
+          stack = []
+        frame_type = 14 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 14
+          locals = [ class eos/moe/armourers/ModelData, class java/lang/Object, class java/lang/Object ]
+          stack = []
+    Exceptions:
+      throws java.lang.Exception
+
+  public eos.moe.armourers.ModelData$Texture getGlowTexture();
+    descriptor: ()Leos/moe/armourers/ModelData$Texture;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #341                // Field glowTextureBytes:Leos/moe/armourers/ModelData$Texture;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ModelData;
+      LineNumberTable:
+        line 138: 0
+
+  public boolean getSetting(java.lang.String);
+    descriptor: (Ljava/lang/String;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #102                // Field setting:Ljava/util/Map;
+         4: aload_1
+         5: getstatic     #346                // Field java/lang/Boolean.FALSE:Ljava/lang/Boolean;
+         8: invokeinterface #349,  3          // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        13: checkcast     #239                // class java/lang/Boolean
+        16: invokevirtual #352                // Method java/lang/Boolean.booleanValue:()Z
+        19: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      20     0     a   Leos/moe/armourers/ModelData;
+            0      20     1     a   Ljava/lang/String;
+      LineNumberTable:
+        line 83: 0
+
+  public byte[] getAnimationBytes();
+    descriptor: ()[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #320                // Field animationBytes:[B
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ModelData;
+      LineNumberTable:
+        line 220: 0
+
+  private static eos.moe.armourers.gg lambda$loadModel$1(java.lang.String) throws java.lang.Exception;
+    descriptor: (Ljava/lang/String;)Leos/moe/armourers/gg;
+    flags: (0x100a) ACC_PRIVATE, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=6, locals=2, args_size=1
+         0: new           #355                // class net/minecraft/util/ResourceLocation
+         3: dup
+         4: ldc_w         #357                // String dragonarmourers
+         7: aload_0
+         8: invokespecial #360                // Method net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+        11: invokestatic  #366                // Method net/minecraftforge/client/model/ModelLoaderRegistry.getModel:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraftforge/client/model/IModel;
+        14: astore_1
+        15: new           #305                // class eos/moe/armourers/gg
+        18: dup
+        19: aload_1
+        20: dup
+        21: invokeinterface #372,  1          // InterfaceMethod net/minecraftforge/client/model/IModel.getDefaultState:()Lnet/minecraftforge/common/model/IModelState;
+        26: getstatic     #378                // Field net/minecraft/client/renderer/vertex/DefaultVertexFormats.field_176599_b:Lnet/minecraft/client/renderer/vertex/VertexFormat;
+        29: invokedynamic #388,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+        34: invokeinterface #392,  4          // InterfaceMethod net/minecraftforge/client/model/IModel.bake:(Lnet/minecraftforge/common/model/IModelState;Lnet/minecraft/client/renderer/vertex/VertexFormat;Ljava/util/function/Function;)Lnet/minecraft/client/renderer/block/model/IBakedModel;
+        39: invokespecial #395                // Method eos/moe/armourers/gg."<init>":(Lnet/minecraft/client/renderer/block/model/IBakedModel;)V
+        42: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0     a   Ljava/lang/String;
+      LineNumberTable:
+        line 104: 0
+        line 190: 15
+    Exceptions:
+      throws java.lang.Exception
+
+  public double getScale();
+    descriptor: ()D
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #177                // Field scale:D
+         4: dreturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ModelData;
+      LineNumberTable:
+        line 70: 0
+}
+BootstrapMethods:
+  0: #69 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #71 ()Ljava/lang/Object;
+      #76 REF_invokeStatic eos/moe/armourers/ModelData.lambda$loadModel$1:(Ljava/lang/String;)Leos/moe/armourers/gg;
+      #78 ()Leos/moe/armourers/gg;
+  1: #69 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #380 (Ljava/lang/Object;)Ljava/lang/Object;
+      #383 REF_invokeStatic eos/moe/armourers/ModelData.lambda$null$0:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+      #384 (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+SourceFile: "mo"
+InnerClasses:
+  public static #8= #7 of #2;             // Texture=class eos/moe/armourers/ModelData$Texture of class eos/moe/armourers/ModelData
+  public static #13= #10 of #12;          // Entry=class java/util/Map$Entry of class java/util/Map
+  public static #18= #15 of #17;          // Decoder=class java/util/Base64$Decoder of class java/util/Base64
+  public static final #23= #20 of #22;    // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles

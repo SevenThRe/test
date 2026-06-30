@@ -1,0 +1,2988 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/journeymap-1.12.2-5.7.0(1)(2).jar!/org/eclipse/jetty/util/BlockingArrayQueue.class
+  Last modified 25-����-20; size 12700 bytes
+  SHA-256 checksum fc34a9da2057081194791e4679bec44fc64919b31ab456889b50ba4ae10d9ad5
+  Compiled from "BlockingArrayQueue.java"
+public class org.eclipse.jetty.util.BlockingArrayQueue<E extends java.lang.Object> extends java.util.AbstractList<E> implements java.util.concurrent.BlockingQueue<E>
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // org/eclipse/jetty/util/BlockingArrayQueue
+  super_class: #5                         // java/util/AbstractList
+  interfaces: 1, fields: 12, methods: 30, attributes: 3
+Constant pool:
+    #1 = Utf8               org/eclipse/jetty/util/BlockingArrayQueue
+    #2 = Class              #1            // org/eclipse/jetty/util/BlockingArrayQueue
+    #3 = Utf8               <E:Ljava/lang/Object;>Ljava/util/AbstractList<TE;>;Ljava/util/concurrent/BlockingQueue<TE;>;
+    #4 = Utf8               java/util/AbstractList
+    #5 = Class              #4            // java/util/AbstractList
+    #6 = Utf8               java/util/concurrent/BlockingQueue
+    #7 = Class              #6            // java/util/concurrent/BlockingQueue
+    #8 = Utf8               BlockingArrayQueue.java
+    #9 = Utf8               org/eclipse/jetty/util/BlockingArrayQueue$Itr
+   #10 = Class              #9            // org/eclipse/jetty/util/BlockingArrayQueue$Itr
+   #11 = Utf8               Itr
+   #12 = Utf8               HEAD_OFFSET
+   #13 = Utf8               I
+   #14 = Utf8               TAIL_OFFSET
+   #15 = Utf8               DEFAULT_CAPACITY
+   #16 = Integer            128
+   #17 = Utf8               DEFAULT_GROWTH
+   #18 = Integer            64
+   #19 = Utf8               _maxCapacity
+   #20 = Utf8               _growCapacity
+   #21 = Utf8               _indexes
+   #22 = Utf8               [I
+   #23 = Utf8               _tailLock
+   #24 = Utf8               Ljava/util/concurrent/locks/Lock;
+   #25 = Utf8               _size
+   #26 = Utf8               Ljava/util/concurrent/atomic/AtomicInteger;
+   #27 = Utf8               _headLock
+   #28 = Utf8               _notEmpty
+   #29 = Utf8               Ljava/util/concurrent/locks/Condition;
+   #30 = Utf8               _elements
+   #31 = Utf8               [Ljava/lang/Object;
+   #32 = Utf8               <init>
+   #33 = Utf8               ()V
+   #34 = NameAndType        #32:#33       // "<init>":()V
+   #35 = Methodref          #5.#34        // java/util/AbstractList."<init>":()V
+   #36 = NameAndType        #14:#13       // TAIL_OFFSET:I
+   #37 = Fieldref           #2.#36        // org/eclipse/jetty/util/BlockingArrayQueue.TAIL_OFFSET:I
+   #38 = NameAndType        #21:#22       // _indexes:[I
+   #39 = Fieldref           #2.#38        // org/eclipse/jetty/util/BlockingArrayQueue._indexes:[I
+   #40 = Utf8               java/util/concurrent/locks/ReentrantLock
+   #41 = Class              #40           // java/util/concurrent/locks/ReentrantLock
+   #42 = Methodref          #41.#34       // java/util/concurrent/locks/ReentrantLock."<init>":()V
+   #43 = NameAndType        #23:#24       // _tailLock:Ljava/util/concurrent/locks/Lock;
+   #44 = Fieldref           #2.#43        // org/eclipse/jetty/util/BlockingArrayQueue._tailLock:Ljava/util/concurrent/locks/Lock;
+   #45 = Utf8               java/util/concurrent/atomic/AtomicInteger
+   #46 = Class              #45           // java/util/concurrent/atomic/AtomicInteger
+   #47 = Methodref          #46.#34       // java/util/concurrent/atomic/AtomicInteger."<init>":()V
+   #48 = NameAndType        #25:#26       // _size:Ljava/util/concurrent/atomic/AtomicInteger;
+   #49 = Fieldref           #2.#48        // org/eclipse/jetty/util/BlockingArrayQueue._size:Ljava/util/concurrent/atomic/AtomicInteger;
+   #50 = NameAndType        #27:#24       // _headLock:Ljava/util/concurrent/locks/Lock;
+   #51 = Fieldref           #2.#50        // org/eclipse/jetty/util/BlockingArrayQueue._headLock:Ljava/util/concurrent/locks/Lock;
+   #52 = Utf8               java/util/concurrent/locks/Lock
+   #53 = Class              #52           // java/util/concurrent/locks/Lock
+   #54 = Utf8               newCondition
+   #55 = Utf8               ()Ljava/util/concurrent/locks/Condition;
+   #56 = NameAndType        #54:#55       // newCondition:()Ljava/util/concurrent/locks/Condition;
+   #57 = InterfaceMethodref #53.#56       // java/util/concurrent/locks/Lock.newCondition:()Ljava/util/concurrent/locks/Condition;
+   #58 = NameAndType        #28:#29       // _notEmpty:Ljava/util/concurrent/locks/Condition;
+   #59 = Fieldref           #2.#58        // org/eclipse/jetty/util/BlockingArrayQueue._notEmpty:Ljava/util/concurrent/locks/Condition;
+   #60 = Utf8               java/lang/Object
+   #61 = Class              #60           // java/lang/Object
+   #62 = NameAndType        #30:#31       // _elements:[Ljava/lang/Object;
+   #63 = Fieldref           #2.#62        // org/eclipse/jetty/util/BlockingArrayQueue._elements:[Ljava/lang/Object;
+   #64 = NameAndType        #20:#13       // _growCapacity:I
+   #65 = Fieldref           #2.#64        // org/eclipse/jetty/util/BlockingArrayQueue._growCapacity:I
+   #66 = Integer            2147483647
+   #67 = NameAndType        #19:#13       // _maxCapacity:I
+   #68 = Fieldref           #2.#67        // org/eclipse/jetty/util/BlockingArrayQueue._maxCapacity:I
+   #69 = Utf8               this
+   #70 = Utf8               Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+   #71 = Utf8               Lorg/eclipse/jetty/util/BlockingArrayQueue;
+   #72 = Utf8               (I)V
+   #73 = Utf8               maxCapacity
+   #74 = Utf8               (II)V
+   #75 = Utf8               capacity
+   #76 = Utf8               growBy
+   #77 = Utf8               (III)V
+   #78 = Utf8               java/lang/IllegalArgumentException
+   #79 = Class              #78           // java/lang/IllegalArgumentException
+   #80 = Methodref          #79.#34       // java/lang/IllegalArgumentException."<init>":()V
+   #81 = Utf8               clear
+   #82 = Utf8               lock
+   #83 = NameAndType        #82:#33       // lock:()V
+   #84 = InterfaceMethodref #53.#83       // java/util/concurrent/locks/Lock.lock:()V
+   #85 = NameAndType        #12:#13       // HEAD_OFFSET:I
+   #86 = Fieldref           #2.#85        // org/eclipse/jetty/util/BlockingArrayQueue.HEAD_OFFSET:I
+   #87 = Utf8               set
+   #88 = NameAndType        #87:#72       // set:(I)V
+   #89 = Methodref          #46.#88       // java/util/concurrent/atomic/AtomicInteger.set:(I)V
+   #90 = Utf8               unlock
+   #91 = NameAndType        #90:#33       // unlock:()V
+   #92 = InterfaceMethodref #53.#91       // java/util/concurrent/locks/Lock.unlock:()V
+   #93 = Utf8               java/lang/Throwable
+   #94 = Class              #93           // java/lang/Throwable
+   #95 = Utf8               size
+   #96 = Utf8               ()I
+   #97 = Utf8               get
+   #98 = NameAndType        #97:#96       // get:()I
+   #99 = Methodref          #46.#98       // java/util/concurrent/atomic/AtomicInteger.get:()I
+  #100 = Utf8               iterator
+  #101 = Utf8               ()Ljava/util/Iterator;
+  #102 = Utf8               listIterator
+  #103 = Utf8               ()Ljava/util/ListIterator;
+  #104 = NameAndType        #102:#103     // listIterator:()Ljava/util/ListIterator;
+  #105 = Methodref          #2.#104       // org/eclipse/jetty/util/BlockingArrayQueue.listIterator:()Ljava/util/ListIterator;
+  #106 = Utf8               poll
+  #107 = Utf8               ()Ljava/lang/Object;
+  #108 = Utf8               decrementAndGet
+  #109 = NameAndType        #108:#96      // decrementAndGet:()I
+  #110 = Methodref          #46.#109      // java/util/concurrent/atomic/AtomicInteger.decrementAndGet:()I
+  #111 = Utf8               java/util/concurrent/locks/Condition
+  #112 = Class              #111          // java/util/concurrent/locks/Condition
+  #113 = Utf8               signal
+  #114 = NameAndType        #113:#33      // signal:()V
+  #115 = InterfaceMethodref #112.#114     // java/util/concurrent/locks/Condition.signal:()V
+  #116 = Utf8               head
+  #117 = Utf8               e
+  #118 = Utf8               TE;
+  #119 = Utf8               Ljava/lang/Object;
+  #120 = Utf8               peek
+  #121 = Utf8               remove
+  #122 = NameAndType        #106:#107     // poll:()Ljava/lang/Object;
+  #123 = Methodref          #2.#122       // org/eclipse/jetty/util/BlockingArrayQueue.poll:()Ljava/lang/Object;
+  #124 = Utf8               java/util/NoSuchElementException
+  #125 = Class              #124          // java/util/NoSuchElementException
+  #126 = Methodref          #125.#34      // java/util/NoSuchElementException."<init>":()V
+  #127 = Utf8               element
+  #128 = NameAndType        #120:#107     // peek:()Ljava/lang/Object;
+  #129 = Methodref          #2.#128       // org/eclipse/jetty/util/BlockingArrayQueue.peek:()Ljava/lang/Object;
+  #130 = Utf8               offer
+  #131 = Utf8               (Ljava/lang/Object;)Z
+  #132 = Utf8               java/util/Objects
+  #133 = Class              #132          // java/util/Objects
+  #134 = Utf8               requireNonNull
+  #135 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #136 = NameAndType        #134:#135     // requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+  #137 = Methodref          #133.#136     // java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+  #138 = Utf8               grow
+  #139 = Utf8               ()Z
+  #140 = NameAndType        #138:#139     // grow:()Z
+  #141 = Methodref          #2.#140       // org/eclipse/jetty/util/BlockingArrayQueue.grow:()Z
+  #142 = Utf8               getAndIncrement
+  #143 = NameAndType        #142:#96      // getAndIncrement:()I
+  #144 = Methodref          #46.#143      // java/util/concurrent/atomic/AtomicInteger.getAndIncrement:()I
+  #145 = Utf8               tail
+  #146 = Utf8               notEmpty
+  #147 = Utf8               Z
+  #148 = Utf8               add
+  #149 = NameAndType        #130:#131     // offer:(Ljava/lang/Object;)Z
+  #150 = Methodref          #2.#149       // org/eclipse/jetty/util/BlockingArrayQueue.offer:(Ljava/lang/Object;)Z
+  #151 = Utf8               java/lang/IllegalStateException
+  #152 = Class              #151          // java/lang/IllegalStateException
+  #153 = Methodref          #152.#34      // java/lang/IllegalStateException."<init>":()V
+  #154 = Utf8               put
+  #155 = Utf8               (Ljava/lang/Object;)V
+  #156 = Utf8               java/lang/InterruptedException
+  #157 = Class              #156          // java/lang/InterruptedException
+  #158 = Utf8               java/lang/UnsupportedOperationException
+  #159 = Class              #158          // java/lang/UnsupportedOperationException
+  #160 = Methodref          #159.#34      // java/lang/UnsupportedOperationException."<init>":()V
+  #161 = Utf8               o
+  #162 = Utf8               (Ljava/lang/Object;JLjava/util/concurrent/TimeUnit;)Z
+  #163 = Utf8               timeout
+  #164 = Utf8               J
+  #165 = Utf8               unit
+  #166 = Utf8               Ljava/util/concurrent/TimeUnit;
+  #167 = Utf8               take
+  #168 = Utf8               lockInterruptibly
+  #169 = NameAndType        #168:#33      // lockInterruptibly:()V
+  #170 = InterfaceMethodref #53.#169      // java/util/concurrent/locks/Lock.lockInterruptibly:()V
+  #171 = Utf8               await
+  #172 = NameAndType        #171:#33      // await:()V
+  #173 = InterfaceMethodref #112.#172     // java/util/concurrent/locks/Condition.await:()V
+  #174 = Utf8               ie
+  #175 = Utf8               Ljava/lang/InterruptedException;
+  #176 = Utf8               (JLjava/util/concurrent/TimeUnit;)Ljava/lang/Object;
+  #177 = Utf8               java/util/concurrent/TimeUnit
+  #178 = Class              #177          // java/util/concurrent/TimeUnit
+  #179 = Utf8               toNanos
+  #180 = Utf8               (J)J
+  #181 = NameAndType        #179:#180     // toNanos:(J)J
+  #182 = Methodref          #178.#181     // java/util/concurrent/TimeUnit.toNanos:(J)J
+  #183 = Utf8               awaitNanos
+  #184 = NameAndType        #183:#180     // awaitNanos:(J)J
+  #185 = InterfaceMethodref #112.#184     // java/util/concurrent/locks/Condition.awaitNanos:(J)J
+  #186 = Utf8               x
+  #187 = Utf8               time
+  #188 = Utf8               nanos
+  #189 = Utf8               isEmpty
+  #190 = NameAndType        #189:#139     // isEmpty:()Z
+  #191 = Methodref          #2.#190       // org/eclipse/jetty/util/BlockingArrayQueue.isEmpty:()Z
+  #192 = Utf8               equals
+  #193 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Z
+  #194 = NameAndType        #192:#193     // equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+  #195 = Methodref          #133.#194     // java/util/Objects.equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+  #196 = Utf8               (I)Ljava/lang/Object;
+  #197 = NameAndType        #121:#196     // remove:(I)Ljava/lang/Object;
+  #198 = Methodref          #2.#197       // org/eclipse/jetty/util/BlockingArrayQueue.remove:(I)Ljava/lang/Object;
+  #199 = Utf8               i
+  #200 = Utf8               remainingCapacity
+  #201 = Utf8               getCapacity
+  #202 = NameAndType        #201:#96      // getCapacity:()I
+  #203 = Methodref          #2.#202       // org/eclipse/jetty/util/BlockingArrayQueue.getCapacity:()I
+  #204 = NameAndType        #95:#96       // size:()I
+  #205 = Methodref          #2.#204       // org/eclipse/jetty/util/BlockingArrayQueue.size:()I
+  #206 = Utf8               drainTo
+  #207 = Utf8               (Ljava/util/Collection;)I
+  #208 = Utf8               c
+  #209 = Utf8               Ljava/util/Collection<-TE;>;
+  #210 = Utf8               Ljava/util/Collection;
+  #211 = Utf8               (Ljava/util/Collection;I)I
+  #212 = Utf8               maxElements
+  #213 = Utf8               java/lang/IndexOutOfBoundsException
+  #214 = Class              #213          // java/lang/IndexOutOfBoundsException
+  #215 = Utf8               java/lang/StringBuilder
+  #216 = Class              #215          // java/lang/StringBuilder
+  #217 = Methodref          #216.#34      // java/lang/StringBuilder."<init>":()V
+  #218 = Utf8               !(0<
+  #219 = String             #218          // !(0<
+  #220 = Utf8               append
+  #221 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #222 = NameAndType        #220:#221     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #223 = Methodref          #216.#222     // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #224 = Utf8               (I)Ljava/lang/StringBuilder;
+  #225 = NameAndType        #220:#224     // append:(I)Ljava/lang/StringBuilder;
+  #226 = Methodref          #216.#225     // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+  #227 = Utf8               <=
+  #228 = String             #227          // <=
+  #229 = Utf8               (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #230 = NameAndType        #220:#229     // append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #231 = Methodref          #216.#230     // java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #232 = Utf8               )
+  #233 = String             #232          // )
+  #234 = Utf8               toString
+  #235 = Utf8               ()Ljava/lang/String;
+  #236 = NameAndType        #234:#235     // toString:()Ljava/lang/String;
+  #237 = Methodref          #216.#236     // java/lang/StringBuilder.toString:()Ljava/lang/String;
+  #238 = Utf8               (Ljava/lang/String;)V
+  #239 = NameAndType        #32:#238      // "<init>":(Ljava/lang/String;)V
+  #240 = Methodref          #214.#239     // java/lang/IndexOutOfBoundsException."<init>":(Ljava/lang/String;)V
+  #241 = Utf8               index
+  #242 = Utf8               (ILjava/lang/Object;)V
+  #243 = Utf8               java/lang/NullPointerException
+  #244 = Class              #243          // java/lang/NullPointerException
+  #245 = Methodref          #244.#34      // java/lang/NullPointerException."<init>":()V
+  #246 = NameAndType        #148:#131     // add:(Ljava/lang/Object;)Z
+  #247 = Methodref          #2.#246       // org/eclipse/jetty/util/BlockingArrayQueue.add:(Ljava/lang/Object;)Z
+  #248 = Utf8               full
+  #249 = String             #248          // full
+  #250 = Methodref          #152.#239     // java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+  #251 = Utf8               incrementAndGet
+  #252 = NameAndType        #251:#96      // incrementAndGet:()I
+  #253 = Methodref          #46.#252      // java/util/concurrent/atomic/AtomicInteger.incrementAndGet:()I
+  #254 = Utf8               java/lang/System
+  #255 = Class              #254          // java/lang/System
+  #256 = Utf8               arraycopy
+  #257 = Utf8               (Ljava/lang/Object;ILjava/lang/Object;II)V
+  #258 = NameAndType        #256:#257     // arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+  #259 = Methodref          #255.#258     // java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+  #260 = Utf8               (ILjava/lang/Object;)Ljava/lang/Object;
+  #261 = Utf8               old
+  #262 = Utf8               (I)Ljava/util/ListIterator;
+  #263 = Class              #31           // "[Ljava/lang/Object;"
+  #264 = Utf8               (Lorg/eclipse/jetty/util/BlockingArrayQueue;[Ljava/lang/Object;I)V
+  #265 = NameAndType        #32:#264      // "<init>":(Lorg/eclipse/jetty/util/BlockingArrayQueue;[Ljava/lang/Object;I)V
+  #266 = Methodref          #10.#265      // org/eclipse/jetty/util/BlockingArrayQueue$Itr."<init>":(Lorg/eclipse/jetty/util/BlockingArrayQueue;[Ljava/lang/Object;I)V
+  #267 = Utf8               chunk
+  #268 = Utf8               elements
+  #269 = Utf8               getMaxCapacity
+  #270 = Utf8               newTail
+  #271 = Utf8               cut
+  #272 = Utf8               <clinit>
+  #273 = Utf8               org/eclipse/jetty/util/MemoryUtils
+  #274 = Class              #273          // org/eclipse/jetty/util/MemoryUtils
+  #275 = Utf8               getIntegersPerCacheLine
+  #276 = NameAndType        #275:#96      // getIntegersPerCacheLine:()I
+  #277 = Methodref          #274.#276     // org/eclipse/jetty/util/MemoryUtils.getIntegersPerCacheLine:()I
+  #278 = Utf8               ConstantValue
+  #279 = Utf8               Code
+  #280 = Utf8               LocalVariableTable
+  #281 = Utf8               LocalVariableTypeTable
+  #282 = Utf8               LineNumberTable
+  #283 = Utf8               StackMapTable
+  #284 = Utf8               Signature
+  #285 = Utf8               ()Ljava/util/Iterator<TE;>;
+  #286 = Utf8               ()TE;
+  #287 = Utf8               (TE;)Z
+  #288 = Utf8               Exceptions
+  #289 = Utf8               (TE;)V
+  #290 = Utf8               (TE;JLjava/util/concurrent/TimeUnit;)Z
+  #291 = Utf8               (JLjava/util/concurrent/TimeUnit;)TE;
+  #292 = Utf8               (Ljava/util/Collection<-TE;>;)I
+  #293 = Utf8               (Ljava/util/Collection<-TE;>;I)I
+  #294 = Utf8               (I)TE;
+  #295 = Utf8               (ITE;)V
+  #296 = Utf8               (ITE;)TE;
+  #297 = Utf8               (I)Ljava/util/ListIterator<TE;>;
+  #298 = Utf8               SourceFile
+  #299 = Utf8               InnerClasses
+{
+  private static final int HEAD_OFFSET;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final int TAIL_OFFSET;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  public static final int DEFAULT_CAPACITY;
+    descriptor: I
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 128
+
+  public static final int DEFAULT_GROWTH;
+    descriptor: I
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 64
+
+  private final int _maxCapacity;
+    descriptor: I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final int _growCapacity;
+    descriptor: I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final int[] _indexes;
+    descriptor: [I
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.util.concurrent.locks.Lock _tailLock;
+    descriptor: Ljava/util/concurrent/locks/Lock;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.util.concurrent.atomic.AtomicInteger _size;
+    descriptor: Ljava/util/concurrent/atomic/AtomicInteger;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.util.concurrent.locks.Lock _headLock;
+    descriptor: Ljava/util/concurrent/locks/Lock;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final java.util.concurrent.locks.Condition _notEmpty;
+    descriptor: Ljava/util/concurrent/locks/Condition;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private java.lang.Object[] _elements;
+    descriptor: [Ljava/lang/Object;
+    flags: (0x0002) ACC_PRIVATE
+
+  public org.eclipse.jetty.util.BlockingArrayQueue();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #35                 // Method java/util/AbstractList."<init>":()V
+         4: aload_0
+         5: getstatic     #37                 // Field TAIL_OFFSET:I
+         8: iconst_1
+         9: iadd
+        10: newarray       int
+        12: putfield      #39                 // Field _indexes:[I
+        15: aload_0
+        16: new           #41                 // class java/util/concurrent/locks/ReentrantLock
+        19: dup
+        20: invokespecial #42                 // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+        23: putfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        26: aload_0
+        27: new           #46                 // class java/util/concurrent/atomic/AtomicInteger
+        30: dup
+        31: invokespecial #47                 // Method java/util/concurrent/atomic/AtomicInteger."<init>":()V
+        34: putfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        37: aload_0
+        38: new           #41                 // class java/util/concurrent/locks/ReentrantLock
+        41: dup
+        42: invokespecial #42                 // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+        45: putfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        48: aload_0
+        49: aload_0
+        50: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        53: invokeinterface #57,  1           // InterfaceMethod java/util/concurrent/locks/Lock.newCondition:()Ljava/util/concurrent/locks/Condition;
+        58: putfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+        61: aload_0
+        62: sipush        128
+        65: anewarray     #61                 // class java/lang/Object
+        68: putfield      #63                 // Field _elements:[Ljava/lang/Object;
+        71: aload_0
+        72: bipush        64
+        74: putfield      #65                 // Field _growCapacity:I
+        77: aload_0
+        78: ldc           #66                 // int 2147483647
+        80: putfield      #68                 // Field _maxCapacity:I
+        83: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      84     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      84     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 89: 0
+        line 75: 4
+        line 76: 15
+        line 77: 26
+        line 78: 37
+        line 79: 48
+        line 90: 61
+        line 91: 71
+        line 92: 77
+        line 93: 83
+
+  public org.eclipse.jetty.util.BlockingArrayQueue(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #35                 // Method java/util/AbstractList."<init>":()V
+         4: aload_0
+         5: getstatic     #37                 // Field TAIL_OFFSET:I
+         8: iconst_1
+         9: iadd
+        10: newarray       int
+        12: putfield      #39                 // Field _indexes:[I
+        15: aload_0
+        16: new           #41                 // class java/util/concurrent/locks/ReentrantLock
+        19: dup
+        20: invokespecial #42                 // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+        23: putfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        26: aload_0
+        27: new           #46                 // class java/util/concurrent/atomic/AtomicInteger
+        30: dup
+        31: invokespecial #47                 // Method java/util/concurrent/atomic/AtomicInteger."<init>":()V
+        34: putfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        37: aload_0
+        38: new           #41                 // class java/util/concurrent/locks/ReentrantLock
+        41: dup
+        42: invokespecial #42                 // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+        45: putfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        48: aload_0
+        49: aload_0
+        50: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        53: invokeinterface #57,  1           // InterfaceMethod java/util/concurrent/locks/Lock.newCondition:()Ljava/util/concurrent/locks/Condition;
+        58: putfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+        61: aload_0
+        62: iload_1
+        63: anewarray     #61                 // class java/lang/Object
+        66: putfield      #63                 // Field _elements:[Ljava/lang/Object;
+        69: aload_0
+        70: iconst_m1
+        71: putfield      #65                 // Field _growCapacity:I
+        74: aload_0
+        75: iload_1
+        76: putfield      #68                 // Field _maxCapacity:I
+        79: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      80     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0      80     1 maxCapacity   I
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      80     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 102: 0
+        line 75: 4
+        line 76: 15
+        line 77: 26
+        line 78: 37
+        line 79: 48
+        line 103: 61
+        line 104: 69
+        line 105: 74
+        line 106: 79
+
+  public org.eclipse.jetty.util.BlockingArrayQueue(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: invokespecial #35                 // Method java/util/AbstractList."<init>":()V
+         4: aload_0
+         5: getstatic     #37                 // Field TAIL_OFFSET:I
+         8: iconst_1
+         9: iadd
+        10: newarray       int
+        12: putfield      #39                 // Field _indexes:[I
+        15: aload_0
+        16: new           #41                 // class java/util/concurrent/locks/ReentrantLock
+        19: dup
+        20: invokespecial #42                 // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+        23: putfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        26: aload_0
+        27: new           #46                 // class java/util/concurrent/atomic/AtomicInteger
+        30: dup
+        31: invokespecial #47                 // Method java/util/concurrent/atomic/AtomicInteger."<init>":()V
+        34: putfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        37: aload_0
+        38: new           #41                 // class java/util/concurrent/locks/ReentrantLock
+        41: dup
+        42: invokespecial #42                 // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+        45: putfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        48: aload_0
+        49: aload_0
+        50: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        53: invokeinterface #57,  1           // InterfaceMethod java/util/concurrent/locks/Lock.newCondition:()Ljava/util/concurrent/locks/Condition;
+        58: putfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+        61: aload_0
+        62: iload_1
+        63: anewarray     #61                 // class java/lang/Object
+        66: putfield      #63                 // Field _elements:[Ljava/lang/Object;
+        69: aload_0
+        70: iload_2
+        71: putfield      #65                 // Field _growCapacity:I
+        74: aload_0
+        75: ldc           #66                 // int 2147483647
+        77: putfield      #68                 // Field _maxCapacity:I
+        80: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      81     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0      81     1 capacity   I
+            0      81     2 growBy   I
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      81     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 117: 0
+        line 75: 4
+        line 76: 15
+        line 77: 26
+        line 78: 37
+        line 79: 48
+        line 118: 61
+        line 119: 69
+        line 120: 74
+        line 121: 80
+
+  public org.eclipse.jetty.util.BlockingArrayQueue(int, int, int);
+    descriptor: (III)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=4
+         0: aload_0
+         1: invokespecial #35                 // Method java/util/AbstractList."<init>":()V
+         4: aload_0
+         5: getstatic     #37                 // Field TAIL_OFFSET:I
+         8: iconst_1
+         9: iadd
+        10: newarray       int
+        12: putfield      #39                 // Field _indexes:[I
+        15: aload_0
+        16: new           #41                 // class java/util/concurrent/locks/ReentrantLock
+        19: dup
+        20: invokespecial #42                 // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+        23: putfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        26: aload_0
+        27: new           #46                 // class java/util/concurrent/atomic/AtomicInteger
+        30: dup
+        31: invokespecial #47                 // Method java/util/concurrent/atomic/AtomicInteger."<init>":()V
+        34: putfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        37: aload_0
+        38: new           #41                 // class java/util/concurrent/locks/ReentrantLock
+        41: dup
+        42: invokespecial #42                 // Method java/util/concurrent/locks/ReentrantLock."<init>":()V
+        45: putfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        48: aload_0
+        49: aload_0
+        50: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        53: invokeinterface #57,  1           // InterfaceMethod java/util/concurrent/locks/Lock.newCondition:()Ljava/util/concurrent/locks/Condition;
+        58: putfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+        61: iload_1
+        62: iload_3
+        63: if_icmple     74
+        66: new           #79                 // class java/lang/IllegalArgumentException
+        69: dup
+        70: invokespecial #80                 // Method java/lang/IllegalArgumentException."<init>":()V
+        73: athrow
+        74: aload_0
+        75: iload_1
+        76: anewarray     #61                 // class java/lang/Object
+        79: putfield      #63                 // Field _elements:[Ljava/lang/Object;
+        82: aload_0
+        83: iload_2
+        84: putfield      #65                 // Field _growCapacity:I
+        87: aload_0
+        88: iload_3
+        89: putfield      #68                 // Field _maxCapacity:I
+        92: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      93     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0      93     1 capacity   I
+            0      93     2 growBy   I
+            0      93     3 maxCapacity   I
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      93     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 134: 0
+        line 75: 4
+        line 76: 15
+        line 77: 26
+        line 78: 37
+        line 79: 48
+        line 135: 61
+        line 136: 66
+        line 137: 74
+        line 138: 82
+        line 139: 87
+        line 140: 92
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 74
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, int, int, int ]
+          stack = []
+
+  public void clear();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=1
+         0: aload_0
+         1: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+         4: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+         9: aload_0
+        10: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        13: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        18: aload_0
+        19: getfield      #39                 // Field _indexes:[I
+        22: getstatic     #86                 // Field HEAD_OFFSET:I
+        25: iconst_0
+        26: iastore
+        27: aload_0
+        28: getfield      #39                 // Field _indexes:[I
+        31: getstatic     #37                 // Field TAIL_OFFSET:I
+        34: iconst_0
+        35: iastore
+        36: aload_0
+        37: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        40: iconst_0
+        41: invokevirtual #89                 // Method java/util/concurrent/atomic/AtomicInteger.set:(I)V
+        44: aload_0
+        45: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        48: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        53: goto          68
+        56: astore_1
+        57: aload_0
+        58: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        61: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        66: aload_1
+        67: athrow
+        68: aload_0
+        69: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        72: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        77: goto          92
+        80: astore_2
+        81: aload_0
+        82: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        85: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        90: aload_2
+        91: athrow
+        92: return
+      Exception table:
+         from    to  target type
+            18    44    56   any
+             9    68    80   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      93     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      93     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 150: 0
+        line 154: 9
+        line 157: 18
+        line 158: 27
+        line 159: 36
+        line 163: 44
+        line 164: 53
+        line 163: 56
+        line 168: 68
+        line 169: 77
+        line 168: 80
+        line 170: 92
+      StackMapTable: number_of_entries = 4
+        frame_type = 120 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+
+  public int size();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+         4: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+         7: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 175: 0
+
+  public java.util.Iterator<E> iterator();
+    descriptor: ()Ljava/util/Iterator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #105                // Method listIterator:()Ljava/util/ListIterator;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 181: 0
+    Signature: #285                         // ()Ljava/util/Iterator<TE;>;
+
+  public E poll();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=1
+         0: aload_0
+         1: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+         4: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+         7: ifne          12
+        10: aconst_null
+        11: areturn
+        12: aconst_null
+        13: astore_1
+        14: aload_0
+        15: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        18: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        23: aload_0
+        24: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        27: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+        30: ifle          92
+        33: aload_0
+        34: getfield      #39                 // Field _indexes:[I
+        37: getstatic     #86                 // Field HEAD_OFFSET:I
+        40: iaload
+        41: istore_2
+        42: aload_0
+        43: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        46: iload_2
+        47: aaload
+        48: astore_1
+        49: aload_0
+        50: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        53: iload_2
+        54: aconst_null
+        55: aastore
+        56: aload_0
+        57: getfield      #39                 // Field _indexes:[I
+        60: getstatic     #86                 // Field HEAD_OFFSET:I
+        63: iload_2
+        64: iconst_1
+        65: iadd
+        66: aload_0
+        67: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        70: arraylength
+        71: irem
+        72: iastore
+        73: aload_0
+        74: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        77: invokevirtual #110                // Method java/util/concurrent/atomic/AtomicInteger.decrementAndGet:()I
+        80: ifle          92
+        83: aload_0
+        84: getfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+        87: invokeinterface #115,  1          // InterfaceMethod java/util/concurrent/locks/Condition.signal:()V
+        92: aload_0
+        93: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        96: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       101: goto          116
+       104: astore_3
+       105: aload_0
+       106: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       109: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       114: aload_3
+       115: athrow
+       116: aload_1
+       117: areturn
+      Exception table:
+         from    to  target type
+            23    92   104   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           42      50     2  head   I
+            0     118     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+           14     104     1     e   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     118     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+           14     104     1     e   TE;
+      LineNumberTable:
+        line 192: 0
+        line 193: 10
+        line 195: 12
+        line 197: 14
+        line 200: 23
+        line 202: 33
+        line 203: 42
+        line 204: 49
+        line 205: 56
+        line 206: 73
+        line 207: 83
+        line 212: 92
+        line 213: 101
+        line 212: 104
+        line 214: 116
+      StackMapTable: number_of_entries = 4
+        frame_type = 12 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 79
+          locals = [ class java/lang/Object ]
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+    Signature: #286                         // ()TE;
+
+  public E peek();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=1
+         0: aload_0
+         1: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+         4: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+         7: ifne          12
+        10: aconst_null
+        11: areturn
+        12: aconst_null
+        13: astore_1
+        14: aload_0
+        15: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        18: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        23: aload_0
+        24: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        27: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+        30: ifle          47
+        33: aload_0
+        34: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        37: aload_0
+        38: getfield      #39                 // Field _indexes:[I
+        41: getstatic     #86                 // Field HEAD_OFFSET:I
+        44: iaload
+        45: aaload
+        46: astore_1
+        47: aload_0
+        48: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        51: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        56: goto          71
+        59: astore_2
+        60: aload_0
+        61: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        64: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        69: aload_2
+        70: athrow
+        71: aload_1
+        72: areturn
+      Exception table:
+         from    to  target type
+            23    47    59   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      73     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+           14      59     1     e   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      73     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+           14      59     1     e   TE;
+      LineNumberTable:
+        line 221: 0
+        line 222: 10
+        line 224: 12
+        line 226: 14
+        line 229: 23
+        line 230: 33
+        line 234: 47
+        line 235: 56
+        line 234: 59
+        line 236: 71
+      StackMapTable: number_of_entries = 4
+        frame_type = 12 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 34
+          locals = [ class java/lang/Object ]
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+    Signature: #286                         // ()TE;
+
+  public E remove();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: invokevirtual #123                // Method poll:()Ljava/lang/Object;
+         4: astore_1
+         5: aload_1
+         6: ifnonnull     17
+         9: new           #125                // class java/util/NoSuchElementException
+        12: dup
+        13: invokespecial #126                // Method java/util/NoSuchElementException."<init>":()V
+        16: athrow
+        17: aload_1
+        18: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            5      14     1     e   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            5      14     1     e   TE;
+      LineNumberTable:
+        line 242: 0
+        line 243: 5
+        line 244: 9
+        line 245: 17
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 17
+          locals = [ class java/lang/Object ]
+    Signature: #286                         // ()TE;
+
+  public E element();
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: invokevirtual #129                // Method peek:()Ljava/lang/Object;
+         4: astore_1
+         5: aload_1
+         6: ifnonnull     17
+         9: new           #125                // class java/util/NoSuchElementException
+        12: dup
+        13: invokespecial #126                // Method java/util/NoSuchElementException."<init>":()V
+        16: athrow
+        17: aload_1
+        18: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            5      14     1     e   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            5      14     1     e   TE;
+      LineNumberTable:
+        line 251: 0
+        line 252: 5
+        line 253: 9
+        line 254: 17
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 17
+          locals = [ class java/lang/Object ]
+    Signature: #286                         // ()TE;
+
+  public boolean offer(E);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=8, args_size=2
+         0: aload_1
+         1: invokestatic  #137                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+         4: pop
+         5: iconst_0
+         6: istore_2
+         7: aload_0
+         8: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        11: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        16: aload_0
+        17: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        20: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+        23: istore_3
+        24: iload_3
+        25: aload_0
+        26: getfield      #68                 // Field _maxCapacity:I
+        29: if_icmplt     47
+        32: iconst_0
+        33: istore        4
+        35: aload_0
+        36: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        39: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        44: iload         4
+        46: ireturn
+        47: iload_3
+        48: aload_0
+        49: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        52: arraylength
+        53: if_icmpne     122
+        56: aload_0
+        57: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        60: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        65: aload_0
+        66: invokespecial #141                // Method grow:()Z
+        69: ifne          96
+        72: iconst_0
+        73: istore        4
+        75: aload_0
+        76: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        79: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        84: aload_0
+        85: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        88: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        93: iload         4
+        95: ireturn
+        96: aload_0
+        97: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       100: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       105: goto          122
+       108: astore        5
+       110: aload_0
+       111: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       114: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       119: aload         5
+       121: athrow
+       122: aload_0
+       123: getfield      #39                 // Field _indexes:[I
+       126: getstatic     #37                 // Field TAIL_OFFSET:I
+       129: iaload
+       130: istore        4
+       132: aload_0
+       133: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       136: iload         4
+       138: aload_1
+       139: aastore
+       140: aload_0
+       141: getfield      #39                 // Field _indexes:[I
+       144: getstatic     #37                 // Field TAIL_OFFSET:I
+       147: iload         4
+       149: iconst_1
+       150: iadd
+       151: aload_0
+       152: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       155: arraylength
+       156: irem
+       157: iastore
+       158: aload_0
+       159: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+       162: invokevirtual #144                // Method java/util/concurrent/atomic/AtomicInteger.getAndIncrement:()I
+       165: ifne          172
+       168: iconst_1
+       169: goto          173
+       172: iconst_0
+       173: istore_2
+       174: aload_0
+       175: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       178: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       183: goto          200
+       186: astore        6
+       188: aload_0
+       189: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       192: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       197: aload         6
+       199: athrow
+       200: iload_2
+       201: ifeq          248
+       204: aload_0
+       205: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       208: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+       213: aload_0
+       214: getfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+       217: invokeinterface #115,  1          // InterfaceMethod java/util/concurrent/locks/Condition.signal:()V
+       222: aload_0
+       223: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       226: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       231: goto          248
+       234: astore        7
+       236: aload_0
+       237: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       240: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       245: aload         7
+       247: athrow
+       248: iconst_1
+       249: ireturn
+      Exception table:
+         from    to  target type
+            65    75   108   any
+           108   110   108   any
+            16    35   186   any
+            47    84   186   any
+            96   174   186   any
+           186   188   186   any
+           213   222   234   any
+           234   236   234   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           24     150     3  size   I
+          132      42     4  tail   I
+            0     250     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0     250     1     e   Ljava/lang/Object;
+            7     243     2 notEmpty   Z
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     250     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            0     250     1     e   TE;
+      LineNumberTable:
+        line 264: 0
+        line 266: 5
+        line 267: 7
+        line 270: 16
+        line 271: 24
+        line 272: 32
+        line 297: 35
+        line 272: 44
+        line 275: 47
+        line 277: 56
+        line 280: 65
+        line 281: 72
+        line 285: 75
+        line 297: 84
+        line 281: 93
+        line 285: 96
+        line 286: 105
+        line 285: 108
+        line 290: 122
+        line 291: 132
+        line 292: 140
+        line 293: 158
+        line 297: 174
+        line 298: 183
+        line 297: 186
+        line 300: 200
+        line 302: 204
+        line 305: 213
+        line 309: 222
+        line 310: 231
+        line 309: 234
+        line 313: 248
+      StackMapTable: number_of_entries = 10
+        frame_type = 253 /* append */
+          offset_delta = 47
+          locals = [ int, int ]
+        frame_type = 48 /* same */
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 13 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 49
+          locals = [ int ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 12
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, class java/lang/Object, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 13 /* same */
+        frame_type = 97 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 13 /* same */
+    Signature: #287                         // (TE;)Z
+
+  public boolean add(E);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #150                // Method offer:(Ljava/lang/Object;)Z
+         5: ifeq          10
+         8: iconst_1
+         9: ireturn
+        10: new           #152                // class java/lang/IllegalStateException
+        13: dup
+        14: invokespecial #153                // Method java/lang/IllegalStateException."<init>":()V
+        17: athrow
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0      18     1     e   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      18     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            0      18     1     e   TE;
+      LineNumberTable:
+        line 319: 0
+        line 320: 8
+        line 322: 10
+      StackMapTable: number_of_entries = 1
+        frame_type = 10 /* same */
+    Signature: #287                         // (TE;)Z
+
+  public void put(E) throws java.lang.InterruptedException;
+    descriptor: (Ljava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: new           #159                // class java/lang/UnsupportedOperationException
+         3: dup
+         4: invokespecial #160                // Method java/lang/UnsupportedOperationException."<init>":()V
+         7: athrow
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0       8     1     o   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            0       8     1     o   TE;
+      LineNumberTable:
+        line 329: 0
+    Exceptions:
+      throws java.lang.InterruptedException
+    Signature: #289                         // (TE;)V
+
+  public boolean offer(E, long, java.util.concurrent.TimeUnit) throws java.lang.InterruptedException;
+    descriptor: (Ljava/lang/Object;JLjava/util/concurrent/TimeUnit;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=5, args_size=4
+         0: new           #159                // class java/lang/UnsupportedOperationException
+         3: dup
+         4: invokespecial #160                // Method java/lang/UnsupportedOperationException."<init>":()V
+         7: athrow
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0       8     1     o   Ljava/lang/Object;
+            0       8     2 timeout   J
+            0       8     4  unit   Ljava/util/concurrent/TimeUnit;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            0       8     1     o   TE;
+      LineNumberTable:
+        line 336: 0
+    Exceptions:
+      throws java.lang.InterruptedException
+    Signature: #290                         // (TE;JLjava/util/concurrent/TimeUnit;)Z
+
+  public E take() throws java.lang.InterruptedException;
+    descriptor: ()Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=4, args_size=1
+         0: aconst_null
+         1: astore_1
+         2: aload_0
+         3: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+         6: invokeinterface #170,  1          // InterfaceMethod java/util/concurrent/locks/Lock.lockInterruptibly:()V
+        11: aload_0
+        12: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        15: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+        18: ifne          33
+        21: aload_0
+        22: getfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+        25: invokeinterface #173,  1          // InterfaceMethod java/util/concurrent/locks/Condition.await:()V
+        30: goto          11
+        33: goto          48
+        36: astore_2
+        37: aload_0
+        38: getfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+        41: invokeinterface #115,  1          // InterfaceMethod java/util/concurrent/locks/Condition.signal:()V
+        46: aload_2
+        47: athrow
+        48: aload_0
+        49: getfield      #39                 // Field _indexes:[I
+        52: getstatic     #86                 // Field HEAD_OFFSET:I
+        55: iaload
+        56: istore_2
+        57: aload_0
+        58: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        61: iload_2
+        62: aaload
+        63: astore_1
+        64: aload_0
+        65: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        68: iload_2
+        69: aconst_null
+        70: aastore
+        71: aload_0
+        72: getfield      #39                 // Field _indexes:[I
+        75: getstatic     #86                 // Field HEAD_OFFSET:I
+        78: iload_2
+        79: iconst_1
+        80: iadd
+        81: aload_0
+        82: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        85: arraylength
+        86: irem
+        87: iastore
+        88: aload_0
+        89: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        92: invokevirtual #110                // Method java/util/concurrent/atomic/AtomicInteger.decrementAndGet:()I
+        95: ifle          107
+        98: aload_0
+        99: getfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+       102: invokeinterface #115,  1          // InterfaceMethod java/util/concurrent/locks/Condition.signal:()V
+       107: aload_0
+       108: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       111: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       116: goto          131
+       119: astore_3
+       120: aload_0
+       121: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       124: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       129: aload_3
+       130: athrow
+       131: aload_1
+       132: areturn
+      Exception table:
+         from    to  target type
+            11    33    36   Class java/lang/InterruptedException
+            11   107   119   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           37      11     2    ie   Ljava/lang/InterruptedException;
+           57      50     2  head   I
+            0     133     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            2     131     1     e   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     133     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            2     131     1     e   TE;
+      LineNumberTable:
+        line 343: 0
+        line 345: 2
+        line 350: 11
+        line 352: 21
+        line 359: 33
+        line 355: 36
+        line 357: 37
+        line 358: 46
+        line 361: 48
+        line 362: 57
+        line 363: 64
+        line 364: 71
+        line 366: 88
+        line 367: 98
+        line 371: 107
+        line 372: 116
+        line 371: 119
+        line 373: 131
+      StackMapTable: number_of_entries = 7
+        frame_type = 252 /* append */
+          offset_delta = 11
+          locals = [ class java/lang/Object ]
+        frame_type = 21 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/lang/InterruptedException ]
+        frame_type = 11 /* same */
+        frame_type = 58 /* same */
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+    Exceptions:
+      throws java.lang.InterruptedException
+    Signature: #286                         // ()TE;
+
+  public E poll(long, java.util.concurrent.TimeUnit) throws java.lang.InterruptedException;
+    descriptor: (JLjava/util/concurrent/TimeUnit;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=9, args_size=3
+         0: aload_3
+         1: lload_1
+         2: invokevirtual #182                // Method java/util/concurrent/TimeUnit.toNanos:(J)J
+         5: lstore        4
+         7: aconst_null
+         8: astore        6
+        10: aload_0
+        11: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        14: invokeinterface #170,  1          // InterfaceMethod java/util/concurrent/locks/Lock.lockInterruptibly:()V
+        19: aload_0
+        20: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        23: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+        26: ifne          67
+        29: lload         4
+        31: lconst_0
+        32: lcmp
+        33: ifgt          51
+        36: aconst_null
+        37: astore        7
+        39: aload_0
+        40: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        43: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        48: aload         7
+        50: areturn
+        51: aload_0
+        52: getfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+        55: lload         4
+        57: invokeinterface #185,  3          // InterfaceMethod java/util/concurrent/locks/Condition.awaitNanos:(J)J
+        62: lstore        4
+        64: goto          19
+        67: goto          84
+        70: astore        7
+        72: aload_0
+        73: getfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+        76: invokeinterface #115,  1          // InterfaceMethod java/util/concurrent/locks/Condition.signal:()V
+        81: aload         7
+        83: athrow
+        84: aload_0
+        85: getfield      #39                 // Field _indexes:[I
+        88: getstatic     #86                 // Field HEAD_OFFSET:I
+        91: iaload
+        92: istore        7
+        94: aload_0
+        95: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        98: iload         7
+       100: aaload
+       101: astore        6
+       103: aload_0
+       104: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       107: iload         7
+       109: aconst_null
+       110: aastore
+       111: aload_0
+       112: getfield      #39                 // Field _indexes:[I
+       115: getstatic     #86                 // Field HEAD_OFFSET:I
+       118: iload         7
+       120: iconst_1
+       121: iadd
+       122: aload_0
+       123: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       126: arraylength
+       127: irem
+       128: iastore
+       129: aload_0
+       130: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+       133: invokevirtual #110                // Method java/util/concurrent/atomic/AtomicInteger.decrementAndGet:()I
+       136: ifle          148
+       139: aload_0
+       140: getfield      #59                 // Field _notEmpty:Ljava/util/concurrent/locks/Condition;
+       143: invokeinterface #115,  1          // InterfaceMethod java/util/concurrent/locks/Condition.signal:()V
+       148: aload_0
+       149: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       152: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       157: goto          174
+       160: astore        8
+       162: aload_0
+       163: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       166: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       171: aload         8
+       173: athrow
+       174: aload         6
+       176: areturn
+      Exception table:
+         from    to  target type
+            19    39    70   Class java/lang/InterruptedException
+            51    67    70   Class java/lang/InterruptedException
+            19    39   160   any
+            51   148   160   any
+           160   162   160   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           72      12     7     x   Ljava/lang/InterruptedException;
+           94      54     7  head   I
+            0     177     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0     177     1  time   J
+            0     177     3  unit   Ljava/util/concurrent/TimeUnit;
+            7     170     4 nanos   J
+           10     167     6     e   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     177     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+           10     167     6     e   TE;
+      LineNumberTable:
+        line 380: 0
+        line 381: 7
+        line 383: 10
+        line 388: 19
+        line 390: 29
+        line 391: 36
+        line 411: 39
+        line 391: 48
+        line 392: 51
+        line 399: 67
+        line 395: 70
+        line 397: 72
+        line 398: 81
+        line 401: 84
+        line 402: 94
+        line 403: 103
+        line 404: 111
+        line 406: 129
+        line 407: 139
+        line 411: 148
+        line 412: 157
+        line 411: 160
+        line 413: 174
+      StackMapTable: number_of_entries = 8
+        frame_type = 253 /* append */
+          offset_delta = 19
+          locals = [ long, class java/lang/Object ]
+        frame_type = 31 /* same */
+        frame_type = 15 /* same */
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ class java/lang/InterruptedException ]
+        frame_type = 13 /* same */
+        frame_type = 63 /* same */
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 13 /* same */
+    Exceptions:
+      throws java.lang.InterruptedException
+    Signature: #291                         // (JLjava/util/concurrent/TimeUnit;)TE;
+
+  public boolean remove(java.lang.Object);
+    descriptor: (Ljava/lang/Object;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=9, args_size=2
+         0: aload_0
+         1: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+         4: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+         9: aload_0
+        10: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        13: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        18: aload_0
+        19: invokevirtual #191                // Method isEmpty:()Z
+        22: ifeq          47
+        25: iconst_0
+        26: istore_2
+        27: aload_0
+        28: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        31: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        36: aload_0
+        37: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        40: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        45: iload_2
+        46: ireturn
+        47: aload_0
+        48: getfield      #39                 // Field _indexes:[I
+        51: getstatic     #86                 // Field HEAD_OFFSET:I
+        54: iaload
+        55: istore_2
+        56: aload_0
+        57: getfield      #39                 // Field _indexes:[I
+        60: getstatic     #37                 // Field TAIL_OFFSET:I
+        63: iaload
+        64: istore_3
+        65: aload_0
+        66: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        69: arraylength
+        70: istore        4
+        72: iload_2
+        73: istore        5
+        75: aload_0
+        76: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        79: iload         5
+        81: aaload
+        82: aload_1
+        83: invokestatic  #195                // Method java/util/Objects.equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+        86: ifeq          138
+        89: aload_0
+        90: iload         5
+        92: iload_2
+        93: if_icmplt     103
+        96: iload         5
+        98: iload_2
+        99: isub
+       100: goto          110
+       103: iload         4
+       105: iload_2
+       106: isub
+       107: iload         5
+       109: iadd
+       110: invokevirtual #198                // Method remove:(I)Ljava/lang/Object;
+       113: pop
+       114: iconst_1
+       115: istore        6
+       117: aload_0
+       118: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       121: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       126: aload_0
+       127: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       130: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       135: iload         6
+       137: ireturn
+       138: iinc          5, 1
+       141: iload         5
+       143: iload         4
+       145: if_icmpne     151
+       148: iconst_0
+       149: istore        5
+       151: iload         5
+       153: iload_3
+       154: if_icmpne     75
+       157: iconst_0
+       158: istore        6
+       160: aload_0
+       161: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       164: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       169: aload_0
+       170: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       173: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       178: iload         6
+       180: ireturn
+       181: astore        7
+       183: aload_0
+       184: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       187: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       192: aload         7
+       194: athrow
+       195: astore        8
+       197: aload_0
+       198: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       201: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       206: aload         8
+       208: athrow
+      Exception table:
+         from    to  target type
+            18    27   181   any
+            47   117   181   any
+           138   160   181   any
+           181   183   181   any
+             9    36   195   any
+            47   126   195   any
+           138   169   195   any
+           181   197   195   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           56     125     2  head   I
+           65     116     3  tail   I
+           72     109     4 capacity   I
+           75     106     5     i   I
+            0     209     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0     209     1     o   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     209     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 420: 0
+        line 424: 9
+        line 427: 18
+        line 428: 25
+        line 451: 27
+        line 456: 36
+        line 428: 45
+        line 430: 47
+        line 431: 56
+        line 432: 65
+        line 434: 72
+        line 437: 75
+        line 439: 89
+        line 440: 114
+        line 451: 117
+        line 456: 126
+        line 440: 135
+        line 442: 138
+        line 443: 141
+        line 444: 148
+        line 445: 151
+        line 446: 157
+        line 451: 160
+        line 456: 169
+        line 446: 178
+        line 451: 181
+        line 456: 195
+      StackMapTable: number_of_entries = 8
+        frame_type = 47 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 27
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, class java/lang/Object, int, int, int, int ]
+          stack = []
+        frame_type = 91 /* same_locals_1_stack_item */
+          stack = [ class org/eclipse/jetty/util/BlockingArrayQueue ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 6
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, class java/lang/Object, int, int, int, int ]
+          stack = [ class org/eclipse/jetty/util/BlockingArrayQueue, int ]
+        frame_type = 27 /* same */
+        frame_type = 12 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 29
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+
+  public int remainingCapacity();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=4, args_size=1
+         0: aload_0
+         1: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+         4: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+         9: aload_0
+        10: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        13: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        18: aload_0
+        19: invokevirtual #203                // Method getCapacity:()I
+        22: aload_0
+        23: invokevirtual #205                // Method size:()I
+        26: isub
+        27: istore_1
+        28: aload_0
+        29: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        32: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        37: aload_0
+        38: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        41: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        46: iload_1
+        47: ireturn
+        48: astore_2
+        49: aload_0
+        50: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        53: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        58: aload_2
+        59: athrow
+        60: astore_3
+        61: aload_0
+        62: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        65: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        70: aload_3
+        71: athrow
+      Exception table:
+         from    to  target type
+            18    28    48   any
+             9    37    60   any
+            48    61    60   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      72     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      72     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 464: 0
+        line 468: 9
+        line 471: 18
+        line 475: 28
+        line 480: 37
+        line 471: 46
+        line 475: 48
+        line 480: 60
+      StackMapTable: number_of_entries = 2
+        frame_type = 112 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+
+  public int drainTo(java.util.Collection<? super E>);
+    descriptor: (Ljava/util/Collection;)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: new           #159                // class java/lang/UnsupportedOperationException
+         3: dup
+         4: invokespecial #160                // Method java/lang/UnsupportedOperationException."<init>":()V
+         7: athrow
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0       8     1     c   Ljava/util/Collection;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            0       8     1     c   Ljava/util/Collection<-TE;>;
+      LineNumberTable:
+        line 487: 0
+    Signature: #292                         // (Ljava/util/Collection<-TE;>;)I
+
+  public int drainTo(java.util.Collection<? super E>, int);
+    descriptor: (Ljava/util/Collection;I)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: new           #159                // class java/lang/UnsupportedOperationException
+         3: dup
+         4: invokespecial #160                // Method java/lang/UnsupportedOperationException."<init>":()V
+         7: athrow
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0       8     1     c   Ljava/util/Collection;
+            0       8     2 maxElements   I
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            0       8     1     c   Ljava/util/Collection<-TE;>;
+      LineNumberTable:
+        line 493: 0
+    Signature: #293                         // (Ljava/util/Collection<-TE;>;I)I
+
+  public E get(int);
+    descriptor: (I)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=7, args_size=2
+         0: aload_0
+         1: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+         4: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+         9: aload_0
+        10: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        13: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        18: iload_1
+        19: iflt          33
+        22: iload_1
+        23: aload_0
+        24: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        27: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+        30: if_icmplt     77
+        33: new           #214                // class java/lang/IndexOutOfBoundsException
+        36: dup
+        37: new           #216                // class java/lang/StringBuilder
+        40: dup
+        41: invokespecial #217                // Method java/lang/StringBuilder."<init>":()V
+        44: ldc           #219                // String !(0<
+        46: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        49: iload_1
+        50: invokevirtual #226                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        53: ldc           #228                // String <=
+        55: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        58: aload_0
+        59: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        62: invokevirtual #231                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+        65: ldc           #233                // String )
+        67: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        70: invokevirtual #237                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        73: invokespecial #240                // Method java/lang/IndexOutOfBoundsException."<init>":(Ljava/lang/String;)V
+        76: athrow
+        77: aload_0
+        78: getfield      #39                 // Field _indexes:[I
+        81: getstatic     #86                 // Field HEAD_OFFSET:I
+        84: iaload
+        85: iload_1
+        86: iadd
+        87: istore_2
+        88: aload_0
+        89: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        92: arraylength
+        93: istore_3
+        94: iload_2
+        95: iload_3
+        96: if_icmplt     103
+        99: iload_2
+       100: iload_3
+       101: isub
+       102: istore_2
+       103: aload_0
+       104: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       107: iload_2
+       108: aaload
+       109: astore        4
+       111: aload_0
+       112: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       115: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       120: aload_0
+       121: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       124: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       129: aload         4
+       131: areturn
+       132: astore        5
+       134: aload_0
+       135: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       138: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       143: aload         5
+       145: athrow
+       146: astore        6
+       148: aload_0
+       149: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       152: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       157: aload         6
+       159: athrow
+      Exception table:
+         from    to  target type
+            18   111   132   any
+           132   134   132   any
+             9   120   146   any
+           132   148   146   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           88      44     2     i   I
+           94      38     3 capacity   I
+            0     160     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0     160     1 index   I
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     160     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 505: 0
+        line 509: 9
+        line 512: 18
+        line 513: 33
+        line 514: 77
+        line 515: 88
+        line 516: 94
+        line 517: 99
+        line 518: 103
+        line 522: 111
+        line 527: 120
+        line 518: 129
+        line 522: 132
+        line 527: 146
+      StackMapTable: number_of_entries = 5
+        frame_type = 33 /* same */
+        frame_type = 43 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 25
+          locals = [ int, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 28
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+    Signature: #294                         // (I)TE;
+
+  public void add(int, E);
+    descriptor: (ILjava/lang/Object;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=9, args_size=3
+         0: aload_2
+         1: ifnonnull     12
+         4: new           #244                // class java/lang/NullPointerException
+         7: dup
+         8: invokespecial #245                // Method java/lang/NullPointerException."<init>":()V
+        11: athrow
+        12: aload_0
+        13: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        16: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        21: aload_0
+        22: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        25: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        30: aload_0
+        31: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        34: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+        37: istore_3
+        38: iload_1
+        39: iflt          47
+        42: iload_1
+        43: iload_3
+        44: if_icmple     91
+        47: new           #214                // class java/lang/IndexOutOfBoundsException
+        50: dup
+        51: new           #216                // class java/lang/StringBuilder
+        54: dup
+        55: invokespecial #217                // Method java/lang/StringBuilder."<init>":()V
+        58: ldc           #219                // String !(0<
+        60: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        63: iload_1
+        64: invokevirtual #226                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        67: ldc           #228                // String <=
+        69: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        72: aload_0
+        73: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        76: invokevirtual #231                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+        79: ldc           #233                // String )
+        81: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        84: invokevirtual #237                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        87: invokespecial #240                // Method java/lang/IndexOutOfBoundsException."<init>":(Ljava/lang/String;)V
+        90: athrow
+        91: iload_1
+        92: iload_3
+        93: if_icmpne     105
+        96: aload_0
+        97: aload_2
+        98: invokevirtual #247                // Method add:(Ljava/lang/Object;)Z
+       101: pop
+       102: goto          317
+       105: aload_0
+       106: getfield      #39                 // Field _indexes:[I
+       109: getstatic     #37                 // Field TAIL_OFFSET:I
+       112: iaload
+       113: aload_0
+       114: getfield      #39                 // Field _indexes:[I
+       117: getstatic     #86                 // Field HEAD_OFFSET:I
+       120: iaload
+       121: if_icmpne     141
+       124: aload_0
+       125: invokespecial #141                // Method grow:()Z
+       128: ifne          141
+       131: new           #152                // class java/lang/IllegalStateException
+       134: dup
+       135: ldc           #249                // String full
+       137: invokespecial #250                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       140: athrow
+       141: aload_0
+       142: getfield      #39                 // Field _indexes:[I
+       145: getstatic     #86                 // Field HEAD_OFFSET:I
+       148: iaload
+       149: iload_1
+       150: iadd
+       151: istore        4
+       153: aload_0
+       154: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       157: arraylength
+       158: istore        5
+       160: iload         4
+       162: iload         5
+       164: if_icmplt     174
+       167: iload         4
+       169: iload         5
+       171: isub
+       172: istore        4
+       174: aload_0
+       175: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+       178: invokevirtual #253                // Method java/util/concurrent/atomic/AtomicInteger.incrementAndGet:()I
+       181: pop
+       182: aload_0
+       183: getfield      #39                 // Field _indexes:[I
+       186: getstatic     #37                 // Field TAIL_OFFSET:I
+       189: iaload
+       190: istore        6
+       192: aload_0
+       193: getfield      #39                 // Field _indexes:[I
+       196: getstatic     #37                 // Field TAIL_OFFSET:I
+       199: iload         6
+       201: iconst_1
+       202: iadd
+       203: iload         5
+       205: irem
+       206: dup
+       207: istore        6
+       209: iastore
+       210: iload         4
+       212: iload         6
+       214: if_icmpge     250
+       217: aload_0
+       218: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       221: iload         4
+       223: aload_0
+       224: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       227: iload         4
+       229: iconst_1
+       230: iadd
+       231: iload         6
+       233: iload         4
+       235: isub
+       236: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       239: aload_0
+       240: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       243: iload         4
+       245: aload_2
+       246: aastore
+       247: goto          317
+       250: iload         6
+       252: ifle          285
+       255: aload_0
+       256: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       259: iconst_0
+       260: aload_0
+       261: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       264: iconst_1
+       265: iload         6
+       267: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       270: aload_0
+       271: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       274: iconst_0
+       275: aload_0
+       276: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       279: iload         5
+       281: iconst_1
+       282: isub
+       283: aaload
+       284: aastore
+       285: aload_0
+       286: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       289: iload         4
+       291: aload_0
+       292: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       295: iload         4
+       297: iconst_1
+       298: iadd
+       299: iload         5
+       301: iload         4
+       303: isub
+       304: iconst_1
+       305: isub
+       306: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       309: aload_0
+       310: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       313: iload         4
+       315: aload_2
+       316: aastore
+       317: aload_0
+       318: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       321: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       326: goto          343
+       329: astore        7
+       331: aload_0
+       332: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       335: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       340: aload         7
+       342: athrow
+       343: aload_0
+       344: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       347: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       352: goto          369
+       355: astore        8
+       357: aload_0
+       358: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       361: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       366: aload         8
+       368: athrow
+       369: return
+      Exception table:
+         from    to  target type
+            30   317   329   any
+           329   331   329   any
+            21   343   355   any
+           355   357   355   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          153     164     4     i   I
+          160     157     5 capacity   I
+          192     125     6  tail   I
+           38     279     3  size   I
+            0     370     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0     370     1 index   I
+            0     370     2     e   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     370     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            0     370     2     e   TE;
+      LineNumberTable:
+        line 534: 0
+        line 535: 4
+        line 537: 12
+        line 541: 21
+        line 544: 30
+        line 546: 38
+        line 547: 47
+        line 549: 91
+        line 551: 96
+        line 555: 105
+        line 556: 124
+        line 557: 131
+        line 560: 141
+        line 561: 153
+        line 563: 160
+        line 564: 167
+        line 566: 174
+        line 567: 182
+        line 568: 192
+        line 570: 210
+        line 572: 217
+        line 573: 239
+        line 577: 250
+        line 579: 255
+        line 580: 270
+        line 583: 285
+        line 584: 309
+        line 590: 317
+        line 591: 326
+        line 590: 329
+        line 595: 343
+        line 596: 352
+        line 595: 355
+        line 597: 369
+      StackMapTable: number_of_entries = 13
+        frame_type = 12 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 34
+          locals = [ int ]
+        frame_type = 43 /* same */
+        frame_type = 13 /* same */
+        frame_type = 35 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 32
+          locals = [ int, int ]
+        frame_type = 252 /* append */
+          offset_delta = 75
+          locals = [ int ]
+        frame_type = 34 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 31
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, int, class java/lang/Object ]
+          stack = []
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 13 /* same */
+        frame_type = 75 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 13 /* same */
+    Signature: #295                         // (ITE;)V
+
+  public E set(int, E);
+    descriptor: (ILjava/lang/Object;)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=9, args_size=3
+         0: aload_2
+         1: invokestatic  #137                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+         4: pop
+         5: aload_0
+         6: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+         9: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        14: aload_0
+        15: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        18: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        23: iload_1
+        24: iflt          38
+        27: iload_1
+        28: aload_0
+        29: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        32: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+        35: if_icmplt     82
+        38: new           #214                // class java/lang/IndexOutOfBoundsException
+        41: dup
+        42: new           #216                // class java/lang/StringBuilder
+        45: dup
+        46: invokespecial #217                // Method java/lang/StringBuilder."<init>":()V
+        49: ldc           #219                // String !(0<
+        51: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        54: iload_1
+        55: invokevirtual #226                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        58: ldc           #228                // String <=
+        60: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        63: aload_0
+        64: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        67: invokevirtual #231                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+        70: ldc           #233                // String )
+        72: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        75: invokevirtual #237                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        78: invokespecial #240                // Method java/lang/IndexOutOfBoundsException."<init>":(Ljava/lang/String;)V
+        81: athrow
+        82: aload_0
+        83: getfield      #39                 // Field _indexes:[I
+        86: getstatic     #86                 // Field HEAD_OFFSET:I
+        89: iaload
+        90: iload_1
+        91: iadd
+        92: istore_3
+        93: aload_0
+        94: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        97: arraylength
+        98: istore        4
+       100: iload_3
+       101: iload         4
+       103: if_icmplt     111
+       106: iload_3
+       107: iload         4
+       109: isub
+       110: istore_3
+       111: aload_0
+       112: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       115: iload_3
+       116: aaload
+       117: astore        5
+       119: aload_0
+       120: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       123: iload_3
+       124: aload_2
+       125: aastore
+       126: aload         5
+       128: astore        6
+       130: aload_0
+       131: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       134: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       139: aload_0
+       140: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       143: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       148: aload         6
+       150: areturn
+       151: astore        7
+       153: aload_0
+       154: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       157: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       162: aload         7
+       164: athrow
+       165: astore        8
+       167: aload_0
+       168: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       171: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       176: aload         8
+       178: athrow
+      Exception table:
+         from    to  target type
+            23   130   151   any
+           151   153   151   any
+            14   139   165   any
+           151   167   165   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           93      58     3     i   I
+          100      51     4 capacity   I
+          119      32     5   old   Ljava/lang/Object;
+            0     179     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0     179     1 index   I
+            0     179     2     e   Ljava/lang/Object;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+          119      32     5   old   TE;
+            0     179     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+            0     179     2     e   TE;
+      LineNumberTable:
+        line 603: 0
+        line 605: 5
+        line 609: 14
+        line 612: 23
+        line 613: 38
+        line 615: 82
+        line 616: 93
+        line 617: 100
+        line 618: 106
+        line 619: 111
+        line 620: 119
+        line 621: 126
+        line 625: 130
+        line 630: 139
+        line 621: 148
+        line 625: 151
+        line 630: 165
+      StackMapTable: number_of_entries = 5
+        frame_type = 38 /* same */
+        frame_type = 43 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 28
+          locals = [ int, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 39
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, int, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+    Signature: #296                         // (ITE;)TE;
+
+  public E remove(int);
+    descriptor: (I)Ljava/lang/Object;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=9, args_size=2
+         0: aload_0
+         1: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+         4: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+         9: aload_0
+        10: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        13: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        18: iload_1
+        19: iflt          33
+        22: iload_1
+        23: aload_0
+        24: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        27: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+        30: if_icmplt     77
+        33: new           #214                // class java/lang/IndexOutOfBoundsException
+        36: dup
+        37: new           #216                // class java/lang/StringBuilder
+        40: dup
+        41: invokespecial #217                // Method java/lang/StringBuilder."<init>":()V
+        44: ldc           #219                // String !(0<
+        46: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        49: iload_1
+        50: invokevirtual #226                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        53: ldc           #228                // String <=
+        55: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        58: aload_0
+        59: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        62: invokevirtual #231                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+        65: ldc           #233                // String )
+        67: invokevirtual #223                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        70: invokevirtual #237                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        73: invokespecial #240                // Method java/lang/IndexOutOfBoundsException."<init>":(Ljava/lang/String;)V
+        76: athrow
+        77: aload_0
+        78: getfield      #39                 // Field _indexes:[I
+        81: getstatic     #86                 // Field HEAD_OFFSET:I
+        84: iaload
+        85: iload_1
+        86: iadd
+        87: istore_2
+        88: aload_0
+        89: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        92: arraylength
+        93: istore_3
+        94: iload_2
+        95: iload_3
+        96: if_icmplt     103
+        99: iload_2
+       100: iload_3
+       101: isub
+       102: istore_2
+       103: aload_0
+       104: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       107: iload_2
+       108: aaload
+       109: astore        4
+       111: aload_0
+       112: getfield      #39                 // Field _indexes:[I
+       115: getstatic     #37                 // Field TAIL_OFFSET:I
+       118: iaload
+       119: istore        5
+       121: iload_2
+       122: iload         5
+       124: if_icmpge     161
+       127: aload_0
+       128: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       131: iload_2
+       132: iconst_1
+       133: iadd
+       134: aload_0
+       135: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       138: iload_2
+       139: iload         5
+       141: iload_2
+       142: isub
+       143: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       146: aload_0
+       147: getfield      #39                 // Field _indexes:[I
+       150: getstatic     #37                 // Field TAIL_OFFSET:I
+       153: dup2
+       154: iaload
+       155: iconst_1
+       156: isub
+       157: iastore
+       158: goto          255
+       161: aload_0
+       162: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       165: iload_2
+       166: iconst_1
+       167: iadd
+       168: aload_0
+       169: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       172: iload_2
+       173: iload_3
+       174: iload_2
+       175: isub
+       176: iconst_1
+       177: isub
+       178: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       181: aload_0
+       182: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       185: iload_3
+       186: iconst_1
+       187: isub
+       188: aload_0
+       189: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       192: iconst_0
+       193: aaload
+       194: aastore
+       195: iload         5
+       197: ifle          230
+       200: aload_0
+       201: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       204: iconst_1
+       205: aload_0
+       206: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       209: iconst_0
+       210: iload         5
+       212: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       215: aload_0
+       216: getfield      #39                 // Field _indexes:[I
+       219: getstatic     #37                 // Field TAIL_OFFSET:I
+       222: dup2
+       223: iaload
+       224: iconst_1
+       225: isub
+       226: iastore
+       227: goto          241
+       230: aload_0
+       231: getfield      #39                 // Field _indexes:[I
+       234: getstatic     #37                 // Field TAIL_OFFSET:I
+       237: iload_3
+       238: iconst_1
+       239: isub
+       240: iastore
+       241: aload_0
+       242: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       245: aload_0
+       246: getfield      #39                 // Field _indexes:[I
+       249: getstatic     #37                 // Field TAIL_OFFSET:I
+       252: iaload
+       253: aconst_null
+       254: aastore
+       255: aload_0
+       256: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+       259: invokevirtual #110                // Method java/util/concurrent/atomic/AtomicInteger.decrementAndGet:()I
+       262: pop
+       263: aload         4
+       265: astore        6
+       267: aload_0
+       268: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       271: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       276: aload_0
+       277: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       280: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       285: aload         6
+       287: areturn
+       288: astore        7
+       290: aload_0
+       291: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       294: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       299: aload         7
+       301: athrow
+       302: astore        8
+       304: aload_0
+       305: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       308: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       313: aload         8
+       315: athrow
+      Exception table:
+         from    to  target type
+            18   267   288   any
+           288   290   288   any
+             9   276   302   any
+           288   304   302   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           88     200     2     i   I
+           94     194     3 capacity   I
+          111     177     4   old   Ljava/lang/Object;
+          121     167     5  tail   I
+            0     316     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0     316     1 index   I
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+          111     177     4   old   TE;
+            0     316     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 639: 0
+        line 643: 9
+        line 646: 18
+        line 647: 33
+        line 649: 77
+        line 650: 88
+        line 651: 94
+        line 652: 99
+        line 653: 103
+        line 655: 111
+        line 656: 121
+        line 658: 127
+        line 659: 146
+        line 663: 161
+        line 664: 181
+        line 665: 195
+        line 667: 200
+        line 668: 215
+        line 672: 230
+        line 674: 241
+        line 677: 255
+        line 679: 263
+        line 683: 267
+        line 688: 276
+        line 679: 285
+        line 683: 288
+        line 688: 302
+      StackMapTable: number_of_entries = 9
+        frame_type = 33 /* same */
+        frame_type = 43 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 25
+          locals = [ int, int ]
+        frame_type = 253 /* append */
+          offset_delta = 57
+          locals = [ class java/lang/Object, int ]
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 68
+        frame_type = 10 /* same */
+        frame_type = 13 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 32
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+    Signature: #294                         // (I)TE;
+
+  public java.util.ListIterator<E> listIterator(int);
+    descriptor: (I)Ljava/util/ListIterator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=8, args_size=2
+         0: aload_0
+         1: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+         4: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+         9: aload_0
+        10: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        13: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        18: aload_0
+        19: invokevirtual #205                // Method size:()I
+        22: anewarray     #61                 // class java/lang/Object
+        25: astore_2
+        26: aload_0
+        27: invokevirtual #205                // Method size:()I
+        30: ifle          109
+        33: aload_0
+        34: getfield      #39                 // Field _indexes:[I
+        37: getstatic     #86                 // Field HEAD_OFFSET:I
+        40: iaload
+        41: istore_3
+        42: aload_0
+        43: getfield      #39                 // Field _indexes:[I
+        46: getstatic     #37                 // Field TAIL_OFFSET:I
+        49: iaload
+        50: istore        4
+        52: iload_3
+        53: iload         4
+        55: if_icmpge     75
+        58: aload_0
+        59: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        62: iload_3
+        63: aload_2
+        64: iconst_0
+        65: iload         4
+        67: iload_3
+        68: isub
+        69: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+        72: goto          109
+        75: aload_0
+        76: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        79: arraylength
+        80: iload_3
+        81: isub
+        82: istore        5
+        84: aload_0
+        85: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        88: iload_3
+        89: aload_2
+        90: iconst_0
+        91: iload         5
+        93: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+        96: aload_0
+        97: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       100: iconst_0
+       101: aload_2
+       102: iload         5
+       104: iload         4
+       106: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       109: new           #10                 // class org/eclipse/jetty/util/BlockingArrayQueue$Itr
+       112: dup
+       113: aload_0
+       114: aload_2
+       115: iload_1
+       116: invokespecial #266                // Method org/eclipse/jetty/util/BlockingArrayQueue$Itr."<init>":(Lorg/eclipse/jetty/util/BlockingArrayQueue;[Ljava/lang/Object;I)V
+       119: astore_3
+       120: aload_0
+       121: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       124: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       129: aload_0
+       130: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       133: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       138: aload_3
+       139: areturn
+       140: astore        6
+       142: aload_0
+       143: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       146: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       151: aload         6
+       153: athrow
+       154: astore        7
+       156: aload_0
+       157: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       160: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       165: aload         7
+       167: athrow
+      Exception table:
+         from    to  target type
+            18   120   140   any
+           140   142   140   any
+             9   129   154   any
+           140   156   154   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           84      25     5 chunk   I
+           42      67     3  head   I
+           52      57     4  tail   I
+           26     114     2 elements   [Ljava/lang/Object;
+            0     168     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+            0     168     1 index   I
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     168     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 696: 0
+        line 700: 9
+        line 703: 18
+        line 704: 26
+        line 706: 33
+        line 707: 42
+        line 708: 52
+        line 710: 58
+        line 714: 75
+        line 715: 84
+        line 716: 96
+        line 719: 109
+        line 723: 120
+        line 728: 129
+        line 719: 138
+        line 723: 140
+        line 728: 154
+      StackMapTable: number_of_entries = 4
+        frame_type = 254 /* append */
+          offset_delta = 75
+          locals = [ class "[Ljava/lang/Object;", int, int ]
+        frame_type = 249 /* chop */
+          offset_delta = 33
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, int ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+    Signature: #297                         // (I)Ljava/util/ListIterator<TE;>;
+
+  public int getCapacity();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=1
+         0: aload_0
+         1: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+         4: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+         9: aload_0
+        10: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        13: arraylength
+        14: istore_1
+        15: aload_0
+        16: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        19: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        24: iload_1
+        25: ireturn
+        26: astore_2
+        27: aload_0
+        28: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        31: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+        36: aload_2
+        37: athrow
+      Exception table:
+         from    to  target type
+             9    15    26   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      38     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      38     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 741: 0
+        line 744: 9
+        line 748: 15
+        line 744: 24
+        line 748: 26
+      StackMapTable: number_of_entries = 1
+        frame_type = 90 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+
+  public int getMaxCapacity();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #68                 // Field _maxCapacity:I
+         4: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 757: 0
+
+  private boolean grow();
+    descriptor: ()Z
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=5, locals=9, args_size=1
+         0: aload_0
+         1: getfield      #65                 // Field _growCapacity:I
+         4: ifgt          9
+         7: iconst_0
+         8: ireturn
+         9: aload_0
+        10: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+        13: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        18: aload_0
+        19: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+        22: invokeinterface #84,  1           // InterfaceMethod java/util/concurrent/locks/Lock.lock:()V
+        27: aload_0
+        28: getfield      #39                 // Field _indexes:[I
+        31: getstatic     #86                 // Field HEAD_OFFSET:I
+        34: iaload
+        35: istore_1
+        36: aload_0
+        37: getfield      #39                 // Field _indexes:[I
+        40: getstatic     #37                 // Field TAIL_OFFSET:I
+        43: iaload
+        44: istore_2
+        45: aload_0
+        46: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        49: arraylength
+        50: istore        4
+        52: iload         4
+        54: aload_0
+        55: getfield      #65                 // Field _growCapacity:I
+        58: iadd
+        59: anewarray     #61                 // class java/lang/Object
+        62: astore        5
+        64: iload_1
+        65: iload_2
+        66: if_icmpge     88
+        69: iload_2
+        70: iload_1
+        71: isub
+        72: istore_3
+        73: aload_0
+        74: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+        77: iload_1
+        78: aload         5
+        80: iconst_0
+        81: iload_3
+        82: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+        85: goto          147
+        88: iload_1
+        89: iload_2
+        90: if_icmpgt     103
+        93: aload_0
+        94: getfield      #49                 // Field _size:Ljava/util/concurrent/atomic/AtomicInteger;
+        97: invokevirtual #99                 // Method java/util/concurrent/atomic/AtomicInteger.get:()I
+       100: ifle          145
+       103: iload         4
+       105: iload_2
+       106: iadd
+       107: iload_1
+       108: isub
+       109: istore_3
+       110: iload         4
+       112: iload_1
+       113: isub
+       114: istore        6
+       116: aload_0
+       117: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       120: iload_1
+       121: aload         5
+       123: iconst_0
+       124: iload         6
+       126: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       129: aload_0
+       130: getfield      #63                 // Field _elements:[Ljava/lang/Object;
+       133: iconst_0
+       134: aload         5
+       136: iload         6
+       138: iload_2
+       139: invokestatic  #259                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       142: goto          147
+       145: iconst_0
+       146: istore_3
+       147: aload_0
+       148: aload         5
+       150: putfield      #63                 // Field _elements:[Ljava/lang/Object;
+       153: aload_0
+       154: getfield      #39                 // Field _indexes:[I
+       157: getstatic     #86                 // Field HEAD_OFFSET:I
+       160: iconst_0
+       161: iastore
+       162: aload_0
+       163: getfield      #39                 // Field _indexes:[I
+       166: getstatic     #37                 // Field TAIL_OFFSET:I
+       169: iload_3
+       170: iastore
+       171: iconst_1
+       172: istore        6
+       174: aload_0
+       175: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       178: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       183: aload_0
+       184: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       187: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       192: iload         6
+       194: ireturn
+       195: astore        7
+       197: aload_0
+       198: getfield      #51                 // Field _headLock:Ljava/util/concurrent/locks/Lock;
+       201: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       206: aload         7
+       208: athrow
+       209: astore        8
+       211: aload_0
+       212: getfield      #44                 // Field _tailLock:Ljava/util/concurrent/locks/Lock;
+       215: invokeinterface #92,  1           // InterfaceMethod java/util/concurrent/locks/Lock.unlock:()V
+       220: aload         8
+       222: athrow
+      Exception table:
+         from    to  target type
+            27   174   195   any
+           195   197   195   any
+            18   183   209   any
+           195   211   209   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           73      15     3 newTail   I
+          116      26     6   cut   I
+          110      35     3 newTail   I
+           36     159     1  head   I
+           45     150     2  tail   I
+          147      48     3 newTail   I
+           52     143     4 capacity   I
+           64     131     5 elements   [Ljava/lang/Object;
+            0     223     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0     223     0  this   Lorg/eclipse/jetty/util/BlockingArrayQueue<TE;>;
+      LineNumberTable:
+        line 766: 0
+        line 767: 7
+        line 769: 9
+        line 773: 18
+        line 776: 27
+        line 777: 36
+        line 779: 45
+        line 781: 52
+        line 783: 64
+        line 785: 69
+        line 786: 73
+        line 788: 88
+        line 790: 103
+        line 791: 110
+        line 792: 116
+        line 793: 129
+        line 794: 142
+        line 797: 145
+        line 800: 147
+        line 801: 153
+        line 802: 162
+        line 803: 171
+        line 807: 174
+        line 812: 183
+        line 803: 192
+        line 807: 195
+        line 812: 209
+      StackMapTable: number_of_entries = 7
+        frame_type = 9 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 78
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, int, int, top, int, class "[Ljava/lang/Object;" ]
+          stack = []
+        frame_type = 14 /* same */
+        frame_type = 41 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue, int, int, int, int, class "[Ljava/lang/Object;" ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 47
+          locals = [ class org/eclipse/jetty/util/BlockingArrayQueue ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 77 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: invokestatic  #277                // Method org/eclipse/jetty/util/MemoryUtils.getIntegersPerCacheLine:()I
+         3: iconst_1
+         4: isub
+         5: putstatic     #86                 // Field HEAD_OFFSET:I
+         8: getstatic     #86                 // Field HEAD_OFFSET:I
+        11: invokestatic  #277                // Method org/eclipse/jetty/util/MemoryUtils.getIntegersPerCacheLine:()I
+        14: iadd
+        15: putstatic     #37                 // Field TAIL_OFFSET:I
+        18: return
+      LineNumberTable:
+        line 56: 0
+        line 60: 8
+}
+Signature: #3                           // <E:Ljava/lang/Object;>Ljava/util/AbstractList<TE;>;Ljava/util/concurrent/BlockingQueue<TE;>;
+SourceFile: "BlockingArrayQueue.java"
+InnerClasses:
+  private #11= #10 of #2;                 // Itr=class org/eclipse/jetty/util/BlockingArrayQueue$Itr of class org/eclipse/jetty/util/BlockingArrayQueue

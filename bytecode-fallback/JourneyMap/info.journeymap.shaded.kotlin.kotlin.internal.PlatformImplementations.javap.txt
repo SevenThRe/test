@@ -1,0 +1,226 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/journeymap-1.12.2-5.7.0(1)(2).jar!/info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations.class
+  Last modified 25-����-20; size 2675 bytes
+  SHA-256 checksum 6af803e69a21cf4ba5c25a9c24e748913e38e75f099750dcde5e74485f6a281e
+  Compiled from "PlatformImplementations.kt"
+public class info.journeymap.shaded.kotlin.kotlin.internal.PlatformImplementations
+  minor version: 0
+  major version: 50
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 4, attributes: 3
+Constant pool:
+   #1 = Utf8               info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations
+   #2 = Class              #1             // info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations
+   #3 = Utf8               java/lang/Object
+   #4 = Class              #3             // java/lang/Object
+   #5 = Utf8               PlatformImplementations.kt
+   #6 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/Metadata;
+   #7 = Utf8               mv
+   #8 = Integer            1
+   #9 = Integer            15
+  #10 = Utf8               bv
+  #11 = Integer            0
+  #12 = Integer            3
+  #13 = Utf8               k
+  #14 = Utf8               d1
+  #15 = Utf8               \u00004\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\u0003\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0002\b\u0010\u0018\u00002\u00020\u0001:\u0001\u0010B\u0005?\u0006\u0002\u0010\u0002J\u0018\u0010\u0003\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\u0006H\u0016J\b\u0010\b\u001a\u00020\tH\u0016J\u001a\u0010\n\u001a\u0004\u0018\u00010\u000b2\u0006\u0010\f\u001a\u00020\r2\u0006\u0010\u000e\u001a\u00020\u000fH\u0016��\u0006\u0011
+  #16 = Utf8               d2
+  #17 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations;
+  #18 = Utf8
+  #19 = Utf8               ()V
+  #20 = Utf8               addSuppressed
+  #21 = Utf8               cause
+  #22 = Utf8               exception
+  #23 = Utf8               defaultPlatformRandom
+  #24 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+  #25 = Utf8               getMatchResultNamedGroup
+  #26 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/text/MatchGroup;
+  #27 = Utf8               matchResult
+  #28 = Utf8               Ljava/util/regex/MatchResult;
+  #29 = Utf8               name
+  #30 = Utf8               ReflectAddSuppressedMethod
+  #31 = Utf8               info.journeymap.shaded.kotlin.kotlin-stdlib
+  #32 = Utf8               info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations$ReflectAddSuppressedMethod
+  #33 = Class              #32            // info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations$ReflectAddSuppressedMethod
+  #34 = Utf8               (Ljava/lang/Throwable;Ljava/lang/Throwable;)V
+  #35 = Utf8               Linfo/journeymap/shaded/org/jetbrains/annotations/NotNull;
+  #36 = String             #21            // cause
+  #37 = Utf8               info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics
+  #38 = Class              #37            // info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics
+  #39 = Utf8               checkParameterIsNotNull
+  #40 = Utf8               (Ljava/lang/Object;Ljava/lang/String;)V
+  #41 = NameAndType        #39:#40        // checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+  #42 = Methodref          #38.#41        // info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+  #43 = String             #22            // exception
+  #44 = Utf8               method
+  #45 = Utf8               Ljava/lang/reflect/Method;
+  #46 = NameAndType        #44:#45        // method:Ljava/lang/reflect/Method;
+  #47 = Fieldref           #33.#46        // info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations$ReflectAddSuppressedMethod.method:Ljava/lang/reflect/Method;
+  #48 = Utf8               java/lang/reflect/Method
+  #49 = Class              #48            // java/lang/reflect/Method
+  #50 = Utf8               invoke
+  #51 = Utf8               (Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+  #52 = NameAndType        #50:#51        // invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+  #53 = Methodref          #49.#52        // java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+  #54 = Utf8               this
+  #55 = Utf8               Ljava/lang/Throwable;
+  #56 = Utf8               (Ljava/util/regex/MatchResult;Ljava/lang/String;)Linfo/journeymap/shaded/kotlin/kotlin/text/MatchGroup;
+  #57 = Utf8               Linfo/journeymap/shaded/org/jetbrains/annotations/Nullable;
+  #58 = String             #27            // matchResult
+  #59 = String             #29            // name
+  #60 = Utf8               java/lang/UnsupportedOperationException
+  #61 = Class              #60            // java/lang/UnsupportedOperationException
+  #62 = Utf8               Retrieving groups by name is not supported on this platform.
+  #63 = String             #62            // Retrieving groups by name is not supported on this platform.
+  #64 = Utf8               <init>
+  #65 = Utf8               (Ljava/lang/String;)V
+  #66 = NameAndType        #64:#65        // "<init>":(Ljava/lang/String;)V
+  #67 = Methodref          #61.#66        // java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+  #68 = Utf8               java/lang/Throwable
+  #69 = Class              #68            // java/lang/Throwable
+  #70 = Utf8               Ljava/lang/String;
+  #71 = Utf8               ()Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+  #72 = Utf8               info/journeymap/shaded/kotlin/kotlin/random/FallbackThreadLocalRandom
+  #73 = Class              #72            // info/journeymap/shaded/kotlin/kotlin/random/FallbackThreadLocalRandom
+  #74 = NameAndType        #64:#19        // "<init>":()V
+  #75 = Methodref          #73.#74        // info/journeymap/shaded/kotlin/kotlin/random/FallbackThreadLocalRandom."<init>":()V
+  #76 = Utf8               info/journeymap/shaded/kotlin/kotlin/random/Random
+  #77 = Class              #76            // info/journeymap/shaded/kotlin/kotlin/random/Random
+  #78 = Methodref          #4.#74         // java/lang/Object."<init>":()V
+  #79 = Utf8               Code
+  #80 = Utf8               LocalVariableTable
+  #81 = Utf8               LineNumberTable
+  #82 = Utf8               StackMapTable
+  #83 = Utf8               RuntimeInvisibleParameterAnnotations
+  #84 = Utf8               RuntimeInvisibleAnnotations
+  #85 = Utf8               SourceFile
+  #86 = Utf8               InnerClasses
+  #87 = Utf8               RuntimeVisibleAnnotations
+{
+  public void addSuppressed(java.lang.Throwable, java.lang.Throwable);
+    descriptor: (Ljava/lang/Throwable;Ljava/lang/Throwable;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=3, args_size=3
+         0: aload_1
+         1: ldc           #36                 // String cause
+         3: invokestatic  #42                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_2
+         7: ldc           #43                 // String exception
+         9: invokestatic  #42                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        12: getstatic     #47                 // Field info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations$ReflectAddSuppressedMethod.method:Ljava/lang/reflect/Method;
+        15: dup
+        16: ifnull        35
+        19: aload_1
+        20: iconst_1
+        21: anewarray     #4                  // class java/lang/Object
+        24: dup
+        25: iconst_0
+        26: aload_2
+        27: aastore
+        28: invokevirtual #53                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+        31: pop
+        32: goto          36
+        35: pop
+        36: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      37     0  this   Linfo/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations;
+            0      37     1 cause   Ljava/lang/Throwable;
+            0      37     2 exception   Ljava/lang/Throwable;
+      LineNumberTable:
+        line 25: 12
+        line 26: 36
+      StackMapTable: number_of_entries = 2
+        frame_type = 99 /* same_locals_1_stack_item */
+          stack = [ class java/lang/reflect/Method ]
+        frame_type = 0 /* same */
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #35()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #35()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public info.journeymap.shaded.kotlin.kotlin.text.MatchGroup getMatchResultNamedGroup(java.util.regex.MatchResult, java.lang.String);
+    descriptor: (Ljava/util/regex/MatchResult;Ljava/lang/String;)Linfo/journeymap/shaded/kotlin/kotlin/text/MatchGroup;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_1
+         1: ldc           #58                 // String matchResult
+         3: invokestatic  #42                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_2
+         7: ldc           #59                 // String name
+         9: invokestatic  #42                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        12: new           #61                 // class java/lang/UnsupportedOperationException
+        15: dup
+        16: ldc           #63                 // String Retrieving groups by name is not supported on this platform.
+        18: invokespecial #67                 // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+        21: checkcast     #69                 // class java/lang/Throwable
+        24: athrow
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      25     0  this   Linfo/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations;
+            0      25     1 matchResult   Ljava/util/regex/MatchResult;
+            0      25     2  name   Ljava/lang/String;
+      LineNumberTable:
+        line 29: 12
+    RuntimeInvisibleAnnotations:
+      0: #57()
+        info.journeymap.shaded.org.jetbrains.annotations.Nullable
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #35()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #35()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public info.journeymap.shaded.kotlin.kotlin.random.Random defaultPlatformRandom();
+    descriptor: ()Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: new           #73                 // class info/journeymap/shaded/kotlin/kotlin/random/FallbackThreadLocalRandom
+         3: dup
+         4: invokespecial #75                 // Method info/journeymap/shaded/kotlin/kotlin/random/FallbackThreadLocalRandom."<init>":()V
+         7: checkcast     #77                 // class info/journeymap/shaded/kotlin/kotlin/random/Random
+        10: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0  this   Linfo/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations;
+      LineNumberTable:
+        line 32: 0
+    RuntimeInvisibleAnnotations:
+      0: #35()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public info.journeymap.shaded.kotlin.kotlin.internal.PlatformImplementations();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #78                 // Method java/lang/Object."<init>":()V
+         4: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Linfo/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations;
+      LineNumberTable:
+        line 13: 0
+}
+SourceFile: "PlatformImplementations.kt"
+InnerClasses:
+  private static final #30= #33 of #2;    // ReflectAddSuppressedMethod=class info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations$ReflectAddSuppressedMethod of class info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations
+RuntimeVisibleAnnotations:
+  0: #6(#7=[I#8,I#8,I#9],#10=[I#8,I#11,I#12],#13=I#8,#14=[s#15],#16=[s#17,s#18,s#19,s#20,s#18,s#21,s#18,s#22,s#23,s#24,s#25,s#26,s#27,s#28,s#29,s#18,s#30,s#31])
+    info.journeymap.shaded.kotlin.kotlin.Metadata(
+      mv=[1,1,15]
+      bv=[1,0,3]
+      k=1
+      d1=["\u00004\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\u0003\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0002\b\u0010\u0018\u00002\u00020\u0001:\u0001\u0010B\u0005?\u0006\u0002\u0010\u0002J\u0018\u0010\u0003\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\u0006H\u0016J\b\u0010\b\u001a\u00020\tH\u0016J\u001a\u0010\n\u001a\u0004\u0018\u00010\u000b2\u0006\u0010\f\u001a\u00020\r2\u0006\u0010\u000e\u001a\u00020\u000fH\u0016��\u0006\u0011"]
+      d2=["Linfo/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations;","","()V","addSuppressed","","cause","","exception","defaultPlatformRandom","Linfo/journeymap/shaded/kotlin/kotlin/random/Random;","getMatchResultNamedGroup","Linfo/journeymap/shaded/kotlin/kotlin/text/MatchGroup;","matchResult","Ljava/util/regex/MatchResult;","name","","ReflectAddSuppressedMethod","info.journeymap.shaded.kotlin.kotlin-stdlib"]
+    )

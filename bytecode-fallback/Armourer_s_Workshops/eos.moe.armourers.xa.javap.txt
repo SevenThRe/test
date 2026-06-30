@@ -1,0 +1,354 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/Mod-DragonArmourers(4).jar!/eos/moe/armourers/xa.class
+  Last modified 09-����-24; size 1984 bytes
+  SHA-256 checksum 880a892f8cc9472feba9b364877177b4788c7be0441c1002f9104d6422b66eae
+  Compiled from "ja"
+public class eos.moe.armourers.xa
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // eos/moe/armourers/xa
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 1, methods: 2, attributes: 2
+Constant pool:
+    #1 = Utf8               eos/moe/armourers/xa
+    #2 = Class              #1            // eos/moe/armourers/xa
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               ja
+    #6 = Utf8               eos/moe/armourers/jb
+    #7 = Class              #6            // eos/moe/armourers/jb
+    #8 = Utf8               eos/moe/armourers/rb
+    #9 = Class              #8            // eos/moe/armourers/rb
+   #10 = Utf8               eos/moe/armourers/ib
+   #11 = Class              #10           // eos/moe/armourers/ib
+   #12 = Utf8               j
+   #13 = Utf8               I
+   #14 = Integer            16384
+   #15 = Utf8               <init>
+   #16 = Utf8               ()V
+   #17 = NameAndType        #15:#16       // "<init>":()V
+   #18 = Methodref          #4.#17        // java/lang/Object."<init>":()V
+   #19 = Utf8               a
+   #20 = Utf8               Leos/moe/armourers/xa;
+   #21 = Utf8               r
+   #22 = Utf8               (Ljava/io/File;Leos/moe/armourers/rb;)J
+   #23 = Utf8               java/io/IOException
+   #24 = Class              #23           // java/io/IOException
+   #25 = Utf8               java/lang/Throwable
+   #26 = Class              #25           // java/lang/Throwable
+   #27 = Utf8               java/io/File
+   #28 = Class              #27           // java/io/File
+   #29 = Utf8               exists
+   #30 = Utf8               ()Z
+   #31 = NameAndType        #29:#30       // exists:()Z
+   #32 = Methodref          #28.#31       // java/io/File.exists:()Z
+   #33 = Utf8               canRead
+   #34 = NameAndType        #33:#30       // canRead:()Z
+   #35 = Methodref          #28.#34       // java/io/File.canRead:()Z
+   #36 = Utf8               eos/moe/armourers/ph
+   #37 = Class              #36           // eos/moe/armourers/ph
+   #38 = Utf8               input file is null or does not exist or cannot read. Cannot calculate CRC for the file
+   #39 = String             #38           // input file is null or does not exist or cannot read. Cannot calculate CRC for the file
+   #40 = Utf8               (Ljava/lang/String;)V
+   #41 = NameAndType        #15:#40       // "<init>":(Ljava/lang/String;)V
+   #42 = Methodref          #37.#41       // eos/moe/armourers/ph."<init>":(Ljava/lang/String;)V
+   #43 = Utf8               java/util/zip/CRC32
+   #44 = Class              #43           // java/util/zip/CRC32
+   #45 = Methodref          #44.#17       // java/util/zip/CRC32."<init>":()V
+   #46 = Utf8               java/io/FileInputStream
+   #47 = Class              #46           // java/io/FileInputStream
+   #48 = Utf8               (Ljava/io/File;)V
+   #49 = NameAndType        #15:#48       // "<init>":(Ljava/io/File;)V
+   #50 = Methodref          #47.#49       // java/io/FileInputStream."<init>":(Ljava/io/File;)V
+   #51 = Utf8               java/io/InputStream
+   #52 = Class              #51           // java/io/InputStream
+   #53 = Utf8               read
+   #54 = Utf8               ([B)I
+   #55 = NameAndType        #53:#54       // read:([B)I
+   #56 = Methodref          #52.#55       // java/io/InputStream.read:([B)I
+   #57 = Utf8               update
+   #58 = Utf8               ([BII)V
+   #59 = NameAndType        #57:#58       // update:([BII)V
+   #60 = Methodref          #44.#59       // java/util/zip/CRC32.update:([BII)V
+   #61 = Utf8               (J)V
+   #62 = NameAndType        #21:#61       // r:(J)V
+   #63 = Methodref          #9.#62        // eos/moe/armourers/rb.r:(J)V
+   #64 = NameAndType        #21:#30       // r:()Z
+   #65 = Methodref          #9.#64        // eos/moe/armourers/rb.r:()Z
+   #66 = Utf8               s
+   #67 = Utf8               Leos/moe/armourers/jb;
+   #68 = NameAndType        #66:#67       // s:Leos/moe/armourers/jb;
+   #69 = Fieldref           #7.#68        // eos/moe/armourers/jb.s:Leos/moe/armourers/jb;
+   #70 = Utf8               (Leos/moe/armourers/jb;)V
+   #71 = NameAndType        #21:#70       // r:(Leos/moe/armourers/jb;)V
+   #72 = Methodref          #9.#71        // eos/moe/armourers/rb.r:(Leos/moe/armourers/jb;)V
+   #73 = Utf8               Leos/moe/armourers/ib;
+   #74 = NameAndType        #12:#73       // j:Leos/moe/armourers/ib;
+   #75 = Fieldref           #11.#74       // eos/moe/armourers/ib.j:Leos/moe/armourers/ib;
+   #76 = Utf8               (Leos/moe/armourers/ib;)V
+   #77 = NameAndType        #21:#76       // r:(Leos/moe/armourers/ib;)V
+   #78 = Methodref          #9.#77        // eos/moe/armourers/rb.r:(Leos/moe/armourers/ib;)V
+   #79 = Utf8               close
+   #80 = NameAndType        #79:#16       // close:()V
+   #81 = Methodref          #52.#80       // java/io/InputStream.close:()V
+   #82 = Utf8               addSuppressed
+   #83 = Utf8               (Ljava/lang/Throwable;)V
+   #84 = NameAndType        #82:#83       // addSuppressed:(Ljava/lang/Throwable;)V
+   #85 = Methodref          #26.#84       // java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+   #86 = Utf8               getValue
+   #87 = Utf8               ()J
+   #88 = NameAndType        #86:#87       // getValue:()J
+   #89 = Methodref          #44.#88       // java/util/zip/CRC32.getValue:()J
+   #90 = Utf8               Ljava/io/File;
+   #91 = Utf8               Leos/moe/armourers/rb;
+   #92 = Utf8               [B
+   #93 = Class              #92           // "[B"
+   #94 = Utf8               ConstantValue
+   #95 = Utf8               Code
+   #96 = Utf8               LocalVariableTable
+   #97 = Utf8               LineNumberTable
+   #98 = Utf8               StackMapTable
+   #99 = Utf8               Exceptions
+  #100 = Utf8               SourceFile
+  #101 = Utf8               InnerClasses
+{
+  private static final int j;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 16384
+
+  public eos.moe.armourers.xa();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+         4: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/xa;
+      LineNumberTable:
+        line 234: 0
+
+  public static long r(java.io.File, eos.moe.armourers.rb) throws java.io.IOException;
+    descriptor: (Ljava/io/File;Leos/moe/armourers/rb;)J
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=11, args_size=2
+         0: aload_0
+         1: ifnull        18
+         4: aload_0
+         5: invokevirtual #32                 // Method java/io/File.exists:()Z
+         8: ifeq          18
+        11: aload_0
+        12: invokevirtual #35                 // Method java/io/File.canRead:()Z
+        15: ifne          28
+        18: new           #37                 // class eos/moe/armourers/ph
+        21: dup
+        22: ldc           #39                 // String input file is null or does not exist or cannot read. Cannot calculate CRC for the file
+        24: invokespecial #42                 // Method eos/moe/armourers/ph."<init>":(Ljava/lang/String;)V
+        27: athrow
+        28: sipush        16384
+        31: newarray       byte
+        33: iconst_1
+        34: dup
+        35: pop2
+        36: astore_2
+        37: new           #44                 // class java/util/zip/CRC32
+        40: dup
+        41: invokespecial #45                 // Method java/util/zip/CRC32."<init>":()V
+        44: astore_3
+        45: new           #47                 // class java/io/FileInputStream
+        48: dup
+        49: aload_0
+        50: invokespecial #50                 // Method java/io/FileInputStream."<init>":(Ljava/io/File;)V
+        53: astore        4
+        55: aconst_null
+        56: astore        5
+        58: aload         4
+        60: aload_2
+        61: invokevirtual #56                 // Method java/io/InputStream.read:([B)I
+        64: dup
+        65: istore        6
+        67: iconst_m1
+        68: if_icmpeq     154
+        71: aload_1
+        72: aload_3
+        73: aload_2
+        74: iconst_0
+        75: iload         6
+        77: invokevirtual #60                 // Method java/util/zip/CRC32.update:([BII)V
+        80: ifnull        58
+        83: aload_1
+        84: dup
+        85: iload         6
+        87: i2l
+        88: invokevirtual #63                 // Method eos/moe/armourers/rb.r:(J)V
+        91: invokevirtual #65                 // Method eos/moe/armourers/rb.r:()Z
+        94: ifeq          58
+        97: lconst_0
+        98: aload_1
+        99: dup
+       100: getstatic     #69                 // Field eos/moe/armourers/jb.s:Leos/moe/armourers/jb;
+       103: invokevirtual #72                 // Method eos/moe/armourers/rb.r:(Leos/moe/armourers/jb;)V
+       106: getstatic     #75                 // Field eos/moe/armourers/ib.j:Leos/moe/armourers/ib;
+       109: invokevirtual #78                 // Method eos/moe/armourers/rb.r:(Leos/moe/armourers/ib;)V
+       112: lstore        7
+       114: aload         4
+       116: ifnull        151
+       119: aload         5
+       121: ifnull        146
+       124: aload         4
+       126: invokevirtual #81                 // Method java/io/InputStream.close:()V
+       129: lload         7
+       131: lreturn
+       132: athrow
+       133: astore        9
+       135: lload         7
+       137: aload         5
+       139: aload         9
+       141: invokevirtual #85                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       144: lreturn
+       145: athrow
+       146: aload         4
+       148: invokevirtual #81                 // Method java/io/InputStream.close:()V
+       151: lload         7
+       153: lreturn
+       154: aload_3
+       155: invokevirtual #89                 // Method java/util/zip/CRC32.getValue:()J
+       158: lstore        7
+       160: aload         4
+       162: ifnull        195
+       165: aload         5
+       167: ifnull        190
+       170: aload         4
+       172: invokevirtual #81                 // Method java/io/InputStream.close:()V
+       175: lload         7
+       177: lreturn
+       178: astore        9
+       180: lload         7
+       182: aload         5
+       184: aload         9
+       186: invokevirtual #85                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       189: lreturn
+       190: aload         4
+       192: invokevirtual #81                 // Method java/io/InputStream.close:()V
+       195: lload         7
+       197: lreturn
+       198: astore        6
+       200: aload         6
+       202: dup
+       203: astore        5
+       205: athrow
+       206: astore        10
+       208: aload         4
+       210: ifnull        245
+       213: aload         5
+       215: ifnull        240
+       218: aload         4
+       220: invokevirtual #81                 // Method java/io/InputStream.close:()V
+       223: aload         10
+       225: goto          247
+       228: astore_1
+       229: aload         10
+       231: aload         5
+       233: aload_1
+       234: invokevirtual #85                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       237: goto          247
+       240: aload         4
+       242: invokevirtual #81                 // Method java/io/InputStream.close:()V
+       245: aload         10
+       247: athrow
+      Exception table:
+         from    to  target type
+           124   129   133   Class java/lang/Throwable
+           170   175   178   Class java/lang/Throwable
+            58   114   198   Class java/lang/Throwable
+           154   160   198   Class java/lang/Throwable
+            58   114   206   any
+           154   160   206   any
+           218   223   228   Class java/lang/Throwable
+           198   208   206   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     248     0     a   Ljava/io/File;
+            0     248     1     a   Leos/moe/armourers/rb;
+      LineNumberTable:
+        line 150: 0
+        line 113: 18
+        line 119: 28
+        line 216: 37
+        line 235: 45
+        line 110: 58
+        line 44: 72
+        line 203: 80
+        line 158: 83
+        line 18: 91
+        line 92: 98
+        line 227: 106
+        line 54: 112
+        line 71: 114
+        line 54: 151
+        line 157: 154
+        line 71: 160
+        line 157: 195
+        line 235: 198
+        line 71: 206
+      StackMapTable: number_of_entries = 18
+        frame_type = 18 /* same */
+        frame_type = 9 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 29
+          locals = [ class java/io/File, class eos/moe/armourers/rb, class "[B", class java/util/zip/CRC32, class java/io/FileInputStream, null ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 73
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/io/File, class eos/moe/armourers/rb, class "[B", class java/util/zip/CRC32, class java/io/FileInputStream, null, int, long ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 11
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/io/File, class eos/moe/armourers/rb, class "[B", class java/util/zip/CRC32, class java/io/FileInputStream, null, int, long ]
+          stack = []
+        frame_type = 4 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 23
+          locals = [ class java/io/File, class eos/moe/armourers/rb, class "[B", class java/util/zip/CRC32, class java/io/FileInputStream, null, int, long ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 4 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class java/io/File, class eos/moe/armourers/rb, class "[B", class java/util/zip/CRC32, class java/io/FileInputStream, null ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = [ class java/io/File, class eos/moe/armourers/rb, class "[B", class java/util/zip/CRC32, class java/io/FileInputStream, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 21
+          locals = [ class java/io/File, class eos/moe/armourers/rb, class "[B", class java/util/zip/CRC32, class java/io/FileInputStream, class java/lang/Throwable, top, top, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 11 /* same */
+        frame_type = 4 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class java/io/File, class java/lang/Object, class "[B", class java/util/zip/CRC32, class java/io/FileInputStream, class java/lang/Throwable, top, top, top, top, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+    Exceptions:
+      throws java.io.IOException
+}
+SourceFile: "ja"
+InnerClasses:
+  public static final #7 of #9;           // class eos/moe/armourers/jb of class eos/moe/armourers/rb
+  public static final #11 of #9;          // class eos/moe/armourers/ib of class eos/moe/armourers/rb

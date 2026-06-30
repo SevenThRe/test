@@ -1,0 +1,1570 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/journeymap-1.12.2-5.7.0(1)(2).jar!/org/eclipse/jetty/server/ShutdownMonitor.class
+  Last modified 25-����-20; size 8545 bytes
+  SHA-256 checksum 429e8fc8abc02c58bbdf0bcc7b694772a8af08be40744ae1857cb2401c9a77a8
+  Compiled from "ShutdownMonitor.java"
+public class org.eclipse.jetty.server.ShutdownMonitor
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // org/eclipse/jetty/server/ShutdownMonitor
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 7, methods: 29, attributes: 2
+Constant pool:
+    #1 = Utf8               org/eclipse/jetty/server/ShutdownMonitor
+    #2 = Class              #1            // org/eclipse/jetty/server/ShutdownMonitor
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               ShutdownMonitor.java
+    #6 = Utf8               org/eclipse/jetty/server/ShutdownMonitor$1
+    #7 = Class              #6            // org/eclipse/jetty/server/ShutdownMonitor$1
+    #8 = Utf8               org/eclipse/jetty/server/ShutdownMonitor$ShutdownMonitorRunnable
+    #9 = Class              #8            // org/eclipse/jetty/server/ShutdownMonitor$ShutdownMonitorRunnable
+   #10 = Utf8               ShutdownMonitorRunnable
+   #11 = Utf8               org/eclipse/jetty/server/ShutdownMonitor$Holder
+   #12 = Class              #11           // org/eclipse/jetty/server/ShutdownMonitor$Holder
+   #13 = Utf8               Holder
+   #14 = Utf8               _lifeCycles
+   #15 = Utf8               Ljava/util/Set;
+   #16 = Utf8               Ljava/util/Set<Lorg/eclipse/jetty/util/component/LifeCycle;>;
+   #17 = Utf8               debug
+   #18 = Utf8               Z
+   #19 = Utf8               host
+   #20 = Utf8               Ljava/lang/String;
+   #21 = Utf8               port
+   #22 = Utf8               I
+   #23 = Utf8               key
+   #24 = Utf8               exitVm
+   #25 = Utf8               alive
+   #26 = Utf8               getInstance
+   #27 = Utf8               ()Lorg/eclipse/jetty/server/ShutdownMonitor;
+   #28 = Utf8               instance
+   #29 = Utf8               Lorg/eclipse/jetty/server/ShutdownMonitor;
+   #30 = NameAndType        #28:#29       // instance:Lorg/eclipse/jetty/server/ShutdownMonitor;
+   #31 = Fieldref           #12.#30       // org/eclipse/jetty/server/ShutdownMonitor$Holder.instance:Lorg/eclipse/jetty/server/ShutdownMonitor;
+   #32 = Utf8               reset
+   #33 = Utf8               ()V
+   #34 = Utf8               <init>
+   #35 = NameAndType        #34:#33       // "<init>":()V
+   #36 = Methodref          #2.#35        // org/eclipse/jetty/server/ShutdownMonitor."<init>":()V
+   #37 = Utf8               register
+   #38 = Utf8               ([Lorg/eclipse/jetty/util/component/LifeCycle;)V
+   #39 = NameAndType        #26:#27       // getInstance:()Lorg/eclipse/jetty/server/ShutdownMonitor;
+   #40 = Methodref          #2.#39        // org/eclipse/jetty/server/ShutdownMonitor.getInstance:()Lorg/eclipse/jetty/server/ShutdownMonitor;
+   #41 = Utf8               addLifeCycles
+   #42 = NameAndType        #41:#38       // addLifeCycles:([Lorg/eclipse/jetty/util/component/LifeCycle;)V
+   #43 = Methodref          #2.#42        // org/eclipse/jetty/server/ShutdownMonitor.addLifeCycles:([Lorg/eclipse/jetty/util/component/LifeCycle;)V
+   #44 = Utf8               lifeCycles
+   #45 = Utf8               [Lorg/eclipse/jetty/util/component/LifeCycle;
+   #46 = Utf8               deregister
+   #47 = Utf8               (Lorg/eclipse/jetty/util/component/LifeCycle;)V
+   #48 = Utf8               removeLifeCycle
+   #49 = NameAndType        #48:#47       // removeLifeCycle:(Lorg/eclipse/jetty/util/component/LifeCycle;)V
+   #50 = Methodref          #2.#49        // org/eclipse/jetty/server/ShutdownMonitor.removeLifeCycle:(Lorg/eclipse/jetty/util/component/LifeCycle;)V
+   #51 = Utf8               lifeCycle
+   #52 = Utf8               Lorg/eclipse/jetty/util/component/LifeCycle;
+   #53 = Utf8               isRegistered
+   #54 = Utf8               (Lorg/eclipse/jetty/util/component/LifeCycle;)Z
+   #55 = Utf8               containsLifeCycle
+   #56 = NameAndType        #55:#54       // containsLifeCycle:(Lorg/eclipse/jetty/util/component/LifeCycle;)Z
+   #57 = Methodref          #2.#56        // org/eclipse/jetty/server/ShutdownMonitor.containsLifeCycle:(Lorg/eclipse/jetty/util/component/LifeCycle;)Z
+   #58 = Methodref          #4.#35        // java/lang/Object."<init>":()V
+   #59 = Utf8               java/util/LinkedHashSet
+   #60 = Class              #59           // java/util/LinkedHashSet
+   #61 = Methodref          #60.#35       // java/util/LinkedHashSet."<init>":()V
+   #62 = NameAndType        #14:#15       // _lifeCycles:Ljava/util/Set;
+   #63 = Fieldref           #2.#62        // org/eclipse/jetty/server/ShutdownMonitor._lifeCycles:Ljava/util/Set;
+   #64 = Utf8               DEBUG
+   #65 = String             #64           // DEBUG
+   #66 = Utf8               java/lang/System
+   #67 = Class              #66           // java/lang/System
+   #68 = Utf8               getProperty
+   #69 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+   #70 = NameAndType        #68:#69       // getProperty:(Ljava/lang/String;)Ljava/lang/String;
+   #71 = Methodref          #67.#70       // java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+   #72 = NameAndType        #17:#18       // debug:Z
+   #73 = Fieldref           #2.#72        // org/eclipse/jetty/server/ShutdownMonitor.debug:Z
+   #74 = Utf8               STOP.HOST
+   #75 = String             #74           // STOP.HOST
+   #76 = Utf8               127.0.0.1
+   #77 = String             #76           // 127.0.0.1
+   #78 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #79 = NameAndType        #68:#78       // getProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #80 = Methodref          #67.#79       // java/lang/System.getProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #81 = NameAndType        #19:#20       // host:Ljava/lang/String;
+   #82 = Fieldref           #2.#81        // org/eclipse/jetty/server/ShutdownMonitor.host:Ljava/lang/String;
+   #83 = Utf8               STOP.PORT
+   #84 = String             #83           // STOP.PORT
+   #85 = Utf8               -1
+   #86 = String             #85           // -1
+   #87 = Utf8               java/lang/Integer
+   #88 = Class              #87           // java/lang/Integer
+   #89 = Utf8               parseInt
+   #90 = Utf8               (Ljava/lang/String;)I
+   #91 = NameAndType        #89:#90       // parseInt:(Ljava/lang/String;)I
+   #92 = Methodref          #88.#91       // java/lang/Integer.parseInt:(Ljava/lang/String;)I
+   #93 = NameAndType        #21:#22       // port:I
+   #94 = Fieldref           #2.#93        // org/eclipse/jetty/server/ShutdownMonitor.port:I
+   #95 = Utf8               STOP.KEY
+   #96 = String             #95           // STOP.KEY
+   #97 = NameAndType        #23:#20       // key:Ljava/lang/String;
+   #98 = Fieldref           #2.#97        // org/eclipse/jetty/server/ShutdownMonitor.key:Ljava/lang/String;
+   #99 = NameAndType        #24:#18       // exitVm:Z
+  #100 = Fieldref           #2.#99        // org/eclipse/jetty/server/ShutdownMonitor.exitVm:Z
+  #101 = Utf8               this
+  #102 = Utf8               java/util/Arrays
+  #103 = Class              #102          // java/util/Arrays
+  #104 = Utf8               asList
+  #105 = Utf8               ([Ljava/lang/Object;)Ljava/util/List;
+  #106 = NameAndType        #104:#105     // asList:([Ljava/lang/Object;)Ljava/util/List;
+  #107 = Methodref          #103.#106     // java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+  #108 = Utf8               java/util/Set
+  #109 = Class              #108          // java/util/Set
+  #110 = Utf8               addAll
+  #111 = Utf8               (Ljava/util/Collection;)Z
+  #112 = NameAndType        #110:#111     // addAll:(Ljava/util/Collection;)Z
+  #113 = InterfaceMethodref #109.#112     // java/util/Set.addAll:(Ljava/util/Collection;)Z
+  #114 = Class              #45           // "[Lorg/eclipse/jetty/util/component/LifeCycle;"
+  #115 = Utf8               java/lang/Throwable
+  #116 = Class              #115          // java/lang/Throwable
+  #117 = Utf8               remove
+  #118 = Utf8               (Ljava/lang/Object;)Z
+  #119 = NameAndType        #117:#118     // remove:(Ljava/lang/Object;)Z
+  #120 = InterfaceMethodref #109.#119     // java/util/Set.remove:(Ljava/lang/Object;)Z
+  #121 = Utf8               org/eclipse/jetty/util/component/LifeCycle
+  #122 = Class              #121          // org/eclipse/jetty/util/component/LifeCycle
+  #123 = Utf8               contains
+  #124 = NameAndType        #123:#118     // contains:(Ljava/lang/Object;)Z
+  #125 = InterfaceMethodref #109.#124     // java/util/Set.contains:(Ljava/lang/Object;)Z
+  #126 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)V
+  #127 = Utf8               err
+  #128 = Utf8               Ljava/io/PrintStream;
+  #129 = NameAndType        #127:#128     // err:Ljava/io/PrintStream;
+  #130 = Fieldref           #67.#129      // java/lang/System.err:Ljava/io/PrintStream;
+  #131 = Utf8               java/lang/StringBuilder
+  #132 = Class              #131          // java/lang/StringBuilder
+  #133 = Methodref          #132.#35      // java/lang/StringBuilder."<init>":()V
+  #134 = Utf8               [ShutdownMonitor]
+  #135 = String             #134          // [ShutdownMonitor]
+  #136 = Utf8               append
+  #137 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #138 = NameAndType        #136:#137     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #139 = Methodref          #132.#138     // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #140 = Utf8               %n
+  #141 = String             #140          // %n
+  #142 = Utf8               toString
+  #143 = Utf8               ()Ljava/lang/String;
+  #144 = NameAndType        #142:#143     // toString:()Ljava/lang/String;
+  #145 = Methodref          #132.#144     // java/lang/StringBuilder.toString:()Ljava/lang/String;
+  #146 = Utf8               java/io/PrintStream
+  #147 = Class              #146          // java/io/PrintStream
+  #148 = Utf8               printf
+  #149 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+  #150 = NameAndType        #148:#149     // printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+  #151 = Methodref          #147.#150     // java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+  #152 = Utf8               format
+  #153 = Utf8               args
+  #154 = Utf8               [Ljava/lang/Object;
+  #155 = Utf8               (Ljava/lang/Throwable;)V
+  #156 = Utf8               printStackTrace
+  #157 = Utf8               (Ljava/io/PrintStream;)V
+  #158 = NameAndType        #156:#157     // printStackTrace:(Ljava/io/PrintStream;)V
+  #159 = Methodref          #116.#158     // java/lang/Throwable.printStackTrace:(Ljava/io/PrintStream;)V
+  #160 = Utf8               t
+  #161 = Utf8               Ljava/lang/Throwable;
+  #162 = Utf8               getKey
+  #163 = Utf8               getPort
+  #164 = Utf8               ()I
+  #165 = Utf8               isExitVm
+  #166 = Utf8               ()Z
+  #167 = Utf8               setDebug
+  #168 = Utf8               (Z)V
+  #169 = Utf8               flag
+  #170 = Utf8               setExitVm
+  #171 = NameAndType        #25:#18       // alive:Z
+  #172 = Fieldref           #2.#171       // org/eclipse/jetty/server/ShutdownMonitor.alive:Z
+  #173 = Utf8               java/lang/IllegalStateException
+  #174 = Class              #173          // java/lang/IllegalStateException
+  #175 = Utf8               ShutdownMonitor already started
+  #176 = String             #175          // ShutdownMonitor already started
+  #177 = Utf8               (Ljava/lang/String;)V
+  #178 = NameAndType        #34:#177      // "<init>":(Ljava/lang/String;)V
+  #179 = Methodref          #174.#178     // java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+  #180 = Utf8               setKey
+  #181 = Utf8               setPort
+  #182 = Utf8               (I)V
+  #183 = Utf8               start
+  #184 = Utf8               java/lang/Exception
+  #185 = Class              #184          // java/lang/Exception
+  #186 = Utf8               Already started
+  #187 = String             #186          // Already started
+  #188 = NameAndType        #17:#126      // debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+  #189 = Methodref          #2.#188       // org/eclipse/jetty/server/ShutdownMonitor.debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+  #190 = Utf8               listen
+  #191 = Utf8               ()Ljava/net/ServerSocket;
+  #192 = NameAndType        #190:#191     // listen:()Ljava/net/ServerSocket;
+  #193 = Methodref          #2.#192       // org/eclipse/jetty/server/ShutdownMonitor.listen:()Ljava/net/ServerSocket;
+  #194 = Utf8               java/lang/Thread
+  #195 = Class              #194          // java/lang/Thread
+  #196 = Utf8               (Lorg/eclipse/jetty/server/ShutdownMonitor;Ljava/net/ServerSocket;Lorg/eclipse/jetty/server/ShutdownMonitor$1;)V
+  #197 = NameAndType        #34:#196      // "<init>":(Lorg/eclipse/jetty/server/ShutdownMonitor;Ljava/net/ServerSocket;Lorg/eclipse/jetty/server/ShutdownMonitor$1;)V
+  #198 = Methodref          #9.#197       // org/eclipse/jetty/server/ShutdownMonitor$ShutdownMonitorRunnable."<init>":(Lorg/eclipse/jetty/server/ShutdownMonitor;Ljava/net/ServerSocket;Lorg/eclipse/jetty/server/ShutdownMonitor$1;)V
+  #199 = Utf8               (Ljava/lang/Runnable;)V
+  #200 = NameAndType        #34:#199      // "<init>":(Ljava/lang/Runnable;)V
+  #201 = Methodref          #195.#200     // java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+  #202 = Utf8               setDaemon
+  #203 = NameAndType        #202:#168     // setDaemon:(Z)V
+  #204 = Methodref          #195.#203     // java/lang/Thread.setDaemon:(Z)V
+  #205 = Utf8               ShutdownMonitor
+  #206 = String             #205          // ShutdownMonitor
+  #207 = Utf8               setName
+  #208 = NameAndType        #207:#177     // setName:(Ljava/lang/String;)V
+  #209 = Methodref          #195.#208     // java/lang/Thread.setName:(Ljava/lang/String;)V
+  #210 = NameAndType        #183:#33      // start:()V
+  #211 = Methodref          #195.#210     // java/lang/Thread.start:()V
+  #212 = Utf8               thread
+  #213 = Utf8               Ljava/lang/Thread;
+  #214 = Utf8               serverSocket
+  #215 = Utf8               Ljava/net/ServerSocket;
+  #216 = Utf8               stop
+  #217 = Utf8               notifyAll
+  #218 = NameAndType        #217:#33      // notifyAll:()V
+  #219 = Methodref          #4.#218       // java/lang/Object.notifyAll:()V
+  #220 = Utf8               await
+  #221 = Utf8               java/lang/InterruptedException
+  #222 = Class              #221          // java/lang/InterruptedException
+  #223 = Utf8               wait
+  #224 = NameAndType        #223:#33      // wait:()V
+  #225 = Methodref          #4.#224       // java/lang/Object.wait:()V
+  #226 = Utf8               isAlive
+  #227 = NameAndType        #163:#164     // getPort:()I
+  #228 = Methodref          #2.#227       // org/eclipse/jetty/server/ShutdownMonitor.getPort:()I
+  #229 = Utf8               Not enabled (port < 0): %d
+  #230 = String             #229          // Not enabled (port < 0): %d
+  #231 = Utf8               valueOf
+  #232 = Utf8               (I)Ljava/lang/Integer;
+  #233 = NameAndType        #231:#232     // valueOf:(I)Ljava/lang/Integer;
+  #234 = Methodref          #88.#233      // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+  #235 = NameAndType        #162:#143     // getKey:()Ljava/lang/String;
+  #236 = Methodref          #2.#235       // org/eclipse/jetty/server/ShutdownMonitor.getKey:()Ljava/lang/String;
+  #237 = Utf8               java/net/ServerSocket
+  #238 = Class              #237          // java/net/ServerSocket
+  #239 = Methodref          #238.#35      // java/net/ServerSocket."<init>":()V
+  #240 = Utf8               setReuseAddress
+  #241 = NameAndType        #240:#168     // setReuseAddress:(Z)V
+  #242 = Methodref          #238.#241     // java/net/ServerSocket.setReuseAddress:(Z)V
+  #243 = Utf8               java/net/InetSocketAddress
+  #244 = Class              #243          // java/net/InetSocketAddress
+  #245 = Utf8               java/net/InetAddress
+  #246 = Class              #245          // java/net/InetAddress
+  #247 = Utf8               getByName
+  #248 = Utf8               (Ljava/lang/String;)Ljava/net/InetAddress;
+  #249 = NameAndType        #247:#248     // getByName:(Ljava/lang/String;)Ljava/net/InetAddress;
+  #250 = Methodref          #246.#249     // java/net/InetAddress.getByName:(Ljava/lang/String;)Ljava/net/InetAddress;
+  #251 = Utf8               (Ljava/net/InetAddress;I)V
+  #252 = NameAndType        #34:#251      // "<init>":(Ljava/net/InetAddress;I)V
+  #253 = Methodref          #244.#252     // java/net/InetSocketAddress."<init>":(Ljava/net/InetAddress;I)V
+  #254 = Utf8               bind
+  #255 = Utf8               (Ljava/net/SocketAddress;)V
+  #256 = NameAndType        #254:#255     // bind:(Ljava/net/SocketAddress;)V
+  #257 = Methodref          #238.#256     // java/net/ServerSocket.bind:(Ljava/net/SocketAddress;)V
+  #258 = Utf8               getLocalPort
+  #259 = NameAndType        #258:#164     // getLocalPort:()I
+  #260 = Methodref          #238.#259     // java/net/ServerSocket.getLocalPort:()I
+  #261 = Utf8               out
+  #262 = NameAndType        #261:#128     // out:Ljava/io/PrintStream;
+  #263 = Fieldref           #67.#262      // java/lang/System.out:Ljava/io/PrintStream;
+  #264 = Utf8               STOP.PORT=%d%n
+  #265 = String             #264          // STOP.PORT=%d%n
+  #266 = NameAndType        #181:#182     // setPort:(I)V
+  #267 = Methodref          #2.#266       // org/eclipse/jetty/server/ShutdownMonitor.setPort:(I)V
+  #268 = Utf8               java/lang/String
+  #269 = Class              #268          // java/lang/String
+  #270 = Double             9.223372036854776E18d
+  #272 = Utf8               java/lang/Math
+  #273 = Class              #272          // java/lang/Math
+  #274 = Utf8               random
+  #275 = Utf8               ()D
+  #276 = NameAndType        #274:#275     // random:()D
+  #277 = Methodref          #273.#276     // java/lang/Math.random:()D
+  #278 = Utf8               hashCode
+  #279 = NameAndType        #278:#164     // hashCode:()I
+  #280 = Methodref          #4.#279       // java/lang/Object.hashCode:()I
+  #281 = Utf8               currentTimeMillis
+  #282 = Utf8               ()J
+  #283 = NameAndType        #281:#282     // currentTimeMillis:()J
+  #284 = Methodref          #67.#283      // java/lang/System.currentTimeMillis:()J
+  #285 = Utf8               java/lang/Long
+  #286 = Class              #285          // java/lang/Long
+  #287 = Utf8               (JI)Ljava/lang/String;
+  #288 = NameAndType        #142:#287     // toString:(JI)Ljava/lang/String;
+  #289 = Methodref          #286.#288     // java/lang/Long.toString:(JI)Ljava/lang/String;
+  #290 = Utf8               STOP.KEY=%s%n
+  #291 = String             #290          // STOP.KEY=%s%n
+  #292 = NameAndType        #180:#177     // setKey:(Ljava/lang/String;)V
+  #293 = Methodref          #2.#292       // org/eclipse/jetty/server/ShutdownMonitor.setKey:(Ljava/lang/String;)V
+  #294 = Utf8               STOP.PORT=%d
+  #295 = String             #294          // STOP.PORT=%d
+  #296 = Utf8               STOP.KEY=%s
+  #297 = String             #296          // STOP.KEY=%s
+  #298 = NameAndType        #17:#155      // debug:(Ljava/lang/Throwable;)V
+  #299 = Methodref          #2.#298       // org/eclipse/jetty/server/ShutdownMonitor.debug:(Ljava/lang/Throwable;)V
+  #300 = Utf8               Error binding ShutdownMonitor to port
+  #301 = String             #300          // Error binding ShutdownMonitor to port
+  #302 = Utf8               (I)Ljava/lang/StringBuilder;
+  #303 = NameAndType        #136:#302     // append:(I)Ljava/lang/StringBuilder;
+  #304 = Methodref          #132.#303     // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+  #305 = Utf8               :
+  #306 = String             #305          // :
+  #307 = Methodref          #116.#144     // java/lang/Throwable.toString:()Ljava/lang/String;
+  #308 = Utf8               println
+  #309 = NameAndType        #308:#177     // println:(Ljava/lang/String;)V
+  #310 = Methodref          #147.#309     // java/io/PrintStream.println:(Ljava/lang/String;)V
+  #311 = Utf8               x
+  #312 = Utf8               %s[port=%d,alive=%b]
+  #313 = String             #312          // %s[port=%d,alive=%b]
+  #314 = Utf8               getClass
+  #315 = Utf8               ()Ljava/lang/Class;
+  #316 = NameAndType        #314:#315     // getClass:()Ljava/lang/Class;
+  #317 = Methodref          #4.#316       // java/lang/Object.getClass:()Ljava/lang/Class;
+  #318 = Utf8               java/lang/Class
+  #319 = Class              #318          // java/lang/Class
+  #320 = Utf8               getName
+  #321 = NameAndType        #320:#143     // getName:()Ljava/lang/String;
+  #322 = Methodref          #319.#321     // java/lang/Class.getName:()Ljava/lang/String;
+  #323 = NameAndType        #226:#166     // isAlive:()Z
+  #324 = Methodref          #2.#323       // org/eclipse/jetty/server/ShutdownMonitor.isAlive:()Z
+  #325 = Utf8               java/lang/Boolean
+  #326 = Class              #325          // java/lang/Boolean
+  #327 = Utf8               (Z)Ljava/lang/Boolean;
+  #328 = NameAndType        #231:#327     // valueOf:(Z)Ljava/lang/Boolean;
+  #329 = Methodref          #326.#328     // java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+  #330 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #331 = NameAndType        #152:#330     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #332 = Methodref          #269.#331     // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #333 = Utf8               (Lorg/eclipse/jetty/server/ShutdownMonitor$1;)V
+  #334 = Utf8               x0
+  #335 = Utf8               Lorg/eclipse/jetty/server/ShutdownMonitor$1;
+  #336 = Utf8               access$200
+  #337 = Utf8               (Lorg/eclipse/jetty/server/ShutdownMonitor;Ljava/lang/String;[Ljava/lang/Object;)V
+  #338 = Utf8               x1
+  #339 = Utf8               x2
+  #340 = Utf8               access$300
+  #341 = Utf8               (Lorg/eclipse/jetty/server/ShutdownMonitor;Ljava/lang/Throwable;)V
+  #342 = Utf8               access$400
+  #343 = Utf8               (Lorg/eclipse/jetty/server/ShutdownMonitor;)V
+  #344 = NameAndType        #216:#33      // stop:()V
+  #345 = Methodref          #2.#344       // org/eclipse/jetty/server/ShutdownMonitor.stop:()V
+  #346 = Utf8               access$500
+  #347 = Utf8               (Lorg/eclipse/jetty/server/ShutdownMonitor;)Ljava/util/Set;
+  #348 = Utf8               Signature
+  #349 = Utf8               Code
+  #350 = Utf8               LineNumberTable
+  #351 = Utf8               LocalVariableTable
+  #352 = Utf8               StackMapTable
+  #353 = Utf8               Exceptions
+  #354 = Utf8               SourceFile
+  #355 = Utf8               InnerClasses
+{
+  private final java.util.Set<org.eclipse.jetty.util.component.LifeCycle> _lifeCycles;
+    descriptor: Ljava/util/Set;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #16                          // Ljava/util/Set<Lorg/eclipse/jetty/util/component/LifeCycle;>;
+
+  private boolean debug;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private final java.lang.String host;
+    descriptor: Ljava/lang/String;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private int port;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String key;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean exitVm;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean alive;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  public static org.eclipse.jetty.server.ShutdownMonitor getInstance();
+    descriptor: ()Lorg/eclipse/jetty/server/ShutdownMonitor;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #31                 // Field org/eclipse/jetty/server/ShutdownMonitor$Holder.instance:Lorg/eclipse/jetty/server/ShutdownMonitor;
+         3: areturn
+      LineNumberTable:
+        line 65: 0
+
+  protected static void reset();
+    descriptor: ()V
+    flags: (0x000c) ACC_PROTECTED, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: new           #2                  // class org/eclipse/jetty/server/ShutdownMonitor
+         3: dup
+         4: invokespecial #36                 // Method "<init>":()V
+         7: putstatic     #31                 // Field org/eclipse/jetty/server/ShutdownMonitor$Holder.instance:Lorg/eclipse/jetty/server/ShutdownMonitor;
+        10: return
+      LineNumberTable:
+        line 70: 0
+        line 71: 10
+
+  public static void register(org.eclipse.jetty.util.component.LifeCycle...);
+    descriptor: ([Lorg/eclipse/jetty/util/component/LifeCycle;)V
+    flags: (0x0089) ACC_PUBLIC, ACC_STATIC, ACC_VARARGS
+    Code:
+      stack=2, locals=1, args_size=1
+         0: invokestatic  #40                 // Method getInstance:()Lorg/eclipse/jetty/server/ShutdownMonitor;
+         3: aload_0
+         4: invokespecial #43                 // Method addLifeCycles:([Lorg/eclipse/jetty/util/component/LifeCycle;)V
+         7: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0 lifeCycles   [Lorg/eclipse/jetty/util/component/LifeCycle;
+      LineNumberTable:
+        line 75: 0
+        line 76: 7
+
+  public static void deregister(org.eclipse.jetty.util.component.LifeCycle);
+    descriptor: (Lorg/eclipse/jetty/util/component/LifeCycle;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: invokestatic  #40                 // Method getInstance:()Lorg/eclipse/jetty/server/ShutdownMonitor;
+         3: aload_0
+         4: invokespecial #50                 // Method removeLifeCycle:(Lorg/eclipse/jetty/util/component/LifeCycle;)V
+         7: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0 lifeCycle   Lorg/eclipse/jetty/util/component/LifeCycle;
+      LineNumberTable:
+        line 80: 0
+        line 81: 7
+
+  public static boolean isRegistered(org.eclipse.jetty.util.component.LifeCycle);
+    descriptor: (Lorg/eclipse/jetty/util/component/LifeCycle;)Z
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: invokestatic  #40                 // Method getInstance:()Lorg/eclipse/jetty/server/ShutdownMonitor;
+         3: aload_0
+         4: invokespecial #57                 // Method containsLifeCycle:(Lorg/eclipse/jetty/util/component/LifeCycle;)Z
+         7: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0 lifeCycle   Lorg/eclipse/jetty/util/component/LifeCycle;
+      LineNumberTable:
+        line 85: 0
+
+  private org.eclipse.jetty.server.ShutdownMonitor();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #58                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #60                 // class java/util/LinkedHashSet
+         8: dup
+         9: invokespecial #61                 // Method java/util/LinkedHashSet."<init>":()V
+        12: putfield      #63                 // Field _lifeCycles:Ljava/util/Set;
+        15: aload_0
+        16: ldc           #65                 // String DEBUG
+        18: invokestatic  #71                 // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+        21: ifnull        28
+        24: iconst_1
+        25: goto          29
+        28: iconst_0
+        29: putfield      #73                 // Field debug:Z
+        32: aload_0
+        33: ldc           #75                 // String STOP.HOST
+        35: ldc           #77                 // String 127.0.0.1
+        37: invokestatic  #80                 // Method java/lang/System.getProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        40: putfield      #82                 // Field host:Ljava/lang/String;
+        43: aload_0
+        44: ldc           #84                 // String STOP.PORT
+        46: ldc           #86                 // String -1
+        48: invokestatic  #80                 // Method java/lang/System.getProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        51: invokestatic  #92                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        54: putfield      #94                 // Field port:I
+        57: aload_0
+        58: ldc           #96                 // String STOP.KEY
+        60: aconst_null
+        61: invokestatic  #80                 // Method java/lang/System.getProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        64: putfield      #98                 // Field key:Ljava/lang/String;
+        67: aload_0
+        68: iconst_1
+        69: putfield      #100                // Field exitVm:Z
+        72: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      73     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 105: 0
+        line 88: 4
+        line 106: 15
+        line 107: 32
+        line 108: 43
+        line 109: 57
+        line 110: 67
+        line 111: 72
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 28
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor ]
+          stack = [ class org/eclipse/jetty/server/ShutdownMonitor ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor ]
+          stack = [ class org/eclipse/jetty/server/ShutdownMonitor, int ]
+
+  private void addLifeCycles(org.eclipse.jetty.util.component.LifeCycle...);
+    descriptor: ([Lorg/eclipse/jetty/util/component/LifeCycle;)V
+    flags: (0x0082) ACC_PRIVATE, ACC_VARARGS
+    Code:
+      stack=2, locals=4, args_size=2
+         0: aload_0
+         1: dup
+         2: astore_2
+         3: monitorenter
+         4: aload_0
+         5: getfield      #63                 // Field _lifeCycles:Ljava/util/Set;
+         8: aload_1
+         9: invokestatic  #107                // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+        12: invokeinterface #113,  2          // InterfaceMethod java/util/Set.addAll:(Ljava/util/Collection;)Z
+        17: pop
+        18: aload_2
+        19: monitorexit
+        20: goto          28
+        23: astore_3
+        24: aload_2
+        25: monitorexit
+        26: aload_3
+        27: athrow
+        28: return
+      Exception table:
+         from    to  target type
+             4    20    23   any
+            23    26    23   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      29     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0      29     1 lifeCycles   [Lorg/eclipse/jetty/util/component/LifeCycle;
+      LineNumberTable:
+        line 115: 0
+        line 117: 4
+        line 118: 18
+        line 119: 28
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 23
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor, class "[Lorg/eclipse/jetty/util/component/LifeCycle;", class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 4
+
+  private void removeLifeCycle(org.eclipse.jetty.util.component.LifeCycle);
+    descriptor: (Lorg/eclipse/jetty/util/component/LifeCycle;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=4, args_size=2
+         0: aload_0
+         1: dup
+         2: astore_2
+         3: monitorenter
+         4: aload_0
+         5: getfield      #63                 // Field _lifeCycles:Ljava/util/Set;
+         8: aload_1
+         9: invokeinterface #120,  2          // InterfaceMethod java/util/Set.remove:(Ljava/lang/Object;)Z
+        14: pop
+        15: aload_2
+        16: monitorexit
+        17: goto          25
+        20: astore_3
+        21: aload_2
+        22: monitorexit
+        23: aload_3
+        24: athrow
+        25: return
+      Exception table:
+         from    to  target type
+             4    17    20   any
+            20    23    20   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      26     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0      26     1 lifeCycle   Lorg/eclipse/jetty/util/component/LifeCycle;
+      LineNumberTable:
+        line 123: 0
+        line 125: 4
+        line 126: 15
+        line 127: 25
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 20
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor, class org/eclipse/jetty/util/component/LifeCycle, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 4
+
+  private boolean containsLifeCycle(org.eclipse.jetty.util.component.LifeCycle);
+    descriptor: (Lorg/eclipse/jetty/util/component/LifeCycle;)Z
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=4, args_size=2
+         0: aload_0
+         1: dup
+         2: astore_2
+         3: monitorenter
+         4: aload_0
+         5: getfield      #63                 // Field _lifeCycles:Ljava/util/Set;
+         8: aload_1
+         9: invokeinterface #125,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+        14: aload_2
+        15: monitorexit
+        16: ireturn
+        17: astore_3
+        18: aload_2
+        19: monitorexit
+        20: aload_3
+        21: athrow
+      Exception table:
+         from    to  target type
+             4    16    17   any
+            17    20    17   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0      22     1 lifeCycle   Lorg/eclipse/jetty/util/component/LifeCycle;
+      LineNumberTable:
+        line 131: 0
+        line 133: 4
+        line 134: 17
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 17
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor, class org/eclipse/jetty/util/component/LifeCycle, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+
+  private void debug(java.lang.String, java.lang.Object...);
+    descriptor: (Ljava/lang/String;[Ljava/lang/Object;)V
+    flags: (0x0082) ACC_PRIVATE, ACC_VARARGS
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #73                 // Field debug:Z
+         4: ifeq          39
+         7: getstatic     #130                // Field java/lang/System.err:Ljava/io/PrintStream;
+        10: new           #132                // class java/lang/StringBuilder
+        13: dup
+        14: invokespecial #133                // Method java/lang/StringBuilder."<init>":()V
+        17: ldc           #135                // String [ShutdownMonitor]
+        19: invokevirtual #139                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        22: aload_1
+        23: invokevirtual #139                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        26: ldc           #141                // String %n
+        28: invokevirtual #139                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        31: invokevirtual #145                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        34: aload_2
+        35: invokevirtual #151                // Method java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+        38: pop
+        39: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      40     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0      40     1 format   Ljava/lang/String;
+            0      40     2  args   [Ljava/lang/Object;
+      LineNumberTable:
+        line 139: 0
+        line 140: 7
+        line 141: 39
+      StackMapTable: number_of_entries = 1
+        frame_type = 39 /* same */
+
+  private void debug(java.lang.Throwable);
+    descriptor: (Ljava/lang/Throwable;)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #73                 // Field debug:Z
+         4: ifeq          14
+         7: aload_1
+         8: getstatic     #130                // Field java/lang/System.err:Ljava/io/PrintStream;
+        11: invokevirtual #159                // Method java/lang/Throwable.printStackTrace:(Ljava/io/PrintStream;)V
+        14: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0      15     1     t   Ljava/lang/Throwable;
+      LineNumberTable:
+        line 145: 0
+        line 146: 7
+        line 147: 14
+      StackMapTable: number_of_entries = 1
+        frame_type = 14 /* same */
+
+  public java.lang.String getKey();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: dup
+         2: astore_1
+         3: monitorenter
+         4: aload_0
+         5: getfield      #98                 // Field key:Ljava/lang/String;
+         8: aload_1
+         9: monitorexit
+        10: areturn
+        11: astore_2
+        12: aload_1
+        13: monitorexit
+        14: aload_2
+        15: athrow
+      Exception table:
+         from    to  target type
+             4    10    11   any
+            11    14    11   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 151: 0
+        line 153: 4
+        line 154: 11
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 11
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+
+  public int getPort();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: dup
+         2: astore_1
+         3: monitorenter
+         4: aload_0
+         5: getfield      #94                 // Field port:I
+         8: aload_1
+         9: monitorexit
+        10: ireturn
+        11: astore_2
+        12: aload_1
+        13: monitorexit
+        14: aload_2
+        15: athrow
+      Exception table:
+         from    to  target type
+             4    10    11   any
+            11    14    11   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 159: 0
+        line 161: 4
+        line 162: 11
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 11
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+
+  public boolean isExitVm();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: dup
+         2: astore_1
+         3: monitorenter
+         4: aload_0
+         5: getfield      #100                // Field exitVm:Z
+         8: aload_1
+         9: monitorexit
+        10: ireturn
+        11: astore_2
+        12: aload_1
+        13: monitorexit
+        14: aload_2
+        15: athrow
+      Exception table:
+         from    to  target type
+             4    10    11   any
+            11    14    11   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 167: 0
+        line 169: 4
+        line 170: 11
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 11
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+
+  public void setDebug(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #73                 // Field debug:Z
+         5: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0       6     1  flag   Z
+      LineNumberTable:
+        line 175: 0
+        line 176: 5
+
+  public void setExitVm(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=2
+         0: aload_0
+         1: dup
+         2: astore_2
+         3: monitorenter
+         4: aload_0
+         5: getfield      #172                // Field alive:Z
+         8: ifeq          21
+        11: new           #174                // class java/lang/IllegalStateException
+        14: dup
+        15: ldc           #176                // String ShutdownMonitor already started
+        17: invokespecial #179                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        20: athrow
+        21: aload_0
+        22: iload_1
+        23: putfield      #100                // Field exitVm:Z
+        26: aload_2
+        27: monitorexit
+        28: goto          36
+        31: astore_3
+        32: aload_2
+        33: monitorexit
+        34: aload_3
+        35: athrow
+        36: return
+      Exception table:
+         from    to  target type
+             4    28    31   any
+            31    34    31   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      37     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0      37     1 exitVm   Z
+      LineNumberTable:
+        line 183: 0
+        line 185: 4
+        line 186: 11
+        line 187: 21
+        line 188: 26
+        line 189: 36
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ class java/lang/Object ]
+        frame_type = 73 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 4
+
+  public void setKey(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=2
+         0: aload_0
+         1: dup
+         2: astore_2
+         3: monitorenter
+         4: aload_0
+         5: getfield      #172                // Field alive:Z
+         8: ifeq          21
+        11: new           #174                // class java/lang/IllegalStateException
+        14: dup
+        15: ldc           #176                // String ShutdownMonitor already started
+        17: invokespecial #179                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        20: athrow
+        21: aload_0
+        22: aload_1
+        23: putfield      #98                 // Field key:Ljava/lang/String;
+        26: aload_2
+        27: monitorexit
+        28: goto          36
+        31: astore_3
+        32: aload_2
+        33: monitorexit
+        34: aload_3
+        35: athrow
+        36: return
+      Exception table:
+         from    to  target type
+             4    28    31   any
+            31    34    31   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      37     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0      37     1   key   Ljava/lang/String;
+      LineNumberTable:
+        line 193: 0
+        line 195: 4
+        line 196: 11
+        line 197: 21
+        line 198: 26
+        line 199: 36
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ class java/lang/Object ]
+        frame_type = 73 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 4
+
+  public void setPort(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=2
+         0: aload_0
+         1: dup
+         2: astore_2
+         3: monitorenter
+         4: aload_0
+         5: getfield      #172                // Field alive:Z
+         8: ifeq          21
+        11: new           #174                // class java/lang/IllegalStateException
+        14: dup
+        15: ldc           #176                // String ShutdownMonitor already started
+        17: invokespecial #179                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+        20: athrow
+        21: aload_0
+        22: iload_1
+        23: putfield      #94                 // Field port:I
+        26: aload_2
+        27: monitorexit
+        28: goto          36
+        31: astore_3
+        32: aload_2
+        33: monitorexit
+        34: aload_3
+        35: athrow
+        36: return
+      Exception table:
+         from    to  target type
+             4    28    31   any
+            31    34    31   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      37     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0      37     1  port   I
+      LineNumberTable:
+        line 203: 0
+        line 205: 4
+        line 206: 11
+        line 207: 21
+        line 208: 26
+        line 209: 36
+      StackMapTable: number_of_entries = 3
+        frame_type = 252 /* append */
+          offset_delta = 21
+          locals = [ class java/lang/Object ]
+        frame_type = 73 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 4
+
+  protected void start() throws java.lang.Exception;
+    descriptor: ()V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=7, locals=5, args_size=1
+         0: aload_0
+         1: dup
+         2: astore_1
+         3: monitorenter
+         4: aload_0
+         5: getfield      #172                // Field alive:Z
+         8: ifeq          24
+        11: aload_0
+        12: ldc           #187                // String Already started
+        14: iconst_0
+        15: anewarray     #4                  // class java/lang/Object
+        18: invokespecial #189                // Method debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+        21: aload_1
+        22: monitorexit
+        23: return
+        24: aload_0
+        25: invokespecial #193                // Method listen:()Ljava/net/ServerSocket;
+        28: astore_2
+        29: aload_2
+        30: ifnull        71
+        33: aload_0
+        34: iconst_1
+        35: putfield      #172                // Field alive:Z
+        38: new           #195                // class java/lang/Thread
+        41: dup
+        42: new           #9                  // class org/eclipse/jetty/server/ShutdownMonitor$ShutdownMonitorRunnable
+        45: dup
+        46: aload_0
+        47: aload_2
+        48: aconst_null
+        49: invokespecial #198                // Method org/eclipse/jetty/server/ShutdownMonitor$ShutdownMonitorRunnable."<init>":(Lorg/eclipse/jetty/server/ShutdownMonitor;Ljava/net/ServerSocket;Lorg/eclipse/jetty/server/ShutdownMonitor$1;)V
+        52: invokespecial #201                // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+        55: astore_3
+        56: aload_3
+        57: iconst_1
+        58: invokevirtual #204                // Method java/lang/Thread.setDaemon:(Z)V
+        61: aload_3
+        62: ldc           #206                // String ShutdownMonitor
+        64: invokevirtual #209                // Method java/lang/Thread.setName:(Ljava/lang/String;)V
+        67: aload_3
+        68: invokevirtual #211                // Method java/lang/Thread.start:()V
+        71: aload_1
+        72: monitorexit
+        73: goto          83
+        76: astore        4
+        78: aload_1
+        79: monitorexit
+        80: aload         4
+        82: athrow
+        83: return
+      Exception table:
+         from    to  target type
+             4    23    76   any
+            24    73    76   any
+            76    80    76   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           56      15     3 thread   Ljava/lang/Thread;
+           29      42     2 serverSocket   Ljava/net/ServerSocket;
+            0      84     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 213: 0
+        line 215: 4
+        line 217: 11
+        line 218: 21
+        line 220: 24
+        line 221: 29
+        line 223: 33
+        line 224: 38
+        line 225: 56
+        line 226: 61
+        line 227: 67
+        line 229: 71
+        line 230: 83
+      StackMapTable: number_of_entries = 4
+        frame_type = 252 /* append */
+          offset_delta = 24
+          locals = [ class java/lang/Object ]
+        frame_type = 46 /* same */
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 6
+    Exceptions:
+      throws java.lang.Exception
+
+  private void stop();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: dup
+         2: astore_1
+         3: monitorenter
+         4: aload_0
+         5: iconst_0
+         6: putfield      #172                // Field alive:Z
+         9: aload_0
+        10: invokevirtual #219                // Method java/lang/Object.notifyAll:()V
+        13: aload_1
+        14: monitorexit
+        15: goto          23
+        18: astore_2
+        19: aload_1
+        20: monitorexit
+        21: aload_2
+        22: athrow
+        23: return
+      Exception table:
+         from    to  target type
+             4    15    18   any
+            18    21    18   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 234: 0
+        line 236: 4
+        line 237: 9
+        line 238: 13
+        line 239: 23
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 18
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 4
+
+  void await() throws java.lang.InterruptedException;
+    descriptor: ()V
+    flags: (0x0000)
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: dup
+         2: astore_1
+         3: monitorenter
+         4: aload_0
+         5: getfield      #172                // Field alive:Z
+         8: ifeq          18
+        11: aload_0
+        12: invokevirtual #225                // Method java/lang/Object.wait:()V
+        15: goto          4
+        18: aload_1
+        19: monitorexit
+        20: goto          28
+        23: astore_2
+        24: aload_1
+        25: monitorexit
+        26: aload_2
+        27: athrow
+        28: return
+      Exception table:
+         from    to  target type
+             4    20    23   any
+            23    26    23   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      29     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 244: 0
+        line 246: 4
+        line 248: 11
+        line 250: 18
+        line 251: 28
+      StackMapTable: number_of_entries = 4
+        frame_type = 252 /* append */
+          offset_delta = 4
+          locals = [ class java/lang/Object ]
+        frame_type = 13 /* same */
+        frame_type = 68 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 250 /* chop */
+          offset_delta = 4
+    Exceptions:
+      throws java.lang.InterruptedException
+
+  protected boolean isAlive();
+    descriptor: ()Z
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: dup
+         2: astore_1
+         3: monitorenter
+         4: aload_0
+         5: getfield      #172                // Field alive:Z
+         8: aload_1
+         9: monitorexit
+        10: ireturn
+        11: astore_2
+        12: aload_1
+        13: monitorexit
+        14: aload_2
+        15: athrow
+      Exception table:
+         from    to  target type
+             4    10    11   any
+            11    14    11   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 255: 0
+        line 257: 4
+        line 258: 11
+      StackMapTable: number_of_entries = 1
+        frame_type = 255 /* full_frame */
+          offset_delta = 11
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor, class java/lang/Object ]
+          stack = [ class java/lang/Throwable ]
+
+  private java.net.ServerSocket listen();
+    descriptor: ()Ljava/net/ServerSocket;
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=6, locals=6, args_size=1
+         0: aload_0
+         1: invokevirtual #228                // Method getPort:()I
+         4: istore_1
+         5: iload_1
+         6: ifge          28
+         9: aload_0
+        10: ldc           #230                // String Not enabled (port < 0): %d
+        12: iconst_1
+        13: anewarray     #4                  // class java/lang/Object
+        16: dup
+        17: iconst_0
+        18: iload_1
+        19: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        22: aastore
+        23: invokespecial #189                // Method debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+        26: aconst_null
+        27: areturn
+        28: aload_0
+        29: invokevirtual #236                // Method getKey:()Ljava/lang/String;
+        32: astore_2
+        33: new           #238                // class java/net/ServerSocket
+        36: dup
+        37: invokespecial #239                // Method java/net/ServerSocket."<init>":()V
+        40: astore_3
+        41: aload_3
+        42: iconst_1
+        43: invokevirtual #242                // Method java/net/ServerSocket.setReuseAddress:(Z)V
+        46: aload_3
+        47: new           #244                // class java/net/InetSocketAddress
+        50: dup
+        51: aload_0
+        52: getfield      #82                 // Field host:Ljava/lang/String;
+        55: invokestatic  #250                // Method java/net/InetAddress.getByName:(Ljava/lang/String;)Ljava/net/InetAddress;
+        58: iload_1
+        59: invokespecial #253                // Method java/net/InetSocketAddress."<init>":(Ljava/net/InetAddress;I)V
+        62: invokevirtual #257                // Method java/net/ServerSocket.bind:(Ljava/net/SocketAddress;)V
+        65: iload_1
+        66: ifne          100
+        69: aload_3
+        70: invokevirtual #260                // Method java/net/ServerSocket.getLocalPort:()I
+        73: istore_1
+        74: getstatic     #263                // Field java/lang/System.out:Ljava/io/PrintStream;
+        77: ldc_w         #265                // String STOP.PORT=%d%n
+        80: iconst_1
+        81: anewarray     #4                  // class java/lang/Object
+        84: dup
+        85: iconst_0
+        86: iload_1
+        87: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        90: aastore
+        91: invokevirtual #151                // Method java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+        94: pop
+        95: aload_0
+        96: iload_1
+        97: invokevirtual #267                // Method setPort:(I)V
+       100: aload_2
+       101: ifnonnull     152
+       104: ldc2_w        #270                // double 9.223372036854776E18d
+       107: invokestatic  #277                // Method java/lang/Math.random:()D
+       110: dmul
+       111: aload_0
+       112: invokevirtual #280                // Method java/lang/Object.hashCode:()I
+       115: i2d
+       116: dadd
+       117: invokestatic  #284                // Method java/lang/System.currentTimeMillis:()J
+       120: l2d
+       121: dadd
+       122: d2l
+       123: bipush        36
+       125: invokestatic  #289                // Method java/lang/Long.toString:(JI)Ljava/lang/String;
+       128: astore_2
+       129: getstatic     #263                // Field java/lang/System.out:Ljava/io/PrintStream;
+       132: ldc_w         #291                // String STOP.KEY=%s%n
+       135: iconst_1
+       136: anewarray     #4                  // class java/lang/Object
+       139: dup
+       140: iconst_0
+       141: aload_2
+       142: aastore
+       143: invokevirtual #151                // Method java/io/PrintStream.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintStream;
+       146: pop
+       147: aload_0
+       148: aload_2
+       149: invokevirtual #293                // Method setKey:(Ljava/lang/String;)V
+       152: aload_3
+       153: astore        4
+       155: aload_0
+       156: ldc_w         #295                // String STOP.PORT=%d
+       159: iconst_1
+       160: anewarray     #4                  // class java/lang/Object
+       163: dup
+       164: iconst_0
+       165: iload_1
+       166: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       169: aastore
+       170: invokespecial #189                // Method debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+       173: aload_0
+       174: ldc_w         #297                // String STOP.KEY=%s
+       177: iconst_1
+       178: anewarray     #4                  // class java/lang/Object
+       181: dup
+       182: iconst_0
+       183: aload_2
+       184: aastore
+       185: invokespecial #189                // Method debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+       188: aload         4
+       190: areturn
+       191: astore_3
+       192: aload_0
+       193: aload_3
+       194: invokespecial #299                // Method debug:(Ljava/lang/Throwable;)V
+       197: getstatic     #130                // Field java/lang/System.err:Ljava/io/PrintStream;
+       200: new           #132                // class java/lang/StringBuilder
+       203: dup
+       204: invokespecial #133                // Method java/lang/StringBuilder."<init>":()V
+       207: ldc_w         #301                // String Error binding ShutdownMonitor to port
+       210: invokevirtual #139                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       213: iload_1
+       214: invokevirtual #304                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       217: ldc_w         #306                // String :
+       220: invokevirtual #139                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       223: aload_3
+       224: invokevirtual #307                // Method java/lang/Throwable.toString:()Ljava/lang/String;
+       227: invokevirtual #139                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       230: invokevirtual #145                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       233: invokevirtual #310                // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       236: aconst_null
+       237: astore        4
+       239: aload_0
+       240: ldc_w         #295                // String STOP.PORT=%d
+       243: iconst_1
+       244: anewarray     #4                  // class java/lang/Object
+       247: dup
+       248: iconst_0
+       249: iload_1
+       250: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       253: aastore
+       254: invokespecial #189                // Method debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+       257: aload_0
+       258: ldc_w         #297                // String STOP.KEY=%s
+       261: iconst_1
+       262: anewarray     #4                  // class java/lang/Object
+       265: dup
+       266: iconst_0
+       267: aload_2
+       268: aastore
+       269: invokespecial #189                // Method debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+       272: aload         4
+       274: areturn
+       275: astore        5
+       277: aload_0
+       278: ldc_w         #295                // String STOP.PORT=%d
+       281: iconst_1
+       282: anewarray     #4                  // class java/lang/Object
+       285: dup
+       286: iconst_0
+       287: iload_1
+       288: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       291: aastore
+       292: invokespecial #189                // Method debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+       295: aload_0
+       296: ldc_w         #297                // String STOP.KEY=%s
+       299: iconst_1
+       300: anewarray     #4                  // class java/lang/Object
+       303: dup
+       304: iconst_0
+       305: aload_2
+       306: aastore
+       307: invokespecial #189                // Method debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+       310: aload         5
+       312: athrow
+      Exception table:
+         from    to  target type
+            33   155   191   Class java/lang/Throwable
+            33   155   275   any
+           191   239   275   any
+           275   277   275   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           41     150     3 serverSocket   Ljava/net/ServerSocket;
+          192      83     3     x   Ljava/lang/Throwable;
+            0     313     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            5     308     1  port   I
+           33     280     2   key   Ljava/lang/String;
+      LineNumberTable:
+        line 263: 0
+        line 264: 5
+        line 266: 9
+        line 267: 26
+        line 270: 28
+        line 273: 33
+        line 274: 41
+        line 275: 46
+        line 276: 65
+        line 278: 69
+        line 279: 74
+        line 280: 95
+        line 283: 100
+        line 285: 104
+        line 286: 129
+        line 287: 147
+        line 290: 152
+        line 301: 155
+        line 302: 173
+        line 290: 188
+        line 292: 191
+        line 294: 192
+        line 295: 197
+        line 296: 236
+        line 301: 239
+        line 302: 257
+        line 296: 272
+        line 301: 275
+        line 302: 295
+      StackMapTable: number_of_entries = 5
+        frame_type = 252 /* append */
+          offset_delta = 28
+          locals = [ int ]
+        frame_type = 253 /* append */
+          offset_delta = 71
+          locals = [ class java/lang/String, class java/net/ServerSocket ]
+        frame_type = 51 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 38
+          locals = [ class org/eclipse/jetty/server/ShutdownMonitor, int, class java/lang/String ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 247 /* same_locals_1_stack_item_frame_extended */
+          offset_delta = 83
+          stack = [ class java/lang/Throwable ]
+
+  public java.lang.String toString();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=1, args_size=1
+         0: ldc_w         #313                // String %s[port=%d,alive=%b]
+         3: iconst_3
+         4: anewarray     #4                  // class java/lang/Object
+         7: dup
+         8: iconst_0
+         9: aload_0
+        10: invokevirtual #317                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        13: invokevirtual #322                // Method java/lang/Class.getName:()Ljava/lang/String;
+        16: aastore
+        17: dup
+        18: iconst_1
+        19: aload_0
+        20: invokevirtual #228                // Method getPort:()I
+        23: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        26: aastore
+        27: dup
+        28: iconst_2
+        29: aload_0
+        30: invokevirtual #324                // Method isAlive:()Z
+        33: invokestatic  #329                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        36: aastore
+        37: invokestatic  #332                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        40: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      41     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 309: 0
+
+  org.eclipse.jetty.server.ShutdownMonitor(org.eclipse.jetty.server.ShutdownMonitor$1);
+    descriptor: (Lorg/eclipse/jetty/server/ShutdownMonitor$1;)V
+    flags: (0x1000) ACC_SYNTHETIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #36                 // Method "<init>":()V
+         4: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0       5     1    x0   Lorg/eclipse/jetty/server/ShutdownMonitor$1;
+      LineNumberTable:
+        line 55: 0
+
+  static void access$200(org.eclipse.jetty.server.ShutdownMonitor, java.lang.String, java.lang.Object[]);
+    descriptor: (Lorg/eclipse/jetty/server/ShutdownMonitor;Ljava/lang/String;[Ljava/lang/Object;)V
+    flags: (0x1008) ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokespecial #189                // Method debug:(Ljava/lang/String;[Ljava/lang/Object;)V
+         6: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0    x0   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0       7     1    x1   Ljava/lang/String;
+            0       7     2    x2   [Ljava/lang/Object;
+      LineNumberTable:
+        line 55: 0
+
+  static void access$300(org.eclipse.jetty.server.ShutdownMonitor, java.lang.Throwable);
+    descriptor: (Lorg/eclipse/jetty/server/ShutdownMonitor;Ljava/lang/Throwable;)V
+    flags: (0x1008) ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokespecial #299                // Method debug:(Ljava/lang/Throwable;)V
+         5: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0    x0   Lorg/eclipse/jetty/server/ShutdownMonitor;
+            0       6     1    x1   Ljava/lang/Throwable;
+      LineNumberTable:
+        line 55: 0
+
+  static void access$400(org.eclipse.jetty.server.ShutdownMonitor);
+    descriptor: (Lorg/eclipse/jetty/server/ShutdownMonitor;)V
+    flags: (0x1008) ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #345                // Method stop:()V
+         4: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0    x0   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 55: 0
+
+  static java.util.Set access$500(org.eclipse.jetty.server.ShutdownMonitor);
+    descriptor: (Lorg/eclipse/jetty/server/ShutdownMonitor;)Ljava/util/Set;
+    flags: (0x1008) ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #63                 // Field _lifeCycles:Ljava/util/Set;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0    x0   Lorg/eclipse/jetty/server/ShutdownMonitor;
+      LineNumberTable:
+        line 55: 0
+}
+SourceFile: "ShutdownMonitor.java"
+InnerClasses:
+  static #7;                              // class org/eclipse/jetty/server/ShutdownMonitor$1
+  private #10= #9 of #2;                  // ShutdownMonitorRunnable=class org/eclipse/jetty/server/ShutdownMonitor$ShutdownMonitorRunnable of class org/eclipse/jetty/server/ShutdownMonitor
+  private static #13= #12 of #2;          // Holder=class org/eclipse/jetty/server/ShutdownMonitor$Holder of class org/eclipse/jetty/server/ShutdownMonitor

@@ -1,0 +1,1311 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/journeymap-1.12.2-5.7.0(1)(2).jar!/info/journeymap/shaded/kotlin/kotlin/random/Random.class
+  Last modified 25-����-20; size 7255 bytes
+  SHA-256 checksum f8408b11bcfe6cada5dc8924d1f234a76062c2659186711b780d2e751c0b9500
+  Compiled from "Random.kt"
+public abstract class info.journeymap.shaded.kotlin.kotlin.random.Random
+  minor version: 0
+  major version: 50
+  flags: (0x0421) ACC_PUBLIC, ACC_SUPER, ACC_ABSTRACT
+  this_class: #2                          // info/journeymap/shaded/kotlin/kotlin/random/Random
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 3, methods: 19, attributes: 5
+Constant pool:
+    #1 = Utf8               info/journeymap/shaded/kotlin/kotlin/random/Random
+    #2 = Class              #1            // info/journeymap/shaded/kotlin/kotlin/random/Random
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               Random.kt
+    #6 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/Metadata;
+    #7 = Utf8               mv
+    #8 = Integer            1
+    #9 = Integer            15
+   #10 = Utf8               bv
+   #11 = Integer            0
+   #12 = Integer            3
+   #13 = Utf8               k
+   #14 = Utf8               d1
+   #15 = Utf8               \u0000:\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0012\n\u0002\b\u0005\n\u0002\u0010\u0006\n\u0002\b\u0003\n\u0002\u0010\u0007\n\u0002\b\u0002\n\u0002\u0010\t\n\u0002\b\u0003\b\'\u0018\u0000 \u00182\u00020\u0001:\u0002\u0017\u0018B\u0005?\u0006\u0002\u0010\u0002J\u0010\u0010\u0003\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u0004H&J\b\u0010\u0006\u001a\u00020\u0007H\u0016J\u0010\u0010\b\u001a\u00020\t2\u0006\u0010\n\u001a\u00020\tH\u0016J$\u0010\b\u001a\u00020\t2\u0006\u0010\n\u001a\u00020\t2\b\b\u0002\u0010\u000b\u001a\u00020\u00042\b\b\u0002\u0010\f\u001a\u00020\u0004H\u0016J\u0010\u0010\b\u001a\u00020\t2\u0006\u0010\r\u001a\u00020\u0004H\u0016J\b\u0010\u000e\u001a\u00020\u000fH\u0016J\u0010\u0010\u000e\u001a\u00020\u000f2\u0006\u0010\u0010\u001a\u00020\u000fH\u0016J\u0018\u0010\u000e\u001a\u00020\u000f2\u0006\u0010\u0011\u001a\u00020\u000f2\u0006\u0010\u0010\u001a\u00020\u000fH\u0016J\b\u0010\u0012\u001a\u00020\u0013H\u0016J\b\u0010\u0014\u001a\u00020\u0004H\u0016J\u0010\u0010\u0014\u001a\u00020\u00042\u0006\u0010\u0010\u001a\u00020\u0004H\u0016J\u0018\u0010\u0014\u001a\u00020\u00042\u0006\u0010\u0011\u001a\u00020\u00042\u0006\u0010\u0010\u001a\u00020\u0004H\u0016J\b\u0010\u0015\u001a\u00020\u0016H\u0016J\u0010\u0010\u0015\u001a\u00020\u00162\u0006\u0010\u0010\u001a\u00020\u0016H\u0016J\u0018\u0010\u0015\u001a\u00020\u00162\u0006\u0010\u0011\u001a\u00020\u00162\u0006\u0010\u0010\u001a\u00020\u0016H\u0016��\u0006\u0019
+   #16 = Utf8               d2
+   #17 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+   #18 = Utf8
+   #19 = Utf8               ()V
+   #20 = Utf8               nextBits
+   #21 = Utf8               bitCount
+   #22 = Utf8               nextBoolean
+   #23 = Utf8               nextBytes
+   #24 = Utf8               array
+   #25 = Utf8               fromIndex
+   #26 = Utf8               toIndex
+   #27 = Utf8               size
+   #28 = Utf8               nextDouble
+   #29 = Utf8               until
+   #30 = Utf8               from
+   #31 = Utf8               nextFloat
+   #32 = Utf8               nextInt
+   #33 = Utf8               nextLong
+   #34 = Utf8               Companion
+   #35 = Utf8               Default
+   #36 = Utf8               info.journeymap.shaded.kotlin.kotlin-stdlib
+   #37 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/SinceKotlin;
+   #38 = Utf8               version
+   #39 = Utf8               1.3
+   #40 = Utf8               info/journeymap/shaded/kotlin/kotlin/random/Random$Companion
+   #41 = Class              #40           // info/journeymap/shaded/kotlin/kotlin/random/Random$Companion
+   #42 = Utf8               info/journeymap/shaded/kotlin/kotlin/random/Random$Default
+   #43 = Class              #42           // info/journeymap/shaded/kotlin/kotlin/random/Random$Default
+   #44 = Utf8               defaultRandom
+   #45 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Companion;
+   #46 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/jvm/JvmField;
+   #47 = Utf8               Linfo/journeymap/shaded/org/jetbrains/annotations/NotNull;
+   #48 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Default;
+   #49 = Utf8               (I)I
+   #50 = Utf8               ()I
+   #51 = NameAndType        #20:#49       // nextBits:(I)I
+   #52 = Methodref          #2.#51        // info/journeymap/shaded/kotlin/kotlin/random/Random.nextBits:(I)I
+   #53 = Utf8               this
+   #54 = Utf8               (II)I
+   #55 = NameAndType        #32:#54       // nextInt:(II)I
+   #56 = Methodref          #2.#55        // info/journeymap/shaded/kotlin/kotlin/random/Random.nextInt:(II)I
+   #57 = Utf8               I
+   #58 = Utf8               info/journeymap/shaded/kotlin/kotlin/random/RandomKt
+   #59 = Class              #58           // info/journeymap/shaded/kotlin/kotlin/random/RandomKt
+   #60 = Utf8               checkRangeBounds
+   #61 = Utf8               (II)V
+   #62 = NameAndType        #60:#61       // checkRangeBounds:(II)V
+   #63 = Methodref          #59.#62       // info/journeymap/shaded/kotlin/kotlin/random/RandomKt.checkRangeBounds:(II)V
+   #64 = Integer            -2147483648
+   #65 = Utf8               fastLog2
+   #66 = NameAndType        #65:#49       // fastLog2:(I)I
+   #67 = Methodref          #59.#66       // info/journeymap/shaded/kotlin/kotlin/random/RandomKt.fastLog2:(I)I
+   #68 = NameAndType        #32:#50       // nextInt:()I
+   #69 = Methodref          #2.#68        // info/journeymap/shaded/kotlin/kotlin/random/Random.nextInt:()I
+   #70 = Utf8               bits
+   #71 = Utf8               v
+   #72 = Utf8               rnd
+   #73 = Utf8               n
+   #74 = Utf8               ()J
+   #75 = Utf8               (J)J
+   #76 = Utf8               (JJ)J
+   #77 = NameAndType        #33:#76       // nextLong:(JJ)J
+   #78 = Methodref          #2.#77        // info/journeymap/shaded/kotlin/kotlin/random/Random.nextLong:(JJ)J
+   #79 = Utf8               J
+   #80 = Utf8               (JJ)V
+   #81 = NameAndType        #60:#80       // checkRangeBounds:(JJ)V
+   #82 = Methodref          #59.#81       // info/journeymap/shaded/kotlin/kotlin/random/RandomKt.checkRangeBounds:(JJ)V
+   #83 = Long               4294967295l
+   #85 = NameAndType        #33:#74       // nextLong:()J
+   #86 = Methodref          #2.#85        // info/journeymap/shaded/kotlin/kotlin/random/Random.nextLong:()J
+   #87 = Utf8               nHigh
+   #88 = Utf8               nLow
+   #89 = Utf8               ()Z
+   #90 = Utf8               ()D
+   #91 = Utf8               info/journeymap/shaded/kotlin/kotlin/random/PlatformRandomKt
+   #92 = Class              #91           // info/journeymap/shaded/kotlin/kotlin/random/PlatformRandomKt
+   #93 = Utf8               doubleFromParts
+   #94 = Utf8               (II)D
+   #95 = NameAndType        #93:#94       // doubleFromParts:(II)D
+   #96 = Methodref          #92.#95       // info/journeymap/shaded/kotlin/kotlin/random/PlatformRandomKt.doubleFromParts:(II)D
+   #97 = Utf8               (D)D
+   #98 = Utf8               (DD)D
+   #99 = NameAndType        #28:#98       // nextDouble:(DD)D
+  #100 = Methodref          #2.#99        // info/journeymap/shaded/kotlin/kotlin/random/Random.nextDouble:(DD)D
+  #101 = Utf8               D
+  #102 = Utf8               (DD)V
+  #103 = NameAndType        #60:#102      // checkRangeBounds:(DD)V
+  #104 = Methodref          #59.#103      // info/journeymap/shaded/kotlin/kotlin/random/RandomKt.checkRangeBounds:(DD)V
+  #105 = Utf8               java/lang/Double
+  #106 = Class              #105          // java/lang/Double
+  #107 = Utf8               isInfinite
+  #108 = Utf8               (D)Z
+  #109 = NameAndType        #107:#108     // isInfinite:(D)Z
+  #110 = Methodref          #106.#109     // java/lang/Double.isInfinite:(D)Z
+  #111 = Utf8               isNaN
+  #112 = NameAndType        #111:#108     // isNaN:(D)Z
+  #113 = Methodref          #106.#112     // java/lang/Double.isNaN:(D)Z
+  #114 = NameAndType        #28:#90       // nextDouble:()D
+  #115 = Methodref          #2.#114       // info/journeymap/shaded/kotlin/kotlin/random/Random.nextDouble:()D
+  #116 = Utf8               info/journeymap/shaded/kotlin/kotlin/jvm/internal/DoubleCompanionObject
+  #117 = Class              #116          // info/journeymap/shaded/kotlin/kotlin/jvm/internal/DoubleCompanionObject
+  #118 = Utf8               INSTANCE
+  #119 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DoubleCompanionObject;
+  #120 = NameAndType        #118:#119     // INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DoubleCompanionObject;
+  #121 = Fieldref           #117.#120     // info/journeymap/shaded/kotlin/kotlin/jvm/internal/DoubleCompanionObject.INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DoubleCompanionObject;
+  #122 = Utf8               getNEGATIVE_INFINITY
+  #123 = NameAndType        #122:#90      // getNEGATIVE_INFINITY:()D
+  #124 = Methodref          #117.#123     // info/journeymap/shaded/kotlin/kotlin/jvm/internal/DoubleCompanionObject.getNEGATIVE_INFINITY:()D
+  #125 = Utf8               java/lang/Math
+  #126 = Class              #125          // java/lang/Math
+  #127 = Utf8               nextAfter
+  #128 = NameAndType        #127:#98      // nextAfter:(DD)D
+  #129 = Methodref          #126.#128     // java/lang/Math.nextAfter:(DD)D
+  #130 = Utf8               r1
+  #131 = Utf8               r
+  #132 = Utf8               ()F
+  #133 = Integer            16777216
+  #134 = Utf8               ([BII)[B
+  #135 = String             #24           // array
+  #136 = Utf8               info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics
+  #137 = Class              #136          // info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics
+  #138 = Utf8               checkParameterIsNotNull
+  #139 = Utf8               (Ljava/lang/Object;Ljava/lang/String;)V
+  #140 = NameAndType        #138:#139     // checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+  #141 = Methodref          #137.#140     // info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+  #142 = Utf8               [B
+  #143 = Class              #142          // "[B"
+  #144 = Utf8               java/lang/StringBuilder
+  #145 = Class              #144          // java/lang/StringBuilder
+  #146 = Utf8               <init>
+  #147 = NameAndType        #146:#19      // "<init>":()V
+  #148 = Methodref          #145.#147     // java/lang/StringBuilder."<init>":()V
+  #149 = Utf8               fromIndex (
+  #150 = String             #149          // fromIndex (
+  #151 = Utf8               append
+  #152 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #153 = NameAndType        #151:#152     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #154 = Methodref          #145.#153     // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #155 = Utf8               (I)Ljava/lang/StringBuilder;
+  #156 = NameAndType        #151:#155     // append:(I)Ljava/lang/StringBuilder;
+  #157 = Methodref          #145.#156     // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+  #158 = Utf8               ) or toIndex (
+  #159 = String             #158          // ) or toIndex (
+  #160 = Utf8               ) are out of range: 0..
+  #161 = String             #160          // ) are out of range: 0..
+  #162 = Utf8               (C)Ljava/lang/StringBuilder;
+  #163 = NameAndType        #151:#162     // append:(C)Ljava/lang/StringBuilder;
+  #164 = Methodref          #145.#163     // java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+  #165 = Utf8               toString
+  #166 = Utf8               ()Ljava/lang/String;
+  #167 = NameAndType        #165:#166     // toString:()Ljava/lang/String;
+  #168 = Methodref          #145.#167     // java/lang/StringBuilder.toString:()Ljava/lang/String;
+  #169 = Utf8               java/lang/IllegalArgumentException
+  #170 = Class              #169          // java/lang/IllegalArgumentException
+  #171 = Methodref          #4.#167       // java/lang/Object.toString:()Ljava/lang/String;
+  #172 = Utf8               (Ljava/lang/String;)V
+  #173 = NameAndType        #146:#172     // "<init>":(Ljava/lang/String;)V
+  #174 = Methodref          #170.#173     // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+  #175 = Utf8               java/lang/Throwable
+  #176 = Class              #175          // java/lang/Throwable
+  #177 = Utf8               ) must be not greater than toIndex (
+  #178 = String             #177          // ) must be not greater than toIndex (
+  #179 = Utf8               ).
+  #180 = String             #179          // ).
+  #181 = Utf8               $i$a$-require-Random$nextBytes$1
+  #182 = Utf8               $i$a$-require-Random$nextBytes$2
+  #183 = Utf8               it
+  #184 = Utf8               $i$a$-repeat-Random$nextBytes$3
+  #185 = Utf8               i
+  #186 = Utf8               vr
+  #187 = Utf8               remainder
+  #188 = Utf8               position
+  #189 = Utf8               steps
+  #190 = Utf8               nextBytes$default
+  #191 = Utf8               (Linfo/journeymap/shaded/kotlin/kotlin/random/Random;[BIIILjava/lang/Object;)[B
+  #192 = Utf8               java/lang/UnsupportedOperationException
+  #193 = Class              #192          // java/lang/UnsupportedOperationException
+  #194 = Utf8               Super calls with default arguments not supported in this target, function: nextBytes
+  #195 = String             #194          // Super calls with default arguments not supported in this target, function: nextBytes
+  #196 = Methodref          #193.#173     // java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+  #197 = NameAndType        #23:#134      // nextBytes:([BII)[B
+  #198 = Methodref          #2.#197       // info/journeymap/shaded/kotlin/kotlin/random/Random.nextBytes:([BII)[B
+  #199 = Utf8               ([B)[B
+  #200 = Utf8               (I)[B
+  #201 = NameAndType        #23:#199      // nextBytes:([B)[B
+  #202 = Methodref          #2.#201       // info/journeymap/shaded/kotlin/kotlin/random/Random.nextBytes:([B)[B
+  #203 = Methodref          #4.#147       // java/lang/Object."<init>":()V
+  #204 = Utf8               <clinit>
+  #205 = Utf8               (Linfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DefaultConstructorMarker;)V
+  #206 = NameAndType        #146:#205     // "<init>":(Linfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DefaultConstructorMarker;)V
+  #207 = Methodref          #43.#206      // info/journeymap/shaded/kotlin/kotlin/random/Random$Default."<init>":(Linfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DefaultConstructorMarker;)V
+  #208 = NameAndType        #35:#48       // Default:Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Default;
+  #209 = Fieldref           #2.#208       // info/journeymap/shaded/kotlin/kotlin/random/Random.Default:Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Default;
+  #210 = Utf8               info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementationsKt
+  #211 = Class              #210          // info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementationsKt
+  #212 = Utf8               IMPLEMENTATIONS
+  #213 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations;
+  #214 = NameAndType        #212:#213     // IMPLEMENTATIONS:Linfo/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations;
+  #215 = Fieldref           #211.#214     // info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementationsKt.IMPLEMENTATIONS:Linfo/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations;
+  #216 = Utf8               info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations
+  #217 = Class              #216          // info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations
+  #218 = Utf8               defaultPlatformRandom
+  #219 = Utf8               ()Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+  #220 = NameAndType        #218:#219     // defaultPlatformRandom:()Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+  #221 = Methodref          #217.#220     // info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations.defaultPlatformRandom:()Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+  #222 = NameAndType        #44:#17       // defaultRandom:Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+  #223 = Fieldref           #2.#222       // info/journeymap/shaded/kotlin/kotlin/random/Random.defaultRandom:Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+  #224 = NameAndType        #118:#45      // INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Companion;
+  #225 = Fieldref           #41.#224      // info/journeymap/shaded/kotlin/kotlin/random/Random$Companion.INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Companion;
+  #226 = NameAndType        #34:#45       // Companion:Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Companion;
+  #227 = Fieldref           #2.#226       // info/journeymap/shaded/kotlin/kotlin/random/Random.Companion:Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Companion;
+  #228 = Utf8               access$getDefaultRandom$cp
+  #229 = Utf8               Deprecated
+  #230 = Utf8               RuntimeInvisibleAnnotations
+  #231 = Utf8               Code
+  #232 = Utf8               LocalVariableTable
+  #233 = Utf8               LineNumberTable
+  #234 = Utf8               StackMapTable
+  #235 = Utf8               RuntimeInvisibleParameterAnnotations
+  #236 = Utf8               SourceFile
+  #237 = Utf8               SourceDebugExtension
+  #238 = Utf8               InnerClasses
+  #239 = Utf8               RuntimeVisibleAnnotations
+{
+  private static final info.journeymap.shaded.kotlin.kotlin.random.Random defaultRandom;
+    descriptor: Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  public static final info.journeymap.shaded.kotlin.kotlin.random.Random$Companion Companion;
+    descriptor: Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Companion;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Deprecated: true
+    RuntimeInvisibleAnnotations:
+      0: #46()
+        info.journeymap.shaded.kotlin.kotlin.jvm.JvmField
+      1: #47()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final info.journeymap.shaded.kotlin.kotlin.random.Random$Default Default;
+    descriptor: Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Default;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public abstract int nextBits(int);
+    descriptor: (I)I
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public int nextInt();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: bipush        32
+         3: invokevirtual #52                 // Method nextBits:(I)I
+         6: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+      LineNumberTable:
+        line 36: 0
+
+  public int nextInt(int);
+    descriptor: (I)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: iconst_0
+         2: iload_1
+         3: invokevirtual #56                 // Method nextInt:(II)I
+         6: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+            0       7     1 until   I
+      LineNumberTable:
+        line 47: 0
+
+  public int nextInt(int, int);
+    descriptor: (II)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=7, args_size=3
+         0: iload_1
+         1: iload_2
+         2: invokestatic  #63                 // Method info/journeymap/shaded/kotlin/kotlin/random/RandomKt.checkRangeBounds:(II)V
+         5: iload_2
+         6: iload_1
+         7: isub
+         8: istore_3
+         9: iload_3
+        10: ifgt          19
+        13: iload_3
+        14: ldc           #64                 // int -2147483648
+        16: if_icmpne     80
+        19: iload_3
+        20: iload_3
+        21: ineg
+        22: iand
+        23: iload_3
+        24: if_icmpne     42
+        27: iload_3
+        28: invokestatic  #67                 // Method info/journeymap/shaded/kotlin/kotlin/random/RandomKt.fastLog2:(I)I
+        31: istore        5
+        33: aload_0
+        34: iload         5
+        36: invokevirtual #52                 // Method nextBits:(I)I
+        39: goto          73
+        42: iconst_0
+        43: istore        5
+        45: aload_0
+        46: invokevirtual #69                 // Method nextInt:()I
+        49: iconst_1
+        50: iushr
+        51: istore        6
+        53: iload         6
+        55: iload_3
+        56: irem
+        57: istore        5
+        59: iload         6
+        61: iload         5
+        63: isub
+        64: iload_3
+        65: iconst_1
+        66: isub
+        67: iadd
+        68: iflt          45
+        71: iload         5
+        73: istore        4
+        75: iload_1
+        76: iload         4
+        78: iadd
+        79: ireturn
+        80: nop
+        81: aload_0
+        82: invokevirtual #69                 // Method nextInt:()I
+        85: istore        4
+        87: iload_2
+        88: iload_1
+        89: iload         4
+        91: istore        5
+        93: iload         5
+        95: if_icmple     102
+        98: pop
+        99: goto          110
+       102: iload         5
+       104: if_icmple     110
+       107: iload         4
+       109: ireturn
+       110: goto          80
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           33       6     5 bitCount   I
+           53      18     6  bits   I
+           45      28     5     v   I
+           75       5     4   rnd   I
+           87      23     4   rnd   I
+            9     104     3     n   I
+            0     113     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+            0     113     1  from   I
+            0     113     2 until   I
+      LineNumberTable:
+        line 57: 0
+        line 58: 5
+        line 59: 9
+        line 60: 19
+        line 61: 27
+        line 62: 33
+        line 64: 42
+        line 65: 45
+        line 66: 45
+        line 67: 53
+        line 68: 59
+        line 69: 71
+        line 60: 73
+        line 71: 75
+        line 73: 80
+        line 74: 81
+        line 75: 87
+        line 73: 110
+      StackMapTable: number_of_entries = 7
+        frame_type = 252 /* append */
+          offset_delta = 19
+          locals = [ int ]
+        frame_type = 22 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 2
+          locals = [ top, int ]
+        frame_type = 91 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 249 /* chop */
+          offset_delta = 6
+        frame_type = 255 /* full_frame */
+          offset_delta = 21
+          locals = [ class info/journeymap/shaded/kotlin/kotlin/random/Random, int, int, int, int, int ]
+          stack = [ int ]
+        frame_type = 7 /* same */
+
+  public long nextLong();
+    descriptor: ()J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #69                 // Method nextInt:()I
+         4: i2l
+         5: bipush        32
+         7: lshl
+         8: aload_0
+         9: invokevirtual #69                 // Method nextInt:()I
+        12: i2l
+        13: ladd
+        14: lreturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+      LineNumberTable:
+        line 85: 0
+
+  public long nextLong(long);
+    descriptor: (J)J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=3, args_size=2
+         0: aload_0
+         1: lconst_0
+         2: lload_1
+         3: invokevirtual #78                 // Method nextLong:(JJ)J
+         6: lreturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+            0       7     1 until   J
+      LineNumberTable:
+        line 96: 0
+
+  public long nextLong(long, long);
+    descriptor: (JJ)J
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=13, args_size=3
+         0: lload_1
+         1: lload_3
+         2: invokestatic  #82                 // Method info/journeymap/shaded/kotlin/kotlin/random/RandomKt.checkRangeBounds:(JJ)V
+         5: lload_3
+         6: lload_1
+         7: lsub
+         8: lstore        5
+        10: lload         5
+        12: lconst_0
+        13: lcmp
+        14: ifle          160
+        17: lconst_0
+        18: lstore        7
+        20: lload         5
+        22: lload         5
+        24: lneg
+        25: land
+        26: lload         5
+        28: lcmp
+        29: ifne          118
+        32: lload         5
+        34: l2i
+        35: istore        9
+        37: lload         5
+        39: bipush        32
+        41: lushr
+        42: l2i
+        43: istore        10
+        45: nop
+        46: iload         9
+        48: ifeq          72
+        51: iload         9
+        53: invokestatic  #67                 // Method info/journeymap/shaded/kotlin/kotlin/random/RandomKt.fastLog2:(I)I
+        56: istore        11
+        58: aload_0
+        59: iload         11
+        61: invokevirtual #52                 // Method nextBits:(I)I
+        64: i2l
+        65: ldc2_w        #83                 // long 4294967295l
+        68: land
+        69: goto          113
+        72: iload         10
+        74: iconst_1
+        75: if_icmpne     90
+        78: aload_0
+        79: invokevirtual #69                 // Method nextInt:()I
+        82: i2l
+        83: ldc2_w        #83                 // long 4294967295l
+        86: land
+        87: goto          113
+        90: iload         10
+        92: invokestatic  #67                 // Method info/journeymap/shaded/kotlin/kotlin/random/RandomKt.fastLog2:(I)I
+        95: istore        11
+        97: aload_0
+        98: iload         11
+       100: invokevirtual #52                 // Method nextBits:(I)I
+       103: i2l
+       104: bipush        32
+       106: lshl
+       107: aload_0
+       108: invokevirtual #69                 // Method nextInt:()I
+       111: i2l
+       112: ladd
+       113: lstore        7
+       115: goto          155
+       118: lconst_0
+       119: lstore        9
+       121: aload_0
+       122: invokevirtual #86                 // Method nextLong:()J
+       125: iconst_1
+       126: lushr
+       127: lstore        11
+       129: lload         11
+       131: lload         5
+       133: lrem
+       134: lstore        9
+       136: lload         11
+       138: lload         9
+       140: lsub
+       141: lload         5
+       143: lconst_1
+       144: lsub
+       145: ladd
+       146: lconst_0
+       147: lcmp
+       148: iflt          121
+       151: lload         9
+       153: lstore        7
+       155: lload_1
+       156: lload         7
+       158: ladd
+       159: lreturn
+       160: nop
+       161: aload_0
+       162: invokevirtual #86                 // Method nextLong:()J
+       165: lstore        7
+       167: lload_3
+       168: lload_1
+       169: lload         7
+       171: lstore        9
+       173: lload         9
+       175: lcmp
+       176: ifle          183
+       179: pop2
+       180: goto          192
+       183: lload         9
+       185: lcmp
+       186: ifle          192
+       189: lload         7
+       191: lreturn
+       192: goto          160
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           58      11    11 bitCount   I
+           97      16    11 bitCount   I
+           45      70    10 nHigh   I
+           37      78     9  nLow   I
+          129      22    11  bits   J
+          121      34     9     v   J
+           20     140     7   rnd   J
+          167      25     7   rnd   J
+           10     185     5     n   J
+            0     195     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+            0     195     1  from   J
+            0     195     3 until   J
+      LineNumberTable:
+        line 106: 0
+        line 107: 5
+        line 108: 10
+        line 109: 17
+        line 110: 20
+        line 111: 32
+        line 112: 37
+        line 113: 45
+        line 114: 46
+        line 115: 51
+        line 117: 58
+        line 119: 72
+        line 121: 78
+        line 123: 90
+        line 124: 97
+        line 113: 113
+        line 128: 118
+        line 129: 121
+        line 130: 121
+        line 131: 129
+        line 132: 136
+        line 133: 151
+        line 134: 155
+        line 135: 155
+        line 137: 160
+        line 138: 161
+        line 139: 167
+        line 137: 192
+      StackMapTable: number_of_entries = 9
+        frame_type = 255 /* full_frame */
+          offset_delta = 72
+          locals = [ class info/journeymap/shaded/kotlin/kotlin/random/Random, long, long, long, long, int, int ]
+          stack = []
+        frame_type = 17 /* same */
+        frame_type = 86 /* same_locals_1_stack_item */
+          stack = [ long ]
+        frame_type = 249 /* chop */
+          offset_delta = 4
+        frame_type = 252 /* append */
+          offset_delta = 2
+          locals = [ long ]
+        frame_type = 250 /* chop */
+          offset_delta = 33
+        frame_type = 250 /* chop */
+          offset_delta = 4
+        frame_type = 255 /* full_frame */
+          offset_delta = 22
+          locals = [ class info/journeymap/shaded/kotlin/kotlin/random/Random, long, long, long, long, long ]
+          stack = [ long ]
+        frame_type = 8 /* same */
+
+  public boolean nextBoolean();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_1
+         2: invokevirtual #52                 // Method nextBits:(I)I
+         5: ifeq          12
+         8: iconst_1
+         9: goto          13
+        12: iconst_0
+        13: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+      LineNumberTable:
+        line 147: 0
+      StackMapTable: number_of_entries = 2
+        frame_type = 12 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+
+  public double nextDouble();
+    descriptor: ()D
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: bipush        26
+         3: invokevirtual #52                 // Method nextBits:(I)I
+         6: aload_0
+         7: bipush        27
+         9: invokevirtual #52                 // Method nextBits:(I)I
+        12: invokestatic  #96                 // Method info/journeymap/shaded/kotlin/kotlin/random/PlatformRandomKt.doubleFromParts:(II)D
+        15: dreturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      16     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+      LineNumberTable:
+        line 152: 0
+
+  public double nextDouble(double);
+    descriptor: (D)D
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=3, args_size=2
+         0: aload_0
+         1: dconst_0
+         2: dload_1
+         3: invokevirtual #100                // Method nextDouble:(DD)D
+         6: dreturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+            0       7     1 until   D
+      LineNumberTable:
+        line 161: 0
+
+  public double nextDouble(double, double);
+    descriptor: (DD)D
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=8, locals=15, args_size=3
+         0: dload_1
+         1: dload_3
+         2: invokestatic  #104                // Method info/journeymap/shaded/kotlin/kotlin/random/RandomKt.checkRangeBounds:(DD)V
+         5: dload_3
+         6: dload_1
+         7: dsub
+         8: dstore        5
+        10: dload         5
+        12: dstore        9
+        14: iconst_0
+        15: istore        11
+        17: dload         9
+        19: invokestatic  #110                // Method java/lang/Double.isInfinite:(D)Z
+        22: ifeq          139
+        25: dload_1
+        26: dstore        9
+        28: iconst_0
+        29: istore        11
+        31: dload         9
+        33: dstore        12
+        35: iconst_0
+        36: istore        14
+        38: dload         12
+        40: invokestatic  #110                // Method java/lang/Double.isInfinite:(D)Z
+        43: ifne          65
+        46: dload         9
+        48: dstore        12
+        50: iconst_0
+        51: istore        14
+        53: dload         12
+        55: invokestatic  #113                // Method java/lang/Double.isNaN:(D)Z
+        58: ifne          65
+        61: iconst_1
+        62: goto          66
+        65: iconst_0
+        66: ifeq          139
+        69: dload_3
+        70: dstore        9
+        72: iconst_0
+        73: istore        11
+        75: dload         9
+        77: dstore        12
+        79: iconst_0
+        80: istore        14
+        82: dload         12
+        84: invokestatic  #110                // Method java/lang/Double.isInfinite:(D)Z
+        87: ifne          109
+        90: dload         9
+        92: dstore        12
+        94: iconst_0
+        95: istore        14
+        97: dload         12
+        99: invokestatic  #113                // Method java/lang/Double.isNaN:(D)Z
+       102: ifne          109
+       105: iconst_1
+       106: goto          110
+       109: iconst_0
+       110: ifeq          139
+       113: aload_0
+       114: invokevirtual #115                // Method nextDouble:()D
+       117: dload_3
+       118: iconst_2
+       119: i2d
+       120: ddiv
+       121: dload_1
+       122: iconst_2
+       123: i2d
+       124: ddiv
+       125: dsub
+       126: dmul
+       127: dstore        9
+       129: dload_1
+       130: dload         9
+       132: dadd
+       133: dload         9
+       135: dadd
+       136: goto          148
+       139: dload_1
+       140: aload_0
+       141: invokevirtual #115                // Method nextDouble:()D
+       144: dload         5
+       146: dmul
+       147: dadd
+       148: dstore        7
+       150: dload         7
+       152: dload_3
+       153: dcmpl
+       154: iflt          177
+       157: dload_3
+       158: dstore        9
+       160: iconst_0
+       161: istore        11
+       163: dload         9
+       165: getstatic     #121                // Field info/journeymap/shaded/kotlin/kotlin/jvm/internal/DoubleCompanionObject.INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DoubleCompanionObject;
+       168: invokevirtual #124                // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/DoubleCompanionObject.getNEGATIVE_INFINITY:()D
+       171: invokestatic  #129                // Method java/lang/Math.nextAfter:(DD)D
+       174: goto          179
+       177: dload         7
+       179: dreturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          129       7     9    r1   D
+          150      30     7     r   D
+           10     170     5  size   D
+            0     180     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+            0     180     1  from   D
+            0     180     3 until   D
+      LineNumberTable:
+        line 173: 0
+        line 174: 5
+        line 175: 10
+        line 175: 25
+        line 175: 69
+        line 176: 113
+        line 177: 129
+        line 179: 139
+        line 175: 148
+        line 181: 150
+        line 181: 177
+      StackMapTable: number_of_entries = 8
+        frame_type = 255 /* full_frame */
+          offset_delta = 65
+          locals = [ class info/journeymap/shaded/kotlin/kotlin/random/Random, double, double, double, top, top, double, int, double, int ]
+          stack = []
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 42 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 249 /* chop */
+          offset_delta = 28
+        frame_type = 72 /* same_locals_1_stack_item */
+          stack = [ double ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 28
+          locals = [ class info/journeymap/shaded/kotlin/kotlin/random/Random, double, double, double, double, double, int ]
+          stack = []
+        frame_type = 65 /* same_locals_1_stack_item */
+          stack = [ double ]
+
+  public float nextFloat();
+    descriptor: ()F
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: bipush        24
+         3: invokevirtual #52                 // Method nextBits:(I)I
+         6: i2f
+         7: ldc           #133                // int 16777216
+         9: i2f
+        10: fdiv
+        11: freturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+      LineNumberTable:
+        line 187: 0
+
+  public byte[] nextBytes(byte[], int, int);
+    descriptor: ([BII)[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=12, args_size=4
+         0: aload_1
+         1: ldc           #135                // String array
+         3: invokestatic  #141                // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_1
+         7: arraylength
+         8: iconst_0
+         9: iload_2
+        10: istore        4
+        12: iload         4
+        14: if_icmple     21
+        17: pop
+        18: goto          50
+        21: iload         4
+        23: if_icmplt     50
+        26: aload_1
+        27: arraylength
+        28: iconst_0
+        29: iload_3
+        30: istore        4
+        32: iload         4
+        34: if_icmple     41
+        37: pop
+        38: goto          50
+        41: iload         4
+        43: if_icmplt     50
+        46: iconst_1
+        47: goto          51
+        50: iconst_0
+        51: istore        4
+        53: iconst_0
+        54: istore        5
+        56: iconst_0
+        57: istore        6
+        59: iload         4
+        61: ifne          128
+        64: iconst_0
+        65: istore        7
+        67: new           #145                // class java/lang/StringBuilder
+        70: dup
+        71: invokespecial #148                // Method java/lang/StringBuilder."<init>":()V
+        74: ldc           #150                // String fromIndex (
+        76: invokevirtual #154                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        79: iload_2
+        80: invokevirtual #157                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        83: ldc           #159                // String ) or toIndex (
+        85: invokevirtual #154                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        88: iload_3
+        89: invokevirtual #157                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        92: ldc           #161                // String ) are out of range: 0..
+        94: invokevirtual #154                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        97: aload_1
+        98: arraylength
+        99: invokevirtual #157                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       102: bipush        46
+       104: invokevirtual #164                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+       107: invokevirtual #168                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       110: astore        6
+       112: new           #170                // class java/lang/IllegalArgumentException
+       115: dup
+       116: aload         6
+       118: invokevirtual #171                // Method java/lang/Object.toString:()Ljava/lang/String;
+       121: invokespecial #174                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+       124: checkcast     #176                // class java/lang/Throwable
+       127: athrow
+       128: iload_2
+       129: iload_3
+       130: if_icmpgt     137
+       133: iconst_1
+       134: goto          138
+       137: iconst_0
+       138: istore        4
+       140: iconst_0
+       141: istore        5
+       143: iconst_0
+       144: istore        6
+       146: iload         4
+       148: ifne          205
+       151: iconst_0
+       152: istore        7
+       154: new           #145                // class java/lang/StringBuilder
+       157: dup
+       158: invokespecial #148                // Method java/lang/StringBuilder."<init>":()V
+       161: ldc           #150                // String fromIndex (
+       163: invokevirtual #154                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       166: iload_2
+       167: invokevirtual #157                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       170: ldc           #178                // String ) must be not greater than toIndex (
+       172: invokevirtual #154                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       175: iload_3
+       176: invokevirtual #157                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+       179: ldc           #180                // String ).
+       181: invokevirtual #154                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       184: invokevirtual #168                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       187: astore        6
+       189: new           #170                // class java/lang/IllegalArgumentException
+       192: dup
+       193: aload         6
+       195: invokevirtual #171                // Method java/lang/Object.toString:()Ljava/lang/String;
+       198: invokespecial #174                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+       201: checkcast     #176                // class java/lang/Throwable
+       204: athrow
+       205: iload_3
+       206: iload_2
+       207: isub
+       208: iconst_4
+       209: idiv
+       210: istore        4
+       212: iload_2
+       213: istore        5
+       215: iconst_0
+       216: istore        6
+       218: iconst_0
+       219: istore        7
+       221: iconst_0
+       222: istore        7
+       224: iload         4
+       226: istore        8
+       228: iload         7
+       230: iload         8
+       232: if_icmpge     305
+       235: iload         7
+       237: istore        9
+       239: iconst_0
+       240: istore        10
+       242: aload_0
+       243: invokevirtual #69                 // Method nextInt:()I
+       246: istore        11
+       248: aload_1
+       249: iload         5
+       251: iload         11
+       253: i2b
+       254: bastore
+       255: aload_1
+       256: iload         5
+       258: iconst_1
+       259: iadd
+       260: iload         11
+       262: bipush        8
+       264: iushr
+       265: i2b
+       266: bastore
+       267: aload_1
+       268: iload         5
+       270: iconst_2
+       271: iadd
+       272: iload         11
+       274: bipush        16
+       276: iushr
+       277: i2b
+       278: bastore
+       279: aload_1
+       280: iload         5
+       282: iconst_3
+       283: iadd
+       284: iload         11
+       286: bipush        24
+       288: iushr
+       289: i2b
+       290: bastore
+       291: iload         5
+       293: iconst_4
+       294: iadd
+       295: istore        5
+       297: nop
+       298: nop
+       299: iinc          7, 1
+       302: goto          228
+       305: iload_3
+       306: iload         5
+       308: isub
+       309: istore        6
+       311: aload_0
+       312: iload         6
+       314: bipush        8
+       316: imul
+       317: invokevirtual #52                 // Method nextBits:(I)I
+       320: istore        7
+       322: iconst_0
+       323: istore        8
+       325: iload         6
+       327: istore        9
+       329: iload         8
+       331: iload         9
+       333: if_icmpge     358
+       336: aload_1
+       337: iload         5
+       339: iload         8
+       341: iadd
+       342: iload         7
+       344: iload         8
+       346: bipush        8
+       348: imul
+       349: iushr
+       350: i2b
+       351: bastore
+       352: iinc          8, 1
+       355: goto          329
+       358: aload_1
+       359: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           67      43     7 $i$a$-require-Random$nextBytes$1   I
+          154      33     7 $i$a$-require-Random$nextBytes$2   I
+          248      49    11     v   I
+          239      59     9    it   I
+          242      56    10 $i$a$-repeat-Random$nextBytes$3   I
+          336      19     8     i   I
+          322      38     7    vr   I
+          311      49     6 remainder   I
+          215     145     5 position   I
+          212     148     4 steps   I
+            0     360     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+            0     360     1 array   [B
+            0     360     2 fromIndex   I
+            0     360     3 toIndex   I
+      LineNumberTable:
+        line 196: 6
+        line 196: 67
+        line 196: 110
+        line 197: 128
+        line 197: 154
+        line 197: 187
+        line 199: 205
+        line 201: 212
+        line 202: 215
+        line 203: 242
+        line 204: 248
+        line 205: 255
+        line 206: 267
+        line 207: 279
+        line 208: 291
+        line 209: 297
+        line 202: 299
+        line 211: 305
+        line 212: 311
+        line 213: 322
+        line 214: 336
+        line 213: 352
+        line 217: 358
+      StackMapTable: number_of_entries = 12
+        frame_type = 255 /* full_frame */
+          offset_delta = 21
+          locals = [ class info/journeymap/shaded/kotlin/kotlin/random/Random, class "[B", int, int, int ]
+          stack = [ int ]
+        frame_type = 83 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 8 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 253 /* append */
+          offset_delta = 76
+          locals = [ int, int ]
+        frame_type = 8 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 66
+        frame_type = 253 /* append */
+          offset_delta = 22
+          locals = [ int, int ]
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 76
+        frame_type = 252 /* append */
+          offset_delta = 23
+          locals = [ int ]
+        frame_type = 28 /* same */
+    RuntimeInvisibleAnnotations:
+      0: #47()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #47()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+      parameter 2:
+
+  public static byte[] nextBytes$default(info.journeymap.shaded.kotlin.kotlin.random.Random, byte[], int, int, int, java.lang.Object);
+    descriptor: (Linfo/journeymap/shaded/kotlin/kotlin/random/Random;[BIIILjava/lang/Object;)[B
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=6, args_size=6
+         0: aload         5
+         2: ifnull        15
+         5: new           #193                // class java/lang/UnsupportedOperationException
+         8: dup
+         9: ldc           #195                // String Super calls with default arguments not supported in this target, function: nextBytes
+        11: invokespecial #196                // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+        14: athrow
+        15: iload         4
+        17: iconst_2
+        18: iand
+        19: ifeq          24
+        22: iconst_0
+        23: istore_2
+        24: iload         4
+        26: iconst_4
+        27: iand
+        28: ifeq          34
+        31: aload_1
+        32: arraylength
+        33: istore_3
+        34: aload_0
+        35: aload_1
+        36: iload_2
+        37: iload_3
+        38: invokevirtual #198                // Method nextBytes:([BII)[B
+        41: areturn
+      LineNumberTable:
+        line 195: 22
+      StackMapTable: number_of_entries = 3
+        frame_type = 15 /* same */
+        frame_type = 8 /* same */
+        frame_type = 9 /* same */
+
+  public byte[] nextBytes(byte[]);
+    descriptor: ([B)[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_1
+         1: ldc           #135                // String array
+         3: invokestatic  #141                // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_0
+         7: aload_1
+         8: iconst_0
+         9: aload_1
+        10: arraylength
+        11: invokevirtual #198                // Method nextBytes:([BII)[B
+        14: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+            0      15     1 array   [B
+      LineNumberTable:
+        line 225: 6
+    RuntimeInvisibleAnnotations:
+      0: #47()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #47()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public byte[] nextBytes(int);
+    descriptor: (I)[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: newarray       byte
+         4: invokevirtual #202                // Method nextBytes:([B)[B
+         7: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+            0       8     1  size   I
+      LineNumberTable:
+        line 230: 0
+    RuntimeInvisibleAnnotations:
+      0: #47()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public info.journeymap.shaded.kotlin.kotlin.random.Random();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #203                // Method java/lang/Object."<init>":()V
+         4: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+      LineNumberTable:
+        line 20: 0
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=3, locals=1, args_size=0
+         0: new           #43                 // class info/journeymap/shaded/kotlin/kotlin/random/Random$Default
+         3: dup
+         4: aconst_null
+         5: invokespecial #207                // Method info/journeymap/shaded/kotlin/kotlin/random/Random$Default."<init>":(Linfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DefaultConstructorMarker;)V
+         8: putstatic     #209                // Field Default:Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Default;
+        11: iconst_0
+        12: istore_0
+        13: getstatic     #215                // Field info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementationsKt.IMPLEMENTATIONS:Linfo/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations;
+        16: invokevirtual #221                // Method info/journeymap/shaded/kotlin/kotlin/internal/PlatformImplementations.defaultPlatformRandom:()Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+        19: putstatic     #223                // Field defaultRandom:Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+        22: getstatic     #225                // Field info/journeymap/shaded/kotlin/kotlin/random/Random$Companion.INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Companion;
+        25: putstatic     #227                // Field Companion:Linfo/journeymap/shaded/kotlin/kotlin/random/Random$Companion;
+        28: return
+      LineNumberTable:
+        line 242: 11
+        line 268: 22
+
+  public static final info.journeymap.shaded.kotlin.kotlin.random.Random access$getDefaultRandom$cp();
+    descriptor: ()Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+    flags: (0x1019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL, ACC_SYNTHETIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #223                // Field defaultRandom:Linfo/journeymap/shaded/kotlin/kotlin/random/Random;
+         3: areturn
+      LineNumberTable:
+        line 20: 0
+}
+SourceFile: "Random.kt"
+SourceDebugExtension:
+  SMAP
+  Random.kt
+  Kotlin
+  *S Kotlin
+  *F
+  + 1 Random.kt
+  kotlin/random/Random
+  *L
+  1#1,353:1
+  *E
+InnerClasses:
+  public static final #34= #41 of #2;     // Companion=class info/journeymap/shaded/kotlin/kotlin/random/Random$Companion of class info/journeymap/shaded/kotlin/kotlin/random/Random
+  public static final #35= #43 of #2;     // Default=class info/journeymap/shaded/kotlin/kotlin/random/Random$Default of class info/journeymap/shaded/kotlin/kotlin/random/Random
+RuntimeVisibleAnnotations:
+  0: #6(#7=[I#8,I#8,I#9],#10=[I#8,I#11,I#12],#13=I#8,#14=[s#15],#16=[s#17,s#18,s#19,s#20,s#18,s#21,s#22,s#18,s#23,s#18,s#24,s#25,s#26,s#27,s#28,s#18,s#29,s#30,s#31,s#18,s#32,s#33,s#18,s#34,s#35,s#36])
+    info.journeymap.shaded.kotlin.kotlin.Metadata(
+      mv=[1,1,15]
+      bv=[1,0,3]
+      k=1
+      d1=["\u0000:\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0012\n\u0002\b\u0005\n\u0002\u0010\u0006\n\u0002\b\u0003\n\u0002\u0010\u0007\n\u0002\b\u0002\n\u0002\u0010\t\n\u0002\b\u0003\b\'\u0018\u0000 \u00182\u00020\u0001:\u0002\u0017\u0018B\u0005?\u0006\u0002\u0010\u0002J\u0010\u0010\u0003\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u0004H&J\b\u0010\u0006\u001a\u00020\u0007H\u0016J\u0010\u0010\b\u001a\u00020\t2\u0006\u0010\n\u001a\u00020\tH\u0016J$\u0010\b\u001a\u00020\t2\u0006\u0010\n\u001a\u00020\t2\b\b\u0002\u0010\u000b\u001a\u00020\u00042\b\b\u0002\u0010\f\u001a\u00020\u0004H\u0016J\u0010\u0010\b\u001a\u00020\t2\u0006\u0010\r\u001a\u00020\u0004H\u0016J\b\u0010\u000e\u001a\u00020\u000fH\u0016J\u0010\u0010\u000e\u001a\u00020\u000f2\u0006\u0010\u0010\u001a\u00020\u000fH\u0016J\u0018\u0010\u000e\u001a\u00020\u000f2\u0006\u0010\u0011\u001a\u00020\u000f2\u0006\u0010\u0010\u001a\u00020\u000fH\u0016J\b\u0010\u0012\u001a\u00020\u0013H\u0016J\b\u0010\u0014\u001a\u00020\u0004H\u0016J\u0010\u0010\u0014\u001a\u00020\u00042\u0006\u0010\u0010\u001a\u00020\u0004H\u0016J\u0018\u0010\u0014\u001a\u00020\u00042\u0006\u0010\u0011\u001a\u00020\u00042\u0006\u0010\u0010\u001a\u00020\u0004H\u0016J\b\u0010\u0015\u001a\u00020\u0016H\u0016J\u0010\u0010\u0015\u001a\u00020\u00162\u0006\u0010\u0010\u001a\u00020\u0016H\u0016J\u0018\u0010\u0015\u001a\u00020\u00162\u0006\u0010\u0011\u001a\u00020\u00162\u0006\u0010\u0010\u001a\u00020\u0016H\u0016��\u0006\u0019"]
+      d2=["Linfo/journeymap/shaded/kotlin/kotlin/random/Random;","","()V","nextBits","","bitCount","nextBoolean","","nextBytes","","array","fromIndex","toIndex","size","nextDouble","","until","from","nextFloat","","nextInt","nextLong","","Companion","Default","info.journeymap.shaded.kotlin.kotlin-stdlib"]
+    )
+RuntimeInvisibleAnnotations:
+  0: #37(#38=s#39)
+    info.journeymap.shaded.kotlin.kotlin.SinceKotlin(
+      version="1.3"
+    )

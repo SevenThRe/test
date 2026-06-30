@@ -1,0 +1,994 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/journeymap-1.12.2-5.7.0(1)(2).jar!/org/eclipse/jetty/http/QuotedCSV.class
+  Last modified 25-����-20; size 4510 bytes
+  SHA-256 checksum cf2932d9b6b06261db28cd5c741d66f6c3be6b4dfd9b5d71c76c65bb0da9b454
+  Compiled from "QuotedCSV.java"
+public class org.eclipse.jetty.http.QuotedCSV extends java.lang.Object implements java.lang.Iterable<java.lang.String>
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // org/eclipse/jetty/http/QuotedCSV
+  super_class: #5                         // java/lang/Object
+  interfaces: 1, fields: 2, methods: 10, attributes: 3
+Constant pool:
+    #1 = Utf8               org/eclipse/jetty/http/QuotedCSV
+    #2 = Class              #1            // org/eclipse/jetty/http/QuotedCSV
+    #3 = Utf8               Ljava/lang/Object;Ljava/lang/Iterable<Ljava/lang/String;>;
+    #4 = Utf8               java/lang/Object
+    #5 = Class              #4            // java/lang/Object
+    #6 = Utf8               java/lang/Iterable
+    #7 = Class              #6            // java/lang/Iterable
+    #8 = Utf8               QuotedCSV.java
+    #9 = Utf8               org/eclipse/jetty/http/QuotedCSV$1
+   #10 = Class              #9            // org/eclipse/jetty/http/QuotedCSV$1
+   #11 = Utf8               org/eclipse/jetty/http/QuotedCSV$State
+   #12 = Class              #11           // org/eclipse/jetty/http/QuotedCSV$State
+   #13 = Utf8               State
+   #14 = Utf8               _values
+   #15 = Utf8               Ljava/util/List;
+   #16 = Utf8               Ljava/util/List<Ljava/lang/String;>;
+   #17 = Utf8               _keepQuotes
+   #18 = Utf8               Z
+   #19 = Utf8               <init>
+   #20 = Utf8               ([Ljava/lang/String;)V
+   #21 = Utf8               (Z[Ljava/lang/String;)V
+   #22 = NameAndType        #19:#21       // "<init>":(Z[Ljava/lang/String;)V
+   #23 = Methodref          #2.#22        // org/eclipse/jetty/http/QuotedCSV."<init>":(Z[Ljava/lang/String;)V
+   #24 = Utf8               this
+   #25 = Utf8               Lorg/eclipse/jetty/http/QuotedCSV;
+   #26 = Utf8               values
+   #27 = Utf8               [Ljava/lang/String;
+   #28 = Utf8               ()V
+   #29 = NameAndType        #19:#28       // "<init>":()V
+   #30 = Methodref          #5.#29        // java/lang/Object."<init>":()V
+   #31 = Utf8               java/util/ArrayList
+   #32 = Class              #31           // java/util/ArrayList
+   #33 = Methodref          #32.#29       // java/util/ArrayList."<init>":()V
+   #34 = NameAndType        #14:#15       // _values:Ljava/util/List;
+   #35 = Fieldref           #2.#34        // org/eclipse/jetty/http/QuotedCSV._values:Ljava/util/List;
+   #36 = NameAndType        #17:#18       // _keepQuotes:Z
+   #37 = Fieldref           #2.#36        // org/eclipse/jetty/http/QuotedCSV._keepQuotes:Z
+   #38 = Class              #27           // "[Ljava/lang/String;"
+   #39 = Utf8               addValue
+   #40 = Utf8               (Ljava/lang/String;)V
+   #41 = NameAndType        #39:#40       // addValue:(Ljava/lang/String;)V
+   #42 = Methodref          #2.#41        // org/eclipse/jetty/http/QuotedCSV.addValue:(Ljava/lang/String;)V
+   #43 = Utf8               v
+   #44 = Utf8               Ljava/lang/String;
+   #45 = Utf8               keepQuotes
+   #46 = Utf8               java/lang/StringBuffer
+   #47 = Class              #46           // java/lang/StringBuffer
+   #48 = Methodref          #47.#29       // java/lang/StringBuffer."<init>":()V
+   #49 = Utf8               java/lang/String
+   #50 = Class              #49           // java/lang/String
+   #51 = Utf8               length
+   #52 = Utf8               ()I
+   #53 = NameAndType        #51:#52       // length:()I
+   #54 = Methodref          #50.#53       // java/lang/String.length:()I
+   #55 = Utf8               VALUE
+   #56 = Utf8               Lorg/eclipse/jetty/http/QuotedCSV$State;
+   #57 = NameAndType        #55:#56       // VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+   #58 = Fieldref           #12.#57       // org/eclipse/jetty/http/QuotedCSV$State.VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+   #59 = Utf8               charAt
+   #60 = Utf8               (I)C
+   #61 = NameAndType        #59:#60       // charAt:(I)C
+   #62 = Methodref          #50.#61       // java/lang/String.charAt:(I)C
+   #63 = Utf8               append
+   #64 = Utf8               (C)Ljava/lang/StringBuffer;
+   #65 = NameAndType        #63:#64       // append:(C)Ljava/lang/StringBuffer;
+   #66 = Methodref          #47.#65       // java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+   #67 = Methodref          #47.#53       // java/lang/StringBuffer.length:()I
+   #68 = Utf8               PARAM_VALUE
+   #69 = NameAndType        #68:#56       // PARAM_VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+   #70 = Fieldref           #12.#69       // org/eclipse/jetty/http/QuotedCSV$State.PARAM_VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+   #71 = Utf8               setLength
+   #72 = Utf8               (I)V
+   #73 = NameAndType        #71:#72       // setLength:(I)V
+   #74 = Methodref          #47.#73       // java/lang/StringBuffer.setLength:(I)V
+   #75 = Utf8               parsedValue
+   #76 = Utf8               (Ljava/lang/StringBuffer;)V
+   #77 = NameAndType        #75:#76       // parsedValue:(Ljava/lang/StringBuffer;)V
+   #78 = Methodref          #2.#77        // org/eclipse/jetty/http/QuotedCSV.parsedValue:(Ljava/lang/StringBuffer;)V
+   #79 = Utf8               parsedParam
+   #80 = Utf8               (Ljava/lang/StringBuffer;III)V
+   #81 = NameAndType        #79:#80       // parsedParam:(Ljava/lang/StringBuffer;III)V
+   #82 = Methodref          #2.#81        // org/eclipse/jetty/http/QuotedCSV.parsedParam:(Ljava/lang/StringBuffer;III)V
+   #83 = Utf8               PARAM_NAME
+   #84 = NameAndType        #83:#56       // PARAM_NAME:Lorg/eclipse/jetty/http/QuotedCSV$State;
+   #85 = Fieldref           #12.#84       // org/eclipse/jetty/http/QuotedCSV$State.PARAM_NAME:Lorg/eclipse/jetty/http/QuotedCSV$State;
+   #86 = Utf8               $SwitchMap$org$eclipse$jetty$http$QuotedCSV$State
+   #87 = Utf8               [I
+   #88 = NameAndType        #86:#87       // $SwitchMap$org$eclipse$jetty$http$QuotedCSV$State:[I
+   #89 = Fieldref           #10.#88       // org/eclipse/jetty/http/QuotedCSV$1.$SwitchMap$org$eclipse$jetty$http$QuotedCSV$State:[I
+   #90 = Utf8               ordinal
+   #91 = NameAndType        #90:#52       // ordinal:()I
+   #92 = Methodref          #12.#91       // org/eclipse/jetty/http/QuotedCSV$State.ordinal:()I
+   #93 = Utf8               toString
+   #94 = Utf8               ()Ljava/lang/String;
+   #95 = NameAndType        #93:#94       // toString:()Ljava/lang/String;
+   #96 = Methodref          #47.#95       // java/lang/StringBuffer.toString:()Ljava/lang/String;
+   #97 = Utf8               java/util/List
+   #98 = Class              #97           // java/util/List
+   #99 = Utf8               add
+  #100 = Utf8               (Ljava/lang/Object;)Z
+  #101 = NameAndType        #99:#100      // add:(Ljava/lang/Object;)Z
+  #102 = InterfaceMethodref #98.#101      // java/util/List.add:(Ljava/lang/Object;)Z
+  #103 = Utf8               c
+  #104 = Utf8               C
+  #105 = Utf8               i
+  #106 = Utf8               I
+  #107 = Utf8               value
+  #108 = Utf8               buffer
+  #109 = Utf8               Ljava/lang/StringBuffer;
+  #110 = Utf8               l
+  #111 = Utf8               state
+  #112 = Utf8               quoted
+  #113 = Utf8               sloshed
+  #114 = Utf8               nws_length
+  #115 = Utf8               last_length
+  #116 = Utf8               value_length
+  #117 = Utf8               param_name
+  #118 = Utf8               param_value
+  #119 = Utf8               valueLength
+  #120 = Utf8               paramName
+  #121 = Utf8               paramValue
+  #122 = Utf8               size
+  #123 = NameAndType        #122:#52      // size:()I
+  #124 = InterfaceMethodref #98.#123      // java/util/List.size:()I
+  #125 = Utf8               isEmpty
+  #126 = Utf8               ()Z
+  #127 = NameAndType        #125:#126     // isEmpty:()Z
+  #128 = InterfaceMethodref #98.#127      // java/util/List.isEmpty:()Z
+  #129 = Utf8               getValues
+  #130 = Utf8               ()Ljava/util/List;
+  #131 = Utf8               iterator
+  #132 = Utf8               ()Ljava/util/Iterator;
+  #133 = NameAndType        #131:#132     // iterator:()Ljava/util/Iterator;
+  #134 = InterfaceMethodref #98.#133      // java/util/List.iterator:()Ljava/util/Iterator;
+  #135 = Utf8               unquote
+  #136 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #137 = Utf8               (Ljava/lang/CharSequence;II)Ljava/lang/StringBuffer;
+  #138 = NameAndType        #63:#137      // append:(Ljava/lang/CharSequence;II)Ljava/lang/StringBuffer;
+  #139 = Methodref          #47.#138      // java/lang/StringBuffer.append:(Ljava/lang/CharSequence;II)Ljava/lang/StringBuffer;
+  #140 = Utf8               s
+  #141 = Utf8               Signature
+  #142 = Utf8               Code
+  #143 = Utf8               LocalVariableTable
+  #144 = Utf8               LineNumberTable
+  #145 = Utf8               StackMapTable
+  #146 = Utf8               ()Ljava/util/List<Ljava/lang/String;>;
+  #147 = Utf8               ()Ljava/util/Iterator<Ljava/lang/String;>;
+  #148 = Utf8               SourceFile
+  #149 = Utf8               InnerClasses
+{
+  protected final java.util.List<java.lang.String> _values;
+    descriptor: Ljava/util/List;
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+    Signature: #16                          // Ljava/util/List<Ljava/lang/String;>;
+
+  protected final boolean _keepQuotes;
+    descriptor: Z
+    flags: (0x0014) ACC_PROTECTED, ACC_FINAL
+
+  public org.eclipse.jetty.http.QuotedCSV(java.lang.String...);
+    descriptor: ([Ljava/lang/String;)V
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: iconst_1
+         2: aload_1
+         3: invokespecial #23                 // Method "<init>":(Z[Ljava/lang/String;)V
+         6: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lorg/eclipse/jetty/http/QuotedCSV;
+            0       7     1 values   [Ljava/lang/String;
+      LineNumberTable:
+        line 45: 0
+        line 46: 6
+
+  public org.eclipse.jetty.http.QuotedCSV(boolean, java.lang.String...);
+    descriptor: (Z[Ljava/lang/String;)V
+    flags: (0x0081) ACC_PUBLIC, ACC_VARARGS
+    Code:
+      stack=3, locals=7, args_size=3
+         0: aload_0
+         1: invokespecial #30                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #32                 // class java/util/ArrayList
+         8: dup
+         9: invokespecial #33                 // Method java/util/ArrayList."<init>":()V
+        12: putfield      #35                 // Field _values:Ljava/util/List;
+        15: aload_0
+        16: iload_1
+        17: putfield      #37                 // Field _keepQuotes:Z
+        20: aload_2
+        21: astore_3
+        22: aload_3
+        23: arraylength
+        24: istore        4
+        26: iconst_0
+        27: istore        5
+        29: iload         5
+        31: iload         4
+        33: if_icmpge     54
+        36: aload_3
+        37: iload         5
+        39: aaload
+        40: astore        6
+        42: aload_0
+        43: aload         6
+        45: invokevirtual #42                 // Method addValue:(Ljava/lang/String;)V
+        48: iinc          5, 1
+        51: goto          29
+        54: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           42       6     6     v   Ljava/lang/String;
+            0      55     0  this   Lorg/eclipse/jetty/http/QuotedCSV;
+            0      55     1 keepQuotes   Z
+            0      55     2 values   [Ljava/lang/String;
+      LineNumberTable:
+        line 50: 0
+        line 39: 4
+        line 51: 15
+        line 52: 20
+        line 53: 42
+        line 52: 48
+        line 54: 54
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 29
+          locals = [ class org/eclipse/jetty/http/QuotedCSV, int, class "[Ljava/lang/String;", class "[Ljava/lang/String;", int, int ]
+          stack = []
+        frame_type = 248 /* chop */
+          offset_delta = 24
+
+  public void addValue(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=14, args_size=2
+         0: new           #47                 // class java/lang/StringBuffer
+         3: dup
+         4: invokespecial #48                 // Method java/lang/StringBuffer."<init>":()V
+         7: astore_2
+         8: aload_1
+         9: invokevirtual #54                 // Method java/lang/String.length:()I
+        12: istore_3
+        13: getstatic     #58                 // Field org/eclipse/jetty/http/QuotedCSV$State.VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+        16: astore        4
+        18: iconst_0
+        19: istore        5
+        21: iconst_0
+        22: istore        6
+        24: iconst_0
+        25: istore        7
+        27: iconst_0
+        28: istore        8
+        30: iconst_m1
+        31: istore        9
+        33: iconst_m1
+        34: istore        10
+        36: iconst_m1
+        37: istore        11
+        39: iconst_0
+        40: istore        12
+        42: iload         12
+        44: iload_3
+        45: if_icmpgt     728
+        48: iload         12
+        50: iload_3
+        51: if_icmpne     58
+        54: iconst_0
+        55: goto          64
+        58: aload_1
+        59: iload         12
+        61: invokevirtual #62                 // Method java/lang/String.charAt:(I)C
+        64: istore        13
+        66: iload         5
+        68: ifeq          158
+        71: iload         13
+        73: ifeq          158
+        76: iload         6
+        78: ifeq          87
+        81: iconst_0
+        82: istore        6
+        84: goto          142
+        87: iload         13
+        89: lookupswitch  { // 2
+
+                      34: 129
+
+                      92: 116
+                 default: 142
+            }
+       116: iconst_1
+       117: istore        6
+       119: aload_0
+       120: getfield      #37                 // Field _keepQuotes:Z
+       123: ifne          142
+       126: goto          722
+       129: iconst_0
+       130: istore        5
+       132: aload_0
+       133: getfield      #37                 // Field _keepQuotes:Z
+       136: ifne          142
+       139: goto          722
+       142: aload_2
+       143: iload         13
+       145: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       148: pop
+       149: aload_2
+       150: invokevirtual #67                 // Method java/lang/StringBuffer.length:()I
+       153: istore        7
+       155: goto          722
+       158: iload         13
+       160: lookupswitch  { // 7
+
+                       0: 383
+
+                       9: 228
+
+                      32: 228
+
+                      34: 247
+
+                      44: 383
+
+                      59: 310
+
+                      61: 495
+                 default: 622
+            }
+       228: aload_2
+       229: invokevirtual #67                 // Method java/lang/StringBuffer.length:()I
+       232: iload         8
+       234: if_icmple     722
+       237: aload_2
+       238: iload         13
+       240: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       243: pop
+       244: goto          722
+       247: iconst_1
+       248: istore        5
+       250: aload_0
+       251: getfield      #37                 // Field _keepQuotes:Z
+       254: ifeq          284
+       257: aload         4
+       259: getstatic     #70                 // Field org/eclipse/jetty/http/QuotedCSV$State.PARAM_VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+       262: if_acmpne     274
+       265: iload         11
+       267: ifge          274
+       270: iload         7
+       272: istore        11
+       274: aload_2
+       275: iload         13
+       277: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       280: pop
+       281: goto          301
+       284: aload         4
+       286: getstatic     #70                 // Field org/eclipse/jetty/http/QuotedCSV$State.PARAM_VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+       289: if_acmpne     301
+       292: iload         11
+       294: ifge          301
+       297: iload         7
+       299: istore        11
+       301: aload_2
+       302: invokevirtual #67                 // Method java/lang/StringBuffer.length:()I
+       305: istore        7
+       307: goto          722
+       310: aload_2
+       311: iload         7
+       313: invokevirtual #74                 // Method java/lang/StringBuffer.setLength:(I)V
+       316: aload         4
+       318: getstatic     #58                 // Field org/eclipse/jetty/http/QuotedCSV$State.VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+       321: if_acmpne     338
+       324: aload_0
+       325: aload_2
+       326: invokevirtual #78                 // Method parsedValue:(Ljava/lang/StringBuffer;)V
+       329: aload_2
+       330: invokevirtual #67                 // Method java/lang/StringBuffer.length:()I
+       333: istore        9
+       335: goto          349
+       338: aload_0
+       339: aload_2
+       340: iload         9
+       342: iload         10
+       344: iload         11
+       346: invokevirtual #82                 // Method parsedParam:(Ljava/lang/StringBuffer;III)V
+       349: aload_2
+       350: invokevirtual #67                 // Method java/lang/StringBuffer.length:()I
+       353: istore        7
+       355: iconst_m1
+       356: dup
+       357: istore        11
+       359: istore        10
+       361: aload_2
+       362: iload         13
+       364: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       367: pop
+       368: iinc          7, 1
+       371: iload         7
+       373: istore        8
+       375: getstatic     #85                 // Field org/eclipse/jetty/http/QuotedCSV$State.PARAM_NAME:Lorg/eclipse/jetty/http/QuotedCSV$State;
+       378: astore        4
+       380: goto          722
+       383: iload         7
+       385: ifle          467
+       388: aload_2
+       389: iload         7
+       391: invokevirtual #74                 // Method java/lang/StringBuffer.setLength:(I)V
+       394: getstatic     #89                 // Field org/eclipse/jetty/http/QuotedCSV$1.$SwitchMap$org$eclipse$jetty$http$QuotedCSV$State:[I
+       397: aload         4
+       399: invokevirtual #92                 // Method org/eclipse/jetty/http/QuotedCSV$State.ordinal:()I
+       402: iaload
+       403: tableswitch   { // 1 to 3
+
+                       1: 428
+
+                       2: 442
+
+                       3: 442
+                 default: 453
+            }
+       428: aload_0
+       429: aload_2
+       430: invokevirtual #78                 // Method parsedValue:(Ljava/lang/StringBuffer;)V
+       433: aload_2
+       434: invokevirtual #67                 // Method java/lang/StringBuffer.length:()I
+       437: istore        9
+       439: goto          453
+       442: aload_0
+       443: aload_2
+       444: iload         9
+       446: iload         10
+       448: iload         11
+       450: invokevirtual #82                 // Method parsedParam:(Ljava/lang/StringBuffer;III)V
+       453: aload_0
+       454: getfield      #35                 // Field _values:Ljava/util/List;
+       457: aload_2
+       458: invokevirtual #96                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+       461: invokeinterface #102,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       466: pop
+       467: aload_2
+       468: iconst_0
+       469: invokevirtual #74                 // Method java/lang/StringBuffer.setLength:(I)V
+       472: iconst_0
+       473: istore        8
+       475: iconst_0
+       476: istore        7
+       478: iconst_m1
+       479: dup
+       480: istore        11
+       482: dup
+       483: istore        10
+       485: istore        9
+       487: getstatic     #58                 // Field org/eclipse/jetty/http/QuotedCSV$State.VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+       490: astore        4
+       492: goto          722
+       495: getstatic     #89                 // Field org/eclipse/jetty/http/QuotedCSV$1.$SwitchMap$org$eclipse$jetty$http$QuotedCSV$State:[I
+       498: aload         4
+       500: invokevirtual #92                 // Method org/eclipse/jetty/http/QuotedCSV$State.ordinal:()I
+       503: iaload
+       504: tableswitch   { // 1 to 3
+
+                       1: 532
+
+                       2: 566
+
+                       3: 594
+                 default: 619
+            }
+       532: iconst_0
+       533: dup
+       534: istore        10
+       536: istore        9
+       538: aload_2
+       539: iload         7
+       541: invokevirtual #74                 // Method java/lang/StringBuffer.setLength:(I)V
+       544: aload_2
+       545: iload         13
+       547: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       550: pop
+       551: iinc          7, 1
+       554: iload         7
+       556: istore        8
+       558: getstatic     #70                 // Field org/eclipse/jetty/http/QuotedCSV$State.PARAM_VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+       561: astore        4
+       563: goto          722
+       566: aload_2
+       567: iload         7
+       569: invokevirtual #74                 // Method java/lang/StringBuffer.setLength:(I)V
+       572: aload_2
+       573: iload         13
+       575: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       578: pop
+       579: iinc          7, 1
+       582: iload         7
+       584: istore        8
+       586: getstatic     #70                 // Field org/eclipse/jetty/http/QuotedCSV$State.PARAM_VALUE:Lorg/eclipse/jetty/http/QuotedCSV$State;
+       589: astore        4
+       591: goto          722
+       594: iload         11
+       596: ifge          603
+       599: iload         7
+       601: istore        11
+       603: aload_2
+       604: iload         13
+       606: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       609: pop
+       610: aload_2
+       611: invokevirtual #67                 // Method java/lang/StringBuffer.length:()I
+       614: istore        7
+       616: goto          722
+       619: goto          722
+       622: getstatic     #89                 // Field org/eclipse/jetty/http/QuotedCSV$1.$SwitchMap$org$eclipse$jetty$http$QuotedCSV$State:[I
+       625: aload         4
+       627: invokevirtual #92                 // Method org/eclipse/jetty/http/QuotedCSV$State.ordinal:()I
+       630: iaload
+       631: tableswitch   { // 1 to 3
+
+                       1: 656
+
+                       2: 672
+
+                       3: 697
+                 default: 722
+            }
+       656: aload_2
+       657: iload         13
+       659: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       662: pop
+       663: aload_2
+       664: invokevirtual #67                 // Method java/lang/StringBuffer.length:()I
+       667: istore        7
+       669: goto          722
+       672: iload         10
+       674: ifge          681
+       677: iload         7
+       679: istore        10
+       681: aload_2
+       682: iload         13
+       684: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       687: pop
+       688: aload_2
+       689: invokevirtual #67                 // Method java/lang/StringBuffer.length:()I
+       692: istore        7
+       694: goto          722
+       697: iload         11
+       699: ifge          706
+       702: iload         7
+       704: istore        11
+       706: aload_2
+       707: iload         13
+       709: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       712: pop
+       713: aload_2
+       714: invokevirtual #67                 // Method java/lang/StringBuffer.length:()I
+       717: istore        7
+       719: goto          722
+       722: iinc          12, 1
+       725: goto          42
+       728: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           66     656    13     c   C
+           42     686    12     i   I
+            0     729     0  this   Lorg/eclipse/jetty/http/QuotedCSV;
+            0     729     1 value   Ljava/lang/String;
+            8     721     2 buffer   Ljava/lang/StringBuffer;
+           13     716     3     l   I
+           18     711     4 state   Lorg/eclipse/jetty/http/QuotedCSV$State;
+           21     708     5 quoted   Z
+           24     705     6 sloshed   Z
+           27     702     7 nws_length   I
+           30     699     8 last_length   I
+           33     696     9 value_length   I
+           36     693    10 param_name   I
+           39     690    11 param_value   I
+      LineNumberTable:
+        line 62: 0
+        line 64: 8
+        line 65: 13
+        line 66: 18
+        line 67: 21
+        line 68: 24
+        line 69: 27
+        line 70: 30
+        line 71: 33
+        line 72: 36
+        line 74: 39
+        line 76: 48
+        line 79: 66
+        line 81: 76
+        line 82: 81
+        line 85: 87
+        line 88: 116
+        line 89: 119
+        line 90: 126
+        line 93: 129
+        line 94: 132
+        line 95: 139
+        line 100: 142
+        line 101: 149
+        line 102: 155
+        line 106: 158
+        line 110: 228
+        line 111: 237
+        line 115: 247
+        line 116: 250
+        line 118: 257
+        line 119: 270
+        line 120: 274
+        line 122: 284
+        line 123: 297
+        line 124: 301
+        line 125: 307
+        line 128: 310
+        line 129: 316
+        line 131: 324
+        line 132: 329
+        line 135: 338
+        line 136: 349
+        line 137: 355
+        line 138: 361
+        line 139: 368
+        line 140: 375
+        line 141: 380
+        line 145: 383
+        line 147: 388
+        line 148: 394
+        line 151: 428
+        line 152: 433
+        line 153: 439
+        line 156: 442
+        line 159: 453
+        line 161: 467
+        line 162: 472
+        line 163: 475
+        line 164: 478
+        line 165: 487
+        line 166: 492
+        line 169: 495
+        line 173: 532
+        line 174: 538
+        line 175: 544
+        line 176: 551
+        line 177: 558
+        line 178: 563
+        line 181: 566
+        line 182: 572
+        line 183: 579
+        line 184: 586
+        line 185: 591
+        line 188: 594
+        line 189: 599
+        line 190: 603
+        line 191: 610
+        line 192: 616
+        line 194: 619
+        line 198: 622
+        line 202: 656
+        line 203: 663
+        line 204: 669
+        line 209: 672
+        line 210: 677
+        line 211: 681
+        line 212: 688
+        line 213: 694
+        line 218: 697
+        line 219: 702
+        line 220: 706
+        line 221: 713
+        line 222: 719
+        line 74: 722
+        line 228: 728
+      StackMapTable: number_of_entries = 35
+        frame_type = 255 /* full_frame */
+          offset_delta = 42
+          locals = [ class org/eclipse/jetty/http/QuotedCSV, class java/lang/String, class java/lang/StringBuffer, int, class org/eclipse/jetty/http/QuotedCSV$State, int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 15 /* same */
+        frame_type = 69 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ int ]
+        frame_type = 28 /* same */
+        frame_type = 12 /* same */
+        frame_type = 12 /* same */
+        frame_type = 15 /* same */
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 69
+        frame_type = 18 /* same */
+        frame_type = 26 /* same */
+        frame_type = 9 /* same */
+        frame_type = 16 /* same */
+        frame_type = 8 /* same */
+        frame_type = 27 /* same */
+        frame_type = 10 /* same */
+        frame_type = 33 /* same */
+        frame_type = 44 /* same */
+        frame_type = 13 /* same */
+        frame_type = 10 /* same */
+        frame_type = 13 /* same */
+        frame_type = 27 /* same */
+        frame_type = 36 /* same */
+        frame_type = 33 /* same */
+        frame_type = 27 /* same */
+        frame_type = 8 /* same */
+        frame_type = 15 /* same */
+        frame_type = 2 /* same */
+        frame_type = 33 /* same */
+        frame_type = 15 /* same */
+        frame_type = 8 /* same */
+        frame_type = 15 /* same */
+        frame_type = 8 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 15
+        frame_type = 250 /* chop */
+          offset_delta = 5
+
+  protected void parsedValue(java.lang.StringBuffer);
+    descriptor: (Ljava/lang/StringBuffer;)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=0, locals=2, args_size=2
+         0: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lorg/eclipse/jetty/http/QuotedCSV;
+            0       1     1 buffer   Ljava/lang/StringBuffer;
+      LineNumberTable:
+        line 236: 0
+
+  protected void parsedParam(java.lang.StringBuffer, int, int, int);
+    descriptor: (Ljava/lang/StringBuffer;III)V
+    flags: (0x0004) ACC_PROTECTED
+    Code:
+      stack=0, locals=5, args_size=5
+         0: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lorg/eclipse/jetty/http/QuotedCSV;
+            0       1     1 buffer   Ljava/lang/StringBuffer;
+            0       1     2 valueLength   I
+            0       1     3 paramName   I
+            0       1     4 paramValue   I
+      LineNumberTable:
+        line 247: 0
+
+  public int size();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #35                 // Field _values:Ljava/util/List;
+         4: invokeinterface #124,  1          // InterfaceMethod java/util/List.size:()I
+         9: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/eclipse/jetty/http/QuotedCSV;
+      LineNumberTable:
+        line 251: 0
+
+  public boolean isEmpty();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #35                 // Field _values:Ljava/util/List;
+         4: invokeinterface #128,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+         9: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/eclipse/jetty/http/QuotedCSV;
+      LineNumberTable:
+        line 256: 0
+
+  public java.util.List<java.lang.String> getValues();
+    descriptor: ()Ljava/util/List;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #35                 // Field _values:Ljava/util/List;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lorg/eclipse/jetty/http/QuotedCSV;
+      LineNumberTable:
+        line 261: 0
+    Signature: #146                         // ()Ljava/util/List<Ljava/lang/String;>;
+
+  public java.util.Iterator<java.lang.String> iterator();
+    descriptor: ()Ljava/util/Iterator;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #35                 // Field _values:Ljava/util/List;
+         4: invokeinterface #134,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+         9: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      10     0  this   Lorg/eclipse/jetty/http/QuotedCSV;
+      LineNumberTable:
+        line 267: 0
+    Signature: #147                         // ()Ljava/util/Iterator<Ljava/lang/String;>;
+
+  public static java.lang.String unquote(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=7, args_size=1
+         0: aload_0
+         1: invokevirtual #54                 // Method java/lang/String.length:()I
+         4: istore_1
+         5: aload_0
+         6: ifnull        13
+         9: iload_1
+        10: ifne          15
+        13: aload_0
+        14: areturn
+        15: iconst_0
+        16: istore_2
+        17: iload_2
+        18: iload_1
+        19: if_icmpge     43
+        22: aload_0
+        23: iload_2
+        24: invokevirtual #62                 // Method java/lang/String.charAt:(I)C
+        27: istore_3
+        28: iload_3
+        29: bipush        34
+        31: if_icmpne     37
+        34: goto          43
+        37: iinc          2, 1
+        40: goto          17
+        43: iload_2
+        44: iload_1
+        45: if_icmpne     50
+        48: aload_0
+        49: areturn
+        50: iconst_1
+        51: istore_3
+        52: iconst_0
+        53: istore        4
+        55: new           #47                 // class java/lang/StringBuffer
+        58: dup
+        59: invokespecial #48                 // Method java/lang/StringBuffer."<init>":()V
+        62: astore        5
+        64: aload         5
+        66: aload_0
+        67: iconst_0
+        68: iload_2
+        69: invokevirtual #139                // Method java/lang/StringBuffer.append:(Ljava/lang/CharSequence;II)Ljava/lang/StringBuffer;
+        72: pop
+        73: iinc          2, 1
+        76: iload_2
+        77: iload_1
+        78: if_icmpge     173
+        81: aload_0
+        82: iload_2
+        83: invokevirtual #62                 // Method java/lang/String.charAt:(I)C
+        86: istore        6
+        88: iload_3
+        89: ifeq          147
+        92: iload         4
+        94: ifeq          111
+        97: aload         5
+        99: iload         6
+       101: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       104: pop
+       105: iconst_0
+       106: istore        4
+       108: goto          167
+       111: iload         6
+       113: bipush        34
+       115: if_icmpne     123
+       118: iconst_0
+       119: istore_3
+       120: goto          167
+       123: iload         6
+       125: bipush        92
+       127: if_icmpne     136
+       130: iconst_1
+       131: istore        4
+       133: goto          167
+       136: aload         5
+       138: iload         6
+       140: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       143: pop
+       144: goto          167
+       147: iload         6
+       149: bipush        34
+       151: if_icmpne     159
+       154: iconst_1
+       155: istore_3
+       156: goto          167
+       159: aload         5
+       161: iload         6
+       163: invokevirtual #66                 // Method java/lang/StringBuffer.append:(C)Ljava/lang/StringBuffer;
+       166: pop
+       167: iinc          2, 1
+       170: goto          76
+       173: aload         5
+       175: invokevirtual #96                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+       178: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           28       9     3     c   C
+           88      79     6     c   C
+            0     179     0     s   Ljava/lang/String;
+            5     174     1     l   I
+           17     162     2     i   I
+           52     127     3 quoted   Z
+           55     124     4 sloshed   Z
+           64     115     5 buffer   Ljava/lang/StringBuffer;
+      LineNumberTable:
+        line 273: 0
+        line 274: 5
+        line 275: 13
+        line 278: 15
+        line 279: 17
+        line 281: 22
+        line 282: 28
+        line 283: 34
+        line 279: 37
+        line 285: 43
+        line 286: 48
+        line 288: 50
+        line 289: 52
+        line 290: 55
+        line 291: 64
+        line 292: 73
+        line 293: 76
+        line 295: 81
+        line 296: 88
+        line 298: 92
+        line 300: 97
+        line 301: 105
+        line 303: 111
+        line 304: 118
+        line 305: 123
+        line 306: 130
+        line 308: 136
+        line 310: 147
+        line 311: 154
+        line 313: 159
+        line 293: 167
+        line 315: 173
+      StackMapTable: number_of_entries = 14
+        frame_type = 252 /* append */
+          offset_delta = 13
+          locals = [ int ]
+        frame_type = 1 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 1
+          locals = [ int ]
+        frame_type = 19 /* same */
+        frame_type = 5 /* same */
+        frame_type = 6 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 25
+          locals = [ int, int, class java/lang/StringBuffer ]
+        frame_type = 252 /* append */
+          offset_delta = 34
+          locals = [ int ]
+        frame_type = 11 /* same */
+        frame_type = 12 /* same */
+        frame_type = 10 /* same */
+        frame_type = 11 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 7
+        frame_type = 5 /* same */
+}
+Signature: #3                           // Ljava/lang/Object;Ljava/lang/Iterable<Ljava/lang/String;>;
+SourceFile: "QuotedCSV.java"
+InnerClasses:
+  static #10;                             // class org/eclipse/jetty/http/QuotedCSV$1
+  private static final #13= #12 of #2;    // State=class org/eclipse/jetty/http/QuotedCSV$State of class org/eclipse/jetty/http/QuotedCSV

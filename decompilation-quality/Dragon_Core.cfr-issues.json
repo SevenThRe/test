@@ -1,0 +1,17 @@
+[
+  {
+    "class": "org.bytedeco.javacpp.Loader",
+    "method": "loadProperties(java.lang.String java.lang.String )",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "org.spongepowered.asm.mixin.refmap.ReferenceMapper",
+    "method": "read(java.lang.String )",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "eos.moe.dragoncore.vw",
+    "method": "ALLATORIxDEMO(net.minecraft.client.renderer.texture.Stitcher net.minecraft.client.resources.IResourceManager net.minecraft.util.ResourceLocation net.minecraft.client.renderer.texture.TextureAtlasSprite net.minecraftforge.fml.common.ProgressManager$ProgressBar int int )",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Started 2 blocks at once"
+  }
+]

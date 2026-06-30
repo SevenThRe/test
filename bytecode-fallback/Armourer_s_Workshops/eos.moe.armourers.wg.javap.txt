@@ -1,0 +1,521 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/Mod-DragonArmourers(4).jar!/eos/moe/armourers/wg.class
+  Last modified 09-����-24; size 2129 bytes
+  SHA-256 checksum b2103ae99ae15cf98609c5d5e211f7bfd1ee87a3b3ad3343fb8e78251598a298
+  Compiled from "sj"
+public class eos.moe.armourers.wg
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // eos/moe/armourers/wg
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 3, attributes: 1
+Constant pool:
+   #1 = Utf8               eos/moe/armourers/wg
+   #2 = Class              #1             // eos/moe/armourers/wg
+   #3 = Utf8               java/lang/Object
+   #4 = Class              #3             // java/lang/Object
+   #5 = Utf8               sj
+   #6 = Utf8               y
+   #7 = Utf8               (Leos/moe/armourers/qf;ILjava/io/DataInputStream;ILeos/moe/armourers/y;)V
+   #8 = Utf8               java/io/IOException
+   #9 = Class              #8             // java/io/IOException
+  #10 = Utf8               eos/moe/armourers/ok
+  #11 = Class              #10            // eos/moe/armourers/ok
+  #12 = Utf8               java/io/DataInputStream
+  #13 = Class              #12            // java/io/DataInputStream
+  #14 = Utf8               readByte
+  #15 = Utf8               ()B
+  #16 = NameAndType        #14:#15        // readByte:()B
+  #17 = Methodref          #13.#16        // java/io/DataInputStream.readByte:()B
+  #18 = Utf8               readInt
+  #19 = Utf8               ()I
+  #20 = NameAndType        #18:#19        // readInt:()I
+  #21 = Methodref          #13.#20        // java/io/DataInputStream.readInt:()I
+  #22 = Utf8               eos/moe/armourers/y
+  #23 = Class              #22            // eos/moe/armourers/y
+  #24 = Utf8               ()Ljava/lang/String;
+  #25 = NameAndType        #6:#24         // y:()Ljava/lang/String;
+  #26 = InterfaceMethodref #23.#25        // eos/moe/armourers/y.y:()Ljava/lang/String;
+  #27 = Utf8               armourers:sword.base
+  #28 = String             #27            // armourers:sword.base
+  #29 = Utf8               java/lang/String
+  #30 = Class              #29            // java/lang/String
+  #31 = Utf8               equals
+  #32 = Utf8               (Ljava/lang/Object;)Z
+  #33 = NameAndType        #31:#32        // equals:(Ljava/lang/Object;)Z
+  #34 = Methodref          #30.#33        // java/lang/String.equals:(Ljava/lang/Object;)Z
+  #35 = Utf8               armourers:legs.skirt
+  #36 = String             #35            // armourers:legs.skirt
+  #37 = Utf8               armourers:legs.leftLeg
+  #38 = String             #37            // armourers:legs.leftLeg
+  #39 = Utf8               armourers:legs.rightLeg
+  #40 = String             #39            // armourers:legs.rightLeg
+  #41 = Utf8               armourers:feet.leftFoot
+  #42 = String             #41            // armourers:feet.leftFoot
+  #43 = Utf8               armourers:feet.rightFoot
+  #44 = String             #43            // armourers:feet.rightFoot
+  #45 = Utf8               eos/moe/armourers/qf
+  #46 = Class              #45            // eos/moe/armourers/qf
+  #47 = Utf8               r
+  #48 = Utf8               (IB)V
+  #49 = NameAndType        #47:#48        // r:(IB)V
+  #50 = Methodref          #46.#49        // eos/moe/armourers/qf.r:(IB)V
+  #51 = Utf8               (IBBB)V
+  #52 = NameAndType        #47:#51        // r:(IBBB)V
+  #53 = Methodref          #46.#52        // eos/moe/armourers/qf.r:(IBBB)V
+  #54 = Utf8               (IIBBB)V
+  #55 = NameAndType        #47:#54        // r:(IIBBB)V
+  #56 = Methodref          #46.#55        // eos/moe/armourers/qf.r:(IIBBB)V
+  #57 = Utf8               a
+  #58 = Utf8               Leos/moe/armourers/qf;
+  #59 = Utf8               I
+  #60 = Utf8               Ljava/io/DataInputStream;
+  #61 = Utf8               Leos/moe/armourers/y;
+  #62 = Utf8               java/lang/Throwable
+  #63 = Class              #62            // java/lang/Throwable
+  #64 = Utf8               <init>
+  #65 = Utf8               ()V
+  #66 = NameAndType        #64:#65        // "<init>":()V
+  #67 = Methodref          #4.#66         // java/lang/Object."<init>":()V
+  #68 = Utf8               Leos/moe/armourers/wg;
+  #69 = NameAndType        #6:#7          // y:(Leos/moe/armourers/qf;ILjava/io/DataInputStream;ILeos/moe/armourers/y;)V
+  #70 = Methodref          #2.#69         // eos/moe/armourers/wg.y:(Leos/moe/armourers/qf;ILjava/io/DataInputStream;ILeos/moe/armourers/y;)V
+  #71 = Utf8               [B
+  #72 = Class              #71            // "[B"
+  #73 = Utf8               Code
+  #74 = Utf8               LocalVariableTable
+  #75 = Utf8               LineNumberTable
+  #76 = Utf8               StackMapTable
+  #77 = Utf8               Exceptions
+  #78 = Utf8               SourceFile
+{
+  public static void y(eos.moe.armourers.qf, int, java.io.DataInputStream, int, eos.moe.armourers.y) throws java.io.IOException, eos.moe.armourers.ok;
+    descriptor: (Leos/moe/armourers/qf;ILjava/io/DataInputStream;ILeos/moe/armourers/y;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=6, locals=9, args_size=5
+         0: aload_2
+         1: dup
+         2: dup_x1
+         3: dup2
+         4: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+         7: istore_2
+         8: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+        11: istore        5
+        13: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+        16: istore        6
+        18: invokevirtual #21                 // Method java/io/DataInputStream.readInt:()I
+        21: istore        7
+        23: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+        26: istore        8
+        28: iload_3
+        29: iconst_2
+        30: if_icmpge     159
+        33: aload         4
+        35: invokeinterface #26,  1           // InterfaceMethod eos/moe/armourers/y.y:()Ljava/lang/String;
+        40: dup
+        41: astore_3
+        42: ldc           #28                 // String armourers:sword.base
+        44: invokevirtual #34                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        47: ifeq          62
+        50: iload         5
+        52: iconst_1
+        53: isub
+        54: i2b
+        55: istore        5
+        57: aload_0
+        58: goto          160
+        61: athrow
+        62: aload_3
+        63: ldc           #36                 // String armourers:legs.skirt
+        65: invokevirtual #34                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        68: ifeq          83
+        71: iload         5
+        73: iconst_1
+        74: isub
+        75: i2b
+        76: istore        5
+        78: aload_0
+        79: goto          160
+        82: athrow
+        83: aload_3
+        84: ldc           #38                 // String armourers:legs.leftLeg
+        86: invokevirtual #34                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        89: ifeq          103
+        92: iload         5
+        94: iconst_1
+        95: isub
+        96: i2b
+        97: istore        5
+        99: aload_0
+       100: goto          160
+       103: aload_3
+       104: ldc           #40                 // String armourers:legs.rightLeg
+       106: invokevirtual #34                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       109: ifeq          123
+       112: iload         5
+       114: iconst_1
+       115: isub
+       116: i2b
+       117: istore        5
+       119: aload_0
+       120: goto          160
+       123: aload_3
+       124: ldc           #42                 // String armourers:feet.leftFoot
+       126: invokevirtual #34                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       129: ifeq          143
+       132: iload         5
+       134: iconst_1
+       135: isub
+       136: i2b
+       137: istore        5
+       139: aload_0
+       140: goto          160
+       143: aload_3
+       144: ldc           #44                 // String armourers:feet.rightFoot
+       146: invokevirtual #34                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       149: ifeq          159
+       152: iload         5
+       154: iconst_1
+       155: isub
+       156: i2b
+       157: istore        5
+       159: aload_0
+       160: iload_1
+       161: iload         8
+       163: invokevirtual #50                 // Method eos/moe/armourers/qf.r:(IB)V
+       166: iload         7
+       168: aload_0
+       169: iload_1
+       170: iload_2
+       171: iload         5
+       173: iload         6
+       175: invokevirtual #53                 // Method eos/moe/armourers/qf.r:(IBBB)V
+       178: bipush        16
+       180: ishr
+       181: sipush        255
+       184: iand
+       185: i2b
+       186: istore_3
+       187: iload         7
+       189: bipush        8
+       191: ishr
+       192: sipush        255
+       195: iand
+       196: i2b
+       197: istore_2
+       198: iload         7
+       200: sipush        255
+       203: iand
+       204: i2b
+       205: istore        4
+       207: iconst_0
+       208: dup
+       209: istore        5
+       211: bipush        6
+       213: if_icmpge     235
+       216: aload_0
+       217: iload_1
+       218: iload         5
+       220: iload_3
+       221: iinc          5, 1
+       224: iload_2
+       225: iload         4
+       227: invokevirtual #56                 // Method eos/moe/armourers/qf.r:(IIBBB)V
+       230: iload         5
+       232: goto          211
+       235: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     236     0     a   Leos/moe/armourers/qf;
+            0     236     1     a   I
+            0     236     2     a   Ljava/io/DataInputStream;
+            0     236     3     a   I
+            0     236     4     a   Leos/moe/armourers/y;
+      LineNumberTable:
+        line 157: 0
+        line 71: 8
+        line 167: 13
+        line 181: 18
+        line 168: 23
+        line 65: 28
+        line 165: 33
+        line 124: 42
+        line 75: 50
+        line 79: 62
+        line 57: 71
+        line 1: 83
+        line 105: 92
+        line 192: 103
+        line 223: 112
+        line 95: 123
+        line 29: 132
+        line 137: 143
+        line 118: 152
+        line 85: 159
+        line 64: 168
+        line 45: 178
+        line 31: 187
+        line 6: 198
+        line 39: 207
+        line 217: 216
+        line 39: 230
+        line 107: 235
+      StackMapTable: number_of_entries = 11
+        frame_type = 255 /* full_frame */
+          offset_delta = 61
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/qf, int, int, class java/lang/String, class eos/moe/armourers/y, int, int, int, int ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 19
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/qf, int, int, class java/lang/String, class eos/moe/armourers/y, int, int, int, int ]
+          stack = []
+        frame_type = 19 /* same */
+        frame_type = 19 /* same */
+        frame_type = 19 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 15
+          locals = [ class eos/moe/armourers/qf, int, int, top, class eos/moe/armourers/y, int, int, int, int ]
+          stack = []
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/qf ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 50
+          locals = [ class eos/moe/armourers/qf, int, int, int, int, int, int, int, int ]
+          stack = [ int ]
+        frame_type = 23 /* same */
+    Exceptions:
+      throws java.io.IOException, eos.moe.armourers.ok
+
+  public eos.moe.armourers.wg();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #67                 // Method java/lang/Object."<init>":()V
+         4: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/wg;
+      LineNumberTable:
+        line 74: 0
+
+  public static void r(eos.moe.armourers.qf, int, java.io.DataInputStream, int, eos.moe.armourers.y) throws java.io.IOException, eos.moe.armourers.ok;
+    descriptor: (Leos/moe/armourers/qf;ILjava/io/DataInputStream;ILeos/moe/armourers/y;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=8, locals=12, args_size=5
+         0: iload_3
+         1: iconst_3
+         2: if_icmpge     16
+         5: aload_0
+         6: iload_1
+         7: aload_2
+         8: iload_3
+         9: aload         4
+        11: invokestatic  #70                 // Method y:(Leos/moe/armourers/qf;ILjava/io/DataInputStream;ILeos/moe/armourers/y;)V
+        14: return
+        15: athrow
+        16: aload_2
+        17: dup
+        18: dup2
+        19: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+        22: istore        4
+        24: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+        27: istore        5
+        29: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+        32: istore        6
+        34: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+        37: istore        7
+        39: bipush        6
+        41: newarray       byte
+        43: iconst_1
+        44: dup
+        45: pop2
+        46: astore        8
+        48: bipush        6
+        50: newarray       byte
+        52: iconst_1
+        53: dup
+        54: pop2
+        55: astore        9
+        57: bipush        6
+        59: newarray       byte
+        61: iconst_1
+        62: dup
+        63: pop2
+        64: astore        10
+        66: iload_3
+        67: bipush        7
+        69: if_icmpge     136
+        72: aload_2
+        73: invokevirtual #21                 // Method java/io/DataInputStream.readInt:()I
+        76: istore_3
+        77: iconst_0
+        78: dup
+        79: istore        11
+        81: bipush        6
+        83: if_icmpge     175
+        86: aload         10
+        88: aload         9
+        90: iload         11
+        92: dup_x1
+        93: aload         8
+        95: iload         11
+        97: iload_3
+        98: bipush        16
+       100: ishr
+       101: sipush        255
+       104: iand
+       105: i2b
+       106: bastore
+       107: iload_3
+       108: bipush        8
+       110: ishr
+       111: sipush        255
+       114: iand
+       115: i2b
+       116: bastore
+       117: iload_3
+       118: sipush        255
+       121: iand
+       122: i2b
+       123: iinc          11, 1
+       126: bastore
+       127: iload         11
+       129: goto          81
+       132: nop
+       133: nop
+       134: nop
+       135: athrow
+       136: iconst_0
+       137: dup
+       138: istore_3
+       139: bipush        6
+       141: if_icmpge     175
+       144: aload         10
+       146: aload         9
+       148: iload_3
+       149: dup_x1
+       150: aload         8
+       152: iload_3
+       153: aload_2
+       154: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+       157: bastore
+       158: aload_2
+       159: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+       162: bastore
+       163: aload_2
+       164: invokevirtual #17                 // Method java/io/DataInputStream.readByte:()B
+       167: iinc          3, 1
+       170: bastore
+       171: iload_3
+       172: goto          139
+       175: aload_0
+       176: dup
+       177: iload_1
+       178: dup_x1
+       179: iload         4
+       181: invokevirtual #50                 // Method eos/moe/armourers/qf.r:(IB)V
+       184: iload         5
+       186: iload         6
+       188: iload         7
+       190: invokevirtual #53                 // Method eos/moe/armourers/qf.r:(IBBB)V
+       193: iconst_0
+       194: dup
+       195: istore_3
+       196: bipush        6
+       198: if_icmpge     226
+       201: aload_0
+       202: iload_1
+       203: aload         8
+       205: iload_3
+       206: baload
+       207: aload         9
+       209: iload_3
+       210: dup_x2
+       211: baload
+       212: aload         10
+       214: iload_3
+       215: iinc          3, 1
+       218: baload
+       219: invokevirtual #56                 // Method eos/moe/armourers/qf.r:(IIBBB)V
+       222: iload_3
+       223: goto          196
+       226: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     227     0     a   Leos/moe/armourers/qf;
+            0     227     1     a   I
+            0     227     2     a   Ljava/io/DataInputStream;
+            0     227     3     a   I
+            0     227     4     a   Leos/moe/armourers/y;
+      LineNumberTable:
+        line 140: 0
+        line 200: 5
+        line 130: 16
+        line 19: 24
+        line 8: 29
+        line 179: 34
+        line 27: 39
+        line 175: 48
+        line 126: 57
+        line 154: 66
+        line 221: 72
+        line 234: 77
+        line 148: 93
+        line 202: 107
+        line 146: 117
+        line 234: 127
+        line 7: 133
+        line 150: 136
+        line 113: 150
+        line 63: 158
+        line 186: 163
+        line 150: 171
+        line 216: 175
+        line 171: 184
+        line 235: 193
+        line 166: 201
+        line 235: 222
+        line 36: 226
+      StackMapTable: number_of_entries = 9
+        frame_type = 255 /* full_frame */
+          offset_delta = 15
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/qf, int, class java/io/DataInputStream, int, class eos/moe/armourers/y ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 64
+          locals = [ class eos/moe/armourers/qf, int, class java/io/DataInputStream, int, int, int, int, int, class "[B", class "[B", class "[B", int ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 50
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 3
+          locals = [ class eos/moe/armourers/qf, int, class java/io/DataInputStream, int, int, int, int, int, class "[B", class "[B", class "[B" ]
+          stack = []
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 35 /* same */
+        frame_type = 84 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 29 /* same */
+    Exceptions:
+      throws java.io.IOException, eos.moe.armourers.ok
+}
+SourceFile: "sj"

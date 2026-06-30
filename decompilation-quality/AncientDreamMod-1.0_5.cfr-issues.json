@@ -1,0 +1,5 @@
+{
+  "class": "org.spongepowered.asm.mixin.refmap.ReferenceMapper",
+  "method": "read(java.lang.String )",
+  "issue": "Loose catch block"
+}

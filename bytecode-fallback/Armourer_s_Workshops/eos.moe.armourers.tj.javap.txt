@@ -1,0 +1,712 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/Mod-DragonArmourers(4).jar!/eos/moe/armourers/tj.class
+  Last modified 09-����-24; size 3387 bytes
+  SHA-256 checksum 8adf9f914c2ea473c66d799bc2234492af430949b5dfb37c1332b3856d89254f
+  Compiled from "yi"
+public class eos.moe.armourers.tj
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // eos/moe/armourers/tj
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 1, methods: 5, attributes: 1
+Constant pool:
+    #1 = Utf8               eos/moe/armourers/tj
+    #2 = Class              #1            // eos/moe/armourers/tj
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               yi
+    #6 = Utf8               j
+    #7 = Utf8               Ljava/lang/String;
+    #8 = Utf8               y
+    #9 = Utf8               (Ljava/io/InputStream;)Leos/moe/armourers/yl;
+   #10 = Utf8               java/io/FileNotFoundException
+   #11 = Class              #10           // java/io/FileNotFoundException
+   #12 = Utf8               java/io/IOException
+   #13 = Class              #12           // java/io/IOException
+   #14 = Utf8               eos/moe/armourers/md
+   #15 = Class              #14           // eos/moe/armourers/md
+   #16 = Utf8               eos/moe/armourers/ok
+   #17 = Class              #16           // eos/moe/armourers/ok
+   #18 = Utf8               java/util/zip/GZIPInputStream
+   #19 = Class              #18           // java/util/zip/GZIPInputStream
+   #20 = Utf8               <init>
+   #21 = Utf8               (Ljava/io/InputStream;)V
+   #22 = NameAndType        #20:#21       // "<init>":(Ljava/io/InputStream;)V
+   #23 = Methodref          #19.#22       // java/util/zip/GZIPInputStream."<init>":(Ljava/io/InputStream;)V
+   #24 = Utf8               java/io/DataInputStream
+   #25 = Class              #24           // java/io/DataInputStream
+   #26 = Utf8               java/io/BufferedInputStream
+   #27 = Class              #26           // java/io/BufferedInputStream
+   #28 = Methodref          #27.#22       // java/io/BufferedInputStream."<init>":(Ljava/io/InputStream;)V
+   #29 = Methodref          #25.#22       // java/io/DataInputStream."<init>":(Ljava/io/InputStream;)V
+   #30 = Utf8               eos/moe/armourers/fg
+   #31 = Class              #30           // eos/moe/armourers/fg
+   #32 = Utf8               r
+   #33 = Utf8               (Ljava/io/DataInputStream;)Leos/moe/armourers/yl;
+   #34 = NameAndType        #32:#33       // r:(Ljava/io/DataInputStream;)Leos/moe/armourers/yl;
+   #35 = Methodref          #31.#34       // eos/moe/armourers/fg.r:(Ljava/io/DataInputStream;)Leos/moe/armourers/yl;
+   #36 = Utf8               org/apache/commons/io/IOUtils
+   #37 = Class              #36           // org/apache/commons/io/IOUtils
+   #38 = Utf8               closeQuietly
+   #39 = NameAndType        #38:#21       // closeQuietly:(Ljava/io/InputStream;)V
+   #40 = Methodref          #37.#39       // org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+   #41 = Utf8               org/apache/logging/log4j/Level
+   #42 = Class              #41           // org/apache/logging/log4j/Level
+   #43 = Utf8               WARN
+   #44 = Utf8               Lorg/apache/logging/log4j/Level;
+   #45 = NameAndType        #43:#44       // WARN:Lorg/apache/logging/log4j/Level;
+   #46 = Fieldref           #42.#45       // org/apache/logging/log4j/Level.WARN:Lorg/apache/logging/log4j/Level;
+   #47 = Utf8               Skin file not found.
+   #48 = String             #47           // Skin file not found.
+   #49 = Utf8               eos/moe/armourers/bm
+   #50 = Class              #49           // eos/moe/armourers/bm
+   #51 = Utf8               (Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+   #52 = NameAndType        #32:#51       // r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+   #53 = Methodref          #50.#52       // eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+   #54 = Utf8               printStackTrace
+   #55 = Utf8               ()V
+   #56 = NameAndType        #54:#55       // printStackTrace:()V
+   #57 = Methodref          #11.#56       // java/io/FileNotFoundException.printStackTrace:()V
+   #58 = Utf8               ERROR
+   #59 = NameAndType        #58:#44       // ERROR:Lorg/apache/logging/log4j/Level;
+   #60 = Fieldref           #42.#59       // org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+   #61 = Utf8               Skin file load failed.
+   #62 = String             #61           // Skin file load failed.
+   #63 = Methodref          #13.#56       // java/io/IOException.printStackTrace:()V
+   #64 = Utf8               Can not load skin file it was saved in newer version.
+   #65 = String             #64           // Can not load skin file it was saved in newer version.
+   #66 = Methodref          #15.#56       // eos/moe/armourers/md.printStackTrace:()V
+   #67 = Utf8               Unable to load skin. Unknown cube types found.
+   #68 = String             #67           // Unable to load skin. Unknown cube types found.
+   #69 = Methodref          #17.#56       // eos/moe/armourers/ok.printStackTrace:()V
+   #70 = Utf8               a
+   #71 = Utf8               Ljava/io/InputStream;
+   #72 = Utf8               java/lang/Throwable
+   #73 = Class              #72           // java/lang/Throwable
+   #74 = Utf8               java/io/InputStream
+   #75 = Class              #74           // java/io/InputStream
+   #76 = Utf8               eos/moe/armourers/yl
+   #77 = Class              #76           // eos/moe/armourers/yl
+   #78 = Utf8               <clinit>
+   #79 = Utf8               .armour
+   #80 = String             #79           // .armour
+   #81 = NameAndType        #6:#7         // j:Ljava/lang/String;
+   #82 = Fieldref           #2.#81        // eos/moe/armourers/tj.j:Ljava/lang/String;
+   #83 = Utf8               (Ljava/io/File;)Leos/moe/armourers/yl;
+   #84 = Utf8               java/lang/Exception
+   #85 = Class              #84           // java/lang/Exception
+   #86 = Utf8               java/io/FileInputStream
+   #87 = Class              #86           // java/io/FileInputStream
+   #88 = Utf8               (Ljava/io/File;)V
+   #89 = NameAndType        #20:#88       // "<init>":(Ljava/io/File;)V
+   #90 = Methodref          #87.#89       // java/io/FileInputStream."<init>":(Ljava/io/File;)V
+   #91 = Utf8               java/io/File
+   #92 = Class              #91           // java/io/File
+   #93 = Utf8               getName
+   #94 = Utf8               ()Ljava/lang/String;
+   #95 = NameAndType        #93:#94       // getName:()Ljava/lang/String;
+   #96 = Methodref          #92.#95       // java/io/File.getName:()Ljava/lang/String;
+   #97 = Utf8               java/lang/String
+   #98 = Class              #97           // java/lang/String
+   #99 = Utf8               endsWith
+  #100 = Utf8               (Ljava/lang/String;)Z
+  #101 = NameAndType        #99:#100      // endsWith:(Ljava/lang/String;)Z
+  #102 = Methodref          #98.#101      // java/lang/String.endsWith:(Ljava/lang/String;)Z
+  #103 = Utf8               .dragonarmourers
+  #104 = String             #103          // .dragonarmourers
+  #105 = Utf8               Unable to load skin. Unknown error.
+  #106 = String             #105          // Unable to load skin. Unknown error.
+  #107 = Methodref          #85.#56       // java/lang/Exception.printStackTrace:()V
+  #108 = Utf8               Ljava/io/File;
+  #109 = NameAndType        #20:#55       // "<init>":()V
+  #110 = Methodref          #4.#109       // java/lang/Object."<init>":()V
+  #111 = Utf8               Leos/moe/armourers/tj;
+  #112 = Utf8               Code
+  #113 = Utf8               LocalVariableTable
+  #114 = Utf8               LineNumberTable
+  #115 = Utf8               StackMapTable
+  #116 = Utf8               SourceFile
+{
+  public static java.lang.String j;
+    descriptor: Ljava/lang/String;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static eos.moe.armourers.yl y(java.io.InputStream);
+    descriptor: (Ljava/io/InputStream;)Leos/moe/armourers/yl;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=4, args_size=1
+         0: aconst_null
+         1: astore_1
+         2: aconst_null
+         3: astore_2
+         4: new           #19                 // class java/util/zip/GZIPInputStream
+         7: dup
+         8: aload_0
+         9: invokespecial #23                 // Method java/util/zip/GZIPInputStream."<init>":(Ljava/io/InputStream;)V
+        12: astore_3
+        13: new           #25                 // class java/io/DataInputStream
+        16: dup
+        17: new           #27                 // class java/io/BufferedInputStream
+        20: dup
+        21: aload_3
+        22: invokespecial #28                 // Method java/io/BufferedInputStream."<init>":(Ljava/io/InputStream;)V
+        25: invokespecial #29                 // Method java/io/DataInputStream."<init>":(Ljava/io/InputStream;)V
+        28: dup
+        29: astore_1
+        30: invokestatic  #35                 // Method eos/moe/armourers/fg.r:(Ljava/io/DataInputStream;)Leos/moe/armourers/yl;
+        33: astore_2
+        34: aload_2
+        35: aload_0
+        36: aload_1
+        37: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        40: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        43: areturn
+        44: athrow
+        45: astore_3
+        46: getstatic     #46                 // Field org/apache/logging/log4j/Level.WARN:Lorg/apache/logging/log4j/Level;
+        49: ldc           #48                 // String Skin file not found.
+        51: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+        54: aload_3
+        55: invokevirtual #57                 // Method java/io/FileNotFoundException.printStackTrace:()V
+        58: aload_2
+        59: aload_0
+        60: aload_1
+        61: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        64: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        67: areturn
+        68: athrow
+        69: astore_3
+        70: getstatic     #60                 // Field org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+        73: ldc           #62                 // String Skin file load failed.
+        75: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+        78: aload_3
+        79: invokevirtual #63                 // Method java/io/IOException.printStackTrace:()V
+        82: aload_2
+        83: aload_0
+        84: aload_1
+        85: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        88: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        91: areturn
+        92: astore_3
+        93: getstatic     #60                 // Field org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+        96: ldc           #65                 // String Can not load skin file it was saved in newer version.
+        98: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+       101: aload_3
+       102: invokevirtual #66                 // Method eos/moe/armourers/md.printStackTrace:()V
+       105: aload_2
+       106: aload_0
+       107: aload_1
+       108: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       111: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       114: areturn
+       115: astore_3
+       116: getstatic     #60                 // Field org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+       119: ldc           #68                 // String Unable to load skin. Unknown cube types found.
+       121: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+       124: aload_3
+       125: invokevirtual #69                 // Method eos/moe/armourers/ok.printStackTrace:()V
+       128: aload_2
+       129: aload_0
+       130: aload_1
+       131: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       134: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       137: areturn
+       138: astore_3
+       139: aload_3
+       140: aload_0
+       141: aload_1
+       142: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       145: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       148: athrow
+       149: nop
+       150: athrow
+      Exception table:
+         from    to  target type
+             4    34    45   Class java/io/FileNotFoundException
+             4    34    69   Class java/io/IOException
+             4    34    92   Class eos/moe/armourers/md
+             4    34   115   Class eos/moe/armourers/ok
+             4    34   138   any
+            45    58   138   any
+            69    82   138   any
+            92   105   138   any
+           115   128   138   any
+           138   139   138   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     151     0     a   Ljava/io/InputStream;
+      LineNumberTable:
+        line 94: 0
+        line 226: 2
+        line 71: 4
+        line 167: 13
+        line 149: 30
+        line 95: 36
+        line 29: 40
+        line 137: 43
+        line 181: 45
+        line 168: 46
+        line 14: 54
+        line 95: 60
+        line 29: 64
+        line 137: 67
+        line 65: 69
+        line 165: 70
+        line 124: 78
+        line 95: 84
+        line 29: 88
+        line 137: 91
+        line 75: 92
+        line 79: 93
+        line 57: 101
+        line 95: 107
+        line 29: 111
+        line 137: 114
+        line 1: 115
+        line 105: 116
+        line 192: 124
+        line 95: 130
+        line 29: 134
+        line 137: 137
+        line 95: 138
+        line 29: 145
+        line 137: 148
+        line 118: 149
+      StackMapTable: number_of_entries = 8
+        frame_type = 255 /* full_frame */
+          offset_delta = 44
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/io/InputStream, class java/io/DataInputStream, class eos/moe/armourers/yl ]
+          stack = [ class java/io/FileNotFoundException ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 22
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/io/InputStream, class java/io/DataInputStream, class eos/moe/armourers/yl ]
+          stack = [ class java/io/IOException ]
+        frame_type = 86 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/md ]
+        frame_type = 86 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/ok ]
+        frame_type = 86 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 10
+          locals = []
+          stack = [ class java/lang/Throwable ]
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: ldc           #80                 // String .armour
+         2: putstatic     #82                 // Field j:Ljava/lang/String;
+         5: return
+      LineNumberTable:
+        line 140: 0
+
+  public static eos.moe.armourers.yl r(java.io.InputStream);
+    descriptor: (Ljava/io/InputStream;)Leos/moe/armourers/yl;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=4, args_size=1
+         0: aconst_null
+         1: astore_1
+         2: aconst_null
+         3: astore_2
+         4: new           #25                 // class java/io/DataInputStream
+         7: dup
+         8: new           #27                 // class java/io/BufferedInputStream
+        11: dup
+        12: aload_0
+        13: invokespecial #28                 // Method java/io/BufferedInputStream."<init>":(Ljava/io/InputStream;)V
+        16: invokespecial #29                 // Method java/io/DataInputStream."<init>":(Ljava/io/InputStream;)V
+        19: dup
+        20: astore_1
+        21: invokestatic  #35                 // Method eos/moe/armourers/fg.r:(Ljava/io/DataInputStream;)Leos/moe/armourers/yl;
+        24: astore_2
+        25: aload_2
+        26: aload_0
+        27: aload_1
+        28: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        31: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        34: areturn
+        35: athrow
+        36: astore_3
+        37: getstatic     #46                 // Field org/apache/logging/log4j/Level.WARN:Lorg/apache/logging/log4j/Level;
+        40: ldc           #48                 // String Skin file not found.
+        42: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+        45: aload_3
+        46: invokevirtual #57                 // Method java/io/FileNotFoundException.printStackTrace:()V
+        49: aload_2
+        50: aload_0
+        51: aload_1
+        52: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        55: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        58: areturn
+        59: athrow
+        60: astore_3
+        61: getstatic     #60                 // Field org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+        64: ldc           #62                 // String Skin file load failed.
+        66: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+        69: aload_3
+        70: invokevirtual #63                 // Method java/io/IOException.printStackTrace:()V
+        73: aload_2
+        74: aload_0
+        75: aload_1
+        76: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        79: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        82: areturn
+        83: astore_3
+        84: getstatic     #60                 // Field org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+        87: ldc           #65                 // String Can not load skin file it was saved in newer version.
+        89: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+        92: aload_3
+        93: invokevirtual #66                 // Method eos/moe/armourers/md.printStackTrace:()V
+        96: aload_2
+        97: aload_0
+        98: aload_1
+        99: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       102: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       105: areturn
+       106: astore_3
+       107: getstatic     #60                 // Field org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+       110: ldc           #68                 // String Unable to load skin. Unknown cube types found.
+       112: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+       115: aload_3
+       116: invokevirtual #69                 // Method eos/moe/armourers/ok.printStackTrace:()V
+       119: aload_2
+       120: aload_0
+       121: aload_1
+       122: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       125: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       128: areturn
+       129: astore_3
+       130: aload_3
+       131: aload_0
+       132: aload_1
+       133: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       136: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       139: athrow
+       140: nop
+       141: athrow
+      Exception table:
+         from    to  target type
+             4    25    36   Class java/io/FileNotFoundException
+             4    25    60   Class java/io/IOException
+             4    25    83   Class eos/moe/armourers/md
+             4    25   106   Class eos/moe/armourers/ok
+             4    25   129   any
+            36    49   129   any
+            60    73   129   any
+            83    96   129   any
+           106   119   129   any
+           129   130   129   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     142     0     a   Ljava/io/InputStream;
+      LineNumberTable:
+        line 66: 0
+        line 85: 2
+        line 31: 4
+        line 6: 21
+        line 197: 27
+        line 121: 31
+        line 207: 34
+        line 39: 36
+        line 217: 37
+        line 16: 45
+        line 197: 51
+        line 121: 55
+        line 207: 58
+        line 107: 60
+        line 53: 61
+        line 236: 69
+        line 197: 75
+        line 121: 79
+        line 207: 82
+        line 56: 83
+        line 26: 84
+        line 62: 92
+        line 197: 98
+        line 121: 102
+        line 207: 105
+        line 17: 106
+        line 24: 107
+        line 145: 115
+        line 197: 121
+        line 121: 125
+        line 207: 128
+        line 197: 129
+        line 121: 136
+        line 207: 139
+        line 49: 140
+      StackMapTable: number_of_entries = 8
+        frame_type = 255 /* full_frame */
+          offset_delta = 35
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/io/InputStream, class java/io/DataInputStream, class eos/moe/armourers/yl ]
+          stack = [ class java/io/FileNotFoundException ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 22
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/io/InputStream, class java/io/DataInputStream, class eos/moe/armourers/yl ]
+          stack = [ class java/io/IOException ]
+        frame_type = 86 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/md ]
+        frame_type = 86 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/ok ]
+        frame_type = 86 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 10
+          locals = []
+          stack = [ class java/lang/Throwable ]
+
+  public static eos.moe.armourers.yl r(java.io.File);
+    descriptor: (Ljava/io/File;)Leos/moe/armourers/yl;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=5, locals=5, args_size=1
+         0: aconst_null
+         1: astore_1
+         2: aconst_null
+         3: astore_2
+         4: new           #87                 // class java/io/FileInputStream
+         7: dup
+         8: aload_0
+         9: invokespecial #90                 // Method java/io/FileInputStream."<init>":(Ljava/io/File;)V
+        12: astore_3
+        13: aload_0
+        14: invokevirtual #96                 // Method java/io/File.getName:()Ljava/lang/String;
+        17: ldc           #80                 // String .armour
+        19: invokevirtual #102                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+        22: ifeq          51
+        25: new           #25                 // class java/io/DataInputStream
+        28: dup
+        29: new           #27                 // class java/io/BufferedInputStream
+        32: dup
+        33: aload_3
+        34: invokespecial #28                 // Method java/io/BufferedInputStream."<init>":(Ljava/io/InputStream;)V
+        37: invokespecial #29                 // Method java/io/DataInputStream."<init>":(Ljava/io/InputStream;)V
+        40: dup
+        41: astore_1
+        42: dup
+        43: invokestatic  #35                 // Method eos/moe/armourers/fg.r:(Ljava/io/DataInputStream;)Leos/moe/armourers/yl;
+        46: astore_2
+        47: goto          96
+        50: athrow
+        51: aload_0
+        52: invokevirtual #96                 // Method java/io/File.getName:()Ljava/lang/String;
+        55: ldc           #104                // String .dragonarmourers
+        57: invokevirtual #102                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+        60: ifeq          95
+        63: new           #19                 // class java/util/zip/GZIPInputStream
+        66: dup
+        67: aload_3
+        68: invokespecial #23                 // Method java/util/zip/GZIPInputStream."<init>":(Ljava/io/InputStream;)V
+        71: astore        4
+        73: new           #25                 // class java/io/DataInputStream
+        76: dup
+        77: new           #27                 // class java/io/BufferedInputStream
+        80: dup
+        81: aload         4
+        83: invokespecial #28                 // Method java/io/BufferedInputStream."<init>":(Ljava/io/InputStream;)V
+        86: invokespecial #29                 // Method java/io/DataInputStream."<init>":(Ljava/io/InputStream;)V
+        89: dup
+        90: astore_1
+        91: invokestatic  #35                 // Method eos/moe/armourers/fg.r:(Ljava/io/DataInputStream;)Leos/moe/armourers/yl;
+        94: astore_2
+        95: aload_1
+        96: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+        99: aload_2
+       100: areturn
+       101: athrow
+       102: astore_3
+       103: getstatic     #46                 // Field org/apache/logging/log4j/Level.WARN:Lorg/apache/logging/log4j/Level;
+       106: ldc           #48                 // String Skin file not found.
+       108: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+       111: getstatic     #46                 // Field org/apache/logging/log4j/Level.WARN:Lorg/apache/logging/log4j/Level;
+       114: aload_0
+       115: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+       118: aload_2
+       119: aload_1
+       120: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       123: areturn
+       124: astore_3
+       125: getstatic     #60                 // Field org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+       128: ldc           #62                 // String Skin file load failed.
+       130: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+       133: aload_3
+       134: invokevirtual #63                 // Method java/io/IOException.printStackTrace:()V
+       137: aload_2
+       138: aload_1
+       139: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       142: areturn
+       143: astore_3
+       144: getstatic     #60                 // Field org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+       147: ldc           #65                 // String Can not load skin file it was saved in newer version.
+       149: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+       152: aload_3
+       153: invokevirtual #66                 // Method eos/moe/armourers/md.printStackTrace:()V
+       156: aload_2
+       157: aload_1
+       158: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       161: areturn
+       162: astore_3
+       163: getstatic     #60                 // Field org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+       166: ldc           #68                 // String Unable to load skin. Unknown cube types found.
+       168: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+       171: aload_3
+       172: invokevirtual #69                 // Method eos/moe/armourers/ok.printStackTrace:()V
+       175: aload_2
+       176: aload_1
+       177: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       180: areturn
+       181: astore_3
+       182: getstatic     #60                 // Field org/apache/logging/log4j/Level.ERROR:Lorg/apache/logging/log4j/Level;
+       185: ldc           #106                // String Unable to load skin. Unknown error.
+       187: invokestatic  #53                 // Method eos/moe/armourers/bm.r:(Lorg/apache/logging/log4j/Level;Ljava/lang/Object;)V
+       190: aload_3
+       191: invokevirtual #107                // Method java/lang/Exception.printStackTrace:()V
+       194: aload_2
+       195: aload_1
+       196: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       199: areturn
+       200: astore_3
+       201: aload_3
+       202: aload_1
+       203: invokestatic  #40                 // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/InputStream;)V
+       206: athrow
+       207: nop
+       208: athrow
+      Exception table:
+         from    to  target type
+             4    50   102   Class java/io/FileNotFoundException
+            51    95   102   Class java/io/FileNotFoundException
+             4    50   124   Class java/io/IOException
+            51    95   124   Class java/io/IOException
+             4    50   143   Class eos/moe/armourers/md
+            51    95   143   Class eos/moe/armourers/md
+             4    50   162   Class eos/moe/armourers/ok
+            51    95   162   Class eos/moe/armourers/ok
+             4    50   181   Class java/lang/Exception
+            51    95   181   Class java/lang/Exception
+             4    50   200   any
+            51    95   200   any
+           102   118   200   any
+           124   137   200   any
+           143   156   200   any
+           162   175   200   any
+           181   194   200   any
+           200   201   200   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     209     0     a   Ljava/io/File;
+      LineNumberTable:
+        line 19: 0
+        line 8: 2
+        line 27: 4
+        line 175: 13
+        line 126: 25
+        line 154: 42
+        line 221: 51
+        line 234: 63
+        line 148: 73
+        line 202: 91
+        line 158: 95
+        line 18: 100
+        line 55: 102
+        line 7: 103
+        line 150: 111
+        line 158: 119
+        line 18: 123
+        line 113: 124
+        line 63: 125
+        line 186: 133
+        line 158: 138
+        line 18: 142
+        line 11: 143
+        line 119: 144
+        line 216: 152
+        line 158: 157
+        line 18: 161
+        line 171: 162
+        line 235: 163
+        line 166: 171
+        line 158: 176
+        line 18: 180
+        line 110: 181
+        line 44: 182
+        line 36: 190
+        line 158: 195
+        line 18: 199
+        line 158: 200
+        line 18: 206
+        line 92: 207
+      StackMapTable: number_of_entries = 12
+        frame_type = 255 /* full_frame */
+          offset_delta = 50
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/io/File, null, null, class java/io/FileInputStream ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 43
+          locals = [ class java/io/File, class java/io/DataInputStream, class eos/moe/armourers/yl, class java/io/FileInputStream ]
+          stack = []
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ class java/io/DataInputStream ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 4
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/io/File, class java/io/DataInputStream, class eos/moe/armourers/yl ]
+          stack = [ class java/io/FileNotFoundException ]
+        frame_type = 85 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+        frame_type = 82 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/md ]
+        frame_type = 82 /* same_locals_1_stack_item */
+          stack = [ class eos/moe/armourers/ok ]
+        frame_type = 82 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Exception ]
+        frame_type = 82 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 6
+          locals = []
+          stack = [ class java/lang/Throwable ]
+
+  public eos.moe.armourers.tj();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #110                // Method java/lang/Object."<init>":()V
+         4: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/tj;
+      LineNumberTable:
+        line 111: 0
+}
+SourceFile: "yi"

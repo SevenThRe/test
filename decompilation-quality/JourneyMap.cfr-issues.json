@@ -1,0 +1,137 @@
+[
+  {
+    "class": "org.eclipse.jetty.servlet.ServletHolder",
+    "method": "initServlet()",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "org.eclipse.jetty.server.HttpChannelState",
+    "method": "asyncError(java.lang.Throwable )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.server.HttpChannelState",
+    "method": "unhandle()",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Tried to end blocks [1[TRYBLOCK]], but top level block is 48[CASE]"
+  },
+  {
+    "class": "org.eclipse.jetty.server.HttpChannelState",
+    "method": "dispatch(info.journeymap.shaded.org.javax.servlet.ServletContext java.lang.String )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.server.HttpChannelState",
+    "method": "onComplete()",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.server.HttpChannelState",
+    "method": "onReadUnready()",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.server.HttpOutput",
+    "method": "onCompleteSuccess()",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.server.ShutdownMonitor",
+    "method": "run()",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "info.journeymap.shaded.kotlin.kotlin.internal.PlatformImplementations",
+    "method": "<clinit>()",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "info.journeymap.shaded.kotlin.kotlin.io.FilesKt__UtilsKt",
+    "method": "normalize$FilesKt__UtilsKt(java.util.List<? extends java.io.File> )",
+    "issue": "Could not resolve type clashes"
+  },
+  {
+    "class": "info.journeymap.shaded.kotlin.kotlin.io.FilesKt__UtilsKt",
+    "method": "normalize$FilesKt__UtilsKt(java.util.List<? extends java.io.File> )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "info.journeymap.shaded.kotlin.kotlin.jvm.JvmClassMappingKt",
+    "method": "getJavaObjectType(info.journeymap.shaded.kotlin.kotlin.reflect.KClass<T> )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "info.journeymap.shaded.kotlin.kotlin.jvm.JvmClassMappingKt",
+    "method": "getJavaObjectType(info.journeymap.shaded.kotlin.kotlin.reflect.KClass<T> )",
+    "issue": "Could not resolve type clashes"
+  },
+  {
+    "class": "info.journeymap.shaded.kotlin.kotlin.random.Random",
+    "method": "nextDouble(double double )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "info.journeymap.shaded.kotlin.kotlin.sequences.SequencesKt___SequencesKt",
+    "method": "invokeSuspend(java.lang.Object )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "info.journeymap.shaded.kotlin.kotlin.text.DelimitedRangesSequence",
+    "method": "calcNext()",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "info.journeymap.shaded.kotlin.kotlin.collections.SlidingWindowKt",
+    "method": "invokeSuspend(java.lang.Object )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.http.QuotedCSV",
+    "method": "addValue(java.lang.String )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.io.ssl.SslConnection",
+    "method": "fill(java.nio.ByteBuffer )",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Tried to end blocks [0[TRYBLOCK]], but top level block is 26[MONITOR]"
+  },
+  {
+    "class": "org.eclipse.jetty.io.ssl.SslConnection",
+    "method": "flush(java.nio.ByteBuffer[] )",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Tried to end blocks [0[TRYBLOCK]], but top level block is 18[MONITOR]"
+  },
+  {
+    "class": "org.eclipse.jetty.util.thread.QueuedThreadPool",
+    "method": "run()",
+    "issue": "Loose catch block"
+  },
+  {
+    "class": "org.eclipse.jetty.util.thread.strategy.EatWhatYouKill",
+    "method": "produce()",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.util.thread.strategy.EatWhatYouKill",
+    "method": "dispatch()",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.util.BlockingArrayQueue",
+    "method": "remove(java.lang.Object )",
+    "issue": "Exception : org.benf.cfr.reader.util.ConfusedCFRException: Tried to end blocks [10[DOLOOP]], but top level block is 5[TRYBLOCK]"
+  },
+  {
+    "class": "org.eclipse.jetty.util.IteratingCallback",
+    "method": "succeeded()",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.util.IteratingCallback",
+    "method": "failed(java.lang.Throwable )",
+    "issue": "Unable to fully structure code"
+  },
+  {
+    "class": "org.eclipse.jetty.util.IteratingCallback",
+    "method": "close()",
+    "issue": "Unable to fully structure code"
+  }
+]

@@ -1,0 +1,2639 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/journeymap-1.12.2-5.7.0(1)(2).jar!/info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt.class
+  Last modified 25-����-20; size 17518 bytes
+  SHA-256 checksum c46b34d8f379f77b588264b904a023ec6d2ec69274f5c5013c6ec404672e7fe8
+  Compiled from "Utils.kt"
+class info.journeymap.shaded.kotlin.kotlin.io.FilesKt__UtilsKt extends info.journeymap.shaded.kotlin.kotlin.io.FilesKt__FileTreeWalkKt
+  minor version: 0
+  major version: 50
+  flags: (0x0020) ACC_SUPER
+  this_class: #2                          // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt
+  super_class: #4                         // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__FileTreeWalkKt
+  interfaces: 0, fields: 0, methods: 29, attributes: 4
+Constant pool:
+    #1 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt
+    #2 = Class              #1            // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt
+    #3 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/FilesKt__FileTreeWalkKt
+    #4 = Class              #3            // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__FileTreeWalkKt
+    #5 = Utf8               Utils.kt
+    #6 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/Metadata;
+    #7 = Utf8               mv
+    #8 = Integer            1
+    #9 = Integer            15
+   #10 = Utf8               bv
+   #11 = Integer            0
+   #12 = Integer            3
+   #13 = Utf8               k
+   #14 = Integer            5
+   #15 = Utf8               xi
+   #16 = Utf8               d1
+   #17 = Utf8               \u0000<\n\u0000\n\u0002\u0010\u000e\n\u0002\u0018\u0002\n\u0002\b\f\n\u0002\u0010\u000b\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0004\n\u0002\u0010 \n\u0000\n\u0002\u0018\u0002\n\u0002\b\f\u001a(\u0010\t\u001a\u00020\u00022\b\b\u0002\u0010\n\u001a\u00020\u00012\n\b\u0002\u0010\u000b\u001a\u0004\u0018\u00010\u00012\n\b\u0002\u0010\f\u001a\u0004\u0018\u00010\u0002\u001a(\u0010\r\u001a\u00020\u00022\b\b\u0002\u0010\n\u001a\u00020\u00012\n\b\u0002\u0010\u000b\u001a\u0004\u0018\u00010\u00012\n\b\u0002\u0010\f\u001a\u0004\u0018\u00010\u0002\u001a8\u0010\u000e\u001a\u00020\u000f*\u00020\u00022\u0006\u0010\u0010\u001a\u00020\u00022\b\b\u0002\u0010\u0011\u001a\u00020\u000f2\u001a\b\u0002\u0010\u0012\u001a\u0014\u0012\u0004\u0012\u00020\u0002\u0012\u0004\u0012\u00020\u0014\u0012\u0004\u0012\u00020\u00150\u0013\u001a&\u0010\u0016\u001a\u00020\u0002*\u00020\u00022\u0006\u0010\u0010\u001a\u00020\u00022\b\b\u0002\u0010\u0011\u001a\u00020\u000f2\b\b\u0002\u0010\u0017\u001a\u00020\u0018\u001a\n\u0010\u0019\u001a\u00020\u000f*\u00020\u0002\u001a\u0012\u0010\u001a\u001a\u00020\u000f*\u00020\u00022\u0006\u0010\u001b\u001a\u00020\u0002\u001a\u0012\u0010\u001a\u001a\u00020\u000f*\u00020\u00022\u0006\u0010\u001b\u001a\u00020\u0001\u001a\n\u0010\u001c\u001a\u00020\u0002*\u00020\u0002\u001a\u001d\u0010\u001c\u001a\b\u0012\u0004\u0012\u00020\u00020\u001d*\b\u0012\u0004\u0012\u00020\u00020\u001dH\u0002?\u0006\u0002\b\u001e\u001a\u0011\u0010\u001c\u001a\u00020\u001f*\u00020\u001fH\u0002?\u0006\u0002\b\u001e\u001a\u0012\u0010 \u001a\u00020\u0002*\u00020\u00022\u0006\u0010!\u001a\u00020\u0002\u001a\u0014\u0010\"\u001a\u0004\u0018\u00010\u0002*\u00020\u00022\u0006\u0010!\u001a\u00020\u0002\u001a\u0012\u0010#\u001a\u00020\u0002*\u00020\u00022\u0006\u0010!\u001a\u00020\u0002\u001a\u0012\u0010$\u001a\u00020\u0002*\u00020\u00022\u0006\u0010%\u001a\u00020\u0002\u001a\u0012\u0010$\u001a\u00020\u0002*\u00020\u00022\u0006\u0010%\u001a\u00020\u0001\u001a\u0012\u0010&\u001a\u00020\u0002*\u00020\u00022\u0006\u0010%\u001a\u00020\u0002\u001a\u0012\u0010&\u001a\u00020\u0002*\u00020\u00022\u0006\u0010%\u001a\u00020\u0001\u001a\u0012\u0010\'\u001a\u00020\u000f*\u00020\u00022\u0006\u0010\u001b\u001a\u00020\u0002\u001a\u0012\u0010\'\u001a\u00020\u000f*\u00020\u00022\u0006\u0010\u001b\u001a\u00020\u0001\u001a\u0012\u0010(\u001a\u00020\u0001*\u00020\u00022\u0006\u0010!\u001a\u00020\u0002\u001a\u001b\u0010)\u001a\u0004\u0018\u00010\u0001*\u00020\u00022\u0006\u0010!\u001a\u00020\u0002H\u0002?\u0006\u0002\b*\"\u0015\u0010\u0000\u001a\u00020\u0001*\u00020\u00028F?\u0006\u0006\u001a\u0004\b\u0003\u0010\u0004\"\u0015\u0010\u0005\u001a\u00020\u0001*\u00020\u00028F?\u0006\u0006\u001a\u0004\b\u0006\u0010\u0004\"\u0015\u0010\u0007\u001a\u00020\u0001*\u00020\u00028F?\u0006\u0006\u001a\u0004\b\b\u0010\u0004��\u0006+
+   #18 = Utf8               d2
+   #19 = Utf8               extension
+   #20 = Utf8
+   #21 = Utf8               Ljava/io/File;
+   #22 = Utf8               getExtension
+   #23 = Utf8               (Ljava/io/File;)Ljava/lang/String;
+   #24 = Utf8               invariantSeparatorsPath
+   #25 = Utf8               getInvariantSeparatorsPath
+   #26 = Utf8               nameWithoutExtension
+   #27 = Utf8               getNameWithoutExtension
+   #28 = Utf8               createTempDir
+   #29 = Utf8               prefix
+   #30 = Utf8               suffix
+   #31 = Utf8               directory
+   #32 = Utf8               createTempFile
+   #33 = Utf8               copyRecursively
+   #34 = Utf8               target
+   #35 = Utf8               overwrite
+   #36 = Utf8               onError
+   #37 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/Function2;
+   #38 = Utf8               Ljava/io/IOException;
+   #39 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/io/OnErrorAction;
+   #40 = Utf8               copyTo
+   #41 = Utf8               bufferSize
+   #42 = Utf8               deleteRecursively
+   #43 = Utf8               endsWith
+   #44 = Utf8               other
+   #45 = Utf8               normalize
+   #46 = Utf8               normalize$FilesKt__UtilsKt
+   #47 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+   #48 = Utf8               relativeTo
+   #49 = Utf8               base
+   #50 = Utf8               relativeToOrNull
+   #51 = Utf8               relativeToOrSelf
+   #52 = Utf8               resolve
+   #53 = Utf8               relative
+   #54 = Utf8               resolveSibling
+   #55 = Utf8               startsWith
+   #56 = Utf8               toRelativeString
+   #57 = Utf8               toRelativeStringOrNull
+   #58 = Utf8               toRelativeStringOrNull$FilesKt__UtilsKt
+   #59 = Utf8               info.journeymap.shaded.kotlin.kotlin-stdlib
+   #60 = Utf8               xs
+   #61 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/FilesKt
+   #62 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$2
+   #63 = Class              #62           // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$2
+   #64 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$1
+   #65 = Class              #64           // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$1
+   #66 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+   #67 = Utf8               Linfo/journeymap/shaded/org/jetbrains/annotations/NotNull;
+   #68 = Utf8               Linfo/journeymap/shaded/org/jetbrains/annotations/Nullable;
+   #69 = String             #29           // prefix
+   #70 = Utf8               info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics
+   #71 = Class              #70           // info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics
+   #72 = Utf8               checkParameterIsNotNull
+   #73 = Utf8               (Ljava/lang/Object;Ljava/lang/String;)V
+   #74 = NameAndType        #72:#73       // checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+   #75 = Methodref          #71.#74       // info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+   #76 = Utf8               java/io/File
+   #77 = Class              #76           // java/io/File
+   #78 = NameAndType        #32:#66       // createTempFile:(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+   #79 = Methodref          #77.#78       // java/io/File.createTempFile:(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+   #80 = Utf8               delete
+   #81 = Utf8               ()Z
+   #82 = NameAndType        #80:#81       // delete:()Z
+   #83 = Methodref          #77.#82       // java/io/File.delete:()Z
+   #84 = Utf8               mkdir
+   #85 = NameAndType        #84:#81       // mkdir:()Z
+   #86 = Methodref          #77.#85       // java/io/File.mkdir:()Z
+   #87 = Utf8               dir
+   #88 = String             #87           // dir
+   #89 = Utf8               checkExpressionValueIsNotNull
+   #90 = NameAndType        #89:#73       // checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+   #91 = Methodref          #71.#90       // info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+   #92 = Utf8               java/io/IOException
+   #93 = Class              #92           // java/io/IOException
+   #94 = Utf8               java/lang/StringBuilder
+   #95 = Class              #94           // java/lang/StringBuilder
+   #96 = Utf8               <init>
+   #97 = Utf8               ()V
+   #98 = NameAndType        #96:#97       // "<init>":()V
+   #99 = Methodref          #95.#98       // java/lang/StringBuilder."<init>":()V
+  #100 = Utf8               Unable to create temporary directory
+  #101 = String             #100          // Unable to create temporary directory
+  #102 = Utf8               append
+  #103 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #104 = NameAndType        #102:#103     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #105 = Methodref          #95.#104      // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #106 = Utf8               (Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #107 = NameAndType        #102:#106     // append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #108 = Methodref          #95.#107      // java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+  #109 = Utf8               (C)Ljava/lang/StringBuilder;
+  #110 = NameAndType        #102:#109     // append:(C)Ljava/lang/StringBuilder;
+  #111 = Methodref          #95.#110      // java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+  #112 = Utf8               toString
+  #113 = Utf8               ()Ljava/lang/String;
+  #114 = NameAndType        #112:#113     // toString:()Ljava/lang/String;
+  #115 = Methodref          #95.#114      // java/lang/StringBuilder.toString:()Ljava/lang/String;
+  #116 = Utf8               (Ljava/lang/String;)V
+  #117 = NameAndType        #96:#116      // "<init>":(Ljava/lang/String;)V
+  #118 = Methodref          #93.#117      // java/io/IOException."<init>":(Ljava/lang/String;)V
+  #119 = Utf8               java/lang/Throwable
+  #120 = Class              #119          // java/lang/Throwable
+  #121 = Utf8               Ljava/lang/String;
+  #122 = Utf8               createTempDir$default
+  #123 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/io/File;ILjava/lang/Object;)Ljava/io/File;
+  #124 = Utf8               tmp
+  #125 = String             #124          // tmp
+  #126 = Utf8               java/lang/String
+  #127 = Class              #126          // java/lang/String
+  #128 = Class              #61           // info/journeymap/shaded/kotlin/kotlin/io/FilesKt
+  #129 = NameAndType        #28:#66       // createTempDir:(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+  #130 = Methodref          #128.#129     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.createTempDir:(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+  #131 = Utf8               File.createTempFile(prefix, suffix, directory)
+  #132 = String             #131          // File.createTempFile(prefix, suffix, directory)
+  #133 = Utf8               createTempFile$default
+  #134 = Methodref          #128.#78      // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.createTempFile:(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+  #135 = Utf8               $this$extension
+  #136 = String             #135          // $this$extension
+  #137 = Utf8               getName
+  #138 = NameAndType        #137:#113     // getName:()Ljava/lang/String;
+  #139 = Methodref          #77.#138      // java/io/File.getName:()Ljava/lang/String;
+  #140 = Utf8               name
+  #141 = String             #140          // name
+  #142 = String             #20           //
+  #143 = Utf8               info/journeymap/shaded/kotlin/kotlin/text/StringsKt
+  #144 = Class              #143          // info/journeymap/shaded/kotlin/kotlin/text/StringsKt
+  #145 = Utf8               substringAfterLast
+  #146 = Utf8               (Ljava/lang/String;CLjava/lang/String;)Ljava/lang/String;
+  #147 = NameAndType        #145:#146     // substringAfterLast:(Ljava/lang/String;CLjava/lang/String;)Ljava/lang/String;
+  #148 = Methodref          #144.#147     // info/journeymap/shaded/kotlin/kotlin/text/StringsKt.substringAfterLast:(Ljava/lang/String;CLjava/lang/String;)Ljava/lang/String;
+  #149 = Utf8               $this$invariantSeparatorsPath
+  #150 = String             #149          // $this$invariantSeparatorsPath
+  #151 = Utf8               separatorChar
+  #152 = Utf8               C
+  #153 = NameAndType        #151:#152     // separatorChar:C
+  #154 = Fieldref           #77.#153      // java/io/File.separatorChar:C
+  #155 = Utf8               getPath
+  #156 = NameAndType        #155:#113     // getPath:()Ljava/lang/String;
+  #157 = Methodref          #77.#156      // java/io/File.getPath:()Ljava/lang/String;
+  #158 = Utf8               path
+  #159 = String             #158          // path
+  #160 = Utf8               replace$default
+  #161 = Utf8               (Ljava/lang/String;CCZILjava/lang/Object;)Ljava/lang/String;
+  #162 = NameAndType        #160:#161     // replace$default:(Ljava/lang/String;CCZILjava/lang/Object;)Ljava/lang/String;
+  #163 = Methodref          #144.#162     // info/journeymap/shaded/kotlin/kotlin/text/StringsKt.replace$default:(Ljava/lang/String;CCZILjava/lang/Object;)Ljava/lang/String;
+  #164 = Utf8               $this$nameWithoutExtension
+  #165 = String             #164          // $this$nameWithoutExtension
+  #166 = Utf8               .
+  #167 = String             #166          // .
+  #168 = Utf8               substringBeforeLast$default
+  #169 = Utf8               (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+  #170 = NameAndType        #168:#169     // substringBeforeLast$default:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+  #171 = Methodref          #144.#170     // info/journeymap/shaded/kotlin/kotlin/text/StringsKt.substringBeforeLast$default:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+  #172 = Utf8               (Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+  #173 = Utf8               $this$toRelativeString
+  #174 = String             #173          // $this$toRelativeString
+  #175 = String             #49           // base
+  #176 = NameAndType        #58:#172      // toRelativeStringOrNull$FilesKt__UtilsKt:(Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+  #177 = Methodref          #2.#176       // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt.toRelativeStringOrNull$FilesKt__UtilsKt:(Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+  #178 = Utf8               java/lang/IllegalArgumentException
+  #179 = Class              #178          // java/lang/IllegalArgumentException
+  #180 = Utf8               this and base files have different roots:
+  #181 = String             #180          // this and base files have different roots:
+  #182 = Utf8                and
+  #183 = String             #182          //  and
+  #184 = Methodref          #179.#117     // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+  #185 = Utf8               (Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+  #186 = Utf8               $this$relativeTo
+  #187 = String             #186          // $this$relativeTo
+  #188 = NameAndType        #56:#172      // toRelativeString:(Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+  #189 = Methodref          #128.#188     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toRelativeString:(Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+  #190 = Methodref          #77.#117      // java/io/File."<init>":(Ljava/lang/String;)V
+  #191 = Utf8               $this$relativeToOrSelf
+  #192 = String             #191          // $this$relativeToOrSelf
+  #193 = Utf8               p1
+  #194 = Utf8               $i$a$-unknown-FilesKt__UtilsKt$relativeToOrSelf$1
+  #195 = Utf8               I
+  #196 = Utf8               $this$relativeToOrNull
+  #197 = String             #196          // $this$relativeToOrNull
+  #198 = Utf8               $i$a$-unknown-FilesKt__UtilsKt$relativeToOrNull$1
+  #199 = Utf8               toComponents
+  #200 = Utf8               (Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+  #201 = NameAndType        #199:#200     // toComponents:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+  #202 = Methodref          #128.#201     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toComponents:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+  #203 = Utf8               (Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+  #204 = NameAndType        #46:#203      // normalize$FilesKt__UtilsKt:(Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+  #205 = Methodref          #2.#204       // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt.normalize$FilesKt__UtilsKt:(Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+  #206 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents
+  #207 = Class              #206          // info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents
+  #208 = Utf8               getRoot
+  #209 = Utf8               ()Ljava/io/File;
+  #210 = NameAndType        #208:#209     // getRoot:()Ljava/io/File;
+  #211 = Methodref          #207.#210     // info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getRoot:()Ljava/io/File;
+  #212 = Utf8               areEqual
+  #213 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Z
+  #214 = NameAndType        #212:#213     // areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+  #215 = Methodref          #71.#214      // info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+  #216 = Utf8               getSize
+  #217 = Utf8               ()I
+  #218 = NameAndType        #216:#217     // getSize:()I
+  #219 = Methodref          #207.#218     // info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+  #220 = Utf8               java/lang/Math
+  #221 = Class              #220          // java/lang/Math
+  #222 = Utf8               min
+  #223 = Utf8               (II)I
+  #224 = NameAndType        #222:#223     // min:(II)I
+  #225 = Methodref          #221.#224     // java/lang/Math.min:(II)I
+  #226 = Utf8               getSegments
+  #227 = Utf8               ()Ljava/util/List;
+  #228 = NameAndType        #226:#227     // getSegments:()Ljava/util/List;
+  #229 = Methodref          #207.#228     // info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+  #230 = Utf8               java/util/List
+  #231 = Class              #230          // java/util/List
+  #232 = Utf8               get
+  #233 = Utf8               (I)Ljava/lang/Object;
+  #234 = NameAndType        #232:#233     // get:(I)Ljava/lang/Object;
+  #235 = InterfaceMethodref #231.#234     // java/util/List.get:(I)Ljava/lang/Object;
+  #236 = Utf8               ..
+  #237 = String             #236          // ..
+  #238 = Utf8               java/lang/Iterable
+  #239 = Class              #238          // java/lang/Iterable
+  #240 = Utf8               info/journeymap/shaded/kotlin/kotlin/collections/CollectionsKt
+  #241 = Class              #240          // info/journeymap/shaded/kotlin/kotlin/collections/CollectionsKt
+  #242 = Utf8               drop
+  #243 = Utf8               (Ljava/lang/Iterable;I)Ljava/util/List;
+  #244 = NameAndType        #242:#243     // drop:(Ljava/lang/Iterable;I)Ljava/util/List;
+  #245 = Methodref          #241.#244     // info/journeymap/shaded/kotlin/kotlin/collections/CollectionsKt.drop:(Ljava/lang/Iterable;I)Ljava/util/List;
+  #246 = Utf8               java/lang/Appendable
+  #247 = Class              #246          // java/lang/Appendable
+  #248 = Utf8               separator
+  #249 = NameAndType        #248:#121     // separator:Ljava/lang/String;
+  #250 = Fieldref           #77.#249      // java/io/File.separator:Ljava/lang/String;
+  #251 = Utf8               File.separator
+  #252 = String             #251          // File.separator
+  #253 = Utf8               java/lang/CharSequence
+  #254 = Class              #253          // java/lang/CharSequence
+  #255 = Utf8               joinTo$default
+  #256 = Utf8               (Ljava/lang/Iterable;Ljava/lang/Appendable;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILjava/lang/CharSequence;Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Appendable;
+  #257 = NameAndType        #255:#256     // joinTo$default:(Ljava/lang/Iterable;Ljava/lang/Appendable;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILjava/lang/CharSequence;Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Appendable;
+  #258 = Methodref          #241.#257     // info/journeymap/shaded/kotlin/kotlin/collections/CollectionsKt.joinTo$default:(Ljava/lang/Iterable;Ljava/lang/Appendable;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILjava/lang/CharSequence;Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Appendable;
+  #259 = Utf8               maxSameCount
+  #260 = Utf8               i
+  #261 = Utf8               $this$countSame
+  #262 = Utf8               $i$a$-run-FilesKt__UtilsKt$toRelativeStringOrNull$sameCount$1
+  #263 = Utf8               res
+  #264 = Utf8               Ljava/lang/StringBuilder;
+  #265 = Utf8               sameCount
+  #266 = Utf8               thisCount
+  #267 = Utf8               baseCount
+  #268 = Utf8               baseComponents
+  #269 = Utf8               thisComponents
+  #270 = Utf8               $this$toRelativeStringOrNull
+  #271 = Utf8               (Ljava/io/File;Ljava/io/File;ZI)Ljava/io/File;
+  #272 = Utf8               $this$copyTo
+  #273 = String             #272          // $this$copyTo
+  #274 = String             #34           // target
+  #275 = Utf8               exists
+  #276 = NameAndType        #275:#81      // exists:()Z
+  #277 = Methodref          #77.#276      // java/io/File.exists:()Z
+  #278 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/NoSuchFileException
+  #279 = Class              #278          // info/journeymap/shaded/kotlin/kotlin/io/NoSuchFileException
+  #280 = Utf8               The source file doesn\'t exist.
+  #281 = String             #280          // The source file doesn\'t exist.
+  #282 = Utf8               (Ljava/io/File;Ljava/io/File;Ljava/lang/String;ILinfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DefaultConstructorMarker;)V
+  #283 = NameAndType        #96:#282      // "<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;ILinfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DefaultConstructorMarker;)V
+  #284 = Methodref          #279.#283     // info/journeymap/shaded/kotlin/kotlin/io/NoSuchFileException."<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;ILinfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DefaultConstructorMarker;)V
+  #285 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/FileAlreadyExistsException
+  #286 = Class              #285          // info/journeymap/shaded/kotlin/kotlin/io/FileAlreadyExistsException
+  #287 = Utf8               The destination file already exists.
+  #288 = String             #287          // The destination file already exists.
+  #289 = Utf8               (Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+  #290 = NameAndType        #96:#289      // "<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+  #291 = Methodref          #286.#290     // info/journeymap/shaded/kotlin/kotlin/io/FileAlreadyExistsException."<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+  #292 = Utf8               Tried to overwrite the destination, but failed to delete it.
+  #293 = String             #292          // Tried to overwrite the destination, but failed to delete it.
+  #294 = Utf8               isDirectory
+  #295 = NameAndType        #294:#81      // isDirectory:()Z
+  #296 = Methodref          #77.#295      // java/io/File.isDirectory:()Z
+  #297 = Utf8               mkdirs
+  #298 = NameAndType        #297:#81      // mkdirs:()Z
+  #299 = Methodref          #77.#298      // java/io/File.mkdirs:()Z
+  #300 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/FileSystemException
+  #301 = Class              #300          // info/journeymap/shaded/kotlin/kotlin/io/FileSystemException
+  #302 = Utf8               Failed to create target directory.
+  #303 = String             #302          // Failed to create target directory.
+  #304 = Methodref          #301.#290     // info/journeymap/shaded/kotlin/kotlin/io/FileSystemException."<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+  #305 = Utf8               getParentFile
+  #306 = NameAndType        #305:#209     // getParentFile:()Ljava/io/File;
+  #307 = Methodref          #77.#306      // java/io/File.getParentFile:()Ljava/io/File;
+  #308 = Utf8               java/io/FileInputStream
+  #309 = Class              #308          // java/io/FileInputStream
+  #310 = Utf8               (Ljava/io/File;)V
+  #311 = NameAndType        #96:#310      // "<init>":(Ljava/io/File;)V
+  #312 = Methodref          #309.#311     // java/io/FileInputStream."<init>":(Ljava/io/File;)V
+  #313 = Utf8               java/io/Closeable
+  #314 = Class              #313          // java/io/Closeable
+  #315 = Utf8               java/io/FileOutputStream
+  #316 = Class              #315          // java/io/FileOutputStream
+  #317 = Methodref          #316.#311     // java/io/FileOutputStream."<init>":(Ljava/io/File;)V
+  #318 = Utf8               java/io/InputStream
+  #319 = Class              #318          // java/io/InputStream
+  #320 = Utf8               java/io/OutputStream
+  #321 = Class              #320          // java/io/OutputStream
+  #322 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/ByteStreamsKt
+  #323 = Class              #322          // info/journeymap/shaded/kotlin/kotlin/io/ByteStreamsKt
+  #324 = Utf8               (Ljava/io/InputStream;Ljava/io/OutputStream;I)J
+  #325 = NameAndType        #40:#324      // copyTo:(Ljava/io/InputStream;Ljava/io/OutputStream;I)J
+  #326 = Methodref          #323.#325     // info/journeymap/shaded/kotlin/kotlin/io/ByteStreamsKt.copyTo:(Ljava/io/InputStream;Ljava/io/OutputStream;I)J
+  #327 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/CloseableKt
+  #328 = Class              #327          // info/journeymap/shaded/kotlin/kotlin/io/CloseableKt
+  #329 = Utf8               closeFinally
+  #330 = Utf8               (Ljava/io/Closeable;Ljava/lang/Throwable;)V
+  #331 = NameAndType        #329:#330     // closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+  #332 = Methodref          #328.#331     // info/journeymap/shaded/kotlin/kotlin/io/CloseableKt.closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+  #333 = Utf8               output
+  #334 = Utf8               Ljava/io/FileOutputStream;
+  #335 = Utf8               $i$a$-use-FilesKt__UtilsKt$copyTo$1$1
+  #336 = Utf8               input
+  #337 = Utf8               Ljava/io/FileInputStream;
+  #338 = Utf8               $i$a$-use-FilesKt__UtilsKt$copyTo$1
+  #339 = Utf8               Z
+  #340 = Utf8               copyTo$default
+  #341 = Utf8               (Ljava/io/File;Ljava/io/File;ZIILjava/lang/Object;)Ljava/io/File;
+  #342 = NameAndType        #40:#271      // copyTo:(Ljava/io/File;Ljava/io/File;ZI)Ljava/io/File;
+  #343 = Methodref          #128.#342     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.copyTo:(Ljava/io/File;Ljava/io/File;ZI)Ljava/io/File;
+  #344 = Utf8               (Ljava/io/File;Ljava/io/File;ZLinfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Z
+  #345 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/TerminateException
+  #346 = Class              #345          // info/journeymap/shaded/kotlin/kotlin/io/TerminateException
+  #347 = Utf8               $this$copyRecursively
+  #348 = String             #347          // $this$copyRecursively
+  #349 = String             #36           // onError
+  #350 = Utf8               info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2
+  #351 = Class              #350          // info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2
+  #352 = Utf8               invoke
+  #353 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #354 = NameAndType        #352:#353     // invoke:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #355 = InterfaceMethodref #351.#354     // info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2.invoke:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #356 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction
+  #357 = Class              #356          // info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction
+  #358 = Utf8               TERMINATE
+  #359 = NameAndType        #358:#39      // TERMINATE:Linfo/journeymap/shaded/kotlin/kotlin/io/OnErrorAction;
+  #360 = Fieldref           #357.#359     // info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction.TERMINATE:Linfo/journeymap/shaded/kotlin/kotlin/io/OnErrorAction;
+  #361 = Utf8               walkTopDown
+  #362 = Utf8               (Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+  #363 = NameAndType        #361:#362     // walkTopDown:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+  #364 = Methodref          #128.#363     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.walkTopDown:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+  #365 = Utf8               (Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)V
+  #366 = NameAndType        #96:#365      // "<init>":(Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)V
+  #367 = Methodref          #63.#366      // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$2."<init>":(Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)V
+  #368 = Utf8               info/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk
+  #369 = Class              #368          // info/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk
+  #370 = Utf8               onFail
+  #371 = Utf8               (Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+  #372 = NameAndType        #370:#371     // onFail:(Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+  #373 = Methodref          #369.#372     // info/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk.onFail:(Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+  #374 = Utf8               iterator
+  #375 = Utf8               ()Ljava/util/Iterator;
+  #376 = NameAndType        #374:#375     // iterator:()Ljava/util/Iterator;
+  #377 = Methodref          #369.#376     // info/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk.iterator:()Ljava/util/Iterator;
+  #378 = Utf8               java/util/Iterator
+  #379 = Class              #378          // java/util/Iterator
+  #380 = Utf8               hasNext
+  #381 = NameAndType        #380:#81      // hasNext:()Z
+  #382 = InterfaceMethodref #379.#381     // java/util/Iterator.hasNext:()Z
+  #383 = Utf8               next
+  #384 = Utf8               ()Ljava/lang/Object;
+  #385 = NameAndType        #383:#384     // next:()Ljava/lang/Object;
+  #386 = InterfaceMethodref #379.#385     // java/util/Iterator.next:()Ljava/lang/Object;
+  #387 = Utf8               (Ljava/io/File;Ljava/lang/String;)V
+  #388 = NameAndType        #96:#387      // "<init>":(Ljava/io/File;Ljava/lang/String;)V
+  #389 = Methodref          #77.#388      // java/io/File."<init>":(Ljava/io/File;Ljava/lang/String;)V
+  #390 = Utf8               (Ljava/io/File;)Z
+  #391 = NameAndType        #42:#390      // deleteRecursively:(Ljava/io/File;)Z
+  #392 = Methodref          #128.#391     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.deleteRecursively:(Ljava/io/File;)Z
+  #393 = NameAndType        #340:#341     // copyTo$default:(Ljava/io/File;Ljava/io/File;ZIILjava/lang/Object;)Ljava/io/File;
+  #394 = Methodref          #128.#393     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.copyTo$default:(Ljava/io/File;Ljava/io/File;ZIILjava/lang/Object;)Ljava/io/File;
+  #395 = Utf8               length
+  #396 = Utf8               ()J
+  #397 = NameAndType        #395:#396     // length:()J
+  #398 = Methodref          #77.#397      // java/io/File.length:()J
+  #399 = Utf8               Source file wasn\'t copied completely, length of destination file differs.
+  #400 = String             #399          // Source file wasn\'t copied completely, length of destination file differs.
+  #401 = Utf8               stillExists
+  #402 = Utf8               dstFile
+  #403 = Utf8               relPath
+  #404 = Utf8               src
+  #405 = Utf8               e
+  #406 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/io/TerminateException;
+  #407 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;
+  #408 = Utf8               copyRecursively$default
+  #409 = Utf8               (Ljava/io/File;Ljava/io/File;ZLinfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;ILjava/lang/Object;)Z
+  #410 = Utf8               INSTANCE
+  #411 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$1;
+  #412 = NameAndType        #410:#411     // INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$1;
+  #413 = Fieldref           #65.#412      // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$1.INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$1;
+  #414 = NameAndType        #33:#344      // copyRecursively:(Ljava/io/File;Ljava/io/File;ZLinfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Z
+  #415 = Methodref          #128.#414     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.copyRecursively:(Ljava/io/File;Ljava/io/File;ZLinfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Z
+  #416 = Utf8               $this$deleteRecursively
+  #417 = String             #416          // $this$deleteRecursively
+  #418 = Utf8               walkBottomUp
+  #419 = NameAndType        #418:#362     // walkBottomUp:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+  #420 = Methodref          #128.#419     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.walkBottomUp:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+  #421 = Utf8               info/journeymap/shaded/kotlin/kotlin/sequences/Sequence
+  #422 = Class              #421          // info/journeymap/shaded/kotlin/kotlin/sequences/Sequence
+  #423 = InterfaceMethodref #422.#376     // info/journeymap/shaded/kotlin/kotlin/sequences/Sequence.iterator:()Ljava/util/Iterator;
+  #424 = Utf8               java/lang/Object
+  #425 = Class              #424          // java/lang/Object
+  #426 = Utf8               it
+  #427 = Utf8               $i$a$-fold-FilesKt__UtilsKt$deleteRecursively$1
+  #428 = Utf8               element$iv
+  #429 = Utf8               Ljava/lang/Object;
+  #430 = Utf8               accumulator$iv
+  #431 = Utf8               $this$fold$iv
+  #432 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;
+  #433 = Utf8               initial$iv
+  #434 = Utf8               $i$f$fold
+  #435 = Utf8               (Ljava/io/File;Ljava/io/File;)Z
+  #436 = Utf8               $this$startsWith
+  #437 = String             #436          // $this$startsWith
+  #438 = String             #44           // other
+  #439 = Utf8               subList
+  #440 = Utf8               (II)Ljava/util/List;
+  #441 = NameAndType        #439:#440     // subList:(II)Ljava/util/List;
+  #442 = InterfaceMethodref #231.#441     // java/util/List.subList:(II)Ljava/util/List;
+  #443 = Utf8               equals
+  #444 = Utf8               (Ljava/lang/Object;)Z
+  #445 = NameAndType        #443:#444     // equals:(Ljava/lang/Object;)Z
+  #446 = Methodref          #425.#445     // java/lang/Object.equals:(Ljava/lang/Object;)Z
+  #447 = Utf8               otherComponents
+  #448 = Utf8               components
+  #449 = Utf8               (Ljava/io/File;Ljava/lang/String;)Z
+  #450 = NameAndType        #55:#435      // startsWith:(Ljava/io/File;Ljava/io/File;)Z
+  #451 = Methodref          #128.#450     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.startsWith:(Ljava/io/File;Ljava/io/File;)Z
+  #452 = Utf8               $this$endsWith
+  #453 = String             #452          // $this$endsWith
+  #454 = Utf8               isRooted
+  #455 = NameAndType        #454:#81      // isRooted:()Z
+  #456 = Methodref          #207.#455     // info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.isRooted:()Z
+  #457 = Utf8               shift
+  #458 = NameAndType        #43:#435      // endsWith:(Ljava/io/File;Ljava/io/File;)Z
+  #459 = Methodref          #128.#458     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.endsWith:(Ljava/io/File;Ljava/io/File;)Z
+  #460 = Utf8               (Ljava/io/File;)Ljava/io/File;
+  #461 = Utf8               $this$normalize
+  #462 = String             #461          // $this$normalize
+  #463 = Utf8               (Ljava/util/List;)Ljava/util/List;
+  #464 = NameAndType        #46:#463      // normalize$FilesKt__UtilsKt:(Ljava/util/List;)Ljava/util/List;
+  #465 = Methodref          #2.#464       // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt.normalize$FilesKt__UtilsKt:(Ljava/util/List;)Ljava/util/List;
+  #466 = Utf8               joinToString$default
+  #467 = Utf8               (Ljava/lang/Iterable;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILjava/lang/CharSequence;Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/String;
+  #468 = NameAndType        #466:#467     // joinToString$default:(Ljava/lang/Iterable;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILjava/lang/CharSequence;Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/String;
+  #469 = Methodref          #241.#468     // info/journeymap/shaded/kotlin/kotlin/collections/CollectionsKt.joinToString$default:(Ljava/lang/Iterable;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILjava/lang/CharSequence;Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/String;
+  #470 = Utf8               (Ljava/io/File;Ljava/lang/String;)Ljava/io/File;
+  #471 = NameAndType        #52:#470      // resolve:(Ljava/io/File;Ljava/lang/String;)Ljava/io/File;
+  #472 = Methodref          #128.#471     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.resolve:(Ljava/io/File;Ljava/lang/String;)Ljava/io/File;
+  #473 = Utf8               $this$with
+  #474 = Utf8               $i$a$-with-FilesKt__UtilsKt$normalize$1
+  #475 = Utf8               (Ljava/io/File;Ljava/util/List;)V
+  #476 = NameAndType        #96:#475      // "<init>":(Ljava/io/File;Ljava/util/List;)V
+  #477 = Methodref          #207.#476     // info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents."<init>":(Ljava/io/File;Ljava/util/List;)V
+  #478 = Utf8               java/util/ArrayList
+  #479 = Class              #478          // java/util/ArrayList
+  #480 = Utf8               size
+  #481 = NameAndType        #480:#217     // size:()I
+  #482 = InterfaceMethodref #231.#481     // java/util/List.size:()I
+  #483 = Utf8               (I)V
+  #484 = NameAndType        #96:#483      // "<init>":(I)V
+  #485 = Methodref          #479.#484     // java/util/ArrayList."<init>":(I)V
+  #486 = InterfaceMethodref #231.#376     // java/util/List.iterator:()Ljava/util/Iterator;
+  #487 = Utf8               hashCode
+  #488 = NameAndType        #487:#217     // hashCode:()I
+  #489 = Methodref          #127.#488     // java/lang/String.hashCode:()I
+  #490 = Methodref          #127.#445     // java/lang/String.equals:(Ljava/lang/Object;)Z
+  #491 = Utf8               isEmpty
+  #492 = NameAndType        #491:#81      // isEmpty:()Z
+  #493 = InterfaceMethodref #231.#492     // java/util/List.isEmpty:()Z
+  #494 = Utf8               last
+  #495 = Utf8               (Ljava/util/List;)Ljava/lang/Object;
+  #496 = NameAndType        #494:#495     // last:(Ljava/util/List;)Ljava/lang/Object;
+  #497 = Methodref          #241.#496     // info/journeymap/shaded/kotlin/kotlin/collections/CollectionsKt.last:(Ljava/util/List;)Ljava/lang/Object;
+  #498 = Utf8               remove
+  #499 = NameAndType        #498:#233     // remove:(I)Ljava/lang/Object;
+  #500 = InterfaceMethodref #231.#499     // java/util/List.remove:(I)Ljava/lang/Object;
+  #501 = Utf8               add
+  #502 = NameAndType        #501:#444     // add:(Ljava/lang/Object;)Z
+  #503 = InterfaceMethodref #231.#502     // java/util/List.add:(Ljava/lang/Object;)Z
+  #504 = Utf8               file
+  #505 = Utf8               list
+  #506 = Utf8               Ljava/util/List;
+  #507 = Utf8               $this$resolve
+  #508 = String             #507          // $this$resolve
+  #509 = String             #53           // relative
+  #510 = NameAndType        #454:#390     // isRooted:(Ljava/io/File;)Z
+  #511 = Methodref          #128.#510     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.isRooted:(Ljava/io/File;)Z
+  #512 = Methodref          #77.#114      // java/io/File.toString:()Ljava/lang/String;
+  #513 = Utf8               this.toString()
+  #514 = String             #513          // this.toString()
+  #515 = NameAndType        #395:#217     // length:()I
+  #516 = InterfaceMethodref #254.#515     // java/lang/CharSequence.length:()I
+  #517 = Utf8               endsWith$default
+  #518 = Utf8               (Ljava/lang/CharSequence;CZILjava/lang/Object;)Z
+  #519 = NameAndType        #517:#518     // endsWith$default:(Ljava/lang/CharSequence;CZILjava/lang/Object;)Z
+  #520 = Methodref          #144.#519     // info/journeymap/shaded/kotlin/kotlin/text/StringsKt.endsWith$default:(Ljava/lang/CharSequence;CZILjava/lang/Object;)Z
+  #521 = Utf8               baseName
+  #522 = NameAndType        #52:#185      // resolve:(Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+  #523 = Methodref          #128.#522     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.resolve:(Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+  #524 = Utf8               $this$resolveSibling
+  #525 = String             #524          // $this$resolveSibling
+  #526 = Utf8               subPath
+  #527 = Utf8               (II)Ljava/io/File;
+  #528 = NameAndType        #526:#527     // subPath:(II)Ljava/io/File;
+  #529 = Methodref          #207.#528     // info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.subPath:(II)Ljava/io/File;
+  #530 = Utf8               parentSubPath
+  #531 = NameAndType        #54:#185      // resolveSibling:(Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+  #532 = Methodref          #128.#531     // info/journeymap/shaded/kotlin/kotlin/io/FilesKt.resolveSibling:(Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+  #533 = Methodref          #4.#98        // info/journeymap/shaded/kotlin/kotlin/io/FilesKt__FileTreeWalkKt."<init>":()V
+  #534 = Utf8               Code
+  #535 = Utf8               LocalVariableTable
+  #536 = Utf8               LineNumberTable
+  #537 = Utf8               StackMapTable
+  #538 = Utf8               RuntimeInvisibleAnnotations
+  #539 = Utf8               RuntimeInvisibleParameterAnnotations
+  #540 = Utf8               Signature
+  #541 = Utf8               (Ljava/io/File;Ljava/io/File;ZLinfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2<-Ljava/io/File;-Ljava/io/IOException;+Linfo/journeymap/shaded/kotlin/kotlin/io/OnErrorAction;>;)Z
+  #542 = Utf8               (Ljava/util/List<+Ljava/io/File;>;)Ljava/util/List<Ljava/io/File;>;
+  #543 = Utf8               SourceFile
+  #544 = Utf8               SourceDebugExtension
+  #545 = Utf8               InnerClasses
+  #546 = Utf8               RuntimeVisibleAnnotations
+{
+  public static final java.io.File createTempDir(java.lang.String, java.lang.String, java.io.File);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=4, args_size=3
+         0: aload_0
+         1: ldc           #69                 // String prefix
+         3: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_0
+         7: aload_1
+         8: aload_2
+         9: invokestatic  #79                 // Method java/io/File.createTempFile:(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+        12: astore_3
+        13: aload_3
+        14: invokevirtual #83                 // Method java/io/File.delete:()Z
+        17: pop
+        18: aload_3
+        19: invokevirtual #86                 // Method java/io/File.mkdir:()Z
+        22: ifeq          33
+        25: aload_3
+        26: dup
+        27: ldc           #88                 // String dir
+        29: invokestatic  #91                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        32: areturn
+        33: new           #93                 // class java/io/IOException
+        36: dup
+        37: new           #95                 // class java/lang/StringBuilder
+        40: dup
+        41: invokespecial #99                 // Method java/lang/StringBuilder."<init>":()V
+        44: ldc           #101                // String Unable to create temporary directory
+        46: invokevirtual #105                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        49: aload_3
+        50: invokevirtual #108                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+        53: bipush        46
+        55: invokevirtual #111                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        58: invokevirtual #115                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        61: invokespecial #118                // Method java/io/IOException."<init>":(Ljava/lang/String;)V
+        64: checkcast     #120                // class java/lang/Throwable
+        67: athrow
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           13      55     3   dir   Ljava/io/File;
+            0      68     0 prefix   Ljava/lang/String;
+            0      68     1 suffix   Ljava/lang/String;
+            0      68     2 directory   Ljava/io/File;
+      LineNumberTable:
+        line 27: 6
+        line 28: 13
+        line 29: 18
+        line 30: 25
+        line 32: 33
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 33
+          locals = [ class java/io/File ]
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #68()
+          info.journeymap.shaded.org.jetbrains.annotations.Nullable
+      parameter 2:
+        0: #68()
+          info.journeymap.shaded.org.jetbrains.annotations.Nullable
+
+  public static java.io.File createTempDir$default(java.lang.String, java.lang.String, java.io.File, int, java.lang.Object);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/io/File;ILjava/lang/Object;)Ljava/io/File;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=5, args_size=5
+         0: iload_3
+         1: iconst_1
+         2: iand
+         3: ifeq          9
+         6: ldc           #125                // String tmp
+         8: astore_0
+         9: iload_3
+        10: iconst_2
+        11: iand
+        12: ifeq          20
+        15: aconst_null
+        16: checkcast     #127                // class java/lang/String
+        19: astore_1
+        20: iload_3
+        21: iconst_4
+        22: iand
+        23: ifeq          31
+        26: aconst_null
+        27: checkcast     #77                 // class java/io/File
+        30: astore_2
+        31: aload_0
+        32: aload_1
+        33: aload_2
+        34: invokestatic  #130                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.createTempDir:(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+        37: areturn
+      LineNumberTable:
+        line 26: 6
+      StackMapTable: number_of_entries = 3
+        frame_type = 9 /* same */
+        frame_type = 10 /* same */
+        frame_type = 10 /* same */
+
+  public static final java.io.File createTempFile(java.lang.String, java.lang.String, java.io.File);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: ldc           #69                 // String prefix
+         3: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_0
+         7: aload_1
+         8: aload_2
+         9: invokestatic  #79                 // Method java/io/File.createTempFile:(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+        12: dup
+        13: ldc           #132                // String File.createTempFile(prefix, suffix, directory)
+        15: invokestatic  #91                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        18: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0 prefix   Ljava/lang/String;
+            0      19     1 suffix   Ljava/lang/String;
+            0      19     2 directory   Ljava/io/File;
+      LineNumberTable:
+        line 49: 6
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #68()
+          info.journeymap.shaded.org.jetbrains.annotations.Nullable
+      parameter 2:
+        0: #68()
+          info.journeymap.shaded.org.jetbrains.annotations.Nullable
+
+  public static java.io.File createTempFile$default(java.lang.String, java.lang.String, java.io.File, int, java.lang.Object);
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/io/File;ILjava/lang/Object;)Ljava/io/File;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=5, args_size=5
+         0: iload_3
+         1: iconst_1
+         2: iand
+         3: ifeq          9
+         6: ldc           #125                // String tmp
+         8: astore_0
+         9: iload_3
+        10: iconst_2
+        11: iand
+        12: ifeq          20
+        15: aconst_null
+        16: checkcast     #127                // class java/lang/String
+        19: astore_1
+        20: iload_3
+        21: iconst_4
+        22: iand
+        23: ifeq          31
+        26: aconst_null
+        27: checkcast     #77                 // class java/io/File
+        30: astore_2
+        31: aload_0
+        32: aload_1
+        33: aload_2
+        34: invokestatic  #134                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.createTempFile:(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+        37: areturn
+      LineNumberTable:
+        line 48: 6
+      StackMapTable: number_of_entries = 3
+        frame_type = 9 /* same */
+        frame_type = 10 /* same */
+        frame_type = 10 /* same */
+
+  public static final java.lang.String getExtension(java.io.File);
+    descriptor: (Ljava/io/File;)Ljava/lang/String;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: ldc           #136                // String $this$extension
+         3: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_0
+         7: invokevirtual #139                // Method java/io/File.getName:()Ljava/lang/String;
+        10: dup
+        11: ldc           #141                // String name
+        13: invokestatic  #91                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        16: bipush        46
+        18: ldc           #142                // String
+        20: invokestatic  #148                // Method info/journeymap/shaded/kotlin/kotlin/text/StringsKt.substringAfterLast:(Ljava/lang/String;CLjava/lang/String;)Ljava/lang/String;
+        23: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      24     0 $this$extension   Ljava/io/File;
+      LineNumberTable:
+        line 56: 6
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.lang.String getInvariantSeparatorsPath(java.io.File);
+    descriptor: (Ljava/io/File;)Ljava/lang/String;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=6, locals=1, args_size=1
+         0: aload_0
+         1: ldc           #150                // String $this$invariantSeparatorsPath
+         3: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: getstatic     #154                // Field java/io/File.separatorChar:C
+         9: bipush        47
+        11: if_icmpeq     38
+        14: aload_0
+        15: invokevirtual #157                // Method java/io/File.getPath:()Ljava/lang/String;
+        18: dup
+        19: ldc           #159                // String path
+        21: invokestatic  #91                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        24: getstatic     #154                // Field java/io/File.separatorChar:C
+        27: bipush        47
+        29: iconst_0
+        30: iconst_4
+        31: aconst_null
+        32: invokestatic  #163                // Method info/journeymap/shaded/kotlin/kotlin/text/StringsKt.replace$default:(Ljava/lang/String;CCZILjava/lang/Object;)Ljava/lang/String;
+        35: goto          48
+        38: aload_0
+        39: invokevirtual #157                // Method java/io/File.getPath:()Ljava/lang/String;
+        42: dup
+        43: ldc           #159                // String path
+        45: invokestatic  #91                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        48: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      49     0 $this$invariantSeparatorsPath   Ljava/io/File;
+      LineNumberTable:
+        line 63: 6
+      StackMapTable: number_of_entries = 2
+        frame_type = 38 /* same */
+        frame_type = 73 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.lang.String getNameWithoutExtension(java.io.File);
+    descriptor: (Ljava/io/File;)Ljava/lang/String;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=5, locals=1, args_size=1
+         0: aload_0
+         1: ldc           #165                // String $this$nameWithoutExtension
+         3: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_0
+         7: invokevirtual #139                // Method java/io/File.getName:()Ljava/lang/String;
+        10: dup
+        11: ldc           #141                // String name
+        13: invokestatic  #91                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        16: ldc           #167                // String .
+        18: aconst_null
+        19: iconst_2
+        20: aconst_null
+        21: invokestatic  #171                // Method info/journeymap/shaded/kotlin/kotlin/text/StringsKt.substringBeforeLast$default:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+        24: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      25     0 $this$nameWithoutExtension   Ljava/io/File;
+      LineNumberTable:
+        line 69: 6
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.lang.String toRelativeString(java.io.File, java.io.File);
+    descriptor: (Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: ldc           #174                // String $this$toRelativeString
+         3: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_1
+         7: ldc           #175                // String base
+         9: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        12: aload_0
+        13: aload_1
+        14: invokestatic  #177                // Method toRelativeStringOrNull$FilesKt__UtilsKt:(Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+        17: dup
+        18: ifnull        24
+        21: goto          69
+        24: pop
+        25: new           #179                // class java/lang/IllegalArgumentException
+        28: dup
+        29: new           #95                 // class java/lang/StringBuilder
+        32: dup
+        33: invokespecial #99                 // Method java/lang/StringBuilder."<init>":()V
+        36: ldc           #181                // String this and base files have different roots:
+        38: invokevirtual #105                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        41: aload_0
+        42: invokevirtual #108                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+        45: ldc           #183                // String  and
+        47: invokevirtual #105                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        50: aload_1
+        51: invokevirtual #108                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+        54: bipush        46
+        56: invokevirtual #111                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        59: invokevirtual #115                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        62: invokespecial #184                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        65: checkcast     #120                // class java/lang/Throwable
+        68: athrow
+        69: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      70     0 $this$toRelativeString   Ljava/io/File;
+            0      70     1  base   Ljava/io/File;
+      LineNumberTable:
+        line 81: 12
+        line 81: 24
+      StackMapTable: number_of_entries = 2
+        frame_type = 88 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 108 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.io.File relativeTo(java.io.File, java.io.File);
+    descriptor: (Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: ldc           #187                // String $this$relativeTo
+         3: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_1
+         7: ldc           #175                // String base
+         9: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        12: new           #77                 // class java/io/File
+        15: dup
+        16: aload_0
+        17: aload_1
+        18: invokestatic  #189                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toRelativeString:(Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+        21: invokespecial #190                // Method java/io/File."<init>":(Ljava/lang/String;)V
+        24: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      25     0 $this$relativeTo   Ljava/io/File;
+            0      25     1  base   Ljava/io/File;
+      LineNumberTable:
+        line 92: 12
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.io.File relativeToOrSelf(java.io.File, java.io.File);
+    descriptor: (Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=7, args_size=2
+         0: aload_0
+         1: ldc           #192                // String $this$relativeToOrSelf
+         3: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_1
+         7: ldc           #175                // String base
+         9: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        12: aload_0
+        13: aload_1
+        14: invokestatic  #177                // Method toRelativeStringOrNull$FilesKt__UtilsKt:(Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+        17: dup
+        18: ifnull        45
+        21: astore_2
+        22: iconst_0
+        23: istore_3
+        24: iconst_0
+        25: istore        4
+        27: aload_2
+        28: astore        5
+        30: iconst_0
+        31: istore        6
+        33: new           #77                 // class java/io/File
+        36: dup
+        37: aload         5
+        39: invokespecial #190                // Method java/io/File."<init>":(Ljava/lang/String;)V
+        42: goto          47
+        45: pop
+        46: aload_0
+        47: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           30      12     5    p1   Ljava/lang/String;
+           33       9     6 $i$a$-unknown-FilesKt__UtilsKt$relativeToOrSelf$1   I
+            0      48     0 $this$relativeToOrSelf   Ljava/io/File;
+            0      48     1  base   Ljava/io/File;
+      LineNumberTable:
+        line 102: 12
+        line 102: 39
+        line 102: 42
+        line 102: 45
+        line 102: 46
+      StackMapTable: number_of_entries = 2
+        frame_type = 109 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 65 /* same_locals_1_stack_item */
+          stack = [ class java/io/File ]
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.io.File relativeToOrNull(java.io.File, java.io.File);
+    descriptor: (Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=7, args_size=2
+         0: aload_0
+         1: ldc           #197                // String $this$relativeToOrNull
+         3: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_1
+         7: ldc           #175                // String base
+         9: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        12: aload_0
+        13: aload_1
+        14: invokestatic  #177                // Method toRelativeStringOrNull$FilesKt__UtilsKt:(Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+        17: dup
+        18: ifnull        45
+        21: astore_2
+        22: iconst_0
+        23: istore_3
+        24: iconst_0
+        25: istore        4
+        27: aload_2
+        28: astore        5
+        30: iconst_0
+        31: istore        6
+        33: new           #77                 // class java/io/File
+        36: dup
+        37: aload         5
+        39: invokespecial #190                // Method java/io/File."<init>":(Ljava/lang/String;)V
+        42: goto          47
+        45: pop
+        46: aconst_null
+        47: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           30      12     5    p1   Ljava/lang/String;
+           33       9     6 $i$a$-unknown-FilesKt__UtilsKt$relativeToOrNull$1   I
+            0      48     0 $this$relativeToOrNull   Ljava/io/File;
+            0      48     1  base   Ljava/io/File;
+      LineNumberTable:
+        line 112: 12
+        line 112: 39
+        line 112: 42
+        line 112: 47
+      StackMapTable: number_of_entries = 2
+        frame_type = 109 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 65 /* same_locals_1_stack_item */
+          stack = [ class java/io/File ]
+    RuntimeInvisibleAnnotations:
+      0: #68()
+        info.journeymap.shaded.org.jetbrains.annotations.Nullable
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  private static final java.lang.String toRelativeStringOrNull$FilesKt__UtilsKt(java.io.File, java.io.File);
+    descriptor: (Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=10, locals=17, args_size=2
+         0: aload_0
+         1: invokestatic  #202                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toComponents:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+         4: invokestatic  #205                // Method normalize$FilesKt__UtilsKt:(Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+         7: astore_2
+         8: aload_1
+         9: invokestatic  #202                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toComponents:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+        12: invokestatic  #205                // Method normalize$FilesKt__UtilsKt:(Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+        15: astore_3
+        16: aload_2
+        17: invokevirtual #211                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getRoot:()Ljava/io/File;
+        20: aload_3
+        21: invokevirtual #211                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getRoot:()Ljava/io/File;
+        24: invokestatic  #215                // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+        27: iconst_1
+        28: ixor
+        29: ifeq          34
+        32: aconst_null
+        33: areturn
+        34: aload_3
+        35: invokevirtual #219                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+        38: istore        4
+        40: aload_2
+        41: invokevirtual #219                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+        44: istore        5
+        46: aload_0
+        47: astore        7
+        49: iconst_0
+        50: istore        8
+        52: iconst_0
+        53: istore        9
+        55: aload         7
+        57: astore        10
+        59: iconst_0
+        60: istore        11
+        62: iconst_0
+        63: istore        12
+        65: iload         5
+        67: istore        13
+        69: iload         4
+        71: istore        14
+        73: iconst_0
+        74: istore        15
+        76: iload         13
+        78: iload         14
+        80: invokestatic  #225                // Method java/lang/Math.min:(II)I
+        83: istore        16
+        85: iload         12
+        87: iload         16
+        89: if_icmpge     132
+        92: aload_2
+        93: invokevirtual #229                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+        96: iload         12
+        98: invokeinterface #235,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+       103: checkcast     #77                 // class java/io/File
+       106: aload_3
+       107: invokevirtual #229                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+       110: iload         12
+       112: invokeinterface #235,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+       117: checkcast     #77                 // class java/io/File
+       120: invokestatic  #215                // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+       123: ifeq          132
+       126: iinc          12, 1
+       129: goto          85
+       132: iload         12
+       134: istore        6
+       136: new           #95                 // class java/lang/StringBuilder
+       139: dup
+       140: invokespecial #99                 // Method java/lang/StringBuilder."<init>":()V
+       143: astore        7
+       145: iload         4
+       147: iconst_1
+       148: isub
+       149: istore        8
+       151: iload         6
+       153: istore        9
+       155: iload         8
+       157: iload         9
+       159: if_icmplt     226
+       162: aload_3
+       163: invokevirtual #229                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+       166: iload         8
+       168: invokeinterface #235,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+       173: checkcast     #77                 // class java/io/File
+       176: invokevirtual #139                // Method java/io/File.getName:()Ljava/lang/String;
+       179: ldc           #237                // String ..
+       181: invokestatic  #215                // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+       184: ifeq          189
+       187: aconst_null
+       188: areturn
+       189: aload         7
+       191: ldc           #237                // String ..
+       193: invokevirtual #105                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       196: pop
+       197: iload         8
+       199: iload         6
+       201: if_icmpeq     213
+       204: aload         7
+       206: getstatic     #154                // Field java/io/File.separatorChar:C
+       209: invokevirtual #111                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+       212: pop
+       213: iload         8
+       215: iload         9
+       217: if_icmpeq     226
+       220: iinc          8, -1
+       223: goto          162
+       226: iload         6
+       228: iload         5
+       230: if_icmpge     293
+       233: iload         6
+       235: iload         4
+       237: if_icmpge     249
+       240: aload         7
+       242: getstatic     #154                // Field java/io/File.separatorChar:C
+       245: invokevirtual #111                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+       248: pop
+       249: aload_2
+       250: invokevirtual #229                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+       253: checkcast     #239                // class java/lang/Iterable
+       256: iload         6
+       258: invokestatic  #245                // Method info/journeymap/shaded/kotlin/kotlin/collections/CollectionsKt.drop:(Ljava/lang/Iterable;I)Ljava/util/List;
+       261: checkcast     #239                // class java/lang/Iterable
+       264: aload         7
+       266: checkcast     #247                // class java/lang/Appendable
+       269: getstatic     #250                // Field java/io/File.separator:Ljava/lang/String;
+       272: dup
+       273: ldc           #252                // String File.separator
+       275: invokestatic  #91                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+       278: checkcast     #254                // class java/lang/CharSequence
+       281: aconst_null
+       282: aconst_null
+       283: iconst_0
+       284: aconst_null
+       285: aconst_null
+       286: bipush        124
+       288: aconst_null
+       289: invokestatic  #258                // Method info/journeymap/shaded/kotlin/kotlin/collections/CollectionsKt.joinTo$default:(Ljava/lang/Iterable;Ljava/lang/Appendable;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILjava/lang/CharSequence;Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Appendable;
+       292: pop
+       293: aload         7
+       295: invokevirtual #115                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       298: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           85      49    16 maxSameCount   I
+           65      69    12     i   I
+           59      75    10 $this$countSame   Ljava/io/File;
+           62      72    11 $i$a$-run-FilesKt__UtilsKt$toRelativeStringOrNull$sameCount$1   I
+          162      61     8     i   I
+          145     154     7   res   Ljava/lang/StringBuilder;
+          136     163     6 sameCount   I
+           46     253     5 thisCount   I
+           40     259     4 baseCount   I
+           16     283     3 baseComponents   Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+            8     291     2 thisComponents   Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+            0     299     0 $this$toRelativeStringOrNull   Ljava/io/File;
+            0     299     1  base   Ljava/io/File;
+      LineNumberTable:
+        line 117: 0
+        line 118: 8
+        line 119: 16
+        line 120: 32
+        line 123: 34
+        line 124: 40
+        line 126: 46
+        line 127: 62
+        line 128: 65
+        line 128: 83
+        line 129: 85
+        line 130: 126
+        line 129: 129
+        line 131: 132
+        line 126: 134
+        line 126: 134
+        line 135: 136
+        line 136: 145
+        line 137: 162
+        line 138: 187
+        line 141: 189
+        line 143: 197
+        line 144: 204
+        line 136: 213
+        line 149: 226
+        line 151: 233
+        line 152: 240
+        line 154: 249
+        line 157: 293
+      StackMapTable: number_of_entries = 9
+        frame_type = 253 /* append */
+          offset_delta = 34
+          locals = [ class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents, class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 50
+          locals = [ class java/io/File, class java/io/File, class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents, class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents, int, int, top, class java/io/File, int, int, class java/io/File, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 46 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 29
+          locals = [ class java/io/File, class java/io/File, class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents, class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents, int, int, int, class java/lang/StringBuilder, int, int, class java/io/File, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 26 /* same */
+        frame_type = 23 /* same */
+        frame_type = 12 /* same */
+        frame_type = 22 /* same */
+        frame_type = 43 /* same */
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+
+  public static final java.io.File copyTo(java.io.File, java.io.File, boolean, int);
+    descriptor: (Ljava/io/File;Ljava/io/File;ZI)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=7, locals=16, args_size=4
+         0: aload_0
+         1: ldc_w         #273                // String $this$copyTo
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_1
+         8: ldc_w         #274                // String target
+        11: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        14: aload_0
+        15: invokevirtual #277                // Method java/io/File.exists:()Z
+        18: ifne          39
+        21: new           #279                // class info/journeymap/shaded/kotlin/kotlin/io/NoSuchFileException
+        24: dup
+        25: aload_0
+        26: aconst_null
+        27: ldc_w         #281                // String The source file doesn\'t exist.
+        30: iconst_2
+        31: aconst_null
+        32: invokespecial #284                // Method info/journeymap/shaded/kotlin/kotlin/io/NoSuchFileException."<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;ILinfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DefaultConstructorMarker;)V
+        35: checkcast     #120                // class java/lang/Throwable
+        38: athrow
+        39: aload_1
+        40: invokevirtual #277                // Method java/io/File.exists:()Z
+        43: ifeq          89
+        46: iload_2
+        47: ifne          66
+        50: new           #286                // class info/journeymap/shaded/kotlin/kotlin/io/FileAlreadyExistsException
+        53: dup
+        54: aload_0
+        55: aload_1
+        56: ldc_w         #288                // String The destination file already exists.
+        59: invokespecial #291                // Method info/journeymap/shaded/kotlin/kotlin/io/FileAlreadyExistsException."<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+        62: checkcast     #120                // class java/lang/Throwable
+        65: athrow
+        66: aload_1
+        67: invokevirtual #83                 // Method java/io/File.delete:()Z
+        70: ifne          89
+        73: new           #286                // class info/journeymap/shaded/kotlin/kotlin/io/FileAlreadyExistsException
+        76: dup
+        77: aload_0
+        78: aload_1
+        79: ldc_w         #293                // String Tried to overwrite the destination, but failed to delete it.
+        82: invokespecial #291                // Method info/journeymap/shaded/kotlin/kotlin/io/FileAlreadyExistsException."<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+        85: checkcast     #120                // class java/lang/Throwable
+        88: athrow
+        89: aload_0
+        90: invokevirtual #296                // Method java/io/File.isDirectory:()Z
+        93: ifeq          119
+        96: aload_1
+        97: invokevirtual #299                // Method java/io/File.mkdirs:()Z
+       100: ifne          301
+       103: new           #301                // class info/journeymap/shaded/kotlin/kotlin/io/FileSystemException
+       106: dup
+       107: aload_0
+       108: aload_1
+       109: ldc_w         #303                // String Failed to create target directory.
+       112: invokespecial #304                // Method info/journeymap/shaded/kotlin/kotlin/io/FileSystemException."<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+       115: checkcast     #120                // class java/lang/Throwable
+       118: athrow
+       119: aload_1
+       120: invokevirtual #307                // Method java/io/File.getParentFile:()Ljava/io/File;
+       123: dup
+       124: ifnull        134
+       127: invokevirtual #299                // Method java/io/File.mkdirs:()Z
+       130: pop
+       131: goto          135
+       134: pop
+       135: aload_0
+       136: astore        4
+       138: iconst_0
+       139: istore        5
+       141: new           #309                // class java/io/FileInputStream
+       144: dup
+       145: aload         4
+       147: invokespecial #312                // Method java/io/FileInputStream."<init>":(Ljava/io/File;)V
+       150: checkcast     #314                // class java/io/Closeable
+       153: astore        4
+       155: iconst_0
+       156: istore        5
+       158: aconst_null
+       159: checkcast     #120                // class java/lang/Throwable
+       162: astore        6
+       164: nop
+       165: aload         4
+       167: checkcast     #309                // class java/io/FileInputStream
+       170: astore        7
+       172: iconst_0
+       173: istore        9
+       175: aload_1
+       176: astore        10
+       178: iconst_0
+       179: istore        11
+       181: new           #316                // class java/io/FileOutputStream
+       184: dup
+       185: aload         10
+       187: invokespecial #317                // Method java/io/FileOutputStream."<init>":(Ljava/io/File;)V
+       190: checkcast     #314                // class java/io/Closeable
+       193: astore        10
+       195: iconst_0
+       196: istore        11
+       198: aconst_null
+       199: checkcast     #120                // class java/lang/Throwable
+       202: astore        12
+       204: nop
+       205: aload         10
+       207: checkcast     #316                // class java/io/FileOutputStream
+       210: astore        13
+       212: iconst_0
+       213: istore        15
+       215: aload         7
+       217: checkcast     #319                // class java/io/InputStream
+       220: aload         13
+       222: checkcast     #321                // class java/io/OutputStream
+       225: iload_3
+       226: invokestatic  #326                // Method info/journeymap/shaded/kotlin/kotlin/io/ByteStreamsKt.copyTo:(Ljava/io/InputStream;Ljava/io/OutputStream;I)J
+       229: lstore        13
+       231: aload         10
+       233: aload         12
+       235: invokestatic  #332                // Method info/journeymap/shaded/kotlin/kotlin/io/CloseableKt.closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+       238: lload         13
+       240: goto          264
+       243: astore        13
+       245: aload         13
+       247: astore        12
+       249: aload         13
+       251: athrow
+       252: astore        13
+       254: aload         10
+       256: aload         12
+       258: invokestatic  #332                // Method info/journeymap/shaded/kotlin/kotlin/io/CloseableKt.closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+       261: aload         13
+       263: athrow
+       264: nop
+       265: lstore        7
+       267: aload         4
+       269: aload         6
+       271: invokestatic  #332                // Method info/journeymap/shaded/kotlin/kotlin/io/CloseableKt.closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+       274: lload         7
+       276: goto          300
+       279: astore        7
+       281: aload         7
+       283: astore        6
+       285: aload         7
+       287: athrow
+       288: astore        7
+       290: aload         4
+       292: aload         6
+       294: invokestatic  #332                // Method info/journeymap/shaded/kotlin/kotlin/io/CloseableKt.closeFinally:(Ljava/io/Closeable;Ljava/lang/Throwable;)V
+       297: aload         7
+       299: athrow
+       300: pop2
+       301: aload_1
+       302: areturn
+      Exception table:
+         from    to  target type
+           204   231   243   Class java/lang/Throwable
+           204   231   252   any
+           243   252   252   any
+           252   254   252   any
+           164   267   279   Class java/lang/Throwable
+           164   267   288   any
+           279   288   288   any
+           288   290   288   any
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          212      17    13 output   Ljava/io/FileOutputStream;
+          215      14    15 $i$a$-use-FilesKt__UtilsKt$copyTo$1$1   I
+          172      93     7 input   Ljava/io/FileInputStream;
+          175      90     9 $i$a$-use-FilesKt__UtilsKt$copyTo$1   I
+            0     303     0 $this$copyTo   Ljava/io/File;
+            0     303     1 target   Ljava/io/File;
+            0     303     2 overwrite   Z
+            0     303     3 bufferSize   I
+      LineNumberTable:
+        line 182: 14
+        line 183: 21
+        line 186: 39
+        line 187: 46
+        line 188: 50
+        line 189: 66
+        line 190: 73
+        line 193: 89
+        line 194: 96
+        line 195: 103
+        line 197: 119
+        line 199: 135
+        line 199: 155
+        line 200: 175
+        line 200: 195
+        line 201: 215
+        line 200: 229
+        line 202: 264
+        line 199: 265
+        line 204: 301
+        line 206: 301
+      StackMapTable: number_of_entries = 13
+        frame_type = 39 /* same */
+        frame_type = 26 /* same */
+        frame_type = 22 /* same */
+        frame_type = 29 /* same */
+        frame_type = 78 /* same_locals_1_stack_item */
+          stack = [ class java/io/File ]
+        frame_type = 0 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 107
+          locals = [ class java/io/File, class java/io/File, int, int, class java/io/Closeable, int, class java/lang/Throwable, class java/io/FileInputStream, top, int, class java/io/Closeable, int, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 72 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 11
+          locals = [ class java/io/File, class java/io/File, int, int, class java/io/Closeable, int, class java/lang/Throwable, class java/io/FileInputStream, top, int, class java/io/Closeable, int, class java/lang/Throwable, long, int ]
+          stack = [ long ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 14
+          locals = [ class java/io/File, class java/io/File, int, int, class java/io/Closeable, int, class java/lang/Throwable ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 72 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 11
+          locals = [ class java/io/File, class java/io/File, int, int, class java/io/Closeable, int, class java/lang/Throwable, long, int, class java/io/Closeable, int, class java/lang/Throwable, long, int ]
+          stack = [ long ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class java/io/File, class java/io/File, int, int ]
+          stack = []
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 2:
+      parameter 3:
+
+  public static java.io.File copyTo$default(java.io.File, java.io.File, boolean, int, int, java.lang.Object);
+    descriptor: (Ljava/io/File;Ljava/io/File;ZIILjava/lang/Object;)Ljava/io/File;
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=6, args_size=6
+         0: iload         4
+         2: iconst_2
+         3: iand
+         4: ifeq          9
+         7: iconst_0
+         8: istore_2
+         9: iload         4
+        11: iconst_4
+        12: iand
+        13: ifeq          20
+        16: sipush        8192
+        19: istore_3
+        20: aload_0
+        21: aload_1
+        22: iload_2
+        23: iload_3
+        24: invokestatic  #343                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.copyTo:(Ljava/io/File;Ljava/io/File;ZI)Ljava/io/File;
+        27: areturn
+      LineNumberTable:
+        line 181: 7
+      StackMapTable: number_of_entries = 2
+        frame_type = 9 /* same */
+        frame_type = 10 /* same */
+
+  public static final boolean copyRecursively(java.io.File, java.io.File, boolean, info.journeymap.shaded.kotlin.kotlin.jvm.functions.Function2<? super java.io.File, ? super java.io.IOException, ? extends info.journeymap.shaded.kotlin.kotlin.io.OnErrorAction>);
+    descriptor: (Ljava/io/File;Ljava/io/File;ZLinfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Z
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=9, locals=9, args_size=4
+         0: aload_0
+         1: ldc_w         #348                // String $this$copyRecursively
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_1
+         8: ldc_w         #274                // String target
+        11: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        14: aload_3
+        15: ldc_w         #349                // String onError
+        18: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        21: aload_0
+        22: invokevirtual #277                // Method java/io/File.exists:()Z
+        25: ifne          64
+        28: aload_3
+        29: aload_0
+        30: new           #279                // class info/journeymap/shaded/kotlin/kotlin/io/NoSuchFileException
+        33: dup
+        34: aload_0
+        35: aconst_null
+        36: ldc_w         #281                // String The source file doesn\'t exist.
+        39: iconst_2
+        40: aconst_null
+        41: invokespecial #284                // Method info/journeymap/shaded/kotlin/kotlin/io/NoSuchFileException."<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;ILinfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DefaultConstructorMarker;)V
+        44: invokeinterface #355,  3          // InterfaceMethod info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2.invoke:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        49: checkcast     #357                // class info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction
+        52: getstatic     #360                // Field info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction.TERMINATE:Linfo/journeymap/shaded/kotlin/kotlin/io/OnErrorAction;
+        55: if_acmpeq     62
+        58: iconst_1
+        59: goto          63
+        62: iconst_0
+        63: ireturn
+        64: nop
+        65: aload_0
+        66: invokestatic  #364                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.walkTopDown:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+        69: new           #63                 // class info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$2
+        72: dup
+        73: aload_3
+        74: invokespecial #367                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$2."<init>":(Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)V
+        77: checkcast     #351                // class info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2
+        80: invokevirtual #373                // Method info/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk.onFail:(Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+        83: invokevirtual #377                // Method info/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk.iterator:()Ljava/util/Iterator;
+        86: astore        5
+        88: aload         5
+        90: invokeinterface #382,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        95: ifeq          356
+        98: aload         5
+       100: invokeinterface #386,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       105: checkcast     #77                 // class java/io/File
+       108: astore        4
+       110: aload         4
+       112: invokevirtual #277                // Method java/io/File.exists:()Z
+       115: ifne          152
+       118: aload_3
+       119: aload         4
+       121: new           #279                // class info/journeymap/shaded/kotlin/kotlin/io/NoSuchFileException
+       124: dup
+       125: aload         4
+       127: aconst_null
+       128: ldc_w         #281                // String The source file doesn\'t exist.
+       131: iconst_2
+       132: aconst_null
+       133: invokespecial #284                // Method info/journeymap/shaded/kotlin/kotlin/io/NoSuchFileException."<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;ILinfo/journeymap/shaded/kotlin/kotlin/jvm/internal/DefaultConstructorMarker;)V
+       136: invokeinterface #355,  3          // InterfaceMethod info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2.invoke:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       141: checkcast     #357                // class info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction
+       144: getstatic     #360                // Field info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction.TERMINATE:Linfo/journeymap/shaded/kotlin/kotlin/io/OnErrorAction;
+       147: if_acmpne     353
+       150: iconst_0
+       151: ireturn
+       152: aload         4
+       154: aload_0
+       155: invokestatic  #189                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toRelativeString:(Ljava/io/File;Ljava/io/File;)Ljava/lang/String;
+       158: astore        6
+       160: new           #77                 // class java/io/File
+       163: dup
+       164: aload_1
+       165: aload         6
+       167: invokespecial #389                // Method java/io/File."<init>":(Ljava/io/File;Ljava/lang/String;)V
+       170: astore        7
+       172: aload         7
+       174: invokevirtual #277                // Method java/io/File.exists:()Z
+       177: ifeq          284
+       180: aload         4
+       182: invokevirtual #296                // Method java/io/File.isDirectory:()Z
+       185: ifeq          196
+       188: aload         7
+       190: invokevirtual #296                // Method java/io/File.isDirectory:()Z
+       193: ifne          284
+       196: iload_2
+       197: ifne          204
+       200: iconst_1
+       201: goto          241
+       204: aload         7
+       206: invokevirtual #296                // Method java/io/File.isDirectory:()Z
+       209: ifeq          228
+       212: aload         7
+       214: invokestatic  #392                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.deleteRecursively:(Ljava/io/File;)Z
+       217: ifne          224
+       220: iconst_1
+       221: goto          241
+       224: iconst_0
+       225: goto          241
+       228: aload         7
+       230: invokevirtual #83                 // Method java/io/File.delete:()Z
+       233: ifne          240
+       236: iconst_1
+       237: goto          241
+       240: iconst_0
+       241: istore        8
+       243: iload         8
+       245: ifeq          284
+       248: aload_3
+       249: aload         7
+       251: new           #286                // class info/journeymap/shaded/kotlin/kotlin/io/FileAlreadyExistsException
+       254: dup
+       255: aload         4
+       257: aload         7
+       259: ldc_w         #288                // String The destination file already exists.
+       262: invokespecial #291                // Method info/journeymap/shaded/kotlin/kotlin/io/FileAlreadyExistsException."<init>":(Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+       265: invokeinterface #355,  3          // InterfaceMethod info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2.invoke:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       270: checkcast     #357                // class info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction
+       273: getstatic     #360                // Field info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction.TERMINATE:Linfo/journeymap/shaded/kotlin/kotlin/io/OnErrorAction;
+       276: if_acmpne     281
+       279: iconst_0
+       280: ireturn
+       281: goto          353
+       284: aload         4
+       286: invokevirtual #296                // Method java/io/File.isDirectory:()Z
+       289: ifeq          301
+       292: aload         7
+       294: invokevirtual #299                // Method java/io/File.mkdirs:()Z
+       297: pop
+       298: goto          353
+       301: aload         4
+       303: aload         7
+       305: iload_2
+       306: iconst_0
+       307: iconst_4
+       308: aconst_null
+       309: invokestatic  #394                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.copyTo$default:(Ljava/io/File;Ljava/io/File;ZIILjava/lang/Object;)Ljava/io/File;
+       312: invokevirtual #398                // Method java/io/File.length:()J
+       315: aload         4
+       317: invokevirtual #398                // Method java/io/File.length:()J
+       320: lcmp
+       321: ifeq          353
+       324: aload_3
+       325: aload         4
+       327: new           #93                 // class java/io/IOException
+       330: dup
+       331: ldc_w         #400                // String Source file wasn\'t copied completely, length of destination file differs.
+       334: invokespecial #118                // Method java/io/IOException."<init>":(Ljava/lang/String;)V
+       337: invokeinterface #355,  3          // InterfaceMethod info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2.invoke:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       342: checkcast     #357                // class info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction
+       345: getstatic     #360                // Field info/journeymap/shaded/kotlin/kotlin/io/OnErrorAction.TERMINATE:Linfo/journeymap/shaded/kotlin/kotlin/io/OnErrorAction;
+       348: if_acmpne     353
+       351: iconst_0
+       352: ireturn
+       353: goto          88
+       356: iconst_1
+       357: ireturn
+       358: astore        4
+       360: iconst_0
+       361: ireturn
+      Exception table:
+         from    to  target type
+            64   358   358   Class info/journeymap/shaded/kotlin/kotlin/io/TerminateException
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+          243      41     8 stillExists   Z
+          172     181     7 dstFile   Ljava/io/File;
+          160     193     6 relPath   Ljava/lang/String;
+          110     243     4   src   Ljava/io/File;
+          360       2     4     e   Linfo/journeymap/shaded/kotlin/kotlin/io/TerminateException;
+            0     362     0 $this$copyRecursively   Ljava/io/File;
+            0     362     1 target   Ljava/io/File;
+            0     362     2 overwrite   Z
+            0     362     3 onError   Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;
+      LineNumberTable:
+        line 257: 21
+        line 258: 28
+        line 259: 28
+        line 258: 28
+        line 261: 64
+        line 263: 65
+        line 264: 110
+        line 265: 118
+        line 266: 118
+        line 265: 118
+        line 267: 150
+        line 269: 152
+        line 270: 160
+        line 271: 172
+        line 272: 196
+        line 273: 204
+        line 274: 212
+        line 276: 228
+        line 273: 241
+        line 272: 241
+        line 279: 243
+        line 280: 248
+        line 282: 248
+        line 280: 248
+        line 281: 257
+        line 282: 259
+        line 280: 262
+        line 283: 279
+        line 285: 281
+        line 289: 284
+        line 290: 292
+        line 292: 301
+        line 293: 324
+        line 294: 351
+        line 296: 353
+        line 297: 353
+        line 263: 353
+        line 299: 356
+        line 300: 358
+        line 301: 360
+      StackMapTable: number_of_entries = 17
+        frame_type = 62 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 0 /* same */
+        frame_type = 253 /* append */
+          offset_delta = 23
+          locals = [ top, class java/util/Iterator ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 63
+          locals = [ class java/io/File, class java/io/File, int, class info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2, class java/io/File, class java/util/Iterator ]
+          stack = []
+        frame_type = 253 /* append */
+          offset_delta = 43
+          locals = [ class java/lang/String, class java/io/File ]
+        frame_type = 7 /* same */
+        frame_type = 19 /* same */
+        frame_type = 3 /* same */
+        frame_type = 11 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 39
+          locals = [ int ]
+        frame_type = 250 /* chop */
+          offset_delta = 2
+        frame_type = 16 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 51
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class java/io/File, class java/io/File, int, class info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2, top, class java/util/Iterator ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class java/io/File, class java/io/File, int, class info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2 ]
+          stack = [ class info/journeymap/shaded/kotlin/kotlin/io/TerminateException ]
+    Signature: #541                         // (Ljava/io/File;Ljava/io/File;ZLinfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2<-Ljava/io/File;-Ljava/io/IOException;+Linfo/journeymap/shaded/kotlin/kotlin/io/OnErrorAction;>;)Z
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 2:
+      parameter 3:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static boolean copyRecursively$default(java.io.File, java.io.File, boolean, info.journeymap.shaded.kotlin.kotlin.jvm.functions.Function2, int, java.lang.Object);
+    descriptor: (Ljava/io/File;Ljava/io/File;ZLinfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;ILjava/lang/Object;)Z
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=6, args_size=6
+         0: iload         4
+         2: iconst_2
+         3: iand
+         4: ifeq          9
+         7: iconst_0
+         8: istore_2
+         9: iload         4
+        11: iconst_4
+        12: iand
+        13: ifeq          23
+        16: getstatic     #413                // Field info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$1.INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$1;
+        19: checkcast     #351                // class info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2
+        22: astore_3
+        23: aload_0
+        24: aload_1
+        25: iload_2
+        26: aload_3
+        27: invokestatic  #415                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.copyRecursively:(Ljava/io/File;Ljava/io/File;ZLinfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Z
+        30: ireturn
+      LineNumberTable:
+        line 254: 7
+        line 255: 16
+      StackMapTable: number_of_entries = 2
+        frame_type = 9 /* same */
+        frame_type = 13 /* same */
+
+  public static final boolean deleteRecursively(java.io.File);
+    descriptor: (Ljava/io/File;)Z
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=2, locals=10, args_size=1
+         0: aload_0
+         1: ldc_w         #417                // String $this$deleteRecursively
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_0
+         8: invokestatic  #420                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.walkBottomUp:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FileTreeWalk;
+        11: checkcast     #422                // class info/journeymap/shaded/kotlin/kotlin/sequences/Sequence
+        14: astore_1
+        15: iconst_1
+        16: istore_2
+        17: iconst_0
+        18: istore_3
+        19: iload_2
+        20: istore        4
+        22: aload_1
+        23: invokeinterface #423,  1          // InterfaceMethod info/journeymap/shaded/kotlin/kotlin/sequences/Sequence.iterator:()Ljava/util/Iterator;
+        28: astore        5
+        30: aload         5
+        32: invokeinterface #382,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        37: ifeq          94
+        40: aload         5
+        42: invokeinterface #386,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        47: astore        6
+        49: iload         4
+        51: aload         6
+        53: checkcast     #77                 // class java/io/File
+        56: astore        7
+        58: istore        8
+        60: iconst_0
+        61: istore        9
+        63: aload         7
+        65: invokevirtual #83                 // Method java/io/File.delete:()Z
+        68: ifne          79
+        71: aload         7
+        73: invokevirtual #277                // Method java/io/File.exists:()Z
+        76: ifne          88
+        79: iload         8
+        81: ifeq          88
+        84: iconst_1
+        85: goto          89
+        88: iconst_0
+        89: istore        4
+        91: goto          30
+        94: iload         4
+        96: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           60      29     8   res   Z
+           60      29     7    it   Ljava/io/File;
+           63      26     9 $i$a$-fold-FilesKt__UtilsKt$deleteRecursively$1   I
+           49      42     6 element$iv   Ljava/lang/Object;
+           22      74     4 accumulator$iv   Z
+           17      79     1 $this$fold$iv   Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;
+           17      79     2 initial$iv   Z
+           19      77     3 $i$f$fold   I
+            0      97     0 $this$deleteRecursively   Ljava/io/File;
+      LineNumberTable:
+        line 311: 7
+        line 438: 19
+        line 439: 22
+        line 311: 63
+        line 440: 94
+        line 311: 96
+      StackMapTable: number_of_entries = 5
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = [ class java/io/File, class info/journeymap/shaded/kotlin/kotlin/sequences/Sequence, int, int, int, class java/util/Iterator ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 48
+          locals = [ class java/io/File, class info/journeymap/shaded/kotlin/kotlin/sequences/Sequence, int, int, int, class java/util/Iterator, class java/lang/Object, class java/io/File, int, int ]
+          stack = []
+        frame_type = 8 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 4
+          locals = [ class java/io/File, class info/journeymap/shaded/kotlin/kotlin/sequences/Sequence, int, int, int, class java/util/Iterator ]
+          stack = []
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final boolean startsWith(java.io.File, java.io.File);
+    descriptor: (Ljava/io/File;Ljava/io/File;)Z
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=4, args_size=2
+         0: aload_0
+         1: ldc_w         #437                // String $this$startsWith
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_1
+         8: ldc_w         #438                // String other
+        11: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        14: aload_0
+        15: invokestatic  #202                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toComponents:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+        18: astore_2
+        19: aload_1
+        20: invokestatic  #202                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toComponents:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+        23: astore_3
+        24: aload_2
+        25: invokevirtual #211                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getRoot:()Ljava/io/File;
+        28: aload_3
+        29: invokevirtual #211                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getRoot:()Ljava/io/File;
+        32: invokestatic  #215                // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+        35: iconst_1
+        36: ixor
+        37: ifeq          42
+        40: iconst_0
+        41: ireturn
+        42: aload_2
+        43: invokevirtual #219                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+        46: aload_3
+        47: invokevirtual #219                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+        50: if_icmpge     57
+        53: iconst_0
+        54: goto          78
+        57: aload_2
+        58: invokevirtual #229                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+        61: iconst_0
+        62: aload_3
+        63: invokevirtual #219                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+        66: invokeinterface #442,  3          // InterfaceMethod java/util/List.subList:(II)Ljava/util/List;
+        71: aload_3
+        72: invokevirtual #229                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+        75: invokevirtual #446                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+        78: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           24      55     3 otherComponents   Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+           19      60     2 components   Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+            0      79     0 $this$startsWith   Ljava/io/File;
+            0      79     1 other   Ljava/io/File;
+      LineNumberTable:
+        line 321: 14
+        line 322: 19
+        line 323: 24
+        line 324: 40
+        line 325: 42
+        line 326: 57
+        line 325: 78
+      StackMapTable: number_of_entries = 3
+        frame_type = 253 /* append */
+          offset_delta = 42
+          locals = [ class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents, class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents ]
+        frame_type = 14 /* same */
+        frame_type = 84 /* same_locals_1_stack_item */
+          stack = [ int ]
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final boolean startsWith(java.io.File, java.lang.String);
+    descriptor: (Ljava/io/File;Ljava/lang/String;)Z
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: ldc_w         #437                // String $this$startsWith
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_1
+         8: ldc_w         #438                // String other
+        11: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        14: aload_0
+        15: new           #77                 // class java/io/File
+        18: dup
+        19: aload_1
+        20: invokespecial #190                // Method java/io/File."<init>":(Ljava/lang/String;)V
+        23: invokestatic  #451                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.startsWith:(Ljava/io/File;Ljava/io/File;)Z
+        26: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      27     0 $this$startsWith   Ljava/io/File;
+            0      27     1 other   Ljava/lang/String;
+      LineNumberTable:
+        line 336: 14
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final boolean endsWith(java.io.File, java.io.File);
+    descriptor: (Ljava/io/File;Ljava/io/File;)Z
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=5, args_size=2
+         0: aload_0
+         1: ldc_w         #453                // String $this$endsWith
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_1
+         8: ldc_w         #438                // String other
+        11: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        14: aload_0
+        15: invokestatic  #202                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toComponents:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+        18: astore_2
+        19: aload_1
+        20: invokestatic  #202                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toComponents:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+        23: astore_3
+        24: aload_3
+        25: invokevirtual #456                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.isRooted:()Z
+        28: ifeq          37
+        31: aload_0
+        32: aload_1
+        33: invokestatic  #215                // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+        36: ireturn
+        37: aload_2
+        38: invokevirtual #219                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+        41: aload_3
+        42: invokevirtual #219                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+        45: isub
+        46: istore        4
+        48: iload         4
+        50: ifge          57
+        53: iconst_0
+        54: goto          79
+        57: aload_2
+        58: invokevirtual #229                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+        61: iload         4
+        63: aload_2
+        64: invokevirtual #219                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+        67: invokeinterface #442,  3          // InterfaceMethod java/util/List.subList:(II)Ljava/util/List;
+        72: aload_3
+        73: invokevirtual #229                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+        76: invokevirtual #446                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+        79: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           48      32     4 shift   I
+           24      56     3 otherComponents   Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+           19      61     2 components   Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+            0      80     0 $this$endsWith   Ljava/io/File;
+            0      80     1 other   Ljava/io/File;
+      LineNumberTable:
+        line 348: 14
+        line 349: 19
+        line 350: 24
+        line 351: 31
+        line 352: 37
+        line 353: 48
+        line 354: 57
+        line 353: 79
+      StackMapTable: number_of_entries = 3
+        frame_type = 253 /* append */
+          offset_delta = 37
+          locals = [ class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents, class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents ]
+        frame_type = 252 /* append */
+          offset_delta = 19
+          locals = [ int ]
+        frame_type = 85 /* same_locals_1_stack_item */
+          stack = [ int ]
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final boolean endsWith(java.io.File, java.lang.String);
+    descriptor: (Ljava/io/File;Ljava/lang/String;)Z
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: ldc_w         #453                // String $this$endsWith
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_1
+         8: ldc_w         #438                // String other
+        11: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        14: aload_0
+        15: new           #77                 // class java/io/File
+        18: dup
+        19: aload_1
+        20: invokespecial #190                // Method java/io/File."<init>":(Ljava/lang/String;)V
+        23: invokestatic  #459                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.endsWith:(Ljava/io/File;Ljava/io/File;)Z
+        26: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      27     0 $this$endsWith   Ljava/io/File;
+            0      27     1 other   Ljava/lang/String;
+      LineNumberTable:
+        line 365: 14
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.io.File normalize(java.io.File);
+    descriptor: (Ljava/io/File;)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=10, locals=6, args_size=1
+         0: aload_0
+         1: ldc_w         #462                // String $this$normalize
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_0
+         8: invokestatic  #202                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toComponents:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+        11: astore_1
+        12: iconst_0
+        13: istore_2
+        14: iconst_0
+        15: istore_3
+        16: aload_1
+        17: astore        4
+        19: iconst_0
+        20: istore        5
+        22: aload         4
+        24: invokevirtual #211                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getRoot:()Ljava/io/File;
+        27: aload         4
+        29: invokevirtual #229                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+        32: invokestatic  #465                // Method normalize$FilesKt__UtilsKt:(Ljava/util/List;)Ljava/util/List;
+        35: checkcast     #239                // class java/lang/Iterable
+        38: getstatic     #250                // Field java/io/File.separator:Ljava/lang/String;
+        41: dup
+        42: ldc           #252                // String File.separator
+        44: invokestatic  #91                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        47: checkcast     #254                // class java/lang/CharSequence
+        50: aconst_null
+        51: aconst_null
+        52: iconst_0
+        53: aconst_null
+        54: aconst_null
+        55: bipush        62
+        57: aconst_null
+        58: invokestatic  #469                // Method info/journeymap/shaded/kotlin/kotlin/collections/CollectionsKt.joinToString$default:(Ljava/lang/Iterable;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILjava/lang/CharSequence;Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/String;
+        61: invokestatic  #472                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.resolve:(Ljava/io/File;Ljava/lang/String;)Ljava/io/File;
+        64: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           19      45     4 $this$with   Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+           22      42     5 $i$a$-with-FilesKt__UtilsKt$normalize$1   I
+            0      65     0 $this$normalize   Ljava/io/File;
+      LineNumberTable:
+        line 374: 7
+        line 374: 22
+        line 374: 64
+        line 374: 64
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  private static final info.journeymap.shaded.kotlin.kotlin.io.FilePathComponents normalize$FilesKt__UtilsKt(info.journeymap.shaded.kotlin.kotlin.io.FilePathComponents);
+    descriptor: (Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=1, args_size=1
+         0: new           #207                // class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents
+         3: dup
+         4: aload_0
+         5: invokevirtual #211                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getRoot:()Ljava/io/File;
+         8: aload_0
+         9: invokevirtual #229                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSegments:()Ljava/util/List;
+        12: invokestatic  #465                // Method normalize$FilesKt__UtilsKt:(Ljava/util/List;)Ljava/util/List;
+        15: invokespecial #477                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents."<init>":(Ljava/io/File;Ljava/util/List;)V
+        18: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      19     0 $this$normalize   Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+      LineNumberTable:
+        line 377: 0
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  private static final java.util.List<java.io.File> normalize$FilesKt__UtilsKt(java.util.List<? extends java.io.File>);
+    descriptor: (Ljava/util/List;)Ljava/util/List;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=5, args_size=1
+         0: new           #479                // class java/util/ArrayList
+         3: dup
+         4: aload_0
+         5: invokeinterface #482,  1          // InterfaceMethod java/util/List.size:()I
+        10: invokespecial #485                // Method java/util/ArrayList."<init>":(I)V
+        13: checkcast     #231                // class java/util/List
+        16: astore_1
+        17: aload_0
+        18: invokeinterface #486,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        23: astore_3
+        24: aload_3
+        25: invokeinterface #382,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        30: ifeq          183
+        33: aload_3
+        34: invokeinterface #386,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        39: checkcast     #77                 // class java/io/File
+        42: astore_2
+        43: aload_2
+        44: invokevirtual #139                // Method java/io/File.getName:()Ljava/lang/String;
+        47: dup
+        48: ifnonnull     55
+        51: pop
+        52: goto          172
+        55: astore        4
+        57: aload         4
+        59: invokevirtual #489                // Method java/lang/String.hashCode:()I
+        62: lookupswitch  { // 2
+
+                      46: 101
+
+                    1472: 88
+                 default: 172
+            }
+        88: aload         4
+        90: ldc           #237                // String ..
+        92: invokevirtual #490                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        95: ifeq          172
+        98: goto          114
+       101: aload         4
+       103: ldc           #167                // String .
+       105: invokevirtual #490                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       108: ifeq          172
+       111: goto          180
+       114: aload_1
+       115: invokeinterface #493,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+       120: ifne          161
+       123: aload_1
+       124: invokestatic  #497                // Method info/journeymap/shaded/kotlin/kotlin/collections/CollectionsKt.last:(Ljava/util/List;)Ljava/lang/Object;
+       127: checkcast     #77                 // class java/io/File
+       130: invokevirtual #139                // Method java/io/File.getName:()Ljava/lang/String;
+       133: ldc           #237                // String ..
+       135: invokestatic  #215                // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.areEqual:(Ljava/lang/Object;Ljava/lang/Object;)Z
+       138: iconst_1
+       139: ixor
+       140: ifeq          161
+       143: aload_1
+       144: aload_1
+       145: invokeinterface #482,  1          // InterfaceMethod java/util/List.size:()I
+       150: iconst_1
+       151: isub
+       152: invokeinterface #500,  2          // InterfaceMethod java/util/List.remove:(I)Ljava/lang/Object;
+       157: pop
+       158: goto          180
+       161: aload_1
+       162: aload_2
+       163: invokeinterface #503,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       168: pop
+       169: goto          180
+       172: aload_1
+       173: aload_2
+       174: invokeinterface #503,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       179: pop
+       180: goto          24
+       183: aload_1
+       184: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           43     137     2  file   Ljava/io/File;
+           17     168     1  list   Ljava/util/List;
+            0     185     0 $this$normalize   Ljava/util/List;
+      LineNumberTable:
+        line 380: 0
+        line 381: 17
+        line 382: 43
+        line 384: 88
+        line 383: 101
+        line 384: 114
+        line 385: 172
+        line 386: 180
+        line 381: 180
+        line 388: 183
+      StackMapTable: number_of_entries = 9
+        frame_type = 254 /* append */
+          offset_delta = 24
+          locals = [ class java/util/List, top, class java/util/Iterator ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = [ class java/util/List, class java/util/List, class java/io/File, class java/util/Iterator ]
+          stack = [ class java/lang/String ]
+        frame_type = 252 /* append */
+          offset_delta = 32
+          locals = [ class java/lang/String ]
+        frame_type = 12 /* same */
+        frame_type = 12 /* same */
+        frame_type = 46 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 10
+        frame_type = 7 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class java/util/List, class java/util/List, top, class java/util/Iterator ]
+          stack = []
+    Signature: #542                         // (Ljava/util/List<+Ljava/io/File;>;)Ljava/util/List<Ljava/io/File;>;
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.io.File resolve(java.io.File, java.io.File);
+    descriptor: (Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=5, locals=5, args_size=2
+         0: aload_0
+         1: ldc_w         #508                // String $this$resolve
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_1
+         8: ldc_w         #509                // String relative
+        11: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        14: aload_1
+        15: invokestatic  #511                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.isRooted:(Ljava/io/File;)Z
+        18: ifeq          23
+        21: aload_1
+        22: areturn
+        23: aload_0
+        24: invokevirtual #512                // Method java/io/File.toString:()Ljava/lang/String;
+        27: dup
+        28: ldc_w         #514                // String this.toString()
+        31: invokestatic  #91                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkExpressionValueIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        34: astore_2
+        35: aload_2
+        36: checkcast     #254                // class java/lang/CharSequence
+        39: astore_3
+        40: iconst_0
+        41: istore        4
+        43: aload_3
+        44: invokeinterface #516,  1          // InterfaceMethod java/lang/CharSequence.length:()I
+        49: ifne          56
+        52: iconst_1
+        53: goto          57
+        56: iconst_0
+        57: ifne          76
+        60: aload_2
+        61: checkcast     #254                // class java/lang/CharSequence
+        64: getstatic     #154                // Field java/io/File.separatorChar:C
+        67: iconst_0
+        68: iconst_2
+        69: aconst_null
+        70: invokestatic  #520                // Method info/journeymap/shaded/kotlin/kotlin/text/StringsKt.endsWith$default:(Ljava/lang/CharSequence;CZILjava/lang/Object;)Z
+        73: ifeq          104
+        76: new           #77                 // class java/io/File
+        79: dup
+        80: new           #95                 // class java/lang/StringBuilder
+        83: dup
+        84: invokespecial #99                 // Method java/lang/StringBuilder."<init>":()V
+        87: aload_2
+        88: invokevirtual #105                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        91: aload_1
+        92: invokevirtual #108                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+        95: invokevirtual #115                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        98: invokespecial #190                // Method java/io/File."<init>":(Ljava/lang/String;)V
+       101: goto          135
+       104: new           #77                 // class java/io/File
+       107: dup
+       108: new           #95                 // class java/lang/StringBuilder
+       111: dup
+       112: invokespecial #99                 // Method java/lang/StringBuilder."<init>":()V
+       115: aload_2
+       116: invokevirtual #105                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       119: getstatic     #154                // Field java/io/File.separatorChar:C
+       122: invokevirtual #111                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+       125: aload_1
+       126: invokevirtual #108                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+       129: invokevirtual #115                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       132: invokespecial #190                // Method java/io/File."<init>":(Ljava/lang/String;)V
+       135: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           35     101     2 baseName   Ljava/lang/String;
+            0     136     0 $this$resolve   Ljava/io/File;
+            0     136     1 relative   Ljava/io/File;
+      LineNumberTable:
+        line 401: 14
+        line 402: 21
+        line 403: 23
+        line 404: 35
+        line 404: 60
+      StackMapTable: number_of_entries = 6
+        frame_type = 23 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 32
+          locals = [ class java/lang/String, class java/lang/CharSequence, int ]
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 18 /* same */
+        frame_type = 27 /* same */
+        frame_type = 94 /* same_locals_1_stack_item */
+          stack = [ class java/io/File ]
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.io.File resolve(java.io.File, java.lang.String);
+    descriptor: (Ljava/io/File;Ljava/lang/String;)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: ldc_w         #508                // String $this$resolve
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_1
+         8: ldc_w         #509                // String relative
+        11: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        14: aload_0
+        15: new           #77                 // class java/io/File
+        18: dup
+        19: aload_1
+        20: invokespecial #190                // Method java/io/File."<init>":(Ljava/lang/String;)V
+        23: invokestatic  #523                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.resolve:(Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+        26: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      27     0 $this$resolve   Ljava/io/File;
+            0      27     1 relative   Ljava/lang/String;
+      LineNumberTable:
+        line 414: 14
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.io.File resolveSibling(java.io.File, java.io.File);
+    descriptor: (Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=4, args_size=2
+         0: aload_0
+         1: ldc_w         #525                // String $this$resolveSibling
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_1
+         8: ldc_w         #509                // String relative
+        11: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        14: aload_0
+        15: invokestatic  #202                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.toComponents:(Ljava/io/File;)Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+        18: astore_2
+        19: aload_2
+        20: invokevirtual #219                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+        23: ifne          38
+        26: new           #77                 // class java/io/File
+        29: dup
+        30: ldc           #237                // String ..
+        32: invokespecial #190                // Method java/io/File."<init>":(Ljava/lang/String;)V
+        35: goto          49
+        38: aload_2
+        39: iconst_0
+        40: aload_2
+        41: invokevirtual #219                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getSize:()I
+        44: iconst_1
+        45: isub
+        46: invokevirtual #529                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.subPath:(II)Ljava/io/File;
+        49: astore_3
+        50: aload_2
+        51: invokevirtual #211                // Method info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents.getRoot:()Ljava/io/File;
+        54: aload_3
+        55: invokestatic  #523                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.resolve:(Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+        58: aload_1
+        59: invokestatic  #523                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.resolve:(Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+        62: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           50      13     3 parentSubPath   Ljava/io/File;
+           19      44     2 components   Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;
+            0      63     0 $this$resolveSibling   Ljava/io/File;
+            0      63     1 relative   Ljava/io/File;
+      LineNumberTable:
+        line 424: 14
+        line 425: 19
+        line 426: 50
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 38
+          locals = [ class info/journeymap/shaded/kotlin/kotlin/io/FilePathComponents ]
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ class java/io/File ]
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public static final java.io.File resolveSibling(java.io.File, java.lang.String);
+    descriptor: (Ljava/io/File;Ljava/lang/String;)Ljava/io/File;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: ldc_w         #525                // String $this$resolveSibling
+         4: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         7: aload_1
+         8: ldc_w         #509                // String relative
+        11: invokestatic  #75                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+        14: aload_0
+        15: new           #77                 // class java/io/File
+        18: dup
+        19: aload_1
+        20: invokespecial #190                // Method java/io/File."<init>":(Ljava/lang/String;)V
+        23: invokestatic  #532                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt.resolveSibling:(Ljava/io/File;Ljava/io/File;)Ljava/io/File;
+        26: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      27     0 $this$resolveSibling   Ljava/io/File;
+            0      27     1 relative   Ljava/lang/String;
+      LineNumberTable:
+        line 436: 14
+    RuntimeInvisibleAnnotations:
+      0: #67()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+        0: #67()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+
+  public info.journeymap.shaded.kotlin.kotlin.io.FilesKt__UtilsKt();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #533                // Method info/journeymap/shaded/kotlin/kotlin/io/FilesKt__FileTreeWalkKt."<init>":()V
+         4: return
+}
+SourceFile: "Utils.kt"
+SourceDebugExtension:
+  SMAP
+  Utils.kt
+  Kotlin
+  *S Kotlin
+  *F
+  + 1 Utils.kt
+  kotlin/io/FilesKt__UtilsKt
+  + 2 _Sequences.kt
+  kotlin/sequences/SequencesKt___SequencesKt
+  *L
+  1#1,437:1
+  1058#2,3:438
+  *E
+  *S KotlinDebug
+  *F
+  + 1 Utils.kt
+  kotlin/io/FilesKt__UtilsKt
+  *L
+  311#1,3:438
+  *E
+InnerClasses:
+  static final #63;                       // class info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$2
+  static final #65;                       // class info/journeymap/shaded/kotlin/kotlin/io/FilesKt__UtilsKt$copyRecursively$1
+RuntimeVisibleAnnotations:
+  0: #6(#7=[I#8,I#8,I#9],#10=[I#8,I#11,I#12],#13=I#14,#15=I#8,#16=[s#17],#18=[s#19,s#20,s#21,s#22,s#23,s#24,s#25,s#26,s#27,s#28,s#29,s#30,s#31,s#32,s#33,s#20,s#34,s#35,s#36,s#37,s#38,s#39,s#40,s#41,s#20,s#42,s#43,s#44,s#45,s#20,s#46,s#47,s#48,s#49,s#50,s#51,s#52,s#53,s#54,s#55,s#56,s#57,s#58,s#59],#60=s#61)
+    info.journeymap.shaded.kotlin.kotlin.Metadata(
+      mv=[1,1,15]
+      bv=[1,0,3]
+      k=5
+      xi=1
+      d1=["\u0000<\n\u0000\n\u0002\u0010\u000e\n\u0002\u0018\u0002\n\u0002\b\f\n\u0002\u0010\u000b\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0004\n\u0002\u0010 \n\u0000\n\u0002\u0018\u0002\n\u0002\b\f\u001a(\u0010\t\u001a\u00020\u00022\b\b\u0002\u0010\n\u001a\u00020\u00012\n\b\u0002\u0010\u000b\u001a\u0004\u0018\u00010\u00012\n\b\u0002\u0010\f\u001a\u0004\u0018\u00010\u0002\u001a(\u0010\r\u001a\u00020\u00022\b\b\u0002\u0010\n\u001a\u00020\u00012\n\b\u0002\u0010\u000b\u001a\u0004\u0018\u00010\u00012\n\b\u0002\u0010\f\u001a\u0004\u0018\u00010\u0002\u001a8\u0010\u000e\u001a\u00020\u000f*\u00020\u00022\u0006\u0010\u0010\u001a\u00020\u00022\b\b\u0002\u0010\u0011\u001a\u00020\u000f2\u001a\b\u0002\u0010\u0012\u001a\u0014\u0012\u0004\u0012\u00020\u0002\u0012\u0004\u0012\u00020\u0014\u0012\u0004\u0012\u00020\u00150\u0013\u001a&\u0010\u0016\u001a\u00020\u0002*\u00020\u00022\u0006\u0010\u0010\u001a\u00020\u00022\b\b\u0002\u0010\u0011\u001a\u00020\u000f2\b\b\u0002\u0010\u0017\u001a\u00020\u0018\u001a\n\u0010\u0019\u001a\u00020\u000f*\u00020\u0002\u001a\u0012\u0010\u001a\u001a\u00020\u000f*\u00020\u00022\u0006\u0010\u001b\u001a\u00020\u0002\u001a\u0012\u0010\u001a\u001a\u00020\u000f*\u00020\u00022\u0006\u0010\u001b\u001a\u00020\u0001\u001a\n\u0010\u001c\u001a\u00020\u0002*\u00020\u0002\u001a\u001d\u0010\u001c\u001a\b\u0012\u0004\u0012\u00020\u00020\u001d*\b\u0012\u0004\u0012\u00020\u00020\u001dH\u0002?\u0006\u0002\b\u001e\u001a\u0011\u0010\u001c\u001a\u00020\u001f*\u00020\u001fH\u0002?\u0006\u0002\b\u001e\u001a\u0012\u0010 \u001a\u00020\u0002*\u00020\u00022\u0006\u0010!\u001a\u00020\u0002\u001a\u0014\u0010\"\u001a\u0004\u0018\u00010\u0002*\u00020\u00022\u0006\u0010!\u001a\u00020\u0002\u001a\u0012\u0010#\u001a\u00020\u0002*\u00020\u00022\u0006\u0010!\u001a\u00020\u0002\u001a\u0012\u0010$\u001a\u00020\u0002*\u00020\u00022\u0006\u0010%\u001a\u00020\u0002\u001a\u0012\u0010$\u001a\u00020\u0002*\u00020\u00022\u0006\u0010%\u001a\u00020\u0001\u001a\u0012\u0010&\u001a\u00020\u0002*\u00020\u00022\u0006\u0010%\u001a\u00020\u0002\u001a\u0012\u0010&\u001a\u00020\u0002*\u00020\u00022\u0006\u0010%\u001a\u00020\u0001\u001a\u0012\u0010\'\u001a\u00020\u000f*\u00020\u00022\u0006\u0010\u001b\u001a\u00020\u0002\u001a\u0012\u0010\'\u001a\u00020\u000f*\u00020\u00022\u0006\u0010\u001b\u001a\u00020\u0001\u001a\u0012\u0010(\u001a\u00020\u0001*\u00020\u00022\u0006\u0010!\u001a\u00020\u0002\u001a\u001b\u0010)\u001a\u0004\u0018\u00010\u0001*\u00020\u00022\u0006\u0010!\u001a\u00020\u0002H\u0002?\u0006\u0002\b*\"\u0015\u0010\u0000\u001a\u00020\u0001*\u00020\u00028F?\u0006\u0006\u001a\u0004\b\u0003\u0010\u0004\"\u0015\u0010\u0005\u001a\u00020\u0001*\u00020\u00028F?\u0006\u0006\u001a\u0004\b\u0006\u0010\u0004\"\u0015\u0010\u0007\u001a\u00020\u0001*\u00020\u00028F?\u0006\u0006\u001a\u0004\b\b\u0010\u0004��\u0006+"]
+      d2=["extension","","Ljava/io/File;","getExtension","(Ljava/io/File;)Ljava/lang/String;","invariantSeparatorsPath","getInvariantSeparatorsPath","nameWithoutExtension","getNameWithoutExtension","createTempDir","prefix","suffix","directory","createTempFile","copyRecursively","","target","overwrite","onError","Linfo/journeymap/shaded/kotlin/kotlin/Function2;","Ljava/io/IOException;","Linfo/journeymap/shaded/kotlin/kotlin/io/OnErrorAction;","copyTo","bufferSize","","deleteRecursively","endsWith","other","normalize","","normalize$FilesKt__UtilsKt","Linfo/journeymap/shaded/kotlin/kotlin/io/FilePathComponents;","relativeTo","base","relativeToOrNull","relativeToOrSelf","resolve","relative","resolveSibling","startsWith","toRelativeString","toRelativeStringOrNull","toRelativeStringOrNull$FilesKt__UtilsKt","info.journeymap.shaded.kotlin.kotlin-stdlib"]
+      xs="info/journeymap/shaded/kotlin/kotlin/io/FilesKt"
+    )

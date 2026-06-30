@@ -1,0 +1,2315 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/[Mod]DragonCore-2.6.3.2(2).jar!/eos/moe/dragoncore/vw.class
+  Last modified 28-ʮ����-23; size 16726 bytes
+  SHA-256 checksum 4fbd50d59392330d48bc655835013e894e08e28520e61568ba41253697d4bbb4
+  Compiled from "DragonTextureMap.java"
+public class eos.moe.dragoncore.vw extends net.minecraft.client.renderer.texture.TextureMap
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // eos/moe/dragoncore/vw
+  super_class: #4                         // net/minecraft/client/renderer/texture/TextureMap
+  interfaces: 0, fields: 12, methods: 23, attributes: 3
+Constant pool:
+    #1 = Utf8               eos/moe/dragoncore/vw
+    #2 = Class              #1            // eos/moe/dragoncore/vw
+    #3 = Utf8               net/minecraft/client/renderer/texture/TextureMap
+    #4 = Class              #3            // net/minecraft/client/renderer/texture/TextureMap
+    #5 = Utf8               DragonTextureMap.java
+    #6 = Utf8               eos/moe/dragoncore/cr
+    #7 = Class              #6            // eos/moe/dragoncore/cr
+    #8 = Utf8               eos/moe/dragoncore/uu
+    #9 = Class              #8            // eos/moe/dragoncore/uu
+   #10 = Utf8               eos/moe/dragoncore/qo
+   #11 = Class              #10           // eos/moe/dragoncore/qo
+   #12 = Utf8               java/util/Map$Entry
+   #13 = Class              #12           // java/util/Map$Entry
+   #14 = Utf8               java/util/Map
+   #15 = Class              #14           // java/util/Map
+   #16 = Utf8               Entry
+   #17 = Utf8               net/minecraftforge/fml/common/ProgressManager$ProgressBar
+   #18 = Class              #17           // net/minecraftforge/fml/common/ProgressManager$ProgressBar
+   #19 = Utf8               net/minecraftforge/fml/common/ProgressManager
+   #20 = Class              #19           // net/minecraftforge/fml/common/ProgressManager
+   #21 = Utf8               ProgressBar
+   #22 = Utf8               java/lang/invoke/MethodHandles$Lookup
+   #23 = Class              #22           // java/lang/invoke/MethodHandles$Lookup
+   #24 = Utf8               java/lang/invoke/MethodHandles
+   #25 = Class              #24           // java/lang/invoke/MethodHandles
+   #26 = Utf8               Lookup
+   #27 = Utf8               t
+   #28 = Utf8               Lorg/apache/logging/log4j/Logger;
+   #29 = Utf8               r
+   #30 = Utf8               Lnet/minecraft/util/ResourceLocation;
+   #31 = Utf8               x
+   #32 = Utf8               v
+   #33 = Utf8               Ljava/util/List;
+   #34 = Utf8               Ljava/util/List<Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;>;
+   #35 = Utf8               m
+   #36 = Utf8               Ljava/util/Map;
+   #37 = Utf8               Ljava/util/Map<Ljava/lang/String;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;>;
+   #38 = Utf8               c
+   #39 = Utf8               q
+   #40 = Utf8               Ljava/lang/String;
+   #41 = Utf8               b
+   #42 = Utf8               Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;
+   #43 = Utf8               o
+   #44 = Utf8               I
+   #45 = Utf8               y
+   #46 = Utf8               Z
+   #47 = Utf8               k
+   #48 = Utf8               Ljava/util/Deque;
+   #49 = Utf8               Ljava/util/Deque<Lnet/minecraft/util/ResourceLocation;>;
+   #50 = Utf8               ALLATORIxDEMO
+   #51 = Utf8               Ljava/util/Set;
+   #52 = Utf8               Ljava/util/Set<Lnet/minecraft/util/ResourceLocation;>;
+   #53 = Utf8               <init>
+   #54 = Utf8               (Ljava/lang/String;)V
+   #55 = Utf8               (Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;)V
+   #56 = NameAndType        #53:#55       // "<init>":(Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;)V
+   #57 = Methodref          #2.#56        // eos/moe/dragoncore/vw."<init>":(Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;)V
+   #58 = Utf8               a
+   #59 = Utf8               Leos/moe/dragoncore/vw;
+   #60 = Utf8               Ljavax/annotation/Nullable;
+   #61 = Utf8               (Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;Z)V
+   #62 = NameAndType        #53:#61       // "<init>":(Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;Z)V
+   #63 = Methodref          #2.#62        // eos/moe/dragoncore/vw."<init>":(Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;Z)V
+   #64 = Utf8               this
+   #65 = Utf8               basePathIn
+   #66 = Utf8               (Ljava/lang/String;Z)V
+   #67 = Utf8
+   #68 = String             #67           //
+   #69 = NameAndType        #53:#54       // "<init>":(Ljava/lang/String;)V
+   #70 = Methodref          #4.#69        // net/minecraft/client/renderer/texture/TextureMap."<init>":(Ljava/lang/String;)V
+   #71 = Utf8               java/util/ArrayDeque
+   #72 = Class              #71           // java/util/ArrayDeque
+   #73 = Utf8               ()V
+   #74 = NameAndType        #53:#73       // "<init>":()V
+   #75 = Methodref          #72.#74       // java/util/ArrayDeque."<init>":()V
+   #76 = NameAndType        #47:#48       // k:Ljava/util/Deque;
+   #77 = Fieldref           #2.#76        // eos/moe/dragoncore/vw.k:Ljava/util/Deque;
+   #78 = Utf8               java/util/HashSet
+   #79 = Class              #78           // java/util/HashSet
+   #80 = Methodref          #79.#74       // java/util/HashSet."<init>":()V
+   #81 = NameAndType        #50:#51       // ALLATORIxDEMO:Ljava/util/Set;
+   #82 = Fieldref           #2.#81        // eos/moe/dragoncore/vw.ALLATORIxDEMO:Ljava/util/Set;
+   #83 = Utf8               com/google/common/collect/Lists
+   #84 = Class              #83           // com/google/common/collect/Lists
+   #85 = Utf8               newArrayList
+   #86 = Utf8               ()Ljava/util/ArrayList;
+   #87 = NameAndType        #85:#86       // newArrayList:()Ljava/util/ArrayList;
+   #88 = Methodref          #84.#87       // com/google/common/collect/Lists.newArrayList:()Ljava/util/ArrayList;
+   #89 = NameAndType        #32:#33       // v:Ljava/util/List;
+   #90 = Fieldref           #2.#89        // eos/moe/dragoncore/vw.v:Ljava/util/List;
+   #91 = Utf8               com/google/common/collect/Maps
+   #92 = Class              #91           // com/google/common/collect/Maps
+   #93 = Utf8               newHashMap
+   #94 = Utf8               ()Ljava/util/HashMap;
+   #95 = NameAndType        #93:#94       // newHashMap:()Ljava/util/HashMap;
+   #96 = Methodref          #92.#95       // com/google/common/collect/Maps.newHashMap:()Ljava/util/HashMap;
+   #97 = NameAndType        #35:#36       // m:Ljava/util/Map;
+   #98 = Fieldref           #2.#97        // eos/moe/dragoncore/vw.m:Ljava/util/Map;
+   #99 = NameAndType        #38:#36       // c:Ljava/util/Map;
+  #100 = Fieldref           #2.#99        // eos/moe/dragoncore/vw.c:Ljava/util/Map;
+  #101 = NameAndType        #39:#40       // q:Ljava/lang/String;
+  #102 = Fieldref           #2.#101       // eos/moe/dragoncore/vw.q:Ljava/lang/String;
+  #103 = NameAndType        #41:#42       // b:Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;
+  #104 = Fieldref           #2.#103       // eos/moe/dragoncore/vw.b:Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;
+  #105 = Utf8               iconCreatorIn
+  #106 = Utf8               func_110551_a
+  #107 = Utf8               (Lnet/minecraft/client/resources/IResourceManager;)V
+  #108 = Utf8               java/io/IOException
+  #109 = Class              #108          // java/io/IOException
+  #110 = Utf8               func_174943_a
+  #111 = Utf8               (Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;)V
+  #112 = NameAndType        #110:#111     // func_174943_a:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;)V
+  #113 = Methodref          #2.#112       // eos/moe/dragoncore/vw.func_174943_a:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;)V
+  #114 = Utf8               Lnet/minecraft/client/resources/IResourceManager;
+  #115 = NameAndType        #45:#46       // y:Z
+  #116 = Fieldref           #2.#115       // eos/moe/dragoncore/vw.y:Z
+  #117 = Utf8               clear
+  #118 = NameAndType        #117:#73      // clear:()V
+  #119 = InterfaceMethodref #15.#118      // java/util/Map.clear:()V
+  #120 = Utf8               func_147631_c
+  #121 = NameAndType        #120:#73      // func_147631_c:()V
+  #122 = Methodref          #2.#121       // eos/moe/dragoncore/vw.func_147631_c:()V
+  #123 = Utf8               net/minecraft/client/renderer/texture/ITextureMapPopulator
+  #124 = Class              #123          // net/minecraft/client/renderer/texture/ITextureMapPopulator
+  #125 = Utf8               func_177059_a
+  #126 = Utf8               (Lnet/minecraft/client/renderer/texture/TextureMap;)V
+  #127 = NameAndType        #125:#126     // func_177059_a:(Lnet/minecraft/client/renderer/texture/TextureMap;)V
+  #128 = InterfaceMethodref #124.#127     // net/minecraft/client/renderer/texture/ITextureMapPopulator.func_177059_a:(Lnet/minecraft/client/renderer/texture/TextureMap;)V
+  #129 = Utf8               func_110571_b
+  #130 = NameAndType        #129:#107     // func_110571_b:(Lnet/minecraft/client/resources/IResourceManager;)V
+  #131 = Methodref          #2.#130       // eos/moe/dragoncore/vw.func_110571_b:(Lnet/minecraft/client/resources/IResourceManager;)V
+  #132 = Utf8               net/minecraft/client/Minecraft
+  #133 = Class              #132          // net/minecraft/client/Minecraft
+  #134 = Utf8               func_71369_N
+  #135 = Utf8               ()I
+  #136 = NameAndType        #134:#135     // func_71369_N:()I
+  #137 = Methodref          #133.#136     // net/minecraft/client/Minecraft.func_71369_N:()I
+  #138 = Utf8               net/minecraft/client/renderer/texture/Stitcher
+  #139 = Class              #138          // net/minecraft/client/renderer/texture/Stitcher
+  #140 = NameAndType        #43:#44       // o:I
+  #141 = Fieldref           #2.#140       // eos/moe/dragoncore/vw.o:I
+  #142 = Utf8               (IIII)V
+  #143 = NameAndType        #53:#142      // "<init>":(IIII)V
+  #144 = Methodref          #139.#143     // net/minecraft/client/renderer/texture/Stitcher."<init>":(IIII)V
+  #145 = Utf8               java/util/List
+  #146 = Class              #145          // java/util/List
+  #147 = InterfaceMethodref #146.#118     // java/util/List.clear:()V
+  #148 = Integer            2147483647
+  #149 = Utf8               Texture stitching
+  #150 = String             #149          // Texture stitching
+  #151 = Utf8               size
+  #152 = NameAndType        #151:#135     // size:()I
+  #153 = InterfaceMethodref #15.#152      // java/util/Map.size:()I
+  #154 = Utf8               push
+  #155 = Utf8               (Ljava/lang/String;I)Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;
+  #156 = NameAndType        #154:#155     // push:(Ljava/lang/String;I)Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;
+  #157 = Methodref          #20.#156      // net/minecraftforge/fml/common/ProgressManager.push:(Ljava/lang/String;I)Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;
+  #158 = Utf8               java/util/Set
+  #159 = Class              #158          // java/util/Set
+  #160 = InterfaceMethodref #159.#118     // java/util/Set.clear:()V
+  #161 = Utf8               (Ljava/util/Map;)Ljava/util/HashMap;
+  #162 = NameAndType        #93:#161      // newHashMap:(Ljava/util/Map;)Ljava/util/HashMap;
+  #163 = Methodref          #92.#162      // com/google/common/collect/Maps.newHashMap:(Ljava/util/Map;)Ljava/util/HashMap;
+  #164 = Utf8               java/util/HashMap
+  #165 = Class              #164          // java/util/HashMap
+  #166 = Utf8               entrySet
+  #167 = Utf8               ()Ljava/util/Set;
+  #168 = NameAndType        #166:#167     // entrySet:()Ljava/util/Set;
+  #169 = Methodref          #165.#168     // java/util/HashMap.entrySet:()Ljava/util/Set;
+  #170 = Utf8               iterator
+  #171 = Utf8               ()Ljava/util/Iterator;
+  #172 = NameAndType        #170:#171     // iterator:()Ljava/util/Iterator;
+  #173 = InterfaceMethodref #159.#172     // java/util/Set.iterator:()Ljava/util/Iterator;
+  #174 = Utf8               java/util/Iterator
+  #175 = Class              #174          // java/util/Iterator
+  #176 = Utf8               hasNext
+  #177 = Utf8               ()Z
+  #178 = NameAndType        #176:#177     // hasNext:()Z
+  #179 = InterfaceMethodref #175.#178     // java/util/Iterator.hasNext:()Z
+  #180 = Utf8               next
+  #181 = Utf8               ()Ljava/lang/Object;
+  #182 = NameAndType        #180:#181     // next:()Ljava/lang/Object;
+  #183 = InterfaceMethodref #175.#182     // java/util/Iterator.next:()Ljava/lang/Object;
+  #184 = Utf8               net/minecraft/util/ResourceLocation
+  #185 = Class              #184          // net/minecraft/util/ResourceLocation
+  #186 = Utf8               getKey
+  #187 = NameAndType        #186:#181     // getKey:()Ljava/lang/Object;
+  #188 = InterfaceMethodref #13.#187      // java/util/Map$Entry.getKey:()Ljava/lang/Object;
+  #189 = Utf8               java/lang/String
+  #190 = Class              #189          // java/lang/String
+  #191 = Methodref          #185.#69      // net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;)V
+  #192 = Utf8               toString
+  #193 = Utf8               ()Ljava/lang/String;
+  #194 = NameAndType        #192:#193     // toString:()Ljava/lang/String;
+  #195 = Methodref          #185.#194     // net/minecraft/util/ResourceLocation.toString:()Ljava/lang/String;
+  #196 = Utf8               step
+  #197 = NameAndType        #196:#54      // step:(Ljava/lang/String;)V
+  #198 = Methodref          #18.#197      // net/minecraftforge/fml/common/ProgressManager$ProgressBar.step:(Ljava/lang/String;)V
+  #199 = Utf8               getValue
+  #200 = NameAndType        #199:#181     // getValue:()Ljava/lang/Object;
+  #201 = InterfaceMethodref #13.#200      // java/util/Map$Entry.getValue:()Ljava/lang/Object;
+  #202 = Utf8               net/minecraft/client/renderer/texture/TextureAtlasSprite
+  #203 = Class              #202          // net/minecraft/client/renderer/texture/TextureAtlasSprite
+  #204 = Utf8               (Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)I
+  #205 = NameAndType        #50:#204      // ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)I
+  #206 = Methodref          #2.#205       // eos/moe/dragoncore/vw.ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)I
+  #207 = Utf8               (Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)V
+  #208 = NameAndType        #50:#207      // ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)V
+  #209 = Methodref          #2.#208       // eos/moe/dragoncore/vw.ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)V
+  #210 = Utf8               Lnet/minecraft/client/renderer/texture/Stitcher;
+  #211 = Utf8               Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;
+  #212 = Utf8               Ljava/util/Map$Entry;
+  #213 = Utf8               net/minecraft/client/resources/IResourceManager
+  #214 = Class              #213          // net/minecraft/client/resources/IResourceManager
+  #215 = Utf8               java/lang/RuntimeException
+  #216 = Class              #215          // java/lang/RuntimeException
+  #217 = Utf8               contains
+  #218 = Utf8               (Ljava/lang/Object;)Z
+  #219 = NameAndType        #217:#218     // contains:(Ljava/lang/Object;)Z
+  #220 = InterfaceMethodref #159.#219     // java/util/Set.contains:(Ljava/lang/Object;)Z
+  #221 = Utf8               (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Lnet/minecraft/util/ResourceLocation;
+  #222 = NameAndType        #50:#221      // ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Lnet/minecraft/util/ResourceLocation;
+  #223 = Methodref          #2.#222       // eos/moe/dragoncore/vw.ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Lnet/minecraft/util/ResourceLocation;
+  #224 = Utf8               java/util/Deque
+  #225 = Class              #224          // java/util/Deque
+  #226 = InterfaceMethodref #225.#172     // java/util/Deque.iterator:()Ljava/util/Iterator;
+  #227 = Utf8               equals
+  #228 = NameAndType        #227:#218     // equals:(Ljava/lang/Object;)Z
+  #229 = Methodref          #185.#228     // net/minecraft/util/ResourceLocation.equals:(Ljava/lang/Object;)Z
+  #230 = Utf8               java/lang/StringBuilder
+  #231 = Class              #230          // java/lang/StringBuilder
+  #232 = Methodref          #231.#74      // java/lang/StringBuilder."<init>":()V
+  #233 = Utf8               circular model dependencies, stack: [
+  #234 = String             #233          // circular model dependencies, stack: [
+  #235 = Utf8               append
+  #236 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #237 = NameAndType        #235:#236     // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #238 = Methodref          #231.#237     // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #239 = Utf8               ,
+  #240 = String             #239          // ,
+  #241 = Utf8               com/google/common/base/Joiner
+  #242 = Class              #241          // com/google/common/base/Joiner
+  #243 = Utf8               on
+  #244 = Utf8               (Ljava/lang/String;)Lcom/google/common/base/Joiner;
+  #245 = NameAndType        #243:#244     // on:(Ljava/lang/String;)Lcom/google/common/base/Joiner;
+  #246 = Methodref          #242.#245     // com/google/common/base/Joiner.on:(Ljava/lang/String;)Lcom/google/common/base/Joiner;
+  #247 = Utf8               join
+  #248 = Utf8               (Ljava/lang/Iterable;)Ljava/lang/String;
+  #249 = NameAndType        #247:#248     // join:(Ljava/lang/Iterable;)Ljava/lang/String;
+  #250 = Methodref          #242.#249     // com/google/common/base/Joiner.join:(Ljava/lang/Iterable;)Ljava/lang/String;
+  #251 = Utf8               ]
+  #252 = String             #251          // ]
+  #253 = Methodref          #231.#194     // java/lang/StringBuilder.toString:()Ljava/lang/String;
+  #254 = Utf8               net/minecraftforge/fml/client/FMLClientHandler
+  #255 = Class              #254          // net/minecraftforge/fml/client/FMLClientHandler
+  #256 = Utf8               instance
+  #257 = Utf8               ()Lnet/minecraftforge/fml/client/FMLClientHandler;
+  #258 = NameAndType        #256:#257     // instance:()Lnet/minecraftforge/fml/client/FMLClientHandler;
+  #259 = Methodref          #255.#258     // net/minecraftforge/fml/client/FMLClientHandler.instance:()Lnet/minecraftforge/fml/client/FMLClientHandler;
+  #260 = Utf8               trackBrokenTexture
+  #261 = Utf8               (Lnet/minecraft/util/ResourceLocation;Ljava/lang/String;)V
+  #262 = NameAndType        #260:#261     // trackBrokenTexture:(Lnet/minecraft/util/ResourceLocation;Ljava/lang/String;)V
+  #263 = Methodref          #255.#262     // net/minecraftforge/fml/client/FMLClientHandler.trackBrokenTexture:(Lnet/minecraft/util/ResourceLocation;Ljava/lang/String;)V
+  #264 = Utf8               addLast
+  #265 = Utf8               (Ljava/lang/Object;)V
+  #266 = NameAndType        #264:#265     // addLast:(Ljava/lang/Object;)V
+  #267 = InterfaceMethodref #225.#266     // java/util/Deque.addLast:(Ljava/lang/Object;)V
+  #268 = Utf8               getDependencies
+  #269 = Utf8               ()Ljava/util/Collection;
+  #270 = NameAndType        #268:#269     // getDependencies:()Ljava/util/Collection;
+  #271 = Methodref          #203.#270     // net/minecraft/client/renderer/texture/TextureAtlasSprite.getDependencies:()Ljava/util/Collection;
+  #272 = Utf8               java/util/Collection
+  #273 = Class              #272          // java/util/Collection
+  #274 = InterfaceMethodref #273.#172     // java/util/Collection.iterator:()Ljava/util/Iterator;
+  #275 = Utf8               containsKey
+  #276 = NameAndType        #275:#218     // containsKey:(Ljava/lang/Object;)Z
+  #277 = InterfaceMethodref #15.#276      // java/util/Map.containsKey:(Ljava/lang/Object;)Z
+  #278 = Utf8               func_174942_a
+  #279 = Utf8               (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #280 = NameAndType        #278:#279     // func_174942_a:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #281 = Methodref          #2.#280       // eos/moe/dragoncore/vw.func_174942_a:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #282 = Utf8               get
+  #283 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #284 = NameAndType        #282:#283     // get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #285 = InterfaceMethodref #15.#284      // java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #286 = Utf8               hasCustomLoader
+  #287 = Utf8               (Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;)Z
+  #288 = NameAndType        #286:#287     // hasCustomLoader:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;)Z
+  #289 = Methodref          #203.#288     // net/minecraft/client/renderer/texture/TextureAtlasSprite.hasCustomLoader:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;)Z
+  #290 = MethodType         #283          //  (Ljava/lang/Object;)Ljava/lang/Object;
+  #291 = NameAndType        #50:#279      // ALLATORIxDEMO:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #292 = Methodref          #2.#291       // eos/moe/dragoncore/vw.ALLATORIxDEMO:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #293 = MethodHandle       7:#292        // REF_invokeSpecial eos/moe/dragoncore/vw.ALLATORIxDEMO:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #294 = MethodType         #279          //  (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #295 = Utf8               java/lang/invoke/LambdaMetafactory
+  #296 = Class              #295          // java/lang/invoke/LambdaMetafactory
+  #297 = Utf8               metafactory
+  #298 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #299 = NameAndType        #297:#298     // metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #300 = Methodref          #296.#299     // java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #301 = MethodHandle       6:#300        // REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #302 = Utf8               apply
+  #303 = Utf8               (Leos/moe/dragoncore/vw;)Ljava/util/function/Function;
+  #304 = NameAndType        #302:#303     // apply:(Leos/moe/dragoncore/vw;)Ljava/util/function/Function;
+  #305 = InvokeDynamic      #0:#304       // #0:apply:(Leos/moe/dragoncore/vw;)Ljava/util/function/Function;
+  #306 = Utf8               load
+  #307 = Utf8               (Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;Ljava/util/function/Function;)Z
+  #308 = NameAndType        #306:#307     // load:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;Ljava/util/function/Function;)Z
+  #309 = Methodref          #203.#308     // net/minecraft/client/renderer/texture/TextureAtlasSprite.load:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;Ljava/util/function/Function;)Z
+  #310 = Utf8               removeLast
+  #311 = NameAndType        #310:#181     // removeLast:()Ljava/lang/Object;
+  #312 = InterfaceMethodref #225.#311     // java/util/Deque.removeLast:()Ljava/lang/Object;
+  #313 = Utf8               add
+  #314 = NameAndType        #313:#218     // add:(Ljava/lang/Object;)Z
+  #315 = InterfaceMethodref #159.#314     // java/util/Set.add:(Ljava/lang/Object;)Z
+  #316 = Utf8               func_110623_a
+  #317 = NameAndType        #316:#193     // func_110623_a:()Ljava/lang/String;
+  #318 = Methodref          #185.#317     // net/minecraft/util/ResourceLocation.func_110623_a:()Ljava/lang/String;
+  #319 = Utf8               missingno.png
+  #320 = String             #319          // missingno.png
+  #321 = Utf8               endsWith
+  #322 = Utf8               (Ljava/lang/String;)Z
+  #323 = NameAndType        #321:#322     // endsWith:(Ljava/lang/String;)Z
+  #324 = Methodref          #190.#323     // java/lang/String.endsWith:(Ljava/lang/String;)Z
+  #325 = Utf8               ascii.png
+  #326 = String             #325          // ascii.png
+  #327 = Utf8               func_110536_a
+  #328 = Utf8               (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/resources/IResource;
+  #329 = NameAndType        #327:#328     // func_110536_a:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/resources/IResource;
+  #330 = InterfaceMethodref #214.#329     // net/minecraft/client/resources/IResourceManager.func_110536_a:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/resources/IResource;
+  #331 = Utf8               net/minecraft/client/renderer/texture/PngSizeInfo
+  #332 = Class              #331          // net/minecraft/client/renderer/texture/PngSizeInfo
+  #333 = Utf8               func_188532_a
+  #334 = Utf8               (Lnet/minecraft/client/resources/IResource;)Lnet/minecraft/client/renderer/texture/PngSizeInfo;
+  #335 = NameAndType        #333:#334     // func_188532_a:(Lnet/minecraft/client/resources/IResource;)Lnet/minecraft/client/renderer/texture/PngSizeInfo;
+  #336 = Methodref          #332.#335     // net/minecraft/client/renderer/texture/PngSizeInfo.func_188532_a:(Lnet/minecraft/client/resources/IResource;)Lnet/minecraft/client/renderer/texture/PngSizeInfo;
+  #337 = Utf8               animation
+  #338 = String             #337          // animation
+  #339 = Utf8               net/minecraft/client/resources/IResource
+  #340 = Class              #339          // net/minecraft/client/resources/IResource
+  #341 = Utf8               func_110526_a
+  #342 = Utf8               (Ljava/lang/String;)Lnet/minecraft/client/resources/data/IMetadataSection;
+  #343 = NameAndType        #341:#342     // func_110526_a:(Ljava/lang/String;)Lnet/minecraft/client/resources/data/IMetadataSection;
+  #344 = InterfaceMethodref #340.#343     // net/minecraft/client/resources/IResource.func_110526_a:(Ljava/lang/String;)Lnet/minecraft/client/resources/data/IMetadataSection;
+  #345 = Utf8               func_188538_a
+  #346 = Utf8               (Lnet/minecraft/client/renderer/texture/PngSizeInfo;Z)V
+  #347 = NameAndType        #345:#346     // func_188538_a:(Lnet/minecraft/client/renderer/texture/PngSizeInfo;Z)V
+  #348 = Methodref          #203.#347     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_188538_a:(Lnet/minecraft/client/renderer/texture/PngSizeInfo;Z)V
+  #349 = Utf8               org/apache/commons/io/IOUtils
+  #350 = Class              #349          // org/apache/commons/io/IOUtils
+  #351 = Utf8               closeQuietly
+  #352 = Utf8               (Ljava/io/Closeable;)V
+  #353 = NameAndType        #351:#352     // closeQuietly:(Ljava/io/Closeable;)V
+  #354 = Methodref          #350.#353     // org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+  #355 = Utf8               printStackTrace
+  #356 = NameAndType        #355:#73      // printStackTrace:()V
+  #357 = Methodref          #216.#356     // java/lang/RuntimeException.printStackTrace:()V
+  #358 = Utf8               getMessage
+  #359 = NameAndType        #358:#193     // getMessage:()Ljava/lang/String;
+  #360 = Methodref          #216.#359     // java/lang/RuntimeException.getMessage:()Ljava/lang/String;
+  #361 = Methodref          #109.#356     // java/io/IOException.printStackTrace:()V
+  #362 = Utf8               trackMissingTexture
+  #363 = Utf8               (Lnet/minecraft/util/ResourceLocation;)V
+  #364 = NameAndType        #362:#363     // trackMissingTexture:(Lnet/minecraft/util/ResourceLocation;)V
+  #365 = Methodref          #255.#364     // net/minecraftforge/fml/client/FMLClientHandler.trackMissingTexture:(Lnet/minecraft/util/ResourceLocation;)V
+  #366 = Utf8               func_94211_a
+  #367 = NameAndType        #366:#135     // func_94211_a:()I
+  #368 = Methodref          #203.#367     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94211_a:()I
+  #369 = Utf8               func_94216_b
+  #370 = NameAndType        #369:#135     // func_94216_b:()I
+  #371 = Methodref          #203.#370     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94216_b:()I
+  #372 = Utf8               java/lang/Math
+  #373 = Class              #372          // java/lang/Math
+  #374 = Utf8               min
+  #375 = Utf8               (II)I
+  #376 = NameAndType        #374:#375     // min:(II)I
+  #377 = Methodref          #373.#376     // java/lang/Math.min:(II)I
+  #378 = Utf8               java/lang/Integer
+  #379 = Class              #378          // java/lang/Integer
+  #380 = Utf8               lowestOneBit
+  #381 = Utf8               (I)I
+  #382 = NameAndType        #380:#381     // lowestOneBit:(I)I
+  #383 = Methodref          #379.#382     // java/lang/Integer.lowestOneBit:(I)I
+  #384 = NameAndType        #27:#28       // t:Lorg/apache/logging/log4j/Logger;
+  #385 = Fieldref           #2.#384       // eos/moe/dragoncore/vw.t:Lorg/apache/logging/log4j/Logger;
+  #386 = Utf8               Texture {} with size {}x{} will have visual artifacts at mip level {}, it can only support level {}. Please report to the mod author that the texture should be some multiple of 16x16.
+  #387 = String             #386          // Texture {} with size {}x{} will have visual artifacts at mip level {}, it can only support level {}. Please report to the mod author that the texture should be some multiple of 16x16.
+  #388 = Utf8               valueOf
+  #389 = Utf8               (I)Ljava/lang/Integer;
+  #390 = NameAndType        #388:#389     // valueOf:(I)Ljava/lang/Integer;
+  #391 = Methodref          #379.#390     // java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+  #392 = Utf8               net/minecraft/util/math/MathHelper
+  #393 = Class              #392          // net/minecraft/util/math/MathHelper
+  #394 = Utf8               func_151239_c
+  #395 = NameAndType        #394:#381     // func_151239_c:(I)I
+  #396 = Methodref          #393.#395     // net/minecraft/util/math/MathHelper.func_151239_c:(I)I
+  #397 = Utf8               org/apache/logging/log4j/Logger
+  #398 = Class              #397          // org/apache/logging/log4j/Logger
+  #399 = Utf8               warn
+  #400 = Utf8               (Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+  #401 = NameAndType        #399:#400     // warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+  #402 = InterfaceMethodref #398.#401     // org/apache/logging/log4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+  #403 = Utf8               (Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Z
+  #404 = NameAndType        #50:#403      // ALLATORIxDEMO:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Z
+  #405 = Methodref          #2.#404       // eos/moe/dragoncore/vw.ALLATORIxDEMO:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Z
+  #406 = Utf8               func_110934_a
+  #407 = Utf8               (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+  #408 = NameAndType        #406:#407     // func_110934_a:(Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+  #409 = Methodref          #139.#408     // net/minecraft/client/renderer/texture/Stitcher.func_110934_a:(Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+  #410 = Utf8               Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #411 = Utf8               Lnet/minecraft/client/resources/IResource;
+  #412 = Utf8               Ljava/io/IOException;
+  #413 = Utf8               Ljava/lang/RuntimeException;
+  #414 = Utf8               Lnet/minecraft/client/renderer/texture/PngSizeInfo;
+  #415 = Utf8               java/lang/Object
+  #416 = Class              #415          // java/lang/Object
+  #417 = Utf8               java/lang/Throwable
+  #418 = Class              #417          // java/lang/Throwable
+  #419 = Utf8               pop
+  #420 = Utf8               (Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;)V
+  #421 = NameAndType        #419:#420     // pop:(Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;)V
+  #422 = Methodref          #20.#421      // net/minecraftforge/fml/common/ProgressManager.pop:(Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;)V
+  #423 = Utf8               Texture creation
+  #424 = String             #423          // Texture creation
+  #425 = Utf8               Stitching
+  #426 = String             #425          // Stitching
+  #427 = Utf8               func_94305_f
+  #428 = NameAndType        #427:#73      // func_94305_f:()V
+  #429 = Methodref          #139.#428     // net/minecraft/client/renderer/texture/Stitcher.func_94305_f:()V
+  #430 = Utf8               Allocating GL texture
+  #431 = String             #430          // Allocating GL texture
+  #432 = Utf8               func_110552_b
+  #433 = NameAndType        #432:#135     // func_110552_b:()I
+  #434 = Methodref          #2.#433       // eos/moe/dragoncore/vw.func_110552_b:()I
+  #435 = Utf8               func_110935_a
+  #436 = NameAndType        #435:#135     // func_110935_a:()I
+  #437 = Methodref          #139.#436     // net/minecraft/client/renderer/texture/Stitcher.func_110935_a:()I
+  #438 = Utf8               func_110936_b
+  #439 = NameAndType        #438:#135     // func_110936_b:()I
+  #440 = Methodref          #139.#439     // net/minecraft/client/renderer/texture/Stitcher.func_110936_b:()I
+  #441 = Utf8               net/minecraft/client/renderer/texture/TextureUtil
+  #442 = Class              #441          // net/minecraft/client/renderer/texture/TextureUtil
+  #443 = Utf8               func_180600_a
+  #444 = NameAndType        #443:#142     // func_180600_a:(IIII)V
+  #445 = Methodref          #442.#444     // net/minecraft/client/renderer/texture/TextureUtil.func_180600_a:(IIII)V
+  #446 = Utf8               Texture mipmap and upload
+  #447 = String             #446          // Texture mipmap and upload
+  #448 = Utf8               func_94309_g
+  #449 = Utf8               ()Ljava/util/List;
+  #450 = NameAndType        #448:#449     // func_94309_g:()Ljava/util/List;
+  #451 = Methodref          #139.#450     // net/minecraft/client/renderer/texture/Stitcher.func_94309_g:()Ljava/util/List;
+  #452 = InterfaceMethodref #146.#152     // java/util/List.size:()I
+  #453 = InterfaceMethodref #146.#172     // java/util/List.iterator:()Ljava/util/Iterator;
+  #454 = Utf8               func_94215_i
+  #455 = NameAndType        #454:#193     // func_94215_i:()Ljava/lang/String;
+  #456 = Methodref          #203.#455     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94215_i:()Ljava/lang/String;
+  #457 = Utf8               remove
+  #458 = NameAndType        #457:#283     // remove:(Ljava/lang/Object;)Ljava/lang/Object;
+  #459 = InterfaceMethodref #15.#458      // java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+  #460 = Utf8               put
+  #461 = Utf8               (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #462 = NameAndType        #460:#461     // put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #463 = InterfaceMethodref #15.#462      // java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  #464 = Utf8               func_147965_a
+  #465 = Utf8               (I)[[I
+  #466 = NameAndType        #464:#465     // func_147965_a:(I)[[I
+  #467 = Methodref          #203.#466     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_147965_a:(I)[[I
+  #468 = Utf8               func_130010_a
+  #469 = NameAndType        #468:#135     // func_130010_a:()I
+  #470 = Methodref          #203.#469     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_130010_a:()I
+  #471 = Utf8               func_110967_i
+  #472 = NameAndType        #471:#135     // func_110967_i:()I
+  #473 = Methodref          #203.#472     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_110967_i:()I
+  #474 = Utf8               func_147955_a
+  #475 = Utf8               ([[IIIIIZZ)V
+  #476 = NameAndType        #474:#475     // func_147955_a:([[IIIIIZZ)V
+  #477 = Methodref          #442.#476     // net/minecraft/client/renderer/texture/TextureUtil.func_147955_a:([[IIIIIZZ)V
+  #478 = Utf8               Stitching texture atlas
+  #479 = String             #478          // Stitching texture atlas
+  #480 = Utf8               net/minecraft/crash/CrashReport
+  #481 = Class              #480          // net/minecraft/crash/CrashReport
+  #482 = Utf8               func_85055_a
+  #483 = Utf8               (Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/crash/CrashReport;
+  #484 = NameAndType        #482:#483     // func_85055_a:(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/crash/CrashReport;
+  #485 = Methodref          #481.#484     // net/minecraft/crash/CrashReport.func_85055_a:(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/crash/CrashReport;
+  #486 = Utf8               Texture being stitched together
+  #487 = String             #486          // Texture being stitched together
+  #488 = Utf8               func_85058_a
+  #489 = Utf8               (Ljava/lang/String;)Lnet/minecraft/crash/CrashReportCategory;
+  #490 = NameAndType        #488:#489     // func_85058_a:(Ljava/lang/String;)Lnet/minecraft/crash/CrashReportCategory;
+  #491 = Methodref          #481.#490     // net/minecraft/crash/CrashReport.func_85058_a:(Ljava/lang/String;)Lnet/minecraft/crash/CrashReportCategory;
+  #492 = Utf8               Atlas path
+  #493 = String             #492          // Atlas path
+  #494 = Utf8               net/minecraft/crash/CrashReportCategory
+  #495 = Class              #494          // net/minecraft/crash/CrashReportCategory
+  #496 = Utf8               func_71507_a
+  #497 = Utf8               (Ljava/lang/String;Ljava/lang/Object;)V
+  #498 = NameAndType        #496:#497     // func_71507_a:(Ljava/lang/String;Ljava/lang/Object;)V
+  #499 = Methodref          #495.#498     // net/minecraft/crash/CrashReportCategory.func_71507_a:(Ljava/lang/String;Ljava/lang/Object;)V
+  #500 = Utf8               Sprite
+  #501 = String             #500          // Sprite
+  #502 = Utf8               net/minecraft/util/ReportedException
+  #503 = Class              #502          // net/minecraft/util/ReportedException
+  #504 = Utf8               (Lnet/minecraft/crash/CrashReport;)V
+  #505 = NameAndType        #53:#504      // "<init>":(Lnet/minecraft/crash/CrashReport;)V
+  #506 = Methodref          #503.#505     // net/minecraft/util/ReportedException."<init>":(Lnet/minecraft/crash/CrashReport;)V
+  #507 = Utf8               func_130098_m
+  #508 = NameAndType        #507:#177     // func_130098_m:()Z
+  #509 = Methodref          #203.#508     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_130098_m:()Z
+  #510 = InterfaceMethodref #146.#314     // java/util/List.add:(Ljava/lang/Object;)Z
+  #511 = Utf8               values
+  #512 = NameAndType        #511:#269     // values:()Ljava/util/Collection;
+  #513 = InterfaceMethodref #15.#512      // java/util/Map.values:()Ljava/util/Collection;
+  #514 = Utf8               func_71410_x
+  #515 = Utf8               ()Lnet/minecraft/client/Minecraft;
+  #516 = NameAndType        #514:#515     // func_71410_x:()Lnet/minecraft/client/Minecraft;
+  #517 = Methodref          #133.#516     // net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+  #518 = Utf8               func_147117_R
+  #519 = Utf8               ()Lnet/minecraft/client/renderer/texture/TextureMap;
+  #520 = NameAndType        #518:#519     // func_147117_R:()Lnet/minecraft/client/renderer/texture/TextureMap;
+  #521 = Methodref          #133.#520     // net/minecraft/client/Minecraft.func_147117_R:()Lnet/minecraft/client/renderer/texture/TextureMap;
+  #522 = Utf8               func_174944_f
+  #523 = Utf8               ()Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #524 = NameAndType        #522:#523     // func_174944_f:()Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #525 = Methodref          #4.#524       // net/minecraft/client/renderer/texture/TextureMap.func_174944_f:()Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #526 = Utf8               func_94217_a
+  #527 = NameAndType        #526:#407     // func_94217_a:(Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+  #528 = Methodref          #203.#527     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94217_a:(Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+  #529 = Utf8               Ljava/lang/Throwable;
+  #530 = Utf8               Lnet/minecraft/crash/CrashReport;
+  #531 = Utf8               Lnet/minecraft/crash/CrashReportCategory;
+  #532 = Utf8               func_188539_a
+  #533 = Utf8               (Lnet/minecraft/client/resources/IResource;I)V
+  #534 = NameAndType        #532:#533     // func_188539_a:(Lnet/minecraft/client/resources/IResource;I)V
+  #535 = Methodref          #203.#534     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_188539_a:(Lnet/minecraft/client/resources/IResource;I)V
+  #536 = Utf8               Unable to parse metadata from {}
+  #537 = String             #536          // Unable to parse metadata from {}
+  #538 = Utf8               error
+  #539 = Utf8               (Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+  #540 = NameAndType        #538:#539     // error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+  #541 = InterfaceMethodref #398.#540     // org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+  #542 = Utf8               Using missing texture, unable to load {}
+  #543 = String             #542          // Using missing texture, unable to load {}
+  #544 = Utf8               func_147963_d
+  #545 = Utf8               (I)V
+  #546 = NameAndType        #544:#545     // func_147963_d:(I)V
+  #547 = Methodref          #203.#546     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_147963_d:(I)V
+  #548 = Utf8               Applying mipmap
+  #549 = String             #548          // Applying mipmap
+  #550 = Utf8               Sprite being mipmapped
+  #551 = String             #550          // Sprite being mipmapped
+  #552 = Utf8               Sprite name
+  #553 = String             #552          // Sprite name
+  #554 = Utf8               (Leos/moe/dragoncore/vw;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+  #555 = NameAndType        #53:#554      // "<init>":(Leos/moe/dragoncore/vw;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+  #556 = Methodref          #11.#555      // eos/moe/dragoncore/qo."<init>":(Leos/moe/dragoncore/vw;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+  #557 = Utf8               func_189529_a
+  #558 = Utf8               (Ljava/lang/String;Lnet/minecraft/crash/ICrashReportDetail;)V
+  #559 = NameAndType        #557:#558     // func_189529_a:(Ljava/lang/String;Lnet/minecraft/crash/ICrashReportDetail;)V
+  #560 = Methodref          #495.#559     // net/minecraft/crash/CrashReportCategory.func_189529_a:(Ljava/lang/String;Lnet/minecraft/crash/ICrashReportDetail;)V
+  #561 = Utf8               Sprite size
+  #562 = String             #561          // Sprite size
+  #563 = Methodref          #9.#555       // eos/moe/dragoncore/uu."<init>":(Leos/moe/dragoncore/vw;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+  #564 = Utf8               Sprite frames
+  #565 = String             #564          // Sprite frames
+  #566 = Methodref          #7.#555       // eos/moe/dragoncore/cr."<init>":(Leos/moe/dragoncore/vw;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+  #567 = Utf8               Mipmap levels
+  #568 = String             #567          // Mipmap levels
+  #569 = Utf8               func_110624_b
+  #570 = NameAndType        #569:#193     // func_110624_b:()Ljava/lang/String;
+  #571 = Methodref          #185.#570     // net/minecraft/util/ResourceLocation.func_110624_b:()Ljava/lang/String;
+  #572 = Utf8               %s%s
+  #573 = String             #572          // %s%s
+  #574 = Utf8               .png
+  #575 = String             #574          // .png
+  #576 = Utf8               format
+  #577 = Utf8               (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #578 = NameAndType        #576:#577     // format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #579 = Methodref          #190.#578     // java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+  #580 = Utf8               (Ljava/lang/String;Ljava/lang/String;)V
+  #581 = NameAndType        #53:#580      // "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+  #582 = Methodref          #185.#581     // net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+  #583 = Utf8               func_110572_b
+  #584 = Utf8               (Ljava/lang/String;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+  #585 = Utf8               func_94248_c
+  #586 = Utf8               net/minecraft/client/renderer/GlStateManager
+  #587 = Class              #586          // net/minecraft/client/renderer/GlStateManager
+  #588 = Utf8               func_179144_i
+  #589 = NameAndType        #588:#545     // func_179144_i:(I)V
+  #590 = Methodref          #587.#589     // net/minecraft/client/renderer/GlStateManager.func_179144_i:(I)V
+  #591 = Utf8               func_94219_l
+  #592 = NameAndType        #591:#73      // func_94219_l:()V
+  #593 = Methodref          #203.#592     // net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94219_l:()V
+  #594 = Utf8               java/lang/IllegalArgumentException
+  #595 = Class              #594          // java/lang/IllegalArgumentException
+  #596 = Utf8               Location cannot be null!
+  #597 = String             #596          // Location cannot be null!
+  #598 = Methodref          #595.#69      // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+  #599 = Utf8               eos/moe/dragoncore/jt
+  #600 = Class              #599          // eos/moe/dragoncore/jt
+  #601 = Methodref          #600.#69      // eos/moe/dragoncore/jt."<init>":(Ljava/lang/String;)V
+  #602 = Utf8               (Lnet/minecraft/util/ResourceLocation;Leos/moe/dragoncore/jt;)V
+  #603 = NameAndType        #50:#602      // ALLATORIxDEMO:(Lnet/minecraft/util/ResourceLocation;Leos/moe/dragoncore/jt;)V
+  #604 = Methodref          #2.#603       // eos/moe/dragoncore/vw.ALLATORIxDEMO:(Lnet/minecraft/util/ResourceLocation;Leos/moe/dragoncore/jt;)V
+  #605 = Utf8               Leos/moe/dragoncore/jt;
+  #606 = Utf8               java/lang/Exception
+  #607 = Class              #606          // java/lang/Exception
+  #608 = Utf8               _e
+  #609 = String             #608          // _e
+  #610 = Utf8               _e.png
+  #611 = String             #610          // _e.png
+  #612 = Utf8               func_110442_L
+  #613 = Utf8               ()Lnet/minecraft/client/resources/IResourceManager;
+  #614 = NameAndType        #612:#613     // func_110442_L:()Lnet/minecraft/client/resources/IResourceManager;
+  #615 = Methodref          #133.#614     // net/minecraft/client/Minecraft.func_110442_L:()Lnet/minecraft/client/resources/IResourceManager;
+  #616 = NameAndType        #47:#46       // k:Z
+  #617 = Fieldref           #600.#616     // eos/moe/dragoncore/jt.k:Z
+  #618 = NameAndType        #50:#605      // ALLATORIxDEMO:Leos/moe/dragoncore/jt;
+  #619 = Fieldref           #600.#618     // eos/moe/dragoncore/jt.ALLATORIxDEMO:Leos/moe/dragoncore/jt;
+  #620 = Utf8               func_110550_d
+  #621 = NameAndType        #585:#73      // func_94248_c:()V
+  #622 = Methodref          #2.#621       // eos/moe/dragoncore/vw.func_94248_c:()V
+  #623 = Utf8               func_147633_a
+  #624 = Utf8               getTextureExtry
+  #625 = Utf8               setTextureEntry
+  #626 = Utf8               (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Z
+  #627 = Utf8               getBasePath
+  #628 = Utf8               getMipmapLevels
+  #629 = Utf8               <clinit>
+  #630 = Utf8               org/apache/logging/log4j/LogManager
+  #631 = Class              #630          // org/apache/logging/log4j/LogManager
+  #632 = Utf8               getLogger
+  #633 = Utf8               ()Lorg/apache/logging/log4j/Logger;
+  #634 = NameAndType        #632:#633     // getLogger:()Lorg/apache/logging/log4j/Logger;
+  #635 = Methodref          #631.#634     // org/apache/logging/log4j/LogManager.getLogger:()Lorg/apache/logging/log4j/Logger;
+  #636 = Utf8               missingno
+  #637 = String             #636          // missingno
+  #638 = NameAndType        #29:#30       // r:Lnet/minecraft/util/ResourceLocation;
+  #639 = Fieldref           #2.#638       // eos/moe/dragoncore/vw.r:Lnet/minecraft/util/ResourceLocation;
+  #640 = Utf8               textures/atlas/blocks.png
+  #641 = String             #640          // textures/atlas/blocks.png
+  #642 = NameAndType        #31:#30       // x:Lnet/minecraft/util/ResourceLocation;
+  #643 = Fieldref           #2.#642       // eos/moe/dragoncore/vw.x:Lnet/minecraft/util/ResourceLocation;
+  #644 = Utf8               Signature
+  #645 = Utf8               Code
+  #646 = Utf8               LineNumberTable
+  #647 = Utf8               LocalVariableTable
+  #648 = Utf8               RuntimeVisibleParameterAnnotations
+  #649 = Utf8               StackMapTable
+  #650 = Utf8               Exceptions
+  #651 = Utf8               RuntimeVisibleAnnotations
+  #652 = Utf8               InnerClasses
+  #653 = Utf8               SourceFile
+  #654 = Utf8               BootstrapMethods
+{
+  private static final org.apache.logging.log4j.Logger t;
+    descriptor: Lorg/apache/logging/log4j/Logger;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  public static final net.minecraft.util.ResourceLocation r;
+    descriptor: Lnet/minecraft/util/ResourceLocation;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final net.minecraft.util.ResourceLocation x;
+    descriptor: Lnet/minecraft/util/ResourceLocation;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  private final java.util.List<net.minecraft.client.renderer.texture.TextureAtlasSprite> v;
+    descriptor: Ljava/util/List;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #34                          // Ljava/util/List<Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;>;
+
+  private final java.util.Map<java.lang.String, net.minecraft.client.renderer.texture.TextureAtlasSprite> m;
+    descriptor: Ljava/util/Map;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #37                          // Ljava/util/Map<Ljava/lang/String;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;>;
+
+  private final java.util.Map<java.lang.String, net.minecraft.client.renderer.texture.TextureAtlasSprite> c;
+    descriptor: Ljava/util/Map;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #37                          // Ljava/util/Map<Ljava/lang/String;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;>;
+
+  private final java.lang.String q;
+    descriptor: Ljava/lang/String;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private final net.minecraft.client.renderer.texture.ITextureMapPopulator b;
+    descriptor: Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private int o;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  public boolean y;
+    descriptor: Z
+    flags: (0x0001) ACC_PUBLIC
+
+  private final java.util.Deque<net.minecraft.util.ResourceLocation> k;
+    descriptor: Ljava/util/Deque;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #49                          // Ljava/util/Deque<Lnet/minecraft/util/ResourceLocation;>;
+
+  private final java.util.Set<net.minecraft.util.ResourceLocation> ALLATORIxDEMO;
+    descriptor: Ljava/util/Set;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Signature: #52                          // Ljava/util/Set<Lnet/minecraft/util/ResourceLocation;>;
+
+  public eos.moe.dragoncore.vw(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: aconst_null
+         3: invokespecial #57                 // Method "<init>":(Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;)V
+         6: return
+      LineNumberTable:
+        line 41: 0
+        line 42: 6
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0     a   Leos/moe/dragoncore/vw;
+            0       7     1     a   Ljava/lang/String;
+
+  public eos.moe.dragoncore.vw(java.lang.String, net.minecraft.client.renderer.texture.ITextureMapPopulator);
+    descriptor: (Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: iconst_0
+         4: invokespecial #63                 // Method "<init>":(Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;Z)V
+         7: return
+      LineNumberTable:
+        line 45: 0
+        line 46: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0  this   Leos/moe/dragoncore/vw;
+            0       8     1 basePathIn   Ljava/lang/String;
+            0       8     2     a   Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+      parameter 1:
+        0: #60()
+          javax.annotation.Nullable
+
+  public eos.moe.dragoncore.vw(java.lang.String, boolean);
+    descriptor: (Ljava/lang/String;Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: aconst_null
+         3: iload_2
+         4: invokespecial #63                 // Method "<init>":(Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;Z)V
+         7: return
+      LineNumberTable:
+        line 49: 0
+        line 50: 7
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0     a   Leos/moe/dragoncore/vw;
+            0       8     1     a   Ljava/lang/String;
+            0       8     2     a   Z
+
+  public eos.moe.dragoncore.vw(java.lang.String, net.minecraft.client.renderer.texture.ITextureMapPopulator, boolean);
+    descriptor: (Ljava/lang/String;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=4
+         0: aload_0
+         1: ldc           #68                 // String
+         3: invokespecial #70                 // Method net/minecraft/client/renderer/texture/TextureMap."<init>":(Ljava/lang/String;)V
+         6: aload_0
+         7: new           #72                 // class java/util/ArrayDeque
+        10: dup
+        11: invokespecial #75                 // Method java/util/ArrayDeque."<init>":()V
+        14: putfield      #77                 // Field k:Ljava/util/Deque;
+        17: aload_0
+        18: new           #79                 // class java/util/HashSet
+        21: dup
+        22: invokespecial #80                 // Method java/util/HashSet."<init>":()V
+        25: putfield      #82                 // Field ALLATORIxDEMO:Ljava/util/Set;
+        28: aload_0
+        29: invokestatic  #88                 // Method com/google/common/collect/Lists.newArrayList:()Ljava/util/ArrayList;
+        32: putfield      #90                 // Field v:Ljava/util/List;
+        35: aload_0
+        36: invokestatic  #96                 // Method com/google/common/collect/Maps.newHashMap:()Ljava/util/HashMap;
+        39: putfield      #98                 // Field m:Ljava/util/Map;
+        42: aload_0
+        43: invokestatic  #96                 // Method com/google/common/collect/Maps.newHashMap:()Ljava/util/HashMap;
+        46: putfield      #100                // Field c:Ljava/util/Map;
+        49: aload_0
+        50: aload_1
+        51: putfield      #102                // Field q:Ljava/lang/String;
+        54: aload_0
+        55: aload_2
+        56: putfield      #104                // Field b:Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;
+        59: return
+      LineNumberTable:
+        line 53: 0
+        line 331: 6
+        line 332: 17
+        line 54: 28
+        line 55: 35
+        line 56: 42
+        line 58: 49
+        line 59: 54
+        line 60: 59
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      60     0  this   Leos/moe/dragoncore/vw;
+            0      60     1 basePathIn   Ljava/lang/String;
+            0      60     2 iconCreatorIn   Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;
+            0      60     3     a   Z
+    RuntimeVisibleParameterAnnotations:
+      parameter 0:
+      parameter 1:
+        0: #60()
+          javax.annotation.Nullable
+      parameter 2:
+
+  public void func_110551_a(net.minecraft.client.resources.IResourceManager) throws java.io.IOException;
+    descriptor: (Lnet/minecraft/client/resources/IResourceManager;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #104                // Field b:Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;
+         4: ifnull        16
+         7: aload_0
+         8: aload_1
+         9: aload_0
+        10: getfield      #104                // Field b:Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;
+        13: invokevirtual #113                // Method func_174943_a:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;)V
+        16: return
+      StackMapTable: number_of_entries = 1
+        frame_type = 16 /* same */
+      LineNumberTable:
+        line 64: 0
+        line 65: 7
+        line 67: 16
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0     a   Leos/moe/dragoncore/vw;
+            0      17     1     a   Lnet/minecraft/client/resources/IResourceManager;
+    Exceptions:
+      throws java.io.IOException
+
+  public void func_174943_a(net.minecraft.client.resources.IResourceManager, net.minecraft.client.renderer.texture.ITextureMapPopulator);
+    descriptor: (Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: iconst_0
+         2: putfield      #116                // Field y:Z
+         5: aload_0
+         6: getfield      #98                 // Field m:Ljava/util/Map;
+         9: invokeinterface #119,  1          // InterfaceMethod java/util/Map.clear:()V
+        14: aload_0
+        15: invokevirtual #122                // Method func_147631_c:()V
+        18: aload_2
+        19: aload_0
+        20: invokeinterface #128,  2          // InterfaceMethod net/minecraft/client/renderer/texture/ITextureMapPopulator.func_177059_a:(Lnet/minecraft/client/renderer/texture/TextureMap;)V
+        25: aload_0
+        26: aload_1
+        27: invokevirtual #131                // Method func_110571_b:(Lnet/minecraft/client/resources/IResourceManager;)V
+        30: aload_0
+        31: iconst_1
+        32: putfield      #116                // Field y:Z
+        35: return
+      LineNumberTable:
+        line 70: 0
+        line 71: 5
+        line 72: 14
+        line 73: 18
+        line 74: 25
+        line 75: 30
+        line 76: 35
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      36     0     a   Leos/moe/dragoncore/vw;
+            0      36     1     a   Lnet/minecraft/client/resources/IResourceManager;
+            0      36     2     a   Lnet/minecraft/client/renderer/texture/ITextureMapPopulator;
+
+  public void func_110571_b(net.minecraft.client.resources.IResourceManager);
+    descriptor: (Lnet/minecraft/client/resources/IResourceManager;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=8, locals=10, args_size=2
+         0: invokestatic  #137                // Method net/minecraft/client/Minecraft.func_71369_N:()I
+         3: istore_2
+         4: new           #139                // class net/minecraft/client/renderer/texture/Stitcher
+         7: dup
+         8: iload_2
+         9: iload_2
+        10: iconst_0
+        11: aload_0
+        12: getfield      #141                // Field o:I
+        15: invokespecial #144                // Method net/minecraft/client/renderer/texture/Stitcher."<init>":(IIII)V
+        18: astore_3
+        19: aload_0
+        20: getfield      #100                // Field c:Ljava/util/Map;
+        23: invokeinterface #119,  1          // InterfaceMethod java/util/Map.clear:()V
+        28: aload_0
+        29: getfield      #90                 // Field v:Ljava/util/List;
+        32: invokeinterface #147,  1          // InterfaceMethod java/util/List.clear:()V
+        37: ldc           #148                // int 2147483647
+        39: istore        4
+        41: iconst_1
+        42: aload_0
+        43: getfield      #141                // Field o:I
+        46: ishl
+        47: istore        5
+        49: ldc           #150                // String Texture stitching
+        51: aload_0
+        52: getfield      #98                 // Field m:Ljava/util/Map;
+        55: invokeinterface #153,  1          // InterfaceMethod java/util/Map.size:()I
+        60: invokestatic  #157                // Method net/minecraftforge/fml/common/ProgressManager.push:(Ljava/lang/String;I)Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;
+        63: astore        6
+        65: aload_0
+        66: getfield      #82                 // Field ALLATORIxDEMO:Ljava/util/Set;
+        69: invokeinterface #160,  1          // InterfaceMethod java/util/Set.clear:()V
+        74: aload_0
+        75: getfield      #98                 // Field m:Ljava/util/Map;
+        78: invokestatic  #163                // Method com/google/common/collect/Maps.newHashMap:(Ljava/util/Map;)Ljava/util/HashMap;
+        81: invokevirtual #169                // Method java/util/HashMap.entrySet:()Ljava/util/Set;
+        84: invokeinterface #173,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        89: astore        7
+        91: aload         7
+        93: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        98: ifeq          171
+       101: aload         7
+       103: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       108: checkcast     #13                 // class java/util/Map$Entry
+       111: astore        8
+       113: new           #185                // class net/minecraft/util/ResourceLocation
+       116: dup
+       117: aload         8
+       119: invokeinterface #188,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+       124: checkcast     #190                // class java/lang/String
+       127: invokespecial #191                // Method net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;)V
+       130: astore        9
+       132: aload         6
+       134: aload         9
+       136: invokevirtual #195                // Method net/minecraft/util/ResourceLocation.toString:()Ljava/lang/String;
+       139: invokevirtual #198                // Method net/minecraftforge/fml/common/ProgressManager$ProgressBar.step:(Ljava/lang/String;)V
+       142: aload_0
+       143: aload_3
+       144: aload_1
+       145: aload         9
+       147: aload         8
+       149: invokeinterface #201,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       154: checkcast     #203                // class net/minecraft/client/renderer/texture/TextureAtlasSprite
+       157: aload         6
+       159: iload         4
+       161: iload         5
+       163: invokespecial #206                // Method ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)I
+       166: istore        4
+       168: goto          91
+       171: aload_0
+       172: aload_3
+       173: aload         6
+       175: iload         4
+       177: iload         5
+       179: invokespecial #209                // Method ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)V
+       182: return
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 91
+          locals = [ class eos/moe/dragoncore/vw, class net/minecraft/client/resources/IResourceManager, int, class net/minecraft/client/renderer/texture/Stitcher, int, int, class net/minecraftforge/fml/common/ProgressManager$ProgressBar, class java/util/Iterator ]
+          stack = []
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 79
+      LineNumberTable:
+        line 79: 0
+        line 80: 4
+        line 81: 19
+        line 82: 28
+        line 83: 37
+        line 84: 41
+        line 86: 49
+        line 87: 65
+        line 89: 74
+        line 90: 113
+        line 91: 132
+        line 92: 142
+        line 93: 168
+        line 94: 171
+        line 95: 182
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     183     0     a   Leos/moe/dragoncore/vw;
+            0     183     1     a   Lnet/minecraft/client/resources/IResourceManager;
+            4     179     2     a   I
+           19     164     3     a   Lnet/minecraft/client/renderer/texture/Stitcher;
+           41     142     4     a   I
+           49     134     5     a   I
+           65     118     6     a   Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;
+          113      59     8     a   Ljava/util/Map$Entry;
+          132      40     9     a   Lnet/minecraft/util/ResourceLocation;
+
+  private int ALLATORIxDEMO(net.minecraft.client.renderer.texture.Stitcher, net.minecraft.client.resources.IResourceManager, net.minecraft.util.ResourceLocation, net.minecraft.client.renderer.texture.TextureAtlasSprite, net.minecraftforge.fml.common.ProgressManager$ProgressBar, int, int);
+    descriptor: (Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)I
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=8, locals=15, args_size=8
+         0: aload_0
+         1: getfield      #82                 // Field ALLATORIxDEMO:Ljava/util/Set;
+         4: aload_3
+         5: invokeinterface #220,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+        10: ifeq          16
+        13: iload         6
+        15: ireturn
+        16: aload_0
+        17: aload         4
+        19: invokespecial #223                // Method ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Lnet/minecraft/util/ResourceLocation;
+        22: astore        8
+        24: aconst_null
+        25: astore        9
+        27: aload_0
+        28: getfield      #77                 // Field k:Ljava/util/Deque;
+        31: invokeinterface #226,  1          // InterfaceMethod java/util/Deque.iterator:()Ljava/util/Iterator;
+        36: astore        10
+        38: aload         10
+        40: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        45: ifeq          119
+        48: aload         10
+        50: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        55: checkcast     #185                // class net/minecraft/util/ResourceLocation
+        58: astore        11
+        60: aload_3
+        61: aload         11
+        63: invokevirtual #229                // Method net/minecraft/util/ResourceLocation.equals:(Ljava/lang/Object;)Z
+        66: ifeq          116
+        69: new           #231                // class java/lang/StringBuilder
+        72: dup
+        73: invokespecial #232                // Method java/lang/StringBuilder."<init>":()V
+        76: ldc           #234                // String circular model dependencies, stack: [
+        78: invokevirtual #238                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        81: ldc           #240                // String ,
+        83: invokestatic  #246                // Method com/google/common/base/Joiner.on:(Ljava/lang/String;)Lcom/google/common/base/Joiner;
+        86: aload_0
+        87: getfield      #77                 // Field k:Ljava/util/Deque;
+        90: invokevirtual #250                // Method com/google/common/base/Joiner.join:(Ljava/lang/Iterable;)Ljava/lang/String;
+        93: invokevirtual #238                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        96: ldc           #252                // String ]
+        98: invokevirtual #238                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       101: invokevirtual #253                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       104: astore        12
+       106: invokestatic  #259                // Method net/minecraftforge/fml/client/FMLClientHandler.instance:()Lnet/minecraftforge/fml/client/FMLClientHandler;
+       109: aload         8
+       111: aload         12
+       113: invokevirtual #263                // Method net/minecraftforge/fml/client/FMLClientHandler.trackBrokenTexture:(Lnet/minecraft/util/ResourceLocation;Ljava/lang/String;)V
+       116: goto          38
+       119: aload_0
+       120: getfield      #77                 // Field k:Ljava/util/Deque;
+       123: aload_3
+       124: invokeinterface #267,  2          // InterfaceMethod java/util/Deque.addLast:(Ljava/lang/Object;)V
+       129: aload         4
+       131: invokevirtual #271                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.getDependencies:()Ljava/util/Collection;
+       134: invokeinterface #274,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+       139: astore        10
+       141: aload         10
+       143: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       148: ifeq          227
+       151: aload         10
+       153: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       158: checkcast     #185                // class net/minecraft/util/ResourceLocation
+       161: astore        11
+       163: aload_0
+       164: getfield      #98                 // Field m:Ljava/util/Map;
+       167: aload         11
+       169: invokevirtual #195                // Method net/minecraft/util/ResourceLocation.toString:()Ljava/lang/String;
+       172: invokeinterface #277,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       177: ifne          187
+       180: aload_0
+       181: aload         11
+       183: invokevirtual #281                // Method func_174942_a:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+       186: pop
+       187: aload_0
+       188: getfield      #98                 // Field m:Ljava/util/Map;
+       191: aload         11
+       193: invokevirtual #195                // Method net/minecraft/util/ResourceLocation.toString:()Ljava/lang/String;
+       196: invokeinterface #285,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       201: checkcast     #203                // class net/minecraft/client/renderer/texture/TextureAtlasSprite
+       204: astore        12
+       206: aload_0
+       207: aload_1
+       208: aload_2
+       209: aload         11
+       211: aload         12
+       213: aload         5
+       215: iload         6
+       217: iload         7
+       219: invokespecial #206                // Method ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)I
+       222: istore        6
+       224: goto          141
+       227: aload         4
+       229: aload_2
+       230: aload         8
+       232: invokevirtual #289                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.hasCustomLoader:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;)Z
+       235: ifeq          283
+       238: aload         4
+       240: aload_2
+       241: aload         8
+       243: aload_0
+       244: invokedynamic #305,  0            // InvokeDynamic #0:apply:(Leos/moe/dragoncore/vw;)Ljava/util/function/Function;
+       249: invokevirtual #309                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.load:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;Ljava/util/function/Function;)Z
+       252: ifeq          367
+       255: iload         6
+       257: istore        10
+       259: aload_0
+       260: getfield      #77                 // Field k:Ljava/util/Deque;
+       263: invokeinterface #312,  1          // InterfaceMethod java/util/Deque.removeLast:()Ljava/lang/Object;
+       268: pop
+       269: aload_0
+       270: getfield      #82                 // Field ALLATORIxDEMO:Ljava/util/Set;
+       273: aload_3
+       274: invokeinterface #315,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       279: pop
+       280: iload         10
+       282: ireturn
+       283: aload         8
+       285: invokevirtual #318                // Method net/minecraft/util/ResourceLocation.func_110623_a:()Ljava/lang/String;
+       288: ldc_w         #320                // String missingno.png
+       291: invokevirtual #324                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+       294: ifeq          325
+       297: iload         6
+       299: istore        10
+       301: aload_0
+       302: getfield      #77                 // Field k:Ljava/util/Deque;
+       305: invokeinterface #312,  1          // InterfaceMethod java/util/Deque.removeLast:()Ljava/lang/Object;
+       310: pop
+       311: aload_0
+       312: getfield      #82                 // Field ALLATORIxDEMO:Ljava/util/Set;
+       315: aload_3
+       316: invokeinterface #315,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       321: pop
+       322: iload         10
+       324: ireturn
+       325: aload         8
+       327: invokevirtual #318                // Method net/minecraft/util/ResourceLocation.func_110623_a:()Ljava/lang/String;
+       330: ldc_w         #326                // String ascii.png
+       333: invokevirtual #324                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+       336: ifeq          367
+       339: iload         6
+       341: istore        10
+       343: aload_0
+       344: getfield      #77                 // Field k:Ljava/util/Deque;
+       347: invokeinterface #312,  1          // InterfaceMethod java/util/Deque.removeLast:()Ljava/lang/Object;
+       352: pop
+       353: aload_0
+       354: getfield      #82                 // Field ALLATORIxDEMO:Ljava/util/Set;
+       357: aload_3
+       358: invokeinterface #315,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       363: pop
+       364: iload         10
+       366: ireturn
+       367: aload_2
+       368: aload         8
+       370: invokeinterface #330,  2          // InterfaceMethod net/minecraft/client/resources/IResourceManager.func_110536_a:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/resources/IResource;
+       375: invokestatic  #336                // Method net/minecraft/client/renderer/texture/PngSizeInfo.func_188532_a:(Lnet/minecraft/client/resources/IResource;)Lnet/minecraft/client/renderer/texture/PngSizeInfo;
+       378: astore        10
+       380: aload_2
+       381: aload         8
+       383: invokeinterface #330,  2          // InterfaceMethod net/minecraft/client/resources/IResourceManager.func_110536_a:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/resources/IResource;
+       388: astore        9
+       390: aload         9
+       392: ldc_w         #338                // String animation
+       395: invokeinterface #344,  2          // InterfaceMethod net/minecraft/client/resources/IResource.func_110526_a:(Ljava/lang/String;)Lnet/minecraft/client/resources/data/IMetadataSection;
+       400: ifnull        407
+       403: iconst_1
+       404: goto          408
+       407: iconst_0
+       408: istore        11
+       410: aload         4
+       412: aload         10
+       414: iload         11
+       416: invokevirtual #348                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_188538_a:(Lnet/minecraft/client/renderer/texture/PngSizeInfo;Z)V
+       419: aload         9
+       421: invokestatic  #354                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+       424: goto          538
+       427: astore        10
+       429: aload         10
+       431: invokevirtual #357                // Method java/lang/RuntimeException.printStackTrace:()V
+       434: invokestatic  #259                // Method net/minecraftforge/fml/client/FMLClientHandler.instance:()Lnet/minecraftforge/fml/client/FMLClientHandler;
+       437: aload         8
+       439: aload         10
+       441: invokevirtual #360                // Method java/lang/RuntimeException.getMessage:()Ljava/lang/String;
+       444: invokevirtual #263                // Method net/minecraftforge/fml/client/FMLClientHandler.trackBrokenTexture:(Lnet/minecraft/util/ResourceLocation;Ljava/lang/String;)V
+       447: iload         6
+       449: istore        11
+       451: aload         9
+       453: invokestatic  #354                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+       456: aload_0
+       457: getfield      #77                 // Field k:Ljava/util/Deque;
+       460: invokeinterface #312,  1          // InterfaceMethod java/util/Deque.removeLast:()Ljava/lang/Object;
+       465: pop
+       466: aload_0
+       467: getfield      #82                 // Field ALLATORIxDEMO:Ljava/util/Set;
+       470: aload_3
+       471: invokeinterface #315,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       476: pop
+       477: iload         11
+       479: ireturn
+       480: astore        10
+       482: aload         10
+       484: invokevirtual #361                // Method java/io/IOException.printStackTrace:()V
+       487: invokestatic  #259                // Method net/minecraftforge/fml/client/FMLClientHandler.instance:()Lnet/minecraftforge/fml/client/FMLClientHandler;
+       490: aload         8
+       492: invokevirtual #365                // Method net/minecraftforge/fml/client/FMLClientHandler.trackMissingTexture:(Lnet/minecraft/util/ResourceLocation;)V
+       495: iload         6
+       497: istore        11
+       499: aload         9
+       501: invokestatic  #354                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+       504: aload_0
+       505: getfield      #77                 // Field k:Ljava/util/Deque;
+       508: invokeinterface #312,  1          // InterfaceMethod java/util/Deque.removeLast:()Ljava/lang/Object;
+       513: pop
+       514: aload_0
+       515: getfield      #82                 // Field ALLATORIxDEMO:Ljava/util/Set;
+       518: aload_3
+       519: invokeinterface #315,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       524: pop
+       525: iload         11
+       527: ireturn
+       528: astore        13
+       530: aload         9
+       532: invokestatic  #354                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+       535: aload         13
+       537: athrow
+       538: iload         6
+       540: aload         4
+       542: invokevirtual #368                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94211_a:()I
+       545: aload         4
+       547: invokevirtual #371                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94216_b:()I
+       550: invokestatic  #377                // Method java/lang/Math.min:(II)I
+       553: invokestatic  #377                // Method java/lang/Math.min:(II)I
+       556: istore        6
+       558: aload         4
+       560: invokevirtual #368                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94211_a:()I
+       563: invokestatic  #383                // Method java/lang/Integer.lowestOneBit:(I)I
+       566: aload         4
+       568: invokevirtual #371                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94216_b:()I
+       571: invokestatic  #383                // Method java/lang/Integer.lowestOneBit:(I)I
+       574: invokestatic  #377                // Method java/lang/Math.min:(II)I
+       577: istore        10
+       579: iload         10
+       581: iload         7
+       583: if_icmpge     631
+       586: getstatic     #385                // Field t:Lorg/apache/logging/log4j/Logger;
+       589: ldc_w         #387                // String Texture {} with size {}x{} will have visual artifacts at mip level {}, it can only support level {}. Please report to the mod author that the texture should be some multiple of 16x16.
+       592: aload         8
+       594: aload         4
+       596: invokevirtual #368                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94211_a:()I
+       599: invokestatic  #391                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       602: aload         4
+       604: invokevirtual #371                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94216_b:()I
+       607: invokestatic  #391                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       610: iload         7
+       612: invokestatic  #396                // Method net/minecraft/util/math/MathHelper.func_151239_c:(I)I
+       615: invokestatic  #391                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       618: iload         10
+       620: invokestatic  #396                // Method net/minecraft/util/math/MathHelper.func_151239_c:(I)I
+       623: invokestatic  #391                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       626: invokeinterface #402,  7          // InterfaceMethod org/apache/logging/log4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+       631: aload_0
+       632: aload_2
+       633: aload         4
+       635: invokespecial #405                // Method ALLATORIxDEMO:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Z
+       638: ifeq          647
+       641: aload_1
+       642: aload         4
+       644: invokevirtual #409                // Method net/minecraft/client/renderer/texture/Stitcher.func_110934_a:(Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+       647: iload         6
+       649: istore        11
+       651: aload_0
+       652: getfield      #77                 // Field k:Ljava/util/Deque;
+       655: invokeinterface #312,  1          // InterfaceMethod java/util/Deque.removeLast:()Ljava/lang/Object;
+       660: pop
+       661: aload_0
+       662: getfield      #82                 // Field ALLATORIxDEMO:Ljava/util/Set;
+       665: aload_3
+       666: invokeinterface #315,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       671: pop
+       672: iload         11
+       674: ireturn
+       675: astore        14
+       677: aload_0
+       678: getfield      #77                 // Field k:Ljava/util/Deque;
+       681: invokeinterface #312,  1          // InterfaceMethod java/util/Deque.removeLast:()Ljava/lang/Object;
+       686: pop
+       687: aload_0
+       688: getfield      #82                 // Field ALLATORIxDEMO:Ljava/util/Set;
+       691: aload_3
+       692: invokeinterface #315,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+       697: pop
+       698: aload         14
+       700: athrow
+      Exception table:
+         from    to  target type
+           367   419   427   Class java/lang/RuntimeException
+           367   419   480   Class java/io/IOException
+           367   419   528   any
+           427   451   528   any
+           480   499   528   any
+           528   530   528   any
+           129   259   675   any
+           283   301   675   any
+           325   343   675   any
+           367   456   675   any
+           480   504   675   any
+           528   651   675   any
+           675   677   675   any
+      StackMapTable: number_of_entries = 19
+        frame_type = 16 /* same */
+        frame_type = 254 /* append */
+          offset_delta = 21
+          locals = [ class net/minecraft/util/ResourceLocation, null, class java/util/Iterator ]
+        frame_type = 252 /* append */
+          offset_delta = 77
+          locals = [ class net/minecraft/util/ResourceLocation ]
+        frame_type = 250 /* chop */
+          offset_delta = 2
+        frame_type = 21 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 45
+          locals = [ class net/minecraft/util/ResourceLocation ]
+        frame_type = 250 /* chop */
+          offset_delta = 39
+        frame_type = 55 /* same */
+        frame_type = 41 /* same */
+        frame_type = 41 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 39
+          locals = [ class eos/moe/dragoncore/vw, class net/minecraft/client/renderer/texture/Stitcher, class net/minecraft/client/resources/IResourceManager, class net/minecraft/util/ResourceLocation, class net/minecraft/client/renderer/texture/TextureAtlasSprite, class net/minecraftforge/fml/common/ProgressManager$ProgressBar, int, int, class net/minecraft/util/ResourceLocation, class net/minecraft/client/resources/IResource, class net/minecraft/client/renderer/texture/PngSizeInfo ]
+          stack = []
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 18
+          locals = [ class eos/moe/dragoncore/vw, class net/minecraft/client/renderer/texture/Stitcher, class net/minecraft/client/resources/IResourceManager, class net/minecraft/util/ResourceLocation, class net/minecraft/client/renderer/texture/TextureAtlasSprite, class net/minecraftforge/fml/common/ProgressManager$ProgressBar, int, int, class net/minecraft/util/ResourceLocation, class net/minecraft/client/resources/IResource, class java/lang/Object ]
+          stack = [ class java/lang/RuntimeException ]
+        frame_type = 116 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+        frame_type = 111 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class eos/moe/dragoncore/vw, class net/minecraft/client/renderer/texture/Stitcher, class net/minecraft/client/resources/IResourceManager, class net/minecraft/util/ResourceLocation, class net/minecraft/client/renderer/texture/TextureAtlasSprite, class net/minecraftforge/fml/common/ProgressManager$ProgressBar, int, int, class net/minecraft/util/ResourceLocation, class net/minecraft/client/resources/IResource, class net/minecraft/client/renderer/texture/PngSizeInfo, int ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 92
+          locals = [ class eos/moe/dragoncore/vw, class net/minecraft/client/renderer/texture/Stitcher, class net/minecraft/client/resources/IResourceManager, class net/minecraft/util/ResourceLocation, class net/minecraft/client/renderer/texture/TextureAtlasSprite, class net/minecraftforge/fml/common/ProgressManager$ProgressBar, int, int, class net/minecraft/util/ResourceLocation, class net/minecraft/client/resources/IResource, int, int ]
+          stack = []
+        frame_type = 15 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 27
+          locals = [ class eos/moe/dragoncore/vw, class net/minecraft/client/renderer/texture/Stitcher, class net/minecraft/client/resources/IResourceManager, class net/minecraft/util/ResourceLocation, class net/minecraft/client/renderer/texture/TextureAtlasSprite, class net/minecraftforge/fml/common/ProgressManager$ProgressBar, int, int, class net/minecraft/util/ResourceLocation, class net/minecraft/client/resources/IResource ]
+          stack = [ class java/lang/Throwable ]
+      LineNumberTable:
+        line 98: 0
+        line 99: 13
+        line 101: 16
+        line 102: 24
+        line 104: 27
+        line 105: 60
+        line 106: 69
+        line 107: 106
+        line 109: 116
+        line 110: 119
+        line 112: 129
+        line 113: 163
+        line 114: 180
+        line 116: 187
+        line 117: 206
+        line 118: 224
+        line 119: 227
+        line 120: 238
+        line 121: 255
+        line 157: 259
+        line 158: 269
+        line 121: 280
+        line 123: 283
+        line 124: 297
+        line 157: 301
+        line 158: 311
+        line 124: 322
+        line 125: 325
+        line 126: 339
+        line 157: 343
+        line 158: 353
+        line 126: 364
+        line 129: 367
+        line 130: 380
+        line 131: 390
+        line 132: 410
+        line 142: 419
+        line 143: 424
+        line 133: 427
+        line 134: 429
+        line 135: 434
+        line 136: 447
+        line 142: 451
+        line 157: 456
+        line 158: 466
+        line 136: 477
+        line 137: 480
+        line 138: 482
+        line 139: 487
+        line 140: 495
+        line 142: 499
+        line 157: 504
+        line 158: 514
+        line 140: 525
+        line 142: 528
+        line 143: 535
+        line 145: 538
+        line 146: 558
+        line 148: 579
+        line 150: 586
+        line 153: 631
+        line 154: 641
+        line 155: 647
+        line 157: 651
+        line 158: 661
+        line 155: 672
+        line 157: 675
+        line 158: 687
+        line 159: 698
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     701     0     a   Leos/moe/dragoncore/vw;
+            0     701     1     a   Lnet/minecraft/client/renderer/texture/Stitcher;
+            0     701     2     a   Lnet/minecraft/client/resources/IResourceManager;
+            0     701     3     a   Lnet/minecraft/util/ResourceLocation;
+            0     701     4     a   Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+            0     701     5     a   Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;
+            0     701     6     a   I
+            0     701     7     a   I
+           24     677     8     a   Lnet/minecraft/util/ResourceLocation;
+           27     674     9     a   Lnet/minecraft/client/resources/IResource;
+          579      99    10     a   I
+          482      50    10     a   Ljava/io/IOException;
+          429      55    10     a   Ljava/lang/RuntimeException;
+          380      44    10     a   Lnet/minecraft/client/renderer/texture/PngSizeInfo;
+          410      14    11     a   Z
+          163      66    11     a   Lnet/minecraft/util/ResourceLocation;
+           60      60    11     a   Lnet/minecraft/util/ResourceLocation;
+          106      14    12     a   Ljava/lang/String;
+          206      23    12     a   Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+
+  private void ALLATORIxDEMO(net.minecraft.client.renderer.texture.Stitcher, net.minecraftforge.fml.common.ProgressManager$ProgressBar, int, int);
+    descriptor: (Lnet/minecraft/client/renderer/texture/Stitcher;Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;II)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=7, locals=14, args_size=5
+         0: aload_2
+         1: invokestatic  #422                // Method net/minecraftforge/fml/common/ProgressManager.pop:(Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;)V
+         4: iload_3
+         5: iload         4
+         7: invokestatic  #377                // Method java/lang/Math.min:(II)I
+        10: istore        5
+        12: iload         5
+        14: invokestatic  #396                // Method net/minecraft/util/math/MathHelper.func_151239_c:(I)I
+        17: istore        6
+        19: ldc_w         #424                // String Texture creation
+        22: iconst_2
+        23: invokestatic  #157                // Method net/minecraftforge/fml/common/ProgressManager.push:(Ljava/lang/String;I)Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;
+        26: astore_2
+        27: aload_2
+        28: ldc_w         #426                // String Stitching
+        31: invokevirtual #198                // Method net/minecraftforge/fml/common/ProgressManager$ProgressBar.step:(Ljava/lang/String;)V
+        34: aload_1
+        35: invokevirtual #429                // Method net/minecraft/client/renderer/texture/Stitcher.func_94305_f:()V
+        38: aload_2
+        39: ldc_w         #431                // String Allocating GL texture
+        42: invokevirtual #198                // Method net/minecraftforge/fml/common/ProgressManager$ProgressBar.step:(Ljava/lang/String;)V
+        45: aload_0
+        46: invokevirtual #434                // Method func_110552_b:()I
+        49: aload_0
+        50: getfield      #141                // Field o:I
+        53: aload_1
+        54: invokevirtual #437                // Method net/minecraft/client/renderer/texture/Stitcher.func_110935_a:()I
+        57: aload_1
+        58: invokevirtual #440                // Method net/minecraft/client/renderer/texture/Stitcher.func_110936_b:()I
+        61: invokestatic  #445                // Method net/minecraft/client/renderer/texture/TextureUtil.func_180600_a:(IIII)V
+        64: aload_0
+        65: getfield      #98                 // Field m:Ljava/util/Map;
+        68: invokestatic  #163                // Method com/google/common/collect/Maps.newHashMap:(Ljava/util/Map;)Ljava/util/HashMap;
+        71: astore        7
+        73: aload_2
+        74: invokestatic  #422                // Method net/minecraftforge/fml/common/ProgressManager.pop:(Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;)V
+        77: ldc_w         #447                // String Texture mipmap and upload
+        80: aload_1
+        81: invokevirtual #451                // Method net/minecraft/client/renderer/texture/Stitcher.func_94309_g:()Ljava/util/List;
+        84: invokeinterface #452,  1          // InterfaceMethod java/util/List.size:()I
+        89: invokestatic  #157                // Method net/minecraftforge/fml/common/ProgressManager.push:(Ljava/lang/String;I)Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;
+        92: astore_2
+        93: aload_1
+        94: invokevirtual #451                // Method net/minecraft/client/renderer/texture/Stitcher.func_94309_g:()Ljava/util/List;
+        97: invokeinterface #453,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       102: astore        8
+       104: aload         8
+       106: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       111: ifeq          277
+       114: aload         8
+       116: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       121: checkcast     #203                // class net/minecraft/client/renderer/texture/TextureAtlasSprite
+       124: astore        9
+       126: aload_2
+       127: aload         9
+       129: invokevirtual #456                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94215_i:()Ljava/lang/String;
+       132: invokevirtual #198                // Method net/minecraftforge/fml/common/ProgressManager$ProgressBar.step:(Ljava/lang/String;)V
+       135: aload         9
+       137: invokevirtual #456                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94215_i:()Ljava/lang/String;
+       140: astore        10
+       142: aload         7
+       144: aload         10
+       146: invokeinterface #459,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+       151: pop
+       152: aload_0
+       153: getfield      #100                // Field c:Ljava/util/Map;
+       156: aload         10
+       158: aload         9
+       160: invokeinterface #463,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       165: pop
+       166: aload         9
+       168: iconst_0
+       169: invokevirtual #467                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_147965_a:(I)[[I
+       172: aload         9
+       174: invokevirtual #368                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94211_a:()I
+       177: aload         9
+       179: invokevirtual #371                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94216_b:()I
+       182: aload         9
+       184: invokevirtual #470                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_130010_a:()I
+       187: aload         9
+       189: invokevirtual #473                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_110967_i:()I
+       192: iconst_0
+       193: iconst_0
+       194: invokestatic  #477                // Method net/minecraft/client/renderer/texture/TextureUtil.func_147955_a:([[IIIIIZZ)V
+       197: goto          254
+       200: astore        11
+       202: aload         11
+       204: ldc_w         #479                // String Stitching texture atlas
+       207: invokestatic  #485                // Method net/minecraft/crash/CrashReport.func_85055_a:(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/crash/CrashReport;
+       210: astore        12
+       212: aload         12
+       214: ldc_w         #487                // String Texture being stitched together
+       217: invokevirtual #491                // Method net/minecraft/crash/CrashReport.func_85058_a:(Ljava/lang/String;)Lnet/minecraft/crash/CrashReportCategory;
+       220: astore        13
+       222: aload         13
+       224: ldc_w         #493                // String Atlas path
+       227: aload_0
+       228: getfield      #102                // Field q:Ljava/lang/String;
+       231: invokevirtual #499                // Method net/minecraft/crash/CrashReportCategory.func_71507_a:(Ljava/lang/String;Ljava/lang/Object;)V
+       234: aload         13
+       236: ldc_w         #501                // String Sprite
+       239: aload         9
+       241: invokevirtual #499                // Method net/minecraft/crash/CrashReportCategory.func_71507_a:(Ljava/lang/String;Ljava/lang/Object;)V
+       244: new           #503                // class net/minecraft/util/ReportedException
+       247: dup
+       248: aload         12
+       250: invokespecial #506                // Method net/minecraft/util/ReportedException."<init>":(Lnet/minecraft/crash/CrashReport;)V
+       253: athrow
+       254: aload         9
+       256: invokevirtual #509                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_130098_m:()Z
+       259: ifeq          274
+       262: aload_0
+       263: getfield      #90                 // Field v:Ljava/util/List;
+       266: aload         9
+       268: invokeinterface #510,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       273: pop
+       274: goto          104
+       277: aload         7
+       279: invokeinterface #513,  1          // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+       284: invokeinterface #274,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+       289: astore        8
+       291: aload         8
+       293: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       298: ifeq          330
+       301: aload         8
+       303: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       308: checkcast     #203                // class net/minecraft/client/renderer/texture/TextureAtlasSprite
+       311: astore        9
+       313: aload         9
+       315: invokestatic  #517                // Method net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+       318: invokevirtual #521                // Method net/minecraft/client/Minecraft.func_147117_R:()Lnet/minecraft/client/renderer/texture/TextureMap;
+       321: invokevirtual #525                // Method net/minecraft/client/renderer/texture/TextureMap.func_174944_f:()Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+       324: invokevirtual #528                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94217_a:(Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+       327: goto          291
+       330: aload_2
+       331: invokestatic  #422                // Method net/minecraftforge/fml/common/ProgressManager.pop:(Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;)V
+       334: return
+      Exception table:
+         from    to  target type
+           166   197   200   Class java/lang/Throwable
+      StackMapTable: number_of_entries = 7
+        frame_type = 255 /* full_frame */
+          offset_delta = 104
+          locals = [ class eos/moe/dragoncore/vw, class net/minecraft/client/renderer/texture/Stitcher, class net/minecraftforge/fml/common/ProgressManager$ProgressBar, int, int, int, int, class java/util/HashMap, class java/util/Iterator ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 95
+          locals = [ class eos/moe/dragoncore/vw, class net/minecraft/client/renderer/texture/Stitcher, class net/minecraftforge/fml/common/ProgressManager$ProgressBar, int, int, int, int, class java/util/HashMap, class java/util/Iterator, class net/minecraft/client/renderer/texture/TextureAtlasSprite, class java/lang/String ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 53 /* same */
+        frame_type = 19 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 2
+        frame_type = 13 /* same */
+        frame_type = 38 /* same */
+      LineNumberTable:
+        line 163: 0
+        line 164: 4
+        line 165: 12
+        line 167: 19
+        line 169: 27
+        line 170: 34
+        line 173: 38
+        line 174: 45
+        line 175: 64
+        line 177: 73
+        line 178: 77
+        line 180: 93
+        line 181: 126
+        line 183: 135
+        line 184: 142
+        line 185: 152
+        line 188: 166
+        line 195: 197
+        line 189: 200
+        line 190: 202
+        line 191: 212
+        line 192: 222
+        line 193: 234
+        line 194: 244
+        line 197: 254
+        line 198: 262
+        line 201: 274
+        line 202: 277
+        line 203: 313
+        line 204: 327
+        line 206: 330
+        line 207: 334
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     335     0     a   Leos/moe/dragoncore/vw;
+            0     335     1     a   Lnet/minecraft/client/renderer/texture/Stitcher;
+            0     335     2     a   Lnet/minecraftforge/fml/common/ProgressManager$ProgressBar;
+            0     335     3     a   I
+            0     335     4     a   I
+           12     323     5     a   I
+           19     316     6     a   I
+           73     262     7     a   Ljava/util/Map;
+          313      18     9     a   Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+          126     153     9     a   Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+          142     137    10     a   Ljava/lang/String;
+          202      57    11     a   Ljava/lang/Throwable;
+          212      47    12     a   Lnet/minecraft/crash/CrashReport;
+          222      37    13     a   Lnet/minecraft/crash/CrashReportCategory;
+
+  private boolean ALLATORIxDEMO(net.minecraft.client.resources.IResourceManager, net.minecraft.client.renderer.texture.TextureAtlasSprite);
+    descriptor: (Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Z
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=6, locals=9, args_size=3
+         0: aload_0
+         1: aload_2
+         2: invokespecial #223                // Method ALLATORIxDEMO:(Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Lnet/minecraft/util/ResourceLocation;
+         5: astore_3
+         6: aconst_null
+         7: astore        4
+         9: aload_2
+        10: aload_1
+        11: aload_3
+        12: invokevirtual #289                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.hasCustomLoader:(Lnet/minecraft/client/resources/IResourceManager;Lnet/minecraft/util/ResourceLocation;)Z
+        15: ifeq          21
+        18: goto          121
+        21: aload_1
+        22: aload_3
+        23: invokeinterface #330,  2          // InterfaceMethod net/minecraft/client/resources/IResourceManager.func_110536_a:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/resources/IResource;
+        28: astore        4
+        30: aload_2
+        31: aload         4
+        33: aload_0
+        34: getfield      #141                // Field o:I
+        37: iconst_1
+        38: iadd
+        39: invokevirtual #535                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_188539_a:(Lnet/minecraft/client/resources/IResource;I)V
+        42: aload         4
+        44: invokestatic  #354                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+        47: goto          121
+        50: astore        6
+        52: getstatic     #385                // Field t:Lorg/apache/logging/log4j/Logger;
+        55: ldc_w         #537                // String Unable to parse metadata from {}
+        58: aload_3
+        59: aload         6
+        61: invokeinterface #541,  4          // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+        66: iconst_0
+        67: istore        5
+        69: aload         4
+        71: invokestatic  #354                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+        74: goto          118
+        77: astore        6
+        79: getstatic     #385                // Field t:Lorg/apache/logging/log4j/Logger;
+        82: ldc_w         #543                // String Using missing texture, unable to load {}
+        85: aload_3
+        86: aload         6
+        88: invokeinterface #541,  4          // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+        93: iconst_0
+        94: istore        5
+        96: iload         5
+        98: istore        7
+       100: aload         4
+       102: invokestatic  #354                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+       105: iload         7
+       107: ireturn
+       108: astore        8
+       110: aload         4
+       112: invokestatic  #354                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+       115: aload         8
+       117: athrow
+       118: iload         5
+       120: ireturn
+       121: aload_2
+       122: aload_0
+       123: getfield      #141                // Field o:I
+       126: invokevirtual #547                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_147963_d:(I)V
+       129: iconst_1
+       130: ireturn
+       131: astore        5
+       133: aload         5
+       135: ldc_w         #549                // String Applying mipmap
+       138: invokestatic  #485                // Method net/minecraft/crash/CrashReport.func_85055_a:(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/crash/CrashReport;
+       141: astore        6
+       143: aload         6
+       145: ldc_w         #551                // String Sprite being mipmapped
+       148: invokevirtual #491                // Method net/minecraft/crash/CrashReport.func_85058_a:(Ljava/lang/String;)Lnet/minecraft/crash/CrashReportCategory;
+       151: astore        7
+       153: aload         7
+       155: ldc_w         #553                // String Sprite name
+       158: new           #11                 // class eos/moe/dragoncore/qo
+       161: dup
+       162: aload_0
+       163: aload_2
+       164: invokespecial #556                // Method eos/moe/dragoncore/qo."<init>":(Leos/moe/dragoncore/vw;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+       167: invokevirtual #560                // Method net/minecraft/crash/CrashReportCategory.func_189529_a:(Ljava/lang/String;Lnet/minecraft/crash/ICrashReportDetail;)V
+       170: aload         7
+       172: ldc_w         #562                // String Sprite size
+       175: new           #9                  // class eos/moe/dragoncore/uu
+       178: dup
+       179: aload_0
+       180: aload_2
+       181: invokespecial #563                // Method eos/moe/dragoncore/uu."<init>":(Leos/moe/dragoncore/vw;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+       184: invokevirtual #560                // Method net/minecraft/crash/CrashReportCategory.func_189529_a:(Ljava/lang/String;Lnet/minecraft/crash/ICrashReportDetail;)V
+       187: aload         7
+       189: ldc_w         #565                // String Sprite frames
+       192: new           #7                  // class eos/moe/dragoncore/cr
+       195: dup
+       196: aload_0
+       197: aload_2
+       198: invokespecial #566                // Method eos/moe/dragoncore/cr."<init>":(Leos/moe/dragoncore/vw;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+       201: invokevirtual #560                // Method net/minecraft/crash/CrashReportCategory.func_189529_a:(Ljava/lang/String;Lnet/minecraft/crash/ICrashReportDetail;)V
+       204: aload         7
+       206: ldc_w         #568                // String Mipmap levels
+       209: aload_0
+       210: getfield      #141                // Field o:I
+       213: invokestatic  #391                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       216: invokevirtual #499                // Method net/minecraft/crash/CrashReportCategory.func_71507_a:(Ljava/lang/String;Ljava/lang/Object;)V
+       219: new           #503                // class net/minecraft/util/ReportedException
+       222: dup
+       223: aload         6
+       225: invokespecial #506                // Method net/minecraft/util/ReportedException."<init>":(Lnet/minecraft/crash/CrashReport;)V
+       228: athrow
+      Exception table:
+         from    to  target type
+            21    42    50   Class java/lang/RuntimeException
+            21    42    77   Class java/io/IOException
+            21    42   108   any
+            50    69   108   any
+            77   100   108   any
+           108   110   108   any
+           121   130   131   Class java/lang/Throwable
+      StackMapTable: number_of_entries = 7
+        frame_type = 253 /* append */
+          offset_delta = 21
+          locals = [ class net/minecraft/util/ResourceLocation, null ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 28
+          locals = [ class eos/moe/dragoncore/vw, class net/minecraft/client/resources/IResourceManager, class net/minecraft/client/renderer/texture/TextureAtlasSprite, class net/minecraft/util/ResourceLocation, class net/minecraft/client/resources/IResource ]
+          stack = [ class java/lang/RuntimeException ]
+        frame_type = 90 /* same_locals_1_stack_item */
+          stack = [ class java/io/IOException ]
+        frame_type = 94 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+        frame_type = 253 /* append */
+          offset_delta = 9
+          locals = [ int, class java/lang/RuntimeException ]
+        frame_type = 249 /* chop */
+          offset_delta = 2
+        frame_type = 73 /* same_locals_1_stack_item */
+          stack = [ class java/lang/Throwable ]
+      LineNumberTable:
+        line 210: 0
+        line 211: 6
+        line 215: 9
+        line 217: 21
+        line 218: 30
+        line 228: 42
+        line 220: 50
+        line 221: 52
+        line 222: 66
+        line 228: 69
+        line 229: 74
+        line 223: 77
+        line 224: 79
+        line 225: 93
+        line 226: 96
+        line 228: 100
+        line 226: 105
+        line 228: 108
+        line 229: 115
+        line 231: 118
+        line 235: 121
+        line 236: 129
+        line 237: 131
+        line 238: 133
+        line 239: 143
+        line 240: 153
+        line 245: 170
+        line 250: 187
+        line 255: 204
+        line 256: 219
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     229     0     a   Leos/moe/dragoncore/vw;
+            0     229     1     a   Lnet/minecraft/client/resources/IResourceManager;
+            0     229     2     a   Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+            6     223     3     a   Lnet/minecraft/util/ResourceLocation;
+            9     220     4     a   Lnet/minecraft/client/resources/IResource;
+           96      16     5     a   Z
+          118       5     5     a   Z
+          133      96     5     a   Ljava/lang/Throwable;
+           69      13     5     a   Z
+          143      86     6     a   Lnet/minecraft/crash/CrashReport;
+           79      33     6     a   Ljava/io/IOException;
+           52      22     6     a   Ljava/lang/RuntimeException;
+          153      76     7     a   Lnet/minecraft/crash/CrashReportCategory;
+
+  private net.minecraft.util.ResourceLocation ALLATORIxDEMO(net.minecraft.client.renderer.texture.TextureAtlasSprite);
+    descriptor: (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Lnet/minecraft/util/ResourceLocation;
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=8, locals=3, args_size=2
+         0: new           #185                // class net/minecraft/util/ResourceLocation
+         3: dup
+         4: aload_1
+         5: invokevirtual #456                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94215_i:()Ljava/lang/String;
+         8: invokespecial #191                // Method net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;)V
+        11: astore_2
+        12: new           #185                // class net/minecraft/util/ResourceLocation
+        15: dup
+        16: aload_2
+        17: invokevirtual #571                // Method net/minecraft/util/ResourceLocation.func_110624_b:()Ljava/lang/String;
+        20: ldc_w         #573                // String %s%s
+        23: iconst_2
+        24: anewarray     #416                // class java/lang/Object
+        27: dup
+        28: iconst_0
+        29: aload_2
+        30: invokevirtual #318                // Method net/minecraft/util/ResourceLocation.func_110623_a:()Ljava/lang/String;
+        33: aastore
+        34: dup
+        35: iconst_1
+        36: ldc_w         #575                // String .png
+        39: aastore
+        40: invokestatic  #579                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        43: invokespecial #582                // Method net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+        46: areturn
+      LineNumberTable:
+        line 261: 0
+        line 263: 12
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      47     0     a   Leos/moe/dragoncore/vw;
+            0      47     1     a   Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+           12      35     2     a   Lnet/minecraft/util/ResourceLocation;
+
+  public net.minecraft.client.renderer.texture.TextureAtlasSprite func_110572_b(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #100                // Field c:Ljava/util/Map;
+         4: aload_1
+         5: invokeinterface #285,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        10: checkcast     #203                // class net/minecraft/client/renderer/texture/TextureAtlasSprite
+        13: astore_2
+        14: aload_2
+        15: ifnonnull     28
+        18: invokestatic  #517                // Method net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+        21: invokevirtual #521                // Method net/minecraft/client/Minecraft.func_147117_R:()Lnet/minecraft/client/renderer/texture/TextureMap;
+        24: invokevirtual #525                // Method net/minecraft/client/renderer/texture/TextureMap.func_174944_f:()Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+        27: areturn
+        28: aload_2
+        29: areturn
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 28
+          locals = [ class net/minecraft/client/renderer/texture/TextureAtlasSprite ]
+      LineNumberTable:
+        line 267: 0
+        line 269: 14
+        line 270: 18
+        line 273: 28
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      30     0     a   Leos/moe/dragoncore/vw;
+            0      30     1     a   Ljava/lang/String;
+           14      16     2     a   Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+
+  public void func_94248_c();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=3, args_size=1
+         0: aload_0
+         1: invokevirtual #434                // Method func_110552_b:()I
+         4: invokestatic  #590                // Method net/minecraft/client/renderer/GlStateManager.func_179144_i:(I)V
+         7: aload_0
+         8: getfield      #90                 // Field v:Ljava/util/List;
+        11: invokeinterface #453,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        16: astore_1
+        17: aload_1
+        18: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        23: ifeq          43
+        26: aload_1
+        27: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        32: checkcast     #203                // class net/minecraft/client/renderer/texture/TextureAtlasSprite
+        35: astore_2
+        36: aload_2
+        37: invokevirtual #593                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94219_l:()V
+        40: goto          17
+        43: return
+      StackMapTable: number_of_entries = 2
+        frame_type = 252 /* append */
+          offset_delta = 17
+          locals = [ class java/util/Iterator ]
+        frame_type = 25 /* same */
+      LineNumberTable:
+        line 277: 0
+        line 280: 7
+        line 281: 36
+        line 282: 40
+        line 283: 43
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      44     0     a   Leos/moe/dragoncore/vw;
+           36       8     2     a   Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+
+  public net.minecraft.client.renderer.texture.TextureAtlasSprite func_174942_a(net.minecraft.util.ResourceLocation);
+    descriptor: (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=2
+         0: aload_1
+         1: ifnonnull     15
+         4: new           #595                // class java/lang/IllegalArgumentException
+         7: dup
+         8: ldc_w         #597                // String Location cannot be null!
+        11: invokespecial #598                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        14: athrow
+        15: aload_0
+        16: getfield      #98                 // Field m:Ljava/util/Map;
+        19: aload_1
+        20: invokevirtual #195                // Method net/minecraft/util/ResourceLocation.toString:()Ljava/lang/String;
+        23: invokeinterface #285,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        28: checkcast     #203                // class net/minecraft/client/renderer/texture/TextureAtlasSprite
+        31: astore_2
+        32: aload_2
+        33: ifnonnull     71
+        36: new           #600                // class eos/moe/dragoncore/jt
+        39: dup
+        40: aload_1
+        41: invokevirtual #195                // Method net/minecraft/util/ResourceLocation.toString:()Ljava/lang/String;
+        44: invokespecial #601                // Method eos/moe/dragoncore/jt."<init>":(Ljava/lang/String;)V
+        47: astore_3
+        48: aload_0
+        49: getfield      #98                 // Field m:Ljava/util/Map;
+        52: aload_1
+        53: invokevirtual #195                // Method net/minecraft/util/ResourceLocation.toString:()Ljava/lang/String;
+        56: aload_3
+        57: invokeinterface #463,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        62: pop
+        63: aload_0
+        64: aload_1
+        65: aload_3
+        66: invokespecial #604                // Method ALLATORIxDEMO:(Lnet/minecraft/util/ResourceLocation;Leos/moe/dragoncore/jt;)V
+        69: aload_3
+        70: areturn
+        71: aload_2
+        72: areturn
+      StackMapTable: number_of_entries = 2
+        frame_type = 15 /* same */
+        frame_type = 252 /* append */
+          offset_delta = 55
+          locals = [ class net/minecraft/client/renderer/texture/TextureAtlasSprite ]
+      LineNumberTable:
+        line 286: 0
+        line 287: 4
+        line 289: 15
+        line 290: 32
+        line 291: 36
+        line 292: 48
+        line 293: 63
+        line 294: 69
+        line 296: 71
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      73     0     a   Leos/moe/dragoncore/vw;
+            0      73     1     a   Lnet/minecraft/util/ResourceLocation;
+           32      41     2     a   Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+           48      25     3     a   Leos/moe/dragoncore/jt;
+
+  private void ALLATORIxDEMO(net.minecraft.util.ResourceLocation, eos.moe.dragoncore.jt);
+    descriptor: (Lnet/minecraft/util/ResourceLocation;Leos/moe/dragoncore/jt;)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=5, locals=6, args_size=3
+         0: aload_1
+         1: invokevirtual #318                // Method net/minecraft/util/ResourceLocation.func_110623_a:()Ljava/lang/String;
+         4: ldc_w         #609                // String _e
+         7: invokevirtual #324                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+        10: ifeq          14
+        13: return
+        14: new           #185                // class net/minecraft/util/ResourceLocation
+        17: dup
+        18: aload_1
+        19: invokevirtual #571                // Method net/minecraft/util/ResourceLocation.func_110624_b:()Ljava/lang/String;
+        22: new           #231                // class java/lang/StringBuilder
+        25: dup
+        26: invokespecial #232                // Method java/lang/StringBuilder."<init>":()V
+        29: aload_1
+        30: invokevirtual #318                // Method net/minecraft/util/ResourceLocation.func_110623_a:()Ljava/lang/String;
+        33: invokevirtual #238                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        36: ldc_w         #609                // String _e
+        39: invokevirtual #238                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        42: invokevirtual #253                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        45: invokespecial #582                // Method net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+        48: astore_3
+        49: new           #185                // class net/minecraft/util/ResourceLocation
+        52: dup
+        53: aload_1
+        54: invokevirtual #571                // Method net/minecraft/util/ResourceLocation.func_110624_b:()Ljava/lang/String;
+        57: new           #231                // class java/lang/StringBuilder
+        60: dup
+        61: invokespecial #232                // Method java/lang/StringBuilder."<init>":()V
+        64: aload_1
+        65: invokevirtual #318                // Method net/minecraft/util/ResourceLocation.func_110623_a:()Ljava/lang/String;
+        68: invokevirtual #238                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        71: ldc_w         #611                // String _e.png
+        74: invokevirtual #238                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        77: invokevirtual #253                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        80: invokespecial #582                // Method net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+        83: astore        4
+        85: invokestatic  #517                // Method net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+        88: invokevirtual #615                // Method net/minecraft/client/Minecraft.func_110442_L:()Lnet/minecraft/client/resources/IResourceManager;
+        91: aload         4
+        93: invokeinterface #330,  2          // InterfaceMethod net/minecraft/client/resources/IResourceManager.func_110536_a:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/resources/IResource;
+        98: pop
+        99: aload_0
+       100: aload_3
+       101: invokevirtual #281                // Method func_174942_a:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+       104: checkcast     #600                // class eos/moe/dragoncore/jt
+       107: astore        5
+       109: aload         5
+       111: iconst_1
+       112: putfield      #617                // Field eos/moe/dragoncore/jt.k:Z
+       115: aload_2
+       116: aload         5
+       118: putfield      #619                // Field eos/moe/dragoncore/jt.ALLATORIxDEMO:Leos/moe/dragoncore/jt;
+       121: goto          126
+       124: astore        5
+       126: return
+      Exception table:
+         from    to  target type
+            85   121   124   Class java/lang/Exception
+      StackMapTable: number_of_entries = 3
+        frame_type = 14 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 109
+          locals = [ class eos/moe/dragoncore/vw, class net/minecraft/util/ResourceLocation, class eos/moe/dragoncore/jt, class net/minecraft/util/ResourceLocation, class net/minecraft/util/ResourceLocation ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 252 /* append */
+          offset_delta = 1
+          locals = [ class java/lang/Object ]
+      LineNumberTable:
+        line 302: 0
+        line 303: 13
+        line 305: 14
+        line 307: 49
+        line 310: 85
+        line 311: 99
+        line 312: 109
+        line 313: 115
+        line 316: 121
+        line 314: 124
+        line 317: 126
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     127     0     a   Leos/moe/dragoncore/vw;
+            0     127     1     a   Lnet/minecraft/util/ResourceLocation;
+            0     127     2     a   Leos/moe/dragoncore/jt;
+           49      78     3     a   Lnet/minecraft/util/ResourceLocation;
+           85      42     4     a   Lnet/minecraft/util/ResourceLocation;
+          109      17     5     a   Leos/moe/dragoncore/jt;
+
+  public void func_110550_d();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokevirtual #622                // Method func_94248_c:()V
+         4: return
+      LineNumberTable:
+        line 320: 0
+        line 321: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/dragoncore/vw;
+
+  public void func_147633_a(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: putfield      #141                // Field o:I
+         5: return
+      LineNumberTable:
+        line 324: 0
+        line 325: 5
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       6     0     a   Leos/moe/dragoncore/vw;
+            0       6     1     a   I
+
+  public net.minecraft.client.renderer.texture.TextureAtlasSprite getTextureExtry(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #98                 // Field m:Ljava/util/Map;
+         4: aload_1
+         5: invokeinterface #285,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        10: checkcast     #203                // class net/minecraft/client/renderer/texture/TextureAtlasSprite
+        13: areturn
+      LineNumberTable:
+        line 343: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      14     0     a   Leos/moe/dragoncore/vw;
+            0      14     1     a   Ljava/lang/String;
+    RuntimeVisibleAnnotations:
+      0: #60()
+        javax.annotation.Nullable
+
+  public boolean setTextureEntry(net.minecraft.client.renderer.texture.TextureAtlasSprite);
+    descriptor: (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_1
+         1: invokevirtual #456                // Method net/minecraft/client/renderer/texture/TextureAtlasSprite.func_94215_i:()Ljava/lang/String;
+         4: astore_2
+         5: aload_0
+         6: getfield      #98                 // Field m:Ljava/util/Map;
+         9: aload_2
+        10: invokeinterface #277,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+        15: ifne          32
+        18: aload_0
+        19: getfield      #98                 // Field m:Ljava/util/Map;
+        22: aload_2
+        23: aload_1
+        24: invokeinterface #463,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        29: pop
+        30: iconst_1
+        31: ireturn
+        32: iconst_0
+        33: ireturn
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 32
+          locals = [ class java/lang/String ]
+      LineNumberTable:
+        line 354: 0
+        line 355: 5
+        line 356: 18
+        line 357: 30
+        line 359: 32
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      34     0     a   Leos/moe/dragoncore/vw;
+            0      34     1     a   Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+            5      29     2     a   Ljava/lang/String;
+
+  public java.lang.String getBasePath();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #102                // Field q:Ljava/lang/String;
+         4: areturn
+      LineNumberTable:
+        line 363: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/dragoncore/vw;
+
+  public int getMipmapLevels();
+    descriptor: ()I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #141                // Field o:I
+         4: ireturn
+      LineNumberTable:
+        line 367: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/dragoncore/vw;
+
+  private net.minecraft.client.renderer.texture.TextureAtlasSprite ALLATORIxDEMO(net.minecraft.util.ResourceLocation);
+    descriptor: (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #98                 // Field m:Ljava/util/Map;
+         4: aload_1
+         5: invokevirtual #195                // Method net/minecraft/util/ResourceLocation.toString:()Ljava/lang/String;
+         8: invokeinterface #285,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        13: checkcast     #203                // class net/minecraft/client/renderer/texture/TextureAtlasSprite
+        16: areturn
+      LineNumberTable:
+        line 120: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0     a   Leos/moe/dragoncore/vw;
+            0      17     1     a   Lnet/minecraft/util/ResourceLocation;
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=0, args_size=0
+         0: invokestatic  #635                // Method org/apache/logging/log4j/LogManager.getLogger:()Lorg/apache/logging/log4j/Logger;
+         3: putstatic     #385                // Field t:Lorg/apache/logging/log4j/Logger;
+         6: new           #185                // class net/minecraft/util/ResourceLocation
+         9: dup
+        10: ldc_w         #637                // String missingno
+        13: invokespecial #191                // Method net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;)V
+        16: putstatic     #639                // Field r:Lnet/minecraft/util/ResourceLocation;
+        19: new           #185                // class net/minecraft/util/ResourceLocation
+        22: dup
+        23: ldc_w         #641                // String textures/atlas/blocks.png
+        26: invokespecial #191                // Method net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;)V
+        29: putstatic     #643                // Field x:Lnet/minecraft/util/ResourceLocation;
+        32: return
+      LineNumberTable:
+        line 27: 0
+        line 28: 6
+        line 29: 19
+}
+InnerClasses:
+  #7;                                     // class eos/moe/dragoncore/cr
+  #9;                                     // class eos/moe/dragoncore/uu
+  #11;                                    // class eos/moe/dragoncore/qo
+  public static #16= #13 of #15;          // Entry=class java/util/Map$Entry of class java/util/Map
+  public static #21= #18 of #20;          // ProgressBar=class net/minecraftforge/fml/common/ProgressManager$ProgressBar of class net/minecraftforge/fml/common/ProgressManager
+  public static final #26= #23 of #25;    // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
+SourceFile: "DragonTextureMap.java"
+BootstrapMethods:
+  0: #301 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #290 (Ljava/lang/Object;)Ljava/lang/Object;
+      #293 REF_invokeSpecial eos/moe/dragoncore/vw.ALLATORIxDEMO:(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+      #294 (Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;

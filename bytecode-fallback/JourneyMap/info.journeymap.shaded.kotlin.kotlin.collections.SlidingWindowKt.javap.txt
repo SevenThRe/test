@@ -1,0 +1,346 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/journeymap-1.12.2-5.7.0(1)(2).jar!/info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt.class
+  Last modified 25-����-20; size 3839 bytes
+  SHA-256 checksum b95c2c379af117f948442cf188f8f606c76ada1c278601952971bfea72b36675
+  Compiled from "SlidingWindow.kt"
+public final class info.journeymap.shaded.kotlin.kotlin.collections.SlidingWindowKt
+  minor version: 0
+  major version: 50
+  flags: (0x0031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER
+  this_class: #2                          // info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 3, attributes: 4
+Constant pool:
+    #1 = Utf8               info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt
+    #2 = Class              #1            // info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               SlidingWindow.kt
+    #6 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/Metadata;
+    #7 = Utf8               mv
+    #8 = Integer            1
+    #9 = Integer            15
+   #10 = Utf8               bv
+   #11 = Integer            0
+   #12 = Integer            3
+   #13 = Utf8               k
+   #14 = Integer            2
+   #15 = Utf8               d1
+   #16 = Utf8               \u0000*\n\u0000\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0010(\n\u0002\u0010 \n\u0002\b\u0003\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\u001a\u0018\u0010\u0000\u001a\u00020\u00012\u0006\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u0003H\u0000\u001aH\u0010\u0005\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u0002H\b0\u00070\u0006\"\u0004\b\u0000\u0010\b2\f\u0010\t\u001a\b\u0012\u0004\u0012\u0002H\b0\u00062\u0006\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u00032\u0006\u0010\n\u001a\u00020\u000b2\u0006\u0010\f\u001a\u00020\u000bH\u0000\u001aD\u0010\r\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u0002H\b0\u00070\u000e\"\u0004\b\u0000\u0010\b*\b\u0012\u0004\u0012\u0002H\b0\u000e2\u0006\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u00032\u0006\u0010\n\u001a\u00020\u000b2\u0006\u0010\f\u001a\u00020\u000bH\u0000��\u0006\u000f
+   #17 = Utf8               d2
+   #18 = Utf8               checkWindowSizeStep
+   #19 = Utf8
+   #20 = Utf8               size
+   #21 = Utf8               step
+   #22 = Utf8               windowedIterator
+   #23 = Utf8               T
+   #24 = Utf8               iterator
+   #25 = Utf8               partialWindows
+   #26 = Utf8               reuseBuffer
+   #27 = Utf8               windowedSequence
+   #28 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;
+   #29 = Utf8               info.journeymap.shaded.kotlin.kotlin-stdlib
+   #30 = Utf8               info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedIterator$1
+   #31 = Class              #30           // info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedIterator$1
+   #32 = Utf8               (II)V
+   #33 = Utf8               java/lang/StringBuilder
+   #34 = Class              #33           // java/lang/StringBuilder
+   #35 = Utf8               <init>
+   #36 = Utf8               ()V
+   #37 = NameAndType        #35:#36       // "<init>":()V
+   #38 = Methodref          #34.#37       // java/lang/StringBuilder."<init>":()V
+   #39 = Utf8               Both size
+   #40 = String             #39           // Both size
+   #41 = Utf8               append
+   #42 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #43 = NameAndType        #41:#42       // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #44 = Methodref          #34.#43       // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #45 = Utf8               (I)Ljava/lang/StringBuilder;
+   #46 = NameAndType        #41:#45       // append:(I)Ljava/lang/StringBuilder;
+   #47 = Methodref          #34.#46       // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+   #48 = Utf8                and step
+   #49 = String             #48           //  and step
+   #50 = Utf8                must be greater than zero.
+   #51 = String             #50           //  must be greater than zero.
+   #52 = Utf8               toString
+   #53 = Utf8               ()Ljava/lang/String;
+   #54 = NameAndType        #52:#53       // toString:()Ljava/lang/String;
+   #55 = Methodref          #34.#54       // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #56 = Utf8               size
+   #57 = String             #56           // size
+   #58 = Utf8               java/lang/String
+   #59 = Class              #58           // java/lang/String
+   #60 = Utf8               java/lang/IllegalArgumentException
+   #61 = Class              #60           // java/lang/IllegalArgumentException
+   #62 = Methodref          #4.#54        // java/lang/Object.toString:()Ljava/lang/String;
+   #63 = Utf8               (Ljava/lang/String;)V
+   #64 = NameAndType        #35:#63       // "<init>":(Ljava/lang/String;)V
+   #65 = Methodref          #61.#64       // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+   #66 = Utf8               java/lang/Throwable
+   #67 = Class              #66           // java/lang/Throwable
+   #68 = Utf8               $i$a$-require-SlidingWindowKt$checkWindowSizeStep$1
+   #69 = Utf8               I
+   #70 = Utf8               (Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;IIZZ)Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;
+   #71 = Utf8               Linfo/journeymap/shaded/org/jetbrains/annotations/NotNull;
+   #72 = Utf8               $this$windowedSequence
+   #73 = String             #72           // $this$windowedSequence
+   #74 = Utf8               info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics
+   #75 = Class              #74           // info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics
+   #76 = Utf8               checkParameterIsNotNull
+   #77 = Utf8               (Ljava/lang/Object;Ljava/lang/String;)V
+   #78 = NameAndType        #76:#77       // checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+   #79 = Methodref          #75.#78       // info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+   #80 = NameAndType        #18:#32       // checkWindowSizeStep:(II)V
+   #81 = Methodref          #2.#80        // info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt.checkWindowSizeStep:(II)V
+   #82 = Utf8               info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedSequence$$inlined$Sequence$1
+   #83 = Class              #82           // info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedSequence$$inlined$Sequence$1
+   #84 = Utf8               (Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;IIZZ)V
+   #85 = NameAndType        #35:#84       // "<init>":(Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;IIZZ)V
+   #86 = Methodref          #83.#85       // info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedSequence$$inlined$Sequence$1."<init>":(Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;IIZZ)V
+   #87 = Utf8               info/journeymap/shaded/kotlin/kotlin/sequences/Sequence
+   #88 = Class              #87           // info/journeymap/shaded/kotlin/kotlin/sequences/Sequence
+   #89 = Utf8               Z
+   #90 = Utf8               (Ljava/util/Iterator;IIZZ)Ljava/util/Iterator;
+   #91 = String             #24           // iterator
+   #92 = Utf8               java/util/Iterator
+   #93 = Class              #92           // java/util/Iterator
+   #94 = Utf8               hasNext
+   #95 = Utf8               ()Z
+   #96 = NameAndType        #94:#95       // hasNext:()Z
+   #97 = InterfaceMethodref #93.#96       // java/util/Iterator.hasNext:()Z
+   #98 = Utf8               info/journeymap/shaded/kotlin/kotlin/collections/EmptyIterator
+   #99 = Class              #98           // info/journeymap/shaded/kotlin/kotlin/collections/EmptyIterator
+  #100 = Utf8               INSTANCE
+  #101 = Utf8               Linfo/journeymap/shaded/kotlin/kotlin/collections/EmptyIterator;
+  #102 = NameAndType        #100:#101     // INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/collections/EmptyIterator;
+  #103 = Fieldref           #99.#102      // info/journeymap/shaded/kotlin/kotlin/collections/EmptyIterator.INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/collections/EmptyIterator;
+  #104 = Utf8               (IILjava/util/Iterator;ZZLinfo/journeymap/shaded/kotlin/kotlin/coroutines/Continuation;)V
+  #105 = NameAndType        #35:#104      // "<init>":(IILjava/util/Iterator;ZZLinfo/journeymap/shaded/kotlin/kotlin/coroutines/Continuation;)V
+  #106 = Methodref          #31.#105      // info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedIterator$1."<init>":(IILjava/util/Iterator;ZZLinfo/journeymap/shaded/kotlin/kotlin/coroutines/Continuation;)V
+  #107 = Utf8               info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2
+  #108 = Class              #107          // info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2
+  #109 = Utf8               info/journeymap/shaded/kotlin/kotlin/sequences/SequencesKt
+  #110 = Class              #109          // info/journeymap/shaded/kotlin/kotlin/sequences/SequencesKt
+  #111 = Utf8               (Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Ljava/util/Iterator;
+  #112 = NameAndType        #24:#111      // iterator:(Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Ljava/util/Iterator;
+  #113 = Methodref          #110.#112     // info/journeymap/shaded/kotlin/kotlin/sequences/SequencesKt.iterator:(Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Ljava/util/Iterator;
+  #114 = Utf8               Ljava/util/Iterator;
+  #115 = Utf8               Code
+  #116 = Utf8               LocalVariableTable
+  #117 = Utf8               LineNumberTable
+  #118 = Utf8               StackMapTable
+  #119 = Utf8               Signature
+  #120 = Utf8               <T:Ljava/lang/Object;>(Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence<+TT;>;IIZZ)Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence<Ljava/util/List<TT;>;>;
+  #121 = Utf8               RuntimeInvisibleAnnotations
+  #122 = Utf8               RuntimeInvisibleParameterAnnotations
+  #123 = Utf8               <T:Ljava/lang/Object;>(Ljava/util/Iterator<+TT;>;IIZZ)Ljava/util/Iterator<Ljava/util/List<TT;>;>;
+  #124 = Utf8               SourceFile
+  #125 = Utf8               SourceDebugExtension
+  #126 = Utf8               InnerClasses
+  #127 = Utf8               RuntimeVisibleAnnotations
+{
+  public static final void checkWindowSizeStep(int, int);
+    descriptor: (II)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=6, args_size=2
+         0: iload_0
+         1: ifle          12
+         4: iload_1
+         5: ifle          12
+         8: iconst_1
+         9: goto          13
+        12: iconst_0
+        13: istore_2
+        14: iconst_0
+        15: istore_3
+        16: iconst_0
+        17: istore        4
+        19: iload_2
+        20: ifne          110
+        23: iconst_0
+        24: istore        5
+        26: iload_0
+        27: iload_1
+        28: if_icmpeq     67
+        31: new           #34                 // class java/lang/StringBuilder
+        34: dup
+        35: invokespecial #38                 // Method java/lang/StringBuilder."<init>":()V
+        38: ldc           #40                 // String Both size
+        40: invokevirtual #44                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        43: iload_0
+        44: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        47: ldc           #49                 // String  and step
+        49: invokevirtual #44                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        52: iload_1
+        53: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        56: ldc           #51                 // String  must be greater than zero.
+        58: invokevirtual #44                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        61: invokevirtual #55                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        64: goto          91
+        67: new           #34                 // class java/lang/StringBuilder
+        70: dup
+        71: invokespecial #38                 // Method java/lang/StringBuilder."<init>":()V
+        74: ldc           #57                 // String size
+        76: invokevirtual #44                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        79: iload_0
+        80: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        83: ldc           #51                 // String  must be greater than zero.
+        85: invokevirtual #44                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        88: invokevirtual #55                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        91: nop
+        92: astore        4
+        94: new           #61                 // class java/lang/IllegalArgumentException
+        97: dup
+        98: aload         4
+       100: invokevirtual #62                 // Method java/lang/Object.toString:()Ljava/lang/String;
+       103: invokespecial #65                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+       106: checkcast     #67                 // class java/lang/Throwable
+       109: athrow
+       110: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           26      66     5 $i$a$-require-SlidingWindowKt$checkWindowSizeStep$1   I
+            0     111     0  size   I
+            0     111     1  step   I
+      LineNumberTable:
+        line 9: 0
+        line 10: 26
+        line 11: 31
+        line 13: 67
+        line 10: 91
+        line 13: 91
+        line 9: 92
+        line 15: 110
+      StackMapTable: number_of_entries = 5
+        frame_type = 12 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 53
+          locals = [ int, int, int, int, int, int ]
+          stack = []
+        frame_type = 87 /* same_locals_1_stack_item */
+          stack = [ class java/lang/String ]
+        frame_type = 250 /* chop */
+          offset_delta = 18
+
+  public static final <T extends java.lang.Object> info.journeymap.shaded.kotlin.kotlin.sequences.Sequence<java.util.List<T>> windowedSequence(info.journeymap.shaded.kotlin.kotlin.sequences.Sequence<? extends T>, int, int, boolean, boolean);
+    descriptor: (Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;IIZZ)Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=7, locals=6, args_size=5
+         0: aload_0
+         1: ldc           #73                 // String $this$windowedSequence
+         3: invokestatic  #79                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: iload_1
+         7: iload_2
+         8: invokestatic  #81                 // Method checkWindowSizeStep:(II)V
+        11: iconst_0
+        12: istore        5
+        14: new           #83                 // class info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedSequence$$inlined$Sequence$1
+        17: dup
+        18: aload_0
+        19: iload_1
+        20: iload_2
+        21: iload_3
+        22: iload         4
+        24: invokespecial #86                 // Method info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedSequence$$inlined$Sequence$1."<init>":(Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;IIZZ)V
+        27: checkcast     #88                 // class info/journeymap/shaded/kotlin/kotlin/sequences/Sequence
+        30: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      31     0 $this$windowedSequence   Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;
+            0      31     1  size   I
+            0      31     2  step   I
+            0      31     3 partialWindows   Z
+            0      31     4 reuseBuffer   Z
+      LineNumberTable:
+        line 18: 6
+        line 19: 11
+    Signature: #120                         // <T:Ljava/lang/Object;>(Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence<+TT;>;IIZZ)Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence<Ljava/util/List<TT;>;>;
+    RuntimeInvisibleAnnotations:
+      0: #71()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #71()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+      parameter 2:
+      parameter 3:
+      parameter 4:
+
+  public static final <T extends java.lang.Object> java.util.Iterator<java.util.List<T>> windowedIterator(java.util.Iterator<? extends T>, int, int, boolean, boolean);
+    descriptor: (Ljava/util/Iterator;IIZZ)Ljava/util/Iterator;
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=8, locals=5, args_size=5
+         0: aload_0
+         1: ldc           #91                 // String iterator
+         3: invokestatic  #79                 // Method info/journeymap/shaded/kotlin/kotlin/jvm/internal/Intrinsics.checkParameterIsNotNull:(Ljava/lang/Object;Ljava/lang/String;)V
+         6: aload_0
+         7: invokeinterface #97,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        12: ifne          22
+        15: getstatic     #103                // Field info/journeymap/shaded/kotlin/kotlin/collections/EmptyIterator.INSTANCE:Linfo/journeymap/shaded/kotlin/kotlin/collections/EmptyIterator;
+        18: checkcast     #93                 // class java/util/Iterator
+        21: areturn
+        22: new           #31                 // class info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedIterator$1
+        25: dup
+        26: iload_1
+        27: iload_2
+        28: aload_0
+        29: iload         4
+        31: iload_3
+        32: aconst_null
+        33: invokespecial #106                // Method info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedIterator$1."<init>":(IILjava/util/Iterator;ZZLinfo/journeymap/shaded/kotlin/kotlin/coroutines/Continuation;)V
+        36: checkcast     #108                // class info/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2
+        39: invokestatic  #113                // Method info/journeymap/shaded/kotlin/kotlin/sequences/SequencesKt.iterator:(Linfo/journeymap/shaded/kotlin/kotlin/jvm/functions/Function2;)Ljava/util/Iterator;
+        42: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      43     0 iterator   Ljava/util/Iterator;
+            0      43     1  size   I
+            0      43     2  step   I
+            0      43     3 partialWindows   Z
+            0      43     4 reuseBuffer   Z
+      LineNumberTable:
+        line 23: 6
+        line 24: 22
+      StackMapTable: number_of_entries = 1
+        frame_type = 22 /* same */
+    Signature: #123                         // <T:Ljava/lang/Object;>(Ljava/util/Iterator<+TT;>;IIZZ)Ljava/util/Iterator<Ljava/util/List<TT;>;>;
+    RuntimeInvisibleAnnotations:
+      0: #71()
+        info.journeymap.shaded.org.jetbrains.annotations.NotNull
+    RuntimeInvisibleParameterAnnotations:
+      parameter 0:
+        0: #71()
+          info.journeymap.shaded.org.jetbrains.annotations.NotNull
+      parameter 1:
+      parameter 2:
+      parameter 3:
+      parameter 4:
+}
+SourceFile: "SlidingWindow.kt"
+SourceDebugExtension:
+  SMAP
+  SlidingWindow.kt
+  Kotlin
+  *S Kotlin
+  *F
+  + 1 SlidingWindow.kt
+  kotlin/collections/SlidingWindowKt
+  *L
+  1#1,207:1
+  *E
+InnerClasses:
+  static final #31;                       // class info/journeymap/shaded/kotlin/kotlin/collections/SlidingWindowKt$windowedIterator$1
+RuntimeVisibleAnnotations:
+  0: #6(#7=[I#8,I#8,I#9],#10=[I#8,I#11,I#12],#13=I#14,#15=[s#16],#17=[s#18,s#19,s#20,s#19,s#21,s#22,s#19,s#19,s#23,s#24,s#25,s#19,s#26,s#27,s#28,s#29])
+    info.journeymap.shaded.kotlin.kotlin.Metadata(
+      mv=[1,1,15]
+      bv=[1,0,3]
+      k=2
+      d1=["\u0000*\n\u0000\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0010(\n\u0002\u0010 \n\u0002\b\u0003\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\u001a\u0018\u0010\u0000\u001a\u00020\u00012\u0006\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u0003H\u0000\u001aH\u0010\u0005\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u0002H\b0\u00070\u0006\"\u0004\b\u0000\u0010\b2\f\u0010\t\u001a\b\u0012\u0004\u0012\u0002H\b0\u00062\u0006\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u00032\u0006\u0010\n\u001a\u00020\u000b2\u0006\u0010\f\u001a\u00020\u000bH\u0000\u001aD\u0010\r\u001a\u000e\u0012\n\u0012\b\u0012\u0004\u0012\u0002H\b0\u00070\u000e\"\u0004\b\u0000\u0010\b*\b\u0012\u0004\u0012\u0002H\b0\u000e2\u0006\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u00032\u0006\u0010\n\u001a\u00020\u000b2\u0006\u0010\f\u001a\u00020\u000bH\u0000��\u0006\u000f"]
+      d2=["checkWindowSizeStep","","size","","step","windowedIterator","","","T","iterator","partialWindows","","reuseBuffer","windowedSequence","Linfo/journeymap/shaded/kotlin/kotlin/sequences/Sequence;","info.journeymap.shaded.kotlin.kotlin-stdlib"]
+    )

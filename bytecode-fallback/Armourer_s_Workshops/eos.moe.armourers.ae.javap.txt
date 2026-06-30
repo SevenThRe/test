@@ -1,0 +1,2090 @@
+Classfile jar:file:///F:/Program%20Files/tx/����II�ͻ�����ʽ����2026628/����II�ͻ�����ʽ����2026628/.minecraft/mods/Mod-DragonArmourers(4).jar!/eos/moe/armourers/ae.class
+  Last modified 09-����-24; size 8730 bytes
+  SHA-256 checksum d63452aaee6fb3c5d9e2d6e7b9b69801cf714d9c48327f22c48e0f64007fc480
+  Compiled from "km"
+public class eos.moe.armourers.ae
+  minor version: 0
+  major version: 52
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // eos/moe/armourers/ae
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 16, methods: 23, attributes: 2
+Constant pool:
+    #1 = Utf8               eos/moe/armourers/ae
+    #2 = Class              #1            // eos/moe/armourers/ae
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               km
+    #6 = Utf8               eos/moe/armourers/ji
+    #7 = Class              #6            // eos/moe/armourers/ji
+    #8 = Utf8               eos/moe/armourers/eo
+    #9 = Class              #8            // eos/moe/armourers/eo
+   #10 = Utf8               eos/moe/armourers/oh
+   #11 = Class              #10           // eos/moe/armourers/oh
+   #12 = Utf8               d
+   #13 = Utf8               [I
+   #14 = Utf8               h
+   #15 = Utf8               Z
+   #16 = Utf8               a
+   #17 = Utf8               e
+   #18 = Utf8               I
+   #19 = Utf8               b
+   #20 = Utf8               Ljava/awt/image/BufferedImage;
+   #21 = Utf8               g
+   #22 = Utf8               z
+   #23 = Utf8               [Leos/moe/armourers/yl;
+   #24 = Utf8               t
+   #25 = Utf8               Lnet/minecraft/util/ResourceLocation;
+   #26 = Utf8               w
+   #27 = Utf8               r
+   #28 = Utf8               l
+   #29 = Utf8               c
+   #30 = Utf8               [Leos/moe/armourers/n;
+   #31 = Utf8               v
+   #32 = Utf8               Leos/moe/armourers/oh;
+   #33 = Utf8               s
+   #34 = Utf8               m
+   #35 = Utf8               j
+   #36 = Utf8               x
+   #37 = Utf8               ()V
+   #38 = NameAndType        #14:#37       // h:()V
+   #39 = Methodref          #2.#38        // eos/moe/armourers/ae.h:()V
+   #40 = NameAndType        #27:#37       // r:()V
+   #41 = Methodref          #2.#40        // eos/moe/armourers/ae.r:()V
+   #42 = Utf8               y
+   #43 = NameAndType        #42:#37       // y:()V
+   #44 = Methodref          #2.#43        // eos/moe/armourers/ae.y:()V
+   #45 = Utf8               Leos/moe/armourers/ae;
+   #46 = Utf8               (Ljava/awt/image/BufferedImage;IIIIIIII)V
+   #47 = Utf8               java/awt/image/BufferedImage
+   #48 = Class              #47           // java/awt/image/BufferedImage
+   #49 = Utf8               setRGB
+   #50 = Utf8               (III)V
+   #51 = NameAndType        #49:#50       // setRGB:(III)V
+   #52 = Methodref          #48.#51       // java/awt/image/BufferedImage.setRGB:(III)V
+   #53 = Utf8               java/lang/Throwable
+   #54 = Class              #53           // java/lang/Throwable
+   #55 = Utf8               <init>
+   #56 = Utf8               (II)V
+   #57 = NameAndType        #55:#37       // "<init>":()V
+   #58 = Methodref          #4.#57        // java/lang/Object."<init>":()V
+   #59 = NameAndType        #27:#18       // r:I
+   #60 = Fieldref           #2.#59        // eos/moe/armourers/ae.r:I
+   #61 = NameAndType        #17:#18       // e:I
+   #62 = Fieldref           #2.#61        // eos/moe/armourers/ae.e:I
+   #63 = NameAndType        #33:#18       // s:I
+   #64 = Fieldref           #2.#63        // eos/moe/armourers/ae.s:I
+   #65 = Utf8               eos/moe/armourers/wf
+   #66 = Class              #65           // eos/moe/armourers/wf
+   #67 = NameAndType        #35:#18       // j:I
+   #68 = Fieldref           #66.#67       // eos/moe/armourers/wf.j:I
+   #69 = NameAndType        #21:#13       // g:[I
+   #70 = Fieldref           #2.#69        // eos/moe/armourers/ae.g:[I
+   #71 = NameAndType        #12:#13       // d:[I
+   #72 = Fieldref           #2.#71        // eos/moe/armourers/ae.d:[I
+   #73 = NameAndType        #28:#25       // l:Lnet/minecraft/util/ResourceLocation;
+   #74 = Fieldref           #2.#73        // eos/moe/armourers/ae.l:Lnet/minecraft/util/ResourceLocation;
+   #75 = NameAndType        #24:#25       // t:Lnet/minecraft/util/ResourceLocation;
+   #76 = Fieldref           #2.#75        // eos/moe/armourers/ae.t:Lnet/minecraft/util/ResourceLocation;
+   #77 = Utf8               java/util/Arrays
+   #78 = Class              #77           // java/util/Arrays
+   #79 = Utf8               fill
+   #80 = Utf8               ([II)V
+   #81 = NameAndType        #79:#80       // fill:([II)V
+   #82 = Methodref          #78.#81       // java/util/Arrays.fill:([II)V
+   #83 = NameAndType        #28:#32       // l:Leos/moe/armourers/oh;
+   #84 = Fieldref           #11.#83       // eos/moe/armourers/oh.l:Leos/moe/armourers/oh;
+   #85 = NameAndType        #31:#32       // v:Leos/moe/armourers/oh;
+   #86 = Fieldref           #2.#85        // eos/moe/armourers/ae.v:Leos/moe/armourers/oh;
+   #87 = NameAndType        #16:#15       // a:Z
+   #88 = Fieldref           #2.#87        // eos/moe/armourers/ae.a:Z
+   #89 = NameAndType        #14:#15       // h:Z
+   #90 = Fieldref           #2.#89        // eos/moe/armourers/ae.h:Z
+   #91 = Utf8               ()Lnet/minecraft/util/ResourceLocation;
+   #92 = NameAndType        #22:#37       // z:()V
+   #93 = Methodref          #2.#92        // eos/moe/armourers/ae.z:()V
+   #94 = Utf8               ([BIILeos/moe/armourers/yl;)I
+   #95 = Utf8               eos/moe/armourers/te
+   #96 = Class              #95           // eos/moe/armourers/te
+   #97 = Utf8               (B)Leos/moe/armourers/ym;
+   #98 = NameAndType        #27:#97       // r:(B)Leos/moe/armourers/ym;
+   #99 = Methodref          #96.#98       // eos/moe/armourers/te.r:(B)Leos/moe/armourers/ym;
+  #100 = Utf8               eos/moe/armourers/ym
+  #101 = Class              #100          // eos/moe/armourers/ym
+  #102 = Utf8               ()Leos/moe/armourers/eo;
+  #103 = NameAndType        #27:#102      // r:()Leos/moe/armourers/eo;
+  #104 = Methodref          #101.#103     // eos/moe/armourers/ym.r:()Leos/moe/armourers/eo;
+  #105 = Utf8               (Leos/moe/armourers/eo;)[B
+  #106 = NameAndType        #27:#105      // r:(Leos/moe/armourers/eo;)[B
+  #107 = Methodref          #11.#106      // eos/moe/armourers/oh.r:(Leos/moe/armourers/eo;)[B
+  #108 = Utf8               eos/moe/armourers/yl
+  #109 = Class              #108          // eos/moe/armourers/yl
+  #110 = Utf8               (I)[I
+  #111 = NameAndType        #27:#110      // r:(I)[I
+  #112 = Methodref          #109.#111     // eos/moe/armourers/yl.r:(I)[I
+  #113 = Utf8               eos/moe/armourers/gl
+  #114 = Class              #113          // eos/moe/armourers/gl
+  #115 = Utf8               (BBB[B[I)[B
+  #116 = NameAndType        #27:#115      // r:(BBB[B[I)[B
+  #117 = Methodref          #114.#116     // eos/moe/armourers/gl.r:(BBB[B[I)[B
+  #118 = Integer            -16777216
+  #119 = Utf8               [B
+  #120 = Utf8               Leos/moe/armourers/yl;
+  #121 = Class              #13           // "[I"
+  #122 = NameAndType        #19:#20       // b:Ljava/awt/image/BufferedImage;
+  #123 = Fieldref           #2.#122       // eos/moe/armourers/ae.b:Ljava/awt/image/BufferedImage;
+  #124 = Utf8               eos/moe/armourers/bh
+  #125 = Class              #124          // eos/moe/armourers/bh
+  #126 = Utf8               (Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
+  #127 = NameAndType        #27:#126      // r:(Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
+  #128 = Methodref          #125.#127     // eos/moe/armourers/bh.r:(Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
+  #129 = NameAndType        #26:#20       // w:Ljava/awt/image/BufferedImage;
+  #130 = Fieldref           #2.#129       // eos/moe/armourers/ae.w:Ljava/awt/image/BufferedImage;
+  #131 = Utf8               (Leos/moe/armourers/oh;)V
+  #132 = Utf8               equals
+  #133 = Utf8               (Ljava/lang/Object;)Z
+  #134 = NameAndType        #132:#133     // equals:(Ljava/lang/Object;)Z
+  #135 = Methodref          #11.#134      // eos/moe/armourers/oh.equals:(Ljava/lang/Object;)Z
+  #136 = NameAndType        #55:#131      // "<init>":(Leos/moe/armourers/oh;)V
+  #137 = Methodref          #11.#136      // eos/moe/armourers/oh."<init>":(Leos/moe/armourers/oh;)V
+  #138 = NameAndType        #36:#37       // x:()V
+  #139 = Methodref          #2.#138       // eos/moe/armourers/ae.x:()V
+  #140 = Utf8               <clinit>
+  #141 = NameAndType        #34:#18       // m:I
+  #142 = Fieldref           #2.#141       // eos/moe/armourers/ae.m:I
+  #143 = Fieldref           #2.#67        // eos/moe/armourers/ae.j:I
+  #144 = NameAndType        #55:#56       // "<init>":(II)V
+  #145 = Methodref          #2.#144       // eos/moe/armourers/ae."<init>":(II)V
+  #146 = Utf8               (Leos/moe/armourers/yl;Leos/moe/armourers/n;Ljava/awt/image/BufferedImage;)V
+  #147 = Utf8               ()[I
+  #148 = NameAndType        #27:#147      // r:()[I
+  #149 = Methodref          #109.#148     // eos/moe/armourers/yl.r:()[I
+  #150 = Utf8               (I)Leos/moe/armourers/ym;
+  #151 = NameAndType        #42:#150      // y:(I)Leos/moe/armourers/ym;
+  #152 = Methodref          #96.#151      // eos/moe/armourers/te.y:(I)Leos/moe/armourers/ym;
+  #153 = Utf8               Leos/moe/armourers/ym;
+  #154 = NameAndType        #29:#153      // c:Leos/moe/armourers/ym;
+  #155 = Fieldref           #96.#154      // eos/moe/armourers/te.c:Leos/moe/armourers/ym;
+  #156 = Utf8               eos/moe/armourers/lo
+  #157 = Class              #156          // eos/moe/armourers/lo
+  #158 = Utf8               (III)I
+  #159 = NameAndType        #27:#158      // r:(III)I
+  #160 = Methodref          #157.#159     // eos/moe/armourers/lo.r:(III)I
+  #161 = Utf8               (Ljava/awt/image/BufferedImage;III)V
+  #162 = NameAndType        #27:#161      // r:(Ljava/awt/image/BufferedImage;III)V
+  #163 = Methodref          #2.#162       // eos/moe/armourers/ae.r:(Ljava/awt/image/BufferedImage;III)V
+  #164 = Utf8               ()I
+  #165 = NameAndType        #22:#164      // z:()I
+  #166 = Methodref          #101.#165     // eos/moe/armourers/ym.z:()I
+  #167 = Utf8               eos/moe/armourers/n
+  #168 = Class              #167          // eos/moe/armourers/n
+  #169 = Utf8               (I)Z
+  #170 = NameAndType        #27:#169      // r:(I)Z
+  #171 = InterfaceMethodref #168.#170     // eos/moe/armourers/n.r:(I)Z
+  #172 = Utf8               (I)[B
+  #173 = NameAndType        #27:#172      // r:(I)[B
+  #174 = InterfaceMethodref #168.#173     // eos/moe/armourers/n.r:(I)[B
+  #175 = NameAndType        #27:#164      // r:()I
+  #176 = Methodref          #101.#175     // eos/moe/armourers/ym.r:()I
+  #177 = NameAndType        #27:#94       // r:([BIILeos/moe/armourers/yl;)I
+  #178 = Methodref          #2.#177       // eos/moe/armourers/ae.r:([BIILeos/moe/armourers/yl;)I
+  #179 = Utf8               Leos/moe/armourers/n;
+  #180 = Utf8               ([B)[B
+  #181 = Utf8               ([Leos/moe/armourers/n;)V
+  #182 = NameAndType        #29:#30       // c:[Leos/moe/armourers/n;
+  #183 = Fieldref           #2.#182       // eos/moe/armourers/ae.c:[Leos/moe/armourers/n;
+  #184 = NameAndType        #22:#23       // z:[Leos/moe/armourers/yl;
+  #185 = Fieldref           #2.#184       // eos/moe/armourers/ae.z:[Leos/moe/armourers/yl;
+  #186 = Utf8               hashCode
+  #187 = NameAndType        #186:#164     // hashCode:()I
+  #188 = Methodref          #4.#187       // java/lang/Object.hashCode:()I
+  #189 = Class              #30           // "[Leos/moe/armourers/n;"
+  #190 = Utf8               ([Leos/moe/armourers/yl;)V
+  #191 = Methodref          #109.#175     // eos/moe/armourers/yl.r:()I
+  #192 = Class              #23           // "[Leos/moe/armourers/yl;"
+  #193 = Utf8               (Leos/moe/armourers/o;Ljava/awt/image/BufferedImage;Leos/moe/armourers/in;)V
+  #194 = Utf8               eos/moe/armourers/o
+  #195 = Class              #194          // eos/moe/armourers/o
+  #196 = Utf8               ()Ljava/awt/Point;
+  #197 = NameAndType        #22:#196      // z:()Ljava/awt/Point;
+  #198 = InterfaceMethodref #195.#197     // eos/moe/armourers/o.z:()Ljava/awt/Point;
+  #199 = NameAndType        #42:#196      // y:()Ljava/awt/Point;
+  #200 = InterfaceMethodref #195.#199     // eos/moe/armourers/o.y:()Ljava/awt/Point;
+  #201 = Utf8               ()Leos/moe/armourers/a;
+  #202 = NameAndType        #22:#201      // z:()Leos/moe/armourers/a;
+  #203 = InterfaceMethodref #195.#202     // eos/moe/armourers/o.z:()Leos/moe/armourers/a;
+  #204 = Utf8               eos/moe/armourers/a
+  #205 = Class              #204          // eos/moe/armourers/a
+  #206 = InterfaceMethodref #205.#165     // eos/moe/armourers/a.z:()I
+  #207 = NameAndType        #42:#164      // y:()I
+  #208 = InterfaceMethodref #205.#207     // eos/moe/armourers/a.y:()I
+  #209 = InterfaceMethodref #205.#175     // eos/moe/armourers/a.r:()I
+  #210 = Utf8               (Leos/moe/armourers/in;)Z
+  #211 = NameAndType        #27:#210      // r:(Leos/moe/armourers/in;)Z
+  #212 = InterfaceMethodref #195.#211     // eos/moe/armourers/o.r:(Leos/moe/armourers/in;)Z
+  #213 = Utf8               java/awt/Point
+  #214 = Class              #213          // java/awt/Point
+  #215 = NameAndType        #36:#18       // x:I
+  #216 = Fieldref           #214.#215     // java/awt/Point.x:I
+  #217 = NameAndType        #42:#18       // y:I
+  #218 = Fieldref           #214.#217     // java/awt/Point.y:I
+  #219 = Integer            16777215
+  #220 = NameAndType        #42:#210      // y:(Leos/moe/armourers/in;)Z
+  #221 = InterfaceMethodref #195.#220     // eos/moe/armourers/o.y:(Leos/moe/armourers/in;)Z
+  #222 = Utf8               Leos/moe/armourers/o;
+  #223 = Utf8               Leos/moe/armourers/in;
+  #224 = Utf8               eos/moe/armourers/in
+  #225 = Class              #224          // eos/moe/armourers/in
+  #226 = Utf8               net/minecraft/client/Minecraft
+  #227 = Class              #226          // net/minecraft/client/Minecraft
+  #228 = Utf8               func_71410_x
+  #229 = Utf8               ()Lnet/minecraft/client/Minecraft;
+  #230 = NameAndType        #228:#229     // func_71410_x:()Lnet/minecraft/client/Minecraft;
+  #231 = Methodref          #227.#230     // net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+  #232 = Utf8               field_71446_o
+  #233 = Utf8               Lnet/minecraft/client/renderer/texture/TextureManager;
+  #234 = NameAndType        #232:#233     // field_71446_o:Lnet/minecraft/client/renderer/texture/TextureManager;
+  #235 = Fieldref           #227.#234     // net/minecraft/client/Minecraft.field_71446_o:Lnet/minecraft/client/renderer/texture/TextureManager;
+  #236 = Utf8               net/minecraft/client/renderer/texture/TextureManager
+  #237 = Class              #236          // net/minecraft/client/renderer/texture/TextureManager
+  #238 = Utf8               func_147645_c
+  #239 = Utf8               (Lnet/minecraft/util/ResourceLocation;)V
+  #240 = NameAndType        #238:#239     // func_147645_c:(Lnet/minecraft/util/ResourceLocation;)V
+  #241 = Methodref          #237.#240     // net/minecraft/client/renderer/texture/TextureManager.func_147645_c:(Lnet/minecraft/util/ResourceLocation;)V
+  #242 = Utf8               (Leos/moe/armourers/ae;Ljava/awt/image/BufferedImage;)V
+  #243 = NameAndType        #55:#242      // "<init>":(Leos/moe/armourers/ae;Ljava/awt/image/BufferedImage;)V
+  #244 = Methodref          #7.#243       // eos/moe/armourers/ji."<init>":(Leos/moe/armourers/ae;Ljava/awt/image/BufferedImage;)V
+  #245 = Utf8               net/minecraft/util/ResourceLocation
+  #246 = Class              #245          // net/minecraft/util/ResourceLocation
+  #247 = Utf8               armourers_workshops
+  #248 = String             #247          // armourers_workshops
+  #249 = Utf8               java/lang/String
+  #250 = Class              #249          // java/lang/String
+  #251 = Utf8               toLowerCase
+  #252 = Utf8               ()Ljava/lang/String;
+  #253 = NameAndType        #251:#252     // toLowerCase:()Ljava/lang/String;
+  #254 = Methodref          #250.#253     // java/lang/String.toLowerCase:()Ljava/lang/String;
+  #255 = Utf8               valueOf
+  #256 = Utf8               (I)Ljava/lang/String;
+  #257 = NameAndType        #255:#256     // valueOf:(I)Ljava/lang/String;
+  #258 = Methodref          #250.#257     // java/lang/String.valueOf:(I)Ljava/lang/String;
+  #259 = Utf8               (Ljava/lang/String;Ljava/lang/String;)V
+  #260 = NameAndType        #55:#259      // "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+  #261 = Methodref          #246.#260     // net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+  #262 = Utf8               func_110579_a
+  #263 = Utf8               (Lnet/minecraft/util/ResourceLocation;Lnet/minecraft/client/renderer/texture/ITextureObject;)Z
+  #264 = NameAndType        #262:#263     // func_110579_a:(Lnet/minecraft/util/ResourceLocation;Lnet/minecraft/client/renderer/texture/ITextureObject;)Z
+  #265 = Methodref          #237.#264     // net/minecraft/client/renderer/texture/TextureManager.func_110579_a:(Lnet/minecraft/util/ResourceLocation;Lnet/minecraft/client/renderer/texture/ITextureObject;)Z
+  #266 = Utf8               ()Z
+  #267 = NameAndType        #27:#266      // r:()Z
+  #268 = Methodref          #109.#267     // eos/moe/armourers/yl.r:()Z
+  #269 = Utf8               eos/moe/armourers/mn
+  #270 = Class              #269          // eos/moe/armourers/mn
+  #271 = Methodref          #270.#57      // eos/moe/armourers/mn."<init>":()V
+  #272 = NameAndType        #27:#146      // r:(Leos/moe/armourers/yl;Leos/moe/armourers/n;Ljava/awt/image/BufferedImage;)V
+  #273 = Methodref          #2.#272       // eos/moe/armourers/ae.r:(Leos/moe/armourers/yl;Leos/moe/armourers/n;Ljava/awt/image/BufferedImage;)V
+  #274 = Utf8               ()Leos/moe/armourers/r;
+  #275 = NameAndType        #27:#274      // r:()Leos/moe/armourers/r;
+  #276 = Methodref          #109.#275     // eos/moe/armourers/yl.r:()Leos/moe/armourers/r;
+  #277 = Utf8               eos/moe/armourers/r
+  #278 = Class              #277          // eos/moe/armourers/r
+  #279 = Utf8               ()Ljava/util/ArrayList;
+  #280 = NameAndType        #27:#279      // r:()Ljava/util/ArrayList;
+  #281 = InterfaceMethodref #278.#280     // eos/moe/armourers/r.r:()Ljava/util/ArrayList;
+  #282 = Utf8               java/util/ArrayList
+  #283 = Class              #282          // java/util/ArrayList
+  #284 = Utf8               size
+  #285 = NameAndType        #284:#164     // size:()I
+  #286 = Methodref          #283.#285     // java/util/ArrayList.size:()I
+  #287 = Utf8               get
+  #288 = Utf8               (I)Ljava/lang/Object;
+  #289 = NameAndType        #287:#288     // get:(I)Ljava/lang/Object;
+  #290 = Methodref          #283.#289     // java/util/ArrayList.get:(I)Ljava/lang/Object;
+  #291 = Utf8               eos/moe/armourers/y
+  #292 = Class              #291          // eos/moe/armourers/y
+  #293 = Utf8               ()Leos/moe/armourers/in;
+  #294 = NameAndType        #27:#293      // r:()Leos/moe/armourers/in;
+  #295 = Methodref          #109.#294     // eos/moe/armourers/yl.r:()Leos/moe/armourers/in;
+  #296 = NameAndType        #27:#193      // r:(Leos/moe/armourers/o;Ljava/awt/image/BufferedImage;Leos/moe/armourers/in;)V
+  #297 = Methodref          #2.#296       // eos/moe/armourers/ae.r:(Leos/moe/armourers/o;Ljava/awt/image/BufferedImage;Leos/moe/armourers/in;)V
+  #298 = Utf8               finalize
+  #299 = NameAndType        #298:#37      // finalize:()V
+  #300 = Methodref          #4.#299       // java/lang/Object.finalize:()V
+  #301 = Methodref          #246.#187     // net/minecraft/util/ResourceLocation.hashCode:()I
+  #302 = Utf8               (Lnet/minecraft/util/ResourceLocation;)Ljava/awt/image/BufferedImage;
+  #303 = NameAndType        #27:#302      // r:(Lnet/minecraft/util/ResourceLocation;)Ljava/awt/image/BufferedImage;
+  #304 = Methodref          #125.#303     // eos/moe/armourers/bh.r:(Lnet/minecraft/util/ResourceLocation;)Ljava/awt/image/BufferedImage;
+  #305 = Utf8               net/minecraft/client/resources/DefaultPlayerSkin
+  #306 = Class              #305          // net/minecraft/client/resources/DefaultPlayerSkin
+  #307 = Utf8               func_177335_a
+  #308 = NameAndType        #307:#91      // func_177335_a:()Lnet/minecraft/util/ResourceLocation;
+  #309 = Methodref          #306.#308     // net/minecraft/client/resources/DefaultPlayerSkin.func_177335_a:()Lnet/minecraft/util/ResourceLocation;
+  #310 = Utf8               Code
+  #311 = Utf8               LocalVariableTable
+  #312 = Utf8               LineNumberTable
+  #313 = Utf8               StackMapTable
+  #314 = Utf8               Exceptions
+  #315 = Utf8               SourceFile
+  #316 = Utf8               InnerClasses
+{
+  private int[] d;
+    descriptor: [I
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean h;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private boolean a;
+    descriptor: Z
+    flags: (0x0002) ACC_PRIVATE
+
+  private int e;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.awt.image.BufferedImage b;
+    descriptor: Ljava/awt/image/BufferedImage;
+    flags: (0x0002) ACC_PRIVATE
+
+  private int[] g;
+    descriptor: [I
+    flags: (0x0002) ACC_PRIVATE
+
+  private eos.moe.armourers.yl[] z;
+    descriptor: [Leos/moe/armourers/yl;
+    flags: (0x0002) ACC_PRIVATE
+
+  private net.minecraft.util.ResourceLocation t;
+    descriptor: Lnet/minecraft/util/ResourceLocation;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.awt.image.BufferedImage w;
+    descriptor: Ljava/awt/image/BufferedImage;
+    flags: (0x0002) ACC_PRIVATE
+
+  private int r;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private net.minecraft.util.ResourceLocation l;
+    descriptor: Lnet/minecraft/util/ResourceLocation;
+    flags: (0x0002) ACC_PRIVATE
+
+  private eos.moe.armourers.n[] c;
+    descriptor: [Leos/moe/armourers/n;
+    flags: (0x0002) ACC_PRIVATE
+
+  private eos.moe.armourers.oh v;
+    descriptor: Leos/moe/armourers/oh;
+    flags: (0x0002) ACC_PRIVATE
+
+  private int s;
+    descriptor: I
+    flags: (0x0002) ACC_PRIVATE
+
+  private static int m;
+    descriptor: I
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+
+  private static int j;
+    descriptor: I
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+
+  private void x();
+    descriptor: ()V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: dup
+         2: dup_x1
+         3: invokespecial #39                 // Method h:()V
+         6: invokespecial #41                 // Method r:()V
+         9: invokespecial #44                 // Method y:()V
+        12: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      13     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 209: 0
+        line 12: 6
+        line 219: 9
+        line 77: 12
+
+  private void r(java.awt.image.BufferedImage, int, int, int, int, int, int, int, int);
+    descriptor: (Ljava/awt/image/BufferedImage;IIIIIIII)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=5, locals=10, args_size=10
+         0: iload_3
+         1: bipush        20
+         3: if_icmplt     52
+         6: iload_2
+         7: bipush        12
+         9: if_icmpge     31
+        12: aload_1
+        13: bipush        15
+        15: bipush        12
+        17: iload_2
+        18: isub
+        19: iadd
+        20: iload_3
+        21: bipush        32
+        23: iadd
+        24: iload         4
+        26: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+        29: return
+        30: athrow
+        31: aload_1
+        32: bipush        27
+        34: iconst_4
+        35: iload_2
+        36: bipush        12
+        38: isub
+        39: isub
+        40: iadd
+        41: iload_3
+        42: bipush        32
+        44: iadd
+        45: iload         4
+        47: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+        50: return
+        51: athrow
+        52: aload_1
+        53: bipush        15
+        55: bipush        16
+        57: iload_2
+        58: isub
+        59: iadd
+        60: iload_3
+        61: bipush        32
+        63: iadd
+        64: iload         4
+        66: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+        69: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      70     0     a   Leos/moe/armourers/ae;
+            0      70     1     a   Ljava/awt/image/BufferedImage;
+            0      70     2     a   I
+            0      70     3     a   I
+            0      70     4     a   I
+            0      70     5     a   I
+            0      70     6     a   I
+            0      70     7     a   I
+            0      70     8     a   I
+            0      70     9     a   I
+      LineNumberTable:
+        line 483: 0
+        line 529: 6
+        line 610: 12
+        line 421: 31
+        line 352: 52
+        line 531: 69
+      StackMapTable: number_of_entries = 4
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 19
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int, int, int, int, int, int ]
+          stack = []
+
+  public eos.moe.armourers.ae(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=22, locals=3, args_size=3
+         0: iconst_0
+         1: aload_0
+         2: dup_x1
+         3: iconst_1
+         4: aload_0
+         5: dup
+         6: dup_x1
+         7: aconst_null
+         8: aload_0
+         9: dup_x2
+        10: aconst_null
+        11: iconst_5
+        12: aload_0
+        13: dup_x1
+        14: iconst_5
+        15: iconst_m1
+        16: aload_0
+        17: dup_x1
+        18: iload_2
+        19: iload_1
+        20: aload_0
+        21: dup_x1
+        22: invokespecial #58                 // Method java/lang/Object."<init>":()V
+        25: putfield      #60                 // Field r:I
+        28: putfield      #62                 // Field e:I
+        31: putfield      #64                 // Field s:I
+        34: getstatic     #68                 // Field eos/moe/armourers/wf.j:I
+        37: imul
+        38: newarray       int
+        40: iconst_1
+        41: dup
+        42: pop2
+        43: putfield      #70                 // Field g:[I
+        46: getstatic     #68                 // Field eos/moe/armourers/wf.j:I
+        49: imul
+        50: newarray       int
+        52: iconst_1
+        53: dup
+        54: pop2
+        55: putfield      #72                 // Field d:[I
+        58: putfield      #74                 // Field l:Lnet/minecraft/util/ResourceLocation;
+        61: putfield      #76                 // Field t:Lnet/minecraft/util/ResourceLocation;
+        64: getfield      #70                 // Field g:[I
+        67: iconst_m1
+        68: invokestatic  #82                 // Method java/util/Arrays.fill:([II)V
+        71: getfield      #72                 // Field d:[I
+        74: iconst_m1
+        75: invokestatic  #82                 // Method java/util/Arrays.fill:([II)V
+        78: getstatic     #84                 // Field eos/moe/armourers/oh.l:Leos/moe/armourers/oh;
+        81: putfield      #86                 // Field v:Leos/moe/armourers/oh;
+        84: putfield      #88                 // Field a:Z
+        87: putfield      #90                 // Field h:Z
+        90: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      91     0     a   Leos/moe/armourers/ae;
+            0      91     1     a   I
+            0      91     2     a   I
+      LineNumberTable:
+        line 145: 0
+        line 122: 25
+        line 197: 28
+        line 121: 31
+        line 207: 34
+        line 49: 46
+        line 41: 58
+        line 187: 61
+        line 169: 64
+        line 210: 71
+        line 109: 78
+        line 96: 84
+        line 191: 87
+        line 112: 90
+
+  public net.minecraft.util.ResourceLocation z();
+    descriptor: ()Lnet/minecraft/util/ResourceLocation;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: dup
+         2: invokevirtual #93                 // Method z:()V
+         5: getfield      #76                 // Field t:Lnet/minecraft/util/ResourceLocation;
+         8: ifnull        17
+        11: aload_0
+        12: getfield      #76                 // Field t:Lnet/minecraft/util/ResourceLocation;
+        15: areturn
+        16: athrow
+        17: aload_0
+        18: getfield      #74                 // Field l:Lnet/minecraft/util/ResourceLocation;
+        21: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      22     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 584: 0
+        line 391: 5
+        line 258: 11
+        line 456: 17
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 16
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 252 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae ]
+
+  private int r(byte[], int, int, eos.moe.armourers.yl);
+    descriptor: ([BIILeos/moe/armourers/yl;)I
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=5, locals=8, args_size=5
+         0: iload_2
+         1: bipush        16
+         3: iushr
+         4: sipush        255
+         7: iand
+         8: i2b
+         9: istore        5
+        11: iload_2
+        12: bipush        8
+        14: iushr
+        15: sipush        255
+        18: iand
+        19: i2b
+        20: istore        6
+        22: iload_2
+        23: sipush        255
+        26: iand
+        27: i2b
+        28: istore_2
+        29: aload_1
+        30: arraylength
+        31: iconst_3
+        32: if_icmple     63
+        35: aload_1
+        36: iconst_3
+        37: baload
+        38: invokestatic  #99                 // Method eos/moe/armourers/te.r:(B)Leos/moe/armourers/ym;
+        41: dup
+        42: astore        7
+        44: invokevirtual #104                // Method eos/moe/armourers/ym.r:()Leos/moe/armourers/eo;
+        47: ifnull        63
+        50: aload_0
+        51: getfield      #86                 // Field v:Leos/moe/armourers/oh;
+        54: aload         7
+        56: invokevirtual #104                // Method eos/moe/armourers/ym.r:()Leos/moe/armourers/eo;
+        59: invokevirtual #107                // Method eos/moe/armourers/oh.r:(Leos/moe/armourers/eo;)[B
+        62: astore_1
+        63: iconst_3
+        64: newarray       int
+        66: iconst_1
+        67: dup
+        68: pop2
+        69: dup
+        70: iconst_0
+        71: bipush        127
+        73: iastore
+        74: dup
+        75: iconst_1
+        76: bipush        127
+        78: iastore
+        79: dup
+        80: iconst_2
+        81: bipush        127
+        83: iastore
+        84: astore        7
+        86: aload         4
+        88: ifnull        99
+        91: aload         4
+        93: iload_3
+        94: invokevirtual #112                // Method eos/moe/armourers/yl.r:(I)[I
+        97: astore        7
+        99: iload         5
+       101: iload         6
+       103: iload_2
+       104: aload_1
+       105: aload         7
+       107: invokestatic  #117                // Method eos/moe/armourers/gl.r:(BBB[B[I)[B
+       110: astore_1
+       111: ldc           #118                // int -16777216
+       113: aload_1
+       114: iconst_0
+       115: baload
+       116: sipush        255
+       119: iand
+       120: bipush        16
+       122: ishl
+       123: iadd
+       124: aload_1
+       125: iconst_1
+       126: baload
+       127: sipush        255
+       130: iand
+       131: bipush        8
+       133: ishl
+       134: iadd
+       135: aload_1
+       136: iconst_2
+       137: baload
+       138: sipush        255
+       141: iand
+       142: iadd
+       143: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     144     0     a   Leos/moe/armourers/ae;
+            0     144     1     a   [B
+            0     144     2     a   I
+            0     144     3     a   I
+            0     144     4     a   Leos/moe/armourers/yl;
+      LineNumberTable:
+        line 429: 0
+        line 551: 11
+        line 470: 22
+        line 580: 29
+        line 247: 35
+        line 485: 44
+        line 628: 50
+        line 556: 63
+        line 622: 86
+        line 367: 91
+        line 607: 99
+        line 459: 111
+      StackMapTable: number_of_entries = 2
+        frame_type = 253 /* append */
+          offset_delta = 63
+          locals = [ int, int ]
+        frame_type = 252 /* append */
+          offset_delta = 35
+          locals = [ class "[I" ]
+
+  private void h();
+    descriptor: ()V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: dup
+         2: getfield      #123                // Field b:Ljava/awt/image/BufferedImage;
+         5: invokestatic  #128                // Method eos/moe/armourers/bh.r:(Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
+         8: putfield      #130                // Field w:Ljava/awt/image/BufferedImage;
+        11: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 37: 0
+        line 177: 11
+
+  public void r(eos.moe.armourers.oh);
+    descriptor: (Leos/moe/armourers/oh;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=2, args_size=2
+         0: aload_0
+         1: getfield      #86                 // Field v:Leos/moe/armourers/oh;
+         4: aload_1
+         5: invokevirtual #135                // Method eos/moe/armourers/oh.equals:(Ljava/lang/Object;)Z
+         8: ifne          31
+        11: iconst_1
+        12: aload_0
+        13: dup_x1
+        14: new           #11                 // class eos/moe/armourers/oh
+        17: aload_0
+        18: dup
+        19: pop2
+        20: dup
+        21: aload_1
+        22: invokespecial #137                // Method eos/moe/armourers/oh."<init>":(Leos/moe/armourers/oh;)V
+        25: putfield      #86                 // Field v:Leos/moe/armourers/oh;
+        28: putfield      #88                 // Field a:Z
+        31: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      32     0     a   Leos/moe/armourers/ae;
+            0      32     1     a   Leos/moe/armourers/oh;
+      LineNumberTable:
+        line 153: 0
+        line 135: 11
+        line 138: 28
+        line 184: 31
+      StackMapTable: number_of_entries = 1
+        frame_type = 31 /* same */
+
+  public void z();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #88                 // Field a:Z
+         4: ifeq          16
+         7: iconst_0
+         8: aload_0
+         9: dup_x1
+        10: invokespecial #139                // Method x:()V
+        13: putfield      #88                 // Field a:Z
+        16: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      17     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 131: 0
+        line 188: 13
+        line 73: 16
+      StackMapTable: number_of_entries = 1
+        frame_type = 16 /* same */
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: bipush        64
+         2: putstatic     #142                // Field m:I
+         5: bipush        32
+         7: putstatic     #143                // Field j:I
+        10: return
+      LineNumberTable:
+        line 55: 0
+        line 7: 5
+
+  public eos.moe.armourers.ae();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: bipush        64
+         3: dup
+         4: invokespecial #145                // Method "<init>":(II)V
+         7: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       8     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 62: 0
+        line 17: 7
+
+  private void r(eos.moe.armourers.yl, eos.moe.armourers.n, java.awt.image.BufferedImage);
+    descriptor: (Leos/moe/armourers/yl;Leos/moe/armourers/n;Ljava/awt/image/BufferedImage;)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=7, locals=9, args_size=4
+         0: iconst_0
+         1: dup
+         2: istore_3
+         3: getstatic     #142                // Field m:I
+         6: if_icmpge     242
+         9: iconst_0
+        10: dup
+        11: istore        4
+        13: getstatic     #143                // Field j:I
+        16: if_icmpge     235
+        19: aload_1
+        20: invokevirtual #149                // Method eos/moe/armourers/yl.r:()[I
+        23: iload_3
+        24: iload         4
+        26: aload_0
+        27: getfield      #60                 // Field r:I
+        30: imul
+        31: iadd
+        32: iaload
+        33: dup
+        34: istore        5
+        36: invokestatic  #152                // Method eos/moe/armourers/te.y:(I)Leos/moe/armourers/ym;
+        39: dup
+        40: astore        6
+        42: getstatic     #155                // Field eos/moe/armourers/te.c:Leos/moe/armourers/ym;
+        45: if_acmpne     72
+        48: aload_0
+        49: dup
+        50: getfield      #130                // Field w:Ljava/awt/image/BufferedImage;
+        53: iload_3
+        54: iload         4
+        56: iload         5
+        58: iconst_0
+        59: sipush        255
+        62: invokestatic  #160                // Method eos/moe/armourers/lo.r:(III)I
+        65: invokespecial #163                // Method r:(Ljava/awt/image/BufferedImage;III)V
+        68: goto          227
+        71: athrow
+        72: aload         6
+        74: invokevirtual #166                // Method eos/moe/armourers/ym.z:()I
+        77: iconst_1
+        78: if_icmplt     181
+        81: aload         6
+        83: invokevirtual #166                // Method eos/moe/armourers/ym.z:()I
+        86: bipush        8
+        88: if_icmpgt     181
+        91: aload_2
+        92: aload         6
+        94: invokevirtual #166                // Method eos/moe/armourers/ym.z:()I
+        97: iconst_1
+        98: isub
+        99: istore        7
+       101: ifnull        158
+       104: aload_2
+       105: iload         7
+       107: invokeinterface #171,  2          // InterfaceMethod eos/moe/armourers/n.r:(I)Z
+       112: ifeq          158
+       115: aload_2
+       116: iload         7
+       118: invokeinterface #174,  2          // InterfaceMethod eos/moe/armourers/n.r:(I)[B
+       123: astore        8
+       125: aload_0
+       126: dup
+       127: dup_x1
+       128: aload         8
+       130: iload         5
+       132: aload         6
+       134: invokevirtual #176                // Method eos/moe/armourers/ym.r:()I
+       137: aload_1
+       138: invokespecial #178                // Method r:([BIILeos/moe/armourers/yl;)I
+       141: istore        8
+       143: getfield      #130                // Field w:Ljava/awt/image/BufferedImage;
+       146: iload_3
+       147: iload         4
+       149: iload         8
+       151: invokespecial #163                // Method r:(Ljava/awt/image/BufferedImage;III)V
+       154: goto          227
+       157: athrow
+       158: aload_0
+       159: dup
+       160: getfield      #130                // Field w:Ljava/awt/image/BufferedImage;
+       163: iload_3
+       164: iload         4
+       166: iload         5
+       168: iconst_0
+       169: sipush        255
+       172: invokestatic  #160                // Method eos/moe/armourers/lo.r:(III)I
+       175: invokespecial #163                // Method r:(Ljava/awt/image/BufferedImage;III)V
+       178: goto          227
+       181: aload         6
+       183: invokevirtual #104                // Method eos/moe/armourers/ym.r:()Leos/moe/armourers/eo;
+       186: ifnull        227
+       189: aload_0
+       190: dup
+       191: dup2
+       192: getfield      #86                 // Field v:Leos/moe/armourers/oh;
+       195: aload         6
+       197: invokevirtual #104                // Method eos/moe/armourers/ym.r:()Leos/moe/armourers/eo;
+       200: invokevirtual #107                // Method eos/moe/armourers/oh.r:(Leos/moe/armourers/eo;)[B
+       203: iload         5
+       205: aload         6
+       207: invokevirtual #176                // Method eos/moe/armourers/ym.r:()I
+       210: aload_1
+       211: invokespecial #178                // Method r:([BIILeos/moe/armourers/yl;)I
+       214: istore        7
+       216: getfield      #130                // Field w:Ljava/awt/image/BufferedImage;
+       219: iload_3
+       220: iload         4
+       222: iload         7
+       224: invokespecial #163                // Method r:(Ljava/awt/image/BufferedImage;III)V
+       227: iinc          4, 1
+       230: iload         4
+       232: goto          13
+       235: iinc          3, 1
+       238: iload_3
+       239: goto          3
+       242: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     243     0     a   Leos/moe/armourers/ae;
+            0     243     1     a   Leos/moe/armourers/yl;
+            0     243     2     a   Leos/moe/armourers/n;
+            0     243     3     a   Ljava/awt/image/BufferedImage;
+      LineNumberTable:
+        line 419: 0
+        line 620: 9
+        line 307: 19
+        line 259: 36
+        line 362: 42
+        line 508: 48
+        line 265: 72
+        line 295: 92
+        line 520: 101
+        line 276: 115
+        line 441: 125
+        line 469: 143
+        line 557: 154
+        line 559: 158
+        line 302: 178
+        line 348: 189
+        line 322: 216
+        line 620: 227
+        line 419: 235
+        line 301: 242
+      StackMapTable: number_of_entries = 10
+        frame_type = 255 /* full_frame */
+          offset_delta = 3
+          locals = [ class eos/moe/armourers/ae, class eos/moe/armourers/yl, class eos/moe/armourers/n, int ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class eos/moe/armourers/ae, class eos/moe/armourers/yl, class eos/moe/armourers/n, int, int ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 57
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class eos/moe/armourers/yl, class eos/moe/armourers/n, int, int, int, class eos/moe/armourers/ym ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 84
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class eos/moe/armourers/yl, class eos/moe/armourers/n, int, int, int, class eos/moe/armourers/ym, int ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 22
+        frame_type = 45 /* same */
+        frame_type = 249 /* chop */
+          offset_delta = 7
+        frame_type = 250 /* chop */
+          offset_delta = 6
+
+  public net.minecraft.util.ResourceLocation y();
+    descriptor: ()Lnet/minecraft/util/ResourceLocation;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #76                 // Field t:Lnet/minecraft/util/ResourceLocation;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 627: 0
+
+  public static byte[] r(byte...);
+    descriptor: ([B)[B
+    flags: (0x0089) ACC_PUBLIC, ACC_STATIC, ACC_VARARGS
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       2     0     a   [B
+      LineNumberTable:
+        line 308: 0
+
+  public void r(eos.moe.armourers.n[]);
+    descriptor: ([Leos/moe/armourers/n;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=3, args_size=2
+         0: iconst_0
+         1: aload_0
+         2: aload_1
+         3: putfield      #183                // Field c:[Leos/moe/armourers/n;
+         6: dup
+         7: istore_2
+         8: aload_0
+         9: getfield      #185                // Field z:[Leos/moe/armourers/yl;
+        12: arraylength
+        13: if_icmpge     88
+        16: aload_1
+        17: iload_2
+        18: aaload
+        19: ifnull        58
+        22: aload_1
+        23: iload_2
+        24: aaload
+        25: invokevirtual #188                // Method java/lang/Object.hashCode:()I
+        28: aload_0
+        29: getfield      #72                 // Field d:[I
+        32: iload_2
+        33: iaload
+        34: if_icmpeq     80
+        37: iconst_1
+        38: aload_0
+        39: dup_x1
+        40: getfield      #72                 // Field d:[I
+        43: aload_1
+        44: iload_2
+        45: dup_x1
+        46: aaload
+        47: invokevirtual #188                // Method java/lang/Object.hashCode:()I
+        50: iastore
+        51: putfield      #88                 // Field a:Z
+        54: goto          80
+        57: athrow
+        58: aload_0
+        59: getfield      #72                 // Field d:[I
+        62: iload_2
+        63: iaload
+        64: iconst_m1
+        65: if_icmpeq     80
+        68: iconst_1
+        69: aload_0
+        70: dup_x1
+        71: getfield      #72                 // Field d:[I
+        74: iload_2
+        75: iconst_m1
+        76: iastore
+        77: putfield      #88                 // Field a:Z
+        80: iinc          2, 1
+        83: iload_2
+        84: goto          8
+        87: athrow
+        88: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      89     0     a   Leos/moe/armourers/ae;
+            0      89     1     a   [Leos/moe/armourers/n;
+      LineNumberTable:
+        line 172: 1
+        line 61: 7
+        line 115: 16
+        line 21: 22
+        line 5: 37
+        line 142: 51
+        line 3: 58
+        line 10: 68
+        line 129: 77
+        line 61: 80
+        line 174: 88
+      StackMapTable: number_of_entries = 6
+        frame_type = 255 /* full_frame */
+          offset_delta = 8
+          locals = [ class eos/moe/armourers/ae, class "[Leos/moe/armourers/n;", int ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 48
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class "[Leos/moe/armourers/n;", int ]
+        frame_type = 21 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 6
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class "[Leos/moe/armourers/n;", int ]
+
+  private void r(java.awt.image.BufferedImage, int, int, int);
+    descriptor: (Ljava/awt/image/BufferedImage;III)V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=6, locals=5, args_size=5
+         0: aload_1
+         1: iload_2
+         2: dup_x1
+         3: iload_3
+         4: iload         4
+         6: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+         9: bipush        16
+        11: if_icmpge     20
+        14: iconst_1
+        15: iload_3
+        16: goto          22
+        19: athrow
+        20: iconst_0
+        21: iload_3
+        22: bipush        16
+        24: if_icmplt     32
+        27: iconst_1
+        28: goto          33
+        31: athrow
+        32: iconst_0
+        33: iand
+        34: iload_3
+        35: bipush        32
+        37: if_icmpge     44
+        40: iconst_1
+        41: goto          45
+        44: iconst_0
+        45: iand
+        46: ifeq          153
+        49: iload_3
+        50: bipush        20
+        52: if_icmplt     105
+        55: iload_2
+        56: bipush        12
+        58: if_icmpge     82
+        61: iload_2
+        62: aload_1
+        63: bipush        15
+        65: bipush        12
+        67: iload_2
+        68: isub
+        69: iadd
+        70: iload_3
+        71: bipush        32
+        73: iadd
+        74: iload         4
+        76: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+        79: goto          154
+        82: aload_1
+        83: bipush        27
+        85: iconst_4
+        86: iload_2
+        87: bipush        12
+        89: isub
+        90: isub
+        91: iadd
+        92: iload_3
+        93: bipush        32
+        95: iadd
+        96: iload         4
+        98: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+       101: iload_2
+       102: goto          154
+       105: iload_2
+       106: bipush        8
+       108: if_icmpge     134
+       111: iload_2
+       112: aload_1
+       113: bipush        15
+       115: bipush        8
+       117: iload_2
+       118: iconst_4
+       119: isub
+       120: isub
+       121: iadd
+       122: iload_3
+       123: bipush        32
+       125: iadd
+       126: iload         4
+       128: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+       131: goto          154
+       134: aload_1
+       135: bipush        23
+       137: bipush        8
+       139: iload_2
+       140: iconst_4
+       141: isub
+       142: isub
+       143: iadd
+       144: iload_3
+       145: bipush        32
+       147: iadd
+       148: iload         4
+       150: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+       153: iload_2
+       154: bipush        40
+       156: if_icmplt     164
+       159: iconst_1
+       160: iload_2
+       161: goto          166
+       164: iconst_0
+       165: iload_2
+       166: bipush        56
+       168: if_icmpge     175
+       171: iconst_1
+       172: goto          176
+       175: iconst_0
+       176: iand
+       177: iload_3
+       178: bipush        16
+       180: if_icmplt     187
+       183: iconst_1
+       184: goto          188
+       187: iconst_0
+       188: iand
+       189: iload_3
+       190: bipush        32
+       192: if_icmpge     199
+       195: iconst_1
+       196: goto          200
+       199: iconst_0
+       200: iand
+       201: ifeq          308
+       204: iload_3
+       205: bipush        20
+       207: if_icmplt     257
+       210: iload_2
+       211: bipush        52
+       213: if_icmpge     237
+       216: aload_1
+       217: bipush        12
+       219: iload_2
+       220: bipush        40
+       222: isub
+       223: isub
+       224: bipush        31
+       226: iadd
+       227: iload_3
+       228: bipush        32
+       230: iadd
+       231: iload         4
+       233: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+       236: return
+       237: aload_1
+       238: iconst_4
+       239: iload_2
+       240: bipush        52
+       242: isub
+       243: isub
+       244: bipush        43
+       246: iadd
+       247: iload_3
+       248: bipush        32
+       250: iadd
+       251: iload         4
+       253: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+       256: return
+       257: iload_2
+       258: bipush        48
+       260: if_icmpge     286
+       263: aload_1
+       264: bipush        8
+       266: iload_2
+       267: bipush        40
+       269: isub
+       270: isub
+       271: iconst_4
+       272: iadd
+       273: bipush        31
+       275: iadd
+       276: iload_3
+       277: bipush        32
+       279: iadd
+       280: iload         4
+       282: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+       285: return
+       286: aload_1
+       287: bipush        8
+       289: iload_2
+       290: bipush        48
+       292: isub
+       293: isub
+       294: iconst_4
+       295: iadd
+       296: bipush        31
+       298: iadd
+       299: iload_3
+       300: bipush        32
+       302: iadd
+       303: iload         4
+       305: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+       308: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     309     0     a   Leos/moe/armourers/ae;
+            0     309     1     a   Ljava/awt/image/BufferedImage;
+            0     309     2     a   I
+            0     309     3     a   I
+            0     309     4     a   I
+      LineNumberTable:
+        line 310: 0
+        line 296: 9
+        line 417: 49
+        line 461: 55
+        line 576: 62
+        line 335: 82
+        line 621: 105
+        line 436: 112
+        line 337: 134
+        line 448: 153
+        line 547: 204
+        line 383: 210
+        line 445: 216
+        line 525: 237
+        line 255: 257
+        line 583: 263
+        line 439: 286
+        line 353: 308
+      StackMapTable: number_of_entries = 25
+        frame_type = 255 /* full_frame */
+          offset_delta = 19
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int ]
+          stack = [ int, int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 8
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int ]
+          stack = [ int, int ]
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int ]
+          stack = [ int, int ]
+        frame_type = 36 /* same */
+        frame_type = 22 /* same */
+        frame_type = 28 /* same */
+        frame_type = 18 /* same */
+        frame_type = 64 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 9 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int ]
+          stack = [ int, int ]
+        frame_type = 72 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int ]
+          stack = [ int, int ]
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int ]
+          stack = [ int, int ]
+        frame_type = 74 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class java/awt/image/BufferedImage, int, int, int ]
+          stack = [ int, int ]
+        frame_type = 36 /* same */
+        frame_type = 19 /* same */
+        frame_type = 28 /* same */
+        frame_type = 21 /* same */
+
+  public void r(eos.moe.armourers.yl[]);
+    descriptor: ([Leos/moe/armourers/yl;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=3, args_size=2
+         0: aload_0
+         1: aload_1
+         2: dup_x1
+         3: putfield      #185                // Field z:[Leos/moe/armourers/yl;
+         6: arraylength
+         7: ifne          51
+        10: iconst_0
+        11: dup
+        12: istore_2
+        13: aload_0
+        14: getfield      #70                 // Field g:[I
+        17: arraylength
+        18: if_icmpge     51
+        21: aload_0
+        22: getfield      #70                 // Field g:[I
+        25: iload_2
+        26: iaload
+        27: iconst_m1
+        28: if_icmpeq     43
+        31: iconst_1
+        32: aload_0
+        33: dup_x1
+        34: getfield      #70                 // Field g:[I
+        37: iload_2
+        38: iconst_m1
+        39: iastore
+        40: putfield      #88                 // Field a:Z
+        43: iinc          2, 1
+        46: iload_2
+        47: goto          13
+        50: athrow
+        51: iconst_0
+        52: dup
+        53: istore_2
+        54: aload_0
+        55: getfield      #70                 // Field g:[I
+        58: arraylength
+        59: if_icmpge     139
+        62: iload_2
+        63: aload_1
+        64: arraylength
+        65: if_icmpge     110
+        68: aload_1
+        69: iload_2
+        70: aaload
+        71: ifnull        110
+        74: aload_1
+        75: iload_2
+        76: aaload
+        77: invokevirtual #191                // Method eos/moe/armourers/yl.r:()I
+        80: aload_0
+        81: getfield      #70                 // Field g:[I
+        84: iload_2
+        85: iaload
+        86: if_icmpeq     132
+        89: iconst_1
+        90: aload_0
+        91: dup_x1
+        92: getfield      #70                 // Field g:[I
+        95: aload_1
+        96: iload_2
+        97: dup_x1
+        98: aaload
+        99: invokevirtual #191                // Method eos/moe/armourers/yl.r:()I
+       102: iastore
+       103: putfield      #88                 // Field a:Z
+       106: goto          132
+       109: athrow
+       110: aload_0
+       111: getfield      #70                 // Field g:[I
+       114: iload_2
+       115: iaload
+       116: iconst_m1
+       117: if_icmpeq     132
+       120: iconst_1
+       121: aload_0
+       122: dup_x1
+       123: getfield      #70                 // Field g:[I
+       126: iload_2
+       127: iconst_m1
+       128: iastore
+       129: putfield      #88                 // Field a:Z
+       132: iinc          2, 1
+       135: iload_2
+       136: goto          54
+       139: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     140     0     a   Leos/moe/armourers/ae;
+            0     140     1     a   [Leos/moe/armourers/yl;
+      LineNumberTable:
+        line 84: 0
+        line 35: 6
+        line 134: 10
+        line 231: 21
+        line 214: 31
+        line 81: 40
+        line 134: 43
+        line 212: 51
+        line 30: 62
+        line 229: 74
+        line 151: 89
+        line 20: 103
+        line 230: 110
+        line 195: 120
+        line 46: 129
+        line 212: 132
+        line 204: 139
+      StackMapTable: number_of_entries = 9
+        frame_type = 255 /* full_frame */
+          offset_delta = 13
+          locals = [ class eos/moe/armourers/ae, class "[Leos/moe/armourers/yl;", int ]
+          stack = [ int ]
+        frame_type = 29 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 6
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 253 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class "[Leos/moe/armourers/yl;" ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 2
+          locals = [ class eos/moe/armourers/ae, class "[Leos/moe/armourers/yl;", int ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 54
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class "[Leos/moe/armourers/yl;", int ]
+        frame_type = 21 /* same */
+        frame_type = 6 /* same */
+
+  public void r(eos.moe.armourers.o, java.awt.image.BufferedImage, eos.moe.armourers.in);
+    descriptor: (Leos/moe/armourers/o;Ljava/awt/image/BufferedImage;Leos/moe/armourers/in;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=10, args_size=4
+         0: aload_1
+         1: dup
+         2: dup2
+         3: invokeinterface #198,  1          // InterfaceMethod eos/moe/armourers/o.z:()Ljava/awt/Point;
+         8: astore        4
+        10: invokeinterface #200,  1          // InterfaceMethod eos/moe/armourers/o.y:()Ljava/awt/Point;
+        15: astore        5
+        17: invokeinterface #203,  1          // InterfaceMethod eos/moe/armourers/o.z:()Leos/moe/armourers/a;
+        22: invokeinterface #206,  1          // InterfaceMethod eos/moe/armourers/a.z:()I
+        27: iconst_2
+        28: imul
+        29: aload_1
+        30: invokeinterface #203,  1          // InterfaceMethod eos/moe/armourers/o.z:()Leos/moe/armourers/a;
+        35: invokeinterface #208,  1          // InterfaceMethod eos/moe/armourers/a.y:()I
+        40: iconst_2
+        41: imul
+        42: iadd
+        43: istore        6
+        45: invokeinterface #203,  1          // InterfaceMethod eos/moe/armourers/o.z:()Leos/moe/armourers/a;
+        50: invokeinterface #209,  1          // InterfaceMethod eos/moe/armourers/a.r:()I
+        55: aload_1
+        56: invokeinterface #203,  1          // InterfaceMethod eos/moe/armourers/o.z:()Leos/moe/armourers/a;
+        61: invokeinterface #208,  1          // InterfaceMethod eos/moe/armourers/a.y:()I
+        66: iadd
+        67: istore        7
+        69: iconst_0
+        70: dup
+        71: istore        8
+        73: iload         6
+        75: if_icmpge     169
+        78: iconst_0
+        79: dup
+        80: istore        9
+        82: iload         7
+        84: if_icmpge     160
+        87: aload_1
+        88: aload_3
+        89: invokeinterface #212,  2          // InterfaceMethod eos/moe/armourers/o.r:(Leos/moe/armourers/in;)Z
+        94: ifeq          119
+        97: aload_2
+        98: aload         4
+       100: getfield      #216                // Field java/awt/Point.x:I
+       103: iload         8
+       105: iadd
+       106: aload         4
+       108: getfield      #218                // Field java/awt/Point.y:I
+       111: iload         9
+       113: iadd
+       114: ldc           #219                // int 16777215
+       116: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+       119: aload_1
+       120: aload_3
+       121: invokeinterface #221,  2          // InterfaceMethod eos/moe/armourers/o.y:(Leos/moe/armourers/in;)Z
+       126: ifeq          151
+       129: aload_2
+       130: aload         5
+       132: getfield      #216                // Field java/awt/Point.x:I
+       135: iload         8
+       137: iadd
+       138: aload         5
+       140: getfield      #218                // Field java/awt/Point.y:I
+       143: iload         9
+       145: iadd
+       146: ldc           #219                // int 16777215
+       148: invokevirtual #52                 // Method java/awt/image/BufferedImage.setRGB:(III)V
+       151: iinc          9, 1
+       154: iload         9
+       156: goto          82
+       159: athrow
+       160: iinc          8, 1
+       163: iload         8
+       165: goto          73
+       168: athrow
+       169: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     170     0     a   Leos/moe/armourers/ae;
+            0     170     1     a   Leos/moe/armourers/o;
+            0     170     2     a   Ljava/awt/image/BufferedImage;
+            0     170     3     a   Leos/moe/armourers/in;
+      LineNumberTable:
+        line 162: 0
+        line 161: 10
+        line 442: 17
+        line 524: 45
+        line 274: 69
+        line 410: 78
+        line 393: 87
+        line 381: 97
+        line 246: 119
+        line 357: 129
+        line 410: 151
+        line 274: 160
+        line 585: 169
+      StackMapTable: number_of_entries = 8
+        frame_type = 255 /* full_frame */
+          offset_delta = 73
+          locals = [ class eos/moe/armourers/ae, class eos/moe/armourers/o, class java/awt/image/BufferedImage, class eos/moe/armourers/in, class java/awt/Point, class java/awt/Point, int, int, int ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 8
+          locals = [ class eos/moe/armourers/ae, class eos/moe/armourers/o, class java/awt/image/BufferedImage, class eos/moe/armourers/in, class java/awt/Point, class java/awt/Point, int, int, int, int ]
+          stack = [ int ]
+        frame_type = 36 /* same */
+        frame_type = 31 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class eos/moe/armourers/o, class java/awt/image/BufferedImage, class eos/moe/armourers/in, class java/awt/Point, class java/awt/Point, int, int, int, int ]
+          stack = []
+        frame_type = 255 /* full_frame */
+          offset_delta = 7
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class eos/moe/armourers/o, class java/awt/image/BufferedImage, class eos/moe/armourers/in, class java/awt/Point, class java/awt/Point, int, int, int ]
+          stack = []
+
+  private void y();
+    descriptor: ()V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=7, locals=3, args_size=1
+         0: invokestatic  #231                // Method net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+         3: getfield      #235                // Field net/minecraft/client/Minecraft.field_71446_o:Lnet/minecraft/client/renderer/texture/TextureManager;
+         6: astore_1
+         7: aload_0
+         8: getfield      #76                 // Field t:Lnet/minecraft/util/ResourceLocation;
+        11: ifnull        22
+        14: aload_1
+        15: aload_0
+        16: getfield      #76                 // Field t:Lnet/minecraft/util/ResourceLocation;
+        19: invokevirtual #241                // Method net/minecraft/client/renderer/texture/TextureManager.func_147645_c:(Lnet/minecraft/util/ResourceLocation;)V
+        22: new           #7                  // class eos/moe/armourers/ji
+        25: dup
+        26: aload_0
+        27: dup
+        28: getfield      #130                // Field w:Ljava/awt/image/BufferedImage;
+        31: invokespecial #244                // Method eos/moe/armourers/ji."<init>":(Leos/moe/armourers/ae;Ljava/awt/image/BufferedImage;)V
+        34: astore_2
+        35: aload_1
+        36: new           #246                // class net/minecraft/util/ResourceLocation
+        39: aload_0
+        40: dup_x1
+        41: dup_x2
+        42: dup
+        43: pop2
+        44: dup
+        45: ldc           #248                // String armourers_workshops
+        47: invokevirtual #254                // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+        50: aload_0
+        51: getfield      #130                // Field w:Ljava/awt/image/BufferedImage;
+        54: invokevirtual #188                // Method java/lang/Object.hashCode:()I
+        57: invokestatic  #258                // Method java/lang/String.valueOf:(I)Ljava/lang/String;
+        60: invokespecial #261                // Method net/minecraft/util/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+        63: putfield      #76                 // Field t:Lnet/minecraft/util/ResourceLocation;
+        66: getfield      #76                 // Field t:Lnet/minecraft/util/ResourceLocation;
+        69: aload_2
+        70: invokevirtual #265                // Method net/minecraft/client/renderer/texture/TextureManager.func_110579_a:(Lnet/minecraft/util/ResourceLocation;Lnet/minecraft/client/renderer/texture/ITextureObject;)Z
+        73: pop
+        74: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      75     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 447: 0
+        line 460: 7
+        line 313: 14
+        line 619: 22
+        line 624: 36
+        line 498: 66
+        line 315: 74
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ class net/minecraft/client/renderer/texture/TextureManager ]
+
+  public net.minecraft.util.ResourceLocation r();
+    descriptor: ()Lnet/minecraft/util/ResourceLocation;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #74                 // Field l:Lnet/minecraft/util/ResourceLocation;
+         4: areturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 405: 0
+
+  private void r();
+    descriptor: ()V
+    flags: (0x1002) ACC_PRIVATE, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=5, args_size=1
+         0: iconst_0
+         1: dup
+         2: istore_1
+         3: aload_0
+         4: getfield      #185                // Field z:[Leos/moe/armourers/yl;
+         7: arraylength
+         8: if_icmpge     56
+        11: aload_0
+        12: getfield      #185                // Field z:[Leos/moe/armourers/yl;
+        15: iload_1
+        16: aaload
+        17: dup
+        18: astore_2
+        19: ifnull        48
+        22: aload_2
+        23: invokevirtual #268                // Method eos/moe/armourers/yl.r:()Z
+        26: ifeq          48
+        29: new           #270                // class eos/moe/armourers/mn
+        32: aload_2
+        33: dup_x1
+        34: dup
+        35: pop2
+        36: dup
+        37: invokespecial #271                // Method eos/moe/armourers/mn."<init>":()V
+        40: aload_0
+        41: dup_x2
+        42: getfield      #130                // Field w:Ljava/awt/image/BufferedImage;
+        45: invokespecial #273                // Method r:(Leos/moe/armourers/yl;Leos/moe/armourers/n;Ljava/awt/image/BufferedImage;)V
+        48: iinc          1, 1
+        51: iload_1
+        52: goto          3
+        55: athrow
+        56: iconst_0
+        57: dup
+        58: istore_1
+        59: aload_0
+        60: getfield      #185                // Field z:[Leos/moe/armourers/yl;
+        63: arraylength
+        64: if_icmpge     153
+        67: aload_0
+        68: getfield      #185                // Field z:[Leos/moe/armourers/yl;
+        71: iload_1
+        72: aaload
+        73: dup
+        74: astore_2
+        75: ifnull        146
+        78: iconst_0
+        79: dup
+        80: istore_3
+        81: aload_2
+        82: invokevirtual #276                // Method eos/moe/armourers/yl.r:()Leos/moe/armourers/r;
+        85: invokeinterface #281,  1          // InterfaceMethod eos/moe/armourers/r.r:()Ljava/util/ArrayList;
+        90: invokevirtual #286                // Method java/util/ArrayList.size:()I
+        93: if_icmpge     146
+        96: aload_2
+        97: invokevirtual #276                // Method eos/moe/armourers/yl.r:()Leos/moe/armourers/r;
+       100: invokeinterface #281,  1          // InterfaceMethod eos/moe/armourers/r.r:()Ljava/util/ArrayList;
+       105: iload_3
+       106: invokevirtual #290                // Method java/util/ArrayList.get:(I)Ljava/lang/Object;
+       109: checkcast     #292                // class eos/moe/armourers/y
+       112: dup
+       113: astore        4
+       115: instanceof    #195                // class eos/moe/armourers/o
+       118: ifeq          138
+       121: aload         4
+       123: checkcast     #195                // class eos/moe/armourers/o
+       126: aload_0
+       127: dup_x1
+       128: getfield      #130                // Field w:Ljava/awt/image/BufferedImage;
+       131: aload_2
+       132: invokevirtual #295                // Method eos/moe/armourers/yl.r:()Leos/moe/armourers/in;
+       135: invokevirtual #297                // Method r:(Leos/moe/armourers/o;Ljava/awt/image/BufferedImage;Leos/moe/armourers/in;)V
+       138: iinc          3, 1
+       141: iload_3
+       142: goto          81
+       145: athrow
+       146: iinc          1, 1
+       149: iload_1
+       150: goto          59
+       153: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     154     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 205: 0
+        line 103: 11
+        line 152: 19
+        line 89: 29
+        line 205: 48
+        line 93: 56
+        line 51: 67
+        line 86: 75
+        line 69: 78
+        line 87: 96
+        line 120: 115
+        line 88: 121
+        line 213: 126
+        line 69: 138
+        line 93: 146
+        line 144: 153
+      StackMapTable: number_of_entries = 10
+        frame_type = 255 /* full_frame */
+          offset_delta = 3
+          locals = [ class eos/moe/armourers/ae, int ]
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 44
+          locals = [ class eos/moe/armourers/yl ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 6
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 253 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, int ]
+        frame_type = 66 /* same_locals_1_stack_item */
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 21
+          locals = [ class eos/moe/armourers/ae, int, class eos/moe/armourers/yl, int ]
+          stack = [ int ]
+        frame_type = 252 /* append */
+          offset_delta = 56
+          locals = [ class eos/moe/armourers/y ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 6
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 254 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, int, class eos/moe/armourers/yl ]
+        frame_type = 250 /* chop */
+          offset_delta = 6
+
+  public boolean r();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #88                 // Field a:Z
+         4: ireturn
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 190: 0
+
+  public void finalize() throws java.lang.Throwable;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: invokestatic  #231                // Method net/minecraft/client/Minecraft.func_71410_x:()Lnet/minecraft/client/Minecraft;
+         3: getfield      #235                // Field net/minecraft/client/Minecraft.field_71446_o:Lnet/minecraft/client/renderer/texture/TextureManager;
+         6: astore_1
+         7: aload_0
+         8: getfield      #76                 // Field t:Lnet/minecraft/util/ResourceLocation;
+        11: ifnull        22
+        14: aload_1
+        15: aload_0
+        16: getfield      #76                 // Field t:Lnet/minecraft/util/ResourceLocation;
+        19: invokevirtual #241                // Method net/minecraft/client/renderer/texture/TextureManager.func_147645_c:(Lnet/minecraft/util/ResourceLocation;)V
+        22: aload_0
+        23: invokespecial #300                // Method java/lang/Object.finalize:()V
+        26: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      27     0     a   Leos/moe/armourers/ae;
+      LineNumberTable:
+        line 260: 0
+        line 597: 7
+        line 249: 14
+        line 451: 22
+        line 273: 26
+      StackMapTable: number_of_entries = 1
+        frame_type = 252 /* append */
+          offset_delta = 22
+          locals = [ class net/minecraft/client/renderer/texture/TextureManager ]
+    Exceptions:
+      throws java.lang.Throwable
+
+  public void r(net.minecraft.util.ResourceLocation);
+    descriptor: (Lnet/minecraft/util/ResourceLocation;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=10, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #64                 // Field s:I
+         4: aload_1
+         5: invokevirtual #301                // Method net/minecraft/util/ResourceLocation.hashCode:()I
+         8: if_icmpeq     53
+        11: aload_1
+        12: invokestatic  #304                // Method eos/moe/armourers/bh.r:(Lnet/minecraft/util/ResourceLocation;)Ljava/awt/image/BufferedImage;
+        15: dup
+        16: astore_2
+        17: aload_0
+        18: aconst_null
+        19: putfield      #123                // Field b:Ljava/awt/image/BufferedImage;
+        22: ifnull        53
+        25: iconst_1
+        26: aload_0
+        27: dup_x1
+        28: aload_2
+        29: aload_1
+        30: aload_0
+        31: dup_x1
+        32: aload_1
+        33: aload_0
+        34: iconst_0
+        35: putfield      #90                 // Field h:Z
+        38: invokevirtual #301                // Method net/minecraft/util/ResourceLocation.hashCode:()I
+        41: putfield      #64                 // Field s:I
+        44: putfield      #74                 // Field l:Lnet/minecraft/util/ResourceLocation;
+        47: putfield      #123                // Field b:Ljava/awt/image/BufferedImage;
+        50: putfield      #88                 // Field a:Z
+        53: aload_0
+        54: getfield      #123                // Field b:Ljava/awt/image/BufferedImage;
+        57: ifnonnull     121
+        60: aload_0
+        61: dup
+        62: dup_x1
+        63: invokestatic  #309                // Method net/minecraft/client/resources/DefaultPlayerSkin.func_177335_a:()Lnet/minecraft/util/ResourceLocation;
+        66: invokevirtual #301                // Method net/minecraft/util/ResourceLocation.hashCode:()I
+        69: putfield      #64                 // Field s:I
+        72: invokestatic  #309                // Method net/minecraft/client/resources/DefaultPlayerSkin.func_177335_a:()Lnet/minecraft/util/ResourceLocation;
+        75: invokestatic  #304                // Method eos/moe/armourers/bh.r:(Lnet/minecraft/util/ResourceLocation;)Ljava/awt/image/BufferedImage;
+        78: putfield      #123                // Field b:Ljava/awt/image/BufferedImage;
+        81: getfield      #123                // Field b:Ljava/awt/image/BufferedImage;
+        84: ifnull        93
+        87: iconst_1
+        88: aload_0
+        89: goto          95
+        92: athrow
+        93: iconst_0
+        94: aload_0
+        95: getfield      #90                 // Field h:Z
+        98: ifne          106
+       101: iconst_1
+       102: goto          107
+       105: athrow
+       106: iconst_0
+       107: iand
+       108: ifeq          121
+       111: iconst_1
+       112: aload_0
+       113: dup_x1
+       114: iconst_1
+       115: putfield      #90                 // Field h:Z
+       118: putfield      #88                 // Field a:Z
+       121: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     122     0     a   Leos/moe/armourers/ae;
+            0     122     1     a   Lnet/minecraft/util/ResourceLocation;
+      LineNumberTable:
+        line 80: 0
+        line 83: 11
+        line 159: 17
+        line 232: 22
+        line 206: 25
+        line 180: 38
+        line 133: 44
+        line 196: 47
+        line 34: 50
+        line 28: 53
+        line 143: 60
+        line 215: 72
+        line 76: 81
+        line 32: 111
+        line 220: 118
+        line 25: 121
+      StackMapTable: number_of_entries = 8
+        frame_type = 53 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 38
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 253 /* append */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class net/minecraft/util/ResourceLocation ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 1
+          locals = [ class eos/moe/armourers/ae, class net/minecraft/util/ResourceLocation ]
+          stack = [ int, class eos/moe/armourers/ae ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = []
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class net/minecraft/util/ResourceLocation ]
+          stack = [ int ]
+        frame_type = 255 /* full_frame */
+          offset_delta = 0
+          locals = [ class eos/moe/armourers/ae, class net/minecraft/util/ResourceLocation ]
+          stack = [ int, int ]
+        frame_type = 13 /* same */
+}
+SourceFile: "km"
+InnerClasses:
+  private #7 of #2;                       // class eos/moe/armourers/ji of class eos/moe/armourers/ae
+  public static final #9 of #11;          // class eos/moe/armourers/eo of class eos/moe/armourers/oh
